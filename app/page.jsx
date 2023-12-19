@@ -3,7 +3,7 @@ export default function Home() {
 
   return (
     <main>
-      Olá Mundo!!
+      Hello World my friends rip versão 2
     </main>
   );
 }

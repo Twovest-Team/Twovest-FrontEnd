@@ -2,8 +2,7 @@
 export default function Home() {
 
   return (
-    <main>
-      Olá Mundo!!
-    </main>
+    <h1 className="">
+    </h1>
   );
 }

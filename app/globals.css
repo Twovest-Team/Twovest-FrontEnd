@@ -2,3 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* MAX Breakpoint: 460px */
+
+h1{font-size: 47.78px;}
+
+h2{font-size: 39.18px;}
+
+h3{font-size: 33.18px;}
+
+h4{font-size: 27.65px;}
+
+h5{font-size: 23.04px;}
+
+h6{font-size: 19.2px;}
+
+body{
+    font-size: 16px;
+    margin: 0 24px
+}
+
+.caption{font-size: 13.33px;}
+

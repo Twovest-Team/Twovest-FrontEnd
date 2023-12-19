@@ -1,0 +1,54 @@
+name: Code Quality Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: v18.18.1
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "version=$(node -v)" >>$GITHUB_OUTPUT
+
+        if: success()
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+        if: success()
+
+      - name: Install dependencies
+        run: npm ci
+        if: steps.node_modules.outputs.cache-hit != 'true'
+
+      - name: Run Eslint
+        run: npm run lint
+        if: success()
+
+      - name: Prettify Code
+        run: npm run format
+        if: success()
+
+      - name: Run Jest
+        run: npm run test
+        if: success()
+
+      - name: Run build
+        run: npm run build

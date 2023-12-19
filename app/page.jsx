@@ -3,7 +3,7 @@ export default function Home() {
 
   return (
     <main>
-      Olá Mundo!
+      Olá Mundo!!
     </main>
   );
 }

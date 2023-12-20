@@ -2,8 +2,10 @@
 export default function Home() {
 
   return (
-    <main>
-      Hello World my friends rip versão 2
+    <main className="bg-primary_main hover:bg-primary_dark text-white">
+      Olá
     </main>
   );
+  
 }
+

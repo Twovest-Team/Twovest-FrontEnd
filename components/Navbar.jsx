@@ -13,13 +13,15 @@ export const Navbar = () =>{
     return(
         <nav className="flex justify-between px-4 py-5 bg-white border-b-grey border-b-2">
             <div className="flex">
-                <div className='mr-4 '><MenuIcon/></div>
-                <Link href={"/"}><Image src={logo} width={130} height={100} alt="Logo Twovest"></Image></Link>
+                <div className='mr-4'><MenuIcon/></div>
+                <Link href={"/"} className="items-center flex">
+                    <Image src={logo} width={105} height={24} alt="Logo Twovest" className="xs:hidden"></Image>
+                    <Image src={logo} width={130} height={24} alt="Logo Twovest" className="hidden xs:block"></Image></Link>
             </div>
             <div className="flex">
-                <div className="mr-2"><FavoriteBorderOutlinedIcon/></div>
-                <div className="mx-2"><LocalMallOutlinedIcon/></div>
-                <div className="ml-2"><AccountCircleOutlinedIcon/></div>
+                <div className="xs:mr-2 mr-1"><FavoriteBorderOutlinedIcon/></div>
+                <div className="xs:mx-2 mx-1"><LocalMallOutlinedIcon/></div>
+                <div className="xs:ml-2 ml-1"><AccountCircleOutlinedIcon/></div>
             </div>
         </nav>
     )

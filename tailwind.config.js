@@ -32,6 +32,9 @@ module.exports = {
         grey_opacity_50: '#CDCDCD80',
         white_opacity_50: '#FFFFFF80'
       },
+      screens: {
+        'xs': '330px'
+      }
      
     },
   },

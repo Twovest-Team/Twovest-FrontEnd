@@ -1,3 +1,4 @@
+import { markAssetError } from "next/dist/client/route-loader";
 
 export default function Home() {
 
@@ -8,4 +9,3 @@ export default function Home() {
   );
   
 }
-

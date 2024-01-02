@@ -8,9 +8,12 @@ export const metadata = {
   description: "Eco-fashion, wallet-friendly.",
 };
 
+import { Navbar } from "@/components/Navbar";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Navbar/>
       <body className={inter.className}>{children}</body>
     </html>
   );

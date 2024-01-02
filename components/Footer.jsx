@@ -19,8 +19,6 @@ export default function Footer () {
             <div className="w-36 border-r white_opacity_50">Sobre nós</div>
             <div className="w-36 ml-8">Aviso legal</div>
             </div>
-
-            /* Vou precisar de ter uma caixa com flex-wrap e max-width para os elementos de texto  */
         </footer>
     )
 }

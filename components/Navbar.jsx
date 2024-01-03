@@ -29,8 +29,8 @@ export const Navbar = () =>{
             <div className="flex">
                 <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
                 <Link href={"/"} className="items-center flex">
-                    <Image src={logo} width={105} height={24} alt="Logo Twovest" className="xs:hidden"></Image>
-                    <Image src={logo} width={130} height={24} alt="Logo Twovest" className="hidden xs:block"></Image></Link>
+                    <Image src={logo} width={105} height={24} alt="Logo Twovest" className="logoNavbarXS"></Image>
+                    <Image src={logo} width={130} height={24} alt="Logo Twovest" className="logoNavbarSM"></Image></Link>
             </div>
             <div className="flex">
                 <div className="xs:mr-2 mr-1"><FavoriteBorderOutlinedIcon/></div>
@@ -138,10 +138,10 @@ export const Navbar = () =>{
         <div className="border border-b border-grey mx-4 my-6"></div>
 
         <ul className="mx-4">
-           <div className="my-4">Sobre nós</div>
-           <div className="my-4">Proteção de dados</div> 
-           <div className="my-4">Termos de serviço</div> 
-           <div className="my-4">Aviso legal</div>  
+           <div className="my-6">Sobre nós</div>
+           <div className="my-6">Proteção de dados</div> 
+           <div className="my-6">Termos de serviço</div> 
+           <div className="my-6">Aviso legal</div>  
         </ul>
 
         <div className="border border-b border-grey my-6"></div>

@@ -27,9 +27,27 @@ body{
 
 /* Media Query */
 
-/* Media query navbar */
+/* -----Media query navbar Jónatas ------*/
 @media (max-width: 330px) {
 
-    
-    /* --- */
+    .logoNavbarXS{
+        display: block;
+    }
+
+    .logoNavbarSM{
+        display: none;
+    }
+  
   }
+
+
+  @media (min-width: 330px) {
+
+    .logoNavbarXS{
+        display: none;
+    }
+    .logoNavbarSM{
+        display: block;
+    }
+   
+  }  

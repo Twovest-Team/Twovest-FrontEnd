@@ -39,7 +39,7 @@ export default function Footer () {
             <SocialMediaLogos />
             </div>
             <hr className="mx-6 mb-6"/>
-            <div className="flex flex-wrap justify-between mx-6 text-white">
+            <div className="flex flex-wrap justify-between items-center mx-6 text-white">
             <div>
             <LanguageButton />
             </div>
@@ -50,7 +50,6 @@ export default function Footer () {
             <div className="bg-white py-3.5 mt-5">
             <PaymentLogos />
             </div>
-
         </footer>
     )
 }

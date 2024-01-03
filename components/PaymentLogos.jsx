@@ -1,8 +1,8 @@
 import Image from "next/image";
-import GooglePayLogo from "@/public/images/google_pay_logo.svg";
-import PaypalLogo from "@/public/images/paypal_logo.svg";
-import MBWayLogo from "@/public/images/mbway_logo.svg";
-import MastercardLogo from "@/public/images/mastercard_logo.svg";
+import GooglePayLogo from "@/public/images/payments/google_pay_logo.svg";
+import PaypalLogo from "@/public/images/payments/paypal_logo.svg";
+import MBWayLogo from "@/public/images/payments/mbway_logo.svg";
+import MastercardLogo from "@/public/images/payments/mastercard_logo.svg";
 
 
 export default function PaymentLogos() {

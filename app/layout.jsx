@@ -10,16 +10,19 @@ export const metadata = {
 };
 
 import { Navbar } from "@/components/Navbar";
+import StoreProvider from "./StoreProvider";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
+
       <body className={inter.className}>
-        <Navbar/>
-        {children}
-      <Footer />
-        </body>
+        <StoreProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </StoreProvider>
+      </body>
     </html>
   );
 }

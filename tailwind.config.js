@@ -31,7 +31,8 @@ module.exports = {
         dark: '#000000',
         grey: '#CDCDCD',
         grey_opacity_50: '#CDCDCD80',
-        white_opacity_50: '#FFFFFF80'
+        white_opacity_50: '#FFFFFF80',
+        dark_gray:'#484848'
       }
      
     },

@@ -29,17 +29,17 @@ body{
 
 /* Jónatas */
 
-.iconsNavbar{
+.navbar_icons{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
-.RsNavbar{
+.navbar_socialMedia{
     margin-left: 0.5rem;
     margin-right: 0.5rem; 
 }
 
-.categoriasMenu{
+.menu_categories{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
@@ -58,29 +58,29 @@ body{
 /* -----Media query navbar Jónatas ------*/
 @media (max-width: 330px) {
 
-    .logoNavbarXS{
+    .navbar_logo-xs{
         display: block;
     }
 
-    .logoNavbarSM{
+    .navbar_logo-sm{
         display: none;
     }
 
-    .iconsNavbar{
+    .navbar_icons{
         margin-left: 0.2rem;
         margin-right: 0.2rem;
     }
     
-    .RsNavbar{
+    .navbar_socialMedia{
         margin-left: 0.35rem;
         margin-right: 0.35rem; 
     }
 
-    .categoriasMenu{
+    .menu_categories{
         display: block;
     }
 
-    .categoriasMenu div{
+    .menu_categories div{
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
@@ -91,10 +91,10 @@ body{
 
   @media (min-width: 331px) {
 
-    .logoNavbarXS{
+    .navbar_logo-xs{
         display: none;
     }
-    .logoNavbarSM{
+    .navbar_logo-sm{
         display: block;
     }
    

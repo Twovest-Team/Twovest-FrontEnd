@@ -4,7 +4,7 @@ import logo from "../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
 import { useState } from "react";
-
+import { Buttons } from "./Buttons";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
@@ -29,13 +29,13 @@ export const Navbar = () =>{
             <div className="flex">
                 <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
                 <Link href={"/"} className="items-center flex">
-                    <Image src={logo} width={105} height={24} alt="Logo Twovest" className="logoNavbarXS"></Image>
-                    <Image src={logo} width={130} height={24} alt="Logo Twovest" className="logoNavbarSM"></Image></Link>
+                    <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
+                    <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
             </div>
             <div className="flex">
-                <div className="iconsNavbar"><FavoriteBorderOutlinedIcon/></div>
-                <div className="iconsNavbar"><LocalMallOutlinedIcon/></div>
-                <div className="iconsNavbar"><AccountCircleOutlinedIcon/></div>
+                <div className="navbar_icons"><FavoriteBorderOutlinedIcon/></div>
+                <div className="navbar_icons"><LocalMallOutlinedIcon/></div>
+                <div className="navbar_icons"><AccountCircleOutlinedIcon/></div>
             </div>
 
 
@@ -64,11 +64,13 @@ export const Navbar = () =>{
 
         <ul className="mx-4 my-4">
 
-            <div className="bg-black text-white px-4 py-4 rounded">Fazer log in ou registo</div>
+            {/* <div className="bg-black text-white px-4 py-4 rounded">Fazer log in ou registo</div> */}
+
+            <Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/>
 
             <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
 
-            <div className="categoriasMenu mt-4">
+            <div className="menu_categories mt-4">
                 <div className="bg-grey_opacity_50 p-4 rounded">Vestuário</div>
                 <div className="bg-grey_opacity_50 p-4 rounded">Calçado</div>
                 <div className="bg-grey_opacity_50 p-4 rounded">Acessórios</div>
@@ -149,11 +151,11 @@ export const Navbar = () =>{
         <div className="flex justify-between items-center mb-6">
 
             <div className="flex mx-4">
-                <div className="RsNavbar">O</div>
-                <div className="RsNavbar">O</div>
-                <div className="RsNavbar">O</div>
-                <div className="RsNavbar">O</div>
-                <div className="RsNavbar">O</div>
+                <div className="navbar_socialMedia">O</div>
+                <div className="navbar_socialMedia">O</div>
+                <div className="navbar_socialMedia">O</div>
+                <div className="navbar_socialMedia">O</div>
+                <div className="navbar_socialMedia">O</div>
             </div>
 
             <div className="mx-4">

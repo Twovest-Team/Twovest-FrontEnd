@@ -19,7 +19,7 @@ export const Buttons = ({ btnState, text, icon, btnSize, onClick }) => {
 
   };
   const sizes = {
-    menuSize: 'w-2/4 h-14 px-3 py-2 mt-4 flex justify-between items-center', //usado apenas no scroll menu
+    menuSize: 'w-full h-14 px-3 py-2 mt-4 flex justify-between items-center', //usado apenas no scroll menu
     mediumSize: 'w-full h-auto min-h-50 px-8 py-3.5 mt-4 gap-12 items-center justify-between', // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
     mediumSizeSocials: 'w-full h-55 px-8 py-3.5 mt-4 flex justify-center items-center gap-3 text-center',  // Social netwowrks
     redefineSize: 'w-full h-55 px-3 py-9 mt-4 flex justify-center items-center gap-3 text-center',  //usado para voltar para a galeria e redefinir

@@ -23,19 +23,81 @@ body{
 
 .caption{font-size: 13.33px;}
 
-@media screen and (max-width: 375px){
-    .footer--text { 
-      padding-left: 0;
-      padding-right: 0;
-      border-right: 0;
-      width: 200px;
-      text-align: center;
-      margin-bottom: 10px;
-    }
 
-    .footer--logos-payment { 
-      margin-right: 20px;
-    }
 
+
+
+/* Jónatas */
+
+.navbar_icons{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
+.navbar_socialMedia{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem; 
+}
+
+.menu_categories{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+/* Fim Jónatas */
+
+
+
+
+
+
+/* Media Query */
+
+
+/* -----Media query navbar Jónatas ------*/
+@media (max-width: 330px) {
+
+    .navbar_logo-xs{
+        display: block;
+    }
+
+    .navbar_logo-sm{
+        display: none;
+    }
+
+    .navbar_icons{
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+    }
+    
+    .navbar_socialMedia{
+        margin-left: 0.35rem;
+        margin-right: 0.35rem; 
+    }
+
+    .menu_categories{
+        display: block;
+    }
+
+    .menu_categories div{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+  
+  }
+
+
+
+  @media (min-width: 331px) {
+
+    .navbar_logo-xs{
+        display: none;
+    }
+    .navbar_logo-sm{
+        display: block;
+    }
+   
+  }  
+
+  /* -----FIM Media query navbar Jónatas ------*/

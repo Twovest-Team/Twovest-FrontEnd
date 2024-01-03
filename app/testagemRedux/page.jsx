@@ -3,7 +3,7 @@
 import { useAppDispatch } from '@/redux/hooks'
 import { updateGender } from '@/redux/slices/gendersSlice'
 
-const page = () => {
+const Page = () => {
 
     const dispatch = useAppDispatch()
 
@@ -15,4 +15,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

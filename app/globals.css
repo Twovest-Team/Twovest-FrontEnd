@@ -23,3 +23,13 @@ body{
 
 .caption{font-size: 13.33px;}
 
+
+
+/* Media Query */
+
+/* Media query navbar */
+@media (max-width: 330px) {
+
+    
+    /* --- */
+  }

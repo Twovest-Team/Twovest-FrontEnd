@@ -25,6 +25,14 @@ body{
 
 
 
+
+.iconsNavbar{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+
+
 /* Media Query */
 
 /* -----Media query navbar Jónatas ------*/
@@ -37,6 +45,12 @@ body{
     .logoNavbarSM{
         display: none;
     }
+
+    .iconsNavbar{
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+    }
+    
   
   }
 

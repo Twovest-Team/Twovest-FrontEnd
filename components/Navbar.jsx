@@ -33,9 +33,9 @@ export const Navbar = () =>{
                     <Image src={logo} width={130} height={24} alt="Logo Twovest" className="logoNavbarSM"></Image></Link>
             </div>
             <div className="flex">
-                <div className="xs:mr-2 mr-1"><FavoriteBorderOutlinedIcon/></div>
-                <div className="xs:mx-2 mx-1"><LocalMallOutlinedIcon/></div>
-                <div className="xs:ml-2 ml-1"><AccountCircleOutlinedIcon/></div>
+                <div className="iconsNavbar"><FavoriteBorderOutlinedIcon/></div>
+                <div className="iconsNavbar"><LocalMallOutlinedIcon/></div>
+                <div className="iconsNavbar"><AccountCircleOutlinedIcon/></div>
             </div>
 
 

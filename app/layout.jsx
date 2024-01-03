@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 import { Navbar } from "@/components/Navbar";
-import StoreProvider from "./StoreProvider";
+import StoreProvider from "../components/StoreProvider";
 
 export default function RootLayout({ children }) {
   return (
@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
 
       <body className={inter.className}>
         <StoreProvider>
-          <Navbar />
-          {children}
-          <Footer />
+            <Navbar />
+            {children}
+            <Footer />
         </StoreProvider>
       </body>
     </html>

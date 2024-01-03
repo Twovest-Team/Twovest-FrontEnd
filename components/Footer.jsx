@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 import LogoWhite from '@/public/images/logo_twovest_white.svg';
 import SocialMediaLogos from "./SocialMediaLogos";
 import PaymentLogos from "./PaymentLogos";
@@ -15,12 +16,24 @@ export default function Footer () {
             />
             </div>
             <div className="flex flex-wrap justify-center text-white">
-            <div className="footer--text w-40 pr-4 border-r white_opacity_50">Contactos</div>
-            <div className="footer--text w-40 pl-4">Proteção de dados</div>
-            <div className="footer--text w-40 pr-4 border-r white_opacity_50">Help center</div>
-            <div className="footer--text w-40 pl-4">Termos de serviço</div>
-            <div className="footer--text w-40 pr-4 border-r white_opacity_50">Sobre nós</div>
-            <div className="footer--text w-40 pl-4">Aviso legal</div>
+            <Link href="/">
+            <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">Contactos</div>
+            </Link>
+            <Link href="/">
+            <div className="footer--text w-44 pl-8">Proteção de dados</div>
+            </Link>
+            <Link href="/">
+            <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">Help center</div>
+            </Link>
+            <Link href="/">
+            <div className="footer--text w-44 pl-8">Termos de serviço</div>
+            </Link>
+            <Link href="/">
+            <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">Sobre nós</div>
+            </Link>
+            <Link href="/">
+            <div className="footer--text w-44 pl-8">Aviso legal</div>
+            </Link>
             </div>
             <div className="mt-8 mb-6">
             <SocialMediaLogos />
@@ -31,7 +44,7 @@ export default function Footer () {
             <LanguageButton />
             </div>
             <p className="caption">
-            @ 2023 twovest
+            &#169; 2023 Twovest
             </p>
             </div>
             <div className="bg-white py-3.5 mt-5">

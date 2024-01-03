@@ -23,12 +23,17 @@ body{
 
 .caption{font-size: 13.33px;}
 
-@media screen and (max-width: 375px){
+
+/* Media query utilizada no footer para uniformizar as caixas de texto, assim como os
+logótipos de métodos de pagamento que são utilizados no componente "PaymentLogos", 
+incorporados no footer. -------- João Paixão */
+@media screen and (max-width: 399px){
     .footer--text { 
       padding-left: 0;
       padding-right: 0;
       border-right: 0;
       width: 200px;
+      height: 40px;
       text-align: center;
       margin-bottom: 10px;
     }

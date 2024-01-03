@@ -7,7 +7,7 @@ export default function LanguageButton() {
       <div className="w-[17px] h-[17px] justify-center items-center flex">
         <Image src={PortugalFlag} alt="Bandeira de Portugal" width={13} height={13} />
       </div>
-      <div className="text-white">PT</div>
+      <div className="text-white caption">PT</div>
     </button>
   );
 }

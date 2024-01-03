@@ -149,11 +149,11 @@ export const Navbar = () =>{
         <div className="flex justify-between items-center mb-6">
 
             <div className="flex mx-4">
-                <div className="mx-2">O</div>
-                <div className="mx-2">O</div>
-                <div className="mx-2">O</div>
-                <div className="mx-2">O</div>
-                <div className="mx-2">O</div>
+                <div className="RsNavbar">O</div>
+                <div className="RsNavbar">O</div>
+                <div className="RsNavbar">O</div>
+                <div className="RsNavbar">O</div>
+                <div className="RsNavbar">O</div>
             </div>
 
             <div className="mx-4">

@@ -5,6 +5,15 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useState } from "react";
 import { Buttons } from "./Buttons";
+import facebook from "../public/images/social_media/facebook_logo_black.svg";
+import instagram from "../public/images/social_media/instagram_logo_black.svg";
+import tiktok from "../public/images/social_media/tiktok_logo_black.svg";
+import twitter from "../public/images/social_media/x_twitter_logo_black.svg";
+import youtube from "../public/images/social_media/youtube_logo_black.svg";
+import vestuario from "../public/images/categories/vestuario.png";
+import calcado from "../public/images/categories/calcado.png";
+import acessorios from "../public/images/categories/acessorios.png";
+import sustentavel from "../public/images/icons/sustentavel.svg";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,6 +22,8 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import SellIcon from '@mui/icons-material/Sell';
+import StarsIcon from '@mui/icons-material/Stars';
 
 
 export const Navbar = () =>{
@@ -71,12 +82,12 @@ export const Navbar = () =>{
             <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
 
             <div className="menu_categories mt-4">
-                <div className="bg-grey_opacity_50 p-4 rounded">Vestuário</div>
-                <div className="bg-grey_opacity_50 p-4 rounded">Calçado</div>
-                <div className="bg-grey_opacity_50 p-4 rounded">Acessórios</div>
-                <div className="bg-grey_opacity_50 p-4 rounded">Marcas</div>
-                <div className="bg-primary_main text-white p-4 rounded">Sustentável</div>
-                <div className="bg-grey_opacity_50 p-4 rounded">Promoções</div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Vestuário</p><Image src={vestuario} width={25} height={25} alt="vestuário"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Calçado</p><Image src={calcado} width={27} height={25} alt="calçado"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Acessórios</p><Image src={acessorios} width={32} height={20} alt="acessórios"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
+                <div className="bg-primary_main text-white items-center p-4 rounded flex justify-between"><p>Sustentável</p><Image src={sustentavel} width={25} height={25} alt="simbolo sustentavel"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
             </div>
 
         </ul>
@@ -150,16 +161,16 @@ export const Navbar = () =>{
 
         <div className="flex justify-between items-center mb-6">
 
-            <div className="flex mx-4">
-                <div className="navbar_socialMedia">O</div>
-                <div className="navbar_socialMedia">O</div>
-                <div className="navbar_socialMedia">O</div>
-                <div className="navbar_socialMedia">O</div>
-                <div className="navbar_socialMedia">O</div>
+            <div className="flex mx-4 items-center">
+                <div className="navbar_socialMedia"><Image src={facebook} width={25} height={25} alt="facebook logo"/></div>
+                <div className="navbar_socialMedia"><Image src={instagram} width={25} height={25}  alt="instagram logo"/></div>
+                <div className="navbar_socialMedia"><Image src={twitter} width={25} height={25}  alt="twitter logo"/></div>
+                <div className="navbar_socialMedia"><Image src={youtube} width={25} height={25}  alt="youtube logo"/></div>
+                <div className="navbar_socialMedia"><Image src={tiktok} width={25} height={25}  alt="tiktok logo"/></div>
             </div>
 
             <div className="mx-4">
-                <div className="caption">@ 2023 Twovest</div>
+                <div className="caption">@2023 Twovest</div>
             </div>
 
           

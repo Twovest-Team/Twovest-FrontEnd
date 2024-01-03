@@ -18,7 +18,7 @@ h6{font-size: 19.2px;}
 
 body{
     font-size: 16px;
-    margin: 0 24px
+    /* margin: 0 24px */
 }
 
 .caption{font-size: 13.33px;}
@@ -73,7 +73,8 @@ body{
     
     .navbar_socialMedia{
         margin-left: 0.35rem;
-        margin-right: 0.35rem; 
+        margin-right: 0.35rem;
+        
     }
 
     .menu_categories{

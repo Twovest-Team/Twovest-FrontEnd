@@ -4,6 +4,12 @@
 
 /* MAX Breakpoint: 460px */
 
+body{
+    font-size: 16px;
+    /* margin: 0 24px */
+
+}
+
 h1 {
   font-size: 47.78px;
 }
@@ -20,24 +26,105 @@ h4 {
   font-size: 27.65px;
 }
 
+
 h5 {
   font-size: 23.04px;
-}
+
 
 h6 {
   font-size: 19.2px;
-}
-
-body {
-  font-size: 16px;
-  margin: 0 24px;
 }
 
 .caption {
   font-size: 13.33px;
 }
 
-/* Media query utilizada no footer para uniformizar as caixas de texto, assim como os
+
+  
+  
+  
+  
+
+/* Jónatas */
+ 
+.navbar_icons{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+ 
+.navbar_socialMedia{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+ 
+.menu_categories{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+ 
+/* Fim Jónatas */
+ 
+ 
+ 
+ 
+ 
+ 
+/* Media Query */
+ 
+ 
+/* -----Media query navbar Jónatas ------*/
+@media (max-width: 330px) {
+ 
+    .navbar_logo-xs{
+        display: block;
+    }
+ 
+    .navbar_logo-sm{
+        display: none;
+    }
+ 
+    .navbar_icons{
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+    }
+   
+    .navbar_socialMedia{
+        margin-left: 0.35rem;
+        margin-right: 0.35rem;
+       
+    }
+ 
+    .menu_categories{
+        display: block;
+    }
+ 
+    .menu_categories div{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+ 
+  }
+ 
+ 
+ 
+  @media (min-width: 331px) {
+ 
+    .navbar_logo-xs{
+        display: none;
+    }
+    .navbar_logo-sm{
+        display: block;
+    }
+   
+  }  
+ 
+  /* -----FIM Media query navbar Jónatas ------*/
+  
+  
+  /* -----Início Media query footer Paixão ------*/
+  
+  /* Media query utilizada no footer para uniformizar as caixas de texto, assim como os
 logótipos de métodos de pagamento que são utilizados no componente "PaymentLogos", 
 incorporados no footer. -------- João Paixão */
 @media screen and (max-width: 399px) {
@@ -55,118 +142,5 @@ incorporados no footer. -------- João Paixão */
     margin-right: 20px;
   }
 }
-
-/* Jónatas */
-
-.navbar_icons {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.navbar_socialMedia {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.menu_categories {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-/* Fim Jónatas */
-
-/* Media Query */
-
-/* -----Media query navbar Jónatas ------*/
-@media (max-width: 330px) {
-  .navbar_logo-xs {
-    display: block;
-  }
-
-  .navbar_logo-sm {
-    display: none;
-  }
-
-  .navbar_icons {
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-  }
-
-  .navbar_socialMedia {
-    margin-left: 0.35rem;
-    margin-right: 0.35rem;
-  }
-
-  .menu_categories {
-    display: block;
-  }
-
-  .menu_categories div {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-/* Jónatas */
-
-.navbar_icons {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.navbar_socialMedia {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.menu_categories {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-/* Fim Jónatas */
-
-/* Media Query */
-
-/* -----Media query navbar Jónatas ------*/
-@media (max-width: 330px) {
-  .navbar_logo-xs {
-    display: block;
-  }
-
-  .navbar_logo-sm {
-    display: none;
-  }
-
-  .navbar_icons {
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-  }
-
-  .navbar_socialMedia {
-    margin-left: 0.35rem;
-    margin-right: 0.35rem;
-  }
-
-  .menu_categories {
-    display: block;
-  }
-
-  .menu_categories div {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-@media (min-width: 331px) {
-  .navbar_logo-xs {
-    display: none;
-  }
-  .navbar_logo-sm {
-    display: block;
-  }
-}
-
-/* -----FIM Media query navbar Jónatas ------*/
+  
+  /* -----FIM Media query footer Paixão ------*/

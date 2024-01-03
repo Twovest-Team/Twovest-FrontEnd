@@ -68,7 +68,7 @@ export const Navbar = () =>{
 
             <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
 
-            <div className="grid grid-cols-2 gap-2 mt-4">
+            <div className="categoriasMenu mt-4">
                 <div className="bg-grey_opacity_50 p-4 rounded">Vestuário</div>
                 <div className="bg-grey_opacity_50 p-4 rounded">Calçado</div>
                 <div className="bg-grey_opacity_50 p-4 rounded">Acessórios</div>

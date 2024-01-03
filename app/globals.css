@@ -26,6 +26,9 @@ body{
 
 
 
+
+/* Jónatas */
+
 .iconsNavbar{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -36,7 +39,21 @@ body{
     margin-right: 0.5rem; 
 }
 
+.categoriasMenu{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+/* Fim Jónatas */
+
+
+
+
+
+
 /* Media Query */
+
 
 /* -----Media query navbar Jónatas ------*/
 @media (max-width: 330px) {
@@ -58,8 +75,18 @@ body{
         margin-left: 0.35rem;
         margin-right: 0.35rem; 
     }
+
+    .categoriasMenu{
+        display: block;
+    }
+
+    .categoriasMenu div{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
   
   }
+
 
 
   @media (min-width: 330px) {
@@ -72,3 +99,5 @@ body{
     }
    
   }  
+
+  /* -----FIM Media query navbar Jónatas ------*/

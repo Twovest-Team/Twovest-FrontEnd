@@ -26,15 +26,14 @@ export default function Footer () {
             <SocialMediaLogos />
             </div>
             <hr className="mx-6 mb-6"/>
-            <div className="flex flex-wrap justify-left mx-6 text-white">
-            <div className="mr-40">
+            <div className="flex flex-wrap justify-between mx-6 text-white">
+            <div>
             <LanguageButton />
             </div>
-            <div>
+            <p className="caption">
             @ 2023 twovest
+            </p>
             </div>
-            </div>
-            
             <div className="bg-white py-3.5 mt-5">
             <PaymentLogos />
             </div>

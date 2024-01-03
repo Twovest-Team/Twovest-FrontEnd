@@ -1,11 +1,15 @@
+import React from "react";
+import NavigationTitle from "@/components/NavigationTitle";
+import { Refresh } from "@mui/icons-material"
 
 export default function Home() {
-
   return (
-    <main className="bg-primary_main hover:bg-primary_dark text-white">
-      Olá
+    <main>
+      <div className="flex items-center justify-between">
+        <NavigationTitle titleText={"Welcome to the app"} />
+        <Refresh />
+      </div>
     </main>
   );
-  
 }
 

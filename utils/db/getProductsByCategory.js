@@ -21,7 +21,6 @@ const getProductsByCategory = async (id_category, gender) => {
         ),
         categories (
             id,
-            name,
             main_category
         )
     `)

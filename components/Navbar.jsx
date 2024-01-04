@@ -60,7 +60,7 @@ export const Navbar = () =>{
 
 
 
-            <div
+        <div
         className={`${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         } bg-white z-50 overflow-scroll  h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
@@ -104,7 +104,7 @@ export const Navbar = () =>{
         <div className="border border-b border-grey mx-4 my-6"></div>
 
         <ul className="mx-4">
-            <div className="my-6 flex justify-between items-center">
+            <Link href={"/"} className="my-6 flex justify-between items-center">
                 <div>
                     <div className="font-semibold">Galeria de Looks</div>
                     <div className="text-grey caption">🔥 Descobre novos looks e inspira-te!</div>
@@ -113,81 +113,81 @@ export const Navbar = () =>{
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>
                 
-            </div>
-            <div className="my-6 font-semibold flex justify-between">
+            </Link>
+            <Link href={"/"} className="my-6 font-semibold flex justify-between">
                 <div>
                 Pontos de entrega
                 </div>
                 <div>
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>  
-            </div>
-            <div className="my-6 font-semibold flex justify-between">
+            </Link>
+            <Link href={"/"} className="my-6 font-semibold flex justify-between">
                 <div>
                 Fórum
                 </div>
                 <div>
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>  
-            </div>
-            <div className="my-6 font-semibold flex justify-between">
+            </Link>
+            <Link href={"/"} className="my-6 font-semibold flex justify-between">
                 <div className="text-primary_main">
                 Pontos&Cupões
                 </div>
                 <div>
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>  
-            </div>
-            <div className="my-6 font-semibold flex justify-between">
+            </Link>
+            <Link href={"/"} className="my-6 font-semibold flex justify-between">
                 <div>
                 Contactos
                 </div>
                 <div>
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>  
-            </div>
-            <div className="my-6 font-semibold flex justify-between">
+            </Link>
+            <Link href={"/"} className="my-6 font-semibold flex justify-between">
                 <div>
                 Help Center
                 </div>
                 <div>
                     <ArrowForwardIosIcon className="text-[18px]"/>
                 </div>  
-            </div>
+            </Link>
             
         </ul>
 
         <div className="border border-b border-grey mx-4 my-6"></div>
 
         <ul className="mx-4">
-           <div className="my-6">Sobre nós</div>
-           <div className="my-6">Proteção de dados</div> 
-           <div className="my-6">Termos de serviço</div> 
-           <div className="my-6">Aviso legal</div>  
+           <div className="my-6"><Link href={"/"}>Sobre nós</Link></div>
+           <div className="my-6"><Link href={"/"}>Proteção de dados</Link></div> 
+           <div className="my-6"><Link href={"/"}>Termos de serviço</Link></div> 
+           <div className="my-6"><Link href={"/"}>Aviso legal</Link></div>  
         </ul>
 
 
         <div className="border border-b border-grey my-6"></div>
-
-        <SocialMediaLogos_black/>
-
+            <SocialMediaLogos_black/>
         </div>
+
+
 
 {/*----------------- MENU CATEGORIAS -----------------*/}
 
-        <div
+    <div
         className={`${
           categoryOpen ? "translate-x-0" : "-translate-x-full"
         } bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
       >
+
         <div className="flex  items-center border-b-grey border-b-2">
             <div className="flex mx-4">
                 <div onClick={()=> toggleCategory(nameCategory)}><ArrowBackIosIcon/></div>
             </div>
             <div className="flex my-5">
                 <h6 className="font-semibold">{nameCategory}</h6>
-            </div>
-            
+            </div> 
         </div>
 
         {nameCategory == "Vestuário" && (
@@ -208,12 +208,10 @@ export const Navbar = () =>{
         
         <div className=" bottom-0 fixed w-screen">
             <div className="border border-b border-grey my-6"></div>
-        <SocialMediaLogos_black/>
-        </div>
-        
-
+            <SocialMediaLogos_black/>
         </div>
 
+    </div>
 
     </nav>
     )

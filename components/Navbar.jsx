@@ -3,7 +3,7 @@
 import logo from "../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Buttons } from "./Buttons";
 import facebook from "../public/images/social_media/facebook_logo_black.svg";
 import instagram from "../public/images/social_media/instagram_logo_black.svg";
@@ -24,17 +24,25 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SellIcon from '@mui/icons-material/Sell';
 import StarsIcon from '@mui/icons-material/Stars';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 export const Navbar = () =>{
 
     const[menuOpen, setMenuOpen] = useState(false);
+    const[categoryOpen, setCategoryMenu] = useState(false);
+    const[nameCategory, setNameCategory] = useState("");
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
+    const toggleCategory = (name) =>{
+        setCategoryMenu(!categoryOpen);
+        setNameCategory(name);
+    }
 
+    
     return(
         <nav className="flex justify-between px-4 py-5 bg-white border-b-grey border-b-2">
             <div className="flex">
@@ -52,7 +60,7 @@ export const Navbar = () =>{
 
 
             <div
-        className={`sidebar ${
+        className={`${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         } bg-white z-50 overflow-scroll  h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
       >
@@ -82,9 +90,9 @@ export const Navbar = () =>{
             <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
 
             <div className="menu_categories mt-4">
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Vestuário</p><Image src={vestuario} width={25} height={25} alt="vestuário"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Calçado</p><Image src={calcado} width={27} height={25} alt="calçado"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Acessórios</p><Image src={acessorios} width={32} height={20} alt="acessórios"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Vestuário")}><p>Vestuário</p><Image src={vestuario} width={25} height={25} alt="vestuário"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Calçado")}><p>Calçado</p><Image src={calcado} width={27} height={25} alt="calçado"/></div>
+                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Acessórios")}><p>Acessórios</p><Image src={acessorios} width={32} height={20} alt="acessórios"/></div>
                 <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
                 <div className="bg-primary_main text-white items-center p-4 rounded flex justify-between"><p>Sustentável</p><Image src={sustentavel} width={25} height={25} alt="simbolo sustentavel"/></div>
                 <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
@@ -177,6 +185,110 @@ export const Navbar = () =>{
         </div>
 
         </div>
+
+{/*----------------- MENU CATEGORIAS -----------------*/}
+
+        <div
+        className={`${
+          categoryOpen ? "translate-x-0" : "-translate-x-full"
+        } bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
+      >
+        <div className="flex  items-center border-b-grey border-b-2">
+            <div className="flex mx-4">
+                <div onClick={()=> toggleCategory(nameCategory)}><ArrowBackIosIcon/></div>
+            </div>
+            <div className="flex my-5">
+                <h6 className="font-semibold">{nameCategory}</h6>
+            </div>
+            
+        </div>
+
+        {nameCategory == "Vestuário" && (
+            <div id="Vestuário" >
+            <ul className="my-6 mx-6">
+            <h6 className="font-semibold">Partes de cima</h6>
+            <p className="my-3">Camisolas</p>
+            <p className="my-3">Malhas</p>
+            <p className="my-3">Sweatshirts</p>
+            <p className="my-3">T-shirts</p>
+            <p className="my-3">Polos</p>
+            <p className="my-3">Casacos</p>
+            <p className="my-3">Blazers</p>
+            <p className="my-3">Coletes</p>
+            <p className="my-3">Camisas</p>
+            <p className="my-3">Sobretudos</p>
+        </ul>
+
+        <ul className="my-6 mx-6">
+            <h6 className="font-semibold">Partes de baixo</h6>
+            <p className="my-3">Calças</p>
+            <p className="my-3">Calções</p>
+        </ul>
+
+        <ul className="my-6 mx-6">
+            <h6 className="font-semibold">Corpo inteiro</h6>
+            <p className="my-3">Macacões</p>
+        </ul>
+        </div>
+        )}
+        
+        
+        {nameCategory == "Calçado" && (
+            <ul id="Calçado"  className="my-6 mx-6">
+            <h6 className="font-semibold">Calçado</h6>
+            <p className="my-3">Sapatilhas/Ténis</p>
+            <p className="my-3">Sapatos</p>
+            <p className="my-3">Botas</p>
+            <p className="my-3">Sandálias</p>
+        </ul>
+        )}
+
+                
+        {nameCategory == "Acessórios" && (
+            <ul id="Acessórios"  className="my-6 mx-6">
+                <h6 className="font-semibold">Acessórios</h6>
+                <p className="my-3">Chapéus</p>
+                <p className="my-3">Cintos</p>
+                <p className="my-3">Óculos</p>
+                <p className="my-3">Pulseiras</p>
+                <p className="my-3">Colares</p>
+                <p className="my-3">Anéis</p>
+                <p className="my-3">Cachecóis</p>
+                <p className="my-3">Gorros</p>
+                <p className="my-3">Golas</p>
+                <p className="my-3">Luvas</p>
+                <p className="my-3">Brincos</p>
+                <p className="my-3">Carteiras</p>
+                <p className="my-3">Malas</p>
+                <p className="my-3">Mochilas</p>
+            </ul>
+        )}
+        
+
+        
+        <div className=" bottom-0 fixed w-screen">
+            <div className="border border-b border-grey my-6"></div>
+        <div className="flex justify-between items-center mb-6 ">
+
+                <div className="flex mx-4 items-center">
+                    <div className="navbar_socialMedia"><Image src={facebook} width={25} height={25} alt="facebook logo"/></div>
+                    <div className="navbar_socialMedia"><Image src={instagram} width={25} height={25}  alt="instagram logo"/></div>
+                    <div className="navbar_socialMedia"><Image src={twitter} width={25} height={25}  alt="twitter logo"/></div>
+                    <div className="navbar_socialMedia"><Image src={youtube} width={25} height={25}  alt="youtube logo"/></div>
+                    <div className="navbar_socialMedia"><Image src={tiktok} width={25} height={25}  alt="tiktok logo"/></div>
+                </div>
+
+                <div className="mx-4">
+                    <div className="caption">@2023 Twovest</div>
+                </div>
+
+            
+            </div>
+        </div>
+        
+
+        </div>
+
 
     </nav>
     )

@@ -1,24 +1,20 @@
 'use client'
 
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { updateView } from '@/redux/slices/layoutViews';
 import CropSquareIcon from '@mui/icons-material/CropSquare';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 
 const Views = () => {
 
-    const searchParams = useSearchParams()
-    
-    console.log(searchParams.get('view'))
-    const [currentView, setCurrentView] = useState(searchParams.get('view') ? parseInt(searchParams.get('view')) : 1)
+    const dispatch = useAppDispatch()
+    const currentView = useAppSelector(state => state.layoutViews.currentValue)
 
+    function handleViewChange(viewNumber) {
+        dispatch(updateView(viewNumber))
+    }
 
-    const router = useRouter()
     const icon = <CropSquareIcon sx={{ fontSize: 28 }} />
 
-    function handleViewChange(view) {
-        setCurrentView(view)
-        router.push(`?view=${view}`, { scroll: false })
-    }
 
     return (
         <div className="flex items-center justify-between gap-2 text-secondary w-fit">

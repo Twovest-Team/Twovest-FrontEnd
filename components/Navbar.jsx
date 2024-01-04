@@ -5,11 +5,6 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Buttons } from "./Buttons";
-import facebook from "../public/images/social_media/facebook_logo_black.svg";
-import instagram from "../public/images/social_media/instagram_logo_black.svg";
-import tiktok from "../public/images/social_media/tiktok_logo_black.svg";
-import twitter from "../public/images/social_media/x_twitter_logo_black.svg";
-import youtube from "../public/images/social_media/youtube_logo_black.svg";
 import vestuario from "../public/images/categories/vestuario.png";
 import calcado from "../public/images/categories/calcado.png";
 import acessorios from "../public/images/categories/acessorios.png";
@@ -19,6 +14,7 @@ import sustentavel from "../public/images/icons/sustentavel.svg";
 import { VestuarioLista } from "./menuCategories/Vestuario";
 import { CalcadoLista } from "./menuCategories/Calcado";
 import { AcessoriosLista } from "./menuCategories/Acessorios";
+import { SocialMediaLogos_black } from "./SocialMediaLogos_black";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
@@ -170,24 +166,10 @@ export const Navbar = () =>{
            <div className="my-6">Aviso legal</div>  
         </ul>
 
+
         <div className="border border-b border-grey my-6"></div>
 
-        <div className="flex justify-between items-center mb-6">
-
-            <div className="flex mx-4 items-center">
-                <div className="navbar_socialMedia"><Image src={facebook} width={25} height={25} alt="facebook logo"/></div>
-                <div className="navbar_socialMedia"><Image src={instagram} width={25} height={25}  alt="instagram logo"/></div>
-                <div className="navbar_socialMedia"><Image src={twitter} width={25} height={25}  alt="twitter logo"/></div>
-                <div className="navbar_socialMedia"><Image src={youtube} width={25} height={25}  alt="youtube logo"/></div>
-                <div className="navbar_socialMedia"><Image src={tiktok} width={25} height={25}  alt="tiktok logo"/></div>
-            </div>
-
-            <div className="mx-4">
-                <div className="caption">@2023 Twovest</div>
-            </div>
-
-          
-        </div>
+        <SocialMediaLogos_black/>
 
         </div>
 
@@ -226,22 +208,7 @@ export const Navbar = () =>{
         
         <div className=" bottom-0 fixed w-screen">
             <div className="border border-b border-grey my-6"></div>
-        <div className="flex justify-between items-center mb-6 ">
-
-                <div className="flex mx-4 items-center">
-                    <div className="navbar_socialMedia"><Image src={facebook} width={25} height={25} alt="facebook logo"/></div>
-                    <div className="navbar_socialMedia"><Image src={instagram} width={25} height={25}  alt="instagram logo"/></div>
-                    <div className="navbar_socialMedia"><Image src={twitter} width={25} height={25}  alt="twitter logo"/></div>
-                    <div className="navbar_socialMedia"><Image src={youtube} width={25} height={25}  alt="youtube logo"/></div>
-                    <div className="navbar_socialMedia"><Image src={tiktok} width={25} height={25}  alt="tiktok logo"/></div>
-                </div>
-
-                <div className="mx-4">
-                    <div className="caption">@2023 Twovest</div>
-                </div>
-
-            
-            </div>
+        <SocialMediaLogos_black/>
         </div>
         
 

@@ -25,7 +25,7 @@ const Views = () => {
 
             <button
                 disabled={currentView === 1 ? true : false}
-                className={`text-${currentView === 1 ? 'dark' : 'secondary'}`}
+                className={`${currentView === 1 ? 'text-dark' : 'text-secondary'}`}
                 onClick={() => handleViewChange(1)}
             >
                 {icon}
@@ -33,7 +33,7 @@ const Views = () => {
 
             <button
                 disabled={currentView === 2 ? true : false}
-                className={`relative text-${currentView === 2 ? 'dark' : 'secondary'}`}
+                className={`relative ${currentView === 2 ? 'text-dark' : 'text-secondary'}`}
                 onClick={() => handleViewChange(2)}
             >
                 {icon}

@@ -26,7 +26,7 @@ export default function Landing() {
       <div className="flex justify-center flex-wrap my-8 gap-8">
 
         {categories.map(element => (
-          <button onClick={() => handleClick(element.gender)} className="relative">
+          <button key={gender} onClick={() => handleClick(element.gender)} className="relative">
             <Image
               src={element.image}
               alt="Modelo feminino da Twovest"

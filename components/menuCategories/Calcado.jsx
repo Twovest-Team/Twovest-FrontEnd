@@ -1,7 +1,7 @@
 
 export const CalcadoLista = () =>{
     return(
-        <ul className="my-6 mx-6">
+        <ul className="my-6 mx-6 h-[80%]">
             <h6 className="font-semibold">Calçado</h6>
             <p className="my-3">Sapatilhas/Ténis</p>
             <p className="my-3">Sapatos</p>

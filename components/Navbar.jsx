@@ -204,7 +204,7 @@ export const Navbar = () =>{
         </div>
 
         {nameCategory == "Vestuário" && (
-            <div id="Vestuário" >
+            <div>
             <ul className="my-6 mx-6">
             <h6 className="font-semibold">Partes de cima</h6>
             <p className="my-3">Camisolas</p>
@@ -234,7 +234,7 @@ export const Navbar = () =>{
         
         
         {nameCategory == "Calçado" && (
-            <ul id="Calçado"  className="my-6 mx-6">
+            <ul className="my-6 mx-6">
             <h6 className="font-semibold">Calçado</h6>
             <p className="my-3">Sapatilhas/Ténis</p>
             <p className="my-3">Sapatos</p>
@@ -245,7 +245,7 @@ export const Navbar = () =>{
 
                 
         {nameCategory == "Acessórios" && (
-            <ul id="Acessórios"  className="my-6 mx-6">
+            <ul className="my-6 mx-6">
                 <h6 className="font-semibold">Acessórios</h6>
                 <p className="my-3">Chapéus</p>
                 <p className="my-3">Cintos</p>

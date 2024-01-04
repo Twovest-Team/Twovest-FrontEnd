@@ -164,7 +164,7 @@ export const Navbar = () =>{
         </ul>
 
 
-        <div className="border border-b border-grey my-6"></div>
+        
             <SocialMediaLogos_black/>
         </div>
 
@@ -199,11 +199,8 @@ export const Navbar = () =>{
             <AcessoriosLista/>
         )}
         
+        <SocialMediaLogos_black/>
         
-        <div className=" bottom-0 fixed w-screen">
-            <div className="border border-b border-grey my-6"></div>
-            <SocialMediaLogos_black/>
-        </div>
 
     </div>
 

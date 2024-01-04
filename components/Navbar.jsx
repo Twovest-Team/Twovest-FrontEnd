@@ -3,7 +3,7 @@
 import logo from "../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Buttons } from "./Buttons";
 import vestuario from "../public/images/categories/vestuario.png";
 import calcado from "../public/images/categories/calcado.png";
@@ -26,6 +26,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SellIcon from '@mui/icons-material/Sell';
 import StarsIcon from '@mui/icons-material/Stars';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 
 
 export const Navbar = () =>{
@@ -60,11 +61,9 @@ export const Navbar = () =>{
 
 
 
-        <div
-        className={`${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-white z-50 overflow-scroll  h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
-      >
+        <div className={`${menuOpen ? "translate-x-0" : "-translate-x-full"}
+         bg-white z-50 overflow-scroll  h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+
         <div className="flex justify-between items-center border-b-grey border-b-2">
 
             <div className="flex my-5 mx-4">
@@ -83,8 +82,6 @@ export const Navbar = () =>{
         </div>
 
         <ul className="mx-4 my-4">
-
-            {/* <div className="bg-black text-white px-4 py-4 rounded">Fazer log in ou registo</div> */}
 
             <Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/>
 
@@ -175,11 +172,8 @@ export const Navbar = () =>{
 
 {/*----------------- MENU CATEGORIAS -----------------*/}
 
-    <div
-        className={`${
-          categoryOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
-      >
+    <div className={`${categoryOpen ? "translate-x-0" : "-translate-x-full"}
+     bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
         <div className="flex  items-center border-b-grey border-b-2">
             <div className="flex mx-4">
@@ -189,6 +183,7 @@ export const Navbar = () =>{
                 <h6 className="font-semibold">{nameCategory}</h6>
             </div> 
         </div>
+
 
         {nameCategory == "Vestuário" && (
             <VestuarioLista/>
@@ -204,7 +199,6 @@ export const Navbar = () =>{
             <AcessoriosLista/>
         )}
         
-
         
         <div className=" bottom-0 fixed w-screen">
             <div className="border border-b border-grey my-6"></div>

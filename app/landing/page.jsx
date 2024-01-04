@@ -2,6 +2,7 @@ import Image from "next/image";
 import ModeloHomem from "@/public/images/landing_page/landing_homem.png";
 import ModeloMulher from "@/public/images/landing_page/landing_mulher.png";
 
+// Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
 export default function Landing() {
   return (
     <div className="container">

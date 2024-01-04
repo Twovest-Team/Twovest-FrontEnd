@@ -1,5 +1,5 @@
-import React from 'react'
 
+// Quem entrar aqui com sessão deve automaticamente fazer signout 
 const Login = () => {
   return (
     <div>Login</div>

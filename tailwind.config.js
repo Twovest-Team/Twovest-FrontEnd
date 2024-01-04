@@ -9,6 +9,12 @@ module.exports = {
   ],
 
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '24px'
+      }
+    },
     borderRadius: {
       DEFAULT: '5px',
       full: '999px'
@@ -32,9 +38,9 @@ module.exports = {
         grey: '#CDCDCD',
         grey_opacity_50: '#CDCDCD80',
         white_opacity_50: '#FFFFFF80',
-        dark_gray:'#484848'
+        dark_gray: '#484848'
       }
-     
+
     },
   },
 

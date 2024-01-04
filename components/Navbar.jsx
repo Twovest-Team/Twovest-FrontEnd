@@ -9,12 +9,14 @@ import vestuario from "../public/images/categories/vestuario.png";
 import calcado from "../public/images/categories/calcado.png";
 import acessorios from "../public/images/categories/acessorios.png";
 import sustentavel from "../public/images/icons/sustentavel.svg";
+import PortugalFlag from "@/public/images/idiomas/portugal_idioma.svg";
 
 //import componentes pags
 import { VestuarioLista } from "./menuCategories/Vestuario";
 import { CalcadoLista } from "./menuCategories/Calcado";
 import { AcessoriosLista } from "./menuCategories/Acessorios";
 import { SocialMediaLogos_black } from "./SocialMediaLogos_black";
+import LanguageButton from "./LanguageButton";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
@@ -163,9 +165,16 @@ export const Navbar = () =>{
            <div className="my-6"><Link href={"/"}>Aviso legal</Link></div>  
         </ul>
 
-
+        <button className="w-16 h-8 mx-4 px-3 py-2 rounded-[100px] border border-grey justify-start items-center gap-2 inline-flex">
+        <div className="w-4 h-4 justify-center items-center flex">
+        <Image src={PortugalFlag} alt="Bandeira de Portugal" width={16} height={16} />
+        </div>
+        <div className="text-black caption">PT</div>
+        </button>
+            
         
             <SocialMediaLogos_black/>
+
         </div>
 
 

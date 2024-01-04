@@ -16,13 +16,13 @@ const Products = async () => {
 
   return (
     <main>
-      <div className="container flex justify-between">
+      {/* <div className="container flex justify-between">
       <Views />
       </div>
       
       <ItemsBox>
         {data.map(element => <CardProduct product={element} />)}
-      </ItemsBox>
+      </ItemsBox> */}
     </main>
 
 

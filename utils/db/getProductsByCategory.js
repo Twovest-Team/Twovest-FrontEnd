@@ -43,7 +43,7 @@ const getProductsByCategory = async (id_category, gender) => {
         array.materials = materials
         array.styles = styles
 
-        console.log(array)
+        
         return array
     }))
 

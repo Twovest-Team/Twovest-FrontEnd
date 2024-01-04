@@ -90,12 +90,12 @@ export const Navbar = () =>{
             <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
 
             <div className="menu_categories mt-4">
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Vestuário")}><p>Vestuário</p><Image src={vestuario} width={25} height={25} alt="vestuário"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Calçado")}><p>Calçado</p><Image src={calcado} width={27} height={25} alt="calçado"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between" onClick={() => toggleCategory("Acessórios")}><p>Acessórios</p><Image src={acessorios} width={32} height={20} alt="acessórios"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
-                <div className="bg-primary_main text-white items-center p-4 rounded flex justify-between"><p>Sustentável</p><Image src={sustentavel} width={25} height={25} alt="simbolo sustentavel"/></div>
-                <div className="bg-grey_opacity_50 p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
+                <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between" onClick={() => toggleCategory("Vestuário")}><p>Vestuário</p><Image src={vestuario} width={25} height={25} alt="vestuário"/></div>
+                <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between" onClick={() => toggleCategory("Calçado")}><p>Calçado</p><Image src={calcado} width={27} height={25} alt="calçado"/></div>
+                <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between" onClick={() => toggleCategory("Acessórios")}><p>Acessórios</p><Image src={acessorios} width={32} height={20} alt="acessórios"/></div>
+                <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
+                <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><p>Sustentável</p><Image src={sustentavel} width={25} height={25} alt="simbolo sustentavel"/></div>
+                <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
             </div>
 
         </ul>

@@ -26,6 +26,9 @@ export const VestuarioLista = () =>{
             <h6 className="font-semibold">Corpo inteiro</h6>
             <p className="my-3">Macacões</p>
         </ul>
+
+
+
         </div>
     )
 }

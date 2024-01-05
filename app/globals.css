@@ -56,6 +56,24 @@ h6 {
   gap: 0.5rem;
 }
 
+/* Jónatas */
+ 
+.navbar_icons{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+ 
+.navbar_socialMedia{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+ 
+.menu_categories{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
 /* Fim Jónatas */
 
 /* Daniela */

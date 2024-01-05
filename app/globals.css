@@ -144,3 +144,18 @@ incorporados no footer. -------- João Paixão */
 }
   
   /* -----FIM Media query footer Paixão ------*/
+
+
+
+
+  /* -- VASCO -- */
+
+
+
+  @media (max-width: 350px) {
+    .views_div-display{
+      display: none;
+    }
+  }
+
+  /* -- FIM VASCO -- */

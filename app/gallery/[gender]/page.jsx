@@ -1,6 +1,7 @@
 import Views from "@/components/Views";
 import ItemsBox from "@/components/ItemsBox";
 import LookCard from "@/components/LookCard";
+import CollectionPreview from "@/components/CollectionPreview";
 
 
 // Página com todos os looks da galeria
@@ -18,8 +19,12 @@ const Gallery = () => {
         <LookCard />
         <LookCard />
         <LookCard />
+
       </ItemsBox>
 
+      <div className="container flex justify-between">
+      <CollectionPreview />
+      </div>
       
     </main>
   )

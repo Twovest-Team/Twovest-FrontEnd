@@ -1,7 +1,8 @@
 
-
+import CardProduct from "@/components/CardProduct"
 import getProductsByCategory from "@/utils/db/getProductsByCategory"
-
+import Views from "@/components/Views"
+import ItemsBox from "@/components/ItemsBox"
 
 // Página com todos os produtos, filtrados por categoria.
 // Exemplo: twovest.com/products/mulher?category='Saias'
@@ -15,7 +16,14 @@ const Products = async () => {
 
   return (
     <main>
-      Products
+      <div className="container flex justify-between h-7">
+      <Views />
+      </div>
+      
+      <ItemsBox>
+        {data.map(element => <CardProduct product={element} />)}
+        {data.map(element => <CardProduct product={element} />)}
+      </ItemsBox>
     </main>
 
 

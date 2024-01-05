@@ -57,7 +57,7 @@ export const Navbar = () =>{
     
     return(
 
-        <nav className="flex justify-between z-10 fixed top-0 w-screen px-4 py-5 bg-white border-b-grey border-b-2">
+        <nav className="flex justify-between z-10 max-w-[460px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
             <div className="flex">
                 <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
                 <Link href={"/"} className="items-center flex">
@@ -89,6 +89,7 @@ export const Navbar = () =>{
                 <p className="font-semibold mx-4 text-grey">
                     Homem
                 </p>
+                
             </div>
             <div className="flex mx-4">
                 <div onClick={toggleMenu}><CloseOutlinedIcon/></div>

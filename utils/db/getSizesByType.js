@@ -6,7 +6,6 @@ const getSizesByType = async(type) => {
     .select()
     .eq('type', type)
 
-    console.log(data)
 
     return data
 }

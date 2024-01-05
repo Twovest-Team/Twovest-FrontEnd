@@ -1,8 +1,8 @@
-
 import CardProduct from "@/components/CardProduct"
 import getProductsByCategory from "@/utils/db/getProductsByCategory"
 import Views from "@/components/Views"
 import ItemsBox from "@/components/ItemsBox"
+
 
 // Página com todos os produtos, filtrados por categoria.
 // Exemplo: twovest.com/products/mulher?category='Saias'
@@ -22,8 +22,9 @@ const Products = async () => {
       
       <ItemsBox>
         {data.map(element => <CardProduct key={element.id} product={element} />)}
-        {data.map(element => <CardProduct key={element.id} product={element} />)}
+        {data.map(element => <CardProduct key={element.id} product={element} />)} 
       </ItemsBox>
+      
     </main>
 
 

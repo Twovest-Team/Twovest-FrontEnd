@@ -4,6 +4,7 @@ import LookCard from "@/components/LookCard";
 import CollectionPreview from "@/components/CollectionPreview";
 
 
+
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
 // Exemplo: twovest.com/gallery/mulher
@@ -19,7 +20,7 @@ const Gallery = () => {
         <LookCard />
         <LookCard />
         <LookCard />
-
+        
       </ItemsBox>
 
 

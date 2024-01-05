@@ -5,8 +5,6 @@ const getAllMaterials = async() => {
     .from('materials')
     .select()
 
-    console.log(data)
-
     return data
 }
 

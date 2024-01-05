@@ -4,9 +4,10 @@
 
 /* MAX Breakpoint: 460px */
 
-body {
-  font-size: 16px;
-  /* margin: 0 24px */
+body{
+    font-size: 16px;
+    max-width: 460px;
+    margin: auto;
 }
 
 h1 {
@@ -252,3 +253,18 @@ incorporados no footer. -------- João Paixão */
 }
 
 /* -----FIM Media query footer Paixão ------*/
+
+
+
+
+  /* -- VASCO -- */
+
+
+
+  @media (max-width: 350px) {
+    .views_div-display{
+      display: none;
+    }
+  }
+
+  /* -- FIM VASCO -- */

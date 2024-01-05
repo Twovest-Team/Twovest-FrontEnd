@@ -23,7 +23,7 @@ const GenderDetection = ({ children }) => {
       router.push('/landing')
     }
 
-  }, [])
+  }, [params.gender, pathname, router])
 
 
 return (

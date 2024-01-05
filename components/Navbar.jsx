@@ -57,7 +57,7 @@ export const Navbar = () =>{
     
     return(
 
-        <nav className="flex justify-between fixed top-0 w-screen px-4 py-5 bg-white border-b-grey border-b-2">
+        <nav className="flex justify-between z-10 fixed top-0 w-screen px-4 py-5 bg-white border-b-grey border-b-2">
             <div className="flex">
                 <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
                 <Link href={"/"} className="items-center flex">

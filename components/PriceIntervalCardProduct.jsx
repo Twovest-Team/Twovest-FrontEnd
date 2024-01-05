@@ -11,7 +11,7 @@ const PriceIntervalCardProduct = ({ offers }) => {
     return (
         <p
             className={`font-medium truncate w-44
-            ${currentView === 1 ? 'text-right max-[383px]:text-left' : currentView === 2 && 'text-left'}
+            ${currentView === 1 ? 'text-right max-[383px]:text-left' : currentView === 2 && 'text-left caption'}
             `}>
             {priceInterval.minPrice}€ - {priceInterval.maxPrice}€
         </p>

@@ -5,8 +5,6 @@ const getAllColors = async() => {
     .from('colors')
     .select()
 
-    console.log(data)
-
     return data
 }
 

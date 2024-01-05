@@ -5,8 +5,6 @@ const getAllStyles = async() => {
     .from('styles')
     .select()
 
-    console.log(data)
-
     return data
 }
 

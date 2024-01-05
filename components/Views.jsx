@@ -10,7 +10,7 @@ const Views = () => {
     const dispatch = useAppDispatch() // Para atualizar o state da view
     const currentView = useAppSelector(state => state.layoutViews.currentValue) // Para ver o state da view atual
     const [windowWidth, setWindowWidth] = useState('') // Para verificar a width da Window
-    const minDisplayWidth = 335  // Tamanho minimo para fazer display do componente
+    const minDisplayWidth = 350  // Tamanho minimo para fazer display do componente
     const icon = <CropSquareIcon sx={{ fontSize: 28 }} />
 
     function handleViewChange(viewNumber) {

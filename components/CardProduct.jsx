@@ -2,10 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image';
 import { categories } from '@/constants';
 import FavoriteButton from './FavoriteButton';
-import PriceIntervalCardProduct from './PriceIntervalCardProduct';
+import PriceProduct from './PriceProduct';
+import sustentavel from "../public/images/icons/sustentavel.svg";
+import SellIcon from '@mui/icons-material/Sell';
 
-const CardProduct = ({ product }) => {
-
+const CardProduct = ({ product, slider, gender }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
 
@@ -14,7 +15,7 @@ const CardProduct = ({ product }) => {
 
             <div className='w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center'>
 
-                <Link href={`/product/mulher/${product.id}`}>
+                <Link href={`/product/${gender}/${product.id}`}>
                     <Image
                         src={product.images[0].url}
                         alt={product.images[0].alt}
@@ -23,25 +24,48 @@ const CardProduct = ({ product }) => {
                     />
                 </Link>
 
-                <div className='absolute top-2.5 px-4 w-full flex items-center justify-between'>
-                    <Link href={`/brands/mulher/${product.brands.name}`}>
-                        <Image
-                            src={product.brands.logo_url}
-                            width={30}
-                            height={30}
-                            alt={product.brands.name}
-                            className='rounded-full shadow-lg'
-                        />
-                    </Link>
 
-                    <FavoriteButton />
+                <div className='absolute top-2.5 px-4 w-full flex items-center justify-between'>
+                    <div className='flex gap-3 items-center'>
+                        <Link href={`/brands/mulher/${product.brands.name}`}>
+                            <Image
+                                src={product.brands.logo_url}
+                                width={25}
+                                height={25}
+                                alt={product.brands.name}
+                                className='rounded-full shadow-lg'
+                            />
+                        </Link>
+                    </div>
+
+
+                    <Image
+                        src={sustentavel}
+                        width={32}
+                        height={32}
+                        alt="Artigo Sustentável"
+                        className={!product.is_sustainable && 'hidden'}
+                    />
+
                 </div>
 
 
+                {product.discount > 0 &&
+                    <div className='h-11 bg-primary_main absolute bottom-5 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0'>
+                        <SellIcon sx={{ fontSize: 20 }} />
+                        {product.discount}% OFF
+                    </div>
+                }
+
             </div>
-            <div className='flex flex-wrap justify-between items-center mt-2.5 gap-y-1'>
-                <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
-                <PriceIntervalCardProduct offers={product.offers} />
+            <div className={`flex flex-wrap justify-between items-center mt-2.5 gap-y-1 ${slider && 'w-40'}`}>
+                {!slider &&
+                    <>
+                        <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
+                        <PriceProduct discount={product.discount} offers={product.offers} />
+                    </>
+                }
+
             </div>
         </article>
 

@@ -277,7 +277,20 @@ incorporados no footer. -------- João Paixão */
 
 
   /* -- VASCO -- */
+  .contentSlider_div-scroll {
+    overflow-x: scroll;
+    scrollbar-width: thin;  /* For Firefox */
+    scrollbar-color: transparent transparent;  /* For Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
 
+  .contentSlider_div-scroll::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .contentSlider_div-scroll::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 
 
   @media (max-width: 350px) {

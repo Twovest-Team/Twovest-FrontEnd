@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gendersSlice from "./slices/gendersSlice";
+import layoutViewsSlice from "./slices/layoutViews";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      genders : gendersSlice
+      layoutViews: layoutViewsSlice
     }
   })
 }

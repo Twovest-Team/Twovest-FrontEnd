@@ -1,6 +1,6 @@
 
 // Página de um produto em específico, deverá receber por props os dados do produto
-// Exemplo: twovest.com/products/52   <--ID do produto
+// Exemplo: twovest.com/product/mulher/52   <--ID do produto
 const Product = ({product}) => {
   return (
     <div>Product</div>

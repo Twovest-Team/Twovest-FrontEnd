@@ -16,7 +16,9 @@ import { VestuarioLista } from "./menuCategories/Vestuario";
 import { CalcadoLista } from "./menuCategories/Calcado";
 import { AcessoriosLista } from "./menuCategories/Acessorios";
 import { SocialMediaLogos_black } from "./SocialMediaLogos_black";
-import LanguageButton from "./LanguageButton";
+import { CardCart } from "./CardCart";
+
+
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
@@ -31,11 +33,13 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 
+
 export const Navbar = () =>{
 
     const[menuOpen, setMenuOpen] = useState(false);
     const[categoryOpen, setCategoryMenu] = useState(false);
     const[nameCategory, setNameCategory] = useState("");
+    const[cestoOpen, setCesto] = useState(false);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -46,9 +50,14 @@ export const Navbar = () =>{
         setNameCategory(name);
     }
 
+    const toggleCesto = () =>{
+        setCesto(!cestoOpen)   
+    }
+
     
     return(
-        <nav className="flex justify-between px-4 py-5 bg-white border-b-grey border-b-2">
+
+        <nav className="flex justify-between z-10 fixed top-0 w-screen px-4 py-5 bg-white border-b-grey border-b-2">
             <div className="flex">
                 <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
                 <Link href={"/"} className="items-center flex">
@@ -57,14 +66,19 @@ export const Navbar = () =>{
             </div>
             <div className="flex">
                 <div className="navbar_icons"><FavoriteBorderOutlinedIcon/></div>
-                <div className="navbar_icons"><LocalMallOutlinedIcon/></div>
+                <div className="navbar_icons" onClick={()=> toggleCesto()}><LocalMallOutlinedIcon/></div>
                 <div className="navbar_icons"><AccountCircleOutlinedIcon/></div>
             </div>
 
+        
 
+
+
+
+        {/*------------ MENU LATERAL ---------------*/}
 
         <div className={`${menuOpen ? "translate-x-0" : "-translate-x-full"}
-         bg-white z-50 overflow-scroll  h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+         bg-white z-10 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
         <div className="flex justify-between items-center border-b-grey border-b-2">
 
@@ -182,7 +196,7 @@ export const Navbar = () =>{
 {/*----------------- MENU CATEGORIAS -----------------*/}
 
     <div className={`${categoryOpen ? "translate-x-0" : "-translate-x-full"}
-     bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+     bg-white z-20 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
         <div className="flex  items-center border-b-grey border-b-2">
             <div className="flex mx-4">
@@ -213,7 +227,59 @@ export const Navbar = () =>{
 
     </div>
 
-    </nav>
-    )
 
+
+{/*-------------- CESTO -----------------*/}
+
+<div className={`${cestoOpen ? "translate-x-0" : "translate-x-full"}
+     bg-white z-50 overflow-scroll w-screen h-screen fixed top-0 right-0 transition-transform duration-300 ease-in-out`}>
+
+            <div className="flex justify-between items-center border-grey border">
+
+                <div className="flex my-5 mx-4">
+                    <LocalMallOutlinedIcon className="mr-2"/>
+                    <p className="font-semibold">Cesto de compras</p>   
+                </div>
+                <div className="flex mx-4">
+                    <div onClick={toggleCesto}><CloseOutlinedIcon/></div>
+                </div>
+
+            </div>
+
+            <div className="border-b border-grey"></div>
+
+
+            <div className="mx-4 h-3/4  overflow-scroll my-1">
+                
+               
+            <CardCart/>
+          
+               
+            </div>
+
+            <div className="w-screen fixed bottom-0 bg-white">
+                <div className="border border-grey"></div>
+
+                <div className="flex mx-4 my-6 justify-between">   
+                    <div>
+                        <div className="font-semibold">Total</div>
+                            <div className="text-grey">IVA Incluído</div>
+                        </div>
+                    <div>
+                        <div className="font-semibold">96.00€</div>    
+                    </div>  
+                </div>
+                <div className="mx-4 my-6 ">
+                    <Buttons btnState="defaultMain" text="Proceder com a compra" icon="navigateNext" btnSize="menuSize"/>
+                </div>
+            </div>
+
+
+        </div>
+        
+
+    </nav>
+    
+    )
+    
 }

@@ -8,7 +8,7 @@ function NavigationTitle({ titleText }) {
   const router = useRouter();
 
   return (
-    <h5 className="font-semibold pt-6 pb-7 gap-4">
+    <div className="font-semibold items-center py-5">
       <a
         href="#"
         onClick={(e) => {
@@ -19,7 +19,7 @@ function NavigationTitle({ titleText }) {
         <KeyboardArrowLeft />
       </a>
       {titleText}
-    </h5>
+    </div>
   );
 }
 

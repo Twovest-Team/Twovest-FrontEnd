@@ -16,7 +16,8 @@ import { VestuarioLista } from "./menuCategories/Vestuario";
 import { CalcadoLista } from "./menuCategories/Calcado";
 import { AcessoriosLista } from "./menuCategories/Acessorios";
 import { SocialMediaLogos_black } from "./SocialMediaLogos_black";
-import LanguageButton from "./LanguageButton";
+import { CardCart } from "./CardCart";
+
 
 
 //import de icons materialUI
@@ -29,6 +30,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SellIcon from '@mui/icons-material/Sell';
 import StarsIcon from '@mui/icons-material/Stars';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 
 
 
@@ -249,11 +251,9 @@ export const Navbar = () =>{
 
             <div className="mx-4 h-3/4  overflow-scroll my-1">
                 
-                
-            <div className="p-16 bg-black my-4"></div>
-            <div className="p-16 bg-black my-4"></div>
-            <div className="p-16 bg-black my-4"></div>
-            <div className="p-16 bg-black my-4"></div>
+               
+            <CardCart/>
+          
                
             </div>
 

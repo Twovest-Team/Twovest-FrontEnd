@@ -9,7 +9,7 @@ import LookCard from "@/components/LookCard";
 const Gallery = () => {
   return (
     <main>
-      <div className="container flex justify-between">
+      <div className="container flex justify-between h-7">
       <Views />
       </div>
       
@@ -20,7 +20,7 @@ const Gallery = () => {
         <LookCard />
       </ItemsBox>
 
-      
+
     </main>
   )
 }

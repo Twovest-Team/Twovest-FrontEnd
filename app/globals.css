@@ -26,7 +26,6 @@ h4 {
   font-size: 27.65px;
 }
 
-
 h5 {
   font-size: 23.04px;
 }
@@ -39,11 +38,23 @@ h6 {
   font-size: 13.33px;
 }
 
+/* Jónatas */
 
-  
-  
-  
-  
+.navbar_icons {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.navbar_socialMedia {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.menu_categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
 
 /* Jónatas */
  
@@ -63,69 +74,184 @@ h6 {
     gap: 0.5rem;
 }
 
- 
 /* Fim Jónatas */
- 
- 
- 
- 
- 
- 
+
+/* Daniela */
+
+.input_text {
+  margin: 5px;
+  box-sizing: border-box;
+  display: inline-flex;
+  height: 56px;
+  padding: 17px 24px;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #cdcdcd;
+  background: #fff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.input_text:hover {
+  border: 1px solid var(--bg_dark, #000);
+  background: var(--bg_white, #fff);
+}
+
+.input_text:focus {
+  border: 1px solid var(--bg_dark, #000);
+  background: var(--bg_white, #fff);
+  outline: none;
+}
+
+.input_text:active {
+  border: 1px solid var(--bg_dark, #000);
+  outline: none;
+  background: var(--bg_white, #fff);
+  color: #000;
+}
+
+.input_text:disabled {
+  border: 1px solid var(--bg_grey, #cdcdcd);
+  background: var(--bg_gray_50, #f1f1f1);
+}
+
+.div_input-text {
+  position: relative;
+  text-align: left;
+  padding: 20px;
+}
+
+.input_text-error {
+  display: flex;
+  height: 56px;
+  padding: 17px 24px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 5px;
+  border: 1px solid var(--error_main, #e9414b);
+  background: var(--bg_white, #fff);
+  transition: width 0.4s ease-in-out;
+}
+
+.input_text-error:focus {
+  outline: none;
+}
+
+.div_input-text-error {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+.icon_error {
+  position: absolute;
+  float: right;
+  top: 17px;
+  left: 200px;
+  width: 20px;
+  height: 20px;
+  padding: 17px 12px;
+  color: #e9414b;
+}
+
+.input_text-done {
+  display: flex;
+  height: 56px;
+  padding: 17px 24px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 5px;
+  border: 1px solid var(--primary_main, #05ce86);
+  background: var(--bg_white, #fff);
+}
+
+.input_text-done:focus {
+  outline: none;
+}
+
+.div_input-text-done {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+.icon_done {
+  position: absolute;
+  float: right;
+  top: 17px;
+  left: 200px;
+  width: 20px;
+  height: 20px;
+  padding: 17px 12px;
+  color: #05ce86;
+}
+
+.div_input-text-password {
+  position: relative;
+  text-align: left;
+  padding: 20px;
+}
+
+.icon_password {
+  position: absolute;
+  top: 23px;
+  float: right;
+  left: 195px;
+  width: 18px;
+  height: 12.273px;
+  padding: 17px 12px;
+  color: #9e9e9e;
+}
+
+/* Fim Daniela */
+
 /* Media Query */
- 
- 
+
 /* -----Media query navbar Jónatas ------*/
 @media (max-width: 330px) {
- 
-    .navbar_logo-xs{
-        display: block;
-    }
- 
-    .navbar_logo-sm{
-        display: none;
-    }
- 
-    .navbar_icons{
-        margin-left: 0.2rem;
-        margin-right: 0.2rem;
-    }
-   
-    .navbar_socialMedia{
-        margin-left: 0.35rem;
-        margin-right: 0.35rem;
-       
-    }
- 
-    .menu_categories{
-        display: block;
-    }
- 
-    .menu_categories div{
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
- 
+  .navbar_logo-xs {
+    display: block;
   }
- 
- 
- 
-  @media (min-width: 331px) {
- 
-    .navbar_logo-xs{
-        display: none;
-    }
-    .navbar_logo-sm{
-        display: block;
-    }
-   
-  }  
- 
-  /* -----FIM Media query navbar Jónatas ------*/
-  
-  
-  /* -----Início Media query footer Paixão ------*/
-  
-  /* Media query utilizada no footer para uniformizar as caixas de texto, assim como os
+
+  .navbar_logo-sm {
+    display: none;
+  }
+
+  .navbar_icons {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+
+  .navbar_socialMedia {
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
+  }
+
+  .menu_categories {
+    display: block;
+  }
+
+  .menu_categories div {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 331px) {
+  .navbar_logo-xs {
+    display: none;
+  }
+  .navbar_logo-sm {
+    display: block;
+  }
+}
+
+/* -----FIM Media query navbar Jónatas ------*/
+
+/* -----Início Media query footer Paixão ------*/
+
+/* Media query utilizada no footer para uniformizar as caixas de texto, assim como os
 logótipos de métodos de pagamento que são utilizados no componente "PaymentLogos", 
 incorporados no footer. -------- João Paixão */
 @media screen and (max-width: 399px) {
@@ -143,8 +269,8 @@ incorporados no footer. -------- João Paixão */
     margin-right: 20px;
   }
 }
-  
-  /* -----FIM Media query footer Paixão ------*/
+
+/* -----FIM Media query footer Paixão ------*/
 
 
 

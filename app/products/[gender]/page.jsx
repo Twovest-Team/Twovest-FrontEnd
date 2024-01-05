@@ -21,8 +21,8 @@ const Products = async () => {
       </div>
       
       <ItemsBox>
-        {data.map(element => <CardProduct product={element} />)}
-        {data.map(element => <CardProduct product={element} />)}
+        {data.map(element => <CardProduct key={element.id} product={element} />)}
+        {data.map(element => <CardProduct key={element.id} product={element} />)}
       </ItemsBox>
     </main>
 

@@ -1,8 +1,6 @@
 import Image from "next/image";
-import CollectionSharedAvatars from "./CollectionSharedAvatars";
 import CollectionPrivacyButton from "./CollectionPrivacyButton";
-
-import ShareIcon from "@mui/icons-material/Share";
+import ShareButton from "./ShareButton";
 
 //Array de utilizadores a passar à componente que mostra com quem é partilhada a coleção
 const utilizadoresPartilhados = [
@@ -23,17 +21,40 @@ const utilizadoresPartilhados = [
   },
   {
     id: 36,
+    nome: "Arthur Lowes",
+    img: "arthur.jpg",
+  },
+  {
+    id: 87,
     nome: "Nayleth",
     img: "nayleth2.jpg",
   },
+  {
+    id: 2,
+    nome: "Irma Boom",
+    img: "irma.png",
+  },
+  {
+    id: 95,
+    nome: "Janice Wheeler",
+    img: "janice.jpg",
+  }
 ];
+
 
 export default function CollectionPreview(props) {
   const caminho = "/images/teste_colecao_looks/";
-  const arrayDeLooks = props.looks;
+  const arrayDeLooks = props.looks.publicacoes;
   const numeroDeLooks = arrayDeLooks.length;
 
-  console.log(numeroDeLooks);
+  var lookPrivado = false;
+
+  const privacidade = props.looks.privacidade;
+
+  if(privacidade == "privada")
+  {
+    lookPrivado = true;
+  }
 
   if (numeroDeLooks >= 3) {
     const ultimosLooks = arrayDeLooks.slice(-3);
@@ -51,6 +72,7 @@ export default function CollectionPreview(props) {
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
             className="left-[29px] top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look1.id}
           />
           <Image
             src={`${caminho}${Look2.img}`}
@@ -59,6 +81,7 @@ export default function CollectionPreview(props) {
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
             className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look2.id}
           />
           <Image
             src={`${caminho}${Look3.img}`}
@@ -67,20 +90,21 @@ export default function CollectionPreview(props) {
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
             className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look3.id}
           />
         </div>
 
         <div className="flex flex-col gap-4 h-[90px]">
           <div>
-            <p className="text-ellipsis overflow-hidden font-semibold">
-              Looks para casamento
+            <p className="font-semibold line-clamp-1">
+              {props.looks.nome}
             </p>
             <p className="caption text-secondary">31 Looks</p>
           </div>
-          <CollectionSharedAvatars utilizadores={utilizadoresPartilhados} />
+          <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
         </div>
         <div className="ml-auto">
-          <ShareIcon />
+          {lookPrivado ? null : <ShareButton />}
         </div>
       </div>
     );
@@ -99,6 +123,7 @@ export default function CollectionPreview(props) {
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
               className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
+              key={Look1.id}
             />
             <Image
               src={`${caminho}${Look2.img}`}
@@ -107,20 +132,21 @@ export default function CollectionPreview(props) {
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
               className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+              key={Look2.id}
             />
           </div>
   
           <div className="flex flex-col gap-4 h-[90px]">
             <div>
-              <p className="text-ellipsis overflow-hidden font-semibold">
-                Looks para casamento
+              <p className="font-semibold line-clamp-1">
+                {props.looks.nome}
               </p>
               <p className="caption text-secondary">31 Looks</p>
             </div>
-            <CollectionSharedAvatars utilizadores={utilizadoresPartilhados} />
+            <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>
           <div className="ml-auto">
-            <ShareIcon />
+          {lookPrivado ? null : <ShareButton />}
           </div>
         </div>
       );
@@ -139,20 +165,21 @@ export default function CollectionPreview(props) {
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
               className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+              key={Look1.id}
             />
           </div>
   
           <div className="flex flex-col gap-4 h-[90px]">
             <div>
-              <p className="text-ellipsis overflow-hidden font-semibold">
-                Looks para casamento
+              <p className="font-semibold line-clamp-1">
+                {props.looks.nome}
               </p>
               <p className="caption text-secondary">31 Looks</p>
             </div>
-            <CollectionSharedAvatars utilizadores={utilizadoresPartilhados} />
+            <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>
           <div className="ml-auto">
-            <ShareIcon />
+          {lookPrivado ? null : <ShareButton />}
           </div>
         </div>
       );
@@ -162,10 +189,10 @@ export default function CollectionPreview(props) {
 /*
 Estados de privacidade possíveis: 
 ------------PARTILHADO
-<CollectionSharedAvatars utilizadores={utilizadoresPartilhados} />
+<<CollectionPrivacyButton privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
 ------------PÚBLICO
-<CollectionPrivacyButton privacidade="publica"/>
+<CollectionPrivacyButton privacidade="publica" utilizadores={utilizadoresPartilhados}/>
 ------------PARTILHADO
-<CollectionPrivacyButton privacidade="privada"/>
+<CollectionPrivacyButton privacidade="privada" utilizadores={utilizadoresPartilhados}/>
 
 */

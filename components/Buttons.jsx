@@ -9,18 +9,20 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ReplayIcon from '@mui/icons-material/Replay';
 
 export const Buttons = ({ btnState, text, icon, btnSize, onClick }) => {
+ 
   const StyledState = {
     defaultMain: 'bg-primary_main hover:bg-primary_dark',  //verde normal, com over (default o mais usado)
     hoverMain: 'bg-primary_dark ',
     focusedMain: 'bg-primary_dark', 
     disabledMain: 'bg-grey_opacity_50',  //para botoes que vao ficar disabled 
     secondaryMain:'bg-dark hover:bg-dark_gray',  //botoes secundários
-    
+    errorMain:'bg-error_main hover:bg-error_dark'
 
   };
   const sizes = {
-    menuSize: 'w-full h-14 px-3 py-2 mt-4 flex justify-between items-center', //usado apenas no scroll menu
-    mediumSize: 'w-full h-auto min-h-50 px-8 py-3.5 mt-4 gap-12 items-center justify-between', // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
+    modalSize: 'w-full h-14 gap-12 items-center',
+    menuSize: 'w-full h-14 py-2 px-4 mt-4 flex gap-12 text-center justify-between items-center', //usado apenas no scroll menu
+    mediumSize: 'w-full h-auto  px-8 py-3.5 mt-4 gap-12 items-center justify-between', // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
     mediumSizeSocials: 'w-full h-55 px-8 py-3.5 mt-4 flex justify-center items-center gap-3 text-center',  // Social netwowrks
     redefineSize: 'w-full h-55 px-3 py-9 mt-4 flex justify-center items-center gap-3 text-center',  //usado para voltar para a galeria e redefinir
     large: 'px-5 py-5  mt-4 text-lg', // caso pretendam um botao maior podem ajustar          

@@ -13,33 +13,34 @@
   - inputs: 
     - type: Tipo do campo (ex: text, dropdown).
     - label: Etiqueta do campo.
-    - options (apenas para dropdown): podem ser feitas várias opçoes (definiçoes da dropdown)
+    - options (apenas para dropdown): podem ser feitas várias opçoes (definiçoes da dropdown )
   - buttons: em relaçao aos botões sao de outro componente.
-    - state: Estado do botão (cores primaryMain, secundaryMain consultar components/Buttons.jsx).
+    - state: Estado do botão (cores primaryMain (botoes de login, criar, aplicar, concluido, Guardar, Proceder com a compra ), secundaryMain consultar components/Buttons.jsx).
     - text: Texto do botão.
     - size: Tamanho do botão.
   - customHeight: Altura personalizada do modal.
 
 Como Usar:
-  <Modal
-    title="Aplicar Cupão"
-    subtitle="Use o cupão de desconto na próxima secção e faça parte da mudança para um futuro mais verde."
-    inputs={[
-      { type: "text", label: "Atribuir um nome à tua nova coleção" },
-      { type: "dropdown", 
-        options: [
-          { value: "", label: "Escolhe uma opção" },
-          { label: "Opção 1", value: 1 },
-          { label: "Opção 2", value: 2 },
-        ]
-      },
-    ]}
-    buttons={[
-      { state: "defaultMain", text: "Login", size: "mediumSize" },
-      { state: "secondaryMain", text: "Registo", size: "mediumSize" }
-    ]}
-    customHeight={["auto"]}
-  />
+   <Modal
+  title="Iniciar Sesão"
+  subtitle="Iniciar sessão para fazer compras, ganhar bónus e juntares-te à nossa comunidade."
+ 
+  buttons={[
+    { state: "errorMain", text: "Nao", size: "mediumSize" },
+    { state: "secondaryMain", text: "Sim", size: "mediumSize" }
+  ]}
+  inputs={[
+    { type: "text", label: "Atribuir um nome à tua nova coleção" },
+    { type: "dropdown", 
+      options: [
+        { value: "", label: "Escolhe uma opção", disabled: true},
+        { label: "Opção 1", value: 1 },
+        { label: "Opção 2", value: 2 },
+      ]
+    },
+  ]}
+  isSideBySide={false} 
+/>
 */
 
 "use client";
@@ -49,7 +50,7 @@ import { Buttons } from './Buttons';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-const Modal = ({title, subtitle, inputs, buttons, customHeight  }) => {
+const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleCloseModal = () => {
@@ -77,29 +78,30 @@ const Modal = ({title, subtitle, inputs, buttons, customHeight  }) => {
                             <input
                                 key={index}
                                 type="text"
-                                className="border border-gray-300 p-2 mb-2 px-6 w-full rounded font-inter"
+                                className="border border-gray-300 w-full p-2 mb-2 rounded font-inter"
                                 placeholder={input.label}
                             />
                         ) : (
                             <div key={index} className="mt-4 mb-8">
                                 <label className="flex text-black">{input.label}</label>
-                                <select
-                                    className="border border-gray-300 pl-6 w-full h-12 rounded font-inter"
-                                   
-                                >
+                                <select className="border border-gray-300 pl-6 w-full h-12 rounded font-inter">
                                     {input.options && input.options.map((option, optionIndex) => (
+                                      
                                         <option  disabled={option.disabled} key={optionIndex} value={option.value}>{option.label}</option>
                                     ))}
                                 </select>
                             </div>
                         )
                     ))}
-  {buttons && buttons.map((button, index) => (
-    <div  className="mt-4 mb-4">
-                        <Buttons  key={index} btnState={button.state} text={button.text} btnSize={button.size}>
-                        </Buttons>
-                        </div>
-                    ))}
+{buttons && (
+ <div className={` ${isSideBySide ? 'flex mt-4' : ''}`}>
+    {buttons.map((button, index) => (
+      <div key={index} className={`${isSideBySide && index === 1 ? 'ml-2 w-full' : ''}`}>
+        <Buttons btnState={button.state} text={button.text} btnSize={button.size} />
+      </div>
+    ))}
+  </div>
+)}
                     
       </div>
     </div>

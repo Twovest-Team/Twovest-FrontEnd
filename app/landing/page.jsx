@@ -18,6 +18,7 @@ export default function Landing() {
 
   function handleClick(gender){
     handleGender(gender)
+    router.refresh()
     router.push('/')
   }
   

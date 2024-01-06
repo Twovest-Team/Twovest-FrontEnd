@@ -2,7 +2,11 @@ import Image from "next/image";
 import CollectionPrivacyButton from "./CollectionPrivacyButton";
 import ShareButton from "./ShareButton";
 
-//Array de utilizadores a passar à componente que mostra com quem é partilhada a coleção
+//Componente de card da coleção
+// Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
+//(publica, privada ou partilhada) e também muda o nome e o número de looks
+
+//Array de utilizadores a passar à componente que mostra com quem é partilhada a coleção (se for partilhada)
 const utilizadoresPartilhados = [
   {
     id: 666,
@@ -99,7 +103,7 @@ export default function CollectionPreview(props) {
             <p className="font-semibold line-clamp-1">
               {props.looks.nome}
             </p>
-            <p className="caption text-secondary">31 Looks</p>
+            <p className="caption text-secondary">{numeroDeLooks} Looks</p>
           </div>
           <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
         </div>
@@ -141,7 +145,7 @@ export default function CollectionPreview(props) {
               <p className="font-semibold line-clamp-1">
                 {props.looks.nome}
               </p>
-              <p className="caption text-secondary">31 Looks</p>
+              <p className="caption text-secondary">{numeroDeLooks} Looks</p>
             </div>
             <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>
@@ -174,7 +178,7 @@ export default function CollectionPreview(props) {
               <p className="font-semibold line-clamp-1">
                 {props.looks.nome}
               </p>
-              <p className="caption text-secondary">31 Looks</p>
+              <p className="caption text-secondary">{numeroDeLooks} Look</p>
             </div>
             <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>

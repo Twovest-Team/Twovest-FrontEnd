@@ -3,6 +3,8 @@ import CollectionPreview from "@/components/CollectionPreview";
 // Se for coleções de outros utilizadores, apenas mostrar as coleções públicas e/ou coleções que esse utilizador partilha comigo
 // Se for as minhas coleções, mostrar privadas, públicas e partilhadas (mesmo que não seja o dono de uma coleção partilhada)
 
+
+//Array com as diversas coleções a mostrar,inclusive a sua privacidade e nome, que vão ser renderizadas na card CollectionPreview
 const looksCollection = {
   id: 102,
   nome: "Inspo looks para as migas",

@@ -48,7 +48,7 @@ export const Navbar = () =>{
     useEffect(() =>{
         let activeGender = getLocalStorage("gender");
         setGenderState(activeGender);
-        console.log(activeGender)
+        //console.log(activeGender)
     }, [])
 
 

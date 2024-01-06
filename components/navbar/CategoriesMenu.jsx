@@ -9,7 +9,7 @@ export const CategoriesMenu = ({idCategory, categoryOpen, toggleCategory, gender
         return(
                 
             <div className={`${categoryOpen ? "translate-x-0" : "-translate-x-full"}
-            bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+            bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-400 ease-in-out`}>
         
                 <div className="flex  items-center border-b-grey border-b-2">
                     <div className="flex mx-4">

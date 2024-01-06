@@ -23,7 +23,7 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
 
         {/* ------ Menu lateral -------*/}
         <div className={`${menuOpen ? "translate-x-0" : "-translate-x-full"}
-             bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+             bg-white z-30 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
     
             <div className="flex justify-between items-center border-b-grey border-b-2">
     
@@ -58,7 +58,7 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
                     
 
                 ))}
-                    <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><Link href={"/brands"}>Marcas</Link><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
+                    <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><Link onClick={toggleMenu} href={"/brands"}>Marcas</Link><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
                     <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><Link href={"/"}>Sustentável</Link><SustainableIcon width={25} color="white"/></div>
                     <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><Link href={"/"}>Promoções</Link><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
                  </div>

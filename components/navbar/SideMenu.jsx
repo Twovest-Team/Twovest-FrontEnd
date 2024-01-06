@@ -10,6 +10,7 @@ import sustentavel from "/public/images/icons/sustentavel.svg";
 import LanguageButton from "../LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
+import { SustainableIcon } from "../icons/SustainableIcon";
 
 
 export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, toggleCategory, categoryOpen, idCategory}) => {
@@ -55,7 +56,7 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
 
                 ))}
                     <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
-                    <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><p>Sustentável</p><Image src={sustentavel} width={25} height={25} alt="simbolo sustentavel"/></div>
+                    <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><p>Sustentável</p><SustainableIcon className="w-[25px]" color="white"/></div>
                     <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
                  </div>
                 

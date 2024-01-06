@@ -12,6 +12,7 @@ export const metadata = {
 import { Navbar } from "@/components/Navbar";
 import StoreProvider from "../components/StoreProvider";
 import GenderDetection from "@/components/GenderDetection";
+import LastProductsSeen from "@/components/LastProductsSeen";
 
 export default function RootLayout({ children }) {
   return (
@@ -21,7 +22,8 @@ export default function RootLayout({ children }) {
         <StoreProvider>
           <GenderDetection>
             <Navbar />
-            {children}
+              {children}
+            <LastProductsSeen />
             <Footer />
           </GenderDetection>
         </StoreProvider>

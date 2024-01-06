@@ -6,19 +6,22 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import SellIcon from '@mui/icons-material/Sell';
 import StarsIcon from '@mui/icons-material/Stars';
 import { categories, general_categories } from "@/constants";
-import sustentavel from "/public/images/icons/sustentavel.svg";
 import LanguageButton from "../LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
 import { SustainableIcon } from "../icons/SustainableIcon";
+import Link from "next/link";
 
 
 export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, toggleCategory, categoryOpen, idCategory}) => {
     return(
         <>
+
         {/* ---- Menu categorias ---- */}
         <CategoriesMenu idCategory={idCategory} categoryOpen={categoryOpen} toggleCategory={toggleCategory} genderState={genderState} toggleMenu={toggleMenu}/>
         
+
+        {/* ------ Menu lateral -------*/}
         <div className={`${menuOpen ? "translate-x-0" : "-translate-x-full"}
              bg-white z-50 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
     
@@ -42,7 +45,7 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
     
             <ul className="mx-4 my-4">
     
-                <Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/>
+                <Link href={"/login"} onClick={toggleMenu}><Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/></Link>
     
                 <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
                 
@@ -55,17 +58,17 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
                     
 
                 ))}
-                    <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><p>Marcas</p><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
-                    <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><p>Sustentável</p><SustainableIcon className="w-[25px]" color="white"/></div>
-                    <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><p>Promoções</p><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
+                    <div className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><Link href={"/brands"}>Marcas</Link><StarsIcon className="fill-black" alt="simbolo marcas"/></div>
+                    <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><Link href={"/"}>Sustentável</Link><SustainableIcon width={25} color="white"/></div>
+                    <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><Link href={"/"}>Promoções</Link><SellIcon className="fill-primary_main" alt="simbolo Promoções"/></div>
                  </div>
                 
     
             </ul>
     
-            <PrimaryMenuPagesList/>
+            <PrimaryMenuPagesList genderState={genderState} toggleMenu={toggleMenu}/>
     
-            <SecondaryMenuPagesList/>
+            <SecondaryMenuPagesList toggleMenu={toggleMenu}/>
             
             <div className="mx-4"><LanguageButton textColor="black"/></div>
             

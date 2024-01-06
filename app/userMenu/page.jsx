@@ -1,11 +1,10 @@
 "use client"
 
+import { useState } from 'react';
 import AutoModeOutlinedIcon from '@mui/icons-material/AutoModeOutlined';
 import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined';
-import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { useState } from 'react';
 
-const userMenu = () => {
+const UserMenu = () => {
  const [modalOpen, setModalOpen] = useState(false);
 
  const toggleModal = () => {
@@ -48,4 +47,4 @@ const userMenu = () => {
  );
 };
 
-export default userMenu;
+export default UserMenu;

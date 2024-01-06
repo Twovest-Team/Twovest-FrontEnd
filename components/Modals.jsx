@@ -115,6 +115,7 @@ const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
       </div>
     )
     
+    
     );
 };
 

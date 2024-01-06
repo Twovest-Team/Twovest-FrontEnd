@@ -4,8 +4,9 @@
 
 /* MAX Breakpoint: 460px */
 
-body{
-    font-size: 16px;
+body {
+  font-size: 16px;
+  /* margin: 0 24px */
     max-width: 460px;
     margin: auto;
     margin-top: 68px;
@@ -39,6 +40,119 @@ h6 {
   font-size: 13.33px;
 }
 
+.body_semibold {
+  color: var(--text_primary, #000);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21.4px;
+}
+
+/* Daniela */
+
+.user_modal {
+  display: inline-flex;
+  padding: 12px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
+}
+
+.modal_header {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.modal_body {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.modal_footer {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.button_id {
+  display: flex;
+  padding: 8px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  border-radius: 5px;
+  background: var(--primary_main, #05ce86);
+  color: var(--text_white, #fff);
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+}
+
+.button_default {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 13.33px;
+}
+
+.button_points {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.33px;
+}
+
+
+.button_submit-look {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.33px;
+}
+
+
+.button_logout {
+  display: flex;
+  width: 226px;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #e9414b;
+  font-size: 13.33px;
+}
+
+.div_grey-line {
+  display: flex;
+  padding: 8px 24px;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+  color: #cdcdcd;
+  border-bottom: 1px solid grey;
+  justify-content: center;
+}
 /* Jónatas */
 
 .navbar_icons {
@@ -58,21 +172,21 @@ h6 {
 }
 
 /* Jónatas */
- 
-.navbar_icons{
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+
+.navbar_icons {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
- 
-.navbar_socialMedia{
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+
+.navbar_socialMedia {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
- 
-.menu_categories{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem;
+
+.menu_categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
 /* Fim Jónatas */
@@ -272,9 +386,6 @@ incorporados no footer. -------- João Paixão */
 }
 
 /* -----FIM Media query footer Paixão ------*/
-
-
-
 
   /* -- VASCO -- */
   .contentSlider_div-scroll {

@@ -10,14 +10,14 @@ import ImagemLook from "@/public/images/gallery/looks/looks_mulher1.png";
 export default function LookCard(look) {
   return (
     <div className="items-start text-center">
-      <div className="relative rounded-[5px]">
+      <div className="relative">
         <Image
           src={ImagemLook}
           alt="Look da galeria"
           width={0}
           height={0}
           style={{ width: "100%", height: "520px" }}
-          className="object-cover"
+          className="object-cover rounded-[5px]"
         />
         <LookUpvoteButton />
       </div>

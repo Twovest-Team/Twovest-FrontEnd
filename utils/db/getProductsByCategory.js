@@ -4,7 +4,7 @@ import getProcuctOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 
-const getProductsByCategory = async (id_category, gender) => {
+const getProductsByCategory = async (id_category ,gender) => {
     const { data } = await supabase
         .from('products')
         .select(`
@@ -25,6 +25,7 @@ const getProductsByCategory = async (id_category, gender) => {
         )
     `)
         .eq('id_category', id_category)
+       
         .eq('is_public', true)
         .eq ('gender', gender)
 

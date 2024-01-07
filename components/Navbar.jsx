@@ -52,7 +52,7 @@ export const Navbar = () => {
             setGenderState(activeGender);
         }
 
-    }, [pathName])
+    }, [pathName, genderState])
 
 
     const handleClickGender = (gender) => {

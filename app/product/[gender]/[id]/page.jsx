@@ -37,7 +37,7 @@ const Product = () => {
     if (!productDetails && loading === false) {
       fetchData()
     }
-  }, [productDetails])
+  }, [productDetails, loading, productGender, productId])
 
   return (
     <main>

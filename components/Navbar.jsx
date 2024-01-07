@@ -19,77 +19,79 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 
-export const Navbar = () =>{
+export const Navbar = () => {
 
-    const[menuOpen, setMenuOpen] = useState(false);
-    const[categoryOpen, setCategoryMenu] = useState(false);
-    const[idCategory, setIdCategory] = useState("");
-    const[cestoOpen, setCesto] = useState(false);
-    const[genderState, setGenderState] = useState("");
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [categoryOpen, setCategoryMenu] = useState(false);
+    const [idCategory, setIdCategory] = useState("");
+    const [cestoOpen, setCesto] = useState(false);
+    const [genderState, setGenderState] = useState("");
+    const pathName = usePathname();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
-    const toggleCategory = (id) =>{
+    const toggleCategory = (id) => {
         setCategoryMenu(!categoryOpen);
-        if(idCategory ==""){
+        if (idCategory == "") {
             setIdCategory(id);
-        }else{
+        } else {
             setIdCategory("");
         }
     }
 
-    const toggleCesto = () =>{
-        setCesto(!cestoOpen)   
+    const toggleCesto = () => {
+        setCesto(!cestoOpen)
     }
 
 
-    useEffect(() =>{
+    useEffect(() => {
         let activeGender = getLocalStorage("gender");
-        setGenderState(activeGender);
-    }, [])
+        if (activeGender != genderState) {
+            setGenderState(activeGender);
+        }
+
+    }, [pathName])
 
 
     const handleClickGender = (gender) => {
         handleGender(gender);
         setGenderState(gender);
     }
-    
-
-    const pathName = usePathname();
 
 
-    if(pathName != "/landing"){
 
-        return(
+    if (pathName != "/landing") {
+
+        return (
 
             /* ---------- Navbar ----------- */
             <nav className="flex justify-between z-50 max-w-[460px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
                 <div className="flex">
-                    <div className='mr-4' onClick={toggleMenu}><MenuIcon/></div>
+                    <div className='mr-4' onClick={toggleMenu}><MenuIcon /></div>
                     <Link href={"/"} className="items-center flex">
                         <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
                         <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
                 </div>
                 <div className="flex">
-                    <div className="navbar_icons"><FavoriteBorderOutlinedIcon/></div>
-                    <div className="navbar_icons" onClick={()=> toggleCesto()}><LocalMallOutlinedIcon/></div>
-                    <div className="navbar_icons"><AccountCircleOutlinedIcon/></div>
+                    <div className="navbar_icons"><FavoriteBorderOutlinedIcon /></div>
+                    <div className="navbar_icons" onClick={() => toggleCesto()}><LocalMallOutlinedIcon /></div>
+                    <div className="navbar_icons"><AccountCircleOutlinedIcon /></div>
                 </div>
-    
 
-            {/* -------------- Menu lateral ----------------*/}
-            <SideMenu menuOpen={menuOpen} handleClickGender={handleClickGender} genderState={genderState} toggleMenu={toggleMenu} toggleCategory={toggleCategory} categoryOpen={categoryOpen} idCategory={idCategory}/>
-    
 
-            {/*----------------- Cesto -----------------*/}
-            <Cart cestoOpen={cestoOpen} toggleCesto={toggleCesto}/>
-                    
-    
-    </nav>
-        
-    )
+                {/* -------------- Menu lateral ----------------*/}
+                <SideMenu menuOpen={menuOpen} handleClickGender={handleClickGender} genderState={genderState} toggleMenu={toggleMenu} toggleCategory={toggleCategory} categoryOpen={categoryOpen} idCategory={idCategory} />
+
+
+                {/*----------------- Cesto -----------------*/}
+                <Cart cestoOpen={cestoOpen} toggleCesto={toggleCesto} />
+
+
+            </nav>
+
+        )
     }
-    
+
 }

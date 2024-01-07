@@ -98,7 +98,7 @@ export default function CollectionPreview(props) {
           />
         </div>
 
-        <div className="flex flex-col gap-4 h-[90px]">
+        <div className="flex flex-col gap-4">
           <div>
             <p className="font-semibold line-clamp-1">
               {props.looks.nome}
@@ -110,6 +110,7 @@ export default function CollectionPreview(props) {
         <div className="ml-auto">
           {lookPrivado ? null : <ShareButton />}
         </div>
+      
       </div>
     );
   } else if (numeroDeLooks == 2) {

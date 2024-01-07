@@ -101,6 +101,9 @@ const Collections = () => {
           key={looksCollectionOneItem.id}
         />
       </div>
+      <div className="mb-10">
+        <CardWatchlist />
+      </div>
     </div>
   );
 };

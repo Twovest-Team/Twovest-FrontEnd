@@ -35,7 +35,7 @@ const Brands = () => {
   };
 
   if (!brand) {
-    return <div>Loading...</div>; // Adapte esta parte conforme necessário
+    return <div>Loading...</div>; 
   }
 
   return (

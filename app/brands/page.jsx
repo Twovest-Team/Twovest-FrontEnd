@@ -2,7 +2,6 @@
 // Exemplo: twovest.com/brands
 import brands from "@/utils/db/getBrands";
 import SearchIcon from '@mui/icons-material/Search';
-
 import Image from 'next/image'
 import Link from 'next/link';
 export const revalidate = 100;
@@ -29,7 +28,7 @@ const Brands = async () => {
         
     <div className="grid grid-cols-2  mb-4 justify-between">
         {brand.map((brand, index) => (
-            <div key={index} className="flex flex-col items-center justify-between mx-3">
+            <div key={index} className="flex flex-col items-center justify-between mx-4">
           <div  className={`mt-4 w-full h-48  bg-white rounded flex items-center justify-center border `}>
           <Link href={`/brands/mulher/${brand.name}`}>
             

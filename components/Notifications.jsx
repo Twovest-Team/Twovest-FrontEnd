@@ -29,7 +29,9 @@ const Notifications = ({ type, message }) => {
 
     // Timeout para fazer a notificação desaparecer passado 3s
     setTimeout(() => {
-        divRef.current.style.display = 'none'
+        if(divRef){
+         divRef.current.style.display = 'none'
+        }
     }, 3000)
     
 

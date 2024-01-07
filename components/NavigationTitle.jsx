@@ -8,7 +8,7 @@ function NavigationTitle({ titleText, children }) {
   const router = useRouter();
 
   return (
-    <div className="flex flex-row justify-between pt-6 pb-7 items-center gap-5 container">
+    <div className="flex flex-row justify-between items-center container h-20">
 
       <button onClick={() => router.back()} className="font-semibold flex flex-row items-center">
         <KeyboardArrowLeft sx={{ fontSize: 29 }} className="-translate-x-2.5" />

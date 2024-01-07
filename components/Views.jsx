@@ -41,7 +41,7 @@ const Views = () => {
 
 
     return (
-        <div className={`flex items-center justify-between gap-2 text-secondary w-fit views_div-display -translate-x-1`}>
+        <div className={`items-center justify-between gap-2 text-secondary w-fit hidden min-[350px]:flex -translate-x-1`}>
 
             <button
                 disabled={currentView === 1 ? true : false}

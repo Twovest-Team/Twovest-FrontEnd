@@ -8,6 +8,7 @@ import getProductMaterials from "@/utils/db/getProductMaterials";
 import getProcuctOffers from "@/utils/db/getProductOffers";
 import getProductStyles from "@/utils/db/getProductStyles";
 import getSizesByType from "@/utils/db/getSizesByType";
+import getProductById from "@/utils/db/getProductById";
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
@@ -16,7 +17,8 @@ export const revalidate = 0
 const page = async() => {
 
   // Variável onde se deve guardar a resposta da API
-    const data = await getProductsByCategory(8, 'Homem') 
+    const data = await getProductById(18) 
+  
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

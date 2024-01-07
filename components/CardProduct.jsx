@@ -5,10 +5,12 @@ import FavoriteButton from './FavoriteButton';
 import PriceProduct from './PriceProduct';
 import sustentavel from "../public/images/icons/sustentavel.svg";
 import SellIcon from '@mui/icons-material/Sell';
+import { SustainableIcon } from './icons/SustainableIcon';
 
 const CardProduct = ({ product, slider, gender }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
+
 
     return (
         <article className='w-full max-w-[460px] flex-5'>
@@ -39,13 +41,7 @@ const CardProduct = ({ product, slider, gender }) => {
                     </div>
 
 
-                    <Image
-                        src={sustentavel}
-                        width={32}
-                        height={32}
-                        alt="Artigo Sustentável"
-                        className={!product.is_sustainable && 'hidden'}
-                    />
+                    <SustainableIcon color={'#05CE86'} width={28} />
 
                 </div>
 
@@ -59,12 +55,11 @@ const CardProduct = ({ product, slider, gender }) => {
 
             </div>
             <div className={`flex flex-wrap justify-between items-center mt-2.5 gap-y-1 ${slider && 'w-40'}`}>
-                {!slider &&
-                    <>
-                        <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
+
+                    <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
+                    {!slider &&
                         <PriceProduct discount={product.discount} offers={product.offers} />
-                    </>
-                }
+                    }
 
             </div>
         </article>

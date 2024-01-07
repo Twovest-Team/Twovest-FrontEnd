@@ -46,7 +46,7 @@ Como Usar:
 "use client";
 
 import React, { useState } from 'react';
-import { Buttons } from './Buttons';
+import { Buttons } from '../buttons/Buttons';
 import CloseIcon from '@mui/icons-material/Close';
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import BuyButton from './BuyButton';
+import BuyButton from '../buttons/icons/BuyButton';
 import applyPriceDiscount from '@/utils/applyPriceDiscount';
 
 const ProductOfferCard = ({ offer, discount }) => {

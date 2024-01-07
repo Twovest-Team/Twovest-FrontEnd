@@ -1,14 +1,14 @@
 import Image from "next/image";
 //Botão de upvote no topo direito da card de look
-import LookUpvoteButton from "./LookUpvoteButton";
+import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
 //Botão de guardar (bookmark) no canto inferior direito da card de look
-import SaveButton from "./SaveButton";
+import SaveButton from "../buttons/icons/SaveButton";
 
 // Imagem de placeholder do componente
 import ImagemLook from "@/public/images/gallery/looks/looks_mulher1.png";
 
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
-import LookCardUsername from "./LookCardUsername";
+import LookUsername from "../items/LookUsername";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmarc
@@ -36,7 +36,7 @@ export default function LookCard(look) {
               style={{ objectFit: "contain" }}
             />
           </div>
-          <LookCardUsername username="Deolinda.Soares51"/>
+          <LookUsername username="Deolinda.Soares51"/>
         </div>
         <div className="mt-3.5">
           <SaveButton />

@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import { categories } from '@/constants';
-import FavoriteButton from './FavoriteButton';
-import PriceProduct from './PriceProduct';
-import sustentavel from "../public/images/icons/sustentavel.svg";
+import PriceProduct from '../items/PriceProduct';
 import SellIcon from '@mui/icons-material/Sell';
-import { SustainableIcon } from './icons/SustainableIcon';
+import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 
 const CardProduct = ({ product, slider, gender }) => {
 

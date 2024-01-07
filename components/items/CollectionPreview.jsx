@@ -1,6 +1,6 @@
 import Image from "next/image";
-import CollectionPrivacyButton from "./CollectionPrivacyButton";
-import ShareButton from "./ShareButton";
+import CollectionPrivacyTag from "./CollectionPrivacyTag";
+import ShareButton from "../buttons/icons/ShareButton";
 
 //Componente de card da coleção
 // Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
@@ -105,7 +105,7 @@ export default function CollectionPreview(props) {
             </p>
             <p className="caption text-secondary">{numeroDeLooks} Looks</p>
           </div>
-          <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
+          <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
         </div>
         <div className="ml-auto">
           {lookPrivado ? null : <ShareButton />}
@@ -148,7 +148,7 @@ export default function CollectionPreview(props) {
               </p>
               <p className="caption text-secondary">{numeroDeLooks} Looks</p>
             </div>
-            <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
+            <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>
           <div className="ml-auto">
           {lookPrivado ? null : <ShareButton />}
@@ -181,7 +181,7 @@ export default function CollectionPreview(props) {
               </p>
               <p className="caption text-secondary">{numeroDeLooks} Look</p>
             </div>
-            <CollectionPrivacyButton privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
+            <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
           </div>
           <div className="ml-auto">
           {lookPrivado ? null : <ShareButton />}
@@ -194,10 +194,10 @@ export default function CollectionPreview(props) {
 /*
 Estados de privacidade possíveis: 
 ------------PARTILHADO
-<<CollectionPrivacyButton privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
+<<CollectionPrivacyTag privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
 ------------PÚBLICO
-<CollectionPrivacyButton privacidade="publica" utilizadores={utilizadoresPartilhados}/>
+<CollectionPrivacyTag privacidade="publica" utilizadores={utilizadoresPartilhados}/>
 ------------PARTILHADO
-<CollectionPrivacyButton privacidade="privada" utilizadores={utilizadoresPartilhados}/>
+<CollectionPrivacyTag privacidade="privada" utilizadores={utilizadoresPartilhados}/>
 
 */

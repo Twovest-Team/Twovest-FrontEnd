@@ -1,8 +1,8 @@
-import facebook from "../public/images/social_media/facebook_logo_black.svg";
-import instagram from "../public/images/social_media/instagram_logo_black.svg";
-import tiktok from "../public/images/social_media/tiktok_logo_black.svg";
-import twitter from "../public/images/social_media/x_twitter_logo_black.svg";
-import youtube from "../public/images/social_media/youtube_logo_black.svg";
+import facebook from "../../public/images/social_media/facebook_logo_black.svg";
+import instagram from "../../public/images/social_media/instagram_logo_black.svg";
+import tiktok from "../../public/images/social_media/tiktok_logo_black.svg";
+import twitter from "../../public/images/social_media/x_twitter_logo_black.svg";
+import youtube from "../../public/images/social_media/youtube_logo_black.svg";
 import Image from "next/image";
 
 export const SocialMediaLogos_black = () =>{

@@ -1,7 +1,7 @@
-import { CardCart } from "../CardCart"
+import { CardCart } from "../cards/CardCart"
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined"
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
-import { Buttons } from "../Buttons"
+import { Buttons } from "../buttons/Buttons"
 
 
 export const Cart = ({cestoOpen, toggleCesto}) =>{

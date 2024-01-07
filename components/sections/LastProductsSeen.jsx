@@ -1,7 +1,7 @@
 'use client'
 
-import ContentSlider from './ContentSlider'
-import CardProduct from "./CardProduct"
+import ContentSlider from '../sliders/ContentSlider'
+import CardProduct from "../cards/CardProduct"
 import { useEffect, useState } from 'react'
 
 const LastProductsSeen = () => {

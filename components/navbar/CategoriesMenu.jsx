@@ -1,4 +1,4 @@
-import { SocialMediaLogos_black } from "../SocialMediaLogos_black"
+import { SocialMediaLogos_black } from "../logos/SocialMediaLogos_black"
 import { CategoriesList } from "./CategoriesList"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { general_categories } from "@/constants";

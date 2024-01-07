@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Botas from "@/public/images/teste_card_watchlist/docm1.png";
-import ShareButton from "./ShareButton";
-import DeleteButton from "./DeleteButton";
+import ShareButton from "../buttons/icons/ShareButton";
+import DeleteButton from "../buttons/icons/DeleteButton";
 
 export default function CardWatchlist() {
   return (

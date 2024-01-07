@@ -1,5 +1,5 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import ProductOfferCard from './ProductOfferCard';
+import ProductOfferCard from '../cards/ProductOfferCard';
 
 
 const ProductOffers = ({ offers, discount }) => {

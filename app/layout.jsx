@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Footer from "@/components/Footer";
+import Footer from "@/components/sections/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -9,10 +9,10 @@ export const metadata = {
   description: "Eco-fashion, wallet-friendly.",
 };
 
-import { Navbar } from "@/components/Navbar";
-import StoreProvider from "../components/StoreProvider";
-import GenderDetection from "@/components/GenderDetection";
-import LastProductsSeen from "@/components/LastProductsSeen";
+import { Navbar } from "@/components/navbar/Navbar";
+import StoreProvider from "../components/providers/StoreProvider";
+import GenderDetection from "@/components/providers/GenderDetection";
+import LastProductsSeen from "@/components/sections/LastProductsSeen";
 
 export default function RootLayout({ children }) {
   return (

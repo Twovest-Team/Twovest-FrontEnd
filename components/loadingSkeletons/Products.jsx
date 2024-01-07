@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemsBox from '../ItemsBox'
+import ItemsBox from '../providers/ItemsBox'
 
 const ProductsSkeleton = () => {
 

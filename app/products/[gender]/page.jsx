@@ -1,10 +1,10 @@
 'use client'
 
-import CardProduct from "@/components/CardProduct"
-import Views from "@/components/Views"
-import ItemsBox from "@/components/ItemsBox"
-import FilterButton from "@/components/FilterButton"
-import NavigationTitle from "@/components/NavigationTitle"
+import CardProduct from "@/components/cards/CardProduct"
+import Views from "@/components/providers/Views"
+import ItemsBox from "@/components/providers/ItemsBox"
+import FilterButton from "@/components/buttons/icons/FilterButton"
+import NavigationTitle from "@/components/providers/NavigationTitle"
 import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
 import ProductsSkeleton from "@/components/loadingSkeletons/Products"

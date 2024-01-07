@@ -2,7 +2,7 @@
 import { Disclosure } from '@headlessui/react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import getCategoryName from "@/utils/getCategoryName";
-import { SustainableIcon } from './icons/SustainableIcon';
+import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 
 
 const ProductDetails = ({ productDetails }) => {

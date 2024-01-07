@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link";
 import LogoWhite from '@/public/images/logo_twovest_white.svg';
-import SocialMediaLogos from "./SocialMediaLogos";
-import PaymentLogos from "./PaymentLogos";
-import LanguageButton from "./LanguageButton";
+import SocialMediaLogos from "../logos/SocialMediaLogos";
+import PaymentLogos from "../logos/PaymentLogos";
+import LanguageButton from "../buttons/LanguageButton";
 
 export default function Footer () {
     return(

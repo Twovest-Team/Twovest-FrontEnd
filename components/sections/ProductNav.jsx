@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import NavigationTitle from "./NavigationTitle"
-import { SustainableIcon } from "@/components/icons/SustainableIcon"
+import NavigationTitle from "../providers/NavigationTitle"
+import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon"
 import Image from "next/image"
 import Link from "next/link"
 

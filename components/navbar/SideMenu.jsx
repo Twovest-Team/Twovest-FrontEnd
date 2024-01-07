@@ -1,15 +1,15 @@
 import { PrimaryMenuPagesList } from "./PrimaryMenuPages"
 import { SecondaryMenuPagesList } from "./SecondaryMenuPages"
-import { SocialMediaLogos_black } from "../SocialMediaLogos_black"
-import { Buttons } from "../Buttons"
+import { SocialMediaLogos_black } from "../logos/SocialMediaLogos_black"
+import { Buttons } from "../buttons/Buttons"
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import SellIcon from '@mui/icons-material/Sell';
 import StarsIcon from '@mui/icons-material/Stars';
 import { categories, general_categories } from "@/constants";
-import LanguageButton from "../LanguageButton";
+import LanguageButton from "../buttons/LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
-import { SustainableIcon } from "../icons/SustainableIcon";
+import { SustainableIcon } from "../buttons/icons/SustainableIcon";
 import Link from "next/link";
 
 

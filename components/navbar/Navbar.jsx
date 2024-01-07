@@ -1,6 +1,6 @@
 "use client";
 
-import logo from "../public/images/logo_twovest_black.svg";
+import logo from "../../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -9,8 +9,8 @@ import { usePathname } from "next/navigation";
 //import componentes etc
 import handleGender from "@/utils/handleGender";
 import getLocalStorage from "@/utils/localStorage/getLocalStorage";
-import { Cart } from "./navbar/Cart";
-import { SideMenu } from "./navbar/SideMenu";
+import { Cart } from "./Cart";
+import { SideMenu } from "./SideMenu";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';

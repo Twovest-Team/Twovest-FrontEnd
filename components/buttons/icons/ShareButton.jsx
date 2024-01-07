@@ -4,7 +4,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Notifications from './Notifications';
+import Notifications from '../../modals/Notifications';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const ShareButton = () => {

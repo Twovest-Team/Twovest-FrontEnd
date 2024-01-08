@@ -17,6 +17,8 @@
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
     "@reduxjs/toolkit": "^2.0.1",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.2",
     "next": "14.0.4",
     "next-auth": "^4.24.5",

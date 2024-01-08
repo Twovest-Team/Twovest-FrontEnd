@@ -42,7 +42,7 @@ const Product = () => {
 
   return (
     <main>
-      <div className="flex flex-col h-[calc(100vh-68px)] relative">
+      <div className="flex flex-col h-screen relative">
 
         {productDetails ?
           <>

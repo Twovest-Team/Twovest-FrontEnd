@@ -51,7 +51,7 @@ export default function LoginPage() {
             <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
                 <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-96 text-center">
                     <h1 className="mb-4 text-xl font-bold text-gray-700 dark:text-gray-300">
-                        You're already logged in
+                        You&apos;re already logged in
                     </h1>
                     <button
                         onClick={handleLogout}

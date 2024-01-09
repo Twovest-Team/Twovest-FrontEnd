@@ -1,4 +1,4 @@
-import { withTheme } from "@emotion/react"
+
 
 export const SustainableIcon = ({color, width}) =>{
     return(

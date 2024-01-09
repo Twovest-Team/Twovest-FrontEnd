@@ -5,7 +5,7 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 //Botão que mostra a privacidade ca card de coleção. Pode assumir 3 estados (pública, privada ou partilhada)
 // Se partilhada, assume 4 estados diferentes, mediante o número de utilizadores (min 1, max 4)
 
-export default function CollectionPrivacyButton(props) {
+export default function CollectionPrivacyTag(props) {
   const caminho = "/images/teste_colecao_partilhada_avatares/";
   const ArrayUtilizadores = props.utilizadores;
   const numeroDeUtilizadores = ArrayUtilizadores.length;

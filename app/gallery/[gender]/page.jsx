@@ -1,7 +1,7 @@
-import Views from "@/components/Views";
-import ItemsBox from "@/components/ItemsBox";
-import LookCard from "@/components/LookCard";
-import CollectionPreview from "@/components/CollectionPreview";
+import Views from "@/components/providers/Views";
+import ItemsBox from "@/components/providers/ItemsBox";
+import LookCard from "@/components/cards/LookCard";
+import CollectionPreview from "@/components/items/CollectionPreview";
 
 
 

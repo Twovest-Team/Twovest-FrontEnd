@@ -1,6 +1,6 @@
 
-import DeleteButton from "@/components/DeleteButton";
-import {Buttons} from "@/components/Buttons";
+import DeleteButton from "@/components/buttons/icons/DeleteButton";
+import {Buttons} from "@/components/buttons/Buttons";
 export default function Home() {
 
   return (

@@ -67,38 +67,44 @@ export default function CollectionPreview(props) {
     const Look3 = ultimosLooks[2];
 
     return (
-      <div className="flex flex-row items-start h-[90px]">
-        <div className="mr-4 w-[110px]  h-[90px] relative">
+      <div className="items-start h-[90px] flex flex-row">
+        <div className="h-[90px] grid">
+          <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[29px]">
           <Image
             src={`${caminho}${Look1.img}`}
             alt="Look da coleção"
             width={80}
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
-            className="left-[29px] top-0 absolute rounded-[7px] border-2 border-white"
+            className="rounded-[7px] border-2 border-white"
             key={Look1.id}
           />
+          </div>
+          <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
           <Image
             src={`${caminho}${Look2.img}`}
             alt="Look da coleção"
             width={80}
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
-            className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
+            className="rounded-[7px] border-2 border-white"
             key={Look2.id}
           />
+          </div>
+          <div className="w-20 col-start-1 row-start-1">
           <Image
             src={`${caminho}${Look3.img}`}
             alt="Look da coleção"
             width={80}
             height={90}
             style={{ width: "80px", height: "90px", objectFit: "cover" }}
-            className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+            className="rounded-[7px] border-2 border-white"
             key={Look3.id}
           />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="ml-4 flex flex-col gap-4">
           <div>
             <p className="font-semibold line-clamp-1">
               {props.looks.nome}
@@ -118,30 +124,34 @@ export default function CollectionPreview(props) {
     const Look2 = arrayDeLooks[1];
 
     return (
-        <div className="flex flex-row items-start h-[90px]">
-          <div className="mr-4 w-[110px]  h-[90px] relative">
-          <div className="w-[80px] h-[90px] bg-grey left-[29px] top-0 absolute rounded-[7px] border-2 border-white"></div>
+        <div className="items-start h-[90px] flex flex-row">
+          <div className="h-[90px] grid">
+          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey rounded-[7px] border-2 border-white"></div>
+          <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
             <Image
               src={`${caminho}${Look1.img}`}
               alt="Look da coleção"
               width={80}
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
+              className="rounded-[7px] border-2 border-white"
               key={Look1.id}
             />
+            </div>
+            <div className="w-20 col-start-1 row-start-1">
             <Image
               src={`${caminho}${Look2.img}`}
               alt="Look da coleção"
               width={80}
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+              className="rounded-[7px] border-2 border-white"
               key={Look2.id}
             />
+            </div>
           </div>
   
-          <div className="flex flex-col gap-4 h-[90px]">
+          <div className="ml-4 flex flex-col gap-4">
             <div>
               <p className="font-semibold line-clamp-1">
                 {props.looks.nome}
@@ -159,22 +169,24 @@ export default function CollectionPreview(props) {
     const Look1 = arrayDeLooks[0];
     
     return (
-        <div className="flex flex-row items-start h-[90px]">
-          <div className="mr-4 w-[110px]  h-[90px] relative">
-          <div className="w-[80px] h-[90px] bg-grey_opacity_50 left-[29px] top-0 absolute rounded-[7px] border-2 border-white"></div>
-          <div className="w-[80px] h-[90px] bg-grey left-[14px] top-0 absolute rounded-[7px] border-2 border-white"></div>
+        <div className="items-start h-[90px] flex flex-row">
+          <div className="h-[90px] grid">
+          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
+          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
+          <div className="w-20 col-start-1 row-start-1">
             <Image
               src={`${caminho}${Look1.img}`}
               alt="Look da coleção"
               width={80}
               height={90}
               style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+              className="rounded-[7px] border-2 border-white"
               key={Look1.id}
             />
           </div>
+          </div>
   
-          <div className="flex flex-col gap-4 h-[90px]">
+          <div className="ml-4 flex flex-col gap-4">
             <div>
               <p className="font-semibold line-clamp-1">
                 {props.looks.nome}

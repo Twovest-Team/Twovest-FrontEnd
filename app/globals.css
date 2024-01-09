@@ -387,6 +387,21 @@ incorporados no footer. -------- João Paixão */
 
 /* -----FIM Media query footer Paixão ------*/
 
+/* -----Início Media query imagens card coleção Paixão ------*/
+
+@media screen and (max-width: 320px) {
+  .collectionCard--image {
+    display:none;
+  }
+}
+
+
+
+/* -----FIM Media query imagens card coleção Paixão ------*/
+
+
+
+
   /* -- VASCO -- */
   .contentSlider_div-scroll {
     overflow-x: scroll;

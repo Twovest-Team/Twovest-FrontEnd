@@ -11,9 +11,32 @@ import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
 import { SustainableIcon } from "../buttons/icons/SustainableIcon";
 import Link from "next/link";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useEffect } from "react";
+import { changeUserData } from "@/redux/slices/userSlice";
 
 
 export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, toggleCategory, categoryOpen, idCategory}) => {
+
+    const supabase = createClientComponentClient();
+    const dispatch = useAppDispatch()
+    const currentUser = useAppSelector(state => state.user.data)
+
+
+    useEffect(() => {
+        
+        if(!currentUser){
+            async function getUser() {
+            const { data: { user } } = await supabase.auth.getUser()
+            dispatch(changeUserData(user))    
+        }
+        getUser();
+        }
+        
+    }, [currentUser])
+
+
     return(
         <>
 
@@ -44,8 +67,12 @@ export const SideMenu = ({menuOpen, handleClickGender, genderState, toggleMenu, 
             </div>
     
             <ul className="mx-4 my-4">
-    
-                <Link href={"/login"} onClick={toggleMenu}><Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/></Link>
+
+
+                {currentUser == null &&(
+                    <Link href={"/login"} onClick={toggleMenu}><Buttons btnState="secondaryMain" text="Fazer log in ou registo" icon="navigateNext" btnSize="menuSize"/></Link>
+                )}
+                
     
                 <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey"/>
                 

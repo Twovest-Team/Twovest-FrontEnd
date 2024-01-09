@@ -3,13 +3,15 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/redux/hooks";
+import { changeUserData } from "@/redux/slices/userSlice";
 
 export default function LoginPage() {
     const router = useRouter()
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
+    const dispatch = useAppDispatch()
     const supabase = createClientComponentClient();
 
     useEffect(() => {
@@ -36,6 +38,7 @@ export default function LoginPage() {
         await supabase.auth.signOut();
         router.refresh();
         setUser(null)
+        dispatch(changeUserData(null))
     }
 
 

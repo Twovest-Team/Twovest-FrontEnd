@@ -206,7 +206,7 @@ export default function CollectionPreview(props) {
 /*
 Estados de privacidade possíveis: 
 ------------PARTILHADO
-<CollectionPrivacyTag privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
+<<CollectionPrivacyTag privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
 ------------PÚBLICO
 <CollectionPrivacyTag privacidade="publica" utilizadores={utilizadoresPartilhados}/>
 ------------PARTILHADO

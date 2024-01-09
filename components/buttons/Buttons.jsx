@@ -84,6 +84,7 @@ export const Buttons = ({ btnState, text, icon, btnSize, onClick }) => {
   };
   const sizes = {
     modalSize: 'w-full h-14 gap-12 items-center',
+    smallSize: 'w-[65%] h-14 gap-12 items-center text-center justify-between items-center',
     menuSize: 'w-full h-14 py-2 px-4 mt-4 flex gap-12 text-center justify-between items-center', //usado apenas no scroll menu
     mediumSize: 'w-full h-full px-8 flex py-3.5 mt-4 gap-12 items-center justify-between', // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
     mediumSizeSocials: 'w-full h-55 px-8 py-3.5 mt-4 flex justify-center items-center gap-3 text-center',  // Social netwowrks

@@ -1,45 +1,78 @@
-"use client";
+'use client';
 
-import { createBrowserClient } from '@supabase/ssr';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/utils/db/supabase';
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Login = () => {
+export default function LoginPage() {
+    const router = useRouter()
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
- async function LoginWithGoogle(){
-  await supabase.auth.signInWithOAuth({
-    provider: 'Google',
-    options: {
-      redirectTo: `https://nchduotxkzvmghizornd.supabase.co/auth/v1/callback`,
-    },
-  })
+    const supabase = createClientComponentClient();
+
+    useEffect(() => {
+        async function getUser() {
+            const { data: { user } } = await supabase.auth.getUser()
+            setUser(user)
+            setLoading(false)
+        }
+
+        getUser();
+    }, [])
+
+
+    const handleSignInGoogle = async () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'Google',
+            options: {
+                redirectTo: `${location.origin}/auth/callback`
+            }
+        })
+    }
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.refresh();
+        setUser(null)
+    }
+
+
+    if (loading) {
+        return <h1>loading..</h1>
+    }
+
+    if (user) {
+        return (
+            <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
+                <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-96 text-center">
+                    <h1 className="mb-4 text-xl font-bold text-gray-700 dark:text-gray-300">
+                        You're already logged in
+                    </h1>
+                    <button
+                        onClick={handleLogout}
+                        className="w-full p-3 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none"
+                    >
+                        Logout
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <main className="h-screen flex items-center justify-center bg-gray-800 p-6">
+            <div className="bg-gray-900 p-8 rounded-lg shadow-md w-96">
+    
+                <button
+                    onClick={handleSignInGoogle}
+                    className="w-full p-3 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none"
+                >
+                    Sign In Google
+                </button>
+            </div>
+        </main>
+    )
+
 }
-
-
-useEffect(() => {
-  async function getUser(){
-    const data = await supabase.auth.getUser()
-    console.log(data)
-  }
-  getUser()
-}, [])
-
-
-  const LogOut = async() => {
-   await supabase.auth.signOut();
-  
-  };
-
- 
-
-  return (
-    <div>
-      <div onClick={LoginWithGoogle}>Login</div>
-      <div onClick={LogOut}>Logout</div>
-    </div>
-  );
-};
-
-export default Login;

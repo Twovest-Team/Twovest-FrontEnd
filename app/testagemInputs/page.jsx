@@ -1,6 +1,6 @@
 "use client";
 
-import PasswordInputComponent from "@/components/PasswordInputComponent";
+import PasswordInputComponent from "@/components/inputs/PasswordInputComponent";
 import { useState } from "react";
 import DoneIcon from '@mui/icons-material/Done';
 import ErrorIcon from "@mui/icons-material/Error";

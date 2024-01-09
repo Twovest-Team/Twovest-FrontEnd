@@ -15,7 +15,8 @@ const getProcuctOffers = async(id) => {
         type
     ),
     conditions (
-        id
+        id,
+        name
     )
     `)
     .eq('id_product', id)

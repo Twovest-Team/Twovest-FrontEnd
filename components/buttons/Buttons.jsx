@@ -77,7 +77,7 @@ export const Buttons = ({ btnState, text, icon, btnSize, onClick }) => {
     defaultMain: 'bg-primary_main hover:bg-primary_dark',  //verde normal, com over (default o mais usado)
     hoverMain: 'bg-primary_dark ',
     focusedMain: 'bg-primary_dark', 
-    disabledMain: 'bg-grey_opacity_50',  //para botoes que vao ficar disabled 
+    disabledMain: 'bg-grey cursor-default',  //para botoes que vao ficar disabled 
     secondaryMain:'bg-dark hover:bg-dark_gray',  //botoes secundários
     errorMain:'bg-error_main hover:bg-error_dark',
     none:''

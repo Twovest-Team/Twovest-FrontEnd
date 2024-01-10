@@ -11,6 +11,7 @@ import Link from "next/link";
 import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 
+
 export default function LoginPage() {
     const router = useRouter()
     const [user, setUser] = useState(null);
@@ -111,7 +112,7 @@ export default function LoginPage() {
                 </Buttons>
             </div>
 
-            <div className="text-center mt-20">Não tens conta? <Link href={"/register"} className="text-primary_main font-semibold" >Regista-te com email.</Link>
+            <div className="text-center my-20">Não tens conta? <Link href={"/register"} className="text-primary_main font-semibold" >Regista-te com email.</Link>
             </div>
 
         </main>

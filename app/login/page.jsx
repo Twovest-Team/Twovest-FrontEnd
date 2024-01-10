@@ -90,21 +90,20 @@ export default function LoginPage() {
     
                 <Buttons
                     onClick={handleSignInGoogle}
-                    btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"menuSize"}
+                    btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"mediumSizeSocials"} icon={"google"}
                 >
-                    Sign In Google
                 </Buttons>
                 <Buttons
                     
-                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"menuSize"}
+                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"mediumSizeSocials"} icon={"facebook"}
                 >
-                    Sign In Google
+                    
                 </Buttons>
                 <Buttons
                     
-                    btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"menuSize"}
+                    btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"mediumSizeSocials"} icon={"apple"}
                 >
-                    Sign In Google
+                   
                 </Buttons>
             </div>
 

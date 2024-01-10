@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from "react"
 import NavigationTitle from "../providers/NavigationTitle"
 import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon"

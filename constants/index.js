@@ -89,9 +89,25 @@ const categories = [
     { id: 34, singular: 'Mochila', plural: 'Mochilas', main_category: 5, gender: [1, 2] }
 ]
 
+const shopStages = [
+    {
+        id: 1,
+        name: 'Cesto'
+    },
+    {
+        id: 2,
+        name: 'Envio'
+    },
+    {
+        id: 3,
+        name: 'Pagamento'
+    }
+]
+
   
 export {
     general_categories,
     main_categories,
-    categories
+    categories,
+    shopStages
 }

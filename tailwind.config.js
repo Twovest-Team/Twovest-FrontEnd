@@ -20,6 +20,9 @@ module.exports = {
       full: '999px'
     },
     extend: {
+      height: {
+        screen: 'calc(100vh - 68px)',
+      },
       colors: {
         primary_main: '#05CE86',
         primary_dark: '#0BA06B',
@@ -36,7 +39,7 @@ module.exports = {
         info_light: '#CCE3F7',
         dark: '#000000',
         grey: '#CDCDCD',
-        grey_opacity_50: '#CDCDCD80',
+        grey_opacity_50: '#F1F1F1',
         white_opacity_50: '#FFFFFF80',
         dark_gray: '#484848'
       }

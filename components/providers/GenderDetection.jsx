@@ -19,9 +19,9 @@ const GenderDetection = ({ children }) => {
       setLocalStorage('gender', params.gender)
     }
 
-    /* if(!gender && pathname === '/' || pathname === '/login' || pathname === '/register'){
+    if(!gender && pathname === '/' || !gender && pathname === '/login' || !gender && pathname === '/register'){
       router.push('/landing')
-    } */
+    }
 
   }, [params.gender, pathname, router])
 

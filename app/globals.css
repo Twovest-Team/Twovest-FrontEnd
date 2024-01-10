@@ -7,7 +7,6 @@
 /* MAX Breakpoint: 460px */
 
 html{
-  scroll-behavior: smooth;
   scroll-padding-top: 158px;
   background-color: #000000;
 }

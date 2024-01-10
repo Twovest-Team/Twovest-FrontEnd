@@ -9,7 +9,7 @@ const CardProduct = ({ product, slider, gender }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
 
-
+   
     return (
         <article className='w-full max-w-[460px] flex-5'>
 

@@ -3,91 +3,68 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-
-//import componentes etc
-import handleGender from "@/utils/handleGender";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
-import { Cart } from "./Cart";
-import { SideMenu } from "./SideMenu";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { toggleCart } from "@/redux/slices/cartToggle";
+import getUserData from "@/utils/db/getUserByEmail";
+import { changeUserData } from "@/redux/slices/userSlice";
+import { toggleMenu } from "@/redux/slices/menuToggle";
 
+export const Navbar = ({children}) => {
 
-export const Navbar = () => {
-
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [categoryOpen, setCategoryMenu] = useState(false);
-    const [idCategory, setIdCategory] = useState("");
-    const [cestoOpen, setCesto] = useState(false);
-    const [genderState, setGenderState] = useState("");
+    const dispatch = useAppDispatch()
     const pathName = usePathname();
+    const currentUser = useAppSelector(state => state.user.data)
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+    const handleClickMenu = () => {
+        dispatch(toggleMenu());
     }
 
-    const toggleCategory = (id) => {
-        setCategoryMenu(!categoryOpen);
-        if (idCategory == "") {
-            setIdCategory(id);
-        } else {
-            setIdCategory("");
-        }
+    const handleClickCart = () => {
+        dispatch(toggleCart())
     }
-
-    const toggleCesto = () => {
-        setCesto(!cestoOpen)
-    }
-
 
     useEffect(() => {
-        let activeGender = getLocalStorage("gender");
-        if (activeGender != genderState) {
-            setGenderState(activeGender);
+
+        async function fetchUserData(){
+            if (!currentUser) {
+                let userData = await getUserData()
+                dispatch(changeUserData(userData))
+            }
         }
 
-    }, [pathName, genderState])
+        fetchUserData()
 
-
-    const handleClickGender = (gender) => {
-        handleGender(gender);
-        setGenderState(gender);
-    }
-
+    }, [currentUser])
 
 
     if (pathName != "/landing") {
 
         return (
 
-            /* ---------- Navbar ----------- */
             <nav className="flex justify-between z-50 max-w-[460px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
+                
                 <div className="flex">
-                    <div className='mr-4' onClick={toggleMenu}><MenuIcon /></div>
+                    <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
                     <Link href={"/"} className="items-center flex">
                         <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
                         <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
                 </div>
                 <div className="flex">
-                    <div className="navbar_icons"><FavoriteBorderOutlinedIcon /></div>
-                    <div className="navbar_icons" onClick={() => toggleCesto()}><LocalMallOutlinedIcon /></div>
-                    <div className="navbar_icons"><AccountCircleOutlinedIcon /></div>
+                    <button className="navbar_icons"><FavoriteBorderOutlinedIcon /></button>
+                    <button className="navbar_icons" onClick={handleClickCart}><LocalMallOutlinedIcon /></button>
+                    <button className="navbar_icons"><AccountCircleOutlinedIcon /></button>
                 </div>
 
 
-                {/* -------------- Menu lateral ----------------*/}
-                <SideMenu menuOpen={menuOpen} handleClickGender={handleClickGender} genderState={genderState} toggleMenu={toggleMenu} toggleCategory={toggleCategory} categoryOpen={categoryOpen} idCategory={idCategory} />
-
-
-                {/*----------------- Cesto -----------------*/}
-                <Cart cestoOpen={cestoOpen} toggleCesto={toggleCesto} />
-
+                {children}
 
             </nav>
 

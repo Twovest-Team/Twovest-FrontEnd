@@ -77,7 +77,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     defaultMain: 'bg-primary_main hover:bg-primary_dark',  //verde normal, com over (default o mais usado)
     hoverMain: 'bg-primary_dark ',
     focusedMain: 'bg-primary_dark', 
-    disabledMain: 'bg-grey_opacity_50',  //para botoes que vao ficar disabled 
+    disabledMain: 'bg-grey cursor-default',  //para botoes que vao ficar disabled 
     secondaryMain:'bg-dark hover:bg-dark_gray',  //botoes secundários
     errorMain:'bg-error_main hover:bg-error_dark',
     none:''
@@ -87,7 +87,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     smallSize: 'w-full h-14 sm:h-14 md:h-14 lg:h-14 xl:h-14 flex items-center justify-between gap-2 sm:gap-4 text-center',
     menuSize: 'w-full h-14 py-2 px-4 mt-4 flex gap-12 text-center justify-between items-center', //usado apenas no scroll menu
     mediumSize: 'w-full h-full px-8 flex py-3.5 mt-4 gap-12 items-center justify-between', // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
-    mediumSizeSocials: 'w-full h-55 px-8 py-3.5 mt-4 flex justify-center items-center gap-3 text-center',  // Social netwowrks
+    mediumSizeSocials: 'w-full h-55 px-8 py-4 mt-4 flex justify-center items-center gap-3 text-center',  // Social netwowrks
     redefineSize: 'w-full h-55 px-3 py-9 mt-4 flex justify-center items-center gap-3 text-center',  //usado para voltar para a galeria e redefinir
     large: 'px-5 py-5  mt-4 text-lg', // caso pretendam um botao maior podem ajustar 
     justIcons:'w-10 h-10 mx-auto my-auto justify-center items-center  text-center mt-4'    //quando se quer usar so um icon como botao 

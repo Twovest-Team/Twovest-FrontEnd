@@ -1,3 +1,4 @@
+'use client'
 
 import { Disclosure } from '@headlessui/react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';

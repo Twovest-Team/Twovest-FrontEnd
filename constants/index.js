@@ -62,7 +62,7 @@ const categories = [
     { id: 7, singular: 'Polo', plural: 'Polos', main_category: 1, gender: [1, 2] },
     { id: 8, singular: 'Sweatshirt', plural: 'Sweatshirts', main_category: 1, gender: [1, 2] },
     { id: 9, singular: 'Camisa', plural: 'Camisas', main_category: 1, gender: [1, 2] },
-    { id: 10, singular: 'Top', plural: 'Tops', main_category: 1, gender: [1, 2] },
+    { id: 10, singular: 'Top', plural: 'Tops', main_category: 1, gender: [1] },
     { id: 11, singular: 'Calça', plural: 'Calças', main_category: 2, gender: [1, 2] },
     { id: 12, singular: 'Calções', plural: 'Calções', main_category: 2, gender: [1, 2] },
     { id: 13, singular: 'Saia', plural: 'Saias', main_category: 2, gender: [1] },

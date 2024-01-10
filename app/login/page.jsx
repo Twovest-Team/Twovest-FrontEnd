@@ -8,6 +8,7 @@ import { changeUserData } from "@/redux/slices/userSlice";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
+import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 
 export default function LoginPage() {
@@ -19,6 +20,7 @@ export default function LoginPage() {
     const supabase = createClientComponentClient();
 
 
+
     useEffect(() => {
         async function getUser() {
             const { data: { user } } = await supabase.auth.getUser()
@@ -28,6 +30,7 @@ export default function LoginPage() {
 
         getUser();
     }, [])
+
 
 
     const handleSignInGoogle = async () => {
@@ -49,11 +52,12 @@ export default function LoginPage() {
 
 
     if (loading) {
-        return <h1 className="h-screen text-center"><div className="mt-4">Loading...</div></h1>
+        return <div className="h-screen text-center mt-24"><LoadingIcon/></div>
     }
 
     if (user) {
-        return (
+        router.push("/")
+        /* return (
             <div className="h-screen bg-gray-100">
                 <NavigationTitle/>
                 <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-96 text-center">
@@ -68,7 +72,7 @@ export default function LoginPage() {
                     </button>
                 </div>
             </div>
-        )
+        ) */
     }
 
     return (
@@ -88,23 +92,22 @@ export default function LoginPage() {
             
             <div className="">
     
-                <Buttons
-                    onClick={handleSignInGoogle}
-                    btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"menuSize"}
+                <div onClick={handleSignInGoogle}><Buttons
+                    
+                    btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"mediumSizeSocials"} icon={"google"}
                 >
-                    Sign In Google
+                </Buttons></div>
+                <Buttons
+                    
+                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"mediumSizeSocials"} icon={"facebook"}
+                >
+                    
                 </Buttons>
                 <Buttons
                     
-                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"menuSize"}
+                    btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"mediumSizeSocials"} icon={"apple"}
                 >
-                    Sign In Google
-                </Buttons>
-                <Buttons
-                    
-                    btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"menuSize"}
-                >
-                    Sign In Google
+                   
                 </Buttons>
             </div>
 

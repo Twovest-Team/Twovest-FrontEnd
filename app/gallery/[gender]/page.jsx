@@ -1,14 +1,18 @@
 import Views from "@/components/providers/Views";
 import ItemsBox from "@/components/providers/ItemsBox";
 import LookCard from "@/components/cards/LookCard";
-import CollectionPreview from "@/components/items/CollectionPreview";
-
+import getLooksForGallery from "@/utils/db/getLooksForGallery";
 
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
 // Exemplo: twovest.com/gallery/mulher
-const Gallery = () => {
+const Gallery = async ({params}) => {
+  const gender = params.gender;
+
+  const data = await getLooksForGallery(gender)
+
+
   return (
     <main>
       <div className="container flex justify-between h-7">
@@ -22,7 +26,7 @@ const Gallery = () => {
         <LookCard />
         
       </ItemsBox>
-
+      <pre>{JSON.stringify(data, null, 2)}</pre>
 
     </main>
   )

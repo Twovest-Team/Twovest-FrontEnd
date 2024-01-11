@@ -51,14 +51,17 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleCloseModal = () => {
+     
       setIsModalOpen(false);
     };
 
     const handleOpenModal = () => {
-        setIsModalOpen(true);
+     
+      setIsModalOpen(true);
+      
       };
    
 
@@ -67,7 +70,7 @@ const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
     isModalOpen ? (
     <div className="fixed inset-0 flex overflow-y-hidden items-center justify-center transition-transform duration-600 ease-in-out">
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75"></div>
-      <div className={`bg-white w-full p-8 rounded-lg fixed bottom-0 transform translate-y-0 transition-transform h-auto`}>
+      <div className={`bg-white w-full p-8 rounded fixed bottom-0 transform translate-y-0 transition-transform h-auto`}>
       <div className="flex justify-end mb-8"> 
             <CloseIcon className="cursor-pointer" onClick={handleCloseModal} />
         </div>
@@ -91,6 +94,7 @@ const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
                                     ))}
                                 </select>
                             </div>
+                            
                         )
                     ))}
 {buttons && (
@@ -107,11 +111,8 @@ const Modal = ({title, subtitle, inputs, buttons, isSideBySide  }) => {
     </div>
     
     ) : (
-        <div>
-             <Buttons onClick={handleOpenModal} btnState="defaultMain" text="Abrir Modal" btnSize="mediumSize">
-      
-      </Buttons>
-       
+        <div onClick={handleOpenModal}>
+             <Buttons btnState="defaultMain" text="Abrir Modal" btnSize="mediumSize" />  
       </div>
     )
     

@@ -11,6 +11,7 @@ import Link from "next/link";
 import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 
+
 export default function LoginPage() {
     const router = useRouter()
     const [user, setUser] = useState(null);
@@ -57,7 +58,7 @@ export default function LoginPage() {
 
     if (user) {
         router.push("/")
-        /* return (
+         /* return (
             <div className="h-screen bg-gray-100">
                 <NavigationTitle/>
                 <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-96 text-center">
@@ -71,14 +72,14 @@ export default function LoginPage() {
                         Logout
                     </button>
                 </div>
-            </div>
-        ) */
+            </div> ) */
+        
     }
 
     return (
         <>
         <NavigationTitle titleText={"Iniciar sessão"}/>
-         <main className="h-screen  p-6">
+         <main className="p-6">
 
          <input type="text" placeholder="Email" className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
          <input type="password" placeholder="Password" className="px-4 py-4 w-full rounded border border-grey"/>
@@ -111,7 +112,7 @@ export default function LoginPage() {
                 </Buttons>
             </div>
 
-            <div className="text-center mt-20">Não tens conta? <Link href={"/register"} className="text-primary_main font-semibold" >Regista-te com email.</Link>
+            <div className="text-center my-20">Não tens conta? <Link href={"/register"} className="text-primary_main font-semibold" >Regista-te com email.</Link>
             </div>
 
         </main>

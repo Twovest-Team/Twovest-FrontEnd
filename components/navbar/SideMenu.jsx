@@ -72,7 +72,7 @@ export const SideMenu = () => {
 
             {/* ------ Menu lateral -------*/}
             <div className={`${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
-             bg-white z-30 overflow-scroll h-full w-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+             bg-white z-30 overflow-scroll h-full w-screen min-w-[280px] max-w-[460px] fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
                 <div className="flex justify-between items-center border-b-grey border-b-2">
 
@@ -87,7 +87,7 @@ export const SideMenu = () => {
 
                     </div>
                     <div className="flex mx-4">
-                        <div onClick={handleClickMenu}><CloseOutlinedIcon /></div>
+                        <div onClick={handleClickMenu} className="cursor-pointer"><CloseOutlinedIcon/></div>
                     </div>
 
                 </div>

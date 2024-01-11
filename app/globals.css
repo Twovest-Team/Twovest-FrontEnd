@@ -468,3 +468,128 @@ incorporados no footer. -------- João Paixão */
 
 
 /* -- FIM VASCO -- */
+
+
+/*--START GONÇALO--*/
+@media (max-width: 319px) {
+  .col-grid-class-temp {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .col-grid-class-temp .h-48{
+    height: 250px;
+  }
+}
+@media (max-width: 319px) {
+  .search-temp {
+    flex-direction: row; 
+    align-items: center; 
+  }
+
+  .search-temp .pl-16 {
+   align-items:center;
+  }
+
+  .search-temp .w-6,
+  .search-temp .h-6 {
+    width: 24px; 
+    height: 24px; 
+   
+  }
+  .search-temp input::placeholder {
+    font-size: 14px;
+    align-items: center; 
+   
+  }
+ 
+}
+@media (max-width:140px) {
+  .search-temp {
+    flex-direction: row; 
+    align-items: left; 
+  }
+
+  .search-temp .pl-16 {
+   align-items:center;
+  }
+
+  .search-temp .w-6,
+  .search-temp .h-6 {
+    width: 15px; 
+    height: 15px; 
+   
+  }
+  .search-temp input::placeholder {
+    font-size: 10px;
+    margin-right: 210px;
+    align-items: center; 
+  }
+}
+.cenas {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cenas p {
+  font-size: 1.4em;
+}
+
+.cenas h2 {
+  margin-left: 10%;
+  width: 80%;
+  font-size: 1.8em;
+}
+
+.cenas .btn-temp {
+  font-size: 0.9em;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.cenas .rBTN {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.cenas .rBTN2 {
+  width: 2rem;
+  height: 1rem;
+}
+
+@media (max-width: 328px) {
+  .cenas h2 {
+    font-size: 1.7em; 
+    margin-left: 10%;
+    width: 80%;
+  }
+ 
+}
+
+@media (max-width: 303px) {
+  .cenas p {
+    font-size: 1.65em;
+  }
+
+  .cenas h2 {
+    font-size: 1.5em;
+  
+  }
+
+
+}
+
+@media (max-width: 280px) {
+  .cenas p {
+    font-size: 1.65em;
+  }
+
+  .cenas h2 {
+    font-size: 1.4em;
+
+  }
+}
+
+     
+   
+
+/*--END GONÇALO--*/

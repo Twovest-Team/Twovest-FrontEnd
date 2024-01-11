@@ -172,7 +172,7 @@ export default function CollectionPreview(props) {
         <div className="items-start h-[90px] flex flex-row">
           <div className="h-[90px] grid">
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
-          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
+          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey rounded-[7px] border-2 border-white"></div>
           <div className="w-20 col-start-1 row-start-1">
             <Image
               src={`${caminho}${Look1.img}`}

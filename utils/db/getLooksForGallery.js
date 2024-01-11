@@ -1,11 +1,9 @@
 import { supabase } from "@/utils/db/supabase";
 import getLookStyles from "./getLookStyles";
-import capitalizeFirstLetter from '../capitalizeFirstLetter';
+import capitalizeFirstLetter from "../capitalizeFirstLetter";
 
 const getLooksForGallery = async (gender) => {
-
-    gender = capitalizeFirstLetter(gender);
-
+  gender = capitalizeFirstLetter(gender);
 
   const { data, error } = await supabase
     .from("looks")
@@ -23,8 +21,7 @@ const getLooksForGallery = async (gender) => {
 `
     )
     .eq("submission_state", 2)
-    .eq("gender", gender)
-    
+    .eq("gender", gender);
 
   let arrayOfLooks = await Promise.all(
     data.map(async (element) => {

@@ -1,10 +1,8 @@
-import { supabase } from '@/utils/db/supabase';
-import getLookProducts from './getLookProducts';
-
+import { supabase } from "@/utils/db/supabase";
+import getLookProducts from "./getLookProducts";
 
 const getLookById = async (id) => {
-
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("looks")
     .select(
       `
@@ -19,19 +17,16 @@ const getLookById = async (id) => {
     )
 `
     )
-    .eq("id", id)
+    .eq("id", id);
 
-      const products = await getLookProducts(data[0].id,data[0].gender)
-      data[0].products = products
+  const products = await getLookProducts(data[0].id, data[0].gender);
+  data[0].products = products;
 
-    
+  if (error) {
+    console.log(error);
+  } else {
+    return data;
+  }
+};
 
-      if (error) {
-        console.log(error);
-      } else {
-        return data
-      }
-    
-}
-
-export default getLookById
+export default getLookById;

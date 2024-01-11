@@ -210,7 +210,7 @@ export const Navbar = ({children}) => {
                                 <Menu.Item >
                                 {({ active, close }) => (
                                     <div className="px-2 py-4">
-                                    <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
+                                    <div className="mb-3 font-semibold">Inicia sessão para poderes aceder às definições de conta</div>
                                     <Link href={"/login"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption text-center font-semibold w-full rounded">Iniciar sessão</div>
                                     </Link>

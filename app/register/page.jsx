@@ -41,7 +41,7 @@ if (loading) {
 
     <>
         <NavigationTitle titleText={"Registar conta"}/>
-         <main className="h-screen p-6 mb-10">
+         <main className="p-6 mb-10">
 
           <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary"><div className="text-center mt-16">Adiciona aqui uma foto</div></div>
 

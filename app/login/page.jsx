@@ -58,7 +58,7 @@ export default function LoginPage() {
 
     if (user) {
         router.push("/")
-        /* return (
+         /* return (
             <div className="h-screen bg-gray-100">
                 <NavigationTitle/>
                 <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-96 text-center">
@@ -72,8 +72,8 @@ export default function LoginPage() {
                         Logout
                     </button>
                 </div>
-            </div>
-        ) */
+            </div> ) */
+        
     }
 
     return (

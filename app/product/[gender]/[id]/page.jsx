@@ -65,7 +65,7 @@ async function ProductContent({productId, productGender}) {
                 <h5 className="font-semibold truncate">{getCategoryName(data.categories.id)} {data.brands.name}</h5>
               </div>
               <Link href={'#offers'} className="bg-dark block hover:bg-dark_gray text-center text-white py-3.5 font-semibold rounded">
-                Ver todas as ofertas
+                Ver as melhores ofertas
               </Link>
             </div>
           </div>

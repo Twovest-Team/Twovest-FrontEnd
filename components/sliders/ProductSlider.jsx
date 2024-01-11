@@ -6,7 +6,7 @@ const ProductSlider = ({ images }) => {
  
     return (
         <>
-            <figure className="flex-grow productSlider_figure-scroll">
+            <figure className="flex-grow scroll_bar-invisible">
 
                 {images.map((image, index) => (
                     <div key={index} className="relative w-full h-full">

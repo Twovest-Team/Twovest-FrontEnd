@@ -18,14 +18,13 @@ import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/db/supabase";
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import AutoModeIcon from '@mui/icons-material/AutoMode';
-import { Logout } from "@mui/icons-material";
+import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
-export const Navbar = ({children}) => {
+export const Navbar = ({ children }) => {
 
     const dispatch = useAppDispatch()
     const router = useRouter();
@@ -52,7 +51,7 @@ export const Navbar = ({children}) => {
 
     useEffect(() => {
 
-        async function fetchUserData(){
+        async function fetchUserData() {
             if (!currentUser) {
                 let userData = await getUserData()
                 dispatch(changeUserData(userData))
@@ -70,7 +69,7 @@ export const Navbar = ({children}) => {
         return (
 
             <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
-                
+
                 <div className="flex">
                     <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
                     <Link href={"/"} className="items-center flex">
@@ -79,133 +78,136 @@ export const Navbar = ({children}) => {
                 </div>
                 <div className="flex items-center">
                     <button className="navbar_icons"><FavoriteBorderOutlinedIcon /></button>
-                    <button className="navbar_icons" onClick={handleClickCart}><LocalMallOutlinedIcon /></button>
-                    
+                    <button className="navbar_icons relative" onClick={handleClickCart}>
+                        <LocalMallOutlinedIcon />
+                        <NotificationCart />
+                    </button>
+
                     <Menu>
                         {currentUser ? 
-                        <Menu.Button><div className="navbar_icons border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
+                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
                         : 
                         <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
 
-                            <Transition
-                                enter="transition duration-100 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform scale-100 opacity-100"
-                                leave="transition duration-75 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"> 
-                                <Menu.Items className={"absolute flex-wrap bg-white mt-12 px-6 py-4 w-[220px] right-1 shadow rounded"}>
+                        <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0">
+                            <Menu.Items className={"absolute flex-wrap bg-white mt-12 px-6 py-4 w-[220px] right-1 shadow rounded"}>
 
-                        {currentUser ?
-                        
-                           <>
-                                <Menu.Item className="mb-2 w-full">
-                                {({ active, close }) => (
+                                {currentUser ?
+
+                                    <>
+                                        <Menu.Item className="mb-2 w-full">
+                                            {({ active, close }) => (
+
+                                                <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
+                                                    <div><div><Link href={"/profile"} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
+                                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
+                                                </div>
+
+
+                                            )}
+                                        </Menu.Item>
+
+                                        <div className="border-b border-grey my-4"></div>
+
+                                        <Menu.Item>
+                                            {({ active, close }) => (
                                     
-                                    <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
-                                    <div><div><Link href={"/profile"} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
-                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
-                                    </div>
-                                    
-                                    
-                                )}
-                                </Menu.Item>
+                                                <div className={"w-full start-0"} >
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption text-start">Perfil</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5" /><div>Pontos&Cupões</div></div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
 
-                                <div className="border-b border-grey my-4"></div>
+                                        <div className="border-b border-grey my-4"></div>
 
-                                <Menu.Item>
-                                {({ active, close }) => (
-                                    
-                                    <div className={"w-full start-0"} >
-                                    <Link href={"/profile"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption text-start">Perfil</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
-                                <Menu.Item>
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5"/><div>Pontos&Cupões</div></div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption items-center flex"><ArrowCircleUpIcon className="h-5 w-5 mr-1.5" /><div>Submeter novo look</div></div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
 
-                                <div className="border-b border-grey my-4"></div>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Gerir meus looks</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="caption">Ver coleções de looks</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
 
-                                <Menu.Item>
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption items-center flex"><ArrowCircleUpIcon className="h-5 w-5 mr-1.5"/><div>Submeter novo look</div></div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
-                                
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/profile"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption">Gerir meus looks</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/profile"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="caption">Ver coleções de looks</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
+                                        <div className="border-b border-grey my-4"></div>
 
-                                <div className="border-b border-grey my-4"></div>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Histórico de compras</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
 
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/profile"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption">Histórico de compras</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Definições de conta</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
 
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div>
-                                    <Link href={"/profile"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption">Definições de conta</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div className={"w-full text-start"}  onClick={handleLogout}>
+                                                    <div
+                                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`}>
+                                                        Sair -&gt;
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                    </>
 
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div className={"w-full text-start"}  onClick={handleLogout}>
-                                        <div
-                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`}>
-                                        Sair -&gt;
-                                        </div>
-                                    </div>
-                                )}
-                                </Menu.Item>
-                            </>
-                            
-                            :
+                                    :
 
                                 <Menu.Item >
                                 {({ active, close }) => (

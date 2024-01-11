@@ -17,7 +17,6 @@ const general_categories = [
 ]
 
 
-
 const main_categories = [
     {
         id: 1,
@@ -104,10 +103,12 @@ const shopStages = [
     }
 ]
 
+const productMaxQty = 10
   
 export {
     general_categories,
     main_categories,
     categories,
-    shopStages
+    shopStages,
+    productMaxQty
 }

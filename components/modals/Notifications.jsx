@@ -1,13 +1,14 @@
 'use client'
 
+import { Transition } from '@headlessui/react';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Notifications = ({ type, message }) => {
 
-    const divRef = useRef(null)
+    const [show, setShow] = useState(false)
 
     let customStyles;
 
@@ -27,27 +28,40 @@ const Notifications = ({ type, message }) => {
             break;
     }
 
-    // Timeout para fazer a notificação desaparecer passado 3s
-    setTimeout(() => {
-        if(divRef){
-         divRef.current.style.display = 'none'
-        }
-    }, 3000)
-    
+    useEffect(() => {
+        setShow(true)
+
+        setTimeout(() => {
+            setShow(false)
+        }, 3000)
+    }, [])
+
 
     return (
-        <div
-        ref={divRef}
-        className={`${customStyles} caption rounded-full flex gap-2 items-center font-semibold shadow-md px-7 py-3 fixed bottom-10 mx-auto left-6 right-6 w-fit`}>
-            {type === 'Success' ?
-                <CheckIcon /> :
-                type === 'Error' ?
-                    <CloseIcon /> :
-                    type === 'Informational' &&
-                    <InfoOutlinedIcon />
-            }
-            {message}
+        <div className='fixed bottom-10 mx-auto left-6 right-6 w-fit z-40 '>
+            <Transition
+                show={show}
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+            >
+                <div
+                    className={`${customStyles} rounded-full flex gap-2 items-center font-semibold shadow-lg px-7 py-3`}>
+                    {type === 'Success' ?
+                        <CheckIcon /> :
+                        type === 'Error' ?
+                            <CloseIcon /> :
+                            type === 'Informational' &&
+                            <InfoOutlinedIcon />
+                    }
+                    {message}
+                </div>
+            </Transition>
         </div>
+
     )
 }
 

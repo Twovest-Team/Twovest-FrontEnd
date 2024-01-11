@@ -52,7 +52,6 @@ export const Navbar = ({ children }) => {
         async function fetchUserData() {
             if (!currentUser) {
                 let userData = await getUserData()
-                console.log(userData)
                 dispatch(changeUserData(userData))
             }
         }

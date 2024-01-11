@@ -64,7 +64,7 @@ export const Navbar = ({children}) => {
 
         return (
 
-            <nav className="flex justify-between z-50 max-w-[460px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
+            <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
                 
                 <div className="flex">
                     <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
@@ -92,10 +92,13 @@ export const Navbar = ({children}) => {
                            <>
                                 <Menu.Item className="mb-2 w-full">
                                 {({ active }) => (
+                                    
                                     <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
-                                    <Link href={"/profile"} className="truncate">Margarida Ferreira</Link>
+                                    <div><div><Link href={"/profile"} className="truncate">Margarida Ferreira</Link></div></div>
                                     <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: 941729</div>
                                     </div>
+                                    
+                                    
                                 )}
                                 </Menu.Item>
 
@@ -103,18 +106,22 @@ export const Navbar = ({children}) => {
 
                                 <Menu.Item>
                                 {({ active }) => (
+                                    <div className={"w-full start-0"}>
                                     <Link href={"/profile"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption">Perfil</div>
+                                    <div className="mb-3 caption text-start">Perfil</div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5"/><div>Pontos&Cupões</div></div>
+                                    <div className="caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5"/><div>Pontos&Cupões</div></div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
 
@@ -122,27 +129,33 @@ export const Navbar = ({children}) => {
 
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption items-center flex"><ArrowCircleUpIcon className="h-5 w-5 mr-1.5"/><div>Submeter novo look</div></div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
                                 
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/profile"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Gerir meus looks</div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/profile"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
-                                    <div className="mb-3 caption">Ver coleções de looks</div>
+                                    <div className="caption">Ver coleções de looks</div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
 
@@ -150,27 +163,33 @@ export const Navbar = ({children}) => {
 
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/profile"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Histórico de compras</div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
 
                                 <Menu.Item >
                                 {({ active }) => (
+                                    <div>
                                     <Link href={"/profile"}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Definições de conta</div>
                                     </Link>
+                                    </div>
                                 )}
                                 </Menu.Item>
 
                                 <Menu.Item >
                                 {({ active }) => (
-                                    <div
-                                    className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`} onClick={handleLogout}>
-                                    Sair -&gt;
+                                    <div className={"w-full text-start"}>
+                                        <div
+                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`} onClick={handleLogout}>
+                                        Sair -&gt;
+                                        </div>
                                     </div>
                                 )}
                                 </Menu.Item>
@@ -183,7 +202,7 @@ export const Navbar = ({children}) => {
                                     <div className="px-2 py-4">
                                     <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
                                     <Link href={"/login"}
-                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><button className="bg-primary_main p-2 text-white caption font-semibold w-full rounded">Iniciar sessão</button>
+                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption font-semibold w-full rounded">Iniciar sessão</div>
                                     </Link>
                                     </div>
                                 )}

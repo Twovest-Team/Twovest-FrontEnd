@@ -46,7 +46,7 @@ const ProductOfferCard = ({ offer, discount }) => {
                 </div>
 
 
-                <BuyButton />
+                <BuyButton offerId={offer.id} />
 
             </div>
 

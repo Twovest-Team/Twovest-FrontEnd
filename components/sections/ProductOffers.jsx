@@ -12,7 +12,11 @@ const ProductOffers = ({ offers, discount }) => {
         <div className="container flex flex-col gap-6">
             <div className="flex flex-col gap-1">
                 <h6 className="font-semibold">{offers.length > 3 ? 'Melhores ofertas' : 'Ofertas'}</h6>
-                <p className="text-secondary">{bestOffers.length} {offers.length > 1 ? `de ${offers.length} ofertas` : 'oferta no total'}
+                <p className="text-secondary">
+                    {bestOffers.length}
+                    {offers.length > 2 ? ` de ${offers.length} ofertas` :
+                    offers.length == 2 ? ' ofertas no total' :
+                    offers.length === 1 && ' oferta no total'}
                 </p>
             </div>
 
@@ -34,7 +38,7 @@ const ProductOffers = ({ offers, discount }) => {
 
             {offers.length > 2 &&
                 <button className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded">
-                    Ver todas as ofertas
+                    Ver todas as ofertas ({offers.length})
                 </button>
             }
 

@@ -18,11 +18,9 @@ import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/db/supabase";
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import AutoModeIcon from '@mui/icons-material/AutoMode';
 import NotificationCart from "../items/NotificationCart";
-import { Logout } from "@mui/icons-material";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
@@ -87,7 +85,7 @@ export const Navbar = ({ children }) => {
 
                     <Menu>
                         {currentUser ? 
-                        <Menu.Button><div className="navbar_icons border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
+                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
                         : 
                         <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
 

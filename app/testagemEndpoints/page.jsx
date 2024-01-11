@@ -10,6 +10,9 @@ import getProductStyles from "@/utils/db/getProductStyles";
 import getSizesByType from "@/utils/db/getSizesByType";
 import getProductById from "@/utils/db/getProductById";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
+import getLookById from "@/utils/db/getLookById";
+import getLookProducts from "@/utils/db/getLookProducts";
+
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
@@ -18,7 +21,7 @@ export const revalidate = 0
 const page = async() => {
 
   // Variável onde se deve guardar a resposta da API
-    const data = await getLooksForGallery("Homem")
+    const data = await getLookById(11)
   
 
     return (

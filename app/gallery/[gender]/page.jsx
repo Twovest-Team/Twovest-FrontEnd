@@ -2,6 +2,7 @@ import Views from "@/components/providers/Views";
 import ItemsBox from "@/components/providers/ItemsBox";
 import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
+import CollectionPreview from "@/components/items/CollectionPreview";
 
 
 // Página com todos os looks da galeria

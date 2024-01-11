@@ -23,6 +23,7 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import AutoModeIcon from '@mui/icons-material/AutoMode';
 
 
+
 export const Navbar = ({children}) => {
 
     const dispatch = useAppDispatch()
@@ -30,6 +31,8 @@ export const Navbar = ({children}) => {
     const pathName = usePathname();
     const currentUser = useAppSelector(state => state.user.data)
     const [user, setUser] = useState(null);
+    
+   
 
     const handleClickMenu = () => {
         dispatch(toggleMenu());
@@ -59,6 +62,7 @@ export const Navbar = ({children}) => {
 
     }, [currentUser])
 
+    
 
     if (pathName != "/landing") {
 
@@ -72,12 +76,16 @@ export const Navbar = ({children}) => {
                         <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
                         <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
                 </div>
-                <div className="flex">
+                <div className="flex items-center">
                     <button className="navbar_icons"><FavoriteBorderOutlinedIcon /></button>
                     <button className="navbar_icons" onClick={handleClickCart}><LocalMallOutlinedIcon /></button>
                     
                     <Menu>
-                        <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>
+                        {currentUser ? 
+                        <Menu.Button><div className="navbar_icons border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
+                        : 
+                        <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
+
                             <Transition
                                 enter="transition duration-100 ease-out"
                                 enterFrom="transform scale-95 opacity-0"
@@ -94,8 +102,8 @@ export const Navbar = ({children}) => {
                                 {({ active }) => (
                                     
                                     <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
-                                    <div><div><Link href={"/profile"} className="truncate">Margarida Ferreira</Link></div></div>
-                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: 941729</div>
+                                    <div><div><Link href={"/profile"} className="truncate">{currentUser.name}</Link></div></div>
+                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
                                     </div>
                                     
                                     
@@ -202,7 +210,7 @@ export const Navbar = ({children}) => {
                                     <div className="px-2 py-4">
                                     <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
                                     <Link href={"/login"}
-                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption font-semibold w-full rounded">Iniciar sessão</div>
+                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption text-center font-semibold w-full rounded">Iniciar sessão</div>
                                     </Link>
                                     </div>
                                 )}

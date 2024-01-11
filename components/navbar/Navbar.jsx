@@ -21,7 +21,8 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/utils/db/supabase";
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import AutoModeIcon from '@mui/icons-material/AutoMode';
-
+import { Logout } from "@mui/icons-material";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
 export const Navbar = ({children}) => {
@@ -30,9 +31,7 @@ export const Navbar = ({children}) => {
     const router = useRouter();
     const pathName = usePathname();
     const currentUser = useAppSelector(state => state.user.data)
-    const [user, setUser] = useState(null);
-    
-   
+    const supabase = createClientComponentClient();
 
     const handleClickMenu = () => {
         dispatch(toggleMenu());
@@ -45,9 +44,11 @@ export const Navbar = ({children}) => {
     const handleLogout = async () => {
         await supabase.auth.signOut();
         router.refresh();
-        setUser(null)
+        
         dispatch(changeUserData(null))
     }
+
+
 
     useEffect(() => {
 
@@ -93,16 +94,16 @@ export const Navbar = ({children}) => {
                                 leave="transition duration-75 ease-out"
                                 leaveFrom="transform scale-100 opacity-100"
                                 leaveTo="transform scale-95 opacity-0"> 
-                                <Menu.Items className={"absolute flex-wrap bg-white mt-[66px] px-6 py-4 w-[220px] right-1 shadow rounded"}>
+                                <Menu.Items className={"absolute flex-wrap bg-white mt-12 px-6 py-4 w-[220px] right-1 shadow rounded"}>
 
                         {currentUser ?
                         
                            <>
                                 <Menu.Item className="mb-2 w-full">
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     
                                     <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
-                                    <div><div><Link href={"/profile"} className="truncate">{currentUser.name}</Link></div></div>
+                                    <div><div><Link href={"/profile"} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
                                     <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
                                     </div>
                                     
@@ -113,19 +114,20 @@ export const Navbar = ({children}) => {
                                 <div className="border-b border-grey my-4"></div>
 
                                 <Menu.Item>
-                                {({ active }) => (
-                                    <div className={"w-full start-0"}>
-                                    <Link href={"/profile"}
+                                {({ active, close }) => (
+                                    
+                                    <div className={"w-full start-0"} >
+                                    <Link href={"/profile"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption text-start">Perfil</div>
                                     </Link>
                                     </div>
                                 )}
                                 </Menu.Item>
-                                <Menu.Item >
-                                {({ active }) => (
+                                <Menu.Item>
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/"}
+                                    <Link href={"/"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5"/><div>Pontos&Cupões</div></div>
                                     </Link>
@@ -135,10 +137,10 @@ export const Navbar = ({children}) => {
 
                                 <div className="border-b border-grey my-4"></div>
 
-                                <Menu.Item >
-                                {({ active }) => (
+                                <Menu.Item>
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/"}
+                                    <Link href={"/"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption items-center flex"><ArrowCircleUpIcon className="h-5 w-5 mr-1.5"/><div>Submeter novo look</div></div>
                                     </Link>
@@ -147,9 +149,9 @@ export const Navbar = ({children}) => {
                                 </Menu.Item>
                                 
                                 <Menu.Item >
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/profile"}
+                                    <Link href={"/profile"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Gerir meus looks</div>
                                     </Link>
@@ -157,9 +159,9 @@ export const Navbar = ({children}) => {
                                 )}
                                 </Menu.Item>
                                 <Menu.Item >
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/profile"}
+                                    <Link href={"/profile"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="caption">Ver coleções de looks</div>
                                     </Link>
@@ -170,9 +172,9 @@ export const Navbar = ({children}) => {
                                 <div className="border-b border-grey my-4"></div>
 
                                 <Menu.Item >
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/profile"}
+                                    <Link href={"/profile"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Histórico de compras</div>
                                     </Link>
@@ -181,9 +183,9 @@ export const Navbar = ({children}) => {
                                 </Menu.Item>
 
                                 <Menu.Item >
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     <div>
-                                    <Link href={"/profile"}
+                                    <Link href={"/profile"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'}`}>
                                     <div className="mb-3 caption">Definições de conta</div>
                                     </Link>
@@ -192,10 +194,10 @@ export const Navbar = ({children}) => {
                                 </Menu.Item>
 
                                 <Menu.Item >
-                                {({ active }) => (
-                                    <div className={"w-full text-start"}>
+                                {({ active, close }) => (
+                                    <div className={"w-full text-start"}  onClick={handleLogout}>
                                         <div
-                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`} onClick={handleLogout}>
+                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`}>
                                         Sair -&gt;
                                         </div>
                                     </div>
@@ -206,10 +208,10 @@ export const Navbar = ({children}) => {
                             :
 
                                 <Menu.Item >
-                                {({ active }) => (
+                                {({ active, close }) => (
                                     <div className="px-2 py-4">
                                     <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
-                                    <Link href={"/login"}
+                                    <Link href={"/login"} onClick={close}
                                     className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption text-center font-semibold w-full rounded">Iniciar sessão</div>
                                     </Link>
                                     </div>

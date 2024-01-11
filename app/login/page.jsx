@@ -79,7 +79,7 @@ export default function LoginPage() {
     return (
         <>
         <NavigationTitle titleText={"Iniciar sessão"}/>
-         <main className="h-screen  p-6">
+         <main className="p-6">
 
          <input type="text" placeholder="Email" className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
          <input type="password" placeholder="Password" className="px-4 py-4 w-full rounded border border-grey"/>

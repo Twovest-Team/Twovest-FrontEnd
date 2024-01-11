@@ -1,22 +1,20 @@
+import { categories } from "@/constants";
+import getProductsByCategory from "@/utils/db/getProductsByCategory";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import NavigationTitle from "@/components/providers/NavigationTitle";
+import FilterButton from "@/components/buttons/icons/FilterButton";
+import Views from "@/components/providers/Views";
+import CardProduct from "@/components/cards/CardProduct";
+import ItemsBox from "@/components/providers/ItemsBox";
+import { Suspense } from "react";
+import ProductsSkeleton from "@/components/loadingSkeletons/Products";
 
-import { categories } from "@/constants"
-import getProductsByCategory from "@/utils/db/getProductsByCategory"
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter"
-import NavigationTitle from "@/components/providers/NavigationTitle"
-import FilterButton from "@/components/buttons/icons/FilterButton"
-import Views from "@/components/providers/Views"
-import CardProduct from "@/components/cards/CardProduct"
-import ItemsBox from "@/components/providers/ItemsBox"
-import { Suspense } from "react"
-import ProductsSkeleton from "@/components/loadingSkeletons/Products"
-
-export const revalidate = 30
+export const revalidate = 30;
 
 export default async function Products({ searchParams, params }) {
-
-  const category = searchParams.category
-  const categoryId = categories.find(object => object.plural === category).id
-  const gender = params.gender
+  const category = searchParams.category;
+  const categoryId = categories.find((object) => object.plural === category).id;
+  const gender = params.gender;
 
   return (
     <main>
@@ -34,28 +32,32 @@ export default async function Products({ searchParams, params }) {
       <Suspense fallback={<ProductsSkeleton />}>
         <ProductList categoryId={categoryId} gender={gender} />
       </Suspense>
-
     </main>
-
-
-  )
+  );
 }
 
 async function ProductList({ categoryId, gender }) {
+  const data = await getProductsByCategory(
+    categoryId,
+    capitalizeFirstLetter(gender)
+  );
 
-  const data = await getProductsByCategory(categoryId, capitalizeFirstLetter(gender))
-  
   return (
     <>
-      {data.length > 0 ?
+      {data.length > 0 ? (
         <ItemsBox>
-          {data.map(element => <CardProduct slider={false} key={element.id} product={element} gender={gender} />)}
+          {data.map((element) => (
+            <CardProduct
+              slider={false}
+              key={element.id}
+              product={element}
+              gender={gender}
+            />
+          ))}
         </ItemsBox>
-        :
+      ) : (
         <p>No data...</p>
-      }
+      )}
     </>
-
-  )
-
+  );
 }

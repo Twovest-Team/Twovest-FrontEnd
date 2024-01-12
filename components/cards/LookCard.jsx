@@ -12,7 +12,7 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveButton)
  */
 
-export default function LookCard({ look, gender }) {
+export default function LookCard({ look, location }) {
   return (
     <div className="w-full max-w-[460px]">
       <div className="w-full rounded aspect-[17/26] relative flex justify-center items-center">
@@ -22,11 +22,13 @@ export default function LookCard({ look, gender }) {
           className="object-cover scale-100"
           fill={true}
         />
-        <LookUpvoteButton upvotes={look.upvotes} />
+        <LookUpvoteButton 
+        upvotes={look.upvotes} 
+        location={location}/>
       </div>
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center mt-3.5">
-          <div className="rounded-full w-10 h-10 overflow-hidden mr-2">
+          <div className={`rounded-full ${location === 'profile' ? 'w-6 h-6' : 'w-10 h-10'} overflow-hidden mr-2`}>
             <Image
               src={look.users.img}
               alt="Look da galeria"
@@ -38,7 +40,8 @@ export default function LookCard({ look, gender }) {
           <LookUsername username={look.users.name} />
         </div>
         <div className="mt-3.5">
-          <SaveButton />
+          <SaveButton 
+          location={location}/>
         </div>
       </div>
     </div>

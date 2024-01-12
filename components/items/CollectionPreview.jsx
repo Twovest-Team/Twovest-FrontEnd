@@ -42,9 +42,8 @@ const utilizadoresPartilhados = [
     id: 95,
     nome: "Janice Wheeler",
     img: "janice.jpg",
-  }
+  },
 ];
-
 
 export default function CollectionPreview(props) {
   const caminho = "/images/teste_colecao_looks/";
@@ -55,8 +54,7 @@ export default function CollectionPreview(props) {
 
   const privacidade = props.looks.privacidade;
 
-  if(privacidade == "privada")
-  {
+  if (privacidade == "privada") {
     lookPrivado = true;
   }
 
@@ -100,17 +98,15 @@ export default function CollectionPreview(props) {
 
         <div className="flex flex-col gap-4">
           <div>
-            <p className="font-semibold line-clamp-1">
-              {props.looks.nome}
-            </p>
+            <p className="font-semibold line-clamp-1">{props.looks.nome}</p>
             <p className="caption text-secondary">{numeroDeLooks} Looks</p>
           </div>
-          <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
+          <CollectionPrivacyTag
+            privacidade={privacidade}
+            utilizadores={utilizadoresPartilhados}
+          />
         </div>
-        <div className="ml-auto">
-          {lookPrivado ? null : <ShareButton />}
-        </div>
-      
+        <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
       </div>
     );
   } else if (numeroDeLooks == 2) {
@@ -118,76 +114,74 @@ export default function CollectionPreview(props) {
     const Look2 = arrayDeLooks[1];
 
     return (
-        <div className="flex flex-row items-start h-[90px]">
-          <div className="mr-4 w-[110px]  h-[90px] relative">
+      <div className="flex flex-row items-start h-[90px]">
+        <div className="mr-4 w-[110px]  h-[90px] relative">
           <div className="w-[80px] h-[90px] bg-grey left-[29px] top-0 absolute rounded-[7px] border-2 border-white"></div>
-            <Image
-              src={`${caminho}${Look1.img}`}
-              alt="Look da coleção"
-              width={80}
-              height={90}
-              style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
-              key={Look1.id}
-            />
-            <Image
-              src={`${caminho}${Look2.img}`}
-              alt="Look da coleção"
-              width={80}
-              height={90}
-              style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
-              key={Look2.id}
-            />
-          </div>
-  
-          <div className="flex flex-col gap-4 h-[90px]">
-            <div>
-              <p className="font-semibold line-clamp-1">
-                {props.looks.nome}
-              </p>
-              <p className="caption text-secondary">{numeroDeLooks} Looks</p>
-            </div>
-            <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
-          </div>
-          <div className="ml-auto">
-          {lookPrivado ? null : <ShareButton />}
-          </div>
+          <Image
+            src={`${caminho}${Look1.img}`}
+            alt="Look da coleção"
+            width={80}
+            height={90}
+            style={{ width: "80px", height: "90px", objectFit: "cover" }}
+            className="left-[14px] top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look1.id}
+          />
+          <Image
+            src={`${caminho}${Look2.img}`}
+            alt="Look da coleção"
+            width={80}
+            height={90}
+            style={{ width: "80px", height: "90px", objectFit: "cover" }}
+            className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look2.id}
+          />
         </div>
-      );
+
+        <div className="flex flex-col gap-4 h-[90px]">
+          <div>
+            <p className="font-semibold line-clamp-1">{props.looks.nome}</p>
+            <p className="caption text-secondary">{numeroDeLooks} Looks</p>
+          </div>
+          <CollectionPrivacyTag
+            privacidade={privacidade}
+            utilizadores={utilizadoresPartilhados}
+          />
+        </div>
+        <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
+      </div>
+    );
   } else {
     const Look1 = arrayDeLooks[0];
-    
+
     return (
-        <div className="flex flex-row items-start h-[90px]">
-          <div className="mr-4 w-[110px]  h-[90px] relative">
+      <div className="flex flex-row items-start h-[90px]">
+        <div className="mr-4 w-[110px]  h-[90px] relative">
           <div className="w-[80px] h-[90px] bg-grey_opacity_50 left-[29px] top-0 absolute rounded-[7px] border-2 border-white"></div>
           <div className="w-[80px] h-[90px] bg-grey left-[14px] top-0 absolute rounded-[7px] border-2 border-white"></div>
-            <Image
-              src={`${caminho}${Look1.img}`}
-              alt="Look da coleção"
-              width={80}
-              height={90}
-              style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
-              key={Look1.id}
-            />
-          </div>
-  
-          <div className="flex flex-col gap-4 h-[90px]">
-            <div>
-              <p className="font-semibold line-clamp-1">
-                {props.looks.nome}
-              </p>
-              <p className="caption text-secondary">{numeroDeLooks} Look</p>
-            </div>
-            <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
-          </div>
-          <div className="ml-auto">
-          {lookPrivado ? null : <ShareButton />}
-          </div>
+          <Image
+            src={`${caminho}${Look1.img}`}
+            alt="Look da coleção"
+            width={80}
+            height={90}
+            style={{ width: "80px", height: "90px", objectFit: "cover" }}
+            className="left-0 top-0 absolute rounded-[7px] border-2 border-white"
+            key={Look1.id}
+          />
         </div>
-      );
+
+        <div className="flex flex-col gap-4 h-[90px]">
+          <div>
+            <p className="font-semibold line-clamp-1">{props.looks.nome}</p>
+            <p className="caption text-secondary">{numeroDeLooks} Look</p>
+          </div>
+          <CollectionPrivacyTag
+            privacidade={privacidade}
+            utilizadores={utilizadoresPartilhados}
+          />
+        </div>
+        <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
+      </div>
+    );
   }
 }
 

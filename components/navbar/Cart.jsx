@@ -24,6 +24,7 @@ export const Cart = () => {
     const currentUser = useAppSelector(state => state.user.data)
     const [loading, setLoading] = useState(false)
     const [showDeleteNotification, setShowDeleteNotification] = useState(false)
+    
 
     function handleLoading(boolean) {
         setLoading(boolean)
@@ -33,26 +34,26 @@ export const Cart = () => {
         dispatch(toggleCart())
     }
 
-    useEffect(() => {
-
+    function detectUserCart(){
         if (currentUser) {
-            async function getCartProducts() {
+            async function getProductsData() {
                 const data = await getUserCartProducts(currentUser.email)
                 if (data) {
                     dispatch(updateCart(data))
                 }
             }
 
-            getCartProducts()
+            getProductsData()
         } else {
             dispatch(updateCart([]))
         }
+    }
 
+    useEffect(() => {
+        detectUserCart()
     }, [currentUser])
 
     function handleShowDeleteNotification(data) {
-        console.log(products.length)
-        console.log(data.length)
         if(products.length > data.length){
             setShowDeleteNotification(true)
             setTimeout(() => {
@@ -124,18 +125,18 @@ export const Cart = () => {
 
                     <div className="flex my-6 justify-between">
                         <div>
-                            <div className="font-semibold">Total ({products && products.length} {products.length === 1 ? 'artigo' : 'artigos'})
-                            </div>
+                            <h6 className="font-semibold">Total ({products && products.length} {products.length === 1 ? 'artigo' : 'artigos'})
+                            </h6>
                             <div className="text-grey">IVA Incluído</div>
                         </div>
                         <div>
-                            <div className="font-semibold">
+                            <h6 className="font-semibold">
                                 {products.length > 0 &&
                                     <>
                                         {getCartTotalPrice(products)}€
                                     </>
                                 }
-                            </div>
+                            </h6>
                         </div>
                     </div>
 

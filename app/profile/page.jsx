@@ -63,7 +63,7 @@ const Profile = ({look, location}) => {
             <ArrowForwardIosIcon />
           </button>
         </div>
-      </div> */}
+  </div>*/}
     </>
   );
 };

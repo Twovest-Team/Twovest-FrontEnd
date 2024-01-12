@@ -1,13 +1,13 @@
 import { main_categories, categories } from "@/constants";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
-export const CategoriesList = ({ idCategory, genderState, toggleMenu, toggleCategory }) => {
+export const CategoriesList = ({ idCategory, genderState, handleClickMenu, handleClickCategory }) => {
   let gender;
   const router = useRouter();
 
-  const handleClickCategory = (category) => {
-    toggleMenu();
-    toggleCategory();
+  const handleClick = (category) => {
+    handleClickMenu()
+    handleClickCategory();
     router.push(`/products/${genderState}?category=${category}`);
   };
 
@@ -28,7 +28,7 @@ export const CategoriesList = ({ idCategory, genderState, toggleMenu, toggleCate
                 category.main_category == e.id && category.gender.includes(gender) && (
                   <button
                     className="my-4 block"
-                    onClick={() => handleClickCategory(category.plural)}
+                    onClick={() => handleClick(category.plural)}
                     key={category.id}
                   >
                     {category.plural}

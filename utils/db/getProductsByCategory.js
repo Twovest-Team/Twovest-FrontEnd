@@ -9,11 +9,7 @@ const getProductsByCategory = async (id_category ,gender) => {
         .from('products')
         .select(`
         id,
-        reference,
         is_sustainable,
-        views,
-        gender,
-        name,
         discount,
         brands (
             logo_url,
@@ -44,7 +40,6 @@ const getProductsByCategory = async (id_category ,gender) => {
         array.materials = materials
         array.styles = styles
 
-        
         return array
     }))
 

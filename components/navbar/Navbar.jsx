@@ -3,91 +3,230 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from 'next/image';
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-
-//import componentes etc
-import handleGender from "@/utils/handleGender";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
-import { Cart } from "./Cart";
-import { SideMenu } from "./SideMenu";
 
 //import de icons materialUI
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { toggleCart } from "@/redux/slices/cartToggle";
+import getUserData from "@/utils/db/getUserByEmail";
+import { changeUserData } from "@/redux/slices/userSlice";
+import { toggleMenu } from "@/redux/slices/menuToggle";
+import { Menu, Transition } from '@headlessui/react'
+import { useRouter } from "next/navigation";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import AutoModeIcon from '@mui/icons-material/AutoMode';
+import NotificationCart from "../items/NotificationCart";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
-export const Navbar = () => {
+export const Navbar = ({ children }) => {
 
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [categoryOpen, setCategoryMenu] = useState(false);
-    const [idCategory, setIdCategory] = useState("");
-    const [cestoOpen, setCesto] = useState(false);
-    const [genderState, setGenderState] = useState("");
+    const dispatch = useAppDispatch()
+    const router = useRouter();
     const pathName = usePathname();
+    const currentUser = useAppSelector(state => state.user.data)
+    const supabase = createClientComponentClient();
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+    const handleClickMenu = () => {
+        dispatch(toggleMenu());
     }
 
-    const toggleCategory = (id) => {
-        setCategoryMenu(!categoryOpen);
-        if (idCategory == "") {
-            setIdCategory(id);
-        } else {
-            setIdCategory("");
-        }
+    const handleClickCart = () => {
+        dispatch(toggleCart())
     }
 
-    const toggleCesto = () => {
-        setCesto(!cestoOpen)
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.refresh();
+        
+        dispatch(changeUserData(null))
     }
+
 
 
     useEffect(() => {
-        let activeGender = getLocalStorage("gender");
-        if (activeGender != genderState) {
-            setGenderState(activeGender);
+
+        async function fetchUserData() {
+            if (!currentUser) {
+                let userData = await getUserData()
+                dispatch(changeUserData(userData))
+            }
         }
 
-    }, [pathName, genderState])
+        fetchUserData()
 
+    }, [currentUser])
 
-    const handleClickGender = (gender) => {
-        handleGender(gender);
-        setGenderState(gender);
-    }
-
-
+    
 
     if (pathName != "/landing") {
 
         return (
 
-            /* ---------- Navbar ----------- */
-            <nav className="flex justify-between z-50 max-w-[460px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
+            <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
+
                 <div className="flex">
-                    <div className='mr-4' onClick={toggleMenu}><MenuIcon /></div>
+                    <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
                     <Link href={"/"} className="items-center flex">
                         <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
                         <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
                 </div>
-                <div className="flex">
-                    <div className="navbar_icons"><FavoriteBorderOutlinedIcon /></div>
-                    <div className="navbar_icons" onClick={() => toggleCesto()}><LocalMallOutlinedIcon /></div>
-                    <div className="navbar_icons"><AccountCircleOutlinedIcon /></div>
+                <div className="flex items-center">
+                    <button className="navbar_icons"><FavoriteBorderOutlinedIcon /></button>
+                    <button className="navbar_icons relative" onClick={handleClickCart}>
+                        <LocalMallOutlinedIcon />
+                        <NotificationCart />
+                    </button>
+
+                    <Menu>
+                        {currentUser ? 
+                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
+                        : 
+                        <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
+
+                        <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0">
+                            <Menu.Items className={"absolute flex-wrap bg-white mt-12 px-6 py-4 w-[220px] right-1 shadow rounded"}>
+
+                                {currentUser ?
+
+                                    <>
+                                        <Menu.Item className="mb-2 w-full">
+                                            {({ active, close }) => (
+
+                                                <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
+                                                    <div><div><Link href={"/profile"} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
+                                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
+                                                </div>
+
+
+                                            )}
+                                        </Menu.Item>
+
+                                        <div className="border-b border-grey my-4"></div>
+
+                                        <Menu.Item>
+                                            {({ active, close }) => (
+                                    
+                                                <div className={"w-full start-0"} >
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption text-start">Perfil</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="caption items-center flex"><AutoModeIcon className=" h-5 w-5 mr-1.5" /><div>Pontos&Cupões</div></div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+
+                                        <div className="border-b border-grey my-4"></div>
+
+                                        <Menu.Item>
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption items-center flex"><ArrowCircleUpIcon className="h-5 w-5 mr-1.5" /><div>Submeter novo look</div></div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Gerir meus looks</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="caption">Ver coleções de looks</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+
+                                        <div className="border-b border-grey my-4"></div>
+
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Histórico de compras</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div>
+                                                    <Link href={"/profile"} onClick={close}
+                                                        className={`${active && 'bg-grey_opacity_50'}`}>
+                                                        <div className="mb-3 caption">Definições de conta</div>
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+
+                                        <Menu.Item >
+                                            {({ active, close }) => (
+                                                <div className={"w-full text-start"}  onClick={handleLogout}>
+                                                    <div
+                                                        className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`}>
+                                                        Sair -&gt;
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </Menu.Item>
+                                    </>
+
+                                    :
+
+                                <Menu.Item >
+                                {({ active, close }) => (
+                                    <div className="px-2 py-4">
+                                    <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
+                                    <Link href={"/login"} onClick={close}
+                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption text-center font-semibold w-full rounded">Iniciar sessão</div>
+                                    </Link>
+                                    </div>
+                                )}
+                                </Menu.Item>
+                        }
+                        </Menu.Items>
+                        </Transition>
+                    </Menu>
                 </div>
 
 
-                {/* -------------- Menu lateral ----------------*/}
-                <SideMenu menuOpen={menuOpen} handleClickGender={handleClickGender} genderState={genderState} toggleMenu={toggleMenu} toggleCategory={toggleCategory} categoryOpen={categoryOpen} idCategory={idCategory} />
-
-
-                {/*----------------- Cesto -----------------*/}
-                <Cart cestoOpen={cestoOpen} toggleCesto={toggleCesto} />
-
+                {children}
 
             </nav>
 

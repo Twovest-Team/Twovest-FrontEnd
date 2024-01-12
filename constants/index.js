@@ -17,7 +17,6 @@ const general_categories = [
 ]
 
 
-
 const main_categories = [
     {
         id: 1,
@@ -62,7 +61,7 @@ const categories = [
     { id: 7, singular: 'Polo', plural: 'Polos', main_category: 1, gender: [1, 2] },
     { id: 8, singular: 'Sweatshirt', plural: 'Sweatshirts', main_category: 1, gender: [1, 2] },
     { id: 9, singular: 'Camisa', plural: 'Camisas', main_category: 1, gender: [1, 2] },
-    { id: 10, singular: 'Top', plural: 'Tops', main_category: 1, gender: [1, 2] },
+    { id: 10, singular: 'Top', plural: 'Tops', main_category: 1, gender: [1] },
     { id: 11, singular: 'Calça', plural: 'Calças', main_category: 2, gender: [1, 2] },
     { id: 12, singular: 'Calções', plural: 'Calções', main_category: 2, gender: [1, 2] },
     { id: 13, singular: 'Saia', plural: 'Saias', main_category: 2, gender: [1] },
@@ -89,9 +88,27 @@ const categories = [
     { id: 34, singular: 'Mochila', plural: 'Mochilas', main_category: 5, gender: [1, 2] }
 ]
 
+const shopStages = [
+    {
+        id: 1,
+        name: 'Cesto'
+    },
+    {
+        id: 2,
+        name: 'Envio'
+    },
+    {
+        id: 3,
+        name: 'Pagamento'
+    }
+]
+
+const productMaxQty = 10
   
 export {
     general_categories,
     main_categories,
-    categories
+    categories,
+    shopStages,
+    productMaxQty
 }

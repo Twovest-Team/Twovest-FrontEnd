@@ -29,7 +29,7 @@ const ShareButton = () => {
                 <ShareIcon />
             }
 
-            {isClicked && <Notifications type={'Success'} message={'Page Link copied.'} />}
+            {isClicked && <Notifications type={'Success'} message={'Link copiado'} />}
         </div>
 
     )

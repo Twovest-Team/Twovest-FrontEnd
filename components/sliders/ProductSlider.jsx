@@ -1,12 +1,12 @@
+'use client'
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
 
 const ProductSlider = ({ images }) => {
 
  
     return (
         <>
-            <figure className="flex-grow productSlider_figure-scroll">
+            <figure className="flex-grow scroll_bar-invisible">
 
                 {images.map((image, index) => (
                     <div key={index} className="relative w-full h-full">

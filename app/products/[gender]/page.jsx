@@ -1,46 +1,20 @@
-'use client'
+import { categories } from "@/constants";
+import getProductsByCategory from "@/utils/db/getProductsByCategory";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import NavigationTitle from "@/components/providers/NavigationTitle";
+import FilterButton from "@/components/buttons/icons/FilterButton";
+import Views from "@/components/providers/Views";
+import CardProduct from "@/components/cards/CardProduct";
+import ItemsBox from "@/components/providers/ItemsBox";
+import { Suspense } from "react";
+import ProductsSkeleton from "@/components/loadingSkeletons/Products";
 
-import CardProduct from "@/components/cards/CardProduct"
-import Views from "@/components/providers/Views"
-import ItemsBox from "@/components/providers/ItemsBox"
-import FilterButton from "@/components/buttons/icons/FilterButton"
-import NavigationTitle from "@/components/providers/NavigationTitle"
-import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "next/navigation"
-import ProductsSkeleton from "@/components/loadingSkeletons/Products"
+export const revalidate = 30;
 
-
-// Página com todos os produtos, filtrados por categoria.
-// Exemplo: twovest.com/products/mulher?category='Saias'
-// Atenção, carregar 30 produtos de cada vez (por exemplo), infinite scroll
-
-const Products = () => {
-
-  const gender = useParams().gender
-  const category = useSearchParams().get('category')
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
-  const searchParams = useSearchParams()
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`/api/getProductsByCategory?gender=${gender}&category=${category}`)
-      const data = await response.json()
-      setProducts(data)
-      setLoading(true)
-    }
-
-    if (products.length === 0 && loading === false) {
-      fetchData()
-    }
-
-  }, [products, category, gender, loading])
-
-  useEffect(() => {
-    setLoading(false)
-    setProducts([])
-  }, [searchParams])
-
+export default async function Products({ searchParams, params }) {
+  const category = searchParams.category;
+  const categoryId = categories.find((object) => object.plural === category).id;
+  const gender = params.gender;
 
   return (
     <main>
@@ -55,20 +29,35 @@ const Products = () => {
         <FilterButton />
       </div>
 
-      {products.length > 0 &&
-        <ItemsBox>
-          {products.map(element => <CardProduct key={element.id} product={element} gender={gender} />)}
-        </ItemsBox>
-      }
-
-      {
-        loading ? products.length === 0 && 'No data...' : <ProductsSkeleton />
-      }
-
+      <Suspense fallback={<ProductsSkeleton />}>
+        <ProductList categoryId={categoryId} gender={gender} />
+      </Suspense>
     </main>
-
-
-  )
+  );
 }
 
-export default Products
+async function ProductList({ categoryId, gender }) {
+  const data = await getProductsByCategory(
+    categoryId,
+    capitalizeFirstLetter(gender)
+  );
+
+  return (
+    <>
+      {data.length > 0 ? (
+        <ItemsBox>
+          {data.map((element) => (
+            <CardProduct
+              slider={false}
+              key={element.id}
+              product={element}
+              gender={gender}
+            />
+          ))}
+        </ItemsBox>
+      ) : (
+        <p>No data...</p>
+      )}
+    </>
+  );
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from "react"
 import NavigationTitle from "../providers/NavigationTitle"
 import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon"
@@ -15,7 +17,8 @@ const ProductNav = ({ is_sustainable, discount, brand }) => {
     }
 
     function changeProductNavProperties() {
-        if (scrollY > 0) {
+
+        if (window.scrollY > 0) {
             divRef.current.classList.add('bg-white');
             divRef.current.classList.remove('bg-none');
             divRef.current.classList.add('shadow-lg');
@@ -30,6 +33,7 @@ const ProductNav = ({ is_sustainable, discount, brand }) => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScrollChange);
+        changeProductNavProperties()
 
         return () => {
             window.removeEventListener('scroll', handleScrollChange);

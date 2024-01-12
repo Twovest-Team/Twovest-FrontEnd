@@ -1,5 +1,6 @@
+'use client'
 
-import { Disclosure } from '@headlessui/react'
+import { Disclosure, Transition } from '@headlessui/react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import getCategoryName from "@/utils/getCategoryName";
 import { SustainableIcon } from '../buttons/icons/SustainableIcon';
@@ -19,29 +20,73 @@ const ProductDetails = ({ productDetails }) => {
       </div>
 
 
+      <section className='flex flex-col gap-4'>
+        <div>
+          <Disclosure>
+            {({ open }) => (
+              <>
+                <Disclosure.Button className={`py-4 px-6 w-full ${open ? 'border-x border-t rounded-t' : 'border rounded'} border-grey flex justify-between`}>
+                  <span className='truncate'>Características do artigo</span>
+                  <div className='flex-grow flex justify-end'>
+                    <KeyboardArrowDownIcon className={open ? 'rotate-180' : 'rotate-0'} />
+                  </div>
+                </Disclosure.Button>
 
-      <div>
-        <Disclosure>
-          {({ open }) => (
-            <>
-              <Disclosure.Button className={`py-4 px-6 w-full ${open ? 'border-x border-t rounded-t' : 'border rounded'} border-grey flex justify-between`}>
-                Características
-                <KeyboardArrowDownIcon className={open ? 'rotate-180' : 'rotate-0'} />
-              </Disclosure.Button>
+                <Disclosure.Panel className="border border-grey rounded-b px-6 py-4 flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  {productDetails.is_sustainable && <p className="font-semibold text-primary_main flex gap-2"> <SustainableIcon color={'#05CE86'} width={24} /> Artigo sustentável</p>}
+                  <p><span>Marca:</span> {productDetails.brands.name}.</p>
+                  <p><span>Categoria:</span> {category}.</p>
+                  <p><span>Cores disponíveis:</span> {availableColors.join(', ')}.</p>
+                  <p><span>Estilos:</span> {productDetails.styles.join(', ')}.</p>
+                  <p><span>Materiais:</span> {productDetails.materials.join(', ')}.</p>
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
+        </div>
+
+        <div>
+          <Disclosure>
+            {({ open }) => (
+              <>
+                <Disclosure.Button className={`py-4 px-6 w-full ${open ? 'border-x border-t rounded-t' : 'border rounded'} border-grey flex justify-between`}>
+                  <span className='truncate'>Composição, cuidados e origem</span>
+                  <div className='flex-grow flex justify-end'>
+                    <KeyboardArrowDownIcon className={open ? 'rotate-180' : 'rotate-0'} />
+                  </div>
+                </Disclosure.Button>
+
+                <Disclosure.Panel className="border border-grey rounded-b px-6 py-4 flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  <p>Cuidar das tuas peças de roupa é uma maneira de prolongar a sua vida útil. Segue as instruções de cuidados e lava as tuas peças de roupa apenas quando for necessário. Reduzindo as lavagens e as secagens prolongamos a vida útil das nossas peças de roupa e reduzimos o consumo de água e energia.</p>
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
+        </div>
+
+        <div>
+          <Disclosure>
+            {({ open }) => (
+              <>
+                <Disclosure.Button className={`py-4 px-6 w-full ${open ? 'border-x border-t rounded-t' : 'border rounded'} border-grey flex justify-between`}>
+                  <span className='truncate'>Envio e devoluções</span>
+                  <div className='flex-grow flex justify-end'>
+                    <KeyboardArrowDownIcon className={open ? 'rotate-180' : 'rotate-0'} />
+                  </div>
+                </Disclosure.Button>
+
+                <Disclosure.Panel className="border border-grey rounded-b px-6 py-4 flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  <p>Podes devolver os artigos em qualquer loja {productDetails.brands.name} no país em que a compra foi efetuada.</p>
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
+        </div>
+      </section>
 
 
-              <Disclosure.Panel className="border border-grey rounded-b px-6 py-4 flex flex-col gap-4 [&>p>span]:font-semibold ">
-              {productDetails.is_sustainable &&<p className="font-semibold text-primary_main flex gap-2"> <SustainableIcon color={'#05CE86'} width={24} /> Artigo sustentável</p>}
-                <p><span>Marca:</span> {productDetails.brands.name}.</p>
-                <p><span>Categoria:</span> {category}.</p>
-                <p><span>Cores disponíveis:</span> {availableColors.join(', ')}.</p>
-                <p><span>Estilos:</span> {productDetails.styles.join(', ')}.</p>
-                <p><span>Materiais:</span> {productDetails.materials.join(', ')}.</p>
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
-      </div>
+
+
 
 
 

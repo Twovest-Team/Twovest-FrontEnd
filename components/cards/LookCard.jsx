@@ -12,7 +12,7 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveButton)
  */
 
-export default function LookCard({ look, gender, location }) {
+export default function LookCard({ look, location }) {
   return (
     <div className="w-full max-w-[460px]">
       <div className="w-full rounded aspect-[17/26] relative flex justify-center items-center">

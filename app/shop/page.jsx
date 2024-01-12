@@ -1,7 +1,7 @@
 'use client'
 
 // Importing dependencies
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ShopSectionOne from "@/components/sections/ShopSectionOne";
@@ -107,14 +107,13 @@ function ProgressBarShop({stageState, updateStage}){
               className="container flex justify-between items-center text-secondary gap-1.5 mb-2 [&>article]:flex-1 [&>article:last-child]:text-end [&>article:nth-child(2)]:text-center [&>article]:cursor-pointer">
               {shopStages.map((stage) => (
                 <article
+                  key={stage.id}
                   onClick={stageState.id > stage.id ? () => updateStage(stage.id) : null}
                   className={`
                     ${stageState.id === stage.id ? 'text-black font-semibold' :
                       stageState.id > stage.id ? 'text-primary_main font-semibold' :
                         stageState.id < stage.id && 'text-secondary'}
                   `}
-
-                  key={stage.id}
                 >
                   {stage.name}
                 </article>
@@ -125,8 +124,9 @@ function ProgressBarShop({stageState, updateStage}){
               className="container flex justify-between items-center gap-2 [&>hr]:rounded-full [&>hr]:border [&>hr]:flex-grow [&>article]:rounded-full [&>article]:w-2 [&>article]:aspect-square [&>article]:cursor-pointer">
 
               {shopStages.map((stage, index) => (
-                <>
+                <React.Fragment key={stage.id}>
                   <article
+                    
                     onClick={stageState.id > stage.id ? () => updateStage(stage.id) : null}
                     className={`
                   ${stageState.id === stage.id ? 'bg-black' :
@@ -141,7 +141,7 @@ function ProgressBarShop({stageState, updateStage}){
                 `}
                     />
                   }
-                </>
+                </React.Fragment>
               ))}
 
             </div>

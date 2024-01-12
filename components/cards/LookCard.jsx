@@ -24,9 +24,7 @@ export default function LookCard({ look, gender, location }) {
         />
         <LookUpvoteButton 
         upvotes={look.upvotes} 
-        location={location}
-        />
-
+        location={location}/>
       </div>
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center mt-3.5">
@@ -43,8 +41,7 @@ export default function LookCard({ look, gender, location }) {
         </div>
         <div className="mt-3.5">
           <SaveButton 
-          location={location}
-          />
+          location={location}/>
         </div>
       </div>
     </div>

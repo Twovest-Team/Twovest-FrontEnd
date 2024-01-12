@@ -6,22 +6,31 @@ import brandsApi from "@/utils/db/getBrands";
 import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image'
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 const Brands = () => {
   const [brand, setBrand] = useState([]);
   const [filteredBrand, setFilteredBrand] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const gender = typeof window !== 'undefined' ? getLocalStorage('gender') : null;
+ 
+
 
   useEffect(() => {
+    console.log("Gender:", gender);
     const fetchData = async () => {
-      const brandsData = await brandsApi();
+     const brandsData = await brandsApi();
       setBrand(brandsData);
       setFilteredBrand(brandsData);
+      setLoading(false);
+     
     };
-
     fetchData();
-  }, []);
+ 
+  }, [gender]);
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
@@ -34,9 +43,11 @@ const Brands = () => {
     setFilteredBrand(filteredBrands);
   };
 
-  if (!brand) {
-    return <div>Loading...</div>; 
+  if (loading) {
+    return <div>Loading...</div>;
   }
+
+
 
   return (
     <>
@@ -51,7 +62,7 @@ const Brands = () => {
         {filteredBrand.map((brandItem, index) => (
           <div key={index} className="flex flex-col items-center justify-between mx-4">
             <div className={`mt-4 w-full h-48 bg-white rounded flex items-center justify-center border`}>
-              <Link href={`/brands/mulher/${brandItem.name}`}>
+            <Link href={`/brands/[gender]/[brand]`} as={`/brands/${gender}/${brandItem.id}`}>
                 <Image src={brandItem?.logo_url_without_background} width={144} height={144} alt={brandItem.name} />
               </Link>
             </div>

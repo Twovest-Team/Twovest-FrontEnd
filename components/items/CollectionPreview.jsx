@@ -120,54 +120,55 @@ export default function CollectionPreview(props) {
     const Look2 = arrayDeLooks[1];
 
     return (
+      <>
         <div className="items-start h-[90px] flex flex-row">
-          <div className="h-[90px] grid">
-          <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey rounded-[7px] border-2 border-white"></div>
-          <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
-            <Image
-              src={`${caminho}${Look1.img}`}
-              alt="Look da coleção"
-              width={80}
-              height={90}
-              style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="rounded-[7px] border-2 border-white"
-              key={Look1.id}
+            <div className="h-[90px] grid">
+              <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey rounded-[7px] border-2 border-white"></div>
+              <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
+                <Image
+                  src={`${caminho}${Look1.img}`}
+                  alt="Look da coleção"
+                  width={80}
+                  height={90}
+                  style={{ width: "80px", height: "90px", objectFit: "cover" }}
+                  className="rounded-[7px] border-2 border-white"
+                  key={Look1.id}/>
+              </div>
+              <div className="w-20 col-start-1 row-start-1">
+                <Image
+                  src={`${caminho}${Look2.img}`}
+                  alt="Look da coleção"
+                  width={80}
+                  height={90}
+                  style={{ width: "80px", height: "90px", objectFit: "cover" }}
+                  className="rounded-[7px] border-2 border-white"
+                  key={Look2.id}
+                />
+              </div>
+            </div>
+    
+            <div className="ml-4 flex flex-col gap-4">
+              <div>
+                <p className="font-semibold line-clamp-1">
+                  {props.looks.nome}
+                </p>
+                <p className="caption text-secondary">{numeroDeLooks} Looks</p>
+              </div>
+              <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
+            </div>
+            <CollectionPrivacyTag
+              privacidade={privacidade}
+              utilizadores={utilizadoresPartilhados}
             />
-            </div>
-            <div className="w-20 col-start-1 row-start-1">
-            <Image
-              src={`${caminho}${Look2.img}`}
-              alt="Look da coleção"
-              width={80}
-              height={90}
-              style={{ width: "80px", height: "90px", objectFit: "cover" }}
-              className="rounded-[7px] border-2 border-white"
-              key={Look2.id}
-            />
-            </div>
-          </div>
-  
-          <div className="ml-4 flex flex-col gap-4">
-            <div>
-              <p className="font-semibold line-clamp-1">
-                {props.looks.nome}
-              </p>
-              <p className="caption text-secondary">{numeroDeLooks} Looks</p>
-            </div>
-            <CollectionPrivacyTag privacidade={privacidade} utilizadores={utilizadoresPartilhados}/>
-          </div>
-          <CollectionPrivacyTag
-            privacidade={privacidade}
-            utilizadores={utilizadoresPartilhados}
-          />
         </div>
-        <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
-      </div>
+          <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
+      </>
     );
   } else {
     const Look1 = arrayDeLooks[0];
 
     return (
+      <>
         <div className="items-start h-[90px] flex flex-row">
           <div className="h-[90px] grid">
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
@@ -200,7 +201,7 @@ export default function CollectionPreview(props) {
           />
         </div>
         <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
-      </div>
+    </>
     );
   }
 }

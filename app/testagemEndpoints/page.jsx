@@ -12,6 +12,8 @@ import getProductById from "@/utils/db/getProductById";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
+import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
+import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 
 
 
@@ -21,7 +23,7 @@ export const revalidate = 0
 const page = async() => {
 
   // Variável onde se deve guardar a resposta da API
-    const data = await getLookById(11)
+    const data = await getInfoForProfilePage(24)
   
 
     return (

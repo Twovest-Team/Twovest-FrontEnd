@@ -12,36 +12,33 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveButton)
  */
 
-export default function LookCard({ look, location }) {
+export default function LookCard({ look, slider, looks, nome, avatar }) {
   return (
-    <div className="w-full max-w-[460px]">
-      <div className="w-full rounded aspect-[17/26] relative flex justify-center items-center">
+      <div className={`w-full ${!slider ? 'max-w-[460px]' : slider === true && 'min-w-[160px]'} `}>
+      <div className="w-full aspect-[17/26] relative flex justify-center items-center">
         <Image
-          src={look.url_image}
+          src={!slider ? look.url_image : slider === true && looks[0].url_image}
           alt="Look da galeria"
-          className="object-cover scale-100"
+          className="object-cover scale-100 rounded"
           fill={true}
         />
-        <LookUpvoteButton 
-        upvotes={look.upvotes} 
-        location={location}/>
+        {!slider ? <LookUpvoteButton upvotes={look.upvotes}/> : slider === true && null}
       </div>
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center mt-3.5">
-          <div className={`rounded-full ${location === 'profile' ? 'w-6 h-6' : 'w-10 h-10'} overflow-hidden mr-2`}>
+          <div className="rounded-full w-10 h-10 overflow-hidden mr-2">
             <Image
-              src={look.users.img}
+              src={!slider ? look.users.img : slider === true && avatar}
               alt="Look da galeria"
               width={100}
               height={100}
               style={{ objectFit: "contain" }}
             />
           </div>
-          <LookUsername username={look.users.name} />
+          <LookUsername username={!slider ? look.users.name : slider === true && nome} />
         </div>
         <div className="mt-3.5">
-          <SaveButton 
-          location={location}/>
+        {!slider ? <SaveButton /> : slider === true && null}
         </div>
       </div>
     </div>

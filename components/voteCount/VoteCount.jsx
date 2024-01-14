@@ -7,9 +7,10 @@ function VoteCount() {
   const accumulatedPoints = 331;
 
   return (
-    <div className="points_upvotes">
-      <div className="points_accumulated">
-        <div className="points">
+    
+    <div className="flex items-start self-stretch gap-4">
+      <div className="inline-block h-12 flex-col justify-center items-center gap-2">
+        <div className="flex items-center justify-center self-stretch gap-2">
           <AutoModeOutlinedIcon />
           <h6>{accumulatedPoints}</h6>
         </div>
@@ -17,9 +18,9 @@ function VoteCount() {
           Pontos acumulados
         </p>
       </div>
-      <div className="div_grey-line2"></div>
-      <div className="points_accumulated">
-        <div className="points">
+      <div className="h-full ml-auto mr-auto border-l"></div>
+      <div className="inline-block h-12 flex-col justify-center items-center gap-2">
+        <div className="flex items-center justify-center self-stretch gap-2">
           <LocalOfferIcon />
           <h6>{totalClothes}</h6>
         </div>

@@ -6,7 +6,6 @@ import { useAppSelector } from '@/redux/hooks';
 
 export default function LookUsername (props) {
 
-    console.log('props', props);
     const currentView = useAppSelector(state => state.layoutViews.currentValue)
 
     return(

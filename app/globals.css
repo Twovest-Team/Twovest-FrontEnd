@@ -488,7 +488,7 @@ h6 {
 .profile_search-collections {
   display: flex;
   height: 56px;
-  width: 80%;
+  width: 100%;
   padding: 17px 24px;
   align-items: center;
   gap: 12px;
@@ -501,7 +501,7 @@ h6 {
 
 .profile_all-collections {
   display: flex;
-  width: 80%;
+  width: 100%;
   padding: 14px 24px;
   justify-content: space-between;
   align-items: center;

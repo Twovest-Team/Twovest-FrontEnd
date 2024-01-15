@@ -14,7 +14,7 @@ function VoteCount() {
           <AutoModeOutlinedIcon />
           <h6>{accumulatedPoints}</h6>
         </div>
-        <p className="caption text-neutral-400 text-sm font-normal text-center justify-self-center">
+        <p className="caption text-secondary text-center justify-self-center">
           Pontos acumulados
         </p>
       </div>
@@ -24,7 +24,7 @@ function VoteCount() {
           <LocalOfferIcon />
           <h6>{totalClothes}</h6>
         </div>
-        <p className="caption text-neutral-400 text-sm font-normal text-center">
+        <p className="caption text-secondary text-center">
           Roupas entregues
         </p>
       </div>

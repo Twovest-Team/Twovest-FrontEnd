@@ -7,6 +7,7 @@ const getInfoForProfilePage = async (id_user) => {
     .from("users")
     .select(
       `
+    id,
     name,
     img,
     email,
@@ -18,8 +19,15 @@ const getInfoForProfilePage = async (id_user) => {
   const colecoes = await getCollectionsForCard(id_user);
   const userLooks = await getLookForProfilePage(id_user);
 
-  data[0].colecoes = colecoes;
+  if (colecoes.length > 0)
+  {
+    data[0].colecoes = colecoes;
+  }
+  
+  if (userLooks.length > 0)
+  {
   data[0].userLooks = userLooks;
+  }
 
   if (error) {
     console.log(error);

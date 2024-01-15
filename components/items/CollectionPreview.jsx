@@ -132,7 +132,7 @@ export default function CollectionPreview({ colecao }) {
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
           <div className="w-20 col-start-1 row-start-1">
             <Image
-              src={`${caminho}${Look1.img}`}
+              src={Look1.looks.url_image}
               alt="Look da coleção"
               width={80}
               height={90}

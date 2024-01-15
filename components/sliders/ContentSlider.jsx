@@ -1,6 +1,6 @@
 
 
-const ContentSlider = async ({ children }) => {
+const ContentSlider = ({ children }) => {
 
     return (
         <div className="relative w-full h-full">

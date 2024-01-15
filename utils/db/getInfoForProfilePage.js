@@ -19,6 +19,8 @@ const getInfoForProfilePage = async (id_user) => {
   const colecoes = await getCollectionsForCard(id_user);
   const userLooks = await getLookForProfilePage(id_user);
 
+ 
+
   if (colecoes.length > 0)
   {
     data[0].colecoes = colecoes;

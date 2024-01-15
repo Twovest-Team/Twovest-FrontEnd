@@ -6,8 +6,8 @@ import ShareButton from "../buttons/icons/ShareButton";
 // Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
 //(publica, privada ou partilhada) e também muda o nome e o número de looks
 
-export default function CollectionPreview({ colecao }) {
-  
+export default function CollectionPreview({ colecao, perfilProprio }) {
+
   const nomeColecao = colecao.collections.name;
   const privacidadeColecao = colecao.collections.privacy;
   const outrosUtilizadores = colecao.users;
@@ -18,6 +18,12 @@ export default function CollectionPreview({ colecao }) {
     lookPrivado = true;
   }
 
+  var lookNaoPublico = false
+  if(privacidadeColecao != 2)
+  {
+    lookNaoPublico = true
+  }
+
   const looks = colecao.looks;
   const numeroDeLooks = looks.length;
 
@@ -26,8 +32,17 @@ export default function CollectionPreview({ colecao }) {
     const Look2 = looks[1];
     const Look3 = looks[2];
 
+    if(!perfilProprio && lookNaoPublico)
+    {
+      return (
+        <div className="items-start h-[20px] w-full flex flex-row">
+        <p className="caption text-secondary">Esta coleção é privada</p>
+        </div>
+      )
+    }
+    else{
     return (
-      <div className="items-start h-[90px] flex flex-row">
+      <div className="items-start h-[90px] w-full flex flex-row">
         <div className="h-[90px] grid">
           <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[29px]">
             <Image
@@ -77,12 +92,22 @@ export default function CollectionPreview({ colecao }) {
         <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
       </div>
     );
+  }
   } else if (numeroDeLooks == 2) {
     const Look1 = looks[0];
     const Look2 = looks[1];
 
+    if(!perfilProprio && lookNaoPublico)
+    {
+      return (
+        <div className="items-start h-[20px] w-full flex flex-row">
+        <p className="caption text-secondary">Esta coleção é privada</p>
+        </div>
+      )
+    }
+    else{
     return (
-      <div className="items-start h-[90px] flex flex-row">
+      <div className="items-start h-[90px] w-full flex flex-row">
         <div className="h-[90px] grid">
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey rounded-[7px] border-2 border-white"></div>
           <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
@@ -121,12 +146,21 @@ export default function CollectionPreview({ colecao }) {
         </div>
         <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
       </div>
-    );
+    );}
   } else {
     const Look1 = looks[0];
 
+    if(!perfilProprio && lookNaoPublico)
+    {
+      return (
+        <div className="items-start h-[20px] w-full flex flex-row">
+        <p className="caption text-secondary">Esta coleção é privada</p>
+        </div>
+      )
+    }
+    else{
     return (
-      <div className="items-start h-[90px] flex flex-row">
+      <div className="items-start h-[90px] w-full flex flex-row">
         <div className="h-[90px] grid">
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
           <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
@@ -155,7 +189,7 @@ export default function CollectionPreview({ colecao }) {
         </div>
         <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
       </div>
-    );
+    );}
   }
 }
 

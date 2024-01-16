@@ -41,6 +41,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={5}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look1.id_look}
@@ -52,6 +53,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={5}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look2.id_look}
@@ -63,6 +65,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={40}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look3.id_look}
@@ -101,6 +104,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={5}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look1.id_look}
@@ -112,6 +116,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={40}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look2.id_look}
@@ -150,6 +155,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
                 alt="Look da coleção"
                 width={80}
                 height={90}
+                quality={40}
                 style={{ width: "80px", height: "90px", objectFit: "cover" }}
                 className="rounded-[7px] border-2 border-white"
                 key={Look1.id_look}

@@ -37,7 +37,7 @@ const Profile = async ({ searchParams }) => {
       <NavigationTitle
         titleText={perfilProprio ? "O meu perfil" : `Perfil de ${primeiroNome}`}
       >
-        <CreateOutlinedIcon />
+        {perfilProprio ? <CreateOutlinedIcon /> : null}
       </NavigationTitle>
 
       <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
@@ -114,6 +114,7 @@ async function LooksPerfil({ data, perfilProprio, primeiroNome }) {
 }
 
 async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
+  var lastThreeCollections;
   return (
     <>
       {data[0].hasOwnProperty("colecoes") ? (
@@ -127,7 +128,7 @@ async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
               <SearchIcon />
               Procurar coleções
             </button>
-            {data[0].colecoes.map((element) => (
+            {data[0].colecoes.slice(0,3).map((element) => (
               <CollectionPreview
                 colecao={element}
                 key={element.id_collection}

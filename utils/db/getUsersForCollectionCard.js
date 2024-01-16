@@ -6,6 +6,7 @@ const getUsersForCollectionCard = async (id_collection,id_user) => {
     .select(
       `
     id_user,
+    is_admin,
     users(
         name,
         img

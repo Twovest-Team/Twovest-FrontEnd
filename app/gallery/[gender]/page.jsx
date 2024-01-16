@@ -36,7 +36,7 @@ async function LookList({ gender }) {
       {data.length > 0 ? (
         <ItemsBox>
           {data.map((element) => (
-            <LookCard key={element.id} look={element} slider={false} />
+            <LookCard gender={gender} key={element.id} look={element} slider={false} />
           ))}
         </ItemsBox>
       ) : (

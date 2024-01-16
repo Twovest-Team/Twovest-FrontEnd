@@ -6,16 +6,18 @@ import SaveButton from "../buttons/icons/SaveButton";
 
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
+import Link from "next/link";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmarc
 (SaveButton)
  */
 
-export default function LookCard({ look, slider, looks, nome, avatar }) {
+export default function LookCard({ gender, look, slider, looks, nome, avatar }) {
+
   return (
       <div className={`w-full ${!slider ? 'max-w-[460px]' : slider === true && 'min-w-[160px]'} `}>
-      <div className="w-full aspect-[17/26] relative flex justify-center items-center">
+      <Link href={`/gallery/${gender}/${look.id}`} className="w-full aspect-[17/26] relative flex justify-center items-center">
         <Image
           src={!slider ? look.url_image : slider === true && looks.url_image}
           alt="Look da galeria"
@@ -23,7 +25,7 @@ export default function LookCard({ look, slider, looks, nome, avatar }) {
           fill={true}
         />
         {!slider ? <LookUpvoteButton upvotes={look.upvotes}/> : slider === true && null}
-      </div>
+      </Link>
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center mt-3.5">
           <div className="rounded-full w-10 h-10 overflow-hidden mr-2">

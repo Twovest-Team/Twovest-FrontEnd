@@ -28,8 +28,17 @@ const getProductByBrand = async (gender, brandId) => {
         url,
         id_product,
         alt
-    
-    )
+    ),
+    offers (
+        id_product, 
+        id_color,
+        id_size, 
+        price 
+    ), 
+    categories (
+      id,
+      main_category
+  )
 `)
     .eq('gender', gender)
     .eq('brands.id', brandId)
@@ -38,13 +47,11 @@ const getProductByBrand = async (gender, brandId) => {
     if (data && data.length > 0) {
       const images = await getProductImages(data[0].id);
       const offers = await getProcuctOffers(data[0].id);
-      const materials = await getProductMaterials(data[0].id);
-      const styles = await getProductStyles(data[0].id);
+      
     
       data.images = images;
       data.offers = offers;
-      data.materials = materials;
-      data.styles = styles;
+      
     } else {
     
       console.error('Nenhum dado encontrado para o gender e brandId.');

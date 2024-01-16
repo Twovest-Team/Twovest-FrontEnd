@@ -38,8 +38,8 @@ const CardProduct = ({ product, slider, gender }) => {
                         </Link>
                     </div>
 
-
-                    <SustainableIcon color={'#05CE86'} width={28} />
+                    {product.is_sustainable && <SustainableIcon color={'#05CE86'} width={28} />}
+                    
 
                 </div>
 

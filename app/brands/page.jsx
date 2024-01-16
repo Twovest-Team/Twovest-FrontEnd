@@ -6,7 +6,6 @@ import brandsApi from "@/utils/db/getBrands";
 import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image'
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 
 export const revalidate = 30;
@@ -51,6 +50,7 @@ const Brands = () => {
 
   return (
     <>
+    
       <div className="flex justify-between search-temp w-full px-4 py-4 bg-white relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-10">
           <SearchIcon className="w-6 h-6 text-gray-500" />

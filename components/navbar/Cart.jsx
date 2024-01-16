@@ -24,6 +24,7 @@ export const Cart = () => {
     const currentUser = useAppSelector(state => state.user.data)
     const [loading, setLoading] = useState(false)
     const [showDeleteNotification, setShowDeleteNotification] = useState(false)
+    
 
     function handleLoading(boolean) {
         setLoading(boolean)
@@ -33,26 +34,26 @@ export const Cart = () => {
         dispatch(toggleCart())
     }
 
-    useEffect(() => {
-
-        if (currentUser) {
-            async function getCartProducts() {
+    function detectUserCart(){
+        if (currentUser && products.length === 0) {
+            async function getProductsData() {
                 const data = await getUserCartProducts(currentUser.email)
                 if (data) {
                     dispatch(updateCart(data))
                 }
             }
 
-            getCartProducts()
+            getProductsData()
         } else {
             dispatch(updateCart([]))
         }
+    }
 
+    useEffect(() => {
+        detectUserCart()
     }, [currentUser])
 
     function handleShowDeleteNotification(data) {
-        console.log(products.length)
-        console.log(data.length)
         if(products.length > data.length){
             setShowDeleteNotification(true)
             setTimeout(() => {
@@ -96,7 +97,7 @@ export const Cart = () => {
                 {products.length === 0 && currentUser &&
 
                     <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-                        <LocalMallOutlinedIcon className="text-[60px] mb-4" />
+                        <LocalMallOutlinedIcon sx={{ fontSize: 60 }}  className="text-[60px] mb-4" />
                         <h6 className="font-semibold">Cesto de compras</h6>
                         <p className="text-center text-secondary mb-4 max-w-[230px]">Os artigos que adicionares ao cesto irão aparecer aqui.</p>
                         <button onClick={() => { dispatch(toggleMenu()), dispatch(toggleCart()) }} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Abrir menu</button>
@@ -106,8 +107,8 @@ export const Cart = () => {
                 {products.length === 0 && !currentUser &&
 
                     <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-                        <LocalMallOutlinedIcon className="text-[60px] mb-4" />
-                        <h6 className="font-semibold">Tou sim? Estás aí?</h6>
+                        <LocalMallOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
+                        <h6 className="font-semibold">Estás aí?</h6>
                         <p className="text-center text-secondary mb-4">Inicia sessão para comprar artigos.</p>
                         <Link href={"/login"} onClick={() => dispatch(toggleCart())} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Iniciar sessão</Link>
                     </div>
@@ -124,18 +125,18 @@ export const Cart = () => {
 
                     <div className="flex my-6 justify-between">
                         <div>
-                            <div className="font-semibold">Total ({products && products.length} {products.length === 1 ? 'artigo' : 'artigos'})
-                            </div>
+                            <h6 className="font-semibold">Total ({products && products.length} {products.length === 1 ? 'artigo' : 'artigos'})
+                            </h6>
                             <div className="text-grey">IVA Incluído</div>
                         </div>
                         <div>
-                            <div className="font-semibold">
+                            <h6 className="font-semibold">
                                 {products.length > 0 &&
                                     <>
                                         {getCartTotalPrice(products)}€
                                     </>
                                 }
-                            </div>
+                            </h6>
                         </div>
                     </div>
 

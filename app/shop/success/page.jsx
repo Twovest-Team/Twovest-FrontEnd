@@ -6,7 +6,7 @@ import removeFromCart from '@/utils/db/cart/removeFromCart';
 import { useDispatch } from 'react-redux';
 import { updateCart } from '@/redux/slices/cartProducts';
 import { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
 
 const page = () => {

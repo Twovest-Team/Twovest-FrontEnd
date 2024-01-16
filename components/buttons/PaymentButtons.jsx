@@ -1,7 +1,7 @@
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import MBWay from "./icons/MbWay.svg";
-import GooglePay from './icons/gpay.svg';
-import Paypal from "./icons/paypal.svg";
+import MBWay from "./icons/MBWay.svg";
+import GooglePay from './icons/GPay.jsx';
+import Paypal from "./icons/Paypal.jsx";
 import Image from 'next/image';
 
 
@@ -10,9 +10,9 @@ const iconMapping = {
 
     "MBWay": <Image src={MBWay} width={50} height={50} alt="MBWAY icon" />,
 
-    "Google Pay": <Image src={GooglePay} width={50} height={50} alt="Google pay icon"  />,
+    "Google Pay": <GooglePay alt="Google pay icon"  />,
 
-    "Paypal": <Image src={Paypal} width={30} height={30} alt="Paypal icon" />,
+    "Paypal": <Paypal alt="Paypal icon" />,
   };
   
   export const PaymentButtons = ({ method }) => {

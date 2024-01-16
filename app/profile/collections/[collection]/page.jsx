@@ -5,6 +5,7 @@ import ShareButton from "@/components/buttons/icons/ShareButton";
 import Image from "next/image";
 import LookCard from "@/components/cards/LookCard";
 import { redirect } from "next/navigation";
+import { Buttons } from "@/components/buttons/Buttons";
 
 // Coleção específica de um utilizador
 const Collection = async ({ searchParams }) => {
@@ -51,11 +52,15 @@ const Collection = async ({ searchParams }) => {
         <NavigationTitle titleText={data[0].name}>
           {colecaoPropria ? <ShareButton /> : null}
         </NavigationTitle>
-        <div className="container flex flex-row pb-10">
-          <CollectionUserAvatars users={data[0].collectionUsers} />
-          <div className="w-1/2 h-[30px]">
-            Espaço para o botão de gerir participantes
-          </div>
+        <div className="container flex flex-row pb-10 h-[80px]">
+          <CollectionUserAvatars users={data[0].collectionUsers} sessionUserIsAdmin={sessionUserIsAdmin} />
+          {sessionUserIsAdmin ? (
+            <Buttons
+              btnState="whiteMain"
+              text="Gerir Participantes"
+              btnSize="whiteSize"
+            />
+          ) : null}
         </div>
         <div className="collection-looks-wrap container mb-16 grid justify-center grid-cols-2 items-center gap-4 flex-wrap max-w-[460px]">
           <CollectionLooks looks={data[0].looks} />
@@ -67,7 +72,7 @@ const Collection = async ({ searchParams }) => {
 
 export default Collection;
 
-async function CollectionUserAvatars({ users }) {
+async function CollectionUserAvatars({ users, sessionUserIsAdmin }) {
   const totalCollectionUsers = users.length;
 
   if (totalCollectionUsers == 4) {
@@ -81,40 +86,40 @@ async function CollectionUserAvatars({ users }) {
         <Image
           src={Utilizador1.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
-          className="left-[68px] top-0 absolute rounded-full border-2 border-white"
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
+          className={`left-[68px] top-0 absolute rounded-full border-2 border-white ${sessionUserIsAdmin ? "collection--userAvatar-hide" : null}`}
           key={Utilizador1.id_user}
         />
         <Image
           src={Utilizador2.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
         />
         <Image
           src={Utilizador3.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador3.id_user}
         />
         <Image
           src={Utilizador4.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador4.id_user}
         />
@@ -130,30 +135,30 @@ async function CollectionUserAvatars({ users }) {
         <Image
           src={Utilizador1.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
         />
         <Image
           src={Utilizador2.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
         />
         <Image
           src={Utilizador3.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador3.id_user}
         />
@@ -168,20 +173,20 @@ async function CollectionUserAvatars({ users }) {
         <Image
           src={Utilizador1.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
         />
         <Image
           src={Utilizador2.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
         />
@@ -194,10 +199,10 @@ async function CollectionUserAvatars({ users }) {
         <Image
           src={Utilizador1.users.img}
           alt="Look da coleção"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           quality={40}
-          style={{ width: "30px", height: "30px", objectFit: "cover" }}
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
         />

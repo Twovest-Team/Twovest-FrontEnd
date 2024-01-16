@@ -3,62 +3,100 @@ import { Buttons } from "@/components/buttons/Buttons";
 export default function Home() {
   return (
     <main>
-      <div className="flex gap-4">
+      <p>Olá!</p>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <div className="mx-6">
         <Buttons
-          btnState="defaultMain"
-          text="Sustentável"
-          icon="navigateNext"
-          btnSize="menuSize"
-        />
-        <Buttons
-          btnState="defaultMain"
-          text="Promoções"
-          icon="offer"
-          btnSize="menuSize"
+          btnState="whiteMain"
+          text="Registar Conta"
+          btnSize="whiteSize"
         />
       </div>
-
-      <Buttons
-        aria-label="Next"
-        btnState="defaultMain"
-        text="Proximo"
-        icon="navigateNext"
-        btnSize="mediumSize"
-      />
-      <Buttons
-        btnState="secondaryMain"
-        text="Registar Conta"
-        btnSize="mediumSize"
-      />
-      <Buttons
-        btnState="secondaryMain"
-        text="Continuar com Google"
-        btnSize="mediumSizeSocials"
-        icon="google"
-      />
-      <Buttons
-        btnState="secondaryMain"
-        text="Continuar com Facebook"
-        btnSize="mediumSizeSocials"
-        icon="facebook"
-      />
-      <Buttons
-        btnState="secondaryMain"
-        text="Continuar com Maça"
-        btnSize="mediumSizeSocials"
-        icon="apple"
-      />
-      <Buttons
-        btnState="secondaryMain"
-        text="Redefinir"
-        btnSize="mediumSizeSocials"
-        icon="redifine"
-      />
-      <Buttons
-        btnState="defaultMain"
-        text="Voltar a loja"
-        btnSize="mediumSizeSocials"
-      />
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
+      <ul>x</ul>
     </main>
   );
 }

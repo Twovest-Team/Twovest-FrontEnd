@@ -3,13 +3,13 @@
 import SuccessCard from '@/components/cards/SuccessCard'
 import Link from 'next/link'
 import removeFromCart from '@/utils/db/cart/removeFromCart';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@/redux/hooks';
 import { updateCart } from '@/redux/slices/cartProducts';
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
 
-const page = () => {
+const SuccessPage = () => {
 
  const dispatch = useAppDispatch();
  const products = useAppSelector((state) => state.cartProducts.products);
@@ -62,4 +62,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SuccessPage

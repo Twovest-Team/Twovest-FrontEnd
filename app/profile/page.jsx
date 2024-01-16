@@ -1,4 +1,3 @@
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import VoteCount from "@/components/voteCount/VoteCount";
 import LookCard from "@/components/cards/LookCard";
@@ -12,8 +11,9 @@ import React from "react";
 import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
 import { redirect } from "next/navigation";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
+import NavigationTitle from "@/components/providers/NavigationTitle";
 
-// Próprio Perfil
+// Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ searchParams }) => {
   const id_user = searchParams.id;
   const sessionUser = await (await getUserByEmailServer()).id;
@@ -34,17 +34,11 @@ const Profile = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="header_profile">
-        <div className="header_profile-icon">
-          <ArrowBackIosNewOutlinedIcon />
-          {perfilProprio ? (
-            <h5 className="h5_semibold">O meu perfil</h5>
-          ) : (
-            <h5 className="h5_semibold">Perfil de {primeiroNome}</h5>
-          )}
-        </div>
+      <NavigationTitle
+        titleText={perfilProprio ? "O meu perfil" : `Perfil de ${primeiroNome}`}
+      >
         <CreateOutlinedIcon />
-      </div>
+      </NavigationTitle>
 
       <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
         <ProfilePicture imageProfile={data[0].img} />

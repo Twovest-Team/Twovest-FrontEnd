@@ -10,7 +10,8 @@ const getLookForProfilePage = async (id_user) => {
     upvotes
 `
     )
-    .eq("id_user", id_user);
+    .eq("id_user", id_user)
+    .eq("submission_state",2)
 
   if (error) {
     console.log(error);

@@ -35,9 +35,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
     if(!perfilProprio && lookNaoPublico)
     {
       return (
-        <div className="items-start h-[20px] w-full flex flex-row">
-        <p className="caption text-secondary">Esta coleção é privada</p>
-        </div>
+        null
       )
     }
     else{
@@ -100,9 +98,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
     if(!perfilProprio && lookNaoPublico)
     {
       return (
-        <div className="items-start h-[20px] w-full flex flex-row">
-        <p className="caption text-secondary">Esta coleção é privada</p>
-        </div>
+        null
       )
     }
     else{
@@ -153,9 +149,7 @@ export default function CollectionPreview({ colecao, perfilProprio }) {
     if(!perfilProprio && lookNaoPublico)
     {
       return (
-        <div className="items-start h-[20px] w-full flex flex-row">
-        <p className="caption text-secondary">Esta coleção é privada</p>
-        </div>
+        null
       )
     }
     else{

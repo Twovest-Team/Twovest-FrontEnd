@@ -11,6 +11,7 @@ import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import React from "react";
 import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
 import { redirect } from "next/navigation";
+import getPortugueseDateString from "@/utils/getPortugueseDateString";
 
 // Próprio Perfil
 const Profile = async ({ searchParams }) => {
@@ -29,23 +30,7 @@ const Profile = async ({ searchParams }) => {
 
   const primeiroNome = data[0].name.split(" ")[0];
 
-  const dataCriacao = data[0].created_at.split("T")[0]
-  console.log(dataCriacao)
-  const anoCriacao = dataCriacao.split("-")
-  console.log(anoCriacao[2])
-  
-  const date = new Date();
-  date.setMonth(anoCriacao[1] - 1);
-
-  var mesExtenso = date.toLocaleString('pt-PT', {
-    month: 'long',
-  });
-
-  console.log(mesExtenso)
-
-  // METER MAIS LOOKS NA PAGINA. METER MAIS QUE 1 LOOK
-  
- 
+  const dataRegisto = getPortugueseDateString(data[0].created_at);
 
   return (
     <>
@@ -67,13 +52,14 @@ const Profile = async ({ searchParams }) => {
         <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
           {data[0].email}
         </p>
+        <p>Desde {dataRegisto}</p>
       </div>
 
       <div className="flex justify-center items-center self-stretch pt-10 px-6 pb-14 gap-4">
         <VoteCount />
       </div>
 
-      <div className="pb-16">
+      <div className="pb-8">
         {perfilProprio ? (
           <h6 className="font-semibold container"> Os meus looks</h6>
         ) : (
@@ -137,6 +123,12 @@ async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
   return (
     <>
       {data[0].hasOwnProperty("colecoes") ? (
+
+        data[0].onlyPrivateCollections ? (
+          <div className="font-semibold text-secondary">
+          {primeiroNome} apenas possui coleções privadas
+        </div>
+        ) : 
         <>
           <button className="profile_search-collections">
             <SearchIcon />
@@ -159,12 +151,10 @@ async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
         </>
       ) : perfilProprio ? (
         <div className="font-semibold text-secondary">
-          {" "}
           Ainda não criaste nenhuma coleção
         </div>
       ) : (
         <div className="font-semibold text-secondary">
-          {" "}
           {primeiroNome} ainda não criou nenhuma coleção
         </div>
       )}

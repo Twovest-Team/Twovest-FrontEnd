@@ -21,9 +21,13 @@ const getCollectionsForCard = async (id_user) => {
     data.map(async (element) => {
       let array = element;
       const looks = await getLookForCollectionCard(element.id_collection);
-      const users = await getUsersForCollectionCard(element.id_collection,id_user);
+      const users = await getUsersForCollectionCard(
+        element.id_collection,
+        id_user
+      );
       array.looks = looks;
       array.users = users;
+
       return array;
     })
   );

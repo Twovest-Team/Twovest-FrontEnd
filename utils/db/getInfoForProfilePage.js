@@ -19,16 +19,20 @@ const getInfoForProfilePage = async (id_user) => {
   const colecoes = await getCollectionsForCard(id_user);
   const userLooks = await getLookForProfilePage(id_user);
 
- 
-
-  if (colecoes.length > 0)
-  {
+  var onlyPrivateCollections = true;
+  if (colecoes.length > 0) {
     data[0].colecoes = colecoes;
+    colecoes.map((element) => {
+      if(element.collections.privacy != 1)
+      {
+        onlyPrivateCollections = false;
+      }
+    })
+    data[0].onlyPrivateCollections = onlyPrivateCollections;
   }
-  
-  if (userLooks.length > 0)
-  {
-  data[0].userLooks = userLooks;
+
+  if (userLooks.length > 0) {
+    data[0].userLooks = userLooks;
   }
 
   if (error) {

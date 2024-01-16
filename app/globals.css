@@ -56,7 +56,7 @@ h6 {
 
 .caption {
   font-size: 13.33px;
-  display: flex;
+  /* NÃO METER FLEX AQUI */
   align-items: center;
 }
 

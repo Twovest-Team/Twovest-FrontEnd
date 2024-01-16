@@ -23,7 +23,7 @@ export const revalidate = 0
 const page = async() => {
 
   // Variável onde se deve guardar a resposta da API
-    const data = await getInfoForProfilePage(24)
+    const data = await getLookById(22)
   
 
     return (

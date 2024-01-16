@@ -19,6 +19,7 @@ import { useState, useEffect } from "react"
 import getLocalStorage from "@/utils/localStorage/getLocalStorage"
 import { toggleMenu } from "@/redux/slices/menuToggle"
 import handleGender from "@/utils/handleGender"
+import SearchIcon from '@mui/icons-material/Search';
 
 export const SideMenu = () => {
 
@@ -71,7 +72,7 @@ export const SideMenu = () => {
 
 
             {/* ------ Menu lateral -------*/}
-            <div className={`${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
+            <div className={`${isMenuOpen ? "translate-x-0" : "-translate-x-full block"}
              bg-white z-30 overflow-scroll h-full w-screen min-w-[280px] max-w-[460px] fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
                 <div className="flex justify-between items-center border-b-grey border-b-2">
@@ -100,7 +101,17 @@ export const SideMenu = () => {
                     )}
 
 
-                    <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" />
+                    <div className="mt-3 relative">
+                    <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <SearchIcon />
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Pesquisa"
+                        className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
+                    />
+                    </div>    
+                    {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
                     <div className="menu_categories mt-4">
 

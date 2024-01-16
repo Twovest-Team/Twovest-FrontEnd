@@ -3,7 +3,8 @@ import { supabase } from '@/utils/db/supabase';
 const getBrands = async () => {
     const { data } = await supabase
         .from('brands')
-        .select('*');
+        .select('*')
+        .order('name', { ascending: true })
     
     
     return data;

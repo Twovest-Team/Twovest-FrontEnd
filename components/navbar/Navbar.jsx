@@ -51,8 +51,10 @@ export const Navbar = ({ children }) => {
 
     useEffect(() => {
 
+        console.log('define user')
         async function fetchUserData() {
             if (!currentUser) {
+                console.log('entrou!')
                 let userData = await getUserData()
                 dispatch(changeUserData(userData))
             }
@@ -68,7 +70,7 @@ export const Navbar = ({ children }) => {
 
         return (
 
-            <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-4 py-5 bg-white border-b-grey border-b-2">
+            <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
 
                 <div className="flex">
                     <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
@@ -85,7 +87,7 @@ export const Navbar = ({ children }) => {
 
                     <Menu>
                         {currentUser ? 
-                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={24} height={24} alt="profile image"/></div></Menu.Button> 
+                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image"/></div></Menu.Button> 
                         : 
                         <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
 
@@ -106,7 +108,7 @@ export const Navbar = ({ children }) => {
 
                                                 <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
                                                     <div><div><Link href={"/profile"} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
-                                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] caption text-center mt-2 text-white rounded">ID: {currentUser.id}</div>
+                                                    <div className="bg-primary_main px-1 py-2 w-full h-[32px] text-center caption mt-2 text-white rounded">ID: {currentUser.id}</div>
                                                 </div>
 
 
@@ -212,9 +214,9 @@ export const Navbar = ({ children }) => {
                                 <Menu.Item >
                                 {({ active, close }) => (
                                     <div className="px-2 py-4">
-                                    <div className="mb-3 font-semibold">Inicie sessão para poder aceder às definições de conta</div>
+                                    <div className="mb-3 font-semibold">Inicia sessão para poderes aceder às definições de conta</div>
                                     <Link href={"/login"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white caption text-center font-semibold w-full rounded">Iniciar sessão</div>
+                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">Iniciar sessão</div>
                                     </Link>
                                     </div>
                                 )}

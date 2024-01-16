@@ -11,20 +11,26 @@ import getCategoryName from "@/utils/getCategoryName";
 import ProductNav from "@/components/sections/ProductNav"
 import ProductSkeleton from "@/components/loadingSkeletons/Product"
 import { Suspense } from "react"
+import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection"
+
 
 export const revalidate = 30
 
 export default async function Product({ params }) {
+
   const productId = params.id
   const productGender = params.gender
+
+
 
   return (
     <main>
 
-      <Suspense fallback={<ProductSkeleton />}>
-        <ProductContent productId={productId} productGender={productGender} />
-      </Suspense>
-
+      <ProductHistoryDetection productId={productId}>
+        <Suspense fallback={<ProductSkeleton />}>
+          <ProductContent productId={productId} productGender={productGender} />
+        </Suspense>
+      </ProductHistoryDetection>
 
 
     </main >
@@ -32,7 +38,7 @@ export default async function Product({ params }) {
   )
 }
 
-async function ProductContent({productId, productGender}) {
+async function ProductContent({ productId, productGender }) {
 
   const data = await getProductById(productId, productGender)
 

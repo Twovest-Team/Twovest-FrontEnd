@@ -598,6 +598,13 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
+/* -----Início Media query imagens card look na pagina coleção Paixão ------*/
+@media screen and (max-width: 385px) {
+  .collection-looks-wrap {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
 
 
 /* -----FIM Media query imagens card coleção Paixão ------*/

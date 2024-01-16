@@ -845,5 +845,12 @@ incorporados no footer. -------- João Paixão */
   accent-color: green;
 }
 
+
+@media (max-width: 287px) {
+  .titlenav  {
+    font-size: 0.2rem; 
+  }
+}
+
 /*--END GONÇALO--*/
 

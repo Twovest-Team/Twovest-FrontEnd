@@ -61,7 +61,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
           text="Registar Conta"
           btnSize="whiteSize"
         />
-      </div>
+      </div>  
 
 */
 import React from "react";
@@ -89,7 +89,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
   };
   const sizes = {
     whiteSize:
-      "w-1/2 h-[60px] flex justify-center items-center border-2 border-black rounded text-center",
+      "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center border-2 border-black rounded gap-3 text-center",
     modalSize: "w-full h-14 gap-12 items-center",
     smallSize:
       "w-full h-14 sm:h-14 md:h-14 lg:h-14 xl:h-14 flex items-center justify-between gap-2 sm:gap-4 text-center",

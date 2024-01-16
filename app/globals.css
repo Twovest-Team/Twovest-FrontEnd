@@ -598,6 +598,13 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
+/* -----Início Media query imagens card look na pagina coleção Paixão ------*/
+@media screen and (max-width: 385px) {
+  .collection-looks-wrap {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
 
 
 /* -----FIM Media query imagens card coleção Paixão ------*/
@@ -755,7 +762,26 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
+.ellipse {
+  background-color: #d8f2e9;
+  border-radius: 50%; 
+  width: 812px;
+  height: 629px;
+  position: absolute; 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-160.96deg);
 
 
+}
+.empty {
+  height: 629px; 
+  width: 100%;
+  background-color: white;
+  border-radius: 50%;   
+}
+.checkbox-css {
+  accent-color: green;
+}
 
 /*--END GONÇALO--*/

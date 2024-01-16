@@ -5,10 +5,10 @@ import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 import capitalizeFirstLetter from '../capitalizeFirstLetter';
 
-const getProductByBrand = async (gender, brandId) => {
+const getProductByBrand = async (gender, brandName) => {
   gender = capitalizeFirstLetter(gender);
-
-  const { data } = await supabase
+  console.log(brandName)
+  const { data, error } = await supabase
     .from('products')
     .select(`
     id,
@@ -18,10 +18,11 @@ const getProductByBrand = async (gender, brandId) => {
     gender,
     name,
     discount,
-    brands (
+    brands!inner (
         id,
         logo_url,
-        name
+        name,
+        cover_url
     ),
     images (
         id,
@@ -41,8 +42,8 @@ const getProductByBrand = async (gender, brandId) => {
   )
 `)
     .eq('gender', gender)
-    .eq('brands.id', brandId)
-    .eq('is_public', true);
+    .eq('is_public', true)
+    .eq('brands.name', brandName)
 
     if (data && data.length > 0) {
       const images = await getProductImages(data[0].id);
@@ -54,7 +55,7 @@ const getProductByBrand = async (gender, brandId) => {
       
     } else {
     
-      console.error('Nenhum dado encontrado para o gender e brandId.');
+      console.log(error);
      
     }
 

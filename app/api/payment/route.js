@@ -7,7 +7,7 @@ export async function POST(request){
     //let priceId = data.priceId;
     console.log(data)
     const session = await stripe.checkout.sessions.create({
-    line_items: [data],
+    line_items: data,
     mode: "payment",
     success_url: "http://localhost:3000/shop/success",
     cancel_url: "http://localhost:3000/shop",

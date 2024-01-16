@@ -37,7 +37,7 @@ const Profile = async ({ searchParams }) => {
       <NavigationTitle
         titleText={perfilProprio ? "O meu perfil" : `Perfil de ${primeiroNome}`}
       >
-        <CreateOutlinedIcon />
+        {perfilProprio ? <CreateOutlinedIcon /> : null}
       </NavigationTitle>
 
       <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">

@@ -55,6 +55,14 @@ modalSize: 'w-full h-14 gap-12 items-center',
       <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>
       </div>
 
+         <div className="mx-6">
+        <Buttons
+          btnState="whiteMain"
+          text="Registar Conta"
+          btnSize="whiteSize"
+        />
+      </div>
+
 */
 import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -77,8 +85,11 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     secondaryMain: "bg-dark hover:bg-dark_gray", //botoes secundários
     errorMain: "bg-error_main hover:bg-error_dark",
     none: "",
+    whiteMain: "bg-white_opacity_50 ",
   };
   const sizes = {
+    whiteSize:
+      "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center border-2 border-black rounded gap-3 text-center",
     modalSize: "w-full h-14 gap-12 items-center",
     smallSize:
       "w-full h-14 sm:h-14 md:h-14 lg:h-14 xl:h-14 flex items-center justify-between gap-2 sm:gap-4 text-center",
@@ -119,7 +130,11 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
       {["google", "facebook", "apple", "redifine"].includes(icon) && (
         <span>{selectedIcon}</span>
       )}
-      <span className={`text-white  ${!selectedIcon ? "text-center" : ""}`}>
+      <span
+        className={`${!selectedIcon ? "text-center" : ""} ${
+          btnState === "whiteMain" ? "text-black" : "text-white"
+        }`}
+      >
         {text}
       </span>
 

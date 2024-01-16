@@ -13,23 +13,18 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
 
-
-
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
-export const revalidate = 0 
+export const revalidate = 0;
 
-const page = async() => {
-
+const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getLookById(11)
-  
+  const data = await getLooksForGallery("homem");
 
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-  
-      </main>
-    )
-}
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </main>
+  );
+};
 
-export default page
+export default page;

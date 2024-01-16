@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* MAX Breakpoint: 460px */
 
 html {
@@ -27,10 +25,6 @@ body {
   scrollbar-width: none;
   /* Firefox */
 }
-
-
-
-
 
 h1 {
   font-size: 47.78px;
@@ -141,7 +135,6 @@ h6 {
   font-size: 13.33px;
 }
 
-
 .button_submit-look {
   display: flex;
   width: 226px;
@@ -150,7 +143,6 @@ h6 {
   gap: 6px;
   font-size: 13.33px;
 }
-
 
 .button_logout {
   display: flex;
@@ -174,6 +166,83 @@ h6 {
   justify-content: center;
 }
 
+/* --------------------------Galeria---------------------------------- */
+
+.galerie_title {
+  display: flex;
+  width: 100%;
+  padding: 24px 24px 28px 24px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.galerie_points {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 24px 24px 28px 24px;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  min-width: 400px;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: nowrap;
+  padding-left: 24px;
+  padding-bottom: 24px;
+  overflow-x: auto;
+}
+
+.filter-button {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.filter-button.active {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 5px;
+  background: var(--text_primary, #000);
+  color: var(--text_white, var(--Imagens, #fff));
+}
+
+.view_submit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin: 0 25px;
+}
+.view {
+  display: flex-start;
+  align-items: center;
+  gap: 129px;
+  flex: 1 0 0;
+}
+.submit {
+  display: flex-end;
+  padding: 14px 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: var(--primary_main, #05ce86);
+  color: #fff;
+}
 /* Jónatas */
 
 .navbar_icons {
@@ -433,15 +502,10 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
-
-
 /* -----FIM Media query imagens card coleção Paixão ------*/
 
-
-
-
 /* -- VASCO -- */
-.scroll_bar-invisible  {
+.scroll_bar-invisible {
   overflow-y: scroll;
   scrollbar-width: thin;
   /* For Firefox */
@@ -459,10 +523,7 @@ incorporados no footer. -------- João Paixão */
   background-color: transparent;
 }
 
-
-
 /* -- FIM VASCO -- */
-
 
 /*--START GONÇALO--*/
 @media (max-width: 319px) {
@@ -489,18 +550,15 @@ incorporados no footer. -------- João Paixão */
   .search-temp .h-6 {
     width: 24px;
     height: 24px;
-
   }
 
   .search-temp input::placeholder {
     font-size: 14px;
     align-items: center;
-
   }
-
 }
 
-@media (max-width:140px) {
+@media (max-width: 140px) {
   .search-temp {
     flex-direction: row;
     align-items: left;
@@ -514,7 +572,6 @@ incorporados no footer. -------- João Paixão */
   .search-temp .h-6 {
     width: 15px;
     height: 15px;
-
   }
 
   .search-temp input::placeholder {
@@ -562,7 +619,6 @@ incorporados no footer. -------- João Paixão */
     margin-left: 10%;
     width: 80%;
   }
-
 }
 
 @media (max-width: 303px) {
@@ -572,10 +628,7 @@ incorporados no footer. -------- João Paixão */
 
   .cenas h2 {
     font-size: 1.5em;
-
   }
-
-
 }
 
 @media (max-width: 280px) {
@@ -585,11 +638,7 @@ incorporados no footer. -------- João Paixão */
 
   .cenas h2 {
     font-size: 1.4em;
-
   }
 }
-
-
-
 
 /*--END GONÇALO--*/

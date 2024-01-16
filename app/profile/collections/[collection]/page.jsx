@@ -83,6 +83,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-[68px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
@@ -92,6 +93,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
@@ -101,6 +103,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador3.id_user}
@@ -110,6 +113,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador4.id_user}
@@ -128,6 +132,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
@@ -137,6 +142,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
@@ -146,6 +152,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador3.id_user}
@@ -163,6 +170,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-[23px] top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}
@@ -172,6 +180,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador2.id_user}
@@ -187,6 +196,7 @@ async function CollectionUserAvatars({ users }) {
           alt="Look da coleção"
           width={30}
           height={30}
+          quality={40}
           style={{ width: "30px", height: "30px", objectFit: "cover" }}
           className="left-0 top-0 absolute rounded-full border-2 border-white"
           key={Utilizador1.id_user}

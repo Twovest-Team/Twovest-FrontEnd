@@ -61,14 +61,17 @@ async function ColecoesPerfil({ data, paginaPropria, primeiroNome }) {
                 Procurar coleções
               </button>
             </div>
+            
             {data[0].colecoes.map((element) => (
+              <div className="pb-6">
               <CollectionPreview
                 colecao={element}
                 key={element.id_collection}
                 perfilProprio={paginaPropria}
-                className="pb-6"
               />
+              </div>
             ))}
+            
           </>
         )
       ) : paginaPropria ? (

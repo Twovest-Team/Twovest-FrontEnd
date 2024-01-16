@@ -51,8 +51,10 @@ export const Navbar = ({ children }) => {
 
     useEffect(() => {
 
+        console.log('define user')
         async function fetchUserData() {
             if (!currentUser) {
+                console.log('entrou!')
                 let userData = await getUserData()
                 dispatch(changeUserData(userData))
             }

@@ -35,7 +35,7 @@ export const Cart = () => {
     }
 
     function detectUserCart(){
-        if (currentUser) {
+        if (currentUser && products.length === 0) {
             async function getProductsData() {
                 const data = await getUserCartProducts(currentUser.email)
                 if (data) {
@@ -97,7 +97,7 @@ export const Cart = () => {
                 {products.length === 0 && currentUser &&
 
                     <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-                        <LocalMallOutlinedIcon className="text-[60px] mb-4" />
+                        <LocalMallOutlinedIcon sx={{ fontSize: 60 }}  className="text-[60px] mb-4" />
                         <h6 className="font-semibold">Cesto de compras</h6>
                         <p className="text-center text-secondary mb-4 max-w-[230px]">Os artigos que adicionares ao cesto irão aparecer aqui.</p>
                         <button onClick={() => { dispatch(toggleMenu()), dispatch(toggleCart()) }} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Abrir menu</button>
@@ -107,8 +107,8 @@ export const Cart = () => {
                 {products.length === 0 && !currentUser &&
 
                     <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-                        <LocalMallOutlinedIcon className="text-[60px] mb-4" />
-                        <h6 className="font-semibold">Tou sim? Estás aí?</h6>
+                        <LocalMallOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
+                        <h6 className="font-semibold">Estás aí?</h6>
                         <p className="text-center text-secondary mb-4">Inicia sessão para comprar artigos.</p>
                         <Link href={"/login"} onClick={() => dispatch(toggleCart())} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Iniciar sessão</Link>
                     </div>

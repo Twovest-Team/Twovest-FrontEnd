@@ -29,7 +29,7 @@ const page = async() => {
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <pre>{JSON.stringify(data, null, 2)}</pre>
-  
+        
       </main>
     )
 }

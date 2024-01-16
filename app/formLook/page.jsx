@@ -7,11 +7,9 @@ import Image from "next/image";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function formLook() {
-  const [disabled, setDisabled] = useState(true);
+const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState([]);
-
   const [isFirstButtonVisible, setIsFirstButtonVisible] = useState(false);
   const [isSecondButtonVisible, setIsSecondButtonVisible] = useState(false);
   const [checkboxOptions, setCheckboxOptions] = useState([
@@ -242,4 +240,5 @@ export default function formLook() {
       </form>
     </>
   );
-}
+};
+export default FormLook;

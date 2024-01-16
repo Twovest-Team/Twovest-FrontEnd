@@ -3,11 +3,10 @@
 import SuccessCard from '@/components/cards/SuccessCard'
 import Link from 'next/link'
 import removeFromCart from '@/utils/db/cart/removeFromCart';
-import { useAppDispatch } from '@/redux/hooks';
 import { updateCart } from '@/redux/slices/cartProducts';
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
+//import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
 
 const SuccessPage = () => {
 
@@ -22,7 +21,6 @@ const SuccessPage = () => {
     
     if (currentUser) {
       const updatedCart = await removeFromCart(products[0]?.id, currentUser.email);
-      //console.log(currentUser.email);
       if (updatedCart) {
         dispatch(updateCart(updatedCart));
       }

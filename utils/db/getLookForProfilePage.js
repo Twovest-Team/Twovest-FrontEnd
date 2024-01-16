@@ -6,10 +6,12 @@ const getLookForProfilePage = async (id_user) => {
     .select(
       `
     id,
-    url_image
+    url_image,
+    upvotes
 `
     )
-    .eq("id_user", id_user);
+    .eq("id_user", id_user)
+    .eq("submission_state", 2);
 
   if (error) {
     console.log(error);

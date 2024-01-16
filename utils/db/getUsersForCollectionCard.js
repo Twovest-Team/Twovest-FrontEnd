@@ -1,19 +1,19 @@
 import { supabase } from "@/utils/db/supabase";
 
-const getLookForCollectionCard = async (id_collection) => {
+const getUsersForCollectionCard = async (id_collection,id_user) => {
   const { data, error } = await supabase
-    .from("collections_has_looks")
+    .from("collections_has_users")
     .select(
       `
-    id_look,
-    created_at,
-    looks(
-        id,
-        url_image
+    id_user,
+    users(
+        name,
+        img
     )
 `
     )
     .eq("id_collection", id_collection)
+    .neq('id_user', id_user)
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -23,4 +23,4 @@ const getLookForCollectionCard = async (id_collection) => {
   }
 };
 
-export default getLookForCollectionCard;
+export default getUsersForCollectionCard;

@@ -9,15 +9,25 @@ module.exports = {
   ],
 
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '24px'
+      }
+    },
     borderRadius: {
       DEFAULT: '5px',
       full: '999px'
     },
     extend: {
+      height: {
+        screen: 'calc(100vh - 68px)',
+      },
       colors: {
         primary_main: '#05CE86',
         primary_dark: '#0BA06B',
         primary_light: '#D8F2E9',
+        secondary: '#9E9E9E',
         error_main: '#E9414B',
         error_dark: '#C93B43',
         error_light: '#F7D6CF',
@@ -29,10 +39,11 @@ module.exports = {
         info_light: '#CCE3F7',
         dark: '#000000',
         grey: '#CDCDCD',
-        grey_opacity_50: '#CDCDCD80',
+        grey_opacity_50: '#F1F1F1',
         white_opacity_50: '#FFFFFF80',
-        dark_gray:'#484848'
+        dark_gray: '#484848'
       }
+
     },
   },
 

@@ -44,7 +44,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
         <Buttons btnState="defaultMain" text="Pagar agora" btnSize="mediumSizeSocials"/> 
   
     <Buttons btnState="defaultMain" text="Sustentável" icon="navigateNext" btnSize="menuSize" />
-    <Buttons btnState="defaultMain" text="Promoções" icon="offer" btnSize="menuSize" />
+  
 
       <Buttons aria-label="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
       <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>

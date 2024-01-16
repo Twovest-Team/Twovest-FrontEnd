@@ -56,7 +56,7 @@ h6 {
 
 .caption {
   font-size: 13.33px;
-  display: flex;
+  /* NÃO METER FLEX AQUI */
   align-items: center;
 }
 
@@ -762,7 +762,26 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
+.ellipse {
+  background-color: #d8f2e9;
+  border-radius: 50%; 
+  width: 812px;
+  height: 629px;
+  position: absolute; 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-160.96deg);
 
 
+}
+.empty {
+  height: 629px; 
+  width: 100%;
+  background-color: white;
+  border-radius: 50%;   
+}
+.checkbox-css {
+  accent-color: green;
+}
 
 /*--END GONÇALO--*/

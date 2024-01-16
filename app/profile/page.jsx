@@ -123,32 +123,32 @@ async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
   return (
     <>
       {data[0].hasOwnProperty("colecoes") ? (
-
         data[0].onlyPrivateCollections ? (
           <div className="font-semibold text-secondary">
-          {primeiroNome} apenas possui coleções privadas
-        </div>
-        ) : 
-        <>
-          <button className="profile_search-collections">
-            <SearchIcon />
-            Procurar coleções
-          </button>
-          {data[0].colecoes.map((element) => (
-            <CollectionPreview
-              colecao={element}
-              key={element.id_collection}
-              perfilProprio={perfilProprio}
-              className="pb-6"
-            />
-          ))}
-          <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
-            <button className="profile_all-collections">
-              Ver todas as coleções
-              <ArrowForwardIosIcon />
-            </button>
+            {primeiroNome} apenas possui coleções privadas
           </div>
-        </>
+        ) : (
+          <>
+            <button className="profile_search-collections">
+              <SearchIcon />
+              Procurar coleções
+            </button>
+            {data[0].colecoes.map((element) => (
+              <CollectionPreview
+                colecao={element}
+                key={element.id_collection}
+                perfilProprio={perfilProprio}
+                className="pb-6"
+              />
+            ))}
+            <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
+              <button className="profile_all-collections">
+                Ver todas as coleções
+                <ArrowForwardIosIcon />
+              </button>
+            </div>
+          </>
+        )
       ) : perfilProprio ? (
         <div className="font-semibold text-secondary">
           Ainda não criaste nenhuma coleção

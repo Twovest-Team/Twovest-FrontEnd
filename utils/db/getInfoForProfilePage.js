@@ -23,11 +23,10 @@ const getInfoForProfilePage = async (id_user) => {
   if (colecoes.length > 0) {
     data[0].colecoes = colecoes;
     colecoes.map((element) => {
-      if(element.collections.privacy != 1)
-      {
+      if (element.collections.privacy != 1) {
         onlyPrivateCollections = false;
       }
-    })
+    });
     data[0].onlyPrivateCollections = onlyPrivateCollections;
   }
 

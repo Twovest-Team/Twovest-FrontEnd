@@ -11,7 +11,7 @@ const getLookForProfilePage = async (id_user) => {
 `
     )
     .eq("id_user", id_user)
-    .eq("submission_state",2)
+    .eq("submission_state", 2);
 
   if (error) {
     console.log(error);

@@ -1,111 +1,85 @@
+import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
+import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
+import NavigationTitle from "@/components/providers/NavigationTitle";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import { redirect } from "next/navigation";
 import CollectionPreview from "@/components/items/CollectionPreview";
-//Lista com todas coleções associada a um perfil (incluindo o meu próprio perfil)
-// Se for coleções de outros utilizadores, apenas mostrar as coleções públicas e/ou coleções que esse utilizador partilha comigo
-// Se for as minhas coleções, mostrar privadas, públicas e partilhadas (mesmo que não seja o dono de uma coleção partilhada)
+import SearchIcon from "@mui/icons-material/Search";
 
-import CardWatchlist from "@/components/cards/CardWatchlist";
+// Lista de coleções de um utilizador
+const Collections = async ({ searchParams }) => {
+  const id_user = searchParams.id;
+  const sessionUser = await (await getUserByEmailServer()).id;
+  var paginaPropria = false;
+  if (id_user == sessionUser) {
+    paginaPropria = true;
+  }
 
-//Array com as diversas coleções a mostrar,inclusive a sua privacidade e nome, que vão ser renderizadas na card CollectionPreview
-const looksCollection = {
-  id: 102,
-  nome: "Inspo looks para as migas",
-  privacidade: "privada",
-  publicacoes: [
-    {
-      id: 76,
-      nome: "Look Clássico",
-      img: "classic.jpg",
-    },
-    {
-      id: 1111,
-      nome: "Look Feminino",
-      img: "girly.jpg",
-    },
-    {
-      id: 25,
-      nome: "Look Natureza",
-      img: "nature.jpg",
-    },
-    {
-      id: 4,
-      nome: "Look Natal",
-      img: "santa.jpg",
-    },
-    {
-      id: 1974,
-      nome: "Look Wild",
-      img: "snake.jpg",
-    },
-    {
-      id: 696,
-      nome: "Look Contraste",
-      img: "velvet.jpg",
-    },
-    {
-      id: 8,
-      nome: "Look Florido",
-      img: "flowers.jpg",
-    },
-  ],
-};
+  const data = await getInfoForProfilePage(id_user);
 
-const looksCollectionTwoItems = {
-  id: 2,
-  nome: "Trends femininas queeeen",
-  privacidade: "publica",
-  publicacoes: [
-    {
-      id: 76,
-      nome: "Look Clássico",
-      img: "classic.jpg",
-    },
-    {
-      id: 1111,
-      nome: "Look Feminino",
-      img: "girly.jpg",
-    },
-  ],
-};
+  if (data.length == 0) {
+    redirect(`/profile/collections?id=${sessionUser}`);
+  }
 
-const looksCollectionOneItem = {
-  id: 123,
-  nome: "Natal está a chegar eheh",
-  privacidade: "partilhada",
-  publicacoes: [
-    {
-      id: 4,
-      nome: "Look Natal",
-      img: "santa.jpg",
-    },
-  ],
-};
+  const primeiroNome = data[0].name.split(" ")[0];
 
-const Collections = () => {
   return (
-    <div className="container">
-      <div className="mb-10 pt-5">
-        <CollectionPreview
-          looks={looksCollection}
-          key={looksCollection.id}
+    <>
+      <NavigationTitle
+        titleText={
+          paginaPropria ? "As minhas coleções" : `Coleções de ${primeiroNome}`
+        }
+      >
+        {paginaPropria ? <CreateOutlinedIcon /> : null}
+      </NavigationTitle>
+      <div className="container pb-6">
+        <ColecoesPerfil
+          data={data}
+          paginaPropria={paginaPropria}
+          primeiroNome={primeiroNome}
         />
       </div>
-      <div className="mb-10">
-        <CollectionPreview
-          looks={looksCollectionTwoItems}
-          key={looksCollectionTwoItems.id}
-        />
-      </div>
-      <div className="mb-10">
-        <CollectionPreview
-          looks={looksCollectionOneItem}
-          key={looksCollectionOneItem.id}
-        />
-      </div>
-      <div className="mb-10">
-        <CardWatchlist />
-      </div>
-    </div>
+    </>
   );
 };
 
 export default Collections;
+
+async function ColecoesPerfil({ data, paginaPropria, primeiroNome }) {
+  return (
+    <>
+      {data[0].hasOwnProperty("colecoes") ? (
+        data[0].onlyPrivateCollections ? (
+          <div className="font-semibold text-secondary">
+            {primeiroNome} apenas possui coleções privadas
+          </div>
+        ) : (
+          <>
+            <div className="pb-6">
+              <button className="profile_search-collections">
+                <SearchIcon />
+                Procurar coleções
+              </button>
+            </div>
+            {data[0].colecoes.map((element) => (
+              <CollectionPreview
+                colecao={element}
+                key={element.id_collection}
+                perfilProprio={paginaPropria}
+                className="pb-6"
+              />
+            ))}
+          </>
+        )
+      ) : paginaPropria ? (
+        <div className="font-semibold text-secondary">
+          Ainda não criaste nenhuma coleção
+        </div>
+      ) : (
+        <div className="font-semibold text-secondary">
+          {primeiroNome} ainda não criou nenhuma coleção
+        </div>
+      )}
+    </>
+  );
+}

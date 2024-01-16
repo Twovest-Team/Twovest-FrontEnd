@@ -4,9 +4,6 @@ import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
 //Botão de guardar (bookmark) no canto inferior direito da card de look
 import SaveButton from "../buttons/icons/SaveButton";
 
-// Imagem de placeholder do componente
-import ImagemLook from "@/public/images/gallery/looks/looks_mulher1.png";
-
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
 
@@ -15,31 +12,33 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveButton)
  */
 
-export default function LookCard(look) {
+export default function LookCard({ look, slider, looks, nome, avatar }) {
   return (
-    <div className="w-full max-w-[460px]">
-      <div className='w-full rounded aspect-[17/26] relative flex justify-center items-center'>
+      <div className={`w-full ${!slider ? 'max-w-[460px]' : slider === true && 'min-w-[160px]'} `}>
+      <div className="w-full aspect-[17/26] relative flex justify-center items-center">
         <Image
-          src={ImagemLook}
+          src={!slider ? look.url_image : slider === true && looks.url_image}
           alt="Look da galeria"
-          className='object-cover scale-100'
+          className="object-cover scale-100 rounded"
           fill={true}
         />
-        <LookUpvoteButton />
+        {!slider ? <LookUpvoteButton upvotes={look.upvotes}/> : slider === true && null}
       </div>
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center mt-3.5">
           <div className="rounded-full w-10 h-10 overflow-hidden mr-2">
             <Image
-              src={ImagemLook}
+              src={!slider ? look.users.img : slider === true && avatar}
               alt="Look da galeria"
+              width={100}
+              height={100}
               style={{ objectFit: "contain" }}
             />
           </div>
-          <LookUsername username="Deolinda.Soares51"/>
+          <LookUsername username={!slider ? look.users.name : slider === true && nome} />
         </div>
         <div className="mt-3.5">
-          <SaveButton />
+        {!slider ? <SaveButton /> : slider === true && null}
         </div>
       </div>
     </div>

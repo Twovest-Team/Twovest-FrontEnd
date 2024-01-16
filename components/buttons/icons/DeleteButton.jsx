@@ -1,9 +1,9 @@
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 
-export default function DeleteButton() {
+export default function DeleteButton({deleteFunction}) {
     
     return(
-        <DeleteOutlineOutlinedIcon className="text-[22px] text-secondary cursor-pointer" />
+        <DeleteOutlineOutlinedIcon onClick={deleteFunction} className="text-[22px] text-secondary cursor-pointer" />
     )
 }

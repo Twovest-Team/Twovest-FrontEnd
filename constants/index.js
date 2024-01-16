@@ -17,7 +17,6 @@ const general_categories = [
 ]
 
 
-
 const main_categories = [
     {
         id: 1,
@@ -104,10 +103,76 @@ const shopStages = [
     }
 ]
 
+const productMaxQty = 10
+
+const portugalDistricts = [
+    { id: 1, name: 'Aveiro', unavailable: false },
+    { id: 2, name: 'Beja', unavailable: false },
+    { id: 3, name: 'Braga', unavailable: false },
+    { id: 4, name: 'Bragança', unavailable: false },
+    { id: 5, name: 'Castelo Branco', unavailable: false },
+    { id: 6, name: 'Coimbra', unavailable: false },
+    { id: 7, name: 'Évora', unavailable: false },
+    { id: 8, name: 'Faro', unavailable: false },
+    { id: 9, name: 'Guarda', unavailable: false },
+    { id: 10, name: 'Leiria', unavailable: false },
+    { id: 11, name: 'Lisbon', unavailable: false },
+    { id: 12, name: 'Portalegre', unavailable: false },
+    { id: 13, name: 'Porto', unavailable: false },
+    { id: 14, name: 'Santarém', unavailable: false },
+    { id: 15, name: 'Setúbal', unavailable: false },
+    { id: 16, name: 'Viana do Castelo', unavailable: false },
+    { id: 17, name: 'Vila Real', unavailable: false },
+    { id: 18, name: 'Viseu', unavailable: false },
+    { id: 19, name: 'Azores', unavailable: false },
+    { id: 20, name: 'Madeira', unavailable: false },
+];
+
+const portugalTowns = [
+    { id: 1, name: 'Águeda', unavailable: false},
+    { id: 2, name: 'Albergaria-a-Velha', unavailable: false},
+    { id: 3, name: 'Anadia', unavailable: false},
+    { id: 4, name: 'Arouca', unavailable: false},
+    { id: 5, name: 'Aveiro', unavailable: false},
+    { id: 6, name: 'Castelo de Paiva', unavailable: false},
+    { id: 7, name: 'Espinho', unavailable: false},
+    { id: 8, name: 'Estarreja', unavailable: false},
+    { id: 9, name: 'Ílhavo', unavailable: false},
+    { id: 10, name: 'Mealhada', unavailable: false},
+    { id: 11, name: 'Murtosa', unavailable: false},
+    { id: 12, name: 'Oliveira de Azeméis', unavailable: false},
+    { id: 13, name: 'Oliveira do Bairro', unavailable: false},
+    { id: 14, name: 'Ovar', unavailable: false},
+    { id: 15, name: 'Santa Maria da Feira', unavailable: false},
+    { id: 16, name: 'São João da Madeira', unavailable: false},
+    { id: 17, name: 'Sever do Vouga', unavailable: false},
+    { id: 18, name: 'Vagos', unavailable: false},
+    { id: 19, name: 'Vale de Cambra', unavailable: false},
+];
+
+const cttPickupPoints = [
+    { id: 1, name: 'CTT Pickup Point 1', unavailable: false},
+    { id: 2, name: 'CTT Pickup Point 2', unavailable: false},
+    { id: 3, name: 'CTT Pickup Point 3', unavailable: false},
+    { id: 4, name: 'CTT Pickup Point 4', unavailable: false},
+    { id: 5, name: 'CTT Pickup Point 5', unavailable: false},
+    { id: 6, name: 'CTT Pickup Point 6', unavailable: false},
+    { id: 7, name: 'CTT Pickup Point 7', unavailable: false},
+    { id: 8, name: 'CTT Pickup Point 8', unavailable: false},
+    { id: 9, name: 'CTT Pickup Point 9', unavailable: false},
+    { id: 10, name: 'CTT Pickup Point 10', unavailable: false},
+];
+
+const historyMaxLength = 15
   
 export {
     general_categories,
     main_categories,
     categories,
-    shopStages
+    shopStages,
+    productMaxQty,
+    portugalDistricts,
+    portugalTowns,
+    cttPickupPoints,
+    historyMaxLength
 }

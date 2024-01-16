@@ -1,10 +1,10 @@
 
 
-const ContentSlider = async ({ children }) => {
+const ContentSlider = ({ children }) => {
 
     return (
         <div className="relative w-full h-full">
-            <div className="flex flex-row gap-4 container contentSlider_div-scroll">
+            <div className="flex flex-row gap-4 container scroll_bar-invisible overflow-x-scroll">
                 {children}
             </div>
 

@@ -11,20 +11,26 @@ import getCategoryName from "@/utils/getCategoryName";
 import ProductNav from "@/components/sections/ProductNav"
 import ProductSkeleton from "@/components/loadingSkeletons/Product"
 import { Suspense } from "react"
+import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection"
+
 
 export const revalidate = 30
 
 export default async function Product({ params }) {
+
   const productId = params.id
   const productGender = params.gender
+
+
 
   return (
     <main>
 
-      <Suspense fallback={<ProductSkeleton />}>
-        <ProductContent productId={productId} productGender={productGender} />
-      </Suspense>
-
+      <ProductHistoryDetection productId={productId}>
+        <Suspense fallback={<ProductSkeleton />}>
+          <ProductContent productId={productId} productGender={productGender} />
+        </Suspense>
+      </ProductHistoryDetection>
 
 
     </main >
@@ -32,7 +38,7 @@ export default async function Product({ params }) {
   )
 }
 
-async function ProductContent({productId, productGender}) {
+async function ProductContent({ productId, productGender }) {
 
   const data = await getProductById(productId, productGender)
 
@@ -65,7 +71,7 @@ async function ProductContent({productId, productGender}) {
                 <h5 className="font-semibold truncate">{getCategoryName(data.categories.id)} {data.brands.name}</h5>
               </div>
               <Link href={'#offers'} className="bg-dark block hover:bg-dark_gray text-center text-white py-3.5 font-semibold rounded">
-                Ver todas as ofertas
+                Ver as melhores ofertas
               </Link>
             </div>
           </div>

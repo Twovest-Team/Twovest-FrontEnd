@@ -17,13 +17,6 @@ export default function Home() {
       <ul>x</ul>
       <ul>x</ul>
       <ul>x</ul>
-      <div className="mx-6">
-        <Buttons
-          btnState="whiteMain"
-          text="Registar Conta"
-          btnSize="whiteSize"
-        />
-      </div>
       <ul>x</ul>
       <ul>x</ul>
       <ul>x</ul>

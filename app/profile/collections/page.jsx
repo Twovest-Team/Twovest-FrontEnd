@@ -63,10 +63,9 @@ async function ColecoesPerfil({ data, paginaPropria, primeiroNome }) {
             </div>
             
             {data[0].colecoes.map((element) => (
-              <div className="pb-6">
+              <div className="pb-6" key={element.id_collection}>
               <CollectionPreview
                 colecao={element}
-                key={element.id_collection}
                 perfilProprio={paginaPropria}
               />
               </div>

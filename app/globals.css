@@ -669,6 +669,10 @@ incorporados no footer. -------- João Paixão */
   .collectionCard--image {
     display: none;
   }
+
+  .collection--userAvatar-hide{
+    display: none;
+  }
 }
 
 /* -----Início Media query imagens card look na pagina coleção Paixão ------*/

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const BrandCards = ({data, gender}) => {
 
 const brand = data;
-console.log(brand)
+
       return(
         <div className="grid grid-cols-2 gap-4">
             {brand.map((item) => (

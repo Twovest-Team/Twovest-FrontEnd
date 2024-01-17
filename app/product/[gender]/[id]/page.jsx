@@ -47,7 +47,7 @@ async function ProductContent({ productId, productGender }) {
       <section className="flex flex-col h-screen relative">
 
 
-        <ProductNav is_sustainable={data.is_sustainable} discount={data.discount} brand={data.brands} />
+        <ProductNav productGender={productGender} is_sustainable={data.is_sustainable} discount={data.discount} brand={data.brands} />
 
         <div className=" flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
           <ProductSlider images={data.images} />
@@ -58,7 +58,7 @@ async function ProductContent({ productId, productGender }) {
             </div>
             <div className="bg-white h-[167px] rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
               <div className="flex flex-row gap-4 pb-6 pt-8">
-                <Link href={'/'}>
+                <Link href={`/brands/${productGender}/${data.brands.name}`}>
                   <Image
                     src={data.brands.logo_url}
                     width={35}

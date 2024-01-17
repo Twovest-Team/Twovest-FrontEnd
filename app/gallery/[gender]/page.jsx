@@ -7,8 +7,9 @@ import LooksSkeleton from "@/components/loadingSkeletons/Looks";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
+import NavigationTitle from "@/components/providers/NavigationTitle";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
@@ -16,28 +17,26 @@ export const revalidate = 0;
 const Gallery = async ({ params, searchParams }) => {
   const gender = params.gender;
   const style = searchParams.style;
-
   return (
     <main>
-      <div className="galerie_title">
-        <ArrowBackIosIcon />
-        <h5 className="text-black text-[23.04px] font-semibold">Galeria</h5>
-        <div className="galerie_points">
-          <p className="w-[106px] h-[17px] text-neutral-400 text-base font-normal leading-snug">
-            Ganha pontos
-          </p>
-          <HelpOutlineIcon className=" text-neutral-400 w-5 h-5 content-baseline" />
+      <NavigationTitle titleText={"Galeria"}>
+        <div className="flex gap-2 text-secondary items-center">
+          <p className="text-right">Ganhar pontos</p>
+          <HelpOutlineIcon />
         </div>
+      </NavigationTitle>
+
+      <div className="mt-3">
+        <Filters style={style} gender={gender} />
       </div>
-      <div className="galerie_filters">
-        <Filters 
-        gender={gender}
-        />
+
+      <div className="flex justify-between container mt-3 mb-6">
+        <Views className="view" />
+        <button className="submit w-full min-[350px]:w-fit">
+          Submeter Look
+        </button>
       </div>
-      <div className="view_submit">
-        <Views className="view"/>
-        <button className="submit">Submeter Look</button>
-      </div>
+
       <Suspense fallback={<LooksSkeleton />}>
         <LookList gender={gender} style={style} />
       </Suspense>
@@ -51,8 +50,8 @@ async function LookList({ gender, style }) {
   const data = await getLooksForGallery(gender);
   let filteredData = data;
 
-  if (style !== "Todos") {
-    filteredData = data.filter((look) => look.styles[0] == style);
+  if (style && style !== "Todos") {
+    filteredData = data.filter((look) => look.styles.includes(style));
   }
 
   return (
@@ -60,7 +59,7 @@ async function LookList({ gender, style }) {
       {filteredData.length > 0 ? (
         <ItemsBox>
           {filteredData.map((element) => (
-            <LookCard key={element.id} look={element} gender={gender} />
+            <LookCard key={element.id} look={element} slider={false} />
           ))}
         </ItemsBox>
       ) : (

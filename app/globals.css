@@ -840,7 +840,6 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
-/*--END GONÇALO--*/
 .ellipse {
   background-color: #d8f2e9;
   border-radius: 50%;
@@ -859,6 +858,13 @@ incorporados no footer. -------- João Paixão */
 }
 .checkbox-css {
   accent-color: green;
+}
+
+
+@media (max-width: 287px) {
+  .titlenav  {
+    font-size: 0.2rem; 
+  }
 }
 
 /*--END GONÇALO--*/

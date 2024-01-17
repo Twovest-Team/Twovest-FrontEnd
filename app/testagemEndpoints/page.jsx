@@ -20,7 +20,8 @@ export const revalidate = 0;
 
 const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getInfoForProfilePage(24)
+    const data = await getLookById(4)
+  
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

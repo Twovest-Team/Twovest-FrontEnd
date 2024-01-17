@@ -7,7 +7,10 @@ const getLookForProfilePage = async (id_user) => {
       `
     id,
     url_image,
-    upvotes
+    upvotes,
+    users(
+      id
+    )
 `
     )
     .eq("id_user", id_user)

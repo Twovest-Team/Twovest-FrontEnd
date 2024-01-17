@@ -8,7 +8,7 @@ import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 const CardProduct = ({ product, slider, gender }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
-    console.log(product)
+    //console.log(product)
 
     return (
         <article className={`w-full ${slider ? 'max-w-[160px]' : 'max-w-[460px]'} flex-5`}>

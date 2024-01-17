@@ -33,7 +33,7 @@ export default async function Brand({ params }) {
 
         <div className="absolute right-0 left-0 bottom-10 mx-auto flex justify-center w-full flex-col items-center gap-10">
           <figure className="relative">
-          <Image className="rounded-full shadow-lg" width={130} height={130} src={brandData.logo_url} />
+          <Image className="rounded-full shadow-lg" width={130} height={130} src={brandData.logo_url} alt={brandData.name}/>
           <p className="flex gap-1 items-center bg-dark border-white border absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
           </figure>
           

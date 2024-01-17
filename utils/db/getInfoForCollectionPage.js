@@ -17,7 +17,7 @@ const getInfoForCollectionPage = async (id_collection, id_current_user) => {
   const looks = await getLookForCollectionPage(id_collection);
   const collectionUsers = await getUsersForCollectionCard(
     id_collection,
-    0
+    id_current_user
   );
 
     if(looks.length > 0)

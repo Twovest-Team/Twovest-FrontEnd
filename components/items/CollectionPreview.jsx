@@ -1,192 +1,112 @@
 import Image from "next/image";
 import CollectionPrivacyTag from "./CollectionPrivacyTag";
 import ShareButton from "../buttons/icons/ShareButton";
+import Link from "next/link";
 
 //Componente de card da coleção
 // Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
 //(publica, privada ou partilhada) e também muda o nome e o número de looks
 
-export default function CollectionPreview({ colecao, perfilProprio }) {
-  const nomeColecao = colecao.collections.name;
-  const privacidadeColecao = colecao.collections.privacy;
-  const outrosUtilizadores = colecao.users;
+export default function CollectionPreview({ collection, userId }) {
 
-  var lookPrivado = false;
-  if (privacidadeColecao === 1) {
-    lookPrivado = true;
-  }
+  const name = collection.collections.name;
+  const privacy = collection.collections.privacy;
+  const otherParticipants = collection.users;
+  const looks = collection.looks;
+  const looksLength = looks.length;
 
-  var lookNaoPublico = false;
-  if (privacidadeColecao != 2) {
-    lookNaoPublico = true;
-  }
 
-  const looks = colecao.looks;
-  const numeroDeLooks = looks.length;
-
-  if (numeroDeLooks >= 3) {
-    const Look1 = looks[0];
-    const Look2 = looks[1];
-    const Look3 = looks[2];
-
-    if (!perfilProprio && lookNaoPublico) {
-      return null;
-    } else {
-      return (
-        <div className="items-start h-[90px] w-full flex flex-row">
-          <div className="h-[90px] grid">
-            <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[29px]">
-              <Image
-                src={Look1.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={5}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look1.id_look}
-              />
-            </div>
-            <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
-              <Image
-                src={Look2.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={5}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look2.id_look}
-              />
-            </div>
-            <div className="w-20 col-start-1 row-start-1">
-              <Image
-                src={Look3.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={40}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look3.id_look}
-              />
-            </div>
-          </div>
-
-          <div className="ml-4 flex flex-col gap-4">
-            <div>
-              <p className="font-semibold line-clamp-1">{nomeColecao}</p>
-              <p className="caption text-secondary">{numeroDeLooks} looks</p>
-            </div>
-            <CollectionPrivacyTag
-              privacidade={privacidadeColecao}
-              utilizadores={outrosUtilizadores}
+  let previewLookCards = []
+  for (let i = 0; i < 3; i++) {
+    switch (i) {
+      case 0:
+        if (looks[i]) {
+          previewLookCards.push(
+            <Image
+              key={i}
+              src={looks[i].looks.url_image}
+              alt="Look da coleção"
+              width={80}
+              height={90}
+              style={{ width: "80px", height: "90px", objectFit: "cover" }}
+              className=" left-0 top-0 z-20 absolute rounded border-2 border-white object-cover"
             />
-          </div>
-          <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
-        </div>
-      );
-    }
-  } else if (numeroDeLooks == 2) {
-    const Look1 = looks[0];
-    const Look2 = looks[1];
 
-    if (!perfilProprio && lookNaoPublico) {
-      return null;
-    } else {
-      return (
-        <div className="items-start h-[90px] w-full flex flex-row">
-          <div className="h-[90px] grid">
-            <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey rounded-[7px] border-2 border-white"></div>
-            <div className="collectionCard--image w-20 col-start-1 row-start-1 ml-[14px]">
-              <Image
-                src={Look1.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={5}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look1.id_look}
-              />
-            </div>
-            <div className="w-20 col-start-1 row-start-1">
-              <Image
-                src={Look2.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={40}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look2.id_look}
-              />
-            </div>
-          </div>
-
-          <div className="ml-4 flex flex-col gap-4">
-            <div>
-              <p className="font-semibold line-clamp-1">{nomeColecao}</p>
-              <p className="caption text-secondary">{numeroDeLooks} looks</p>
-            </div>
-            <CollectionPrivacyTag
-              privacidade={privacidadeColecao}
-              utilizadores={outrosUtilizadores}
+          )
+        }
+        break;
+      case 1:
+        if (looks[i]) {
+          previewLookCards.push(
+            <Image
+              key={i}
+              src={looks[i].looks.url_image}
+              alt="Look da coleção"
+              width={80}
+              height={90}
+              style={{ width: "80px", height: "90px", objectFit: "cover" }}
+              className="left-[14px] top-0 z-10 absolute rounded border-2 border-white object-cover"
             />
-          </div>
-          <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
-        </div>
-      );
-    }
-  } else {
-    const Look1 = looks[0];
+          )
+        } else {
+          previewLookCards.push(
+            <div className="w-[80px] h-[90px] z-10 left-[14px] top-0 absolute bg-red-300 rounded border-2 border-white" />
+          )
+        }
 
-    if (!perfilProprio && lookNaoPublico) {
-      return null;
-    } else {
-      return (
-        <div className="items-start h-[90px] w-full flex flex-row">
-          <div className="h-[90px] grid">
-            <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[29px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
-            <div className="collectionCard--image w-20 h-[90px] col-start-1 row-start-1 ml-[14px] bg-grey_opacity_50 rounded-[7px] border-2 border-white"></div>
-            <div className="w-20 col-start-1 row-start-1">
-              <Image
-                src={Look1.looks.url_image}
-                alt="Look da coleção"
-                width={80}
-                height={90}
-                quality={40}
-                style={{ width: "80px", height: "90px", objectFit: "cover" }}
-                className="rounded-[7px] border-2 border-white"
-                key={Look1.id_look}
-              />
-            </div>
-          </div>
-
-          <div className="ml-4 flex flex-col gap-4">
-            <div>
-              <p className="font-semibold line-clamp-1">{nomeColecao}</p>
-              <p className="caption text-secondary">{numeroDeLooks} look</p>
-            </div>
-            <CollectionPrivacyTag
-              privacidade={privacidadeColecao}
-              utilizadores={outrosUtilizadores}
+        break;
+      case 2:
+        if (looks[i]) {
+          previewLookCards.push(
+            <Image
+              key={i}
+              src={looks[i].looks.url_image}
+              alt="Look da coleção"
+              width={80}
+              height={90}
+              style={{ width: "80px", height: "90px", objectFit: "cover" }}
+              className="left-[28px] top-0 absolute rounded border-2 border-white object-cover"
             />
-          </div>
-          <div className="ml-auto">{lookPrivado ? null : <ShareButton />}</div>
-        </div>
-      );
+          )
+        } else {
+          previewLookCards.push(
+            <div className="w-[80px] h-[90px] left-[28px] top-0 absolute bg-stone-300 rounded border-2 border-white" />
+
+          )
+        }
+
+        break;
     }
   }
+
+  return (
+    <Link href={`/profile/${userId}/collection/${collection.id_collection}`} className="items-start h-[90px] w-full flex flex-row my-1">
+      <div className="h-[90px] grid">
+
+        <div className="w-[108px] h-full relative">
+          {previewLookCards}
+        </div>
+
+      </div>
+
+      <div className="ml-4 flex flex-col justify-between items-stretch h-full">
+        <div>
+          <p className="font-semibold line-clamp-1">{name}</p>
+          <p className="caption text-start text-secondary">{looksLength} looks</p>
+        </div>
+        <CollectionPrivacyTag
+          privacy={privacy}
+          users={privacy === 3 ? otherParticipants : null}
+        />
+      </div>
+
+      {privacy == 2 &&
+        <div className="ml-auto"> <ShareButton /></div>
+      }
+
+
+    </Link>
+  )
+
+
 }
-
-/*
-Estados de privacidade possíveis: 
-------------PARTILHADO
-<<CollectionPrivacyTag privacidade="partilhada" utilizadores={utilizadoresPartilhados}/>
-------------PÚBLICO
-<CollectionPrivacyTag privacidade="publica" utilizadores={utilizadoresPartilhados}/>
-------------PARTILHADO
-<CollectionPrivacyTag privacidade="privada" utilizadores={utilizadoresPartilhados}/>
-
-*/

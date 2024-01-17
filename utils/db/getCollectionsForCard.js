@@ -15,7 +15,8 @@ const getCollectionsForCard = async (id_user) => {
     )
 `
     )
-    .eq("id_user", id_user);
+    .eq("id_user", id_user)
+    .order('created_at', {ascending: false});
 
 
   if(data && data.length > 0){

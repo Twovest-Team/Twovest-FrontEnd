@@ -17,48 +17,44 @@ export default function LookSubmission() {
   }, [timer]);
   return (
     <>
-      <NavigationTitle titleText="Submissão de look" />
-      <div className="container mx-auto p-4 overflow-hidden">
+      <NavigationTitle titleText="Submissão de look" className="titlenav" />
+      <div className="container mx-auto p-4 look overflow-hidden">
         <div className="overlap relative mt-10">
           <div className="overlap-group relative ">
             <div className="ellipse overflow-hidden "></div>
-            <div className="label relative z-10 mt-24 mx-12 mb-48 ">
-              <h6 className="text-wrapper mb-10">
+            <div className="label relative z-10 mt-24 mx-auto mb-48 requeirements">
+              <h6 className="text-wrapper mb-10 mx-4 ">
                 Requisitos para submissão de Look
               </h6>
-              <div className="obrigat-rio-wrapper mb-28">
-                <ul className="list-disc">
-                  <li className="obrigat-rio">
+              <div className=" mb-28 subtitles mx-4">
+                <ul>
+                  <li>
                     <span className="span">
-                      Obrigatório preencher todos os campos que tenham “
+                      Obrigatório preencher todos os campos que tenham
                     </span>
                     <span className="text-wrapper-11">*</span>
-                    <span className="span">”</span>
                   </li>
-                  <li className="obrigat-rio">Tem de conter 1 foto</li>
-                  <li className="obrigat-rio">
-                    Tem de conter 1 estilo associado
-                  </li>
-                  <li className="obrigat-rio">
-                    Uso de 2 ou mais peças de roupa comprada na Twovest
-                  </li>
-                  <li className="obrigat-rio">
+                  <li>Tem de conter 1 foto</li>
+                  <li>Tem de conter 1 estilo associado</li>
+                  <li>Uso de 2 ou mais peças de roupa comprada na Twovest</li>
+                  <li>
                     Só poderás submeter um novo look após a verificação da
                     Twovest ao teu look anterior.
                   </li>
                 </ul>
-                <span className="text-wrapper-12">
+                <span>
                   Ver mais
                   <br />
                 </span>
               </div>
-
-              <Buttons
-                btnState={buttonColor}
-                text={`Compreendi (${timer})`}
-                btnSize="mediumSizeSocials"
-                disabled={timer > 0}
-              />
+              <div className=" w-full">
+                <Buttons
+                  btnState={buttonColor}
+                  text={`Compreendi (${timer})`}
+                  btnSize="mediumSizeSocials"
+                  disabled={timer > 0}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -14,12 +14,12 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
  */
 
 export default function LookCard({ look, slider, nome, avatar }) {
-  console.log(look.users.id)
+  console.log(slider)
   return (
-    <div className={`w-full ${!slider ? 'max-w-[460px]' : slider === true && 'w-[160px] min-w-[160px]'} `}>
+    <div className={`${!slider ? 'max-w-[460px]' : slider && 'w-[160px] min-w-[160px]'} `}>
       <Link href={`/gallery/look/${look.id}`} className="w-full aspect-[17/26] relative flex justify-center items-center">
         <Image
-          src={!slider ? look.url_image : slider === true && look.url_image}
+          src={look.url_image}
           alt="Look da galeria"
           className="object-cover scale-100 rounded"
           fill={true}

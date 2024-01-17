@@ -14,6 +14,9 @@ import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
 import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
+import getProductsByViews from "@/utils/db/getProductsByViews";
+import getBrands from "@/utils/db/getBrands";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import getUserCollections from "@/utils/db/collections/getUserCollections";
 
 

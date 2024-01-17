@@ -1,9 +1,8 @@
-
 // Página de um look em específico
 
-import NavigationTitle from "@/components/providers/NavigationTitle"
-import getLookById from "@/utils/db/getLookById"
-import Image from "next/image"
+import NavigationTitle from "@/components/providers/NavigationTitle";
+import getLookById from "@/utils/db/getLookById";
+import Image from "next/image";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
 import SaveButton from "@/components/buttons/icons/SaveButton";
 import Link from "next/link";
@@ -11,13 +10,13 @@ import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 
-export const revalidate = 0
+export const revalidate = 0;
 
 // Exemplo: twovest.com/gallery/mulher/253  <-id do look
 const Look = async ({ params }) => {
-  const lookId = params.look
+  const lookId = params.look;
 
-  const data = await getLookById(lookId)
+  const data = await getLookById(lookId);
   let productsQty;
   if (data.products) {
     productsQty = data.products.length
@@ -90,7 +89,4 @@ const Look = async ({ params }) => {
     </>
 
 
-  )
-}
-
-export default Look
+export default Look;

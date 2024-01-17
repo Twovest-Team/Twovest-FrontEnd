@@ -1,14 +1,12 @@
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import ProductOfferCard from '../cards/ProductOfferCard';
-import Link from 'next/link';
-
-
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ProductOfferCard from "../cards/ProductOfferCard";
+import Link from "next/link";
 const ProductOffers = ({ offers, discount, productGender, productId }) => {
-
-    const sortedOffers = sortOffers(offers)
-    const bestOffers = getBestOffers(sortedOffers)
-
-
+  const sortedOffers = sortOffers(offers);
+  const bestOffers = getBestOffers(sortedOffers);
+  let gender = productGender;
+  let idproduct = productId;
+  
     return (
         <div className="container flex flex-col gap-6">
             <div className="flex flex-col gap-1">
@@ -44,44 +42,37 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
                     Ver todas as ofertas ({offers.length})
                 </Link>
             }
-
-
         </div>
-    )
-}
+  );
+};
 
 const sortOffers = (offers) => {
-    return offers.sort((a, b) => {
-        // First, sort by condition
-        if (a.conditions.id !== b.conditions.id) {
-            return a.conditions.id - b.conditions.id;
-        }
+  return offers.sort((a, b) => {
+    // First, sort by condition
+    if (a.conditions.id !== b.conditions.id) {
+      return a.conditions.id - b.conditions.id;
+    }
 
-        // If conditions are the same, then sort by price
-        return a.price - b.price;
-    })
-}
+    // If conditions are the same, then sort by price
+    return a.price - b.price;
+  });
+};
 
 const getBestOffers = (offers) => {
+  const bestOffers = [];
+  let totalBestOffers;
 
-    const bestOffers = [];
-    let totalBestOffers;
+  if (offers.length >= 2) {
+    totalBestOffers = 2;
+  } else {
+    totalBestOffers = offers.length;
+  }
 
-    if (offers.length >= 2) {
-        totalBestOffers = 2
-    } else {
-        totalBestOffers = offers.length
-    }
+  for (let i = 0; i < totalBestOffers; i++) {
+    bestOffers.push(offers[i]);
+  }
 
-    for (let i = 0; i < totalBestOffers; i++) {
-        bestOffers.push(offers[i])
-    }
+  return bestOffers;
+};
 
-    return bestOffers
-}
-
-
-export default ProductOffers
-
-
-
+export default ProductOffers;

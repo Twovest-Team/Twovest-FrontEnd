@@ -14,13 +14,16 @@ import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
 import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
+import getProductsByViews from "@/utils/db/getProductsByViews";
+import getBrands from "@/utils/db/getBrands";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
 export const revalidate = 0;
 
 const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getLookById(4)
+    const data = await getLooksForHomepage("Mulher")
   
 
     return (

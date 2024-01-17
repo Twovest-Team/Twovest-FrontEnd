@@ -82,7 +82,7 @@ const FormLook = () => {
   return (
     <>
       <NavigationTitle titleText="Submissão de look" />
-      <form className="container mx-auto overflow-hidden mb-6">
+      <form className="container mx-auto overflow-hidden mb-24">
         <div className="text-center justify-center items-center">
           <label className="block text-secondary font-inter mb-2 h-64 border">
             {selectedImage ? (

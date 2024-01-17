@@ -1,7 +1,7 @@
 import { supabase } from "@/utils/db/supabase";
 import getProductById from "./getProductById";
 
-const getLookProducts = async (id, gender) => {
+const getLookProducts = async () => {
   const { data, error } = await supabase
     .from("looks_has_products")
     .select(

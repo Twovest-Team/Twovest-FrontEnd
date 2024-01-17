@@ -80,7 +80,7 @@ async function ProductContent({ productId, productGender }) {
       </section>
 
       <section id='offers' className="flex flex-col pt-5 mb-16 gap-16 h-fit">
-        <ProductOffers offers={data.offers} discount={data.discount} />
+        <ProductOffers offers={data.offers} discount={data.discount} productGender={productGender} productId={productId} />
         <ProductDetails productDetails={data} />
       </section>
     </>

@@ -1,8 +1,9 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ProductOfferCard from '../cards/ProductOfferCard';
+import Link from 'next/link';
 
 
-const ProductOffers = ({ offers, discount }) => {
+const ProductOffers = ({ offers, discount, productGender, productId }) => {
 
     const sortedOffers = sortOffers(offers)
     const bestOffers = getBestOffers(sortedOffers)
@@ -37,9 +38,11 @@ const ProductOffers = ({ offers, discount }) => {
             </div>
 
             {offers.length > 2 &&
-                <button className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded">
+                <Link 
+                className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded"
+                href={`/product/${productGender}/${productId}/offers`}>
                     Ver todas as ofertas ({offers.length})
-                </button>
+                </Link>
             }
 
 

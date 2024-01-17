@@ -262,6 +262,27 @@ h6 {
   background: var(--primary_main, #05ce86);
   color: #fff;
 }
+
+/* --------------------allOffers----------------------- */
+
+.allOffers_title {
+  display: flex;
+  padding: 24px 24px 28px 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cards_filter-products {
+  display: flex;
+  width: 342px;
+  padding: 28px 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Fim Daniela */
+
 /* Jónatas */
 
 .navbar_icons {
@@ -496,7 +517,6 @@ h6 {
   gap: 7px;
 }
 
-
 @media (max-width: 330px) {
   .points-upvotes {
     display: block;
@@ -670,7 +690,7 @@ incorporados no footer. -------- João Paixão */
     display: none;
   }
 
-  .collection--userAvatar-hide{
+  .collection--userAvatar-hide {
     display: none;
   }
 }
@@ -681,8 +701,6 @@ incorporados no footer. -------- João Paixão */
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
-
-
 
 /* -----FIM Media query imagens card coleção Paixão ------*/
 
@@ -825,25 +843,22 @@ incorporados no footer. -------- João Paixão */
 /*--END GONÇALO--*/
 .ellipse {
   background-color: #d8f2e9;
-  border-radius: 50%; 
+  border-radius: 50%;
   width: 812px;
   height: 629px;
-  position: absolute; 
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-160.96deg);
-
-
 }
 .empty {
-  height: 629px; 
+  height: 629px;
   width: 100%;
   background-color: white;
-  border-radius: 50%;   
+  border-radius: 50%;
 }
 .checkbox-css {
   accent-color: green;
 }
 
 /*--END GONÇALO--*/
-

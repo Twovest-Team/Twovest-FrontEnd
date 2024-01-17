@@ -31,8 +31,6 @@ function ProductsFiltered({ offers, discount, product, productCategory }) {
     }
   }
 
-  console.log({ product, productCategory });
-
   return (
     <>
       {offers.map((offer) => {

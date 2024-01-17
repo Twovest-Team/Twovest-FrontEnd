@@ -13,7 +13,7 @@ export default function Home() {
         
         <ImageSwiper/>
         
-      <section className="mt-14 mb-18">
+      {/* <section className="mt-14 mb-18">
         <h6 className="font-semibold px-6">Top Categorias</h6>
         <div className="flex my-4 overflow-auto ml-6">
           <div className="bg-grey p-20 rounded ml-2"></div>
@@ -22,7 +22,7 @@ export default function Home() {
           <div className="bg-grey p-20 rounded ml-2"></div>
           <div className="bg-grey p-20 rounded mx-2"></div>
         </div>
-      </section>
+      </section> */}
 
       <section className="mt-14 mb-18">
         <h6 className="font-semibold px-6">Mais Procurados 🔥</h6>
@@ -69,16 +69,7 @@ export default function Home() {
 
       </section>
 
-      <section className="mt-14 mb-18">
-        <h6 className="font-semibold px-6">Últimos artigos vistos</h6>
-        <div className="flex my-4 overflow-auto ml-6">
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded mx-2"></div>
-        </div>
-      </section>
+     
 
     </main>
    

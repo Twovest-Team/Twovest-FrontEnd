@@ -1,5 +1,6 @@
 import { supabase } from "@/utils/db/supabase";
 import getLookForCollectionCard from "./getLookForCollectionCard";
+import getUsersForCollectionCard from "./getUsersForCollectionCard";
 
 const getCollectionsForCard = async (id_user) => {
   const { data, error } = await supabase
@@ -16,21 +17,31 @@ const getCollectionsForCard = async (id_user) => {
     )
     .eq("id_user", id_user);
 
-  let transformedData = await Promise.all(
-    data.map(async (element) => {
-      let array = element;
-      const looks = await getLookForCollectionCard(element.id_collection);
-      array.looks = looks;
 
-      return array;
-    })
-  );
+  if(data && data.length > 0){
+    let transformedData = await Promise.all(
+      data.map(async (element) => {
+        let array = element;
+        const looks = await getLookForCollectionCard(element.id_collection);
+        const users = await getUsersForCollectionCard(
+          element.id_collection,
+          id_user
+        );
+        array.looks = looks;
+        array.users = users;
+  
+        return array;
+      })
+    );
 
-  if (error) {
+    if(transformedData){
+      return transformedData;
+    }
+  }else if(error){
     console.log(error);
-  } else {
-    return transformedData;
   }
+  
+
 };
 
 export default getCollectionsForCard;

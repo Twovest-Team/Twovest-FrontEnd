@@ -1,104 +1,86 @@
 
-  // Página do perfil da marca
-  // Exemplo: twovest.com/brands/mulher/Nike
-  "use client";
-  import { useParams } from 'next/navigation';
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import NavigationTitle from "@/components/providers/NavigationTitle";
+import FilterButton from "@/components/buttons/icons/FilterButton";
+import Views from "@/components/providers/Views";
+import CardProduct from "@/components/cards/CardProduct";
+import ItemsBox from "@/components/providers/ItemsBox";
+import { Suspense } from "react";
+import ProductsSkeleton from "@/components/loadingSkeletons/Products";
+import getProductByBrand from "@/utils/db/getProductsByBrand";
+import getBrandData from "@/utils/db/getBrandData";
+import Image from "next/image";
+import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
+import StarIcon from '@mui/icons-material/Star';
 
-import { useState, useEffect } from 'react';
-import getProductByBrands from '@/utils/db/getProductsByBrand'; 
-import Image from 'next/image';
-import PriceProduct from '@/components/items/PriceProduct';
-import SellIcon from '@mui/icons-material/Sell';
+export const revalidate = 30;
+
+export default async function Brand({ params }) {
+
+  const gender = params.gender;
+  const brandName = decodeURIComponent(params.brand);
+  const brandData = await getBrandData(brandName)
+
+  return (
+    <main>
+
+      <div style={{ backgroundImage: `url(${brandData.cover_url})` }} className="h-96 bg-center bg-cover relative">
+        <NavigationTitle hasImageBehind={true} titleText={brandName}>
+          <div className="opacity-70 bg-gradient-to-b from-dark h-1/2 absolute w-full top-0 left-0" />
+          <div className="opacity-70 bg-gradient-to-t from-dark h-1/2 absolute w-full bottom-0 left-0" />
+          <button className="text-white z-10 underline underline-offset-2">Sobre a marca</button>
+        </NavigationTitle>
+
+        <div className="absolute right-0 left-0 bottom-10 mx-auto flex justify-center w-full flex-col items-center gap-10">
+          <figure className="relative">
+          <Image className="rounded-full shadow-lg" width={130} height={130} src={brandData.logo_url} alt={brandData.name}/>
+          <p className="flex gap-1 items-center bg-dark border-white border absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
+          </figure>
+          
+            
+
+          <BrandGenderButtons currentGender={gender} brandName={brandName} />
+
+        </div>
+
+      </div>
 
 
-export const revalidate = 0;
+      <div className="container flex justify-between h-7 max-[350px]:hidden mt-6 mb-6">
+        <Views />
+        <FilterButton />
+      </div>
+
+      <Suspense fallback={<ProductsSkeleton />}>
+        <ProductList brandName={brandName} gender={gender} />
+      </Suspense>
+    </main>
+  );
+}
 
 
-const Brand = ( ) => {
+async function ProductList({ brandName, gender }) {
+  const data = await getProductByBrand(
+    capitalizeFirstLetter(gender),
+    brandName
+  );
 
-  const params = useParams();
-  
-  const [brandProducts, setBrandProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log('Fetching data with gender:', 'mulher', 'and brand:', params.brand);
-        const productsData = await getProductByBrands(params.gender, params.brand);
-        console.log('Products Data:', productsData);
-        const productsWithBrands = productsData.filter(product =>
-          product.brands && product.brands.id !== null
-        );
-        setBrandProducts(productsWithBrands);
-        setLoading(false);
-      } catch (error) {
-        setError('Erro ao carregar produtos da marca.');
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [params.gender, params.brand]);
- 
-  if (loading) {
-    return <p>Aguarde um momento...</p>;
-  
-  }
-  
-  if (error || !brandProducts) {
-    return <p>{error || 'Erro ao carregar produtos da marca.'}</p>;
-  }
-  
-  if (brandProducts.length === 0) {
-    return <p>Não há produtos disponíveis para esta marca.</p>;
-  }
   return (
     <>
-    
-
-      {brandProducts.map(product => (
-        <article key={product.id} className='w-full max-w-[460px] flex-5'>
-          <div className="flex flex-col items-center justify-between mx-4">
-            <div className={`w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center`}>
-              <Image
-                src={product.images[0].url}
-                alt={product.images[0].alt}
-                className='object-cover scale-90'
-                fill={true}
-              />
-
-              <div className='absolute top-2.5 px-4 w-full flex items-center justify-between'>
-                <div className='flex gap-3 items-center'>
-                  <Image
-                    src={product.brands.logo_url}
-                    width={60}
-                    height={60}
-                    alt={product.brands.name}
-                    className='rounded-full shadow-lg'
-                  />
-                </div>
-              </div>
-
-              {product.discount > 0 && (
-                <div className='h-11 bg-primary_main absolute bottom-5 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0'>
-                  <SellIcon sx={{ fontSize: 20 }} />
-                  {product.discount}% OFF
-                </div>
-              )}
-            </div>
-
-            <div className={`flex flex-wrap justify-between items-center mt-4 mb-4 gap-y-1`}>
-              <p className='truncate font-semibold w-40'>{product.name}</p>
-              <PriceProduct discount={product.discount} offers={product.offers} />
-            </div>
-          </div>
-        </article>
-      ))}
+      {data.length > 0 ? (
+        <ItemsBox>
+          {data.map((element) => (
+            <CardProduct
+              slider={false}
+              key={element.id}
+              product={element}
+              gender={gender}
+            />
+          ))}
+        </ItemsBox>
+      ) : (
+        <p>No data...</p>
+      )}
     </>
   );
-};
-
-export default Brand;
+}

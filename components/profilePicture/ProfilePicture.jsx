@@ -1,13 +1,13 @@
-import imageProfile from "@/public/images/teste_image_perfil/imagemperfil.jpg";
 import Image from "next/image";
 
-const ProfilePicture = () => {
+const ProfilePicture = ({imageProfile}) => {
   return (
     <Image
       src={imageProfile}
+      width={100}
+      height={100}
+      quality={60}
       style={{
-        width: "100px",
-        height: "100px",
         borderRadius: "100px",
         objectFit: "cover",
         overflow: "hidden",

@@ -14,24 +14,24 @@ import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
 import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
-
-
+import getProductsByViews from "@/utils/db/getProductsByViews";
+import getBrands from "@/utils/db/getBrands";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
-export const revalidate = 0 
+export const revalidate = 0;
 
-const page = async() => {
-
+const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getInfoForProfilePage(24)
+    const data = await getLooksForHomepage("Mulher")
   
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <pre>{JSON.stringify(data, null, 2)}</pre>
-  
+        
       </main>
     )
 }
 
-export default page
+export default page;

@@ -7,6 +7,7 @@ const getInfoForProfilePage = async (id_user) => {
     .from("users")
     .select(
       `
+    id,
     name,
     img,
     email,
@@ -18,8 +19,20 @@ const getInfoForProfilePage = async (id_user) => {
   const colecoes = await getCollectionsForCard(id_user);
   const userLooks = await getLookForProfilePage(id_user);
 
-  data[0].colecoes = colecoes;
-  data[0].userLooks = userLooks;
+  var onlyPrivateCollections = true;
+  if (colecoes && colecoes.length > 0) {
+    data[0].colecoes = colecoes;
+    colecoes.map((element) => {
+      if (element.collections.privacy != 1) {
+        onlyPrivateCollections = false;
+      }
+    });
+    data[0].onlyPrivateCollections = onlyPrivateCollections;
+  }
+
+  if (userLooks && userLooks.length > 0) {
+    data[0].userLooks = userLooks;
+  }
 
   if (error) {
     console.log(error);

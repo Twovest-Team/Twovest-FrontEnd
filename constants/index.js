@@ -162,6 +162,8 @@ const cttPickupPoints = [
     { id: 9, name: 'CTT Pickup Point 9', unavailable: false},
     { id: 10, name: 'CTT Pickup Point 10', unavailable: false},
 ];
+
+const historyMaxLength = 15
   
 export {
     general_categories,
@@ -171,5 +173,6 @@ export {
     productMaxQty,
     portugalDistricts,
     portugalTowns,
-    cttPickupPoints
+    cttPickupPoints,
+    historyMaxLength
 }

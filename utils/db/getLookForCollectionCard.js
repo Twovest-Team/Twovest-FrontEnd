@@ -14,10 +14,7 @@ const getLookForCollectionCard = async (id_collection) => {
 `
     )
     .eq("id_collection", id_collection)
-    .order('created_at', { ascending: false })
-    .limit(3)
-
-   
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.log(error);

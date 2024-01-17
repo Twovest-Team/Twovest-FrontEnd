@@ -16,7 +16,14 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ searchParams }) => {
   const id_user = searchParams.id;
-  const sessionUser = await (await getUserByEmailServer()).id;
+  let sessionUser =  await getUserByEmailServer();
+
+  let sessionUserId;
+
+  if(sessionUser){
+    sessionUserId = sessionUser.id
+  }
+
   var perfilProprio = false;
   if (id_user == sessionUser) {
     perfilProprio = true;
@@ -25,7 +32,7 @@ const Profile = async ({ searchParams }) => {
   const data = await getInfoForProfilePage(id_user);
 
   if (data.length == 0) {
-    redirect(`/profile/?id=${sessionUser}`);
+    redirect(`/profile/?id=${sessionUserId}`);
   }
 
   const primeiroNome = data[0].name.split(" ")[0];
@@ -92,7 +99,7 @@ async function LooksPerfil({ data, perfilProprio, primeiroNome }) {
             <LookCard
               slider={true}
               key={element.id}
-              looks={element}
+              look={element}
               nome={data[0].name}
               avatar={data[0].img}
             />
@@ -114,6 +121,7 @@ async function LooksPerfil({ data, perfilProprio, primeiroNome }) {
 }
 
 async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
+  var lastThreeCollections;
   return (
     <>
       {data[0].hasOwnProperty("colecoes") ? (
@@ -127,7 +135,7 @@ async function ColecoesPerfil({ data, perfilProprio, primeiroNome }) {
               <SearchIcon />
               Procurar coleções
             </button>
-            {data[0].colecoes.map((element) => (
+            {data[0].colecoes.slice(0,3).map((element) => (
               <CollectionPreview
                 colecao={element}
                 key={element.id_collection}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useAppSelector } from "@/redux/hooks"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useAppDispatch } from "@/redux/hooks";
 import { updateHistory } from "@/redux/slices/historyProducts";
 import addToLastProductsSeen from "@/utils/db/productsViewHistory/addToLastProductsSeen";
@@ -15,6 +15,7 @@ const ProductHistoryDetection = ({ children, productId }) => {
     const dispatch = useAppDispatch()
     const currentUserHistory = useAppSelector(state => state.historyProducts.products)
     const currentUser = useAppSelector((state) => state.user.data);
+    let [isHistoryValidated, setIsHistoryValidated] = useState(false)
 
     async function addProduct() {
         addToLastProductsSeen(productId, currentUser.email)
@@ -33,40 +34,62 @@ const ProductHistoryDetection = ({ children, productId }) => {
         let isIdInCurrentUserHistory = currentUserHistory.find(element => productId == element.products.id);
         let oldestProductAdded = currentUserHistory.slice(-1)[0];
         let doesHistoryChanged = false
-    
+
+        console.log('valida!')
+
         if (isIdInCurrentUserHistory) {
             if (productId !== currentUserHistory[0].products.id) {
                 updateProductsArray();
             }
             doesHistoryChanged = true
         }
-    
+
         if (!isIdInCurrentUserHistory && currentUserHistory.length < historyMaxLength) {
             addProduct();
             doesHistoryChanged = true
         }
-    
+
         if (!isIdInCurrentUserHistory && currentUserHistory.length === historyMaxLength) {
             deleteProduct(oldestProductAdded);
             addProduct();
             doesHistoryChanged = true
         }
 
-        if(doesHistoryChanged){
+        if (doesHistoryChanged) {
             const data = await getUserHistory(currentUser.email)
-            if(data){
+            if (data) {
                 dispatch(updateHistory(data))
             }
         }
     }
 
+    // useEffect(() => {
+
+    //     if (currentUserHistory != null) {
+    //         return () => validateUserHistory();
+    //     }
+
+    // }, [currentUserHistory]);
+
     useEffect(() => {
-        if (currentUserHistory != null) {
-            return () => validateUserHistory();
+
+        if (currentUserHistory != null && !isHistoryValidated) {
+            validateUserHistory()
+            setIsHistoryValidated(true)
         }
-    }, [currentUserHistory]);
-    
-    
+
+    }, [currentUserHistory])
+
+
+    useEffect(() => {
+
+        if (currentUser && currentUserHistory === null) {
+            dispatch(updateHistory([]))
+        }
+
+    }, [currentUserHistory, currentUser]);
+
+
 
     return (
         <>

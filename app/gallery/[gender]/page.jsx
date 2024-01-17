@@ -4,23 +4,45 @@ import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Filters from "@/components/filters_gallery/filtersGallery";
+import NavigationTitle from "@/components/providers/NavigationTitle";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
 // Exemplo: twovest.com/gallery/mulher
-const Gallery = async ({ params }) => {
+const Gallery = async ({ params, searchParams }) => {
   const gender = params.gender;
-
+  const style = searchParams.style;
   return (
     <main>
-      <div className="container flex justify-between h-7">
-        <Views />
+
+      <NavigationTitle titleText={'Galeria'}>
+        <div className="flex gap-2 text-secondary items-center">
+          <p>Ganhar pontos</p>
+          <HelpOutlineIcon />
+        </div>
+      </NavigationTitle>
+
+      <div className="mt-3">
+        <Filters
+          style={style}
+          gender={gender}
+        />
       </div>
 
+
+      <div className="flex justify-between container mt-3 mb-6">
+        <Views className="view" />
+        <button className="submit w-full min-[350px]:w-fit">Submeter Look</button>
+      </div>
+
+
       <Suspense fallback={<LooksSkeleton />}>
-        <LookList gender={gender} />
+        <LookList gender={gender} style={style} />
       </Suspense>
     </main>
   );
@@ -28,14 +50,20 @@ const Gallery = async ({ params }) => {
 
 export default Gallery;
 
-async function LookList({ gender }) {
+async function LookList({ gender, style }) {
   const data = await getLooksForGallery(gender);
+  let filteredData = data;
+
+  if (style && style !== "Todos") {
+    filteredData = data.filter((look) => look.styles.includes(style) );
+  }
+  
 
   return (
     <>
-      {data.length > 0 ? (
+      {filteredData.length > 0 ? (
         <ItemsBox>
-          {data.map((element) => (
+          {filteredData.map((element) => (
             <LookCard key={element.id} look={element} slider={false} />
           ))}
         </ItemsBox>

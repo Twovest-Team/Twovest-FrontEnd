@@ -76,6 +76,10 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
+import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
+import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
+import Image from "next/image";
 export const Buttons = ({ btnState, text, icon, btnSize }) => {
   const StyledState = {
     defaultMain: "bg-primary_main hover:bg-primary_dark", //verde normal, com over (default o mais usado)
@@ -110,9 +114,9 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     navigateNext: <NavigateNextIcon className="text-white" />,
     cancel: <CancelIcon className="text-white " />,
     add: <AddIcon className="text-white " />,
-    google: <GoogleIcon className="text-white " />,
-    facebook: <FacebookIcon className="text-white " />,
-    apple: <AppleIcon className="text-white " />,
+    google: <Image src={coloredGoogleIcon} height={20} width={20}/>,
+    facebook: <Image src={coloredFacebookIcon} height={22} width={22}/>,
+    apple: <Image src={coloredAppleIcon} height={20} width={20}/>,
     redifine: <ReplayIcon className="text-white transform rotate-90 " />,
     redifine2: <ReplayIcon className="text-grey transform rotate-90 " />,
     offer: <LocalOfferIcon className="text-white " />,

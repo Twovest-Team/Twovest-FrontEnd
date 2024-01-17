@@ -61,7 +61,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
           text="Registar Conta"
           btnSize="whiteSize"
         />
-      </div>
+      </div>  
 
 */
 import React from "react";
@@ -76,6 +76,10 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
+import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
+import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
+import Image from "next/image";
 export const Buttons = ({ btnState, text, icon, btnSize }) => {
   const StyledState = {
     defaultMain: "bg-primary_main hover:bg-primary_dark", //verde normal, com over (default o mais usado)
@@ -89,7 +93,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
   };
   const sizes = {
     whiteSize:
-      "w-1/2 h-[60px] flex justify-center items-center border-2 border-black rounded text-center",
+      "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center border-2 border-black rounded gap-3 text-center",
     modalSize: "w-full h-14 gap-12 items-center",
     smallSize:
       "w-full h-14 sm:h-14 md:h-14 lg:h-14 xl:h-14 flex items-center justify-between gap-2 sm:gap-4 text-center",
@@ -110,9 +114,9 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     navigateNext: <NavigateNextIcon className="text-white" />,
     cancel: <CancelIcon className="text-white " />,
     add: <AddIcon className="text-white " />,
-    google: <GoogleIcon className="text-white " />,
-    facebook: <FacebookIcon className="text-white " />,
-    apple: <AppleIcon className="text-white " />,
+    google: <Image src={coloredGoogleIcon} height={20} width={20}/>,
+    facebook: <Image src={coloredFacebookIcon} height={22} width={22}/>,
+    apple: <Image src={coloredAppleIcon} height={20} width={20}/>,
     redifine: <ReplayIcon className="text-white transform rotate-90 " />,
     redifine2: <ReplayIcon className="text-grey transform rotate-90 " />,
     offer: <LocalOfferIcon className="text-white " />,

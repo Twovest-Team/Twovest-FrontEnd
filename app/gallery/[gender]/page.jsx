@@ -19,27 +19,23 @@ const Gallery = async ({ params, searchParams }) => {
   const style = searchParams.style;
   return (
     <main>
-
-      <NavigationTitle titleText={'Galeria'}>
+      <NavigationTitle titleText={"Galeria"}>
         <div className="flex gap-2 text-secondary items-center">
-          <p>Ganhar pontos</p>
+          <p className="text-right">Ganhar pontos</p>
           <HelpOutlineIcon />
         </div>
       </NavigationTitle>
 
       <div className="mt-3">
-        <Filters
-          style={style}
-          gender={gender}
-        />
+        <Filters style={style} gender={gender} />
       </div>
-
 
       <div className="flex justify-between container mt-3 mb-6">
         <Views className="view" />
-        <button className="submit w-full min-[350px]:w-fit">Submeter Look</button>
+        <button className="submit w-full min-[350px]:w-fit">
+          Submeter Look
+        </button>
       </div>
-
 
       <Suspense fallback={<LooksSkeleton />}>
         <LookList gender={gender} style={style} />
@@ -55,9 +51,8 @@ async function LookList({ gender, style }) {
   let filteredData = data;
 
   if (style && style !== "Todos") {
-    filteredData = data.filter((look) => look.styles.includes(style) );
+    filteredData = data.filter((look) => look.styles.includes(style));
   }
-  
 
   return (
     <>

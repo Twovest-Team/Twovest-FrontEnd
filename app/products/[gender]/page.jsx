@@ -10,6 +10,7 @@ import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loadingSkeletons/Products";
 import getSustainableProducts from "@/utils/db/getSustainableProducts";
 import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export const revalidate = 30;
 
@@ -89,7 +90,7 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <p>No data...</p>
+          <div className="h-screen container text-center"><InfoOutlinedIcon className="text-[60px] mt-16 mb-6"/><div>Não há produtos registados nesta categoria.</div></div>
         )}
       </>
     );
@@ -109,7 +110,7 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <p>No data...</p>
+          <div className="h-screen container text-center"><InfoOutlinedIcon className="text-[60px] mt-16 mb-6"/><div>Não há produtos registados nesta categoria.</div></div>
         )}
       </>
     );
@@ -130,7 +131,7 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <p>No data...</p>
+          <div className="h-screen container text-center"><InfoOutlinedIcon className="text-[60px] mt-16 mb-6"/><div>Não há produtos registados nesta categoria.</div></div>
         )}
       </>
     );

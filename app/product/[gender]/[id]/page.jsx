@@ -65,7 +65,7 @@ async function ProductContent({ productId, productGender }) {
                 </h5>
               </div>
               <Link
-                href={`/`}
+                href={"/"}
                 className="bg-dark block hover:bg-dark_gray text-center text-white py-3.5 font-semibold rounded"
               >
                 Ver as melhores ofertas

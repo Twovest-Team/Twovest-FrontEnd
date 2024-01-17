@@ -6,7 +6,7 @@ import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon"
 import Image from "next/image"
 import Link from "next/link"
 
-const ProductNav = ({ is_sustainable, discount, brand }) => {
+const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
 
     const divRef = useRef();
     const brandImage = useRef();
@@ -58,7 +58,7 @@ const ProductNav = ({ is_sustainable, discount, brand }) => {
                     }
                 </div>
 
-                <Link href={'/'}>
+                <Link href={`/brands/${productGender}/${brand.name}`}>
                     <Image
                         src={brand.logo_url}
                         width={35}

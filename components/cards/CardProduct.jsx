@@ -8,10 +8,10 @@ import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 const CardProduct = ({ product, slider, gender }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
+    //console.log(product)
 
-   
     return (
-    <article className={`w-full ${slider ? 'max-w-[160px]' : 'max-w-[460px]'} flex-5`}>
+        <article className={`w-full ${slider ? 'max-w-[160px]' : 'max-w-[460px]'} flex-5`}>
 
             <div className='w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center'>
 
@@ -39,7 +39,7 @@ const CardProduct = ({ product, slider, gender }) => {
                     </div>
 
                     {product.is_sustainable && <SustainableIcon color={'#05CE86'} width={28} />}
-                    
+
 
                 </div>
 
@@ -54,11 +54,10 @@ const CardProduct = ({ product, slider, gender }) => {
             </div>
             <div className={`flex flex-wrap justify-between items-center mt-2.5 gap-y-1 ${slider && 'w-40'}`}>
 
-                    <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
-                    {!slider &&
-                        <PriceProduct discount={product.discount} offers={product.offers} />
-                    }
-
+                <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
+                
+                {product.offers && <PriceProduct discount={product.discount} offers={product.offers} />}
+                
             </div>
         </article>
 

@@ -9,15 +9,20 @@ import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
-Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmarc
+Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
 (SaveButton)
  */
 
 export default function LookCard({ look, slider, nome, avatar }) {
   return (
     <div
+<<<<<<< HEAD
       className={`w-full ${
         !slider ? "max-w-[460px]" : slider === true && "w-[160px] min-w-[160px]"
+=======
+      className={`${
+        !slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
+>>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
       } `}
     >
       <Link
@@ -25,9 +30,10 @@ export default function LookCard({ look, slider, nome, avatar }) {
         className="w-full aspect-[17/26] relative flex justify-center items-center"
       >
         <Image
-          src={!slider ? look.url_image : slider === true && look.url_image}
+          src={look.url_image}
           alt="Look da galeria"
           className="object-cover scale-100 rounded"
+          quality={80}
           fill={true}
           quality={5}
         />
@@ -47,12 +53,20 @@ export default function LookCard({ look, slider, nome, avatar }) {
             alt="Look da galeria"
             width={35}
             height={35}
+<<<<<<< HEAD
             quality={5}
+=======
+            quality={30}
+>>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
             className="rounded-full"
           />
 
           <LookUsername
+<<<<<<< HEAD
             slider={true}
+=======
+            slider={slider}
+>>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
             username={!slider ? look.users.name : slider === true && nome}
           />
         </Link>

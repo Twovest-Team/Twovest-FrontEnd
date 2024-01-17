@@ -76,6 +76,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     disabledMain: "bg-grey cursor-default", //para botoes que vao ficar disabled
     secondaryMain: "bg-dark hover:bg-dark_gray", //botoes secundários
     errorMain: "bg-error_main hover:bg-error_dark",
+    galeryMain: "bg-transparent border-white border rounded text-white flex justify-between px-4",
     none: "",
   };
   const sizes = {

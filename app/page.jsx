@@ -1,9 +1,59 @@
+"use client";
+
 import ImageSwiper from "@/components/Carousel/Swiper";
 import { Buttons } from "@/components/buttons/Buttons";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
-import getCategoryName from "@/utils/getCategoryName";
+import getProductsByViews from "@/utils/db/getProductsByViews";
+import getLocalStorage from "@/utils/localStorage/getLocalStorage";
+import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
+import { useEffect, useState } from "react";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
+import { BrandCards } from "@/components/cards/BrandCards";
+import Link from "next/link";
+
+import { LooksHomepage } from "@/components/cards/LooksHomepage";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
+
+
 
 export default function Home() {
+
+
+let gender; 
+
+const [dataPopular, setDataPopular]= useState();
+const [brands, setBrands] = useState();
+const [looks, setLooks] = useState();
+
+if(typeof window !== "undefined"){
+   gender = getLocalStorage("gender");
+}  
+
+useEffect(()=>{
+
+if(!dataPopular && gender && !brands){
+
+  async function getData(){
+    let res = await getProductsByViews(capitalizeFirstLetter((gender)));
+    setDataPopular(res);
+  }
+  async function getBrandsData(){
+  let resp = await getBrandsHomepage();
+  setBrands(resp);
+  
+}
+async function getLooks(){
+  let res= await getLooksForHomepage(capitalizeFirstLetter((gender)));
+  setLooks(res);
+}
+  getData();
+  getBrandsData();
+  getLooks()
+}
+
+}, [])
+
 
 
 
@@ -11,54 +61,44 @@ export default function Home() {
 
     <main className="mb-20">
         
-        <ImageSwiper/>
-        
-      {/* <section className="mt-14 mb-18">
-        <h6 className="font-semibold px-6">Top Categorias</h6>
-        <div className="flex my-4 overflow-auto ml-6">
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded mx-2"></div>
-        </div>
-      </section> */}
+        <ImageSwiper/>      
+       
 
-      <section className="mt-14 mb-18">
+      <section className="mt-14 mb-24">
         <h6 className="font-semibold px-6">Mais Procurados 🔥</h6>
-        <div className="flex my-4 overflow-auto ml-6">
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded mx-2"></div>
+        <div className="flex my-6 overflow-auto">
+          
+          {dataPopular &&
+          <PopularProductsSilder data={dataPopular}/> 
+          }
+
         </div>
       </section>
 
-      <section className="mt-14 mb-18 px-6">
+
+      <section className="mt-14 mb-24 px-6">
         <h6 className="font-semibold mb-4">Marcas</h6>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-grey py-10 px-4"></div>
-          <div className="bg-grey py-10 px-4"></div>
-          <div className="bg-grey py-10 px-4"></div>
-          <div className="bg-grey py-10 px-4"></div>
-        </div>
-        <div className="text-right font-semibold my-3">Ver todas as marcas -&gt;</div>
+        {brands && 
+        <BrandCards data={brands}/>
+        }
+        <Link href={"/brands"} className="text-right font-semibold "><div className="my-3">Ver todas as marcas -&gt;</div></Link>
       </section>
+
+
 
       <section className="mt-14 py-20 text-white bg-black">
-        <h6 className="font-semibold mb-4 px-6">Galeria de Looks</h6>
-        <div className="flex overflow-auto ml-6 mb-4">
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded ml-2"></div>
-          <div className="bg-grey p-20 rounded mx-2"></div>
+        <h6 className="font-semibold mb-6 px-6">Galeria de Looks</h6>
+        <div className="flex overflow-auto mb-4">
+
+        {looks &&
+          <LooksHomepage data={looks}/>
+        }  
+          
         </div>
-        <div className="px-6 pt-3">
+        <div className="px-6 pt-1">
           <p className="mb-4">🔥 Descobre novos looks e inspira-te!</p>
 
-          <Buttons btnState={"galeryMain"} text={"Ir para a Galeria"} icon={"navigateNext"}  btnSize={"modalSize"} />
+          <Link href={`/gallery/${gender}`}><Buttons btnState={"galeryMain"} text={"Ir para a Galeria"} icon={"navigateNext"}  btnSize={"modalSize"} /></Link>
         </div>
       </section>
 

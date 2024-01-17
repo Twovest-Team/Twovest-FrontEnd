@@ -15,6 +15,7 @@ const getLooksForGallery = async (gender) => {
     gender,
     url_image,
     users(
+        id,
         name,
         img
     )

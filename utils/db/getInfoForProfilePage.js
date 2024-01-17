@@ -20,7 +20,7 @@ const getInfoForProfilePage = async (id_user) => {
   const userLooks = await getLookForProfilePage(id_user);
 
   var onlyPrivateCollections = true;
-  if (colecoes.length > 0) {
+  if (colecoes && colecoes.length > 0) {
     data[0].colecoes = colecoes;
     colecoes.map((element) => {
       if (element.collections.privacy != 1) {
@@ -30,7 +30,7 @@ const getInfoForProfilePage = async (id_user) => {
     data[0].onlyPrivateCollections = onlyPrivateCollections;
   }
 
-  if (userLooks.length > 0) {
+  if (userLooks && userLooks.length > 0) {
     data[0].userLooks = userLooks;
   }
 

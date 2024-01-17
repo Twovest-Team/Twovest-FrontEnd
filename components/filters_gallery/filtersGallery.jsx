@@ -3,9 +3,10 @@
 import getAllStyles from "@/utils/db/getAllStyles";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ContentSlider from "../sliders/ContentSlider";
 
-const Filters = ({gender}) => {
-  const [selectedFilter, setSelectedFilter] = useState("Todos");
+const Filters = ({style, gender}) => {
+  const [selectedFilter, setSelectedFilter] = useState(style);
   const [styles, setStyles] = useState([]);
   const router = useRouter();
 
@@ -19,19 +20,25 @@ const Filters = ({gender}) => {
   }, []);
 
   const handleFilterChange = (style) => {
-    setSelectedFilter(style);
+    if(style){
+      setSelectedFilter(style);
+      router.push(`/gallery/${gender}?style=${style}`);
+    }else{
+      setSelectedFilter()
+      router.push(`/gallery/${gender}`);
+    }
 
-    router.push(`/gallery/${gender}?style=${style}`);
+    
   };
 
   return (
-    <div className="filters">
+    <ContentSlider>
       <button
         key="all"
         className={`filter-button ${
-          "Todos" === selectedFilter ? "active" : ""
+          !selectedFilter && "active"
         }`}
-        onClick={() => handleFilterChange("Todos")}
+        onClick={() => handleFilterChange()}
       >
         Todos
       </button>
@@ -39,14 +46,14 @@ const Filters = ({gender}) => {
         <button
           key={filter.id}
           className={`filter-button ${
-            filter.name === selectedFilter ? "active" : ""
+            selectedFilter && selectedFilter === filter.name && "active"
           }`}
           onClick={() => handleFilterChange(filter.name)}
         >
           {filter.name}
         </button>
       ))}
-    </div>
+    </ContentSlider>
   );
 };
 

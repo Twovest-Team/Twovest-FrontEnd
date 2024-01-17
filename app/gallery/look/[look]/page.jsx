@@ -22,7 +22,6 @@ const Look = async ({ params }) => {
     productsQty = data.products.length
   }
   
-  const gender = params.gender
 
   return (
 
@@ -70,7 +69,7 @@ const Look = async ({ params }) => {
                 </div>
 
                 <ItemsBox fixedView={2}>
-                  {data.products.map(product => <CardProduct product={product} gender={gender} />)}
+                  {data.products.map(product => <CardProduct key={product.id} product={product} gender={product.gender} />)}
                 </ItemsBox>
 
               </>

@@ -1,6 +1,6 @@
-import Image from "next/image";
-import PontosEntregaIcons from "/public/images/icons/pontosdeentrega.svg";
 import Link from "next/link";
+import { IconPontosDeEntrega } from "../items/IconPontosDeEntrega";
+
 
 const PontosDeEntregaCard = () => {
     return (
@@ -15,7 +15,7 @@ const PontosDeEntregaCard = () => {
                 </Link>
 
                 <div className='bg-black absolute -top-10 left-1/2 -translate-x-1/2 text-white rounded-full w-20 aspect-square flex items-center justify-center'>
-                    <Image src={PontosEntregaIcons} width={30} height={30} alt="icon pontos de entrega" />
+                    <IconPontosDeEntrega alt="icon pontos de entrega" />
                 </div>
             </div>
 

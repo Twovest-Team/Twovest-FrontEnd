@@ -9,6 +9,8 @@ import applyPriceDiscount from "@/utils/applyPriceDiscount";
 import removeFromCart from "@/utils/db/cart/removeFromCart";
 import { useDispatch } from "react-redux";
 import { updateCart } from "@/redux/slices/cartProducts";
+import { toggleCart } from "@/redux/slices/cartToggle";
+import { useAppSelector } from "@/redux/hooks";
 
 export const CardCart = ({
   handleShowDeleteNotification,
@@ -17,14 +19,12 @@ export const CardCart = ({
   handleLoading,
 }) => {
   const dispatch = useDispatch();
+  const isCartOpen = useAppSelector(state => state.cartToggle.isOpen)
   const categoryName = categories.find(
     (element) => element.id === data.offers.products.categories.id
   ).singular;
   const discount = data.offers.products.discount;
 
-  const handleClickMenu = () => {
-    dispatch(toggleMenu());
-  };
 
   async function handleDeleteProduct() {
     handleLoading(true);
@@ -36,14 +36,19 @@ export const CardCart = ({
     }
   }
 
+  function handleToggleCart(){
+    if(isCartOpen){
+      dispatch(toggleCart())
+    }
+  }
+
   return (
     <article className="py-12 border-b border-grey">
       <div className="flex self-center items-center w-full">
         <Link
-          href={`/product/${data.offers.products.gender.toLowerCase()}/${
-            data.offers.products.id
-          }`}
-          onClick={() => handleClickMenu()}
+          onClick={() => handleToggleCart()}
+          href={`/product/${data.offers.products.gender.toLowerCase()}/${data.offers.products.id}`}
+
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image
@@ -78,18 +83,15 @@ export const CardCart = ({
 
               <p
                 className={`caption
-                                ${
-                                  data.offers.conditions.id === 1 &&
-                                  "text-primary_main"
-                                }
-                                ${
-                                  data.offers.conditions.id === 2 &&
-                                  "text-info_main"
-                                }
-                                ${
-                                  data.offers.conditions.id === 3 &&
-                                  "text-warning_main"
-                                }
+                                ${data.offers.conditions.id === 1 &&
+                  "text-primary_main"
+                  }
+                                ${data.offers.conditions.id === 2 &&
+                  "text-info_main"
+                  }
+                                ${data.offers.conditions.id === 3 &&
+                  "text-warning_main"
+                  }
                             `}
               >
                 {data.offers.conditions.name}

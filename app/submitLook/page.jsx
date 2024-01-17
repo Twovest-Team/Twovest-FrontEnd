@@ -2,19 +2,25 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import React, { useState, useEffect } from "react";
+
 export default function LookSubmission() {
   const [timer, setTimer] = useState(5);
   const [buttonColor, setButtonColor] = useState("disabledMain");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer(timer > 0 ? timer - 1 : 0);
+      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
     }, 1000);
     if (timer === 0) {
       setButtonColor("defaultMain");
     }
     return () => clearInterval(interval);
   }, [timer]);
+
+  const handleButtonClick = () => {
+    window.location.href = "/formLook";
+  };
+
   return (
     <>
       <NavigationTitle titleText="Submissão de look" className="titlenav" />
@@ -47,7 +53,7 @@ export default function LookSubmission() {
                   <br />
                 </span>
               </div>
-              <div className=" w-full">
+              <div className=" w-full" onClick={handleButtonClick}>
                 <Buttons
                   btnState={buttonColor}
                   text={`Compreendi (${timer})`}

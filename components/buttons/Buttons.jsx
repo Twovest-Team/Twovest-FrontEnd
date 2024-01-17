@@ -80,6 +80,7 @@ import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
 import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
 import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
 import Image from "next/image";
+
 export const Buttons = ({ btnState, text, icon, btnSize }) => {
   const StyledState = {
     defaultMain: "bg-primary_main hover:bg-primary_dark", //verde normal, com over (default o mais usado)

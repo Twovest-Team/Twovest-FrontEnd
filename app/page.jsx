@@ -79,7 +79,7 @@ async function getLooks(){
       <section className="mt-14 mb-24 px-6">
         <h6 className="font-semibold mb-4">Marcas</h6>
         {brands && 
-        <BrandCards data={brands}/>
+        <BrandCards data={brands} gender={gender}/>
         }
         <Link href={"/brands"} className="text-right font-semibold "><div className="my-3">Ver todas as marcas -&gt;</div></Link>
       </section>

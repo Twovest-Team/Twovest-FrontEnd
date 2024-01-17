@@ -16,13 +16,8 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 export default function LookCard({ look, slider, nome, avatar }) {
   return (
     <div
-<<<<<<< HEAD
-      className={`w-full ${
-        !slider ? "max-w-[460px]" : slider === true && "w-[160px] min-w-[160px]"
-=======
       className={`${
         !slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
->>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
       } `}
     >
       <Link
@@ -35,7 +30,6 @@ export default function LookCard({ look, slider, nome, avatar }) {
           className="object-cover scale-100 rounded"
           quality={80}
           fill={true}
-          quality={5}
         />
         {!slider ? (
           <LookUpvoteButton upvotes={look.upvotes} />
@@ -53,20 +47,12 @@ export default function LookCard({ look, slider, nome, avatar }) {
             alt="Look da galeria"
             width={35}
             height={35}
-<<<<<<< HEAD
-            quality={5}
-=======
             quality={30}
->>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
             className="rounded-full"
           />
 
           <LookUsername
-<<<<<<< HEAD
-            slider={true}
-=======
             slider={slider}
->>>>>>> c7061f8aff9622aa0c34c205661ffbf38889b3da
             username={!slider ? look.users.name : slider === true && nome}
           />
         </Link>

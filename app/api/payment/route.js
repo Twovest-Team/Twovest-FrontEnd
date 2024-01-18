@@ -5,7 +5,7 @@ export async function POST(request){
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     let data = await request.json();
     //let priceId = data.priceId;
-    console.log(data)
+    //console.log(data)
     const session = await stripe.checkout.sessions.create({
     line_items: data,
     mode: "payment",

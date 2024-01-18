@@ -16,7 +16,7 @@ export default function CollectionPreview({ collection, userId }) {
   const looks = collection.looks;
   const looksLength = looks.length;
 
-  console.log(looks.length)
+  //console.log(looks.length)
   let previewLookCards = []
   if (looks.length > 0) {
     for (let i = 0; i < 3; i++) {

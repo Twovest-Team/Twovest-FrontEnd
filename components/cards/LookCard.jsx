@@ -7,6 +7,8 @@ import SaveButton from "../buttons/icons/SaveButton";
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
 import Link from "next/link";
+import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
+
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
@@ -15,52 +17,53 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 
 export default function LookCard({ look, slider, nome, avatar }) {
   return (
-    <div
-      className={`${
-        !slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
-      } `}
-    >
-      <Link
-        href={`/gallery/look/${look.id}`}
-        className="w-full aspect-[17/26] relative flex justify-center items-center"
+    <>
+      <div
+        className={`${!slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
+          } `}
       >
-        <Image
-          src={look.url_image}
-          alt="Look da galeria"
-          className="object-cover scale-100 rounded"
-          quality={5}
-          fill={true}
-        />
-        {!slider ? (
-          <LookUpvoteButton upvotes={look.upvotes} />
-        ) : (
-          slider === true && null
-        )}
-      </Link>
-      <div className="flex flex-wrap justify-between items-center">
         <Link
-          href={`/profile/${look.users.id}`}
-          className="flex gap-2  min-w-0 items-center mt-3.5"
+          href={`/gallery/look/${look.id}`}
+          className="w-full aspect-[17/26] relative flex justify-center items-center"
         >
           <Image
-            src={!slider ? look.users.img : slider === true && avatar}
+            src={look.url_image}
             alt="Look da galeria"
-            width={35}
-            height={35}
-            quality={30}
-            className="rounded-full"
+            className="object-cover scale-100 rounded"
+            quality={5}
+            fill={true}
           />
-
-          <LookUsername
-            slider={slider}
-            username={!slider ? look.users.name : slider === true && nome}
-          />
+          {!slider ? (
+            <LookUpvoteButton upvotes={look.upvotes} />
+          ) : (
+            slider === true && null
+          )}
         </Link>
+        <div className="flex flex-wrap justify-between items-center">
+          <Link
+            href={`/profile/${look.users.id}`}
+            className="flex gap-2  min-w-0 items-center mt-3.5"
+          >
+            <Image
+              src={!slider ? look.users.img : slider === true && avatar}
+              alt="Look da galeria"
+              width={35}
+              height={35}
+              quality={30}
+              className="rounded-full"
+            />
 
-        <div className="mt-3.5">
-          {!slider ? <SaveButton /> : slider === true && null}
+            <LookUsername
+              slider={slider}
+              username={!slider ? look.users.name : slider === true && nome}
+            />
+          </Link>
+
+          {/* <div className="mt-3.5">
+            {!slider ? <SaveButton /> : slider === true && null}
+          </div> */}
         </div>
       </div>
-    </div>
+    </>
   );
 }

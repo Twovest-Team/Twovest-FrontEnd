@@ -247,9 +247,9 @@ const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId
             let data = await createCollection(name, privacy, lookId, userId, true)
 
             if (data) {
-                console.log(data)
                 handleCloseModal()
                 setLoading(false)
+                //console.log(data)
             }
         }
 

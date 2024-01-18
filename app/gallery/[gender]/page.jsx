@@ -27,11 +27,11 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </NavigationTitle>
 
-      <div className="mt-3">
+      <div className="mt-4">
         <Filters style={style} gender={gender} />
       </div>
 
-      <div className="flex justify-between container mt-3 mb-6">
+      <div className="flex justify-between container mt-4 mb-6">
         <Views className="view" />
         <button className="submit w-full min-[350px]:w-fit">
           Submeter Look

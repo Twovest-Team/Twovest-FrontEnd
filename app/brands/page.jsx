@@ -15,7 +15,6 @@ const Brands = async () => {
       <NavigationTitle titleText={'Marcas'} />
 
       <div className='container flex flex-col gap-6 mb-10'>
-
           
         <BrandsList brandsData={data} />
     

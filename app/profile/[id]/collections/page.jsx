@@ -4,6 +4,7 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import CollectionPreview from "@/components/items/CollectionPreview";
 import SearchIcon from "@mui/icons-material/Search";
+import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
 // Lista de coleções de um utilizador
 const Collections = async ({ params }) => {
@@ -39,7 +40,7 @@ const Collections = async ({ params }) => {
           collectionOwnerId={collectionOwnerId}
         />
         :
-        <p>No data...</p>
+        <NoDataComponent text={'Utilizador não tem coleções'} />
       }
 
     </main>

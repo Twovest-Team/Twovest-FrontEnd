@@ -125,6 +125,8 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
 
   let collectionsToShow;
 
+  console.log(data[0].colecoes)
+
   if (data[0].colecoes) {
     collectionsToShow = data[0].colecoes
 
@@ -135,16 +137,18 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
     }
   }
 
+  
+
   return (
     <>
 
-      {isOwnProfile && !collectionsToShow &&
+      {isOwnProfile && !collectionsToShow  || isOwnProfile && collectionsToShow.length === 0 &&
         <div className="text-secondary">
           Ainda não criaste nenhuma coleção.
         </div>
       }
 
-      {!isOwnProfile && !collectionsToShow &&
+      {!isOwnProfile && !collectionsToShow || !isOwnProfile && collectionsToShow.length === 0 &&
         <div className="text-secondary">
           {userFirstName} não tem coleções disponíveis.
         </div>

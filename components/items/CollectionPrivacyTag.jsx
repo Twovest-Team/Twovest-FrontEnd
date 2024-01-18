@@ -8,8 +8,6 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 export default function CollectionPrivacyTag({ privacy, users }) {
 
   let userImages = []
-  console.log(users)
-  console.log(privacy)
   if (users) {
 
     for (let i = 0; i < users.length; i++) {

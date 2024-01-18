@@ -1,10 +1,10 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-const saveLookToCollection = async (collectionId, lookId) => {
+const associateUserToCollection = async (collectionId, userId, isAdmin) => {
     const supabase = createClientComponentClient();
     const { data, error } = await supabase
-        .from('collections_has_looks')
-        .insert({ id_collection: collectionId, id_look: lookId })
+        .from('collections_has_users')
+        .insert({ id_collection: collectionId, id_user: userId, is_admin: isAdmin })
         .select()
 
     if(error){
@@ -15,4 +15,4 @@ const saveLookToCollection = async (collectionId, lookId) => {
 
 }
 
-export default saveLookToCollection 
+export default associateUserToCollection 

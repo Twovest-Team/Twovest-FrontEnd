@@ -1,7 +1,7 @@
 import { supabase } from "@/utils/db/supabase";
 import getProductById from "./getProductById";
 
-const getLookProducts = async () => {
+const getLookProducts = async (id, gender) => {
   const { data, error } = await supabase
     .from("looks_has_products")
     .select(
@@ -23,7 +23,6 @@ const getLookProducts = async () => {
 
   );
 
-  console.log(transformedData)
   transformedData = transformedData.filter((element) => element !== undefined);
 
   if (transformedData.length > 0) {

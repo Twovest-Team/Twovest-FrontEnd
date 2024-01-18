@@ -37,7 +37,7 @@ const BuyButton = ({ offerId }) => {
     return (
         <>
             <button disabled={isClicked ? true : false} onClick={handleClick} className="bg-primary_main text-white w-12 h-12 rounded flex justify-center items-center">
-                {!loading ? <LocalMallOutlinedIcon /> : <span className='scale-[60%] translate-y-0.5'><LoadingIcon /></span>}
+                {!loading ? <LocalMallOutlinedIcon /> : <LoadingIcon size={22} />}
             </button>
 
             {isClicked && <Notifications type={'Success'} message={'Artigo adicionado'} />}

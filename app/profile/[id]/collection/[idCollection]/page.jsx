@@ -10,6 +10,9 @@ import { Buttons } from "@/components/buttons/Buttons";
 import ItemsBox from "@/components/providers/ItemsBox";
 import Views from "@/components/providers/Views";
 import CollectionPrivacyTag from "@/components/items/CollectionPrivacyTag";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import Link from "next/link";
+
 
 // Coleção específica de um utilizador
 const Collection = async ({ params }) => {
@@ -18,17 +21,18 @@ const Collection = async ({ params }) => {
   const collectionOwnerId = params.id
   const collectionId = params.idCollection
   let isOwnCollection = false;
-
-  if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
-    isOwnCollection = true;
-  }
-
   const data = await getInfoForCollectionPage(collectionId, collectionOwnerId);
   const privacy = data[0].privacy
 
+  //Este verificação deve incluir coleções partilhadas no futuro.
+  if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
+    isOwnCollection = true;
+  }else if (currentUser && collectionOwnerId != currentUser.id && privacy == 1 || !currentUser && privacy == 1){
+    redirect('/')
+  }
 
   return (
-    <>
+    <main className="h-screen overflow-y-auto flex flex-col">
       <NavigationTitle titleText={data[0].name}>
         <div className="flex gap-4 items-center">
           {isOwnCollection ? <CreateOutlinedIcon /> : null}
@@ -38,25 +42,35 @@ const Collection = async ({ params }) => {
 
       <div className="container flex items-center justify-between h-7 mb-6">
         <div className="flex-grow">
-        <Views />
+          <Views />
         </div>
 
         {privacy == 3 && <CollectionPrivacyTag users={data[0].collectionUsers} privacy={privacy} />}
-      
+
 
       </div>
 
-      <ItemsBox fixedView={2}>
-        {data && data[0].looks && data[0].looks.map(look => (
-          <LookCard
-            key={look.id_look}
-            look={look.looks}
-            nome={look.userLook[0].name}
-            avatar={look.userLook[0].img}
-          />
-        ))}
-      </ItemsBox>
-    </>
+      {data && data[0].looks ?
+        <ItemsBox fixedView={2}>
+          {data[0].looks.map(look => (
+            <LookCard
+              key={look.id_look}
+              look={look.looks}
+              nome={look.userLook[0].name}
+              avatar={look.userLook[0].img}
+            />
+          ))}
+        </ItemsBox>
+        :
+        <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
+          <BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
+          <h6 className="font-semibold">Coleção sem looks</h6>
+          <p className="text-center text-secondary mb-4">Vai à descoberta de novos looks<br /> e inspira-te.</p>
+          <Link href={"/login"} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Ir para a Galeria</Link>
+        </div>
+      }
+
+    </main>
   )
 };
 

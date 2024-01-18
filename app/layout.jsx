@@ -15,7 +15,6 @@ import GenderDetection from "@/components/providers/GenderDetection";
 import LastProductsSeen from "@/components/sections/LastProductsSeen";
 import { Cart } from "@/components/navbar/Cart";
 import { SideMenu } from "@/components/navbar/SideMenu";
-import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 
 export default function RootLayout({ children }) {
   return (

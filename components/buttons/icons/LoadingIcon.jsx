@@ -1,8 +1,10 @@
 import CircularProgress from '@mui/material/CircularProgress';
 
-const LoadingIcon = () => {
+const LoadingIcon = ({size}) => {
   return (
-    <CircularProgress color="inherit" thickness={5} />
+    <span className='translate-y-1'>
+      <CircularProgress size={`${size ? size : '18'}px`} color="inherit" thickness={5} />
+    </span>
   )
 }
 

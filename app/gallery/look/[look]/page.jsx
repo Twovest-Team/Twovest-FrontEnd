@@ -10,7 +10,7 @@ import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 // Exemplo: twovest.com/gallery/mulher/253  <-id do look
 const Look = async ({ params }) => {
@@ -84,9 +84,11 @@ const Look = async ({ params }) => {
           </div>
         </section>
       </main>
-
+      
       <SaveToCollectionModal lookId={lookId} />
     </>
+  )
 
+}
 
 export default Look;

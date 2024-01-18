@@ -15,6 +15,8 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
 
+export const revalidate = 0
+
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params }) => {
 
@@ -69,12 +71,16 @@ const Profile = async ({ params }) => {
       </div>
 
       {data &&
-        <ProfileCollections
-          userId={urlId}
-          data={data}
-          isOwnProfile={isOwnProfile}
-          userFirstName={userFirstName}
-        />
+        <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
+          <h6 className="font-semibold">Coleções de Looks</h6>
+          <ProfileCollections
+            userId={urlId}
+            data={data}
+            isOwnProfile={isOwnProfile}
+            userFirstName={userFirstName}
+          />
+        </div>
+
       }
 
 
@@ -100,12 +106,12 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
           ))}
         </ContentSlider>
       ) : isOwnProfile ? (
-        <div className="container font-semibold text-secondary">
+        <div className="container text-secondary">
           {" "}
           Ainda não adicionaste nenhum look à tua galeria
         </div>
       ) : (
-        <div className="container font-semibold text-secondary">
+        <div className="container text-secondary">
           {" "}
           {userFirstName} ainda não adicionou nenhum look à sua galeria
         </div>
@@ -117,40 +123,40 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
 
 async function ProfileCollections({ data, isOwnProfile, userFirstName, userId }) {
 
+  let collectionsToShow;
 
-  let collectionsToShow = data[0].colecoes
+  if (data[0].colecoes) {
+    collectionsToShow = data[0].colecoes
 
-  if (!isOwnProfile) {
-    collectionsToShow = collectionsToShow.filter(collection => (
-      collection.collections.privacy == 2 && collection.is_admin === true
-    ))
+    if (!isOwnProfile) {
+      collectionsToShow = collectionsToShow.filter(collection => (
+        collection.collections.privacy == 2 && collection.is_admin === true
+      ))
+    }
   }
 
-
-
   return (
-    <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
-      <h6 className="font-semibold">Coleções de Looks</h6>
+    <>
 
-      {isOwnProfile && collectionsToShow.length === 0 &&
+      {isOwnProfile && !collectionsToShow &&
         <div className="text-secondary">
           Ainda não criaste nenhuma coleção.
         </div>
       }
 
-      {!isOwnProfile && collectionsToShow.length === 0 &&
+      {!isOwnProfile && !collectionsToShow &&
         <div className="text-secondary">
           {userFirstName} não tem coleções disponíveis.
         </div>
       }
 
-      {collectionsToShow.length > 0 &&
+      {collectionsToShow && collectionsToShow.length > 0 &&
         <>
           <button className="profile_search-collections">
             <SearchIcon />
             Procurar coleções
           </button>
-          {collectionsToShow.slice(0, 4).map((element) => (
+          {collectionsToShow.slice(0, 3).map((element) => (
             <CollectionPreview
               userId={userId}
               collection={element}
@@ -168,7 +174,7 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
         </>
       }
 
-    </div>
+    </>
 
   );
 }

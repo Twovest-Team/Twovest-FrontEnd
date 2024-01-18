@@ -43,11 +43,6 @@ const getUserCollections = async (userId) => {
         console.log(error)
     }
 
-    console.log(data)
-
-
-
-
 }
 
 export default getUserCollections

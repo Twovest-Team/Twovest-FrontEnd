@@ -3,12 +3,9 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
-import { changeUserData } from "@/redux/slices/userSlice";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
-import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
 
 

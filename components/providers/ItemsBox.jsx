@@ -14,7 +14,7 @@ const ItemsBox = ({children, fixedView}) => {
   }
 
   useEffect(() => {
-    console.log(currentView)
+    //console.log(currentView)
   }, [currentView])
   
 

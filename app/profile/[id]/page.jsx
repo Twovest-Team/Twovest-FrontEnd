@@ -128,7 +128,7 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
 
   let collectionsToShow;
 
-  console.log(data[0].colecoes)
+  //console.log(data[0].colecoes)
 
   if (data[0].colecoes) {
     collectionsToShow = data[0].colecoes

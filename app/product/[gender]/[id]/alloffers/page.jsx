@@ -8,7 +8,7 @@ export default async function Alloffers({ params }) {
   const productGender = capitalizeFirstLetter(params.gender);
   const result = await Ofertas(productId, productGender);
 
-  console.log("Fetched result:", result);
+  //console.log("Fetched result:", result);
   return (
     <div>
       <NavigationTitle titleText="Offers" className="titlenav" />

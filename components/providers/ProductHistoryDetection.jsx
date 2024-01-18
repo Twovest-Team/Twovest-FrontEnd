@@ -35,7 +35,7 @@ const ProductHistoryDetection = ({ children, productId }) => {
         let oldestProductAdded = currentUserHistory.slice(-1)[0];
         let doesHistoryChanged = false
 
-        console.log('valida!')
+        //console.log('valida!')
 
         if (isIdInCurrentUserHistory) {
             if (productId !== currentUserHistory[0].products.id) {

@@ -19,9 +19,11 @@ const GenderDetection = ({ children }) => {
       setLocalStorage('gender', params.gender)
     }
 
-    console.log(pathname.includes("gallery/look"))
+    //console.log(pathname.includes("gallery/look"))
     if(!gender && pathname === '/' || !gender && pathname === '/login' || !gender && pathname === '/register' && !gender && pathname === '/brands' || !gender && pathname.includes("gallery/look")){
       router.push('/landing')
+    }else if(gender && pathname === '/landing'){
+      router.push("/");
     }
 
   }, [params.gender, pathname, router])

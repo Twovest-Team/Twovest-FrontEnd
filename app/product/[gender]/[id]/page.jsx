@@ -12,7 +12,7 @@ import ProductSkeleton from "@/components/loadingSkeletons/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 
-export const revalidate = 30;
+export const revalidate = 60;
 
 export default async function Product({ params }) {
   const productId = params.id;

@@ -53,6 +53,7 @@ const SaveToCollectionModal = ({ lookId }) => {
     }
 
     function handleCloseModal() {
+        console.log('fecha')
         setModalStatus(allModalStatus[0])
         dispatch(toggleLookModalToggle())
         router.refresh()
@@ -96,6 +97,7 @@ const SaveToCollectionModal = ({ lookId }) => {
                                 setModalStatus={setModalStatus}
                                 lookId={lookId}
                                 userId={currentUser.id}
+                                handleCloseModal={handleCloseModal}
                             />
                         }
 
@@ -230,13 +232,14 @@ const CollectionButton = ({ collection, lookId, getData }) => {
     )
 }
 
-const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId, userId }) => {
+const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId, userId, handleCloseModal }) => {
 
     const [name, setName] = useState('')
     let [privacy, setPrivacy] = useState(1)
     const [loading, setLoading] = useState(false)
 
     function handleCreateCollection(e) {
+        
         e.preventDefault()
 
         async function createCollectionAndSaveLook() {
@@ -244,10 +247,10 @@ const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId
             let data = await createCollection(name, privacy, lookId, userId, true)
 
             if (data) {
+                handleCloseModal()
+                setLoading(false)
                 //console.log(data)
             }
-
-            setLoading(false)
         }
 
         if (!loading) {

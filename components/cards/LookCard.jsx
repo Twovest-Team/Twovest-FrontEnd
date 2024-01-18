@@ -28,7 +28,7 @@ export default function LookCard({ look, slider, nome, avatar }) {
           src={look.url_image}
           alt="Look da galeria"
           className="object-cover scale-100 rounded"
-          quality={80}
+          quality={5}
           fill={true}
         />
         {!slider ? (

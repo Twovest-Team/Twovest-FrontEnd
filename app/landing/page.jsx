@@ -27,7 +27,7 @@ export default function Landing() {
 
       return (
     <div className="container h-screen">
-      <div className="items-start text-center my-8 space-y-8">
+      <div className="items-start text-center my-2 space-y-2">
 
         {categories.map(element => (
           <button key={element.gender} onClick={() => handleClick(element.gender)} className="relative">
@@ -35,8 +35,8 @@ export default function Landing() {
               src={element.image}
               alt={`Modelo ${element.gender} da Twovest.`}
               priority
-              width={338}
-              height={334}
+              width={278}
+              height={274}
             />
             <h3 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-semibold capitalize">{element.gender}</h3>
           </button>

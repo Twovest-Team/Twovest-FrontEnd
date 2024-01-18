@@ -61,7 +61,7 @@ export const Cart = () => {
   return (
     <div
       className={`${isCartOpen ? "translate-y-0" : "-translate-y-full block"}
-        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto h-[100vh] fixed top-0 transition-transform duration-300 ease-in-out`}
+        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto h-screen fixed top-0 transition-transform duration-300 ease-in-out`}
     >
       <div className="flex justify-between items-center border-b border-grey">
         <div className="flex h-[72px] justify-between container items-center">
@@ -147,7 +147,7 @@ export const Cart = () => {
       </div>
 
       {products.length > 0 && currentUser && (
-        <div className=" w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container">
+        <div className=" w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container pb-4">
           <div className="flex my-6 justify-between">
             <div>
               <h6 className="font-semibold">

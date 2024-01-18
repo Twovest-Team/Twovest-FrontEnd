@@ -6,10 +6,13 @@ import ModeloMulher from "@/public/images/landing_page/landing_mulher.png";
 import { useRouter } from "next/navigation";
 import handleGender from "@/utils/handleGender";
 
+import getLocalStorage from "@/utils/localStorage/getLocalStorage";
+
 // Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
 export default function Landing() {
 
   const router = useRouter()
+
 
   let categories = [
     { gender: 'mulher', image: ModeloMulher },
@@ -20,9 +23,10 @@ export default function Landing() {
     handleGender(gender)
     router.back()
   }
-  
-  return (
-    <div className="container">
+
+
+      return (
+    <div className="container h-screen">
       <div className="items-start text-center my-8 space-y-8">
 
         {categories.map(element => (
@@ -41,4 +45,6 @@ export default function Landing() {
       </div>
     </div>
   );
+
+
 }

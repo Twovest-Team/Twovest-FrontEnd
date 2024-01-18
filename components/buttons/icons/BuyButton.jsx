@@ -7,6 +7,7 @@ import { updateCart } from '@/redux/slices/cartProducts';
 import { useState } from 'react';
 import Notifications from '@/components/modals/Notifications';
 import LoadingIcon from './LoadingIcon';
+import { useRouter } from 'next/navigation';
 
 const BuyButton = ({ offerId }) => {
 
@@ -14,6 +15,7 @@ const BuyButton = ({ offerId }) => {
     const currentUser = useAppSelector(state => state.user.data)
     const [isClicked, setIsClicked] = useState(false)
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     async function handleClick() {
         if (currentUser) {
@@ -27,13 +29,15 @@ const BuyButton = ({ offerId }) => {
                 }, 3200)
                 dispatch(updateCart(response))
             }
+        }else{
+            router.push('/login')
         }
     }
 
     return (
         <>
             <button disabled={isClicked ? true : false} onClick={handleClick} className="bg-primary_main text-white w-12 h-12 rounded flex justify-center items-center">
-                {!loading ? <LocalMallOutlinedIcon /> : <span className='scale-[60%] translate-y-0.5'><LoadingIcon /></span>}
+                {!loading ? <LocalMallOutlinedIcon /> : <LoadingIcon size={22} />}
             </button>
 
             {isClicked && <Notifications type={'Success'} message={'Artigo adicionado'} />}

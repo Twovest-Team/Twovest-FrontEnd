@@ -2,165 +2,71 @@ import Image from "next/image";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
-//Botão que mostra a privacidade ca card de coleção. Pode assumir 3 estados (pública, privada ou partilhada)
-// Se partilhada, assume 4 estados diferentes, mediante o número de utilizadores (min 1, max 4)
+//Botão que mostra a privacy da card de coleção. Pode assumir 3 estados (pública, privada ou partilhada)
+// Se partilhada, assume 4 estados diferentes, mediante o número de users (min 1, max 4)
 
-export default function CollectionPrivacyTag({privacidade, utilizadores}) {
+export default function CollectionPrivacyTag({ privacy, users }) {
 
-  const numeroDeUtilizadores = utilizadores.length;
+  let userImages = []
+  if (users) {
 
-  if (privacidade == 1) {
+    for (let i = 0; i < users.length; i++) {
+
+      let leftPosition;
+
+      switch (i) {
+        case 0:
+          leftPosition = 67.59
+          break;
+        case 1:
+          leftPosition = 45.06
+          break;
+        case 2:
+          leftPosition = 22.53
+          break;
+        case 3:
+          leftPosition = 0
+          break;
+      }
+
+      userImages.push(
+        <Image
+          src={users[i].users.img}
+          alt="Look da coleção"
+          width={35}
+          height={35}
+          quality={40}
+          className={`rounded-full left-[${leftPosition}px] border-2 absolute bottom-0 border-white object-cover`}
+          key={users[i].id_user}
+        />
+      )
+    }
+  }
+
+  if (privacy == 1) {
     return (
-      <div className="w-[100px] h-[30px] bg-grey_opacity_50 rounded-[100px] justify-center items-center inline-flex">
+      <div className="py-2 pl-2 pr-3 w-fit bg-grey_opacity_50 rounded-full justify-center items-center inline-flex">
         <LockOutlinedIcon className="h-[13px] text-secondary" />
         <p className="caption text-secondary">Privada</p>
       </div>
     );
-  } else if (privacidade == 2) {
+  } else if (privacy == 2) {
     return (
-      <div className="w-[100px] h-[30px] bg-grey_opacity_50 rounded-[100px] justify-center items-center inline-flex">
+      <div className="py-2 pl-2 pr-3 w-fit bg-grey_opacity_50 rounded-full justify-center items-center inline-flex">
         <PublicOutlinedIcon className="h-[13px] text-secondary" />
         <p className="caption text-secondary">Pública</p>
       </div>
     );
-  } else if (privacidade == 3) {
-    if (numeroDeUtilizadores >= 4) {
+  } else if (privacy == 3 && users) {
+    return (
+      <div className={`flex gap-2 relative w-[100px] h-[35px]`}>
+        {userImages}
+      </div>
 
-        const ultimosUtilizadores = utilizadores.slice(-4);
-        const Utilizador1 = ultimosUtilizadores[0];
-        const Utilizador2 = ultimosUtilizadores[1];
-        const Utilizador3 = ultimosUtilizadores[2];
-        const Utilizador4 = ultimosUtilizadores[3];
-    
-        return (
-          <div className="w-[100px] h-[30px] relative">
-            <Image
-              src={Utilizador1.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-[68px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador1.id_user}
-            />
-            <Image
-              src={Utilizador2.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador2.id_user}
-            />
-            <Image
-              src={Utilizador3.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-[23px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador3.id_user}
-            />
-            <Image
-              src={Utilizador4.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador4.id_user}
-            />
-          </div>
-        );
-      } else if (numeroDeUtilizadores == 3) {
-        const Utilizador1 = utilizadores[0];
-        const Utilizador2 = utilizadores[1];
-        const Utilizador3 = utilizadores[2];
-    
-        return (
-          <div className="w-[100px] h-[30px] relative">
-            <Image
-              src={Utilizador1.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className=" left-[45px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador1.id_user}
-            />
-            <Image
-              src={Utilizador2.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-[23px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador2.id_user}
-            />
-            <Image
-              src={Utilizador3.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador3.id_user}
-            />
-          </div>
-        );
-      } else if (numeroDeUtilizadores == 2) {
-        const Utilizador1 = utilizadores[0];
-        const Utilizador2 = utilizadores[1];
-    
-        return (
-          <div className="w-[100px] h-[30px] relative">
-            <Image
-              src={Utilizador1.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-[23px] top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador1.id_user}
-            />
-            <Image
-              src={Utilizador2.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador2.id_user}
-            />
-          </div>
-        );
-      } else if (numeroDeUtilizadores == 1) {
-        const Utilizador1 = utilizadores[0];
-    
-        return (
-          <div className="w-[100px] h-[30px] relative">
-            <Image
-              src={Utilizador1.users.img}
-              alt="Look da coleção"
-              width={30}
-              height={30}
-              quality={40}
-              style={{ width: "30px", height: "30px", objectFit: "cover" }}
-              className="left-0 top-0 absolute rounded-full border-2 border-white"
-              key={Utilizador1.id_user}
-            />
-          </div>
-        );
-      }
+
+    )
+
+
   }
 }
 

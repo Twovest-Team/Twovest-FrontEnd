@@ -2,7 +2,7 @@ import React from "react";
 import AutoModeOutlinedIcon from "@mui/icons-material/AutoModeOutlined";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
-function VoteCount() {
+function ProfileScores() {
   const totalClothes = 5;
   const accumulatedPoints = 331;
 
@@ -32,4 +32,4 @@ function VoteCount() {
   );
 }
 
-export default VoteCount;
+export default ProfileScores;

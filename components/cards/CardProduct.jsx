@@ -15,7 +15,7 @@ const CardProduct = ({ product, slider, gender }) => {
 
             <div className='w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center'>
 
-                <Link href={`/product/${gender}/${product.id}`}>
+                <Link href={`/product/${gender.toLowerCase()}/${product.id}`}>
                     <Image
                         src={product.images[0].url}
                         alt={product.images[0].alt}

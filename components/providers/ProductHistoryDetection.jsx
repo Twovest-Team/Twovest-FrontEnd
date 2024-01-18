@@ -18,15 +18,15 @@ const ProductHistoryDetection = ({ children, productId }) => {
     let [isHistoryValidated, setIsHistoryValidated] = useState(false)
 
     async function addProduct() {
-        addToLastProductsSeen(productId, currentUser.email)
+        await addToLastProductsSeen(productId, currentUser.email)
     }
 
     async function deleteProduct(oldestProductAdded) {
-        removeFromUserHistory(oldestProductAdded.products.id, currentUser.email)
+        await removeFromUserHistory(oldestProductAdded.products.id, currentUser.email)
     }
 
     async function updateProductsArray() {
-        orderUserHistory(productId, currentUser.email)
+        await orderUserHistory(productId, currentUser.email)
     }
 
 
@@ -39,19 +39,19 @@ const ProductHistoryDetection = ({ children, productId }) => {
 
         if (isIdInCurrentUserHistory) {
             if (productId !== currentUserHistory[0].products.id) {
-                updateProductsArray();
+                await updateProductsArray();
             }
             doesHistoryChanged = true
         }
 
         if (!isIdInCurrentUserHistory && currentUserHistory.length < historyMaxLength) {
-            addProduct();
+            await addProduct();
             doesHistoryChanged = true
         }
 
         if (!isIdInCurrentUserHistory && currentUserHistory.length === historyMaxLength) {
             deleteProduct(oldestProductAdded);
-            addProduct();
+            await addProduct();
             doesHistoryChanged = true
         }
 
@@ -63,17 +63,10 @@ const ProductHistoryDetection = ({ children, productId }) => {
         }
     }
 
-    // useEffect(() => {
-
-    //     if (currentUserHistory != null) {
-    //         return () => validateUserHistory();
-    //     }
-
-    // }, [currentUserHistory]);
 
     useEffect(() => {
 
-        if (currentUserHistory != null && !isHistoryValidated) {
+        if (currentUserHistory != null && !isHistoryValidated && currentUser) {
             validateUserHistory()
             setIsHistoryValidated(true)
         }

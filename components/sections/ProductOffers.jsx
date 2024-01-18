@@ -43,7 +43,7 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
       {offers.length > 2 && (
         <Link
           className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded"
-          href={`/product/${productGender}/${productId}/offers`}
+          href={`/product/${productGender.toLowerCase()}/${productId}/offers`}
         >
           Ver todas as ofertas ({offers.length})
         </Link>

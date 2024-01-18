@@ -5,7 +5,7 @@ import PriceProduct from '../items/PriceProduct';
 import SellIcon from '@mui/icons-material/Sell';
 import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 
-const CardProduct = ({ product, slider, gender }) => {
+const CardProduct = ({ product, slider, gender, alignPrice }) => {
 
     const categoryName = categories.find(element => element.id === product.categories.id).singular
     //console.log(product)
@@ -56,7 +56,7 @@ const CardProduct = ({ product, slider, gender }) => {
 
                 <p className='truncate font-semibold w-40'>{categoryName} {product.brands.name}</p>
                 
-                {product.offers && <PriceProduct discount={product.discount} offers={product.offers} />}
+                {product.offers && <PriceProduct alignPrice={alignPrice} discount={product.discount} offers={product.offers} />}
                 
             </div>
         </article>

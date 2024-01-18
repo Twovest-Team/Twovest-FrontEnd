@@ -34,58 +34,61 @@ const Profile = async ({ params }) => {
   const userFirstName = data[0].name.split(" ")[0];
   const userRegisterData = getPortugueseDateString(data[0].created_at);
 
-  return (
-    <>
-      <NavigationTitle
-        titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${userFirstName}`}
-      >
-        {isOwnProfile ? <CreateOutlinedIcon /> : null}
-      </NavigationTitle>
+  if (data && data.length > 0) {
+    return (
+      <>
+        <NavigationTitle
+          titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${userFirstName}`}
+        >
+          {isOwnProfile ? <CreateOutlinedIcon /> : null}
+        </NavigationTitle>
 
-      <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
-        <ProfilePicture imageProfile={data[0].img} />
-        <p className="body_semibold">{data[0].name}</p>
-        <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
-          {data[0].email}
-        </p>
-        <p>Desde {userRegisterData}</p>
-      </div>
-
-      <div className="flex justify-center items-center self-stretch pt-10 px-6 pb-14 gap-4">
-        <ProfileScores />
-      </div>
-
-      <div className="pb-8">
-
-        <h6 className="font-semibold container">
-          {isOwnProfile ? 'Os meus looks' : `Looks de ${userFirstName}`}
-        </h6>
-
-        <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
-          <ProfileLooks
-            data={data}
-            isOwnProfile={isOwnProfile}
-            userFirstName={userFirstName}
-          />
-        </div>
-      </div>
-
-      {data &&
-        <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
-          <h6 className="font-semibold">Coleções de Looks</h6>
-          <ProfileCollections
-            userId={urlId}
-            data={data}
-            isOwnProfile={isOwnProfile}
-            userFirstName={userFirstName}
-          />
+        <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
+          <ProfilePicture imageProfile={data[0].img} />
+          <p className="body_semibold">{data[0].name}</p>
+          <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
+            {data[0].email}
+          </p>
+          <p>Desde {userRegisterData}</p>
         </div>
 
-      }
+        <div className="flex justify-center items-center self-stretch pt-10 px-6 pb-14 gap-4">
+          <ProfileScores />
+        </div>
+
+        <div className="pb-8">
+
+          <h6 className="font-semibold container">
+            {isOwnProfile ? 'Os meus looks' : `Looks de ${userFirstName}`}
+          </h6>
+
+          <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
+            <ProfileLooks
+              data={data}
+              isOwnProfile={isOwnProfile}
+              userFirstName={userFirstName}
+            />
+          </div>
+        </div>
+
+        {data &&
+          <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
+            <h6 className="font-semibold">Coleções de Looks</h6>
+            <ProfileCollections
+              userId={urlId}
+              data={data}
+              isOwnProfile={isOwnProfile}
+              userFirstName={userFirstName}
+            />
+          </div>
+
+        }
 
 
-    </>
-  );
+      </>
+    );
+  }
+
 };
 
 export default Profile;
@@ -137,12 +140,12 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
     }
   }
 
-  
+
 
   return (
     <>
 
-      {isOwnProfile && !collectionsToShow  || isOwnProfile && collectionsToShow.length === 0 &&
+      {isOwnProfile && !collectionsToShow || isOwnProfile && collectionsToShow.length === 0 &&
         <div className="text-secondary">
           Ainda não criaste nenhuma coleção.
         </div>

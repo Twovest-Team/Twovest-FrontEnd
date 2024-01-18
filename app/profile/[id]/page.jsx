@@ -141,7 +141,6 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
   }
 
 
-
   return (
     <>
 
@@ -151,7 +150,7 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
         </div>
       }
 
-      {!isOwnProfile && !collectionsToShow || !isOwnProfile && collectionsToShow.length === 0 &&
+      {!isOwnProfile && !collectionsToShow || isOwnProfile && collectionsToShow.length === 0 &&
         <div className="text-secondary">
           {userFirstName} não tem coleções disponíveis.
         </div>

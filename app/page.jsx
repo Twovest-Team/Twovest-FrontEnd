@@ -59,7 +59,7 @@ async function getLooks(){
 
   return (
 
-    <main className="mb-20">
+    <main>
         
         <ImageSwiper/>      
        

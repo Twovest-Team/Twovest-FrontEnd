@@ -43,7 +43,7 @@ export const Navbar = ({ children }) => {
     const handleLogout = async () => {
         await supabase.auth.signOut();
         router.refresh();
-        
+
         dispatch(changeUserData(null))
     }
 
@@ -51,7 +51,7 @@ export const Navbar = ({ children }) => {
 
     useEffect(() => {
 
-        
+
         async function fetchUserData() {
             if (!currentUser) {
                 let userData = await getUserData()
@@ -63,13 +63,13 @@ export const Navbar = ({ children }) => {
 
     }, [currentUser])
 
-    
+
 
     if (pathName != "/landing") {
 
         return (
 
-            <nav className="flex justify-between z-50 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
+            <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
 
                 <div className="flex">
                     <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
@@ -85,10 +85,10 @@ export const Navbar = ({ children }) => {
                     </button>
 
                     <Menu>
-                        {currentUser ? 
-                        <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image"/></div></Menu.Button> 
-                        : 
-                        <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
+                        {currentUser ?
+                            <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /></div></Menu.Button>
+                            :
+                            <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
 
                         <Transition
                             enter="transition duration-100 ease-out"
@@ -106,7 +106,7 @@ export const Navbar = ({ children }) => {
                                             {({ active, close }) => (
 
                                                 <div className={`${active && 'bg-grey_opacity_50'} font-semibold`}>
-                                                    <div><div><Link href={`/profile?id=${currentUser.id}`} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
+                                                    <div><div><Link href={`/profile/${currentUser.id}`} onClick={close} className="truncate">{currentUser.name}</Link></div></div>
                                                     <div className="bg-primary_main px-1 py-2 w-full h-[32px] text-center caption mt-2 text-white rounded">ID: {currentUser.id}</div>
                                                 </div>
 
@@ -118,9 +118,9 @@ export const Navbar = ({ children }) => {
 
                                         <Menu.Item>
                                             {({ active, close }) => (
-                                    
+
                                                 <div className={"w-full start-0"} >
-                                                    <Link href={`/profile?id=${currentUser.id}`} onClick={close}
+                                                    <Link href={`/profile/${currentUser.id}`} onClick={close}
                                                         className={`${active && 'bg-grey_opacity_50'}`}>
                                                         <div className="mb-3 caption text-start">Perfil</div>
                                                     </Link>
@@ -210,18 +210,18 @@ export const Navbar = ({ children }) => {
 
                                     :
 
-                                <Menu.Item >
-                                {({ active, close }) => (
-                                    <div className="px-2 py-4">
-                                    <div className="mb-3 font-semibold">Inicia sessão para poderes aceder às definições de conta</div>
-                                    <Link href={"/login"} onClick={close}
-                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">Iniciar sessão</div>
-                                    </Link>
-                                    </div>
-                                )}
-                                </Menu.Item>
-                        }
-                        </Menu.Items>
+                                    <Menu.Item >
+                                        {({ active, close }) => (
+                                            <div className="px-2 py-4">
+                                                <div className="mb-3 font-semibold">Inicia sessão para poderes aceder às definições de conta</div>
+                                                <Link href={"/login"} onClick={close}
+                                                    className={`${active && 'bg-grey_opacity_50'} cursor-pointer`}><div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">Iniciar sessão</div>
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </Menu.Item>
+                                }
+                            </Menu.Items>
                         </Transition>
                     </Menu>
                 </div>

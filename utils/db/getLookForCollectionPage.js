@@ -11,7 +11,12 @@ const getLookForCollectionPage = async (id_collection) => {
         looks(
             id,
             url_image,
-            id_user
+            upvotes,
+            users (
+              id,
+              name,
+              img
+            )
         )
   `
     )
@@ -21,7 +26,7 @@ const getLookForCollectionPage = async (id_collection) => {
   let transformedData = await Promise.all(
     data.map(async (element) => {
       let array = element;
-      const userLook = await getUserById(element.looks.id_user);
+      const userLook = await getUserById(element.looks.users.id);
       array.userLook = userLook;
 
       return array;

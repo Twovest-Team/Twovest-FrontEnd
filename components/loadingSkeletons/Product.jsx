@@ -12,7 +12,7 @@ const ProductSkeleton = () => {
       <div className="flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
 
         <div className="flex-grow mx-6 mb-12 rounded h-full flex justify-center items-center">
-          <LoadingIcon />
+          <LoadingIcon size={28} />
         </div>
 
 

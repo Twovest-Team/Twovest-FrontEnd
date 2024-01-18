@@ -29,7 +29,7 @@ const BrandsList = ({ brandsData }) => {
     return (
         <>
             <div className="relative w-full">
-                <input className="pl-14 w-full h-[72px] border border-grey rounded" onChange={handleSearch} placeholder="Pesquisa" type="text" />
+                <input className="pl-14 w-full h-[56px] border border-grey rounded" onChange={handleSearch} placeholder="Pesquisa" type="text" />
                 <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-500 pointer-events-none" />
             </div>
 

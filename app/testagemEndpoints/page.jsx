@@ -5,7 +5,7 @@ import getAllMaterials from "@/utils/db/getAllMaterials";
 import getAllStyles from "@/utils/db/getAllStyles";
 import getProductImages from "@/utils/db/getProductImages";
 import getProductMaterials from "@/utils/db/getProductMaterials";
-import getProcuctOffers from "@/utils/db/getProductOffers";
+import getProductOffers from "@/utils/db/getProductOffers";
 import getProductStyles from "@/utils/db/getProductStyles";
 import getSizesByType from "@/utils/db/getSizesByType";
 import getProductById from "@/utils/db/getProductById";
@@ -17,13 +17,15 @@ import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import getBrands from "@/utils/db/getBrands";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
+import getUserCollections from "@/utils/db/collections/getUserCollections";
+
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
 export const revalidate = 0;
 
 const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getLooksForHomepage("Mulher")
+    const data = await getUserCollections(22)
   
 
     return (

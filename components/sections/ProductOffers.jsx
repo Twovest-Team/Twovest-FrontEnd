@@ -1,11 +1,11 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ProductOfferCard from "../cards/ProductOfferCard";
 import Link from "next/link";
+
 const ProductOffers = ({ offers, discount, productGender, productId }) => {
   const sortedOffers = sortOffers(offers);
   const bestOffers = getBestOffers(sortedOffers);
-  let gender = productGender;
-  let idproduct = productId;
+
   return (
     <div className="container flex flex-col gap-6">
       <div className="flex flex-col gap-1">
@@ -42,10 +42,10 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
 
       {offers.length > 2 && (
         <Link
-          href={`/product/${gender}/${idproduct}/alloffers`}
           className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded"
+          href={`/product/${productGender.toLowerCase()}/${productId}/offers`}
         >
-          Ver todas as ofertas({offers.length})
+          Ver todas as ofertas ({offers.length})
         </Link>
       )}
     </div>

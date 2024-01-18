@@ -37,7 +37,7 @@ async function AllOffers({ params, searchParams }) {
           {filteredData.length} opções
         </p>
       </div>
-      <FiltersProduct productType={productType.singular} productId={params.id} gender={params.gender}/>
+      {/* <FiltersProduct productType={productType.singular} productId={params.id} gender={params.gender}/> */}
       <ProductsFiltered offers={filteredData} discount={productData.discount} product={productData} productCategory={productCategory} />
     </>
   );

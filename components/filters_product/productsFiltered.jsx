@@ -1,6 +1,6 @@
 "use client";
 
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
 import { useState } from "react";
@@ -92,7 +92,7 @@ function ProductsFiltered({ offers, discount, product, productCategory }) {
                     </div>
                   </div>
                   <div className="w-12 h-12 bg-emerald-500 rounded-[5px] flex-col justify-center items-center inline-flex">
-                    <ShoppingBagIcon className="text-white" />
+                    <LocalMallOutlinedIcon className="text-white" />
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ function ProductsFiltered({ offers, discount, product, productCategory }) {
                 <p className="text-white">Comprar agora</p>
               </div>
               <div className="w-12 h-12 bg-emerald-500 rounded-[5px] flex-col justify-center items-center inline-flex">
-                <ShoppingBagIcon className="text-white" />
+                <LocalMallOutlinedIcon className="text-white" />
               </div>
             </div>
           </div>

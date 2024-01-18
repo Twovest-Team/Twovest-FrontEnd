@@ -6,11 +6,10 @@ import { useAppSelector } from '@/redux/hooks';
 
 export default function LookUsername({ slider, username }) {
 
-    const currentView = useAppSelector(state => state.layoutViews.currentValue)
+    // const currentView = useAppSelector(state => state.layoutViews.currentValue)
 
     return (
-        <p className={`caption font-light truncate 
-        ${slider ? 'visible' : !currentView || currentView === 1 ? 'visible' : currentView === 2 && 'hidden'} `}>
+        <p className={`caption font-light truncate`}>
             {username}
         </p>
     )

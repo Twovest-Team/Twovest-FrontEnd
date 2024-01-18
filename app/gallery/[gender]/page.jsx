@@ -10,6 +10,7 @@ import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
+
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
@@ -58,14 +59,20 @@ async function LookList({ gender, style }) {
   return (
     <>
       {filteredData.length > 0 ? (
-        <ItemsBox>
-          {filteredData.map((element) => (
-            <LookCard key={element.id} look={element} slider={false} />
-          ))}
-        </ItemsBox>
+        <>
+          <ItemsBox>
+            {filteredData.map((element) => (
+              <LookCard key={element.id} look={element} slider={false} />
+            ))}
+          </ItemsBox>
+          
+        </>
+
       ) : (
         <NoDataComponent text={'Sem looks disponíveis.'} />
       )}
+
+
     </>
   );
 }

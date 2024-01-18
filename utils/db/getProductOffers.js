@@ -1,6 +1,6 @@
 import { supabase } from '@/utils/db/supabase'
 
-const getProcuctOffers = async(id) => {
+const getProductOffers = async(id) => {
     const { data } = await supabase
     .from('offers')
     .select(`
@@ -25,4 +25,4 @@ const getProcuctOffers = async(id) => {
     return data
 }
 
-export default getProcuctOffers
+export default getProductOffers

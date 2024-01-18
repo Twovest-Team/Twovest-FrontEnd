@@ -5,7 +5,7 @@ import getAllMaterials from "@/utils/db/getAllMaterials";
 import getAllStyles from "@/utils/db/getAllStyles";
 import getProductImages from "@/utils/db/getProductImages";
 import getProductMaterials from "@/utils/db/getProductMaterials";
-import getProcuctOffers from "@/utils/db/getProductOffers";
+import getProductOffers from "@/utils/db/getProductOffers";
 import getProductStyles from "@/utils/db/getProductStyles";
 import getSizesByType from "@/utils/db/getSizesByType";
 import getProductById from "@/utils/db/getProductById";

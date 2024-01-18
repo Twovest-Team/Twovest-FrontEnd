@@ -1,6 +1,6 @@
 import { supabase } from '@/utils/db/supabase';
 import getProductImages from './getProductImages';
-import getProcuctOffers from './getProductOffers';
+import getProductOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 
@@ -30,7 +30,7 @@ const getOnSaleProducts = async (gender) => {
         
         let array = element
         const images = await getProductImages(element.id)
-        const offers = await getProcuctOffers(element.id)
+        const offers = await getProductOffers(element.id)
         const materials = await getProductMaterials(element.id)
         const styles = await getProductStyles(element.id)
 

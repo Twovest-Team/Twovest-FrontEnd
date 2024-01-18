@@ -13,7 +13,7 @@ import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
-export const revalidate = 30;
+export const revalidate = 60;
 
 export default async function Products({ searchParams, params }) {
   const category = searchParams.category;

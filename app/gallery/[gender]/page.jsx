@@ -10,7 +10,7 @@ import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
-export const revalidate = 30;
+export const revalidate = 60;
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll

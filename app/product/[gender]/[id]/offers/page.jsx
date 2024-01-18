@@ -4,6 +4,7 @@ import ProductsFiltered from "@/components/filters_product/productsFiltered";
 import getProductOffers from "@/utils/db/getProductOffers";
 import getProductById from "@/utils/db/getProductById";
 import { categories, main_categories } from "@/constants";
+import NavigationTitle from "@/components/providers/NavigationTitle";
 
 async function AllOffers({ params, searchParams }) {
   const data = await getProductOffers(params.id);
@@ -30,13 +31,12 @@ async function AllOffers({ params, searchParams }) {
 
   return (
     <>
-      <div className="allOffers_title">
-        <ArrowBackIosIcon />
-        <p className="text-black text-[23.04px] font-semibold">Ofertas</p>
-        <p className="text-neutral-400 text-base font-normal leading-snug">
+      <NavigationTitle titleText={'Ofertas'}>
+      <p className="text-neutral-400 text-base font-normal leading-snug">
           {filteredData.length} opções
         </p>
-      </div>
+      </NavigationTitle>
+      
       {/* <FiltersProduct productType={productType.singular} productId={params.id} gender={params.gender}/> */}
       <ProductsFiltered offers={filteredData} discount={productData.discount} product={productData} productCategory={productCategory} />
     </>

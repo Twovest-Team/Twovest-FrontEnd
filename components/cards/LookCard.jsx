@@ -39,7 +39,7 @@ export default function LookCard({ look, slider, nome, avatar }) {
       </Link>
       <div className="flex flex-wrap justify-between items-center">
         <Link
-          href={`/profile?id=${look.users.id}`}
+          href={`/profile/${look.users.id}`}
           className="flex gap-2  min-w-0 items-center mt-3.5"
         >
           <Image

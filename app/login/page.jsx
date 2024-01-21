@@ -33,6 +33,7 @@ export default function LoginPage() {
                 redirectTo: `${location.origin}/auth/callback`
             }
         })
+        router.push("/auth/callback");
     }
 
     if (loading) {

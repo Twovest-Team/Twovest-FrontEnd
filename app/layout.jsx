@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import Footer from "@/components/sections/Footer";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
               <Cart />
             </Navbar>
             {children}
+            <Analytics />
             <LastProductsSeen />
             <Footer />
           </GenderDetection>

@@ -53,7 +53,7 @@ const SaveToCollectionModal = ({ lookId }) => {
     }
 
     function handleCloseModal() {
-        console.log('fecha')
+        //console.log('fecha')
         setModalStatus(allModalStatus[0])
         dispatch(toggleLookModalToggle())
         router.refresh()

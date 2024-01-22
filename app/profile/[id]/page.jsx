@@ -145,9 +145,9 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
     <>
 
       {isOwnProfile &&
-        (collectionsToShow.length === 0 || !collectionsToShow) &&
+        (collectionsToShow && collectionsToShow.length === 0 || !collectionsToShow) &&
         <div className="text-secondary">
-          {collectionsToShow.length === 0 ? 'Ainda não criaste nenhuma coleção.' : `${userFirstName} não tem coleções disponíveis.`}
+          {collectionsToShow && collectionsToShow.length === 0 ? 'Ainda não criaste nenhuma coleção.' : `${userFirstName} não tem coleções disponíveis.`}
         </div>
       }
 

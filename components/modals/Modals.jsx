@@ -70,7 +70,7 @@ const Modal = ({ title, subtitle, inputs, buttons, isSideBySide }) => {
           <CloseIcon className="cursor-pointer" onClick={handleCloseModal} />
         </div>
         <h6 className="font-inter font-semibold ">{title}</h6>
-        {subtitle && <p className="text-grey mt-4 mb-8">{subtitle}</p>}
+        {subtitle && <p className="text-secondary mt-4 mb-8">{subtitle}</p>}
         {inputs &&
           inputs.map((input, index) =>
             input.type === "text" ? (

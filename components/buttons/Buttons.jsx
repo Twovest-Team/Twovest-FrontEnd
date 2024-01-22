@@ -120,7 +120,7 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     facebook: <Image src={coloredFacebookIcon} height={22} width={22} alt={"facebook icon"}/>,
     apple: <Image src={coloredAppleIcon} height={20} width={20} alt={"apple icon"}/>,
     redifine: <ReplayIcon className="text-white transform rotate-90 " />,
-    redifine2: <ReplayIcon className="text-grey transform rotate-90 " />,
+    redifine2: <ReplayIcon className="text-secondary transform rotate-90 " />,
     offer: <LocalOfferIcon className="text-white " />,
     delete: <DeleteOutlineOutlinedIcon className=" text-secondary" />,
     favorite: <FavoriteBorderIcon className="text-secondary" />,

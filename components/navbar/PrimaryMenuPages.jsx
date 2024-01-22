@@ -10,7 +10,7 @@ export const PrimaryMenuPagesList = ({genderState, toggleMenu}) => {
     <Link onClick={toggleMenu} href={`/gallery/${genderState}`} className="my-6 flex justify-between items-center">
         <div>
             <div className="font-semibold">Galeria de Looks</div>
-            <div className="text-grey caption">🔥 Descobre novos looks e inspira-te!</div>
+            <div className="text-secondary caption">🔥 Descobre novos looks e inspira-te!</div>
         </div>
         <div>
             <ArrowForwardIosIcon className="text-[18px]"/>

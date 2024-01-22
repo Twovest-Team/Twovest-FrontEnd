@@ -48,7 +48,7 @@ const ImageSwiper = () => {
             <p className="">Promoções</p>
             <h3 className=" font-semibold">Artigos com promoções até 50%</h3>
             <Link href={`/products/${gender}?status=discounts`}>
-              <button className="bg-primary_main p-3 text-center text-white mb-6 mt-10 rounded w-[200px]">
+              <button className="bg-primary_main p-3 font-semibold text-center text-white mb-6 mt-10 rounded w-[200px]">
                 Ver promoções
               </button>
             </Link>
@@ -71,7 +71,7 @@ const ImageSwiper = () => {
             <h3 className=" font-semibold ">Tens roupa que já não precisas?</h3>
             <h5>Retorna-a nos pontos de recolha</h5>
             <Link href={"/"}>
-              <button className="bg-primary_main p-3 text-center text-white mb-6 mt-10 rounded w-[230px]">
+              <button className="bg-primary_main p-3 font-semibold  text-center text-white mb-6 mt-10 rounded w-[230px]">
                 Ver Pontos de recolha
               </button>
             </Link>
@@ -94,7 +94,7 @@ const ImageSwiper = () => {
               Descobre aqui as melhores marcas aos melhores preços!
             </h3>
             <Link href={"/brands"}>
-              <button className="bg-primary_main p-3 text-center text-white mb-6 mt-10 rounded w-[200px]">
+              <button className="bg-primary_main p-3 text-center font-semibold  text-white mb-6 mt-10 rounded w-[200px]">
                 Ver Marcas
               </button>
             </Link>

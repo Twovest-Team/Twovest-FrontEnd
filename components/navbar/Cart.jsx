@@ -154,7 +154,7 @@ export const Cart = () => {
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
               </h6>
-              <div className="text-grey">IVA Incluído</div>
+              <div className="text-secondary">IVA Incluído</div>
             </div>
             <div>
               <h6 className="font-semibold">

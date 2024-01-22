@@ -20,10 +20,12 @@ import getLocalStorage from "@/utils/localStorage/getLocalStorage"
 import { toggleMenu } from "@/redux/slices/menuToggle"
 import handleGender from "@/utils/handleGender"
 import SearchIcon from '@mui/icons-material/Search';
+import { useRouter } from "next/navigation";
 
 export const SideMenu = () => {
 
     const dispatch = useAppDispatch()
+    const router = useRouter();
     const currentUser = useAppSelector(state => state.user.data)
     const isMenuOpen = useAppSelector(state => state.menuToggle.isOpen)
     const [genderState, setGenderState] = useState("");
@@ -56,6 +58,7 @@ export const SideMenu = () => {
     const handleClickGender = (gender) => {
         handleGender(gender);
         setGenderState(gender);
+        
     }
 
     return (

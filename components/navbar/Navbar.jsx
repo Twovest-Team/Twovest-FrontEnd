@@ -154,7 +154,7 @@ export const Navbar = ({ children }) => {
                                         <Menu.Item >
                                             {({ active, close }) => (
                                                 <div>
-                                                    <Link href={`/profile?${currentUser.id}`} onClick={close}
+                                                    <Link href={`/profile/${currentUser.id}`} onClick={close}
                                                         className={`${active && 'bg-grey_opacity_50'}`}>
                                                         <div className="mb-3 caption">Gerir meus looks</div>
                                                     </Link>
@@ -164,7 +164,7 @@ export const Navbar = ({ children }) => {
                                         <Menu.Item >
                                             {({ active, close }) => (
                                                 <div>
-                                                    <Link href={`/profile?${currentUser.id}`} onClick={close}
+                                                    <Link href={`/profile/${currentUser.id}`} onClick={close}
                                                         className={`${active && 'bg-grey_opacity_50'}`}>
                                                         <div className="caption">Ver coleções de looks</div>
                                                     </Link>
@@ -177,7 +177,7 @@ export const Navbar = ({ children }) => {
                                         <Menu.Item >
                                             {({ active, close }) => (
                                                 <div>
-                                                    <Link href={`/profile?${currentUser.id}`} onClick={close}
+                                                    <Link href={`/profile/${currentUser.id}`} onClick={close}
                                                         className={`${active && 'bg-grey_opacity_50'}`}>
                                                         <div className="mb-3 caption">Histórico de compras</div>
                                                     </Link>
@@ -188,7 +188,7 @@ export const Navbar = ({ children }) => {
                                         <Menu.Item >
                                             {({ active, close }) => (
                                                 <div>
-                                                    <Link href={`/profile?${currentUser.id}`} onClick={close}
+                                                    <Link href={`/profile/${currentUser.id}`} onClick={close}
                                                         className={`${active && 'bg-grey_opacity_50'}`}>
                                                         <div className="mb-3 caption">Definições de conta</div>
                                                     </Link>

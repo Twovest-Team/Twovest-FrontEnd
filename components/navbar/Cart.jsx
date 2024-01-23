@@ -61,7 +61,7 @@ export const Cart = () => {
   return (
     <div
       className={`${isCartOpen ? "translate-y-0" : "-translate-y-full block"}
-        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto h-screen fixed top-0 transition-transform duration-300 ease-in-out`}
+        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto fixed top-0 transition-transform duration-300 ease-in-out h-full`}
     >
       <div className="flex justify-between items-center border-b border-grey">
         <div className="flex h-[72px] justify-between container items-center">
@@ -154,7 +154,7 @@ export const Cart = () => {
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
               </h6>
-              <div className="text-grey">IVA Incluído</div>
+              <div className="text-secondary">IVA Incluído</div>
             </div>
             <div>
               <h6 className="font-semibold">

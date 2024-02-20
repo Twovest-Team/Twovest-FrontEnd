@@ -13,7 +13,7 @@ export const UserIcon = ({url, userRole, size, userName, userId}) =>{
         imageSize = 25;
       }
 
-    if (userRole === "influencer") {
+    if (userRole === 2) {
         return (
           <Link href={`/profile/id=${userId}`}>
             <Image
@@ -28,7 +28,7 @@ export const UserIcon = ({url, userRole, size, userName, userId}) =>{
       } else {
         return (
           <div>
-            {/* Render some other content if userRole is not "influencer" */}
+           
             <Image
               src={url}
               className="rounded-full border-grey border"

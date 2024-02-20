@@ -23,6 +23,7 @@ import AutoModeIcon from '@mui/icons-material/AutoMode';
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { UserIcon } from "../user/UserIcon";
+import { current } from "@reduxjs/toolkit";
 
 
 export const Navbar = ({ children }) => {
@@ -87,7 +88,10 @@ export const Navbar = ({ children }) => {
 
                     <Menu>
                         {currentUser ?
-                            <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full"><Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /></div></Menu.Button>
+                            <Menu.Button><div className="navbar_icons translate-y-0.5 border border-grey rounded-full">
+                                <UserIcon url={currentUser.img} size="small" userName={currentUser.name} userId={currentUser.id} userRole={currentUser.role}/>
+                                {/* <Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /> */}
+                                </div></Menu.Button>
                             :
                             <Menu.Button><div className="navbar_icons"><AccountCircleOutlinedIcon /></div></Menu.Button>}
 

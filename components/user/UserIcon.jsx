@@ -1,7 +1,12 @@
+
+
 import Image from "next/image";
 import Link from "next/link";
 
+
 export const UserIcon = ({url, userRole, size, userName, userId}) =>{
+
+let imageSize;
 
     if (size === "small") {
         imageSize = 25;

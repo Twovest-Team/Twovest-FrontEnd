@@ -1,6 +1,6 @@
 import { supabase } from '@/utils/db/supabase';
 import getProductImages from './getProductImages';
-import getProcuctOffers from './getProductOffers';
+import getProductOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 import capitalizeFirstLetter from '../capitalizeFirstLetter';
@@ -47,7 +47,7 @@ const getProductByBrand = async (gender, brandName) => {
 
     if (data && data.length > 0) {
       const images = await getProductImages(data[0].id);
-      const offers = await getProcuctOffers(data[0].id);
+      const offers = await getProductOffers(data[0].id);
       
     
       data.images = images;

@@ -11,7 +11,7 @@ export async function GET(request) {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (user) {
-        handleUsers(user.user_metadata)
+        await handleUsers(user.user_metadata);
     }
 
 

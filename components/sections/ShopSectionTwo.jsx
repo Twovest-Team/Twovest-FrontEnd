@@ -27,7 +27,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
   const [showNotification, setShowNotification] = useState(false)
 
   function handleStep(boolean) {
-    console.log(boolean)
+    //console.log(boolean)
     setSteps(prevState => {
       const newState = [...prevState];
       newState[1] = { ...newState[1], confirmed: boolean };

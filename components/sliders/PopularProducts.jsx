@@ -10,7 +10,7 @@ export const PopularProductsSilder = ({data}) => {
       return(
         <ContentSlider>
             {popularproducts.map((item) => (
-            <CardProduct key={item.id} product={item} gender={item.gender} slider={true}/>
+            <CardProduct alignPrice={'left'} key={item.id} product={item} gender={item.gender} slider={true}/>
             ))}
         </ContentSlider>
         

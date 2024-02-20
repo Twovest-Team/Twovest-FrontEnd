@@ -20,10 +20,12 @@ import getLocalStorage from "@/utils/localStorage/getLocalStorage"
 import { toggleMenu } from "@/redux/slices/menuToggle"
 import handleGender from "@/utils/handleGender"
 import SearchIcon from '@mui/icons-material/Search';
+import { useRouter } from "next/navigation";
 
 export const SideMenu = () => {
 
     const dispatch = useAppDispatch()
+    const router = useRouter();
     const currentUser = useAppSelector(state => state.user.data)
     const isMenuOpen = useAppSelector(state => state.menuToggle.isOpen)
     const [genderState, setGenderState] = useState("");
@@ -56,6 +58,7 @@ export const SideMenu = () => {
     const handleClickGender = (gender) => {
         handleGender(gender);
         setGenderState(gender);
+        
     }
 
     return (
@@ -123,8 +126,8 @@ export const SideMenu = () => {
 
                         ))}
                         <Link onClick={handleClickMenu} href={"/brands"} className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"><div>Marcas</div><StarsIcon className="fill-black" alt="simbolo marcas" /></Link>
-                        <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between"><Link href={`/products/${genderState}?status=sustainable`} onClick={() => handleClickMenu()}>Sustentável</Link><SustainableIcon width={25} color="white" /></div>
-                        <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between"><Link href={`/products/${genderState}?status=discounts`} onClick={() => handleClickMenu()}>Promoções</Link><SellIcon className="fill-primary_main" alt="simbolo Promoções" /></div>
+                        <Link href={`/products/${genderState}?status=sustainable`} onClick={() => handleClickMenu()}><div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">Sustentável<SustainableIcon width={25} color="white" /></div></Link>
+                        <Link href={`/products/${genderState}?status=discounts`} onClick={() => handleClickMenu()}><div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">Promoções<SellIcon className="fill-primary_main" alt="simbolo Promoções" /></div></Link>
                     </div>
 
 

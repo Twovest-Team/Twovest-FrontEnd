@@ -8,8 +8,10 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
+import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
-export const revalidate = 30;
+
+export const revalidate = 60;
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
@@ -26,11 +28,11 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </NavigationTitle>
 
-      <div className="mt-3">
+      <div className="mt-4">
         <Filters style={style} gender={gender} />
       </div>
 
-      <div className="flex justify-between container mt-3 mb-6">
+      <div className="flex justify-between container mt-4 mb-6">
         <Views className="view" />
         <button className="submit w-full min-[350px]:w-fit">
           Submeter Look
@@ -57,14 +59,20 @@ async function LookList({ gender, style }) {
   return (
     <>
       {filteredData.length > 0 ? (
-        <ItemsBox>
-          {filteredData.map((element) => (
-            <LookCard key={element.id} look={element} slider={false} />
-          ))}
-        </ItemsBox>
+        <>
+          <ItemsBox>
+            {filteredData.map((element) => (
+              <LookCard key={element.id} look={element} slider={false} />
+            ))}
+          </ItemsBox>
+          
+        </>
+
       ) : (
-        <p>No data...</p>
+        <NoDataComponent text={'Sem looks disponíveis.'} />
       )}
+
+
     </>
   );
 }

@@ -23,7 +23,6 @@ const getLookProducts = async (id, gender) => {
 
   );
 
-  console.log(transformedData)
   transformedData = transformedData.filter((element) => element !== undefined);
 
   if (transformedData.length > 0) {

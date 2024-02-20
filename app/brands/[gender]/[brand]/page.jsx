@@ -12,6 +12,7 @@ import getBrandData from "@/utils/db/getBrandData";
 import Image from "next/image";
 import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
 import StarIcon from '@mui/icons-material/Star';
+import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
 export const revalidate = 30;
 
@@ -54,6 +55,8 @@ export default async function Brand({ params }) {
       <Suspense fallback={<ProductsSkeleton />}>
         <ProductList brandName={brandName} gender={gender} />
       </Suspense>
+
+
     </main>
   );
 }
@@ -79,7 +82,7 @@ async function ProductList({ brandName, gender }) {
           ))}
         </ItemsBox>
       ) : (
-        <p>No data...</p>
+        <NoDataComponent text={'Sem produtos disponíveis.'} />
       )}
     </>
   );

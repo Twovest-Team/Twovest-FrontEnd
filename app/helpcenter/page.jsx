@@ -1,7 +1,7 @@
 
 const HelpCenter = () => {
   return (
-    <div>HelpCenter</div>
+    <div className="h-screen">HelpCenter</div>
   )
 }
 

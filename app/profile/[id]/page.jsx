@@ -1,6 +1,6 @@
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 
-import LookCard from "@/components/cards/LookCard";
+import LookCard_Profile from "@/components/cards/LookCard_Profile";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ContentSlider from "@/components/sliders/ContentSlider";
@@ -99,7 +99,7 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
       {data[0].hasOwnProperty("userLooks") ? (
         <ContentSlider>
           {data[0].userLooks.map((element) => (
-            <LookCard
+            <LookCard_Profile
               slider={true}
               key={element.id}
               look={element}

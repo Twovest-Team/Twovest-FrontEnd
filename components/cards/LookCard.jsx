@@ -8,7 +8,7 @@ import SaveButton from "../buttons/icons/SaveButton";
 import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
-
+import { UserIcon } from "../user/UserIcon";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
@@ -16,6 +16,8 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
  */
 
 export default function LookCard({ look, slider, nome, avatar }) {
+
+ 
   return (
     <>
       <div
@@ -44,7 +46,7 @@ export default function LookCard({ look, slider, nome, avatar }) {
             href={`/profile/${look.users.id}`}
             className="flex gap-2  min-w-0 items-center mt-3.5"
           >
-            <Image
+            {/* <Image
               src={!slider ? look.users.img : slider === true && avatar}
               alt="Look da galeria"
               width={35}
@@ -52,7 +54,8 @@ export default function LookCard({ look, slider, nome, avatar }) {
               quality={30}
               className="rounded-full"
             />
-
+ */}
+            <UserIcon url={look.users.img} userRole={look.users.role} size="medium" userName={look.users.name} userId={look.users.id}/>
             <LookUsername
               slider={slider}
               username={!slider ? look.users.name : slider === true && nome}

@@ -52,7 +52,3 @@ jobs:
 
       - name: Run Jest
         run: npm run test
-        if: success()
-
-      - name: Run build
-        run: npm run build

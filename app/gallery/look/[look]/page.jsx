@@ -9,6 +9,8 @@ import Link from "next/link";
 import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
+import { UserIcon } from "@/components/user/UserIcon";
+
 
 export const revalidate = 30;
 
@@ -47,7 +49,10 @@ const Look = async ({ params }) => {
 
               <div className="absolute container bottom-8 left-0 right-0 text-white flex items-center justify-between z-10">
                 <Link href={`/profile/${data.users.id}`} className="flex items-center gap-3">
-                  <Image className="rounded-full" width={40} height={40} src={data.users.img} alt={`look de ${data.users.name}`}/>
+
+                  <UserIcon userRole={data.users.role} size="large" userName={data.users.name} userId={data.users.id} url={data.users.img}/>
+                  {/* <Image className="rounded-full" width={40} height={40} src={data.users.img} alt={`look de ${data.users.name}`}/> */}
+
                   <p className="min-w-0 truncate">{data.users.name}</p>
                 </Link>
                 <SaveButton lookId={lookId} />

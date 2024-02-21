@@ -15,7 +15,7 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveButton)
  */
 
-export default function LookCard({ look, slider, nome, avatar }) {
+export default function LookCard_Profile({ look, slider, nome, avatar }) {
 
   //console.log(look);
   return (
@@ -46,16 +46,8 @@ export default function LookCard({ look, slider, nome, avatar }) {
             href={`/profile/${look.users.id}`}
             className="flex gap-2  min-w-0 items-center mt-3.5"
           >
-            {/* <Image
-              src={!slider ? look.users.img : slider === true && avatar}
-              alt="Look da galeria"
-              width={35}
-              height={35}
-              quality={30}
-              className="rounded-full"
-            />
- */}
-            <UserIcon url={look.users.img} userRole={look.users.role} size="small" userName={look.users.name} userId={look.users.id}/>
+
+            <UserIcon url={avatar} userRole={look.users.role} size="small" userName={look.users.name} userId={look.users.id}/>
             <LookUsername
               slider={slider}
               username={!slider ? look.users.name : slider === true && nome}

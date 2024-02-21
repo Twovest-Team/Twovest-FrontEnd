@@ -11,7 +11,6 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
 import { BrandCards } from "@/components/cards/BrandCards";
 import Link from "next/link";
-
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 

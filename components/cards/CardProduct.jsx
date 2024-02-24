@@ -27,7 +27,7 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
 
                 <div className='absolute top-2.5 px-4 w-full flex items-center justify-between'>
                     <div className='flex gap-3 items-center'>
-                        <Link href={`/brands/mulher/${product.brands.name}`}>
+                        <Link href={`/brands/${gender.toLowerCase()}/${product.brands.name}`}>
                             <Image
                                 src={product.brands.logo_url}
                                 width={25}
@@ -45,10 +45,12 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
 
 
                 {product.discount > 0 &&
+                    <Link href={`/product/${gender.toLowerCase()}/${product.id}`}>
                     <div className='h-11 bg-primary_main absolute bottom-5 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0'>
                         <SellIcon sx={{ fontSize: 20 }} />
                         {product.discount}% OFF
                     </div>
+                    </Link>
                 }
 
             </div>

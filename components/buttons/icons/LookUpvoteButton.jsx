@@ -1,6 +1,7 @@
 //Icone de upvote, com e sem preenchimento
 import ForwardIcon from "@mui/icons-material/Forward";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
+import formatCompactNumbers from "@/utils/formatCompactNumbers";
 
 export default function LookUpvoteButton({ upvotes }) {
   return (
@@ -9,7 +10,7 @@ export default function LookUpvoteButton({ upvotes }) {
     >
       <ForwardOutlinedIcon className="text-white -rotate-90" />
       <div className="text-center">
-        <h6 className="font-semibold text-white">{upvotes}</h6>
+        <h6 className="font-semibold text-white">{formatCompactNumbers(upvotes)}</h6>
       </div>
     </div>
   );

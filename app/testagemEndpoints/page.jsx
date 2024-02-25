@@ -12,12 +12,12 @@ import getProductById from "@/utils/db/getProductById";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
-import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
+import getAllCollections from "@/utils/db/collections/getAllCollections";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import getBrands from "@/utils/db/getBrands";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
-import getUserCollections from "@/utils/db/collections/getUserCollections";
+import getAllCollections from "@/utils/db/collections/getAllCollections";
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
@@ -25,7 +25,7 @@ export const revalidate = 0;
 
 const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getUserCollections(22)
+    const data = await getAllCollections(22)
   
 
     return (

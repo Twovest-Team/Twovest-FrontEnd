@@ -5,14 +5,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useEffect, useState } from 'react';
-import getUserCollections from '@/utils/db/collections/getUserCollections';
+import getAllCollections from '@/utils/db/collections/getAllCollections';
 import { toggleLookModalToggle } from '@/redux/slices/saveLookModalToggle';
-import saveLookToCollection from '@/utils/db/collections/saveLookToCollection';
+import addToCollection from '@/utils/db/collections/addToCollection';
 import LoadingIcon from '../buttons/icons/LoadingIcon';
 import CheckIcon from '@mui/icons-material/Check';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import deleteLookFromCollection from '@/utils/db/collections/deleteLookFromCollection';
+import deleteCollectionLook from '@/utils/db/collections/deleteCollectionLook';
 import { RadioGroup } from '@headlessui/react'
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
@@ -43,7 +43,7 @@ const SaveToCollectionModal = ({ lookId }) => {
     const [modalStatus, setModalStatus] = useState(allModalStatus[0])
 
     async function getData() {
-        const userCollections = await getUserCollections(currentUser.id)
+        const userCollections = await getAllCollections(currentUser.id)
         if (userCollections) {
             setCollections(userCollections)
         } else {
@@ -155,21 +155,21 @@ const CollectionButton = ({ collection, lookId, getData }) => {
     async function handleCollectionClick(collectionId) {
         setSaveStatus('loading')
         if (saveStatus === 'default') {
-            handleSaveLookToCollection(collectionId)
+            handleaddToCollection(collectionId)
         } else if (saveStatus === 'saved') {
-            handleDeleteLookFromCollection(collectionId)
+            handledeleteCollectionLook(collectionId)
         }
 
     }
 
-    async function handleSaveLookToCollection(collectionId) {
-        await saveLookToCollection(collectionId, lookId)
+    async function handleaddToCollection(collectionId) {
+        await addToCollection(collectionId, lookId)
         setSaveStatus('saved')
         getData()
     }
 
-    async function handleDeleteLookFromCollection(collectionId) {
-        await deleteLookFromCollection(collectionId, lookId)
+    async function handledeleteCollectionLook(collectionId) {
+        await deleteCollectionLook(collectionId, lookId)
         setSaveStatus('default')
         getData()
     }

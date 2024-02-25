@@ -1,6 +1,6 @@
 import { supabase } from "@/utils/db/supabase";
 
-const getUsersForCollectionCard = async (id_collection,id_user) => {
+const getCollectionMembers = async (collectionId, userId) => {
   const { data, error } = await supabase
     .from("collections_has_users")
     .select(
@@ -13,15 +13,12 @@ const getUsersForCollectionCard = async (id_collection,id_user) => {
     )
 `
     )
-    .eq("id_collection", id_collection)
-    .neq('id_user', id_user)
+    .eq("id_collection", collectionId)
+    .eq('id_user', userId)
     .order("created_at", { ascending: false });
 
-  if (error) {
-    console.log(error);
-  } else {
-    return data;
-  }
+  if(error) return {error}
+  if(data) return {data}
 };
 
-export default getUsersForCollectionCard;
+export default getCollectionMembers;

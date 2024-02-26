@@ -36,6 +36,15 @@ export default function LoginPage() {
         //router.push("${location.origin}/auth/callback");
     }
 
+    const handleSignInFacebook = async () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'facebook',
+            options: {
+                redirectTo: `${location.origin}/auth/callback`
+            }
+        })
+    }
+
     if (loading) {
         return <GeneralLoading />
     }
@@ -61,17 +70,19 @@ export default function LoginPage() {
             
             <div className="">
     
-                <div onClick={handleSignInGoogle}><Buttons
-                    
+                <div onClick={handleSignInGoogle}>
+                    <Buttons
                     btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"mediumSizeSocials"} icon={"google"}
-                >
-                </Buttons></div>
-                <Buttons
-                    
-                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"mediumSizeSocials"} icon={"facebook"}
-                >
-                    
-                </Buttons>
+                    >
+                    </Buttons>
+                </div>
+
+                <div onClick={handleSignInFacebook}>
+                    <Buttons
+                    btnState={"secondaryMain"} text={"Continuar com Facebook"} btnSize={"mediumSizeSocials"} icon={"facebook"}>
+                    </Buttons>
+                </div>
+
                 <Buttons
                     
                     btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"mediumSizeSocials"} icon={"apple"}

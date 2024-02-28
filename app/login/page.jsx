@@ -16,6 +16,10 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(true);
     const supabase = createClientComponentClient();
 
+    const [email, setEmail]=useState("")
+    const [password, setPassword]=useState("")
+
+    
     useEffect(() => {
         async function getUser() {
             const { data: { user } } = await supabase.auth.getUser()
@@ -36,6 +40,19 @@ export default function LoginPage() {
         //router.push("${location.origin}/auth/callback");
     }
 
+    const handleSignInEmail = async () =>{
+
+        await supabase.auth.signInWithPassword({
+            email,
+            password
+        })
+        router.refresh()
+        setEmail(""),
+        setPassword("")
+    }
+
+
+
     if (loading) {
         return <GeneralLoading />
     }
@@ -49,9 +66,22 @@ export default function LoginPage() {
         <NavigationTitle titleText={"Iniciar sessão"}/>
          <main className="p-6">
 
-         <input type="text" placeholder="Email" className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
-         <input type="password" placeholder="Password" className="px-4 py-4 w-full rounded border border-grey"/>
+         <input 
+         type="text" 
+         placeholder="Email" 
+         value={email}
+         onChange={(e) => setEmail(e.target.value)}
+         className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
+
+         <input 
+         type="password" 
+         placeholder="Password"
+         value={password}
+         onChange={(e) => setPassword(e.target.value)} 
+         className="px-4 py-4 w-full rounded border border-grey"/>
+
         <Buttons btnState={"defaultMain"} text={"Iniciar sessão"} btnSize={"menuSize"}/>
+        <button onClick={handleSignInEmail}>SIGN IN</button>
 
             <div className="flex my-12 items-center">
                 <div className="border-b border-grey w-full"></div>

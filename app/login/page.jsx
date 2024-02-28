@@ -83,12 +83,13 @@ export default function LoginPage() {
                     </Buttons>
                 </div>
 
-                <Buttons
-                    
-                    btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"mediumSizeSocials"} icon={"apple"}
-                >
-                   
-                </Buttons>
+                <div>
+                    <Buttons
+                        btnState={"secondaryMain"} text={"Continuar com Apple"} btnSize={"mediumSizeSocials"} icon={"apple"}
+                    >                  
+                    </Buttons>
+                </div>
+                
             </div>
 
             <div className="text-center my-20">Não tens conta? <Link href={"/register"} className="text-primary_main font-semibold" >Regista-te com email.</Link>

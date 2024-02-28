@@ -7,8 +7,7 @@ import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
-// Não deve ser acessível a quem tem sessão iniciada.
-// Quem entrar aqui com sessão deve automaticamente fazer signout e ser redirecionado para a página de login
+
 
 const Register = () => {
 
@@ -17,6 +16,9 @@ const Register = () => {
   const [loading, setLoading] = useState(true);
   const supabase = createClientComponentClient();
 
+  const [email,setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("")
 
   useEffect(() => {
       async function getUser() {
@@ -27,6 +29,37 @@ const Register = () => {
 
       getUser();
   }, [])
+
+
+const handleSignUp = async () => {
+  console.log(email +" - " + password)
+
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options:{
+      emailRedirectTo: `${location.origin}/auth/callback`
+    }
+  })
+  router.refresh();
+  setEmail("")
+  setPassword("")
+  setUsername("")
+  console.log(data, error)
+
+  /* await supabase.auth.signUp({
+    email,
+    password,
+    options:{
+      emailRedirectTo: `${location.origin}/auth/callback`
+    }
+  })
+  router.refresh();
+  setEmail("")
+  setPassword("")
+  setUsername("") */
+}
+
 
 
 if(user){
@@ -45,17 +78,35 @@ if (loading) {
 
           <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary"><div className="text-center mt-16">Adiciona aqui uma foto</div></div>
 
-         <input type="text" placeholder="Nome" className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
-         <input type="text" placeholder="Email" className="px-4 py-4 w-full rounded border border-grey mb-4"/>
-         <input type="password" placeholder="Password" className="px-4 py-4 w-full rounded border border-grey mb-4"/>
+         <input type="text" 
+         placeholder="Nome" 
+         value={username} 
+         onChange={(e)=> setUsername(e.target.value)} 
+         className="px-4 py-4 w-full mb-4 rounded border border-grey"/>
+
+         <input 
+         type="text" 
+         placeholder="Email"
+         value={email}
+         onChange={(e) => setEmail(e.target.value)} 
+         className="px-4 py-4 w-full rounded border border-grey mb-4"/>
+
+         <input 
+         type="password" 
+         value={password}
+         onChange={(e)=> setPassword(e.target.value)}
+         placeholder="Password" 
+         className="px-4 py-4 w-full rounded border border-grey mb-4"/>
+
          <ul className="mb-8 mx-2 caption text-secondary">
           <li>A senha deve ter no mínimo 8 caracteres.</li>
           <li>Um número; </li>
           <li>Uma letra maiúscula; </li>
           <li>Um caractere especial (@, #, $, %, &).</li>
          </ul>
-         <input type="password" placeholder="Confirmar password" className="px-4 py-4 w-full rounded border border-grey mb-4"/>
-         <Buttons btnState="disabledMain" text="Registar conta" btnSize="menuSize"/>
+         {/* <input type="password" placeholder="Confirmar password" className="px-4 py-4 w-full rounded border border-grey mb-4"/> */}
+         <Buttons btnState="defaultMain" text="Registar conta" btnSize="menuSize" onClick={handleSignUp}/>
+         <button onClick={handleSignUp}>SIGN UP</button>
          <div className="text-center mt-20">Já tens conta? <Link href={"/login"} className="text-primary_main font-semibold" >Inicia sessão aqui.</Link>
             </div>
         </main>

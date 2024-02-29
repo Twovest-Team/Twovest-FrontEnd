@@ -18,6 +18,7 @@ export default function LoginPage() {
 
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
+  
 
     
     useEffect(() => {
@@ -44,7 +45,8 @@ export default function LoginPage() {
 
         await supabase.auth.signInWithPassword({
             email,
-            password
+            password,
+            
         })
         router.refresh()
         setEmail(""),

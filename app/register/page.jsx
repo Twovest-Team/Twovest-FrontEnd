@@ -38,6 +38,9 @@ const handleSignUp = async () => {
     email,
     password,
     options:{
+      data: {
+        username: username
+      },
       emailRedirectTo: `${location.origin}/auth/callback`
     }
   })

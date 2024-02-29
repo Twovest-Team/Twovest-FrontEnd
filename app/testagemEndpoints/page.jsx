@@ -17,7 +17,6 @@ import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import getBrands from "@/utils/db/getBrands";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
-import getAllCollections from "@/utils/db/collections/getAllCollections";
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados

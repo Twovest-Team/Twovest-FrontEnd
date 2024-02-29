@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/db/supabase";
-import getCollectionsForCard from "./getCollectionsForCard";
+import getAllCollections from "./collections/getAllCollections";
 import getLookForProfilePage from "./getLookForProfilePage";
 
 const getInfoForProfilePage = async (id_user) => {
@@ -16,7 +16,7 @@ const getInfoForProfilePage = async (id_user) => {
     )
     .eq("id", id_user);
 
-  const colecoes = await getCollectionsForCard(id_user);
+  const colecoes = await getAllCollections(id_user);
   const userLooks = await getLookForProfilePage(id_user);
 
  

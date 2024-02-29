@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleLookModalToggle } from "@/redux/slices/saveLookModalToggle";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import getUserCollections from "@/utils/db/collections/getUserCollections";
+import getAllCollections from "@/utils/db/collections/getAllCollections";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
@@ -25,7 +25,7 @@ export default function SaveButton({ lookId }) {
 
   async function getData() {
     setLoading(true)
-    const userCollections = await getUserCollections(currentUser.id)
+    const userCollections = await getAllCollections(currentUser.id)
     if (userCollections) {
       setCollections(userCollections)
 

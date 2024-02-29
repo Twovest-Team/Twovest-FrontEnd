@@ -1,5 +1,5 @@
 import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
-import getInfoForCollectionPage from "@/utils/db/getInfoForCollectionPage";
+import getCollectionData from "@/utils/db/collections/getCollectionData";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ShareButton from "@/components/buttons/icons/ShareButton";
@@ -21,7 +21,7 @@ const Collection = async ({ params }) => {
   const collectionOwnerId = params.id
   const collectionId = params.idCollection
   let isOwnCollection = false;
-  const data = await getInfoForCollectionPage(collectionId, collectionOwnerId);
+  const data = await getCollectionData(collectionId, collectionOwnerId);
   const privacy = data[0].privacy
 
   //Este verificação deve incluir coleções partilhadas no futuro.

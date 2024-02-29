@@ -20,7 +20,6 @@ export default function Home() {
 
 
 let gender; 
-
 const [dataPopular, setDataPopular]= useState();
 const [brands, setBrands] = useState();
 const [looks, setLooks] = useState();

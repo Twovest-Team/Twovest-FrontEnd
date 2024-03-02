@@ -7,12 +7,13 @@ import { updateCart } from '@/redux/slices/cartProducts';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 //import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
+import useAuth from "@/hooks/useAuth";
 
 const SuccessPage = () => {
 
  const dispatch = useAppDispatch();
  const products = useAppSelector((state) => state.cartProducts.products);
- const currentUser = useAppSelector((state) => state.user.data);
+ const currentUser = useAuth();
 
 
 

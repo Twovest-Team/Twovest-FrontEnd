@@ -9,6 +9,7 @@ import getAllCollections from "@/utils/db/collections/getAllCollections";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
+import useAuth from "@/hooks/useAuth";
 
 
 export default function SaveButton({ lookId }) {
@@ -18,7 +19,7 @@ export default function SaveButton({ lookId }) {
   const [loading, setLoading] = useState(false)
   const [lookWasSavedBefore, setLookWasSavedBefore] = useState(false)
   const toggleModal = useAppSelector(state => state.lookModalToggle.isOpen)
-  const currentUser = useAppSelector((state) => state.user.data);
+  const currentUser = useAuth();
   const router = useRouter()
   lookId = parseInt(lookId)
 

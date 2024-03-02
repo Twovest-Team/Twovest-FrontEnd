@@ -6,13 +6,14 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import getUserHistory from '@/utils/db/productsViewHistory/getUserHistory'
 import { updateHistory } from '@/redux/slices/historyProducts'
+import useAuth from "@/hooks/useAuth";
 
 
 const LastProductsSeen = () => {
 
     const dispatch = useAppDispatch()
     const currentUserHistory = useAppSelector(state => state.historyProducts.products)
-    const currentUser = useAppSelector((state) => state.user.data);
+    const currentUser = useAuth();
 
     async function getUserHistoryData() {
         const data = await getUserHistory(currentUser.email)

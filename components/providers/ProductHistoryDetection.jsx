@@ -9,12 +9,13 @@ import { historyMaxLength } from "@/constants";
 import removeFromUserHistory from "@/utils/db/productsViewHistory/removeFromUserHistory";
 import orderUserHistory from "@/utils/db/productsViewHistory/orderUserHistory";
 import getUserHistory from "@/utils/db/productsViewHistory/getUserHistory";
+import useAuth from "@/hooks/useAuth";
 
 const ProductHistoryDetection = ({ children, productId }) => {
 
     const dispatch = useAppDispatch()
     const currentUserHistory = useAppSelector(state => state.historyProducts.products)
-    const currentUser = useAppSelector((state) => state.user.data);
+    const currentUser = useAuth();
     let [isHistoryValidated, setIsHistoryValidated] = useState(false)
 
     async function addProduct() {

@@ -1,46 +1,17 @@
 'use client';
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
-import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
+import withAuth from "@/hocs/withAuth";
 
 
 
-export default function LoginPage() {
+function LoginPage({currentUser, loginGoogle}) {
     const router = useRouter()
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const supabase = createClientComponentClient();
 
-    useEffect(() => {
-        async function getUser() {
-            const { data: { user } } = await supabase.auth.getUser()
-            setUser(user)
-            setLoading(false)
-        }
-
-        getUser();
-    }, [])
-
-    const handleSignInGoogle = async () => {
-        await supabase.auth.signInWithOAuth({
-            provider: 'Google',
-            options: {
-                redirectTo: `${location.origin}/auth/callback`
-            }
-        })
-        //router.push("${location.origin}/auth/callback");
-    }
-
-    if (loading) {
-        return <GeneralLoading />
-    }
-
-    if (user) {
+    if (currentUser) {
         router.push("/")  
     }
 
@@ -61,7 +32,7 @@ export default function LoginPage() {
             
             <div className="">
     
-                <div onClick={handleSignInGoogle}><Buttons
+                <div onClick={loginGoogle}><Buttons
                     
                     btnState={"secondaryMain"} text={"Continuar com Google"} btnSize={"mediumSizeSocials"} icon={"google"}
                 >
@@ -89,3 +60,5 @@ export default function LoginPage() {
     )
 
 }
+
+export default withAuth(LoginPage)

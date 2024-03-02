@@ -10,16 +10,16 @@ import ShopSectionTwo from "@/components/sections/ShopSectionTwo";
 import { shopStages } from "@/constants";
 import getUserCartProducts from "@/utils/db/cart/getUserCartProducts";
 import { updateCart } from "@/redux/slices/cartProducts";
+import withAuth from "@/hocs/withAuth";
 
 // Shop component
-const Shop = () => {
+const Shop = ({currentUser}) => {
   // State management
   const dispatch = useAppDispatch();
   const [stageState, setStageState] = useState();
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const products = useAppSelector((state) => state.cartProducts.products);
-  const currentUser = useAppSelector((state) => state.user.data);
 
   // Update stage function
   function updateStage(id) {
@@ -151,4 +151,4 @@ function ProgressBarShop({stageState, updateStage}){
 }
 
 
-export default Shop;
+export default withAuth(Shop);

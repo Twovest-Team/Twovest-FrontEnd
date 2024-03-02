@@ -8,19 +8,17 @@ import ProfilePicture from "@/components/profilePicture/ProfilePicture";
 import CollectionPreview from "@/components/items/CollectionPreview";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import React from "react";
-import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
-import { redirect } from "next/navigation";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
+import withAuthServer from "@/hocs/withAuthServer";
 
 export const revalidate = 0
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
-const Profile = async ({ params }) => {
+const Profile = async ({ params, currentUser }) => {
 
-  const currentUser = await getUserByEmailServer();
   const urlId = params.id;
   let isOwnProfile = false;
 
@@ -91,7 +89,7 @@ const Profile = async ({ params }) => {
 
 };
 
-export default Profile;
+export default withAuthServer(Profile);
 
 async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
   return (

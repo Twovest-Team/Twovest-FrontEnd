@@ -12,5 +12,4 @@ export async function GET(request){
         await supabase.auth.exchangeCodeForSession(code);
     }
     return NextResponse.redirect('http://localhost:3000/api/manageUsers')
-    /* return NextResponse.redirect('https://twovest.com/api/manageUsers') */
 }

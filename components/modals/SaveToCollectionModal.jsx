@@ -18,13 +18,13 @@ import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import createCollection from '@/utils/db/collections/createCollection';
+import withAuth from '@/hocs/withAuth';
 
 
-const SaveToCollectionModal = ({ lookId }) => {
+const SaveToCollectionModal = ({ lookId, currentUser }) => {
 
     const dispatch = useAppDispatch()
     const pathname = usePathname()
-    const currentUser = useAppSelector((state) => state.user.data);
     const [collections, setCollections] = useState()
     const router = useRouter()
     const isModalOpen = useAppSelector(state => state.lookModalToggle.isOpen)
@@ -337,4 +337,4 @@ const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId
 
 
 
-export default SaveToCollectionModal
+export default withAuth(SaveToCollectionModal)

@@ -8,11 +8,11 @@ import { useState } from 'react';
 import Notifications from '@/components/modals/Notifications';
 import LoadingIcon from './LoadingIcon';
 import { useRouter } from 'next/navigation';
+import withAuth from '@/hocs/withAuth';
 
-const BuyButton = ({ offerId }) => {
+const BuyButton = ({ offerId, currentUser }) => {
 
     const dispatch = useAppDispatch()
-    const currentUser = useAppSelector(state => state.user.data)
     const [isClicked, setIsClicked] = useState(false)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
@@ -45,4 +45,4 @@ const BuyButton = ({ offerId }) => {
     )
 }
 
-export default BuyButton
+export default withAuth(BuyButton)

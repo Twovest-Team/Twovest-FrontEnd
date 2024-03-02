@@ -1,16 +1,15 @@
-import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import CollectionPreview from "@/components/items/CollectionPreview";
 import SearchIcon from "@mui/icons-material/Search";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
+import withAuthServer from "@/hocs/withAuthServer";
 
 // Lista de coleções de um utilizador
-const Collections = async ({ params }) => {
+const Collections = async ({ params, currentUser }) => {
 
   const collectionOwnerId = params.id
-  const currentUser = await getUserByEmailServer();
   let isOwnCollections = false;
 
   if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
@@ -48,7 +47,7 @@ const Collections = async ({ params }) => {
   );
 };
 
-export default Collections;
+export default withAuthServer(Collections);
 
 async function AllUserCollections({ data, isOwnCollections, userFirstName, collectionOwnerId }) {
 

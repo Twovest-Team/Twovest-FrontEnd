@@ -11,32 +11,50 @@ const withAuth = (WrappedComponent) => {
   const WithAuth = (props) => {
 
     const dispatch = useAppDispatch()
+    const supabase = createClientComponentClient();
     let authData = useAppSelector(state => state.user.data)
 
     useEffect(() => {
 
-        async function fetchUserData() {
-            if (!authData) {
-                let currentUser = await getUserData()
-                dispatch(changeUserData(currentUser))
-            }
+      async function fetchUserData() {
+        if (!authData) {
+          let currentUser = await getUserData()
+          dispatch(changeUserData(currentUser))
         }
+      }
 
-        fetchUserData()
+      fetchUserData()
 
     }, [authData])
 
-    async function handleLogout(){
-        const supabase = createClientComponentClient();
-        await supabase.auth.signOut()
-        dispatch(changeUserData(null));
+    async function handleLogout() {
+      await supabase.auth.signOut()
+      dispatch(changeUserData(null));
+    }
+
+    async function handleLoginGoogle() {
+      if (!authData) {
+        await supabase.auth.signInWithOAuth({
+          provider: 'Google',
+          options: {
+            redirectTo: `${location.origin}/auth/callback`
+          }
+        })
+      }
     }
 
 
-    return <WrappedComponent {...props} currentUser={authData || null} logout={handleLogout} />;
+    return (
+      <WrappedComponent
+        {...props}
+        currentUser={authData || null}
+        logout={handleLogout}
+        loginGoogle={handleLoginGoogle}
+      />
+    )
   }
 
-  return WithAuth
+return WithAuth
 
 }
 

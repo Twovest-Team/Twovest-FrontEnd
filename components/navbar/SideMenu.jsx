@@ -21,12 +21,12 @@ import { toggleMenu } from "@/redux/slices/menuToggle"
 import handleGender from "@/utils/handleGender"
 import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from "next/navigation";
+import withAuth from "@/hocs/withAuth"
 
-export const SideMenu = () => {
+const SideMenu = ({currentUser}) => {
 
     const dispatch = useAppDispatch()
     const router = useRouter();
-    const currentUser = useAppSelector(state => state.user.data)
     const isMenuOpen = useAppSelector(state => state.menuToggle.isOpen)
     const [genderState, setGenderState] = useState("");
     const pathName = usePathname();
@@ -146,3 +146,5 @@ export const SideMenu = () => {
         </>
     )
 }
+
+export default withAuth(SideMenu)

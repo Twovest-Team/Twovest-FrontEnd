@@ -24,14 +24,14 @@ import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { UserIcon } from "../user/UserIcon";
 import { current } from "@reduxjs/toolkit";
+import withAuth from "@/hocs/withAuth";
 
 
-export const Navbar = ({ children }) => {
+const Navbar = ({ children, currentUser, logout }) => {
 
     const dispatch = useAppDispatch()
     const router = useRouter();
     const pathName = usePathname();
-    const currentUser = useAppSelector(state => state.user.data)
     const supabase = createClientComponentClient();
 
     const handleClickMenu = () => {
@@ -42,31 +42,7 @@ export const Navbar = ({ children }) => {
         dispatch(toggleCart())
     }
 
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        router.refresh();
-
-        dispatch(changeUserData(null))
-    }
-
-
-
-    useEffect(() => {
-
-
-        async function fetchUserData() {
-            if (!currentUser) {
-                let userData = await getUserData()
-                dispatch(changeUserData(userData))
-            }
-        }
-
-        fetchUserData()
-
-    }, [currentUser])
-
-
-
+   
     if (pathName != "/landing") {
 
         return (
@@ -203,7 +179,7 @@ export const Navbar = ({ children }) => {
 
                                         <Menu.Item >
                                             {({ active, close }) => (
-                                                <div className={"w-full text-start cursor-pointer"}  onClick={handleLogout}>
+                                                <div className={"w-full text-start cursor-pointer"}  onClick={logout}>
                                                     <div
                                                         className={`${active && 'bg-grey_opacity_50'} text-error_main  caption`}>
                                                         Sair -&gt;
@@ -240,3 +216,5 @@ export const Navbar = ({ children }) => {
     }
 
 }
+
+export default withAuth(Navbar)

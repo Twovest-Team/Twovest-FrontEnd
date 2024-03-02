@@ -5,13 +5,13 @@ import NotificationNumber from "./NotificationNumber"
 import { updateCart } from "@/redux/slices/cartProducts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
+import withAuth from "@/hocs/withAuth"
 
 
-const NotificationCart = () => {
+const NotificationCart = ({currentUser}) => {
 
     const dispatch = useAppDispatch()
     let products = useAppSelector(state => state.cartProducts.products)
-    const currentUser = useAppSelector(state => state.user.data)
 
     useEffect(() => {
 
@@ -35,4 +35,4 @@ const NotificationCart = () => {
     )
 }
 
-export default NotificationCart
+export default withAuth(NotificationCart)

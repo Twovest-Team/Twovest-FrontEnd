@@ -13,7 +13,6 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
-import getUserData from "@/utils/db/getUserByEmail";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from '@headlessui/react'
@@ -24,6 +23,7 @@ import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { UserIcon } from "../user/UserIcon";
 import { current } from "@reduxjs/toolkit";
+import useAuth from "@/hooks/useAuth";
 
 
 export const Navbar = ({ children }) => {
@@ -31,7 +31,7 @@ export const Navbar = ({ children }) => {
     const dispatch = useAppDispatch()
     const router = useRouter();
     const pathName = usePathname();
-    const currentUser = useAppSelector(state => state.user.data)
+    const currentUser = useAuth();
     const supabase = createClientComponentClient();
 
     const handleClickMenu = () => {
@@ -51,20 +51,7 @@ export const Navbar = ({ children }) => {
 
 
 
-    useEffect(() => {
-
-
-        async function fetchUserData() {
-            if (!currentUser) {
-                let userData = await getUserData()
-                dispatch(changeUserData(userData))
-            }
-        }
-
-        fetchUserData()
-
-    }, [currentUser])
-
+  
 
 
     if (pathName != "/landing") {

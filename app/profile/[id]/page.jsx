@@ -8,19 +8,18 @@ import ProfilePicture from "@/components/profilePicture/ProfilePicture";
 import CollectionPreview from "@/components/items/CollectionPreview";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import React from "react";
-import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
-import { redirect } from "next/navigation";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
+import useAuthServer from "@/hooks/useAuthServer";
 
 export const revalidate = 0
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params }) => {
 
-  const currentUser = await getUserByEmailServer();
+  const currentUser = useAuthServer();
   const urlId = params.id;
   let isOwnProfile = false;
 

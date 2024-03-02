@@ -8,11 +8,12 @@ import { useState } from 'react';
 import Notifications from '@/components/modals/Notifications';
 import LoadingIcon from './LoadingIcon';
 import { useRouter } from 'next/navigation';
+import useAuth from "@/hooks/useAuth";
 
 const BuyButton = ({ offerId }) => {
 
     const dispatch = useAppDispatch()
-    const currentUser = useAppSelector(state => state.user.data)
+    const currentUser = useAuth()
     const [isClicked, setIsClicked] = useState(false)
     const [loading, setLoading] = useState(false)
     const router = useRouter()

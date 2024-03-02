@@ -5,13 +5,14 @@ import NotificationNumber from "./NotificationNumber"
 import { updateCart } from "@/redux/slices/cartProducts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
+import useAuth from "@/hooks/useAuth";
 
 
 const NotificationCart = () => {
 
     const dispatch = useAppDispatch()
     let products = useAppSelector(state => state.cartProducts.products)
-    const currentUser = useAppSelector(state => state.user.data)
+    const currentUser = useAuth()
 
     useEffect(() => {
 

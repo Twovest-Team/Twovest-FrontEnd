@@ -1,16 +1,17 @@
-import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
+
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import CollectionPreview from "@/components/items/CollectionPreview";
 import SearchIcon from "@mui/icons-material/Search";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
+import useAuthServer from "@/hooks/useAuthServer";
 
 // Lista de coleções de um utilizador
 const Collections = async ({ params }) => {
 
   const collectionOwnerId = params.id
-  const currentUser = await getUserByEmailServer();
+  const currentUser = useAuthServer()
   let isOwnCollections = false;
 
   if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {

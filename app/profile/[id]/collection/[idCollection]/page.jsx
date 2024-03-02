@@ -1,4 +1,4 @@
-import getUserByEmailServer from "@/utils/db/getUserByEmailServer";
+
 import getCollectionData from "@/utils/db/collections/getCollectionData";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -12,12 +12,13 @@ import Views from "@/components/providers/Views";
 import CollectionPrivacyTag from "@/components/items/CollectionPrivacyTag";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import Link from "next/link";
+import useAuthServer from "@/hooks/useAuthServer";
 
 
 // Coleção específica de um utilizador
 const Collection = async ({ params }) => {
 
-  const currentUser = await getUserByEmailServer();
+  const currentUser = useAuthServer();
   const collectionOwnerId = params.id
   const collectionId = params.idCollection
   let isOwnCollection = false;

@@ -57,7 +57,7 @@ const SuccessPage = ({ currentUser }) => {
             href={"/"}
             className="bg-primary_main block text-center text-white py-3.5 font-semibold rounded"
           >
-            Voltar à loja
+            voltar à loja
           </Link>
         </div>
       </SuccessCard>

@@ -13,12 +13,12 @@ import Link from "next/link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import Notifications from "../modals/Notifications";
-import withAuth from "@/hocs/withAuth";
 
-const Cart = ({ currentUser }) => {
+export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
+  const currentUser = useAppSelector((state) => state.user.data);
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
 
@@ -61,7 +61,7 @@ const Cart = ({ currentUser }) => {
   return (
     <div
       className={`${isCartOpen ? "translate-y-0" : "-translate-y-full block"}
-        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto fixed top-0 transition-transform duration-300 ease-in-out h-full`}
+        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto h-screen fixed top-0 transition-transform duration-300 ease-in-out`}
     >
       <div className="flex justify-between items-center border-b border-grey">
         <div className="flex h-[72px] justify-between container items-center">
@@ -154,7 +154,7 @@ const Cart = ({ currentUser }) => {
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
               </h6>
-              <div className="text-secondary">IVA Incluído</div>
+              <div className="text-grey">IVA Incluído</div>
             </div>
             <div>
               <h6 className="font-semibold">
@@ -181,5 +181,3 @@ const Cart = ({ currentUser }) => {
     </div>
   );
 };
-
-export default withAuth(Cart);

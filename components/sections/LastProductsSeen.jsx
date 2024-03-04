@@ -6,13 +6,14 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import getUserHistory from "@/utils/db/productsViewHistory/getUserHistory";
 import { updateHistory } from "@/redux/slices/historyProducts";
-import withAuth from "@/hocs/withAuth";
 
-const LastProductsSeen = ({ currentUser }) => {
+const LastProductsSeen = () => {
   const dispatch = useAppDispatch();
   const currentUserHistory = useAppSelector(
     (state) => state.historyProducts.products
   );
+  const currentUser = useAppSelector((state) => state.user.data);
+
   async function getUserHistoryData() {
     const data = await getUserHistory(currentUser.email);
     if (data && data.length > 0) {
@@ -45,4 +46,4 @@ const LastProductsSeen = ({ currentUser }) => {
   }
 };
 
-export default withAuth(LastProductsSeen);
+export default LastProductsSeen;

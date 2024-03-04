@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 import useAuth from "@/hooks/useAuth";
+import { Buttons } from "../Buttons";
 
 export default function SaveButton({ lookId }) {
   const dispatch = useAppDispatch();

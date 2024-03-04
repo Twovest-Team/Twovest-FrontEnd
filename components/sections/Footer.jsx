@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
         </Link>
         <Link href="/">
-          <div className="footer--text w-44 pl-8">proteção de dados</div>
+          <div className="footer--text w-44 pl-8">Proteção de dados</div>
         </Link>
         <Link href="/">
           <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">

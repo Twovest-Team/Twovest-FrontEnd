@@ -13,6 +13,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
+import getUserData from "@/utils/db/getUserByEmail";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
@@ -21,15 +22,12 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { UserIcon } from "../user/UserIcon";
-import { current } from "@reduxjs/toolkit";
-import useAuth from "@/hooks/useAuth";
 
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
-  const currentUser = useAuth();
+  const currentUser = useAppSelector((state) => state.user.data);
   const supabase = createClientComponentClient();
 
   const handleClickMenu = () => {
@@ -46,6 +44,17 @@ export const Navbar = ({ children }) => {
 
     dispatch(changeUserData(null));
   };
+
+  useEffect(() => {
+    async function fetchUserData() {
+      if (!currentUser) {
+        let userData = await getUserData();
+        dispatch(changeUserData(userData));
+      }
+    }
+
+    fetchUserData();
+  }, [currentUser]);
 
   if (pathName != "/landing") {
     return (
@@ -84,14 +93,13 @@ export const Navbar = ({ children }) => {
             {currentUser ? (
               <Menu.Button>
                 <div className="navbar_icons translate-y-0.5 border border-grey rounded-full">
-                  <UserIcon
-                    url={currentUser.img}
-                    size="small"
-                    userName={currentUser.name}
-                    userId={currentUser.id}
-                    userRole={currentUser.role}
+                  <Image
+                    src={currentUser.img}
+                    className="rounded-full border-grey border"
+                    width={25}
+                    height={25}
+                    alt="profile image"
                   />
-                  {/* <Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /> */}
                 </div>
               </Menu.Button>
             ) : (
@@ -199,7 +207,7 @@ export const Navbar = ({ children }) => {
                       {({ active, close }) => (
                         <div>
                           <Link
-                            href={`/profile/${currentUser.id}`}
+                            href={`/profile?${currentUser.id}`}
                             onClick={close}
                             className={`${active && "bg-grey_opacity_50"}`}
                           >
@@ -212,7 +220,7 @@ export const Navbar = ({ children }) => {
                       {({ active, close }) => (
                         <div>
                           <Link
-                            href={`/profile/${currentUser.id}`}
+                            href={`/profile?${currentUser.id}`}
                             onClick={close}
                             className={`${active && "bg-grey_opacity_50"}`}
                           >
@@ -228,7 +236,7 @@ export const Navbar = ({ children }) => {
                       {({ active, close }) => (
                         <div>
                           <Link
-                            href={`/profile/${currentUser.id}`}
+                            href={`/profile?${currentUser.id}`}
                             onClick={close}
                             className={`${active && "bg-grey_opacity_50"}`}
                           >
@@ -244,7 +252,7 @@ export const Navbar = ({ children }) => {
                       {({ active, close }) => (
                         <div>
                           <Link
-                            href={`/profile/${currentUser.id}`}
+                            href={`/profile?${currentUser.id}`}
                             onClick={close}
                             className={`${active && "bg-grey_opacity_50"}`}
                           >

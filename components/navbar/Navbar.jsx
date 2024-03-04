@@ -23,47 +23,37 @@ import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { UserIcon } from "../user/UserIcon";
 import { current } from "@reduxjs/toolkit";
-<<<<<<< HEAD
-import withAuth from "@/hocs/withAuth";
-import { Buttons } from "../buttons/Buttons";
-=======
 import useAuth from "@/hooks/useAuth";
->>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
 
-const Navbar = ({ children, currentUser, logout }) => {
+export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
+  const currentUser = useAuth();
   const supabase = createClientComponentClient();
 
   const handleClickMenu = () => {
     dispatch(toggleMenu());
   };
 
-<<<<<<< HEAD
   const handleClickCart = () => {
     dispatch(toggleCart());
   };
-=======
-    const dispatch = useAppDispatch()
-    const router = useRouter();
-    const pathName = usePathname();
-    const currentUser = useAuth();
-    const supabase = createClientComponentClient();
->>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+
+    dispatch(changeUserData(null));
+  };
 
   if (pathName != "/landing") {
     return (
       <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
         <div className="flex">
-          <Buttons
-            ariaLabel="Abrir Navbar ?"
-            btnState=""
-            text=""
-            icon="menuIcon"
-            btnSize="newIconSet2"
-            onClick={handleClickMenu}
-          ></Buttons>
+          <button className="mr-4" onClick={handleClickMenu}>
+            <MenuIcon />
+          </button>
           <Link href={"/"} className="items-center flex">
             <Image
               src={logo}
@@ -82,32 +72,14 @@ const Navbar = ({ children, currentUser, logout }) => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Buttons
-            ariaLabel="Deseja ver a lista de favoritos?"
-            btnState=""
-            text=""
-            icon="favorite2Navbar"
-            btnSize="newIconSet3"
-          ></Buttons>
-          <div className="navbar_icons relative">
-            <Buttons
-              ariaLabel="Saco de Compras"
-              btnState=""
-              text=""
-              icon="notificationCart"
-              btnSize="newIconSet3"
-            ></Buttons>
-            <Buttons
-              ariaLabel="Saco de Compras"
-              btnState=""
-              text=""
-              icon="localBag"
-              btnSize="newIconSet3"
-              onClick={handleClickCart}
-            ></Buttons>
-          </div>
+          <button className="navbar_icons">
+            <FavoriteBorderOutlinedIcon />
+          </button>
+          <button className="navbar_icons relative" onClick={handleClickCart}>
+            <LocalMallOutlinedIcon />
+            <NotificationCart />
+          </button>
 
-<<<<<<< HEAD
           <Menu>
             {currentUser ? (
               <Menu.Button>
@@ -120,35 +92,6 @@ const Navbar = ({ children, currentUser, logout }) => {
                     userRole={currentUser.role}
                   />
                   {/* <Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /> */}
-=======
-    const handleClickCart = () => {
-        dispatch(toggleCart())
-    }
-
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        router.refresh();
-
-        dispatch(changeUserData(null))
-    }
-
-
-
-  
-
-
-    if (pathName != "/landing") {
-
-        return (
-
-            <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
-
-                <div className="flex">
-                    <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
-                    <Link href={"/"} className="items-center flex">
-                        <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
-                        <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
->>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
                 </div>
               </Menu.Button>
             ) : (
@@ -193,7 +136,7 @@ const Navbar = ({ children, currentUser, logout }) => {
                             </div>
                           </div>
                           <div className="bg-primary_main px-1 py-2 w-full h-[32px] text-center caption mt-2 text-white rounded">
-                            I1D: {currentUser.id}
+                            ID: {currentUser.id}
                           </div>
                         </div>
                       )}
@@ -317,7 +260,7 @@ const Navbar = ({ children, currentUser, logout }) => {
                       {({ active, close }) => (
                         <div
                           className={"w-full text-start cursor-pointer"}
-                          onClick={logout}
+                          onClick={handleLogout}
                         >
                           <div
                             className={`${
@@ -363,5 +306,3 @@ const Navbar = ({ children, currentUser, logout }) => {
     );
   }
 };
-
-export default withAuth(Navbar);

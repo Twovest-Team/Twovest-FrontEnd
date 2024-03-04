@@ -13,12 +13,13 @@ import Link from "next/link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import Notifications from "../modals/Notifications";
-import withAuth from "@/hocs/withAuth";
+import useAuth from "@/hooks/useAuth";
 
-const Cart = ({ currentUser }) => {
+export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
+  const currentUser = useAuth();
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
 
@@ -181,5 +182,3 @@ const Cart = ({ currentUser }) => {
     </div>
   );
 };
-
-export default withAuth(Cart);

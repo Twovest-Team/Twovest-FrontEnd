@@ -24,7 +24,7 @@ export default function LoginPage() {
     }
 
     getUser();
-  }, []);
+  }, [supabase.auth]);
 
   const handleSignInGoogle = async () => {
     await supabase.auth.signInWithOAuth({

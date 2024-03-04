@@ -10,7 +10,6 @@ import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 import { UserIcon } from "@/components/user/UserIcon";
-import { Buttons } from "@/components/buttons/Buttons";
 
 export const revalidate = 30;
 

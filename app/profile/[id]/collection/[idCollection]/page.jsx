@@ -5,7 +5,7 @@ import ShareButton from "@/components/buttons/icons/ShareButton";
 import Image from "next/image";
 import LookCard from "@/components/cards/LookCard";
 import { redirect } from "next/navigation";
-import { Buttons } from "@/components/buttons/Buttons";
+
 import ItemsBox from "@/components/providers/ItemsBox";
 import Views from "@/components/providers/Views";
 import CollectionPrivacyTag from "@/components/items/CollectionPrivacyTag";

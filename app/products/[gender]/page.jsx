@@ -1,3 +1,4 @@
+"use client";
 import { categories } from "@/constants";
 import getProductsByCategory from "@/utils/db/getProductsByCategory";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
@@ -10,10 +11,9 @@ import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loadingSkeletons/Products";
 import getSustainableProducts from "@/utils/db/getSustainableProducts";
 import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export default async function Products({ searchParams, params }) {
   const category = searchParams.category;
@@ -91,7 +91,9 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <NoDataComponent text={"Não há produtos registados nesta categoria."}/>
+          <NoDataComponent
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );
@@ -111,7 +113,9 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <NoDataComponent text={"Não há produtos registados nesta categoria."}/>
+          <NoDataComponent
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );
@@ -132,7 +136,9 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </ItemsBox>
         ) : (
-          <NoDataComponent text={"Não há produtos registados nesta categoria."}/>
+          <NoDataComponent
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );

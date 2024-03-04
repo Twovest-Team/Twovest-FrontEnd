@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import { useAppSelector } from "@/redux/hooks";
-import { Buttons } from "../buttons/Buttons";
 
 export const CardCart = ({
   handleShowDeleteNotification,

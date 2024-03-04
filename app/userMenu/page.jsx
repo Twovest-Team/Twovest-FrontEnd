@@ -49,7 +49,7 @@ const UserMenu = () => {
           <div className="modal_footer">
             <button className="button_default">Histórico de compras</button>
             <button className="button_default">Definições da conta</button>
-            <button className="button_logout">Sair sada</button>
+            <button className="button_logout">Sair →</button>
           </div>
           <button onClick={toggleModal}>Close Modal</button>
         </div>

@@ -13,21 +13,22 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import Link from "next/link";
 import withAuthServer from "@/hocs/withAuthServer";
 
-
 // Coleção específica de um utilizador
 const Collection = async ({ params, currentUser }) => {
-
-  const collectionOwnerId = params.id
-  const collectionId = params.idCollection
+  const collectionOwnerId = params.id;
+  const collectionId = params.idCollection;
   let isOwnCollection = false;
   const data = await getCollectionData(collectionId, collectionOwnerId);
-  const privacy = data[0].privacy
+  const privacy = data[0].privacy;
 
   //Este verificação deve incluir coleções partilhadas no futuro.
   if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
     isOwnCollection = true;
-  }else if (currentUser && collectionOwnerId != currentUser.id && privacy == 1 || !currentUser && privacy == 1){
-    redirect('/')
+  } else if (
+    (currentUser && collectionOwnerId != currentUser.id && privacy == 1) ||
+    (!currentUser && privacy == 1)
+  ) {
+    redirect("/");
   }
 
   return (
@@ -44,14 +45,17 @@ const Collection = async ({ params, currentUser }) => {
           <Views />
         </div>
 
-        {privacy == 3 && <CollectionPrivacyTag users={data[0].collectionUsers} privacy={privacy} />}
-
-
+        {privacy == 3 && (
+          <CollectionPrivacyTag
+            users={data[0].collectionUsers}
+            privacy={privacy}
+          />
+        )}
       </div>
 
-      {data && data[0].looks ?
+      {data && data[0].looks ? (
         <ItemsBox fixedView={2}>
-          {data[0].looks.map(look => (
+          {data[0].looks.map((look) => (
             <LookCard
               key={look.id_look}
               look={look.looks}
@@ -60,19 +64,24 @@ const Collection = async ({ params, currentUser }) => {
             />
           ))}
         </ItemsBox>
-        :
+      ) : (
         <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
           <BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
           <h6 className="font-semibold">Coleção sem looks</h6>
-          <p className="text-center text-secondary mb-4">Vai à descoberta de novos looks<br /> e inspira-te.</p>
-          <Link href={"/login"} className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit" >Ir para a Galeria</Link>
+          <p className="text-center text-secondary mb-4">
+            Vai à descoberta de novos looks
+            <br /> e inspira-te.
+          </p>
+          <Link
+            href={"/login"}
+            className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit"
+          >
+            Ir para a Galeria
+          </Link>
         </div>
-      }
-
+      )}
     </main>
-  )
+  );
 };
 
 export default withAuthServer(Collection);
-
-

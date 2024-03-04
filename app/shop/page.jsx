@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 // Importing dependencies
 import React, { useEffect, useState } from "react";
@@ -73,14 +73,18 @@ const Shop = () => {
       <NavigationTitle titleText="Efetuar compra" />
 
       {stageState && (
-        <section className={`flex flex-col gap-8 min-h-[calc(100vh-148px)] ${loading && 'opacity-20 pointer-events-none'}`}>
-
+        <section
+          className={`flex flex-col gap-8 min-h-[calc(100vh-148px)] ${
+            loading && "opacity-20 pointer-events-none"
+          }`}
+        >
           {/* Shop stage navigation */}
-         <ProgressBarShop stageState={stageState} updateStage={updateStage} />
+          <ProgressBarShop stageState={stageState} updateStage={updateStage} />
 
           {/* Renderiza secção apropriada consoante o stage */}
-          {products.length > 0 && currentUser && (
-            stageState.id === 1 ? (
+          {products.length > 0 &&
+            currentUser &&
+            (stageState.id === 1 ? (
               <ShopSectionOne
                 handleLoading={handleLoading}
                 handleShowDeleteNotification={handleShowDeleteNotification}
@@ -89,67 +93,83 @@ const Shop = () => {
                 updateStage={updateStage}
               />
             ) : stageState.id === 2 ? (
-              <ShopSectionTwo userData={currentUser} updateStage={updateStage} />
-            ) : stageState.id === 3 && (
-              <ShopSectionThree productsData={products} userData={currentUser} updateStage={updateStage} />
-            )
-          )}
+              <ShopSectionTwo
+                userData={currentUser}
+                updateStage={updateStage}
+              />
+            ) : (
+              stageState.id === 3 && (
+                <ShopSectionThree
+                  productsData={products}
+                  userData={currentUser}
+                  updateStage={updateStage}
+                />
+              )
+            ))}
         </section>
       )}
     </main>
   );
 };
 
-function ProgressBarShop({stageState, updateStage}){
-  return(
+function ProgressBarShop({ stageState, updateStage }) {
+  return (
     <div>
-
-            <div
-              className="container flex justify-between items-center text-secondary gap-1.5 mb-2 [&>article]:flex-1 [&>article:last-child]:text-end [&>article:nth-child(2)]:text-center [&>article]:cursor-pointer">
-              {shopStages.map((stage) => (
-                <article
-                  key={stage.id}
-                  onClick={stageState.id > stage.id ? () => updateStage(stage.id) : null}
-                  className={`
-                    ${stageState.id === stage.id ? 'text-black font-semibold' :
-                      stageState.id > stage.id ? 'text-primary_main font-semibold' :
-                        stageState.id < stage.id && 'text-secondary'}
+      <div className="container flex justify-between items-center text-secondary gap-1.5 mb-2 [&>article]:flex-1 [&>article:last-child]:text-end [&>article:nth-child(2)]:text-center [&>article]:cursor-pointer">
+        {shopStages.map((stage) => (
+          <article
+            key={stage.id}
+            onClick={
+              stageState.id > stage.id ? () => updateStage(stage.id) : null
+            }
+            className={`
+                    ${
+                      stageState.id === stage.id
+                        ? "text-black font-semibold"
+                        : stageState.id > stage.id
+                          ? "text-primary_main font-semibold"
+                          : stageState.id < stage.id && "text-secondary"
+                    }
                   `}
-                >
-                  {stage.name}
-                </article>
-              ))}
-            </div>
+          >
+            {stage.name}
+          </article>
+        ))}
+      </div>
 
-            <div
-              className="container flex justify-between items-center gap-2 [&>hr]:rounded-full [&>hr]:border [&>hr]:flex-grow [&>article]:rounded-full [&>article]:w-2 [&>article]:aspect-square [&>article]:cursor-pointer">
-
-              {shopStages.map((stage, index) => (
-                <React.Fragment key={stage.id}>
-                  <article
-                    
-                    onClick={stageState.id > stage.id ? () => updateStage(stage.id) : null}
-                    className={`
-                  ${stageState.id === stage.id ? 'bg-black' :
-                        stageState.id > stage.id ? 'bg-primary_main' :
-                          stageState.id < stage.id && 'bg-grey'}
-                `}
-                  />
-                  {index != 2 &&
-                    <hr
-                      className={`
-                  ${stageState.id > stage.id ? 'border-primary_main' : 'border-grey_opabg-grey_opacity_50'}
-                `}
-                    />
+      <div className="container flex justify-between items-center gap-2 [&>hr]:rounded-full [&>hr]:border [&>hr]:flex-grow [&>article]:rounded-full [&>article]:w-2 [&>article]:aspect-square [&>article]:cursor-pointer">
+        {shopStages.map((stage, index) => (
+          <React.Fragment key={stage.id}>
+            <article
+              onClick={
+                stageState.id > stage.id ? () => updateStage(stage.id) : null
+              }
+              className={`
+                  ${
+                    stageState.id === stage.id
+                      ? "bg-black"
+                      : stageState.id > stage.id
+                        ? "bg-primary_main"
+                        : stageState.id < stage.id && "bg-grey"
                   }
-                </React.Fragment>
-              ))}
-
-            </div>
-            
-          </div>
-  )
+                `}
+            />
+            {index != 2 && (
+              <hr
+                className={`
+                  ${
+                    stageState.id > stage.id
+                      ? "border-primary_main"
+                      : "border-grey_opabg-grey_opacity_50"
+                  }
+                `}
+              />
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
 }
-
 
 export default Shop;

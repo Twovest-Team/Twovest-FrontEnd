@@ -47,8 +47,8 @@ modalSize: 'w-full h-14 gap-12 items-center',
   <Buttons btnState="defaultMain" text="Promoções" icon="offer" btnSize="menuSize" />
 
       <Buttons aria-label="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
-      <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>
-      <Buttons btnState="secondaryMain" text="Continuar com Google" btnSize="mediumSizeSocials" icon="google"/>
+      <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>google
+      <Buttons btnState="secondaryMain" text="Continuar com Google" btnSize="mediumSizeSocials" icon=""/>
       <Buttons btnState="secondaryMain" text="Continuar com Facebook" btnSize="mediumSizeSocials" icon="facebook"/>
       <Buttons btnState="secondaryMain" text="Continuar com Maça" btnSize="mediumSizeSocials" icon="apple"/>
       <Buttons btnState="secondaryMain" text="Redefinir" btnSize="mediumSizeSocials" icon="redifine"/>
@@ -64,6 +64,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
       </div>  
 
 */
+"use client";
 import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -75,23 +76,44 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ReplayIcon from "@mui/icons-material/Replay";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
 import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
 import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
-
-export const Buttons = ({ btnState, text, icon, btnSize }) => {
+import CropSquareIcon from "@mui/icons-material/CropSquare";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import NotificationCart from "../items/NotificationCart";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+export const Buttons = ({
+  onClick,
+  btnState,
+  text,
+  icon,
+  btnSize,
+  ariaLabel,
+}) => {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
   const StyledState = {
     defaultMain: "bg-primary_main hover:bg-primary_dark", //verde normal, com over (default o mais usado)
-    hoverMain: "bg-primary_dark ",
+    hoverMain: "bg_primary_main",
+    blackMain: "bg-black hover:bg-dark_gray",
+    activeMain: "bg-black", // Nova classe para representar o estado ativo
     focusedMain: "bg-primary_dark",
     disabledMain: "bg-grey cursor-default", //para botoes que vao ficar disabled
     secondaryMain: "bg-dark hover:bg-dark_gray", //botoes secundários
     errorMain: "bg-error_main hover:bg-error_dark",
-    galeryMain: "bg-transparent border-white border rounded text-white flex justify-between px-4",
+    galeryMain: "bg-transparent",
     none: "",
-    whiteMain: "bg-white_opacity_50 ",
+    whiteMain: "bg-white_opacity_50  border border-black",
   };
   const sizes = {
     whiteSize:
@@ -110,28 +132,68 @@ export const Buttons = ({ btnState, text, icon, btnSize }) => {
     large: "px-5 py-5  mt-4 text-lg", // caso pretendam um botao maior podem ajustar
     justIcons:
       "w-10 h-10 mx-auto my-auto justify-center items-center  text-center mt-4", //quando se quer usar so um icon como botao
+    newIcons:
+      "mr-4 w-10 h-10 mx-auto my-auto text-center flex items-center justify-center",
+    newIconSet2: "mr-4 ",
+    newIconSet3: "flex items-center justify-between mx-2",
+    newIconSet4: "ml-1 mr-1",
+    gallerySize: "w-full h-full px-7 py-3.5  min-[350px]:w-fit",
+    iconPack: " w-full h-full flex text-5xl",
+    filterSize:
+      "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
+    modalButton:
+      "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {
     navigateNext: <NavigateNextIcon className="text-white" />,
     cancel: <CancelIcon className="text-white " />,
     add: <AddIcon className="text-white " />,
-    google: <Image src={coloredGoogleIcon} height={20} width={20} alt={"google icon"}/>,
-    facebook: <Image src={coloredFacebookIcon} height={22} width={22} alt={"facebook icon"}/>,
-    apple: <Image src={coloredAppleIcon} height={20} width={20} alt={"apple icon"}/>,
+    google: (
+      <Image
+        src={coloredGoogleIcon}
+        height={20}
+        width={20}
+        alt={"google icon"}
+      />
+    ),
+    facebook: (
+      <Image
+        src={coloredFacebookIcon}
+        height={22}
+        width={22}
+        alt={"facebook icon"}
+      />
+    ),
+    apple: (
+      <Image src={coloredAppleIcon} height={20} width={20} alt={"apple icon"} />
+    ),
     redifine: <ReplayIcon className="text-white transform rotate-90 " />,
     redifine2: <ReplayIcon className="text-secondary transform rotate-90 " />,
     offer: <LocalOfferIcon className="text-white " />,
     delete: <DeleteOutlineOutlinedIcon className=" text-secondary" />,
     favorite: <FavoriteBorderIcon className="text-secondary" />,
+    favorite2Navbar: <FavoriteBorderOutlinedIcon className="text-black" />,
     filter: <FilterListOutlinedIcon className=" text-secondary" />,
+    bookmark: (
+      <BookmarkBorderOutlinedIcon className="text-white text-center text-5xl" />
+    ),
+    bookmarkFull: <BookmarkIcon className="text-white text-5xl text-center" />,
+    cropSquare: <CropSquareIcon className=" text-secondary text-4xl" />,
+    cropSquare2View: <CropSquareIcon className="text-black text-4xl" />,
+    menuIcon: <MenuIcon className="text-black" />,
+    notificationCart: <NotificationCart className="text-black" />,
+    localBag: <LocalMallOutlinedIcon className="text-black" />,
+    account: <AccountCircleOutlinedIcon className="text-black" />,
   };
 
   const selectedIcon = iconMap[icon] || null;
 
   return (
     <button
-      className={`flex font-semibold font-inter aria-label="${text}" rounded ${sizes[btnSize]} ${StyledState[btnState]} mx-auto items-center`}
+      onClick={handleClick}
+      className={`flex font-semibold font-inter  rounded ${sizes[btnSize]} ${StyledState[btnState]} mx-auto items-center`}
+      aria-label={ariaLabel || text}
     >
       {["google", "facebook", "apple", "redifine"].includes(icon) && (
         <span>{selectedIcon}</span>

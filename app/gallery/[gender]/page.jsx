@@ -9,8 +9,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
-
-
+import { Buttons } from "@/components/buttons/Buttons";
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
@@ -23,7 +22,9 @@ const Gallery = async ({ params, searchParams }) => {
     <main>
       <NavigationTitle titleText={"Galeria"}>
         <div className="flex gap-2 text-secondary items-center">
-          <p className="text-right">Ganhar pontos</p>
+          <p className="text-right text-gray-700" aria-label="Ganhar Pontos">
+            Ganhar pontos
+          </p>
           <HelpOutlineIcon />
         </div>
       </NavigationTitle>
@@ -33,10 +34,18 @@ const Gallery = async ({ params, searchParams }) => {
       </div>
 
       <div className="flex justify-between container mt-4 mb-6">
-        <Views className="view" />
-        <button className="submit w-full min-[350px]:w-fit">
-          Submeter Look
-        </button>
+        <div className="flex items-center">
+          <Views className="view " />
+        </div>
+        <div>
+          <Buttons
+            aria-label="Submeter Look"
+            btnState="defaultMain"
+            text="Submeter Look"
+            icon=""
+            btnSize="gallerySize"
+          ></Buttons>
+        </div>
       </div>
 
       <Suspense fallback={<LooksSkeleton />}>
@@ -65,14 +74,10 @@ async function LookList({ gender, style }) {
               <LookCard key={element.id} look={element} slider={false} />
             ))}
           </ItemsBox>
-          
         </>
-
       ) : (
-        <NoDataComponent text={'Sem looks disponíveis.'} />
+        <NoDataComponent text={"Sem looks disponíveis."} />
       )}
-
-
     </>
   );
 }

@@ -15,7 +15,7 @@ import { toggleMenu } from "@/redux/slices/menuToggle";
 import Notifications from "../modals/Notifications";
 import withAuth from "@/hocs/withAuth";
 
-const Cart = ({currentUser}) => {
+const Cart = ({ currentUser }) => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
@@ -182,5 +182,4 @@ const Cart = ({currentUser}) => {
   );
 };
 
-
-export default withAuth(Cart)
+export default withAuth(Cart);

@@ -14,14 +14,12 @@ import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
 import withAuthServer from "@/hocs/withAuthServer";
 
-export const revalidate = 0
+export const revalidate = 0;
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params, currentUser }) => {
-
   const urlId = params.id;
   let isOwnProfile = false;
-
 
   if (urlId && currentUser && urlId == currentUser.id) {
     isOwnProfile = true;
@@ -36,7 +34,9 @@ const Profile = async ({ params, currentUser }) => {
     return (
       <>
         <NavigationTitle
-          titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${userFirstName}`}
+          titleText={
+            isOwnProfile ? "O meu perfil" : `Perfil de ${userFirstName}`
+          }
         >
           {isOwnProfile ? <CreateOutlinedIcon /> : null}
         </NavigationTitle>
@@ -55,9 +55,8 @@ const Profile = async ({ params, currentUser }) => {
         </div>
 
         <div className="pb-8">
-
           <h6 className="font-semibold container">
-            {isOwnProfile ? 'Os meus looks' : `Looks de ${userFirstName}`}
+            {isOwnProfile ? "Os meus looks" : `Looks de ${userFirstName}`}
           </h6>
 
           <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
@@ -69,7 +68,7 @@ const Profile = async ({ params, currentUser }) => {
           </div>
         </div>
 
-        {data &&
+        {data && (
           <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
             <h6 className="font-semibold">Coleções de Looks</h6>
             <ProfileCollections
@@ -79,14 +78,10 @@ const Profile = async ({ params, currentUser }) => {
               userFirstName={userFirstName}
             />
           </div>
-
-        }
-
-
+        )}
       </>
     );
   }
-
 };
 
 export default withAuthServer(Profile);
@@ -121,41 +116,44 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
   );
 }
 
-
-async function ProfileCollections({ data, isOwnProfile, userFirstName, userId }) {
-
+async function ProfileCollections({
+  data,
+  isOwnProfile,
+  userFirstName,
+  userId,
+}) {
   let collectionsToShow;
 
   //console.log(data[0].colecoes)
 
   if (data[0].colecoes) {
-    collectionsToShow = data[0].colecoes
+    collectionsToShow = data[0].colecoes;
 
     if (!isOwnProfile) {
-      collectionsToShow = collectionsToShow.filter(collection => (
-        collection.collections.privacy == 2 && collection.is_admin === true
-      ))
+      collectionsToShow = collectionsToShow.filter(
+        (collection) =>
+          collection.collections.privacy == 2 && collection.is_admin === true
+      );
     }
   }
 
-
   return (
     <>
-
       {isOwnProfile &&
-        (collectionsToShow && collectionsToShow.length === 0 || !collectionsToShow) &&
-        <div className="text-secondary">
-          Ainda não criaste nenhuma coleção.
-        </div>
-      }
+        ((collectionsToShow && collectionsToShow.length === 0) ||
+          !collectionsToShow) && (
+          <div className="text-secondary">
+            Ainda não criaste nenhuma coleção.
+          </div>
+        )}
 
-      {!isOwnProfile && !collectionsToShow &&
+      {!isOwnProfile && !collectionsToShow && (
         <div className="text-secondary">
           {userFirstName} não tem coleções disponíveis.
         </div>
-      }
+      )}
 
-      {collectionsToShow && collectionsToShow.length > 0 &&
+      {collectionsToShow && collectionsToShow.length > 0 && (
         <>
           <button className="profile_search-collections">
             <SearchIcon />
@@ -171,15 +169,16 @@ async function ProfileCollections({ data, isOwnProfile, userFirstName, userId })
             />
           ))}
           <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
-            <Link href={`/profile/${userId}/collections`} className="profile_all-collections">
+            <Link
+              href={`/profile/${userId}/collections`}
+              className="profile_all-collections"
+            >
               Ver todas as coleções
               <ArrowForwardIosIcon />
             </Link>
           </div>
         </>
-      }
-
+      )}
     </>
-
   );
 }

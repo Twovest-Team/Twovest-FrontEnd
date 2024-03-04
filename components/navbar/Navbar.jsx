@@ -13,7 +13,6 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
-import getUserData from "@/utils/db/getUserByEmail";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
@@ -24,8 +23,12 @@ import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { UserIcon } from "../user/UserIcon";
 import { current } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 import withAuth from "@/hocs/withAuth";
 import { Buttons } from "../buttons/Buttons";
+=======
+import useAuth from "@/hooks/useAuth";
+>>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
 
 const Navbar = ({ children, currentUser, logout }) => {
   const dispatch = useAppDispatch();
@@ -37,9 +40,17 @@ const Navbar = ({ children, currentUser, logout }) => {
     dispatch(toggleMenu());
   };
 
+<<<<<<< HEAD
   const handleClickCart = () => {
     dispatch(toggleCart());
   };
+=======
+    const dispatch = useAppDispatch()
+    const router = useRouter();
+    const pathName = usePathname();
+    const currentUser = useAuth();
+    const supabase = createClientComponentClient();
+>>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
 
   if (pathName != "/landing") {
     return (
@@ -96,6 +107,7 @@ const Navbar = ({ children, currentUser, logout }) => {
             ></Buttons>
           </div>
 
+<<<<<<< HEAD
           <Menu>
             {currentUser ? (
               <Menu.Button>
@@ -108,6 +120,35 @@ const Navbar = ({ children, currentUser, logout }) => {
                     userRole={currentUser.role}
                   />
                   {/* <Image src={currentUser.img} className="rounded-full border-grey border" width={25} height={25} alt="profile image" /> */}
+=======
+    const handleClickCart = () => {
+        dispatch(toggleCart())
+    }
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.refresh();
+
+        dispatch(changeUserData(null))
+    }
+
+
+
+  
+
+
+    if (pathName != "/landing") {
+
+        return (
+
+            <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
+
+                <div className="flex">
+                    <button className='mr-4' onClick={handleClickMenu}><MenuIcon /></button>
+                    <Link href={"/"} className="items-center flex">
+                        <Image src={logo} width={105} height={24} alt="Logo Twovest" className="navbar_logo-xs"></Image>
+                        <Image src={logo} width={130} height={24} alt="Logo Twovest" className="navbar_logo-sm"></Image></Link>
+>>>>>>> 5f63ab1ceb98e813ec517dcd5cb03b3b79438d67
                 </div>
               </Menu.Button>
             ) : (

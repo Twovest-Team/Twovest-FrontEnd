@@ -8,8 +8,7 @@ import withAuthServer from "@/hocs/withAuthServer";
 
 // Lista de coleções de um utilizador
 const Collections = async ({ params, currentUser }) => {
-
-  const collectionOwnerId = params.id
+  const collectionOwnerId = params.id;
   let isOwnCollections = false;
 
   if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
@@ -21,76 +20,76 @@ const Collections = async ({ params, currentUser }) => {
 
   return (
     <main className="h-screen overflow-y-scroll">
-
       <div>
         <NavigationTitle
-          titleText={isOwnCollections ? "As minhas coleções" : `Coleções de ${userFirstName}`}
+          titleText={
+            isOwnCollections
+              ? "As minhas coleções"
+              : `Coleções de ${userFirstName}`
+          }
         >
           {isOwnCollections ? <CreateOutlinedIcon /> : null}
         </NavigationTitle>
       </div>
 
-
-      {data ?
+      {data ? (
         <AllUserCollections
           data={data}
           isOwnCollections={isOwnCollections}
           userFirstName={userFirstName}
           collectionOwnerId={collectionOwnerId}
         />
-        :
-        <NoDataComponent text={'Utilizador não tem coleções'} />
-      }
-
+      ) : (
+        <NoDataComponent text={"Utilizador não tem coleções"} />
+      )}
     </main>
-
   );
 };
 
 export default withAuthServer(Collections);
 
-async function AllUserCollections({ data, isOwnCollections, userFirstName, collectionOwnerId }) {
-
-  let collectionsToShow = data[0].colecoes
+async function AllUserCollections({
+  data,
+  isOwnCollections,
+  userFirstName,
+  collectionOwnerId,
+}) {
+  let collectionsToShow = data[0].colecoes;
 
   if (!isOwnCollections) {
-    collectionsToShow = collectionsToShow.filter(collection => (
-      collection.collections.privacy == 2 && collection.is_admin === true
-    ))
+    collectionsToShow = collectionsToShow.filter(
+      (collection) =>
+        collection.collections.privacy == 2 && collection.is_admin === true
+    );
   }
 
   return (
     <div className="flex flex-col items-start self-stretch container pb-10 gap-4 ">
+      {isOwnCollections && collectionsToShow.length === 0 && (
+        <div className="text-secondary">Ainda não criaste nenhuma coleção.</div>
+      )}
 
-      {isOwnCollections && collectionsToShow.length === 0 &&
-        <div className="text-secondary">
-          Ainda não criaste nenhuma coleção.
-        </div>
-      }
-
-      {!isOwnCollections && collectionsToShow.length === 0 &&
+      {!isOwnCollections && collectionsToShow.length === 0 && (
         <div className="text-secondary">
           {userFirstName} não tem coleções disponíveis.
         </div>
-      }
+      )}
 
-      {collectionsToShow.length > 0 &&
+      {collectionsToShow.length > 0 && (
         <>
           <button className="profile_search-collections">
             <SearchIcon />
             Procurar coleções
           </button>
           {collectionsToShow.map((element) => (
-              <CollectionPreview
-                userId={collectionOwnerId}
-                collection={element}
-                key={element.id_collection}
-              />
+            <CollectionPreview
+              userId={collectionOwnerId}
+              collection={element}
+              key={element.id_collection}
+            />
           ))}
         </>
-      }
-
+      )}
     </div>
-
   );
 }

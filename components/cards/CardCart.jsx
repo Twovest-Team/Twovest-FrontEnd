@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import { useAppSelector } from "@/redux/hooks";
+import { Buttons } from "../buttons/Buttons";
 
 export const CardCart = ({
   handleShowDeleteNotification,
@@ -19,12 +20,11 @@ export const CardCart = ({
   handleLoading,
 }) => {
   const dispatch = useDispatch();
-  const isCartOpen = useAppSelector(state => state.cartToggle.isOpen)
+  const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   const categoryName = categories.find(
     (element) => element.id === data.offers.products.categories.id
   ).singular;
   const discount = data.offers.products.discount;
-
 
   async function handleDeleteProduct() {
     handleLoading(true);
@@ -36,9 +36,9 @@ export const CardCart = ({
     }
   }
 
-  function handleToggleCart(){
-    if(isCartOpen){
-      dispatch(toggleCart())
+  function handleToggleCart() {
+    if (isCartOpen) {
+      dispatch(toggleCart());
     }
   }
 
@@ -47,8 +47,9 @@ export const CardCart = ({
       <div className="flex self-center items-center w-full">
         <Link
           onClick={() => handleToggleCart()}
-          href={`/product/${data.offers.products.gender.toLowerCase()}/${data.offers.products.id}`}
-
+          href={`/product/${data.offers.products.gender.toLowerCase()}/${
+            data.offers.products.id
+          }`}
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image
@@ -83,15 +84,18 @@ export const CardCart = ({
 
               <p
                 className={`caption
-                                ${data.offers.conditions.id === 1 &&
-                  "text-primary_main"
-                  }
-                                ${data.offers.conditions.id === 2 &&
-                  "text-info_main"
-                  }
-                                ${data.offers.conditions.id === 3 &&
-                  "text-warning_main"
-                  }
+                                ${
+                                  data.offers.conditions.id === 1 &&
+                                  "text-primary_main"
+                                }
+                                ${
+                                  data.offers.conditions.id === 2 &&
+                                  "text-info_main"
+                                }
+                                ${
+                                  data.offers.conditions.id === 3 &&
+                                  "text-warning_main"
+                                }
                             `}
               >
                 {data.offers.conditions.name}

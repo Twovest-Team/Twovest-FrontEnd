@@ -99,7 +99,7 @@ export const Buttons = ({
   icon,
   btnSize,
   ariaLabel,
-  href,
+  Disabled,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -209,6 +209,7 @@ export const Buttons = ({
       onClick={handleClick}
       className={`flex font-semibold font-inter  rounded ${sizes[btnSize]} ${StyledState[btnState]} mx-auto items-center`}
       aria-label={ariaLabel || text}
+      disabled={Disabled}
     >
       {["google", "facebook", "apple", "redifine"].includes(icon) && (
         <span>{selectedIcon}</span>
@@ -222,12 +223,7 @@ export const Buttons = ({
       </span>
 
       {!["google", "facebook", "apple", "redifine"].includes(icon) && (
-        <span>
-          {icon === "nextStart" && (
-            <StartIcon className="text-white text-end " />
-          )}
-          {icon !== "nextStart" && selectedIcon}
-        </span>
+        <span>{selectedIcon}</span>
       )}
     </button>
   );

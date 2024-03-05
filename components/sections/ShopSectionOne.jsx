@@ -69,7 +69,7 @@ const ShopSectionOne = ({
           btnState="blackMain"
           text="Preencher dados de envio"
           icon=""
-          btnSize="menuSize4"
+          btnSize="menuSize3"
           onClick={() => updateStage(2)}
         ></Buttons>
       </div>

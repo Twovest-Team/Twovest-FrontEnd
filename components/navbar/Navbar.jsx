@@ -22,7 +22,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-
+import { Buttons } from "../buttons/Buttons";
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -60,9 +60,16 @@ export const Navbar = ({ children }) => {
     return (
       <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
         <div className="flex">
-          <button className="mr-4" onClick={handleClickMenu}>
-            <MenuIcon />
-          </button>
+          <div className="mr-4">
+            <Buttons
+              aria-label="Localização da navbar"
+              btnState=""
+              text=""
+              icon="menuIcon"
+              btnSize="newIconSet2"
+              onClick={handleClickMenu}
+            ></Buttons>
+          </div>
           <Link href={"/"} className="items-center flex">
             <Image
               src={logo}
@@ -81,13 +88,24 @@ export const Navbar = ({ children }) => {
           </Link>
         </div>
         <div className="flex items-center">
-          <button className="navbar_icons">
-            <FavoriteBorderOutlinedIcon />
-          </button>
-          <button className="navbar_icons relative" onClick={handleClickCart}>
-            <LocalMallOutlinedIcon />
+          <Buttons
+            aria-label="Ir para a Lista de artigos favoritos"
+            btnState=""
+            text=""
+            icon="favorite2Navbar"
+            btnSize="newIconSet4"
+          ></Buttons>
+          <div className="navbar_icons relative">
+            <Buttons
+              aria-label="Ir para cesto de compras"
+              btnState=""
+              text=""
+              icon="localBag"
+              btnSize="newIconSet4"
+              onClick={handleClickCart}
+            ></Buttons>
             <NotificationCart />
-          </button>
+          </div>
 
           <Menu>
             {currentUser ? (

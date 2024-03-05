@@ -41,16 +41,28 @@ export default function LoginPage() {
         //router.push("${location.origin}/auth/callback");
     }
 
-    const handleSignInEmail = async () =>{
+    const handleSignInEmail = async () => {
 
-        await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
-            
-        })
-        router.refresh()
-        setEmail(""),
-        setPassword("")
+          }
+          )
+
+         if(data){ 
+            setEmail("");
+            setPassword("");
+            router.push("/");
+            const hardReloadPage = () => {
+                window.location.reload(true);
+              };
+              hardReloadPage();
+            /* console.log(data) */
+
+        }else{
+            console.log(error)
+        } 
+        
     }
 
 

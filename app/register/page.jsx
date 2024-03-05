@@ -7,6 +7,7 @@ import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
+import { ModalEmailVerification } from "@/components/modals/ModalEmailVerification";
 
 
 const Register = () => {
@@ -15,6 +16,7 @@ const Register = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClientComponentClient();
+  const [teste, setTeste] = useState(false);
 
   const [email,setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +41,9 @@ const handleSignUp = async () => {
     password,
     options:{
       data: {
-        username: username
+        full_name: username,
+        email: email,
+        picture: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/sign/users_profile_pictures/user_profile-img.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ1c2Vyc19wcm9maWxlX3BpY3R1cmVzL3VzZXJfcHJvZmlsZS1pbWcuanBnIiwiaWF0IjoxNzA5NjcyMjA4LCJleHAiOjIwMjUwMzIyMDh9.SmxAXHCwftd_KtfdgoYFuXVe7KmmlfWfG23aUuQ33VY"
       },
       emailRedirectTo: `${location.origin}/auth/callback`
     }
@@ -48,8 +52,17 @@ const handleSignUp = async () => {
   setEmail("")
   setPassword("")
   setUsername("")
+  setTeste(true)
   console.log(data, error)
 
+  /* if(data.session == null){
+
+    return(
+      <ModalEmailVerification/>
+    )
+      
+  }
+ */
   /* await supabase.auth.signUp({
     email,
     password,
@@ -73,10 +86,17 @@ if (loading) {
   return <div className="h-screen text-center mt-24"><LoadingIcon/></div>
 }
 
+if(teste==true){
+
   return (
 
+    <ModalEmailVerification/>
+  
+  )
+}else{
+  return(
     <>
-        <NavigationTitle titleText={"Registar conta"}/>
+    <NavigationTitle titleText={"Registar conta"}/>
          <main className="p-6 mb-10">
 
           <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary"><div className="text-center mt-16">Adiciona aqui uma foto</div></div>
@@ -107,16 +127,16 @@ if (loading) {
           <li>Uma letra maiúscula; </li>
           <li>Um caractere especial (@, #, $, %, &).</li>
          </ul>
-         {/* <input type="password" placeholder="Confirmar password" className="px-4 py-4 w-full rounded border border-grey mb-4"/> */}
+         <input type="password" placeholder="Confirmar password" className="px-4 py-4 w-full rounded border border-grey mb-4"/> 
          <Buttons btnState="defaultMain" text="Registar conta" btnSize="menuSize" onClick={handleSignUp}/>
          <button onClick={handleSignUp}>SIGN UP</button>
          <div className="text-center mt-20">Já tens conta? <Link href={"/login"} className="text-primary_main font-semibold" >Inicia sessão aqui.</Link>
             </div>
         </main>
-
-        
         </>
   )
+}
+  
 }
 
 export default Register

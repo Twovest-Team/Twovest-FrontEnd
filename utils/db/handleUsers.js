@@ -5,7 +5,7 @@ const handleUsers = async (user) => {
 
     const cookieStore = cookies();
     const supabase = createServerComponentClient({ cookies: () => cookieStore });
-
+    /* console.log(user) */
     if (user) {
 
         const { data, error } = await supabase
@@ -17,8 +17,9 @@ const handleUsers = async (user) => {
             await supabase
                 .from('users')
                 .insert({ name: user.full_name, img: user.picture, email: user.email }, {returning: "minimal"})
+                /* .insert({ name: user.username, img: user.image, email: user.email }, {returning: "minimal"}) */
+                
         }
-
 
     }
 }

@@ -65,7 +65,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
 
 */
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import AddIcon from "@mui/icons-material/Add";
@@ -91,6 +91,10 @@ import NotificationCart from "../items/NotificationCart";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import StartIcon from "@mui/icons-material/Start";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import MBWay from "./icons/MBWay.svg";
+import GooglePay from "./icons/GPay.jsx";
+import Paypal from "./icons/Paypal.jsx";
 import Link from "next/link";
 export const Buttons = ({
   onClick,
@@ -100,15 +104,26 @@ export const Buttons = ({
   btnSize,
   ariaLabel,
   Disabled,
+  statusCondition,
 }) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
     }
   };
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const StyledState = {
     defaultMain: "bg-primary_main hover:bg-primary_dark", //verde normal, com over (default o mais usado)
-    hoverMain: "bg_primary_main",
+    hoverMain: "bg-primary_main",
     blackMain: "bg-black hover:bg-dark_gray",
     activeMain: "bg-black", // Nova classe para representar o estado ativo
     focusedMain: "bg-primary_dark",
@@ -118,6 +133,8 @@ export const Buttons = ({
     galeryMain: "bg-transparent",
     none: "",
     whiteMain: "bg-white_opacity_50  border border-black",
+    whiteMain2:
+      "bg-white_opacity_50  border border-black hover:bg-primary_main",
   };
   const sizes = {
     whiteSize:
@@ -138,8 +155,11 @@ export const Buttons = ({
       "w-full h-14 py-3.5 border-2 text-center font-semibold rounded block  justify-center px-14  flex",
     menuSize4:
       "w-full h-14 py-3.5  text-center rounded justify-center px-14  flex",
+    menuSize5:
+      "w-full h-20 py-12 mt-4 flex px-7 gap-6 items-center cursor-pointer text-center",
     mediumSizeSocials:
-      "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center gap-3 text-center", // Social netwowrks
+      "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center gap-3 text-center",
+
     redefineSize:
       "w-full h-55 px-3 py-9 mt-4 flex justify-center items-center gap-3 text-center", //usado para voltar para a galeria e redefinir
     large: "px-5 py-5  mt-4 text-lg", // caso pretendam um botao maior podem ajustar
@@ -200,6 +220,10 @@ export const Buttons = ({
     account: <AccountCircleOutlinedIcon className="text-black" />,
     closeOutline: <CloseOutlinedIcon className="text-black" />,
     nextStart: <StartIcon className="text-white"></StartIcon>,
+    creditCard: <CreditCardIcon className="text-black h-9 w-9" />,
+    mbWay: <Image src={MBWay} className="h-12 w-12" />,
+    gpay: <GooglePay className="h-12 w-12" alt="Google pay icon" />,
+    Paypal: <Paypal className="h-12 w-12" alt="Paypal icon" />,
   };
 
   const selectedIcon = iconMap[icon] || null;
@@ -210,21 +234,44 @@ export const Buttons = ({
       className={`flex font-semibold font-inter  rounded ${sizes[btnSize]} ${StyledState[btnState]} mx-auto items-center`}
       aria-label={ariaLabel || text}
       disabled={Disabled}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {["google", "facebook", "apple", "redifine"].includes(icon) && (
-        <span>{selectedIcon}</span>
-      )}
+      {[
+        "google",
+        "facebook",
+        "apple",
+        "redifine",
+        "creditCard",
+        "mbWay",
+        "gpay",
+        "Paypal",
+      ].includes(icon) && <span>{selectedIcon}</span>}
+
       <span
         className={`${!selectedIcon ? "text-center" : ""} ${
-          btnState === "whiteMain" ? "text-black" : "text-white"
+          btnState === "whiteMain"
+            ? "text-black"
+            : btnState === "whiteMain2"
+              ? isHovered
+                ? "text-white"
+                : "text-black"
+              : "text-white"
         }`}
       >
         {text}
       </span>
 
-      {!["google", "facebook", "apple", "redifine"].includes(icon) && (
-        <span>{selectedIcon}</span>
-      )}
+      {![
+        "google",
+        "facebook",
+        "apple",
+        "redifine",
+        "creditCard",
+        "mbWay",
+        "gpay",
+        "Paypal",
+      ].includes(icon) && <span>{selectedIcon}</span>}
     </button>
   );
 };

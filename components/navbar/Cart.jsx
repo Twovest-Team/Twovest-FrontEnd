@@ -13,7 +13,7 @@ import Link from "next/link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import Notifications from "../modals/Notifications";
-
+import { Buttons } from "../buttons/Buttons";
 export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
@@ -66,12 +66,24 @@ export const Cart = () => {
       <div className="flex justify-between items-center border-b border-grey">
         <div className="flex h-[72px] justify-between container items-center">
           <div className="flex items-center">
-            <LocalMallOutlinedIcon className="mr-2" />
-            <p className="font-semibold">Cesto de compras</p>
+            <LocalMallOutlinedIcon
+              className="mr-2"
+              aria-label="Icon de cesto de compras"
+            />
+            <p className="font-semibold" aria-label="Cesto de compras">
+              Cesto de compras
+            </p>
           </div>
-          <button onClick={handleClickCart}>
-            <CloseOutlinedIcon />
-          </button>
+          <div>
+            <Buttons
+              aria-label="Fechar Cesto de compras"
+              btnState=""
+              text=""
+              icon="closeOutline"
+              btnSize="newIconSet2"
+              onClick={handleClickCart}
+            ></Buttons>
+          </div>
         </div>
       </div>
 
@@ -82,7 +94,10 @@ export const Cart = () => {
           } caption container py-6 shadow-md flex gap-2 items-center`}
         >
           <CheckCircleOutlineIcon className="text-primary_main text-[20px] -translate-y-[1px]" />
-          <p className="underline underline-offset-2 ">
+          <p
+            className="underline underline-offset-2 "
+            aria-label="Levantamento grátis em um ponto de recolha."
+          >
             Levantamento grátis em um ponto de recolha.
           </p>
         </div>
@@ -113,34 +128,51 @@ export const Cart = () => {
               sx={{ fontSize: 60 }}
               className="text-[60px] mb-4"
             />
-            <h6 className="font-semibold">Cesto de compras</h6>
-            <p className="text-center text-secondary mb-4 max-w-[230px]">
+            <h6 className="font-semibold" aria-label="Cesto de compras">
+              Cesto de compras
+            </h6>
+            <p
+              className="text-center text-secondary mb-4 max-w-[230px]"
+              aria-label=" Os artigos que adicionares ao cesto irão aparecer aqui."
+            >
               Os artigos que adicionares ao cesto irão aparecer aqui.
             </p>
-            <button
+
+            <Buttons
+              ariaLabel="Abrir menu"
+              btnState="blackMain"
+              text="Abrir menu"
+              icon=""
+              btnSize="modelSize3"
               onClick={() => {
                 dispatch(toggleMenu()), dispatch(toggleCart());
               }}
-              className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit"
-            >
-              Abrir menu
-            </button>
+            ></Buttons>
           </div>
         )}
 
         {products.length === 0 && !currentUser && (
           <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
             <LocalMallOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
-            <h6 className="font-semibold">Estás aí?</h6>
-            <p className="text-center text-secondary mb-4">
+            <h6 className="font-semibold" aria-label="Estás ai?">
+              Estás aí?
+            </h6>
+            <p
+              className="text-center text-secondary mb-4 max-w-[230px]"
+              area-label="Inicia sessão para comprar artigos."
+            >
               Inicia sessão para comprar artigos.
             </p>
-            <Link
-              href={"/login"}
-              onClick={() => dispatch(toggleCart())}
-              className="bg-dark text-white font-semibold px-9 py-3.5 rounded w-fit"
-            >
-              Iniciar sessão
+
+            <Link href={"/login"}>
+              <Buttons
+                ariaLabel="Iniciar sessão"
+                btnState="blackMain"
+                text="Iniciar sessão"
+                icon=""
+                btnSize="modelSize3"
+                onClick={() => dispatch(toggleCart())}
+              ></Buttons>
             </Link>
           </div>
         )}
@@ -150,26 +182,43 @@ export const Cart = () => {
         <div className=" w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container pb-4">
           <div className="flex my-6 justify-between">
             <div>
-              <h6 className="font-semibold">
+              <h6
+                className="font-semibold"
+                aria-label={`Total de ${products && products.length} ${
+                  products && products.length === 1 ? "artigo" : "artigos"
+                }`}
+              >
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
               </h6>
-              <div className="text-grey">IVA Incluído</div>
+              <div className="text-grey" aria-label="Iva Incluído">
+                IVA Incluído
+              </div>
             </div>
             <div>
-              <h6 className="font-semibold">
+              <h6
+                className="font-semibold"
+                aria-label={`Total do carrinho: ${
+                  products.length > 0
+                    ? getCartTotalPrice(products) + " euros"
+                    : "Carrinho vazio"
+                }`}
+              >
                 {products.length > 0 && <>{getCartTotalPrice(products)}€</>}
               </h6>
             </div>
           </div>
 
           <div className=" my-6 ">
-            <Link
-              onClick={() => dispatch(toggleCart())}
-              href={"/shop"}
-              className="bg-primary_main text-white block text-center py-3.5 font-semibold rounded"
-            >
-              Proceder com a compra -&gt;
+            <Link href={"/shop"}>
+              <Buttons
+                ariaLabel="Proceder com a compra"
+                btnState="defaultMain"
+                text="Proceder com a compra"
+                icon="nextStart"
+                btnSize="menuSize2"
+                onClick={() => dispatch(toggleCart())}
+              ></Buttons>
             </Link>
           </div>
         </div>

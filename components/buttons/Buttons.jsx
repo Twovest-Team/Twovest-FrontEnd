@@ -89,6 +89,9 @@ import CropSquareIcon from "@mui/icons-material/CropSquare";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import NotificationCart from "../items/NotificationCart";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import StartIcon from "@mui/icons-material/Start";
+import Link from "next/link";
 export const Buttons = ({
   onClick,
   btnState,
@@ -96,6 +99,7 @@ export const Buttons = ({
   icon,
   btnSize,
   ariaLabel,
+  href,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -119,12 +123,21 @@ export const Buttons = ({
     whiteSize:
       "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center border-2 border-black rounded gap-3 text-center",
     modalSize: "w-full h-14 gap-12 items-center",
+    modelSize2:
+      "w-full h-55 px-9 py-4 mt-4 flex justify-center items-center  text-center",
+    modelSize3:
+      "w-52 h-55 py-4 mt-4 flex justify-center items-center  text-center",
     smallSize:
       "w-full h-14 sm:h-14 md:h-14 lg:h-14 xl:h-14 flex items-center justify-between gap-2 sm:gap-4 text-center",
     menuSize:
       "w-full h-14 py-2 px-4 mt-4 flex gap-12 text-center justify-between items-center", //usado apenas no scroll menu
     mediumSize:
       "w-full h-full px-8 flex py-3.5 mt-4 gap-12 items-center justify-between", // usado no geral em açoes como concluir, enviar, carregar mais, proximo passo etc
+    menuSize2: "w-full h-14 text-center justify-around px-14 mt-4 flex", //usado apenas no scroll menu
+    menuSize3:
+      "w-full h-14 py-3.5 border-2 text-center font-semibold rounded block  justify-center px-14  flex",
+    menuSize4:
+      "w-full h-14 py-3.5  text-center rounded justify-center px-14  flex",
     mediumSizeSocials:
       "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center gap-3 text-center", // Social netwowrks
     redefineSize:
@@ -185,6 +198,8 @@ export const Buttons = ({
     notificationCart: <NotificationCart className="text-black" />,
     localBag: <LocalMallOutlinedIcon className="text-black" />,
     account: <AccountCircleOutlinedIcon className="text-black" />,
+    closeOutline: <CloseOutlinedIcon className="text-black" />,
+    nextStart: <StartIcon className="text-white"></StartIcon>,
   };
 
   const selectedIcon = iconMap[icon] || null;
@@ -207,7 +222,12 @@ export const Buttons = ({
       </span>
 
       {!["google", "facebook", "apple", "redifine"].includes(icon) && (
-        <span>{selectedIcon}</span>
+        <span>
+          {icon === "nextStart" && (
+            <StartIcon className="text-white text-end " />
+          )}
+          {icon !== "nextStart" && selectedIcon}
+        </span>
       )}
     </button>
   );

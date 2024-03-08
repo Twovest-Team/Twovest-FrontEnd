@@ -891,28 +891,30 @@ incorporados no footer. -------- João Paixão */
 }
 
 
-.container.desktop {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .grid-cols-desktop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
 }
-
-
-.container.desktop .BrandsList {
-  width: calc(25% - 20px); 
-  margin: 10px; 
 }
-
-
-@media (min-width: 1024px) {
-  .container.desktop {
-    justify-content: space-between; 
+@media (min-width: 1050px) and (max-width: 1920px) {
+  .desktopNavLeft {
+    padding-right: 0rem; 
   }
-  
-  .container.desktop .BrandsList {
-    width: calc(25% - 30px); 
-    margin: 15px; 
+
+  .desktopNavRight {
+    padding-left: 0rem;  
   }
 }
 
+@media (min-width: 1920px) {
+  .desktopNavLeft {
+    padding-right: 11rem;
+  }
+
+  .desktopNavRight {
+    padding-left: 11rem; 
+  }
+}
 /*--END GONÇALO--*/

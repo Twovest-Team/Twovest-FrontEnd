@@ -12,7 +12,7 @@ const Brands = async () => {
     <div>
       <NavigationTitle titleText={"Marcas"} />
 
-      <div className="container flex flex-col gap-6 mb-10">
+      <div className="container desktop flex flex-col gap-6 mb-10">
         <BrandsList brandsData={data} />
       </div>
     </div>

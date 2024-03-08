@@ -58,7 +58,7 @@ export const Navbar = ({ children }) => {
 
   if (pathName != "/landing") {
     return (
-      <nav className="flex justify-between z-30 max-w-[460px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
+      <nav className="flex justify-between z-30 max-w-[1920px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
         <div className="flex">
           <div className="mr-4">
             <Buttons

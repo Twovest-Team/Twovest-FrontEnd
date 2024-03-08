@@ -10,6 +10,8 @@ import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoDataComponent } from "@/components/sections/NoDataComponent";
 import { Buttons } from "@/components/buttons/Buttons";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
@@ -18,6 +20,7 @@ export const revalidate = 60;
 const Gallery = async ({ params, searchParams }) => {
   const gender = params.gender;
   const style = searchParams.style;
+
   return (
     <main>
       <NavigationTitle titleText={"Galeria"}>
@@ -38,13 +41,15 @@ const Gallery = async ({ params, searchParams }) => {
           <Views className="view " />
         </div>
         <div>
-          <Buttons
-            aria-label="Submeter Look"
-            btnState="defaultMain"
-            text="Submeter Look"
-            icon=""
-            btnSize="gallerySize"
-          ></Buttons>
+          <Link href="/gallery/submitLook">
+            <Buttons
+              aria-label="Submeter Look"
+              btnState="defaultMain"
+              text="Submeter Look"
+              icon=""
+              btnSize="gallerySize"
+            ></Buttons>
+          </Link>
         </div>
       </div>
 

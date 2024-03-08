@@ -172,6 +172,7 @@ export const Buttons = ({
     newIconSet4: "ml-1 mr-1",
     gallerySize: "w-full h-full px-7 py-3.5  min-[350px]:w-fit",
     iconPack: " w-full h-full flex text-5xl",
+    iconPack2: " w-full h-full mb-2 flex text-4xl",
     filterSize:
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:

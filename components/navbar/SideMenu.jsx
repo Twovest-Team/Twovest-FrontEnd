@@ -93,9 +93,14 @@ export const SideMenu = () => {
             </button>
           </div>
           <div className="flex mx-4">
-            <div onClick={handleClickMenu} className="cursor-pointer">
-              <CloseOutlinedIcon />
-            </div>
+            <Buttons
+              ariaLabel="Fechar side Menu"
+              btnState="none"
+              text=""
+              icon="closeOutline"
+              btnSize="iconPack2"
+              onClick={handleClickMenu}
+            ></Buttons>
           </div>
         </div>
 

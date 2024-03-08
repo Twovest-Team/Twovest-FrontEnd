@@ -73,6 +73,7 @@ export default function Home() {
 
           <Link href={`/gallery/${gender}`}>
             <Buttons
+              ariaLabel={"Ir para a Galeria"}
               btnState={"galeryMain"}
               text={"Ir para a Galeria"}
               icon={"navigateNext"}

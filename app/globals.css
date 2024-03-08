@@ -890,4 +890,29 @@ incorporados no footer. -------- João Paixão */
   }
 }
 
+
+.container.desktop {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
+
+.container.desktop .BrandsList {
+  width: calc(25% - 20px); 
+  margin: 10px; 
+}
+
+
+@media (min-width: 1024px) {
+  .container.desktop {
+    justify-content: space-between; 
+  }
+  
+  .container.desktop .BrandsList {
+    width: calc(25% - 30px); 
+    margin: 15px; 
+  }
+}
+
 /*--END GONÇALO--*/

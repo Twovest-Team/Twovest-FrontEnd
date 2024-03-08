@@ -59,17 +59,16 @@ export const Navbar = ({ children }) => {
   if (pathName != "/landing") {
     return (
       <nav className="flex justify-between z-30 max-w-[1920px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
-        <div className="flex">
-          <div className="mr-4">
-            <Buttons
-              aria-label="Localização da navbar"
-              btnState=""
-              text=""
-              icon="menuIcon"
-              btnSize="newIconSet2"
-              onClick={handleClickMenu}
-            ></Buttons>
-          </div>
+        <div className="flex desktopNavRight ">
+          <Buttons
+            aria-label="Localização da navbar"
+            btnState=""
+            text=""
+            icon="menuIcon"
+            btnSize="newIconSet2"
+            onClick={handleClickMenu}
+          ></Buttons>
+
           <Link href={"/"} className="items-center flex">
             <Image
               src={logo}
@@ -87,7 +86,7 @@ export const Navbar = ({ children }) => {
             ></Image>
           </Link>
         </div>
-        <div className="flex items-center">
+        <div className="flex desktopNavLeft items-center ">
           <Buttons
             aria-label="Ir para a Lista de artigos favoritos"
             btnState=""

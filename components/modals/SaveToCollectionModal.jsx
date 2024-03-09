@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useEffect, useState } from 'react';
-import getAllCollections from '@/utils/db/collections/getAllCollections';
+import getCollections from '@/utils/db/collections/getCollections';
 import { toggleLookModalToggle } from '@/redux/slices/saveLookModalToggle';
 import addToCollection from '@/utils/db/collections/addToCollection';
 import LoadingIcon from '../buttons/icons/LoadingIcon';
@@ -44,17 +44,15 @@ const SaveToCollectionModal = ({ lookId }) => {
     const [modalStatus, setModalStatus] = useState(allModalStatus[0])
 
     async function getData() {
-        const userCollections = await getAllCollections(currentUser.id)
+        const userCollections = await getCollections(currentUser.id)
         if (userCollections) {
             setCollections(userCollections)
         } else {
             setModalStatus(allModalStatus[1])
         }
-
     }
 
     function handleCloseModal() {
-        //console.log('fecha')
         setModalStatus(allModalStatus[0])
         dispatch(toggleLookModalToggle())
         router.refresh()
@@ -250,7 +248,6 @@ const ToCreate = ({ userHasAnyCollection, allModalStatus, setModalStatus, lookId
             if (data) {
                 handleCloseModal()
                 setLoading(false)
-                //console.log(data)
             }
         }
 

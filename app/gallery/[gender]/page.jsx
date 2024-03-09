@@ -8,7 +8,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import { NoDataComponent } from "@/components/sections/NoDataComponent";
+import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 
 
 export const revalidate = 60;
@@ -69,7 +69,7 @@ async function LookList({ gender, style }) {
         </>
 
       ) : (
-        <NoDataComponent text={'Sem looks disponíveis.'} />
+        <NoResultsNotice text={'Sem looks disponíveis.'} />
       )}
 
 

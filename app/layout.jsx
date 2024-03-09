@@ -24,19 +24,20 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={inter.className}>
-        <StoreProvider>
-          <GenderDetection>
-            <Navbar>
-              <SideMenu />
-              <Cart />
-            </Navbar>
-            {children}
-            <LastProductsSeen />
-            <Footer />
-          </GenderDetection>
-        </StoreProvider>
-        <Analytics />
-        <SpeedInsights />
+        {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
+          <StoreProvider>
+            <GenderDetection>
+              <Navbar>
+                <SideMenu />
+                <Cart />
+              </Navbar>
+              {children}
+              <LastProductsSeen />
+              <Footer />
+            </GenderDetection>
+          </StoreProvider>
+          <Analytics />
+          <SpeedInsights />
       </body>
     </html>
   );

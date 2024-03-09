@@ -9,24 +9,23 @@ export default async function getUserByEmailServer() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    let userbdData;
-
     const { data, error } = await supabase
       .from("users")
       .select(
         `
             id,
             email,
+            created_at,
             name,
             img,
             role
         `
       )
-      .eq("email", user.user_metadata.email);
+      .eq("email", user.user_metadata.email)
+      .single();
 
     if (data) {
-      userbdData = data[0];
-      return userbdData;
+      return data;
     } else if (error) {
       console.log(error);
     }

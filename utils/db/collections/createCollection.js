@@ -3,46 +3,33 @@ import addToCollection from "./addToCollection";
 import addUserToCollection from "./addUserToCollection";
 import { v4 as uuidv4 } from 'uuid';
 
-const createCollection = async (collectionName, privacy, lookId, userId, isAdmin) => {
-    try {
-        const supabase = createClientComponentClient();
+const createCollection = async (collectionName, privacy, userId, isAdmin, lookId) => {
 
-        const { data: newCollectionData, error: collectionError } = await supabase
-            .from('collections')
-            .insert([
-                { name: collectionName, privacy: privacy, share_id: uuidv4() },
-            ])
-            .select()
-            .single()
+    const supabase = createClientComponentClient();
+    let isLookSaved;
+    let isUserAssociated;
 
-        if (collectionError) throw collectionError
+    const { data: collectionData, error: collectionError } = await supabase
+        .from('collections')
+        .insert([
+            { name: collectionName, privacy: privacy, share_id: uuidv4() },
+        ])
+        .select()
+        .single()
+    
+    if (!collectionData || collectionError){
+        console.log(collectionError)
+        return false
+    } 
 
-        const { data: handleSaveData, error: handleSaveError } = await handleSave(newCollectionData, lookId)
-        if (handleSaveError || !handleSaveData) throw handleSaveError
+    if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId)
+    if (lookId && !isLookSaved) return false
+    
+    if(userId) isUserAssociated = await addUserToCollection(collectionData.id, userId, isAdmin)
+    if (userId && !isUserAssociated) return false
 
-        const { data: completeCollectionData, error: handleAssociationError } = await handleAssociation(newCollectionData, userId, isAdmin)
-
-        if (handleAssociationError) throw handleAssociationError
-        
-        if(completeCollectionData) return completeCollectionData
-
-    } catch (error) {
-        console.log(error)
-        return {error}
-    }
+    if (collectionData && (!lookId || isLookSaved) && isUserAssociated) return true
+    
 }
-
-async function handleSave(collectionData, lookId) {
-    const { data, error } = await addToCollection(collectionData.id, lookId)
-    if (error) return { error }
-    if(data) return {data: data || null}
-}
-
-async function handleAssociation(collectionData, userId, isAdmin) {
-    const { data, error } = await addUserToCollection(collectionData.id, userId, isAdmin)
-    if (error) return { error }
-    if(data) return {data: data || null}
-}
-
 
 export default createCollection 

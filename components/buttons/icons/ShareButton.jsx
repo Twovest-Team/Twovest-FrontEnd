@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Notifications from '../../modals/Notifications';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import IconButton from './IconButton';
 
 const ShareButton = () => {
 
@@ -24,7 +25,7 @@ const ShareButton = () => {
         <div className='cursor-pointer'>
             {!isClicked ?
                 <CopyToClipboard text={url} onCopy={(text, result) => handleClick()}>
-                    <ShareIcon />
+                    <IconButton icon={<ShareIcon />} />
                 </CopyToClipboard> :
                 <ShareIcon />
             }

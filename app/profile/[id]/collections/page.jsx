@@ -1,48 +1,46 @@
 
-import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
-import CollectionPreview from "@/components/items/CollectionPreview";
-import SearchIcon from "@mui/icons-material/Search";
-import { NoDataComponent } from "@/components/sections/NoDataComponent";
+import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import useAuthServer from "@/hooks/useAuthServer";
+import CollectionList from "@/components/collections/CollectionList";
+import getCollections from "@/utils/db/collections/getCollections";
+import getUserById from "@/utils/db/getUserById";
+import CreateCollectionModal from "@/components/collections/CreateCollectionButton";
+import SegmentIcon from '@mui/icons-material/Segment';
+import IconButton from "@/components/buttons/icons/IconButton";
+import { checkOwnership } from "@/utils/handleCollections";
+import getUserFirstName from "@/utils/getUserFirstName";
 
 // Lista de coleções de um utilizador
 const Collections = async ({ params }) => {
 
-  const collectionOwnerId = params.id
-  const currentUser = useAuthServer()
-  let isOwnCollections = false;
-
-  if (collectionOwnerId && currentUser && collectionOwnerId == currentUser.id) {
-    isOwnCollections = true;
-  }
-
-  const data = await getInfoForProfilePage(collectionOwnerId);
-  const userFirstName = data[0].name.split(" ")[0];
+  const ownerId = params.id
+  const currentUser = await useAuthServer()
+  const isOwnCollections = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
+  const ownerData = isOwnCollections ? currentUser : await getUserById(ownerId)
+  const ownerFirstName = getUserFirstName(ownerData)
+  const collectionsData = await getCollections({ ownerId });
 
   return (
-    <main className="h-screen overflow-y-scroll">
+    <main className="min-h-screen pb-10">
 
       <div>
-        <NavigationTitle
-          titleText={isOwnCollections ? "As minhas coleções" : `Coleções de ${userFirstName}`}
-        >
-          {isOwnCollections ? <CreateOutlinedIcon /> : null}
+        <NavigationTitle titleText={isOwnCollections ? "As minhas coleções" : `Coleções de ${ownerFirstName}`}>
+          <div className="flex justify-between gap-5">
+            <IconButton icon={<SegmentIcon />} />
+            <CreateCollectionModal isOwnCollections={isOwnCollections} />
+          </div>
         </NavigationTitle>
       </div>
 
+      <div className="container">
+        {collectionsData ?
+          <CollectionList collections={collectionsData} ownerId={ownerId} isOwner={isOwnCollections} search={true} />
+          :
+          <NoResultsNotice text={'Utilizador não tem coleções'} />
+        }
+      </div>
 
-      {data ?
-        <AllUserCollections
-          data={data}
-          isOwnCollections={isOwnCollections}
-          userFirstName={userFirstName}
-          collectionOwnerId={collectionOwnerId}
-        />
-        :
-        <NoDataComponent text={'Utilizador não tem coleções'} />
-      }
 
     </main>
 
@@ -51,48 +49,3 @@ const Collections = async ({ params }) => {
 
 export default Collections;
 
-async function AllUserCollections({ data, isOwnCollections, userFirstName, collectionOwnerId }) {
-
-  let collectionsToShow = data[0].colecoes
-
-  if (!isOwnCollections) {
-    collectionsToShow = collectionsToShow.filter(collection => (
-      collection.collections.privacy == 2 && collection.is_admin === true
-    ))
-  }
-
-  return (
-    <div className="flex flex-col items-start self-stretch container pb-10 gap-4 ">
-
-      {isOwnCollections && collectionsToShow.length === 0 &&
-        <div className="text-secondary">
-          Ainda não criaste nenhuma coleção.
-        </div>
-      }
-
-      {!isOwnCollections && collectionsToShow.length === 0 &&
-        <div className="text-secondary">
-          {userFirstName} não tem coleções disponíveis.
-        </div>
-      }
-
-      {collectionsToShow.length > 0 &&
-        <>
-          <button className="profile_search-collections">
-            <SearchIcon />
-            Procurar coleções
-          </button>
-          {collectionsToShow.map((element) => (
-              <CollectionPreview
-                userId={collectionOwnerId}
-                collection={element}
-                key={element.id_collection}
-              />
-          ))}
-        </>
-      }
-
-    </div>
-
-  );
-}

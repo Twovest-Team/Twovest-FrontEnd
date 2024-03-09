@@ -23,7 +23,6 @@ const handlePurchase = async (produtos) => {
   }));
 
   try {
-    console.log(purchaseData);
     const { data } = await axios.post("/api/payment", purchaseData, {
       headers: {
         "Content-Type": "application/json",

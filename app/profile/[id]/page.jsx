@@ -1,54 +1,50 @@
-import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
-
 import LookCard_Profile from "@/components/cards/LookCard_Profile";
-import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ContentSlider from "@/components/sliders/ContentSlider";
 import ProfilePicture from "@/components/profilePicture/ProfilePicture";
-import CollectionPreview from "@/components/items/CollectionPreview";
-import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import React from "react";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
 import useAuthServer from "@/hooks/useAuthServer";
+import CollectionList from "@/components/collections/CollectionList";
+import getUserById from "@/utils/db/getUserById";
+import getCollections from "@/utils/db/collections/getCollections";
+import IconButton from "@/components/buttons/icons/IconButton";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { checkOwnership } from "@/utils/handleCollections";
+import getUserFirstName from "@/utils/getUserFirstName";
 
 export const revalidate = 0
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params }) => {
 
-  const currentUser = useAuthServer();
-  const urlId = params.id;
-  let isOwnProfile = false;
+  const ownerId = params.id
+  const currentUser = await useAuthServer();
+  const isOwnProfile = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
+  const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId)
+  const ownerFirstName = getUserFirstName(ownerData)
+  const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
+  const collectionsData = await getCollections({ ownerId, max: 3, privacy: 1 });
 
-
-  if (urlId && currentUser && urlId == currentUser.id) {
-    isOwnProfile = true;
-  }
-
-  const data = await getInfoForProfilePage(urlId);
-
-  const userFirstName = data[0].name.split(" ")[0];
-  const userRegisterData = getPortugueseDateString(data[0].created_at);
-
-  if (data && data.length > 0) {
+  if (ownerData) {
     return (
       <>
         <NavigationTitle
-          titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${userFirstName}`}
+          titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${ownerFirstName}`}
         >
-          {isOwnProfile ? <CreateOutlinedIcon /> : null}
+          <IconButton icon={<MoreVertIcon />} />
         </NavigationTitle>
 
         <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
-          <ProfilePicture imageProfile={data[0].img} />
-          <p className="body_semibold">{data[0].name}</p>
+          <ProfilePicture imageProfile={ownerData.img} />
+          <p className="body_semibold">{ownerData.name}</p>
           <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
-            {data[0].email}
+            {ownerData.email}
           </p>
-          <p>Desde {userRegisterData}</p>
+          <p>Desde {ownerCreatedAt}</p>
         </div>
 
         <div className="flex justify-center items-center self-stretch pt-10 px-6 pb-14 gap-4">
@@ -58,27 +54,31 @@ const Profile = async ({ params }) => {
         <div className="pb-8">
 
           <h6 className="font-semibold container">
-            {isOwnProfile ? 'Os meus looks' : `Looks de ${userFirstName}`}
+            {isOwnProfile ? 'Os meus looks' : `Looks de ${ownerFirstName}`}
           </h6>
 
           <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
             <ProfileLooks
-              data={data}
+              ownerData={ownerData}
               isOwnProfile={isOwnProfile}
-              userFirstName={userFirstName}
+              ownerFirstName={ownerFirstName}
             />
           </div>
         </div>
 
-        {data &&
-          <div className="flex pb-10 flex-col items-start self-stretch gap-4 container">
+        {ownerData &&
+          <div className="flex pb-10 flex-col items-start self-stretch container gap-4">
             <h6 className="font-semibold">Coleções de Looks</h6>
-            <ProfileCollections
-              userId={urlId}
-              data={data}
-              isOwnProfile={isOwnProfile}
-              userFirstName={userFirstName}
-            />
+            <CollectionList collections={collectionsData} ownerId={ownerId} />
+
+            <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
+
+              <Link href={`/profile/${ownerId}/collections`} className="profile_all-collections">
+                Ver todas as coleções
+                <ArrowForwardIosIcon />
+              </Link>
+            </div>
+
           </div>
 
         }
@@ -92,18 +92,18 @@ const Profile = async ({ params }) => {
 
 export default Profile;
 
-async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
+async function ProfileLooks({ ownerData, isOwnProfile, ownerFirstName }) {
   return (
     <>
-      {data[0].hasOwnProperty("userLooks") ? (
+      {ownerData.hasOwnProperty("userLooks") ? (
         <ContentSlider>
-          {data[0].userLooks.map((element) => (
+          {ownerData.userLooks.map((element) => (
             <LookCard_Profile
               slider={true}
               key={element.id}
               look={element}
-              nome={data[0].name}
-              avatar={data[0].img}
+              nome={ownerData.name}
+              avatar={ownerData.img}
             />
           ))}
         </ContentSlider>
@@ -115,7 +115,7 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
       ) : (
         <div className="container text-secondary">
           {" "}
-          {userFirstName} ainda não adicionou nenhum look à sua galeria
+          {ownerFirstName} ainda não adicionou nenhum look à sua galeria
         </div>
       )}
     </>
@@ -123,64 +123,3 @@ async function ProfileLooks({ data, isOwnProfile, userFirstName }) {
 }
 
 
-async function ProfileCollections({ data, isOwnProfile, userFirstName, userId }) {
-
-  let collectionsToShow;
-
-  //console.log(data[0].colecoes)
-
-  if (data[0].colecoes) {
-    collectionsToShow = data[0].colecoes
-
-    if (!isOwnProfile) {
-      collectionsToShow = collectionsToShow.filter(collection => (
-        collection.collections.privacy == 2 && collection.is_admin === true
-      ))
-    }
-  }
-
-
-  return (
-    <>
-
-      {isOwnProfile &&
-        (collectionsToShow && collectionsToShow.length === 0 || !collectionsToShow) &&
-        <div className="text-secondary">
-          Ainda não criaste nenhuma coleção.
-        </div>
-      }
-
-      {!isOwnProfile && !collectionsToShow &&
-        <div className="text-secondary">
-          {userFirstName} não tem coleções disponíveis.
-        </div>
-      }
-
-      {collectionsToShow && collectionsToShow.length > 0 &&
-        <>
-          <button className="profile_search-collections">
-            <SearchIcon />
-            Procurar coleções
-          </button>
-          {collectionsToShow.slice(0, 3).map((element) => (
-            <CollectionPreview
-              userId={userId}
-              collection={element}
-              key={element.id_collection}
-              isOwnProfile={isOwnProfile}
-              className="pb-6"
-            />
-          ))}
-          <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
-            <Link href={`/profile/${userId}/collections`} className="profile_all-collections">
-              Ver todas as coleções
-              <ArrowForwardIosIcon />
-            </Link>
-          </div>
-        </>
-      }
-
-    </>
-
-  );
-}

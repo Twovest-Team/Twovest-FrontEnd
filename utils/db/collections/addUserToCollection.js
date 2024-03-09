@@ -9,10 +9,10 @@ const addUserToCollection = async (collectionId, userId, isAdmin) => {
         .insert({ id_collection: collectionId, id_user: userId, is_admin: isAdmin })
         .select()
 
-    if(error) return {error}
     if (status === 201){
         return true
     }else{
+        console.log(error)
         return false
     }
     

@@ -6,12 +6,9 @@ export default async function getAuth() {
 
     supabase = createClientComponentClient();
     
-
     const { data: { user }} = await supabase.auth.getUser();
     
       if (user) {
-        let userbdData;
-    
         const { data, error } = await supabase
           .from("users")
           .select(
@@ -19,15 +16,16 @@ export default async function getAuth() {
                 id,
                 email,
                 name,
+                created_at,
                 img,
                 role
             `
           )
-          .eq("email", user.user_metadata.email);
+          .eq("email", user.user_metadata.email)
+          .single();
     
         if (data) {
-          userbdData = data[0];
-          return userbdData;
+          return data;
         } else if (error) {
           console.log(error);
         }

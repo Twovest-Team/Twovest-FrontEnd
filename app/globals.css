@@ -6,7 +6,8 @@
 
 html {
   scroll-padding-top: 158px;
-  background-color: #000000;
+  background-color: #B2B2B2;
+  scrollbar-gutter: stable;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

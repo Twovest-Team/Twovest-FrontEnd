@@ -8,7 +8,7 @@ import { useState } from "react";
 import Notifications from "@/components/modals/Notifications";
 import LoadingIcon from "./LoadingIcon";
 import { useRouter } from "next/navigation";
-import withAuth from "@/hocs/withAuth";
+
 
 const BuyButton = ({ offerId, currentUser }) => {
   const dispatch = useAppDispatch();
@@ -50,4 +50,4 @@ const BuyButton = ({ offerId, currentUser }) => {
   );
 };
 
-export default withAuth(BuyButton);
+export default BuyButton;

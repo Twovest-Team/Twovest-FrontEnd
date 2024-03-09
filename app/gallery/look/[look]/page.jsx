@@ -4,12 +4,13 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import getLookById from "@/utils/db/getLookById";
 import Image from "next/image";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
-import SaveButton from "@/components/buttons/icons/SaveButton";
+import SaveLookButton from "@/components/collections/SaveLookButton";
 import Link from "next/link";
 import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
-import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 import { UserIcon } from "@/components/user/UserIcon";
+import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
+
 
 export const revalidate = 30;
 
@@ -63,7 +64,9 @@ const Look = async ({ params }) => {
 
                   <p className="min-w-0 truncate">{data.users.name}</p>
                 </Link>
-                <SaveButton lookId={lookId} />
+
+                <SaveLookButton whiteMode lookId={lookId} />
+
               </div>
             </div>
 
@@ -98,7 +101,10 @@ const Look = async ({ params }) => {
         </section>
       </main>
 
-      <SaveToCollectionModal lookId={lookId} />
+      <ManageCollectionModal
+        lookId={lookId}
+      />
+
     </>
   );
 };

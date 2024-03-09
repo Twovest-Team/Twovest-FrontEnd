@@ -1,5 +1,4 @@
 import { supabase } from "../supabase";
-import deleteCollection from "./deleteCollection";
 
 export default async function deleteCollectionUser(collectionId, userId) {
 

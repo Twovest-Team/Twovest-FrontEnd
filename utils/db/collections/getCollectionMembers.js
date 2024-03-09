@@ -1,6 +1,6 @@
 import { supabase } from "@/utils/db/supabase";
 
-const getCollectionMembers = async (collectionId, userId) => {
+const getCollectionMembers = async (collectionId) => {
   const { data, error } = await supabase
     .from("collections_has_users")
     .select(
@@ -14,7 +14,6 @@ const getCollectionMembers = async (collectionId, userId) => {
 `
     )
     .eq("id_collection", collectionId)
-    .eq('id_user', userId)
     .order("created_at", { ascending: false });
 
   if(error) return {error}

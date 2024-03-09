@@ -12,7 +12,8 @@ const getUserById = async (id_user) => {
       email
   `
     )
-    .eq("id", id_user);
+    .eq("id", id_user)
+    .single()
 
   if (error) {
     console.log(error);

@@ -7,10 +7,12 @@ export const modalSlice = createSlice({
     openModal: (state, action) => {
       const id  = action.payload;
       state[id] = true;
+      document.body.style.overflow = 'hidden'
     },
     closeModal: (state, action) => {
       const id = action.payload;
       state[id] = false;
+      document.body.style.overflowY = 'auto'
     }
   }
 });

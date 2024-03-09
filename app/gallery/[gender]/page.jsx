@@ -8,7 +8,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import { NoDataComponent } from "@/components/sections/NoDataComponent";
+import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { Buttons } from "@/components/buttons/Buttons";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -81,7 +81,11 @@ async function LookList({ gender, style }) {
           </ItemsBox>
         </>
       ) : (
-        <NoDataComponent text={"Sem looks disponíveis."} />
+        <NoResultsNotice
+        title={'Não encontramos looks.'}
+        text={'Infelimente não temos looks disponíveis para esta categoria.'}
+        btnText={'Ir para Geral'}
+        />
       )}
     </>
   );

@@ -43,7 +43,6 @@ const Collections = async ({ params }) => {
 
 
     </main>
-
   );
 };
 

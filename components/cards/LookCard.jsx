@@ -48,8 +48,9 @@ export default function LookCard({ look, slider, name, collectionData, collectio
   return (
     <>
       <div
-        className={`${!slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
-          } `}
+        className={`${
+          !slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
+        } `}
       >
         <Link
           href={`/gallery/look/${look.id}`}
@@ -82,7 +83,13 @@ export default function LookCard({ look, slider, name, collectionData, collectio
               className="rounded-full"
             />
  */}
-            <UserIcon url={look.users.img} userRole={look.users.role} size="small" userName={look.users.name} userId={look.users.id} />
+            <UserIcon
+              url={look.users.img}
+              userRole={look.users.role}
+              size="small"
+              userName={look.users.name}
+              userId={look.users.id}
+            />
             <LookUsername
               slider={slider}
               username={!slider ? look.users.name : slider === true && name}

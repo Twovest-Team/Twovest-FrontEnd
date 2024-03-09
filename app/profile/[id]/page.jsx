@@ -16,7 +16,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { checkOwnership } from "@/utils/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 
-export const revalidate = 0
+export const revalidate = 0;
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params }) => {
@@ -52,7 +52,6 @@ const Profile = async ({ params }) => {
         </div>
 
         <div className="pb-8">
-
           <h6 className="font-semibold container">
             {isOwnProfile ? 'Os meus looks' : `Looks de ${ownerFirstName}`}
           </h6>
@@ -80,14 +79,10 @@ const Profile = async ({ params }) => {
             </div>
 
           </div>
-
         }
-
-
       </>
     );
   }
-
 };
 
 export default Profile;

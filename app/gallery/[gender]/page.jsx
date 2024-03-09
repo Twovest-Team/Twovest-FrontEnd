@@ -9,8 +9,9 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
-
-
+import { Buttons } from "@/components/buttons/Buttons";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
@@ -19,11 +20,14 @@ export const revalidate = 60;
 const Gallery = async ({ params, searchParams }) => {
   const gender = params.gender;
   const style = searchParams.style;
+
   return (
     <main>
       <NavigationTitle titleText={"Galeria"}>
         <div className="flex gap-2 text-secondary items-center">
-          <p className="text-right">Ganhar pontos</p>
+          <p className="text-right text-gray-700" aria-label="Ganhar Pontos">
+            Ganhar pontos
+          </p>
           <HelpOutlineIcon />
         </div>
       </NavigationTitle>
@@ -33,10 +37,20 @@ const Gallery = async ({ params, searchParams }) => {
       </div>
 
       <div className="flex justify-between container mt-4 mb-6">
-        <Views className="view" />
-        <button className="submit w-full min-[350px]:w-fit">
-          Submeter Look
-        </button>
+        <div className="flex items-center">
+          <Views className="view " />
+        </div>
+        <div>
+          <Link href="/gallery/submitLook">
+            <Buttons
+              aria-label="Submeter Look"
+              btnState="defaultMain"
+              text="Submeter Look"
+              icon=""
+              btnSize="gallerySize"
+            ></Buttons>
+          </Link>
+        </div>
       </div>
 
       <Suspense fallback={<LooksSkeleton />}>
@@ -65,14 +79,14 @@ async function LookList({ gender, style }) {
               <LookCard key={element.id} look={element} slider={false} />
             ))}
           </ItemsBox>
-          
         </>
-
       ) : (
-        <NoResultsNotice text={'Sem looks disponíveis.'} />
+        <NoResultsNotice
+        title={'Não encontramos looks.'}
+        text={'Infelimente não temos looks disponíveis para esta categoria.'}
+        btnText={'Ir para Geral'}
+        />
       )}
-
-
     </>
   );
 }

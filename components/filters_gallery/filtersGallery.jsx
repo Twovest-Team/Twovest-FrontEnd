@@ -4,8 +4,8 @@ import getAllStyles from "@/utils/db/getAllStyles";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ContentSlider from "../sliders/ContentSlider";
-
-const Filters = ({style, gender}) => {
+import { Buttons } from "../buttons/Buttons";
+const Filters = ({ style, gender }) => {
   const [selectedFilter, setSelectedFilter] = useState(style);
   const [styles, setStyles] = useState([]);
   const router = useRouter();
@@ -20,38 +20,41 @@ const Filters = ({style, gender}) => {
   }, []);
 
   const handleFilterChange = (style) => {
-    if(style){
+    if (style) {
       setSelectedFilter(style);
       router.push(`/gallery/${gender}?style=${style}`);
-    }else{
-      setSelectedFilter()
+    } else {
+      setSelectedFilter();
       router.push(`/gallery/${gender}`);
     }
-
-    
   };
 
   return (
     <ContentSlider>
-      <button
+      <Buttons
         key="all"
-        className={`filter-button ${
-          !selectedFilter && "active"
-        }`}
+        className={`filter-button ${!selectedFilter && "active"}`}
+        aria-label="Todos"
+        btnState={!selectedFilter ? "blackMain" : "whiteMain"}
+        text="Todos"
+        icon=""
+        btnSize="filterSize"
         onClick={() => handleFilterChange()}
-      >
-        Todos
-      </button>
+      ></Buttons>
+
       {styles.map((filter) => (
-        <button
+        <Buttons
           key={filter.id}
           className={`filter-button ${
             selectedFilter && selectedFilter === filter.name && "active"
           }`}
+          aria-label={filter.name}
+          btnState={selectedFilter === filter.name ? "activeMain" : "whiteMain"}
+          text={filter.name}
+          icon=""
+          btnSize="filterSize"
           onClick={() => handleFilterChange(filter.name)}
-        >
-          {filter.name}
-        </button>
+        ></Buttons>
       ))}
     </ContentSlider>
   );

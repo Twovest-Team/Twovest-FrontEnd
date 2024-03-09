@@ -48,14 +48,14 @@ export default function Home() {
     <main>
       <ImageSwiper />
 
-      <section className="mt-14 mb-24">
-        <h6 className="font-semibold px-6">Mais Procurados 🔥</h6>
+      <section className="mt-14 mb-24 sectionDesktopTopSearched">
+        <h6 className="font-semibold px-6 px-desktop">Mais Procurados 🔥</h6>
         <div className="flex my-6 overflow-auto">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}
         </div>
       </section>
 
-      <section className="mt-14 mb-24 px-6">
+      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands">
         <h6 className="font-semibold mb-4">Marcas</h6>
         {brands && <BrandCards data={brands} gender={gender} />}
         <Link href={"/brands"} className="text-right font-semibold ">
@@ -63,8 +63,8 @@ export default function Home() {
         </Link>
       </section>
 
-      <section className="mt-14 py-20 text-white bg-black">
-        <h6 className="font-semibold mb-6 px-6">Galeria de Looks</h6>
+      <section className="mt-14 py-20 text-white bg-black sectionDesktopHomepageGallery">
+        <h6 className="font-semibold mb-6 px-6 ">Galeria de Looks</h6>
         <div className="flex overflow-auto mb-4">
           {looks && <LooksHomepage data={looks} />}
         </div>
@@ -87,7 +87,7 @@ export default function Home() {
         style={{
           backgroundImage: `url('/images/homepage/pontosdeentregabg.png')`,
         }}
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white"
+        className="h-screen bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >
         <PontosDeEntregaCard />
       </section>

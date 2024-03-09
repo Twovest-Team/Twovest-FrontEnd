@@ -917,4 +917,55 @@ incorporados no footer. -------- João Paixão */
     padding-left: 11rem; 
   }
 }
+
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .px-desktop {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .px-desktop {
+    padding-left: 12.85rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .sectionDesktopHomepageBrands {
+padding-left: 14rem;
+padding-right: 13rem;
+  }
+}
+
+
+@media (min-width: 1920px) {
+  .sectionDesktopHomepageBrands {
+padding-left: 14rem;
+padding-right: 13rem;
+  }
+}
+
+
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .sectionDesktopHomepageGallery {
+padding-left: 12rem;
+
+
+  }
+}
+
+
+@media (min-width: 1920px) {
+  .sectionDesktopHomepageGallery {
+    padding-left: 12rem;
+
+
+  }
+
+
+}
+
+
+
+
 /*--END GONÇALO--*/

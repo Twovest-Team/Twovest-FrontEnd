@@ -4,21 +4,22 @@ import { useAppDispatch } from "@/redux/hooks"
 import { closeModal } from "@/redux/slices/modalSlice"
 import deleteCollection from "@/utils/db/collections/deleteCollection"
 import Modal from "../modals/Modal"
-import { redirect } from "next/dist/server/api-utils"
+import { useRouter } from 'next/navigation'
 import useAuth from "@/hooks/useAuth"
 
 const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
 
     const dispatch = useAppDispatch()
     const currentUser = useAuth()
+    const router = useRouter()
 
     async function handleDelete(){
         if(!isOwnCollection) return null
         let isDeleted = await deleteCollection(collectionId)
         dispatch(closeModal('deleteCollectionWarning'))
-        if (isDeleted) redirect(`profile/${currentUser.id}/collections`)
         alert('is deleted? ' + isDeleted)
-        
+        console.log(currentUser)
+        if (isDeleted) router.push(`/profile/${currentUser.id}/collections`)
     }
 
     return (

@@ -6,7 +6,8 @@ import menuToggleSlice from "./slices/menuToggle";
 import cartProductsSlice from "./slices/cartProducts";
 import historyProductsSlice from "./slices/historyProducts";
 import toggleLookModalToggle from "./slices/saveLookModalToggle";
-import modalReducer from "./slices/modalSlice";
+import modalSlice from "./slices/modalSlice";
+import notificationSlice from "./slices/notificationSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -18,7 +19,8 @@ export const makeStore = () => {
       lookModalToggle: toggleLookModalToggle,
       cartProducts: cartProductsSlice,
       historyProducts: historyProductsSlice,
-      modals: modalReducer
+      modals: modalSlice,
+      notifications: notificationSlice
     }
   })
 }

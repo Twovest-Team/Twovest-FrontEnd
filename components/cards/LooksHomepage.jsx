@@ -10,7 +10,7 @@ export const LooksHomepage = ({data}) => {
         
        <ContentSlider disableGradient={true}>
             {looks.map((item) => {
-                return(<LookCard key={item.id} look={item} nome={item.users.name} avatar={item.users.img} slider={true}/>)   
+                return(<LookCard key={item.id} look={item} name={item.users.name} avatar={item.users.img} slider={true}/>)   
             }
             )}  
         </ContentSlider>

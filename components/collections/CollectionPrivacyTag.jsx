@@ -7,8 +7,8 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 export default function CollectionPrivacyTag({ privacy, users }) {
 
-  let userImages = []
-  if (users) {
+  let userIcons = []
+  if (privacy == 3 && users) {
 
     for (let i = 0; i < users.length; i++) {
 
@@ -29,7 +29,7 @@ export default function CollectionPrivacyTag({ privacy, users }) {
           break;
       }
 
-      userImages.push(
+      userIcons.push(
         <Image
           src={users[i].users.img}
           alt="Look da coleção"
@@ -43,27 +43,20 @@ export default function CollectionPrivacyTag({ privacy, users }) {
     }
   }
 
-  if (privacy == 1) {
+  if (privacy == 1|| privacy == 2) {
     return (
-      <div className="py-2 pl-2 pr-3 w-fit bg-grey_opacity_50 rounded-full justify-center items-center inline-flex">
-        <LockOutlinedIcon className="h-[13px] text-secondary" />
-        <p className="caption text-secondary">Privada</p>
+      <div className="px-5 py-2 bg-grey_opacity_50 rounded-full w-fit">
+        <p className="caption text-secondary font-semibold">
+          {privacy == 1 && 'Privada'}
+          {privacy == 2 && 'Pública'}
+        </p>
       </div>
     );
-  } else if (privacy == 2) {
-    return (
-      <div className="py-2 pl-2 pr-3 w-fit bg-grey_opacity_50 rounded-full justify-center items-center inline-flex">
-        <PublicOutlinedIcon className="h-[13px] text-secondary" />
-        <p className="caption text-secondary">Pública</p>
-      </div>
-    );
-  } else if (privacy == 3 && users) {
+  }else if (privacy == 3 && users) {
     return (
       <div className={`flex gap-2 relative w-[100px] h-[35px]`}>
-        {userImages}
+        {userIcons}
       </div>
-
-
     )
 
 

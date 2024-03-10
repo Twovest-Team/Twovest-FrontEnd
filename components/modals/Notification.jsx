@@ -1,14 +1,25 @@
 'use client'
 
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { hideNotification } from '@/redux/slices/notificationSlice';
 import { Transition } from '@headlessui/react';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
-const Notifications = ({ type, message }) => {
+const Notification = ({ id, type, message }) => {
+    
+    const dispatch = useAppDispatch()
+    const show = useAppSelector(state => state.notifications[id])
 
-    const [show, setShow] = useState(false)
+    useEffect(() => {
+        if(show){
+            setTimeout(() => {
+                dispatch(hideNotification(id))
+            }, 2000) // Control notification showcase time here
+        }
+    }, [show])
 
     let customStyles;
 
@@ -28,19 +39,10 @@ const Notifications = ({ type, message }) => {
             break;
     }
 
-    useEffect(() => {
-        setShow(true)
-
-        setTimeout(() => {
-            setShow(false)
-        }, 3000)
-    }, [])
-
-
     return (
         <div className='fixed bottom-10 mx-auto left-6 right-6 w-fit z-40 '>
             <Transition
-                show={show}
+                show={show || false}
                 enter="transition duration-100 ease-out"
                 enterFrom="transform scale-95 opacity-0"
                 enterTo="transform scale-100 opacity-100"
@@ -65,4 +67,4 @@ const Notifications = ({ type, message }) => {
     )
 }
 
-export default Notifications
+export default Notification

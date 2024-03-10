@@ -1,32 +1,35 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import saveLookToCollection from "./saveLookToCollection";
-import associateUserToCollection from "./associateUserToCollection";
+import addToCollection from "./addToCollection";
+import addUserToCollection from "./addUserToCollection";
+import { v4 as uuidv4 } from 'uuid';
 
-const createCollection = async (collectionName, privacy, lookId, userId, isAdmin) => {
+const createCollection = async (collectionName, privacy, userId, isAdmin, lookId) => {
+
     const supabase = createClientComponentClient();
+    let isLookSaved;
+    let isUserAssociated;
 
-
-    const { data, error } = await supabase
+    const { data: collectionData, error: collectionError } = await supabase
         .from('collections')
         .insert([
-            { name: collectionName, privacy: privacy },
+            { name: collectionName, privacy: privacy, share_id: uuidv4() },
         ])
         .select()
+        .single()
+    
+    if (!collectionData || collectionError){
+        console.log(collectionError)
+        return false
+    } 
 
+    if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId)
+    if (lookId && !isLookSaved) return false
+    
+    if(userId) isUserAssociated = await addUserToCollection(collectionData.id, userId, isAdmin)
+    if (userId && !isUserAssociated) return false
 
-    if (error) {
-        console.log(error)
-    }else if (data){
-        const lookData = await saveLookToCollection(data[0].id, lookId)
-        if(lookData){
-            const result =  await associateUserToCollection(data[0].id, userId, isAdmin)
-            if(result){
-                return result
-            }
-
-        }
-    }
-
+    if (collectionData && (!lookId || isLookSaved) && isUserAssociated) return true
+    
 }
 
 export default createCollection 

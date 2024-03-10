@@ -9,6 +9,8 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
 import { ModalEmailVerification } from "@/components/modals/ModalEmailVerification";
+import Dropzone from "react-dropzone";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const Register = () => {
   const router = useRouter();
@@ -24,6 +26,8 @@ const Register = () => {
   const [usernameValid, setUsernameValid] = useState(false);
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
 
   useEffect(() => {
     async function getUser() {
@@ -33,6 +37,7 @@ const Register = () => {
     }
     getUser();
   }, []);
+
 
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
@@ -72,7 +77,7 @@ const Register = () => {
         data: {
           full_name: username,
           email: email,
-          picture: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/sign/users_profile_pictures/user_profile-img.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ1c2Vyc19wcm9maWxlX3BpY3R1cmVzL3VzZXJfcHJvZmlsZS1pbWcuanBnIiwiaWF0IjoxNzA5NjcyMjA4LCJleHAiOjIwMjUwMzIyMDh9.SmxAXHCwftd_KtfdgoYFuXVe7KmmlfWfG23aUuQ33VY"
+          picture: selectedImage
           
         },
         emailRedirectTo: `${location.origin}/auth/callback`
@@ -87,6 +92,20 @@ const Register = () => {
     setUsername("");
     setTeste(true);
     //console.log(data);
+  };
+
+  const handleDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSelectedImage(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
   };
 
   if (user) {
@@ -104,8 +123,23 @@ const Register = () => {
       <>
         <NavigationTitle titleText={"Registar conta"}/>
         <main className="p-6 mb-10">
-          <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary">
-            <div className="text-center mt-16">Adiciona aqui uma foto</div>
+
+           <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary ">
+            {selectedImage ? (
+              <div className="relative mt-8">
+                <img src={selectedImage} alt="Selected" className="mx-auto rounded-full h-[6rem] w-[6rem]" />
+                <button onClick={handleRemoveImage} className="absolute top-0 right-0 mt-2 mr-2 text-xs text-red-500 cursor-pointer">Remover imagem</button>
+              </div>
+            ) : (
+              <Dropzone onDrop={handleDrop} className="cursor-pointer">
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()} className="dropzone cursor-pointer">
+                    <input {...getInputProps()} />
+                    <div className="text-center mt-9 mx-auto"><AddPhotoAlternateIcon className="text-[50px]"/><div className="mt-2">Adiciona aqui uma foto.</div></div>
+                  </div>
+                )}
+              </Dropzone>
+            )}
           </div>
 
           <input

@@ -77,7 +77,7 @@ const Register = () => {
     if (selectedImage) {
       pictureUrl = selectedImage; 
     } else {
-      pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/sign/users_profile_pictures/user_profile-img.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ1c2Vyc19wcm9maWxlX3BpY3R1cmVzL3VzZXJfcHJvZmlsZS1pbWcuanBnIiwiaWF0IjoxNzA5NjcyMjA4LCJleHAiOjIwMjUwMzIyMDh9.SmxAXHCwftd_KtfdgoYFuXVe7KmmlfWfG23aUuQ33VY";
+      pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
     }
 
     const { data, error } = await supabase.auth.signUp({

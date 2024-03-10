@@ -2,7 +2,6 @@
 
 import { CardCart } from "../cards/CardCart";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import { useEffect, useState } from "react";
@@ -12,15 +11,16 @@ import getCartTotalPrice from "@/utils/getCartTotalPrice";
 import Link from "next/link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { toggleMenu } from "@/redux/slices/menuToggle";
-import Notifications from "../modals/Notifications";
+import Notification from "../modals/Notification";
 import { Buttons } from "../buttons/Buttons";
+import { showNotification } from "@/redux/slices/notificationSlice";
+
 export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
   const currentUser = useAppSelector((state) => state.user.data);
   const [loading, setLoading] = useState(false);
-  const [showDeleteNotification, setShowDeleteNotification] = useState(false);
 
   function handleLoading(boolean) {
     setLoading(boolean);
@@ -51,10 +51,7 @@ export const Cart = () => {
 
   function handleShowDeleteNotification(data) {
     if (products.length > data.length) {
-      setShowDeleteNotification(true);
-      setTimeout(() => {
-        setShowDeleteNotification(false);
-      }, 3200);
+      dispatch(showNotification('removeFromCart'))
     }
   }
 
@@ -224,9 +221,8 @@ export const Cart = () => {
         </div>
       )}
 
-      {showDeleteNotification && (
-        <Notifications type={"Neutral"} message={"Artigo removido"} />
-      )}
+      <Notification id={'removeFromCart'} type={"Neutral"} message={"Artigo removido"} />
+
     </div>
   );
 };

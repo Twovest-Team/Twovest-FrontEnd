@@ -1,17 +1,16 @@
-import Link from "next/link";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useState } from "react";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import Select from "../items/Select";
 import { cttPickupPoints, portugalDistricts, portugalTowns } from "@/constants";
-import PhoneInput from "../inputs/PhoneInput";
 import PortugalFlag from "@/public/images/idiomas/portugal_idioma.svg";
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
-import Notifications from "../modals/Notifications";
+import Notification from "../modals/Notification";
+import { showNotification } from "@/redux/slices/notificationSlice";
 import { Buttons } from "../buttons/Buttons";
+import { useAppDispatch } from "@/redux/hooks";
+
 const ShopSectionTwo = ({ userData, updateStage }) => {
   const [steps, setSteps] = useState([
     {
@@ -24,20 +23,19 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
     },
   ]);
 
+  const dispatch = useAppDispatch()
   const [selectedDistrict, setSelectedDistrict] = useState(
     portugalDistricts[0]
   );
   const [selectedTown, setSelectedTown] = useState(portugalTowns[0]);
   const [selectedCTT, setSelectedCTT] = useState(cttPickupPoints[0]);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [showNotification, setShowNotification] = useState(false);
 
   function handleStep(boolean) {
     //console.log(boolean)
     setSteps((prevState) => {
       const newState = [...prevState];
       newState[1] = { ...newState[1], confirmed: boolean };
-      setShowNotification(false);
       return newState;
     });
   }
@@ -50,9 +48,6 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
     const phoneNumberValue = e.target.value.trim();
     if (phoneNumberValue.length >= 9 && phoneNumberValue.length <= 12) {
       setPhoneNumber(phoneNumberValue);
-      setShowNotification(false);
-    } else {
-      setShowNotification(true);
     }
   }
   function handleNextStage() {
@@ -72,7 +67,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
     if (isFormFilled && areAllStepsConfirmed) {
       updateStage(3);
     } else {
-      setShowNotification(true);
+      dispatch(showNotification('formError'))
     }
   }
 
@@ -208,17 +203,16 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
 
         <Buttons
           ariaLabel="Efetuar pagamento"
-          btnState={showNotification ? "whiteMain" : "defaultMain"}
+          btnState={"defaultMain"}
           text="Efetuar pagamento"
           btnSize="menuSize3"
           onClick={handleNextStage}
-          Disabled={showNotification}
         />
       </section>
 
-      {showNotification && (
-        <Notifications type={"Error"} message={"Preenche todos os campos"} />
-      )}
+      
+        <Notification id={'formError'} type={"Error"} message={"Preenche todos os campos"} />
+
     </>
   );
 };

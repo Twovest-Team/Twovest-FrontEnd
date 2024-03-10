@@ -3,7 +3,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { Transition } from '@headlessui/react'
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { closeModal, getCurrentModalState } from "@/redux/slices/modalSlice";
+import { closeModal } from "@/redux/slices/modalSlice";
 import Image from "next/image";
 import { useEffect } from "react";
 import IconButton from "../buttons/icons/IconButton";

@@ -18,7 +18,7 @@ export default function LoginPage() {
 
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
-  
+    const [loginError, setLoginError] = useState("");
 
     
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function LoginPage() {
           }
           )
 
-         if(data){ 
+         if(data.session != null && data.user != null){ 
             setEmail("");
             setPassword("");
             router.push("/");
@@ -57,10 +57,11 @@ export default function LoginPage() {
                 window.location.reload(true);
               };
               hardReloadPage();
-            /* console.log(data) */
+            //console.log(data) 
 
         }else{
-            console.log(error)
+            //console.log(error)
+            setLoginError("Credênciais de login erradas.")
         } 
         
     }
@@ -93,6 +94,8 @@ export default function LoginPage() {
          value={password}
          onChange={(e) => setPassword(e.target.value)} 
          className="px-4 py-4 w-full rounded border border-grey"/>
+
+         <div className="text-error_main my-2">{loginError}</div>
 
         <Buttons btnState={"defaultMain"} text={"Iniciar sessão"} btnSize={"menuSize"}/>
         <button onClick={handleSignInEmail}>SIGN IN</button>

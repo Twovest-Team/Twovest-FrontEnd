@@ -61,11 +61,11 @@ export default function LoginPage() {
 
         }else{
             //console.log(error)
-            setLoginError("Credênciais de login erradas.")
+            setPassword("");
+            setLoginError("As credênciais de login estão erradas.")
         } 
         
     }
-
 
 
     if (loading) {

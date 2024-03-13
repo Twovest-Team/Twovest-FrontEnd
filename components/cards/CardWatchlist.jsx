@@ -16,9 +16,7 @@ export default function CardWatchlist() {
       </div>
       <div className="pl-4 flex flex-col gap-4">
         <div>
-          <p className="font-semibold line-clamp-1">
-            Nome da lista 123 gggg
-          </p>
+          <p className="font-semibold line-clamp-1">Nome da lista 123 gggg</p>
           <p className="caption text-secondary">666 Looks</p>
         </div>
       </div>

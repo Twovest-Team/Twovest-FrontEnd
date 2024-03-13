@@ -5,25 +5,26 @@ import getAllMaterials from "@/utils/db/getAllMaterials";
 import getAllStyles from "@/utils/db/getAllStyles";
 import getProductImages from "@/utils/db/getProductImages";
 import getProductMaterials from "@/utils/db/getProductMaterials";
-import getProcuctOffers from "@/utils/db/getProductOffers";
+import getProductOffers from "@/utils/db/getProductOffers";
 import getProductStyles from "@/utils/db/getProductStyles";
 import getSizesByType from "@/utils/db/getSizesByType";
 import getProductById from "@/utils/db/getProductById";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
-import getCollectionsForCard from "@/utils/db/getCollectionsForCard";
+import getCollections from "@/utils/db/collections/getCollections";
 import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
-
+import getProductsByViews from "@/utils/db/getProductsByViews";
+import getBrands from "@/utils/db/getBrands";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
-export const revalidate = 0 
+export const revalidate = 0;
 
-const page = async() => {
-
+const page = async () => {
   // Variável onde se deve guardar a resposta da API
-    const data = await getInfoForProfilePage(24)
+    const data = await getCollections(22)
   
 
     return (
@@ -34,4 +35,4 @@ const page = async() => {
     )
 }
 
-export default page
+export default page;

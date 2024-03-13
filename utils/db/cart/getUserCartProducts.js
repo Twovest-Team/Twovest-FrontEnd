@@ -18,7 +18,8 @@ export default async function getUserCartProducts(email) {
                 id
             ),
             is_sustainable,
-            discount
+            discount,
+            gender
         ),
         colors (
             name

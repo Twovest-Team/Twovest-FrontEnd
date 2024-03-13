@@ -13,15 +13,17 @@
 */
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Transition } from '@headlessui/react';
+import React, { useState, useEffect } from "react";
+import { Transition } from "@headlessui/react";
 import { Buttons } from "@/components/buttons/Buttons";
 
 const Carousel = ({ items, autoplayInterval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function handlePrev() {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+    );
   }
 
   function handleNext() {
@@ -63,29 +65,39 @@ const Carousel = ({ items, autoplayInterval = 5000 }) => {
           />
           <div className="absolute inset-0 bg-black opacity-40"></div>
           <div className="absolute top-1/4 text-center text-white w-full mx-auto overflow-hidden cenas">
-                    <p className="font-inter whitespace-normal font-bold break-words">{items[currentIndex].subtitle}</p>
-                    <h2 className="font-inter whitespace-normal font-bold mt-4 break-words">{items[currentIndex].title}</h2>
-                    <div className='w-6/12 h-1/3 mx-auto m-10 items-center justify-center btn-temp'>
-                      <Buttons aria-label="ver promoções" btnState="defaultMain" text="Ver Promoções" btnSize="mediumSizeSocials" className="" />
-                    </div>
-                    <div className="mt-8 flex gap-4 items-center justify-center">
-                      {items.map((_, index) => (
-                        <div className="relative" key={index}>
-                          {index === currentIndex ? (
-                            <button
-                              className={`w-12 h-5 bg-primary_main rounded-full rBTN2`}
-                              onClick={() => handleRadioChange(index)}
-                            ></button>
-                          ) : (
-                            <button
-                              className={`w-3 h-3 bg-white rounded-full rBTN`}
-                              onClick={() => handleRadioChange(index)}
-                            ></button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+            <p className="font-inter whitespace-normal font-bold break-words">
+              {items[currentIndex].subtitle}
+            </p>
+            <h2 className="font-inter whitespace-normal font-bold mt-4 break-words">
+              {items[currentIndex].title}
+            </h2>
+            <div className="w-6/12 h-1/3 mx-auto m-10 items-center justify-center btn-temp">
+              <Buttons
+                aria-label="ver promoções"
+                btnState="defaultMain"
+                text="Ver Promoções"
+                btnSize="mediumSizeSocials"
+                className=""
+              />
+            </div>
+            <div className="mt-8 flex gap-4 items-center justify-center">
+              {items.map((_, index) => (
+                <div className="relative" key={index}>
+                  {index === currentIndex ? (
+                    <button
+                      className={`w-12 h-5 bg-primary_main rounded-full rBTN2`}
+                      onClick={() => handleRadioChange(index)}
+                    ></button>
+                  ) : (
+                    <button
+                      className={`w-3 h-3 bg-white rounded-full rBTN`}
+                      onClick={() => handleRadioChange(index)}
+                    ></button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Transition>
     </div>

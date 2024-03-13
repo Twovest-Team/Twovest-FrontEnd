@@ -12,17 +12,23 @@ const getLookProducts = async (id, gender) => {
     .eq("id_look", id);
 
   let transformedData = await Promise.all(
+    
     data.map(async (object) => {
       let productDetails = await getProductById(object.id_product, gender);
 
-      return productDetails;
+      if(productDetails){
+        return productDetails;
+      }
     })
+
   );
 
-  if (error) {
-    console.log(error);
-  } else {
+  transformedData = transformedData.filter((element) => element !== undefined);
+
+  if (transformedData.length > 0) {
     return transformedData;
+  } else if(error) {
+    console.log(error)
   }
 };
 

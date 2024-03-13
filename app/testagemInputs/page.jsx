@@ -11,11 +11,11 @@ export default function TestagemInputs() {
 
   function handleSetPasswordValue(value) {
     setPasswordValue(value);
-    console.log(value);
+    //console.log(value);
   }
 
   const handleSubmit = (e) => {
-    console.log("Ola");
+    //console.log("Ola");
 
     e.preventDefault();
 
@@ -27,7 +27,7 @@ export default function TestagemInputs() {
       );
     } else {
       setErrorMessage("");
-      console.log("Password is:", passwordValue);
+     //console.log("Password is:", passwordValue);
     }
   };
   return (

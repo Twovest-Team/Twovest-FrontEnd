@@ -11,5 +11,5 @@ export async function GET(request){
         const supabase = createRouteHandlerClient({cookies: () => cookieStore})
         await supabase.auth.exchangeCodeForSession(code);
     }
-    return NextResponse.redirect('http://localhost:3000/api/manageUsers')
+    return NextResponse.redirect('http://twovest.com/api/manageUsers')
 }

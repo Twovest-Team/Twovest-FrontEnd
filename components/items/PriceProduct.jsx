@@ -4,7 +4,7 @@ import { useAppSelector } from '@/redux/hooks';
 import findProductMinMaxPrices from '@/utils/findProductMinMaxPrices';
 import applyPriceDiscount from '@/utils/applyPriceDiscount';
 
-const PriceProduct = ({ discount, offers }) => {
+const PriceProduct = ({ discount, offers, alignPrice }) => {
 
     const currentView = useAppSelector(state => state.layoutViews.currentValue)
     let priceInterval;
@@ -16,7 +16,7 @@ const PriceProduct = ({ discount, offers }) => {
         <p
 
             className={`font-medium truncate w-44
-            ${currentView === 1 ? 'text-right max-[383px]:text-left' : currentView === 2 && 'text-left caption'}
+            ${currentView === 1 && !alignPrice || alignPrice && alignPrice === 'right' ? 'text-right max-[383px]:text-left' : currentView === 2  && !alignPrice || alignPrice && alignPrice === 'left' && 'text-left caption'}
             `}>
             {priceInterval ?
 

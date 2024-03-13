@@ -27,7 +27,6 @@ export default async function updateCartProductQty(cartId, userEmail, qty, type)
         if (error) {
             console.log(error)
         } else {
-            console.log(userEmail)
             updatedCart = await getUserCartProducts(userEmail)
         }
     }

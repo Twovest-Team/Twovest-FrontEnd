@@ -32,22 +32,23 @@ const getProductById = async (id, gender) => {
     .eq("id", id)
     .eq("gender", gender)
     .eq("is_public", true);
-
-  const images = await getProductImages(data[0].id);
-  const offers = await getProductOffers(data[0].id);
-  const materials = await getProductMaterials(data[0].id);
-  const styles = await getProductStyles(data[0].id);
-
-  data[0].images = images;
-  data[0].offers = offers;
-  data[0].materials = materials;
-  data[0].styles = styles;
-
-  if (error) {
-    console.log(error);
-  } else {
-    return data[0];
-  }
+  
+    if(data[0]){
+      const images = await getProductImages(data[0].id);
+      const offers = await getProductOffers(data[0].id);
+      const materials = await getProductMaterials(data[0].id);
+      const styles = await getProductStyles(data[0].id);
+    
+      data[0].images = images;
+      data[0].offers = offers;
+      data[0].materials = materials;
+      data[0].styles = styles;
+      
+      return data[0];
+    }else if(error){
+      console.log(error);
+    }
+  
 };
 
 export default getProductById;

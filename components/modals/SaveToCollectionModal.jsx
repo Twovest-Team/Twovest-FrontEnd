@@ -1,28 +1,30 @@
 "use client";
 
-import CloseIcon from "@mui/icons-material/Close";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useEffect, useState } from "react";
-import getAllCollections from "@/utils/db/collections/getAllCollections";
-import { toggleLookModalToggle } from "@/redux/slices/saveLookModalToggle";
-import addToCollection from "@/utils/db/collections/addToCollection";
-import LoadingIcon from "../buttons/icons/LoadingIcon";
-import CheckIcon from "@mui/icons-material/Check";
-import { redirect, usePathname, useRouter } from "next/navigation";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import deleteCollectionLook from "@/utils/db/collections/deleteCollectionLook";
-import { RadioGroup } from "@headlessui/react";
-import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
-import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
-import createCollection from "@/utils/db/collections/createCollection";
-import withAuth from "@/hocs/withAuth";
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useEffect, useState } from 'react';
+import getCollections from '@/utils/db/collections/getCollections';
+import { toggleLookModalToggle } from '@/redux/slices/saveLookModalToggle';
+import addToCollection from '@/utils/db/collections/addToCollection';
+import LoadingIcon from '../buttons/icons/LoadingIcon';
+import CheckIcon from '@mui/icons-material/Check';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import deleteCollectionLook from '@/utils/db/collections/deleteCollectionLook';
+import { RadioGroup } from '@headlessui/react'
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import createCollection from '@/utils/db/collections/createCollection';
+import useAuth from "@/hooks/useAuth";
 
-const SaveToCollectionModal = ({ lookId, currentUser }) => {
+
+const SaveToCollectionModal = ({ lookId }) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
+  const currentUser = useAuth();
   const [collections, setCollections] = useState();
   const router = useRouter();
   const isModalOpen = useAppSelector((state) => state.lookModalToggle.isOpen);
@@ -40,21 +42,20 @@ const SaveToCollectionModal = ({ lookId, currentUser }) => {
 
   const [modalStatus, setModalStatus] = useState(allModalStatus[0]);
 
-  async function getData() {
-    const userCollections = await getAllCollections(currentUser.id);
-    if (userCollections) {
-      setCollections(userCollections);
-    } else {
-      setModalStatus(allModalStatus[1]);
+    async function getData() {
+        const userCollections = await getCollections(currentUser.id)
+        if (userCollections) {
+            setCollections(userCollections)
+        } else {
+            setModalStatus(allModalStatus[1])
+        }
     }
-  }
 
-  function handleCloseModal() {
-    //console.log('fecha')
-    setModalStatus(allModalStatus[0]);
-    dispatch(toggleLookModalToggle());
-    router.refresh();
-  }
+    function handleCloseModal() {
+        setModalStatus(allModalStatus[0])
+        dispatch(toggleLookModalToggle())
+        router.refresh()
+    }
 
   useEffect(() => {
     if (currentUser && !collections) {
@@ -241,12 +242,11 @@ const ToCreate = ({
       setLoading(true);
       let data = await createCollection(name, privacy, lookId, userId, true);
 
-      if (data) {
-        handleCloseModal();
-        setLoading(false);
-        //console.log(data)
-      }
-    }
+            if (data) {
+                handleCloseModal()
+                setLoading(false)
+            }
+        }
 
     if (!loading) {
       createCollectionAndSaveLook();
@@ -366,4 +366,4 @@ const ToCreate = ({
   );
 };
 
-export default withAuth(SaveToCollectionModal);
+export default SaveToCollectionModal;

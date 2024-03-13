@@ -8,10 +8,10 @@ const addToCollection = async (collectionId, lookId, userId) => {
         .from('collections_has_looks')
         .insert({ id_collection: collectionId, id_look: lookId, id_user: userId })
 
-    if(error) return {error}
-    if (status === 201){
+    if (status === 200){
         return true
     }else{
+        console.log(error)
         return false
     }
        

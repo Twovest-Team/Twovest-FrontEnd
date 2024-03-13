@@ -2,7 +2,7 @@ import Image from "next/image";
 //Botão de upvote no topo direito da card de look
 import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
 //Botão de guardar (bookmark) no canto inferior direito da card de look
-import SaveButton from "../buttons/icons/SaveButton";
+import SaveLookButton from "../collections/SaveLookButton";
 
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
@@ -12,7 +12,7 @@ import { UserIcon } from "../user/UserIcon";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
-(SaveButton)
+(SaveLookButton)
  */
 
 export default function LookCard_Profile({ look, slider, nome, avatar }) {
@@ -55,7 +55,7 @@ export default function LookCard_Profile({ look, slider, nome, avatar }) {
           </Link>
 
           {/* <div className="mt-3.5">
-            {!slider ? <SaveButton /> : slider === true && null}
+            {!slider ? <SaveLookButton /> : slider === true && null}
           </div> */}
         </div>
       </div>

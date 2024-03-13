@@ -7,7 +7,6 @@ import capitalizeFirstLetter from '../capitalizeFirstLetter';
 
 const getProductByBrand = async (gender, brandName) => {
   gender = capitalizeFirstLetter(gender);
-  console.log(brandName)
   const { data, error } = await supabase
     .from('products')
     .select(`

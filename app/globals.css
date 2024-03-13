@@ -6,7 +6,8 @@
 
 html {
   scroll-padding-top: 158px;
-  background-color: #000000;
+  background-color: #B2B2B2;
+  scrollbar-gutter: stable;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -80,6 +81,42 @@ h6 {
   font-weight: 600;
   line-height: 21.4px;
 }
+
+
+
+/* ===== Scrollbar CSS ===== */
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 9px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 16px;
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #484848;
+  border: 1.5px solid #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #484848;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #484848;
+}
+
 
 /* Daniela */
 

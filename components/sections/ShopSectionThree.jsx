@@ -23,13 +23,12 @@ const ShopSectionThree = ({ productsData, userData }) => {
       quantity: produto.qty,
     }));
 
-    try {
-      console.log(purchaseData);
-      const { data } = await axios.post("/api/payment", purchaseData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  try {
+    const { data } = await axios.post("/api/payment", purchaseData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
       // Redirect to the payment URL (assuming the API response contains the URL)
       window.location.assign(data);

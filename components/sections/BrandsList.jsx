@@ -46,6 +46,7 @@ const BrandsList = ({ brandsData }) => {
             <div
               className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
             >
+            <div className="">
               <Link href={`/brands/${currentGender}/${brandItem.name}`}>
                 <Image
                   src={brandItem?.logo_url_without_background}
@@ -55,6 +56,7 @@ const BrandsList = ({ brandsData }) => {
                 />
               </Link>
             </div>
+        </div>
             <p
               key={index}
               className="grid mt-2 font-semibold justify-center text-center"

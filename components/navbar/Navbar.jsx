@@ -103,6 +103,7 @@ export const Navbar = ({ children }) => {
               btnSize="newIconSet4"
               onClick={handleClickCart}
             ></Buttons>
+
             <NotificationCart />
           </div>
 
@@ -324,6 +325,13 @@ export const Navbar = ({ children }) => {
               </Menu.Items>
             </Transition>
           </Menu>
+          <div className="flex ">
+            <Buttons
+              btnState="blackMain"
+              text="Login | Registo"
+              btnSize="navBarButton"
+            />
+          </div>
         </div>
 
         {children}

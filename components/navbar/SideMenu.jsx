@@ -66,43 +66,27 @@ export const SideMenu = () => {
         handleClickMenu={handleClickMenu}
       />
 
-      {/* ------ Menu lateral -------*/}
-      <div
-        className={`${isMenuOpen ? "translate-x-0" : "-translate-x-full block"}
-             bg-white z-30 overflow-scroll h-full w-screen min-w-[280px] max-w-[460px] fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
-      >
-        <div className="flex justify-between items-center border-b-grey border-b-2">
-          <div className="flex my-5 mx-4">
-            <button
-              onClick={() => handleClickGender("mulher")}
-              className={`${
-                genderState != "mulher"
-                  ? "text-secondary font-semibold mr-2"
-                  : "text-black font-semibold mr-2"
-              } `}
-            >
-              Mulher
-            </button>
-            <button
-              onClick={() => handleClickGender("homem")}
-              className={`${
-                genderState != "homem" ? "text-secondary" : "text-black"
-              } font-semibold mx-2`}
-            >
-              Homem
-            </button>
-          </div>
-          <div className="flex mx-4">
-            <Buttons
-              ariaLabel="Fechar side Menu"
-              btnState="none"
-              text=""
-              icon="closeOutline"
-              btnSize="iconPack2"
-              onClick={handleClickMenu}
-            ></Buttons>
-          </div>
-        </div>
+            {/* ------ Menu lateral -------*/}
+            <div className={`${isMenuOpen ? "hidden" : "block"}
+             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+
+                <div className="flex justify-between items-center border-b-grey border-b-2">
+
+                    <div className="flex my-5 mx-4">
+
+                        <button onClick={() => handleClickGender("mulher")} className={`${genderState != "mulher" ? "text-secondary font-semibold mr-2" : "text-black font-semibold mr-2"} `}>
+                            Mulher
+                        </button>
+                        <button onClick={() => handleClickGender("homem")} className={`${genderState != "homem" ? "text-secondary" : "text-black"} font-semibold mx-2`}>
+                            Homem
+                        </button>
+
+                    </div>
+                    <div className="flex mx-4">
+                        <div onClick={handleClickMenu} className="cursor-pointer"><CloseOutlinedIcon/></div>
+                    </div>
+
+                </div>
 
         <ul className="mx-4 my-4">
           {currentUser == null && (

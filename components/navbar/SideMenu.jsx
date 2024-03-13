@@ -67,8 +67,8 @@ export const SideMenu = () => {
       />
 
             {/* ------ Menu lateral -------*/}
-            <div className={`${isMenuOpen ? "translate-x-0 hidden" : "-translate-x-full block"}
-             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
+            <div className={`${isMenuOpen ? "hidden" : "block"}
+             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
 
                 <div className="flex justify-between items-center border-b-grey border-b-2">
 

@@ -9,7 +9,8 @@ const getUserById = async (id_user) => {
       created_at,
       name,
       img,
-      email
+      email,
+      points
   `
     )
     .eq("id", id_user)

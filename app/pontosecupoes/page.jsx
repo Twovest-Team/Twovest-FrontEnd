@@ -1,11 +1,13 @@
 import getAllCoupons from "@/utils/db/getAllCoupons";
 import buyCoupon from "@/utils/db/buyCoupon";
 import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
+import usedCoupon from "@/utils/usedCoupon";
 
 export default async function PontosECupoes() {
   const couponData = await getAllCoupons();
 
-  //buyCoupon(37,3)
+  //buyCoupon(38,2)
+  //usedCoupon(30,4);
   return (
     <main>
       <div className="h-[2600px] w-full">

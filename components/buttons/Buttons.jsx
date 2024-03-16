@@ -169,8 +169,9 @@ export const Buttons = ({
     newIcons:
       "mr-4 w-10 h-10 mx-auto my-auto text-center flex items-center justify-center",
     newIconSet2: "mr-4 ",
-    newIconSet3: "flex items-center justify-between mx-2",
-    newIconSet4: "ml-1 mr-1",
+    newIconSet3: "ml-auto",
+    newIconSet4: "ml-2 ",
+
     gallerySize: "w-full h-full px-7 py-3.5  min-[350px]:w-fit",
     iconPack: " w-full h-full flex text-5xl",
     iconPack2: " w-full h-full mb-2 flex text-4xl",
@@ -178,7 +179,7 @@ export const Buttons = ({
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:
       "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
-    navBarButton: "w-full h-full gap-5 px-7 py-2 pr-8 hidden sm:block", //usado apenas no scroll menu
+    navBarButton: "w-full h-full gap-6 px-7 py-2 pr-8 hidden sm:block", //usado apenas no scroll menu
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {

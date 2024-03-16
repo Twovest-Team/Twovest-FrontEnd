@@ -73,7 +73,7 @@ export default function LoginPage() {
   return (
     <>
       <NavigationTitle titleText={"Iniciar sessão"} />
-      <main className="p-6 lg:px-52 ">
+      <main className="p-6 lg:px-52 md:px-32 ">
         <input
           type="text"
           placeholder="Email"

@@ -63,13 +63,11 @@ export const Navbar = ({ children }) => {
       <nav className="flex justify-between z-30 max-w-[1920px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
         <div className="flex desktopNavRight ">
           <Buttons
-            aria-label="Localização da navbar"
-            btnState=""
-            text=""
+            ariaLabel="Localização da navbar"
             icon="menuIcon"
             btnSize="newIconSet2"
             onClick={handleClickMenu}
-          ></Buttons>
+          />
 
           <Link href={"/"} className="items-center flex">
             <Image
@@ -90,21 +88,17 @@ export const Navbar = ({ children }) => {
         </div>
         <div className="flex desktopNavLeft items-center ">
           <Buttons
-            aria-label="Ir para a Lista de artigos favoritos"
-            btnState=""
-            text=""
+            ariaLabel="Ir para a Lista de artigos favoritos"
             icon="favorite2Navbar"
             btnSize="newIconSet4"
-          ></Buttons>
+          />
           <div className="navbar_icons relative">
             <Buttons
-              aria-label="Ir para cesto de compras"
-              btnState=""
-              text=""
+              ariaLabel="Ir para cesto de compras"
               icon="localBag"
               btnSize="newIconSet4"
               onClick={handleClickCart}
-            ></Buttons>
+            />
 
             <NotificationCart />
           </div>
@@ -327,14 +321,13 @@ export const Navbar = ({ children }) => {
               </Menu.Items>
             </Transition>
           </Menu>
-          <div className="flex ">
-            <Buttons
-              btnState="blackMain"
-              text="Login | Registo"
-              btnSize="navBarButton"
-              onClick={handleLoginRouter}
-            />
-          </div>
+
+          <Buttons
+            btnState="blackMain"
+            text="Login | Registo"
+            btnSize="navBarButton"
+            onClick={handleLoginRouter}
+          />
         </div>
 
         {children}

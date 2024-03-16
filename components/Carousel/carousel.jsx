@@ -73,11 +73,9 @@ const Carousel = ({ items, autoplayInterval = 5000 }) => {
             </h2>
             <div className="w-6/12 h-1/3 mx-auto m-10 items-center justify-center btn-temp">
               <Buttons
-                aria-label="ver promoções"
                 btnState="defaultMain"
-                text="Ver Promoções"
+                text="Ver Todas as Promoções"
                 btnSize="mediumSizeSocials"
-                className=""
               />
             </div>
             <div className="mt-8 flex gap-4 items-center justify-center">

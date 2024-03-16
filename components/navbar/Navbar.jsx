@@ -37,7 +37,9 @@ export const Navbar = ({ children }) => {
   const handleClickCart = () => {
     dispatch(toggleCart());
   };
-
+  const handleLoginRouter = () => {
+    router.push("/login");
+  };
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.refresh();
@@ -54,7 +56,7 @@ export const Navbar = ({ children }) => {
     }
 
     fetchUserData();
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
   if (pathName != "/landing") {
     return (
@@ -330,7 +332,7 @@ export const Navbar = ({ children }) => {
               btnState="blackMain"
               text="Login | Registo"
               btnSize="navBarButton"
-              onClick={"/login"}
+              onClick={handleLoginRouter}
             />
           </div>
         </div>

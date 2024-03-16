@@ -224,7 +224,7 @@ export const Buttons = ({
     closeOutline: <CloseOutlinedIcon className="text-black" />,
     nextStart: <StartIcon className="text-white"></StartIcon>,
     creditCard: <CreditCardIcon className="text-black h-9 w-9" />,
-    mbWay: <Image src={MBWay} className="h-12 w-12" />,
+    mbWay: <Image src={MBWay} alt="Mbway" className="h-12 w-12" />,
     gpay: <GooglePay className="h-12 w-12" alt="Google pay icon" />,
     Paypal: <Paypal className="h-12 w-12" alt="Paypal icon" />,
   };

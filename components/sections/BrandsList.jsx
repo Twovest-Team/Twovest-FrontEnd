@@ -40,13 +40,11 @@ const BrandsList = ({ brandsData }) => {
       <section className="grid grid-cols-2 grid-cols-desktop gap-6">
         {filteredBrands.map((brandItem, index) => (
           <Link
+            key={index}
             href={`/brands/${currentGender}/${brandItem.name}`}
             aria-label={`Clique para ir para a página da marca ${brandItem.name}`}
           >
-            <div
-              key={index}
-              className="flex flex-col items-center justify-between"
-            >
+            <div className="flex flex-col items-center justify-between">
               <div
                 className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
               >
@@ -59,10 +57,7 @@ const BrandsList = ({ brandsData }) => {
                   />
                 </div>
               </div>
-              <p
-                key={index}
-                className="grid mt-2 font-semibold justify-center text-center"
-              >
+              <p className="grid mt-2 font-semibold justify-center text-center">
                 {brandItem.name}
               </p>
             </div>

@@ -80,7 +80,6 @@ export const SideMenu = () => {
                   ? "text-secondary font-semibold mr-2"
                   : "text-black font-semibold mr-2"
               } `}
-              aria-label="Selecionar Mulher"
             >
               Mulher
             </button>
@@ -89,17 +88,12 @@ export const SideMenu = () => {
               className={`${
                 genderState != "homem" ? "text-secondary" : "text-black"
               } font-semibold mx-2`}
-              aria-label="Selecionar Homem"
             >
               Homem
             </button>
           </div>
           <div className="flex mx-4">
-            <div
-              onClick={handleClickMenu}
-              className="cursor-pointer"
-              aria-label="Fechar menu"
-            >
+            <div onClick={handleClickMenu} className="cursor-pointer">
               <CloseOutlinedIcon />
             </div>
           </div>
@@ -113,16 +107,12 @@ export const SideMenu = () => {
                 text="Fazer log in ou registo"
                 icon="navigateNext"
                 btnSize="menuSize"
-                ariaLabel={"Fazer Login ou registo"}
               />
             </Link>
           )}
 
           <div className="mt-3 relative">
-            <div
-              className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none"
-              aria-label="Efetue a sua pesquisa"
-            >
+            <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
               <SearchIcon />
             </div>
             <input
@@ -164,7 +154,6 @@ export const SideMenu = () => {
             <Link
               href={`/products/${genderState}?status=discounts`}
               onClick={() => handleClickMenu()}
-              aria-label="Clique para ver promoções (Pressione Enter)"
             >
               <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">
                 Promoções

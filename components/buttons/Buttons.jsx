@@ -178,7 +178,7 @@ export const Buttons = ({
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:
       "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
-    navBarButton: "w-full h-full w-full gap-5 px-7 py-2 pr-2   ", //usado apenas no scroll menu
+    navBarButton: "w-full h-full gap-5 px-7 py-2 pr-8 hidden sm:block", //usado apenas no scroll menu
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {

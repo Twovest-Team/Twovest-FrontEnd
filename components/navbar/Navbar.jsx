@@ -105,7 +105,7 @@ export const Navbar = ({ children }) => {
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="w-6 h-6 ml-3 mr-4 flex rounded-full borderborder-gray-300 overflow-hidden">
+                <div className="w-6 h-6 ml-3 mr-4 flex rounded-full border border-gray-300 overflow-hidden">
                   <img
                     src={currentUser.img}
                     className="w-fit h-fit object-cover"

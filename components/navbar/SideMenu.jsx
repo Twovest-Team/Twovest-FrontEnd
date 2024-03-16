@@ -66,27 +66,47 @@ export const SideMenu = () => {
         handleClickMenu={handleClickMenu}
       />
 
-            {/* ------ Menu lateral -------*/}
-            <div className={`${isMenuOpen ? "hidden" : "block"}
-             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}>
-
-                <div className="flex justify-between items-center border-b-grey border-b-2">
-
-                    <div className="flex my-5 mx-4">
-
-                        <button onClick={() => handleClickGender("mulher")} className={`${genderState != "mulher" ? "text-secondary font-semibold mr-2" : "text-black font-semibold mr-2"} `}>
-                            Mulher
-                        </button>
-                        <button onClick={() => handleClickGender("homem")} className={`${genderState != "homem" ? "text-secondary" : "text-black"} font-semibold mx-2`}>
-                            Homem
-                        </button>
-
-                    </div>
-                    <div className="flex mx-4">
-                        <div onClick={handleClickMenu} className="cursor-pointer"><CloseOutlinedIcon/></div>
-                    </div>
-
-                </div>
+      {/* ------ Menu lateral -------*/}
+      <div
+        className={`${isMenuOpen ? "hidden" : "block"}
+             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
+      >
+        <div className="flex justify-between items-center border-b-grey border-b-2">
+          <div className="flex my-5 mx-4">
+            <button
+              onClick={() => handleClickGender("mulher")}
+              className={`${
+                genderState != "mulher"
+                  ? "text-secondary font-semibold mr-2"
+                  : "text-black font-semibold mr-2"
+              } `}
+              aria-label="Selecionar Mulher"
+              tabIndex="0"
+            >
+              Mulher
+            </button>
+            <button
+              onClick={() => handleClickGender("homem")}
+              className={`${
+                genderState != "homem" ? "text-secondary" : "text-black"
+              } font-semibold mx-2`}
+              aria-label="Selecionar Homem"
+              tabIndex="0"
+            >
+              Homem
+            </button>
+          </div>
+          <div className="flex mx-4">
+            <div
+              onClick={handleClickMenu}
+              className="cursor-pointer"
+              aria-label="Fechar menu"
+              tabIndex="0"
+            >
+              <CloseOutlinedIcon />
+            </div>
+          </div>
+        </div>
 
         <ul className="mx-4 my-4">
           {currentUser == null && (
@@ -96,12 +116,16 @@ export const SideMenu = () => {
                 text="Fazer log in ou registo"
                 icon="navigateNext"
                 btnSize="menuSize"
+                ariaLabel={"Fazer Login ou registo"}
               />
             </Link>
           )}
 
           <div className="mt-3 relative">
-            <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <div
+              className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none"
+              aria-label="Efetue a sua pesquisa"
+            >
               <SearchIcon />
             </div>
             <input
@@ -143,6 +167,7 @@ export const SideMenu = () => {
             <Link
               href={`/products/${genderState}?status=discounts`}
               onClick={() => handleClickMenu()}
+              aria-label="Clique para ver promoções (Pressione Enter)"
             >
               <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">
                 Promoções

@@ -330,6 +330,7 @@ export const Navbar = ({ children }) => {
               btnState="blackMain"
               text="Login | Registo"
               btnSize="navBarButton"
+              onClick={"/login"}
             />
           </div>
         </div>

@@ -24,7 +24,7 @@ const Gallery = async ({ params, searchParams }) => {
   return (
     <main>
       <NavigationTitle titleText={"Galeria"}>
-        <div className="flex gap-2 text-secondary items-center">
+        <div className="flex gap-2 text-secondary">
           <p className="text-right text-gray-700" aria-label="Ganhar Pontos">
             Ganhar pontos
           </p>
@@ -82,9 +82,9 @@ async function LookList({ gender, style }) {
         </>
       ) : (
         <NoResultsNotice
-        title={'Não encontramos looks.'}
-        text={'Infelimente não temos looks disponíveis para esta categoria.'}
-        btnText={'Ir para Geral'}
+          title={"Não encontramos looks."}
+          text={"Infelimente não temos looks disponíveis para esta categoria."}
+          btnText={"Ir para Geral"}
         />
       )}
     </>

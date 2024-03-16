@@ -46,7 +46,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
     <Buttons btnState="defaultMain" text="Sustentável" icon="navigateNext" btnSize="menuSize" />
   <Buttons btnState="defaultMain" text="Promoções" icon="offer" btnSize="menuSize" />
 
-      <Buttons aria-label="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
+      <Buttons ariaLabel="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
       <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>google
       <Buttons btnState="secondaryMain" text="Continuar com Google" btnSize="mediumSizeSocials" icon=""/>
       <Buttons btnState="secondaryMain" text="Continuar com Facebook" btnSize="mediumSizeSocials" icon="facebook"/>
@@ -178,7 +178,7 @@ export const Buttons = ({
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:
       "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
-    navBarButton: "w-full h-full w-full gap-5 px-6 py-3 pr-2 ", //usado apenas no scroll menu
+    navBarButton: "w-full h-full w-full gap-5 px-7 py-2 pr-2   ", //usado apenas no scroll menu
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {

@@ -64,12 +64,10 @@ export const Navbar = ({ children }) => {
         <div className="flex desktopNavRight ">
           <Buttons
             ariaLabel="Localização da navbar"
-            btnState=""
-            text=""
             icon="menuIcon"
             btnSize="newIconSet2"
             onClick={handleClickMenu}
-          ></Buttons>
+          />
 
           <Link href={"/"} className="items-center flex">
             <Image
@@ -91,20 +89,16 @@ export const Navbar = ({ children }) => {
         <div className="flex desktopNavLeft items-center ">
           <Buttons
             ariaLabel="Ir para a Lista de artigos favoritos"
-            btnState=""
-            text=""
             icon="favorite2Navbar"
             btnSize="newIconSet4"
-          ></Buttons>
+          />
           <div className="navbar_icons relative">
             <Buttons
               ariaLabel="Ir para cesto de compras"
-              btnState=""
-              text=""
               icon="localBag"
               btnSize="newIconSet4"
               onClick={handleClickCart}
-            ></Buttons>
+            />
 
             <NotificationCart />
           </div>
@@ -327,14 +321,13 @@ export const Navbar = ({ children }) => {
               </Menu.Items>
             </Transition>
           </Menu>
-          <div className="flex ">
-            <Buttons
-              btnState="blackMain"
-              text="Login | Registo"
-              btnSize="navBarButton"
-              onClick={handleLoginRouter}
-            />
-          </div>
+
+          <Buttons
+            btnState="blackMain"
+            text="Login | Registo"
+            btnSize="navBarButton"
+            onClick={handleLoginRouter}
+          />
         </div>
 
         {children}

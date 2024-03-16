@@ -81,7 +81,6 @@ export const SideMenu = () => {
                   : "text-black font-semibold mr-2"
               } `}
               aria-label="Selecionar Mulher"
-              tabIndex="0"
             >
               Mulher
             </button>
@@ -91,7 +90,6 @@ export const SideMenu = () => {
                 genderState != "homem" ? "text-secondary" : "text-black"
               } font-semibold mx-2`}
               aria-label="Selecionar Homem"
-              tabIndex="0"
             >
               Homem
             </button>
@@ -101,7 +99,6 @@ export const SideMenu = () => {
               onClick={handleClickMenu}
               className="cursor-pointer"
               aria-label="Fechar menu"
-              tabIndex="0"
             >
               <CloseOutlinedIcon />
             </div>

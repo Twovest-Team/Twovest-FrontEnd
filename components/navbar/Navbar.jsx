@@ -319,12 +319,14 @@ export const Navbar = ({ children }) => {
             </Transition>
           </Menu>
 
-          <Buttons
-            btnState="blackMain"
-            text="Login | Registo"
-            btnSize="navBarButton"
-            onClick={handleLoginRouter}
-          />
+          {!currentUser && (
+            <Buttons
+              btnState="blackMain"
+              text="Login | Registo"
+              btnSize="navBarButton"
+              onClick={handleLoginRouter}
+            />
+          )}
         </div>
 
         {children}

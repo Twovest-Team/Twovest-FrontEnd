@@ -63,7 +63,7 @@ export const Navbar = ({ children }) => {
       <nav className="flex justify-between z-30 max-w-[1920px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
         <div className="flex desktopNavRight ">
           <Buttons
-            aria-label="Localização da navbar"
+            ariaLabel="Localização da navbar"
             btnState=""
             text=""
             icon="menuIcon"
@@ -90,7 +90,7 @@ export const Navbar = ({ children }) => {
         </div>
         <div className="flex desktopNavLeft items-center ">
           <Buttons
-            aria-label="Ir para a Lista de artigos favoritos"
+            ariaLabel="Ir para a Lista de artigos favoritos"
             btnState=""
             text=""
             icon="favorite2Navbar"
@@ -98,7 +98,7 @@ export const Navbar = ({ children }) => {
           ></Buttons>
           <div className="navbar_icons relative">
             <Buttons
-              aria-label="Ir para cesto de compras"
+              ariaLabel="Ir para cesto de compras"
               btnState=""
               text=""
               icon="localBag"

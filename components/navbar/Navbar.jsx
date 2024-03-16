@@ -37,7 +37,9 @@ export const Navbar = ({ children }) => {
   const handleClickCart = () => {
     dispatch(toggleCart());
   };
-
+  const handleLoginRouter = () => {
+    router.push("/login");
+  };
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.refresh();
@@ -54,7 +56,7 @@ export const Navbar = ({ children }) => {
     }
 
     fetchUserData();
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
   if (pathName != "/landing") {
     return (
@@ -103,6 +105,7 @@ export const Navbar = ({ children }) => {
               btnSize="newIconSet4"
               onClick={handleClickCart}
             ></Buttons>
+
             <NotificationCart />
           </div>
 
@@ -324,6 +327,14 @@ export const Navbar = ({ children }) => {
               </Menu.Items>
             </Transition>
           </Menu>
+          <div className="flex ">
+            <Buttons
+              btnState="blackMain"
+              text="Login | Registo"
+              btnSize="navBarButton"
+              onClick={handleLoginRouter}
+            />
+          </div>
         </div>
 
         {children}

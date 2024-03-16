@@ -82,6 +82,7 @@ import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
 import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
 import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ViewAgendaIcon from "@mui/icons-material/ViewAgenda";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
@@ -177,6 +178,7 @@ export const Buttons = ({
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:
       "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
+    navBarButton: "w-full h-full w-full gap-5 px-6 py-3 pr-2 ", //usado apenas no scroll menu
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {
@@ -222,7 +224,7 @@ export const Buttons = ({
     closeOutline: <CloseOutlinedIcon className="text-black" />,
     nextStart: <StartIcon className="text-white"></StartIcon>,
     creditCard: <CreditCardIcon className="text-black h-9 w-9" />,
-    mbWay: <Image src={MBWay} className="h-12 w-12" />,
+    mbWay: <Image src={MBWay} alt="Mbway" className="h-12 w-12" />,
     gpay: <GooglePay className="h-12 w-12" alt="Google pay icon" />,
     Paypal: <Paypal className="h-12 w-12" alt="Paypal icon" />,
   };

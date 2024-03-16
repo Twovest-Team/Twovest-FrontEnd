@@ -5,13 +5,12 @@ import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
+import useGender from "@/hooks/useGender";
 
 const BrandsList = ({ brandsData }) => {
-  let currentGender;
 
-  if (typeof window !== "undefined") {
-    currentGender = getLocalStorage("gender");
-  }
+  const [gender] = useGender();
+
 
   const [filteredBrands, setFilteredBrands] = useState(brandsData);
 
@@ -46,7 +45,7 @@ const BrandsList = ({ brandsData }) => {
             <div
               className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
             >
-              <Link href={`/brands/${currentGender}/${brandItem.name}`}>
+              <Link href={`/brands/${gender.string}/${brandItem.name}`}>
                 <Image
                   src={brandItem?.logo_url_without_background}
                   width={144}
@@ -56,7 +55,6 @@ const BrandsList = ({ brandsData }) => {
               </Link>
             </div>
             <p
-              key={index}
               className="grid mt-2 font-semibold justify-center text-center"
             >
               {brandItem.name}

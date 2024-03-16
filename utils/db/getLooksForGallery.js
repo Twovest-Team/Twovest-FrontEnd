@@ -1,9 +1,10 @@
 import { supabase } from "@/utils/db/supabase";
 import getLookStyles from "./getLookStyles";
-import capitalizeFirstLetter from "../capitalizeFirstLetter";
 
 const getLooksForGallery = async (gender) => {
-  gender = capitalizeFirstLetter(gender);
+
+  if(gender === 'women') gender = 'Mulher'
+  if(gender === 'men') gender = 'Homem'
 
   const { data, error } = await supabase
     .from("looks")

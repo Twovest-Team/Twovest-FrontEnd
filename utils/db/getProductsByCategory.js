@@ -4,7 +4,11 @@ import getProductOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 
-const getProductsByCategory = async (id_category ,gender) => {
+const getProductsByCategory = async (id_category, gender) => {
+
+    if(gender === 'women') gender = 'Mulher'
+    if(gender === 'men') gender = 'Homem'
+
     const { data } = await supabase
         .from('products')
         .select(`

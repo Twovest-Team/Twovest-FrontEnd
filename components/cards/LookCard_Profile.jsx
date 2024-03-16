@@ -15,9 +15,9 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveLookButton)
  */
 
-export default function LookCard_Profile({ look, slider, nome, avatar }) {
+export default function LookCard_Profile({ look, slider, nome, avatar, params }) {
+  const gender = params.gender;
 
-  //console.log(look);
   return (
     <>
       <div
@@ -25,7 +25,7 @@ export default function LookCard_Profile({ look, slider, nome, avatar }) {
           } `}
       >
         <Link
-          href={`/gallery/look/${look.id}`}
+          href={`/gallery/${gender}/${look.id}`}
           className="w-full aspect-[17/26] relative flex justify-center items-center"
         >
           <Image

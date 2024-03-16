@@ -5,6 +5,10 @@ import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
 
 const getSustainableProducts = async (gender) => {
+
+    if(gender === 'women') gender = 'Mulher'
+    if(gender === 'men') gender = 'Homem'
+
     const { data } = await supabase
         .from('products')
         .select(`

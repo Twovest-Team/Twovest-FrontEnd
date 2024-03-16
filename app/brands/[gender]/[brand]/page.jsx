@@ -1,5 +1,4 @@
 
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import Views from "@/components/providers/Views";
@@ -64,7 +63,7 @@ export default async function Brand({ params }) {
 
 async function ProductList({ brandName, gender }) {
   const data = await getProductByBrand(
-    capitalizeFirstLetter(gender),
+    gender,
     brandName
   );
 
@@ -82,7 +81,7 @@ async function ProductList({ brandName, gender }) {
           ))}
         </ItemsBox>
       ) : (
-        <NoResultsNotice text={'Sem produtos disponíveis.'} />
+        <NoResultsNotice title={'Ups!'} text={'Sem produtos disponíveis.'} />
       )}
     </>
   );

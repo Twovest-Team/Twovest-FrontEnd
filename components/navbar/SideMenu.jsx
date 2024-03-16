@@ -4,56 +4,44 @@ import { PrimaryMenuPagesList } from "./PrimaryMenuPages";
 import { SecondaryMenuPagesList } from "./SecondaryMenuPages";
 import { SocialMediaLogos_black } from "../logos/SocialMediaLogos_black";
 import { Buttons } from "../buttons/Buttons";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SellIcon from "@mui/icons-material/Sell";
 import StarsIcon from "@mui/icons-material/Stars";
-import { categories, general_categories } from "@/constants";
+import { general_categories } from "@/constants";
 import LanguageButton from "../buttons/LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
 import { SustainableIcon } from "../buttons/icons/SustainableIcon";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
+import { useState } from "react";
 import { toggleMenu } from "@/redux/slices/menuToggle";
-import handleGender from "@/utils/handleGender";
 import SearchIcon from "@mui/icons-material/Search";
+import useGender from "@/hooks/useGender";
+import useAuth from "@/hooks/useAuth";
+import { genders } from "@/constants";
+import { updateGender } from "@/redux/slices/genderSlice";
 
 export const SideMenu = () => {
+
   const dispatch = useAppDispatch();
-  const currentUser = useAppSelector((state) => state.user.data);
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
-  const [genderState, setGenderState] = useState("");
-  const pathName = usePathname();
   const [categoryOpen, setCategoryOpen] = useState(false);
-  const [idCategory, setIdCategory] = useState("");
+  const [idCategory, setIdCategory] = useState(null);
+
+  const currentUser = useAuth()
+  const [gender, setGender] = useGender();
+
+  if(!gender) return null
 
   const handleClickCategory = (id) => {
     setCategoryOpen(!categoryOpen);
-    if (idCategory == "") {
-      setIdCategory(id);
-    } else {
-      setIdCategory("");
-    }
+    setIdCategory(id);
   };
 
   const handleClickMenu = () => {
     dispatch(toggleMenu());
   };
 
-  useEffect(() => {
-    let activeGender = getLocalStorage("gender");
-    if (activeGender != genderState) {
-      setGenderState(activeGender);
-    }
-  }, [pathName, genderState]);
-
-  const handleClickGender = (gender) => {
-    handleGender(gender);
-    setGenderState(gender);
-  };
 
   return (
     <>
@@ -62,7 +50,6 @@ export const SideMenu = () => {
         idCategory={idCategory}
         categoryOpen={categoryOpen}
         handleClickCategory={handleClickCategory}
-        genderState={genderState}
         handleClickMenu={handleClickMenu}
       />
 
@@ -73,24 +60,19 @@ export const SideMenu = () => {
       >
         <div className="flex justify-between items-center border-b-grey border-b-2">
           <div className="flex my-5 mx-4">
-            <button
-              onClick={() => handleClickGender("mulher")}
-              className={`${
-                genderState != "mulher"
-                  ? "text-secondary font-semibold mr-2"
-                  : "text-black font-semibold mr-2"
-              } `}
-            >
-              Mulher
-            </button>
-            <button
-              onClick={() => handleClickGender("homem")}
-              className={`${
-                genderState != "homem" ? "text-secondary" : "text-black"
-              } font-semibold mx-2`}
-            >
-              Homem
-            </button>
+
+            {genders.map(object => (
+              <button
+                onClick={() => setGender(object)}
+                className={`${gender.id != object.id
+                    ? "text-secondary font-semibold mr-2"
+                    : "text-black font-semibold mr-2"
+                  } `}
+              >
+                {object.string}
+              </button>
+            ))}
+
           </div>
           <div className="flex mx-4">
             <Buttons
@@ -129,16 +111,21 @@ export const SideMenu = () => {
           {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
           <div className="menu_categories mt-4">
-            {general_categories.map((e) => (
+
+
+            {general_categories.map(category => (
               <div
-                key={e.id}
+                key={category.id}
                 className="bg-grey_opacity_50 p-4 cursor-pointer items-center rounded flex justify-between"
-                onClick={() => handleClickCategory(e.id)}
+                onClick={() => handleClickCategory(category.id)}
               >
-                <p>{e.name}</p>
-                <Image src={e.img} width={25} height={25} alt={e.name} />
+                <p>{category.name}</p>
+                <Image src={category.img} width={25} height={25} alt={category.name} />
               </div>
             ))}
+
+
+
             <Link
               onClick={handleClickMenu}
               href={"/brands"}
@@ -148,7 +135,7 @@ export const SideMenu = () => {
               <StarsIcon className="fill-black" alt="simbolo marcas" />
             </Link>
             <Link
-              href={`/products/${genderState}?status=sustainable`}
+              href={`/products/${gender.string}?status=sustainable`}
               onClick={() => handleClickMenu()}
             >
               <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">
@@ -157,7 +144,7 @@ export const SideMenu = () => {
               </div>
             </Link>
             <Link
-              href={`/products/${genderState}?status=discounts`}
+              href={`/products/${gender.string}?status=discounts`}
               onClick={() => handleClickMenu()}
             >
               <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">
@@ -171,10 +158,7 @@ export const SideMenu = () => {
           </div>
         </ul>
 
-        <PrimaryMenuPagesList
-          genderState={genderState}
-          toggleMenu={handleClickMenu}
-        />
+        <PrimaryMenuPagesList toggleMenu={handleClickMenu}/>
 
         <SecondaryMenuPagesList toggleMenu={handleClickMenu} />
 

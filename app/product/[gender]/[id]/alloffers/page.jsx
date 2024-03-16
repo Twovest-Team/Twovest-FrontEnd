@@ -1,11 +1,10 @@
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import Ofertas from "@/utils/db/getProductById";
 import ProductOffers from "@/components/cards/ProductOfferCard";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 export default async function Alloffers({ params }) {
   const productId = params.id;
-  const productGender = capitalizeFirstLetter(params.gender);
+  const productGender = params.gender
   const result = await Ofertas(productId, productGender);
 
   //console.log("Fetched result:", result);

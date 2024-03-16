@@ -2,6 +2,10 @@ import { supabase } from "@/utils/db/supabase";
 import getProductById from "./getProductById";
 
 const getLookProducts = async (id, gender) => {
+
+  if(gender === 'women') gender = 'Mulher'
+  if(gender === 'men') gender = 'Homem'
+
   const { data, error } = await supabase
     .from("looks_has_products")
     .select(

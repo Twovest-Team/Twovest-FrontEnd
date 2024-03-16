@@ -20,10 +20,10 @@ export default function LookCard({ look, slider, name, collectionData, collectio
 
   // Detect if card is showing on a collection or not
   const isCollectionCard = collectionData && collectionId
-
+  
   if (isCollectionCard) return (
     <figure>
-      <Link href={`/gallery/look/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">
+      <Link href={`/gallery/${look.gender}/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">
         <Image
           src={look.url_image}
           alt="Look da galeria"
@@ -53,7 +53,7 @@ export default function LookCard({ look, slider, name, collectionData, collectio
         } `}
       >
         <Link
-          href={`/gallery/look/${look.id}`}
+          href={`/gallery/${look.gender}/${look.id}`}
           className="w-full aspect-[17/26] relative flex justify-center items-center"
         >
           <Image

@@ -1,12 +1,12 @@
 import { supabase } from '@/utils/db/supabase';
 import getProductImages from './getProductImages';
 import getProductOffers from './getProductOffers';
-import getProductMaterials from './getProductMaterials';
-import getProductStyles from './getProductStyles';
-import capitalizeFirstLetter from '../capitalizeFirstLetter';
 
 const getProductByBrand = async (gender, brandName) => {
-  gender = capitalizeFirstLetter(gender);
+
+  if(gender === 'women') gender = 'Mulher'
+  if(gender === 'men') gender = 'Homem'
+
   const { data, error } = await supabase
     .from('products')
     .select(`

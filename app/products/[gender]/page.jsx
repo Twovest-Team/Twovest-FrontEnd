@@ -1,6 +1,5 @@
 import { categories } from "@/constants";
 import getProductsByCategory from "@/utils/db/getProductsByCategory";
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import Views from "@/components/providers/Views";
@@ -74,7 +73,7 @@ async function ProductList({ categoryId, gender, status }) {
   if (categoryId) {
     const data = await getProductsByCategory(
       categoryId,
-      capitalizeFirstLetter(gender)
+      gender
     );
 
     return (
@@ -96,7 +95,7 @@ async function ProductList({ categoryId, gender, status }) {
       </>
     );
   } else if (status == "sustainable") {
-    const data = await getSustainableProducts(capitalizeFirstLetter(gender));
+    const data = await getSustainableProducts(gender);
     return (
       <>
         {data.length > 0 ? (
@@ -116,7 +115,7 @@ async function ProductList({ categoryId, gender, status }) {
       </>
     );
   } else if (status == "discounts") {
-    const data = await getOnSaleProducts(capitalizeFirstLetter(gender));
+    const data = await getOnSaleProducts(gender);
 
     return (
       <>

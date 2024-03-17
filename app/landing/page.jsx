@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { genders } from "@/constants";
 import { useAppDispatch } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
+import getGender from "@/utils/getGender";
 
 // Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
 export default function Landing() {

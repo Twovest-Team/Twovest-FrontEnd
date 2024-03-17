@@ -46,7 +46,7 @@ modalSize: 'w-full h-14 gap-12 items-center',
     <Buttons btnState="defaultMain" text="Sustentável" icon="navigateNext" btnSize="menuSize" />
   <Buttons btnState="defaultMain" text="Promoções" icon="offer" btnSize="menuSize" />
 
-      <Buttons aria-label="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
+      <Buttons ariaLabel="Next" btnState="defaultMain" text="Proximo" icon="navigateNext" btnSize="mediumSize"/>
       <Buttons btnState="defaultMain" text="Registar Conta" btnSize="mediumSizeSocials"/>google
       <Buttons btnState="secondaryMain" text="Continuar com Google" btnSize="mediumSizeSocials" icon=""/>
       <Buttons btnState="secondaryMain" text="Continuar com Facebook" btnSize="mediumSizeSocials" icon="facebook"/>
@@ -82,6 +82,7 @@ import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
 import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
 import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ViewAgendaIcon from "@mui/icons-material/ViewAgenda";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
@@ -168,8 +169,9 @@ export const Buttons = ({
     newIcons:
       "mr-4 w-10 h-10 mx-auto my-auto text-center flex items-center justify-center",
     newIconSet2: "mr-4 ",
-    newIconSet3: "flex items-center justify-between mx-2",
-    newIconSet4: "ml-1 mr-1",
+    newIconSet3: "ml-auto",
+    newIconSet4: "ml-2 ",
+
     gallerySize: "w-full h-full px-7 py-3.5  min-[350px]:w-fit",
     iconPack: " w-full h-full flex text-5xl",
     iconPack2: " w-full h-full mb-2 flex text-4xl",
@@ -177,6 +179,7 @@ export const Buttons = ({
       "w-full h-full px-8 py-3.5 flex justify-start min-[350px]:w-fit",
     modalButton:
       "flex flex-col items-end gap-2 px-2 ml-1 rounded-lg bg-primary-main text-white font-normal font-sans",
+    navBarButton: "w-full h-full gap-6 px-7 py-2 pr-8 hidden sm:block", //usado apenas no scroll menu
   };
   // iconmap define quais sao os icones nome: [icon material ui ou outros]
   const iconMap = {
@@ -222,7 +225,7 @@ export const Buttons = ({
     closeOutline: <CloseOutlinedIcon className="text-black" />,
     nextStart: <StartIcon className="text-white"></StartIcon>,
     creditCard: <CreditCardIcon className="text-black h-9 w-9" />,
-    mbWay: <Image src={MBWay} className="h-12 w-12" />,
+    mbWay: <Image src={MBWay} alt="Mbway" className="h-12 w-12" />,
     gpay: <GooglePay className="h-12 w-12" alt="Google pay icon" />,
     Paypal: <Paypal className="h-12 w-12" alt="Paypal icon" />,
   };

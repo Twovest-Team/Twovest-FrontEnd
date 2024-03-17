@@ -18,8 +18,14 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 (SaveLookButton)
  */
 
-export default function LookCard({ look, slider, name, collectionData, collectionId, isMember }) {
-
+export default function LookCard({
+  look,
+  slider,
+  name,
+  collectionData,
+  collectionId,
+  isMember,
+}) {
   // Detect if card is showing on a collection or not
   const isCollectionCard = collectionData && collectionId
 
@@ -39,17 +45,14 @@ export default function LookCard({ look, slider, name, collectionData, collectio
         />
       </Link>
 
-      <MenuLook
-        collectionData={collectionData}
-        collectionId={collectionId}
-        isMember={isMember}
-        lookId={look.id}
-      />
-
-    </figure>
-
-
-  )
+        <MenuLook
+          collectionData={collectionData}
+          collectionId={collectionId}
+          isMember={isMember}
+          lookId={look.id}
+        />
+      </figure>
+    );
 
   return (
     <>

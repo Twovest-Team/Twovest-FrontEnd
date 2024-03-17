@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-
 //import de icons materialUI
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -23,6 +22,7 @@ import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Buttons } from "../buttons/Buttons";
+import GeneralLoading from "../loadingSkeletons/GeneralLoading";
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -37,7 +37,9 @@ export const Navbar = ({ children }) => {
   const handleClickCart = () => {
     dispatch(toggleCart());
   };
-
+  const handleLoginRouter = () => {
+    router.push("/login");
+  };
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.refresh();
@@ -54,20 +56,17 @@ export const Navbar = ({ children }) => {
     }
 
     fetchUserData();
-  }, [currentUser]);
-
+  }, [currentUser, dispatch]);
   if (pathName != "/landing") {
     return (
-      <nav className="flex justify-between z-30 max-w-[1920px] min-w-[280px] w-full fixed top-0 px-6 py-5 bg-white border-b-grey border-b-2">
+      <nav className="flex justify-between items-center z-30 w-full fixed top-0 px-6 py-3 lg:py-5 bg-white border-b border-gray-200 h-[75px]">
         <div className="flex desktopNavRight ">
           <Buttons
-            aria-label="Localização da navbar"
-            btnState=""
-            text=""
+            ariaLabel="Localização da navbar"
             icon="menuIcon"
             btnSize="newIconSet2"
             onClick={handleClickMenu}
-          ></Buttons>
+          />
 
           <Link href={"/"} className="items-center flex">
             <Image
@@ -86,36 +85,35 @@ export const Navbar = ({ children }) => {
             ></Image>
           </Link>
         </div>
-        <div className="flex desktopNavLeft items-center ">
+        <div className="flex desktopNavLeft justify-between items-center  ">
           <Buttons
-            aria-label="Ir para a Lista de artigos favoritos"
-            btnState=""
-            text=""
+            ariaLabel="Ir para a Lista de artigos favoritos"
             icon="favorite2Navbar"
             btnSize="newIconSet4"
-          ></Buttons>
-          <div className="navbar_icons relative">
+          />
+
+          <div className="relative">
             <Buttons
-              aria-label="Ir para cesto de compras"
-              btnState=""
-              text=""
+              ariaLabel="Ir para cesto de compras"
               icon="localBag"
               btnSize="newIconSet4"
               onClick={handleClickCart}
-            ></Buttons>
-            <NotificationCart />
+            />
+            <div className="cursor-pointer" onClick={handleClickCart}>
+              {currentUser && <NotificationCart currentUser={currentUser} />}
+            </div>
           </div>
-
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="navbar_icons translate-y-0.5 border border-grey rounded-full">
+                <div className="w-6 h-6 ml-3 mr-4 flex rounded-full border border-gray-300 overflow-hidden">
                   <Image
                     src={currentUser.img}
-                    className="rounded-full border-grey border"
-                    width={25}
-                    height={25}
+                    className="w-fit h-fit"
                     alt="profile image"
+                    fill={false}
+                    width={50}
+                    height={50}
                   />
                 </div>
               </Menu.Button>
@@ -324,9 +322,19 @@ export const Navbar = ({ children }) => {
               </Menu.Items>
             </Transition>
           </Menu>
+
+          {!currentUser && (
+            <Buttons
+              btnState="blackMain"
+              text="Login | Registo"
+              btnSize="navBarButton"
+              onClick={handleLoginRouter}
+            />
+          )}
         </div>
 
         {children}
+        <></>
       </nav>
     );
   }

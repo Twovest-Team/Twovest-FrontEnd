@@ -39,29 +39,29 @@ const BrandsList = ({ brandsData }) => {
 
       <section className="grid grid-cols-2 grid-cols-desktop gap-6">
         {filteredBrands.map((brandItem, index) => (
-          <div
+          <Link
             key={index}
-            className="flex flex-col items-center justify-between"
+            href={`/brands/${currentGender}/${brandItem.name}`}
+            aria-label={`Clique para ir para a página da marca ${brandItem.name}`}
           >
-            <div
-              className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
-            >
-              <Link href={`/brands/${currentGender}/${brandItem.name}`}>
-                <Image
-                  src={brandItem?.logo_url_without_background}
-                  width={144}
-                  height={144}
-                  alt={brandItem.name}
-                />
-              </Link>
+            <div className="flex flex-col items-center justify-between">
+              <div
+                className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
+              >
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={brandItem?.logo_url_without_background}
+                    width={144}
+                    height={144}
+                    alt={brandItem.name}
+                  />
+                </div>
+              </div>
+              <p className="grid mt-2 font-semibold justify-center text-center">
+                {brandItem.name}
+              </p>
             </div>
-            <p
-              key={index}
-              className="grid mt-2 font-semibold justify-center text-center"
-            >
-              {brandItem.name}
-            </p>
-          </div>
+          </Link>
         ))}
       </section>
     </>

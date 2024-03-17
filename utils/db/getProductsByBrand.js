@@ -1,12 +1,12 @@
 import { supabase } from '@/utils/db/supabase';
 import getProductImages from './getProductImages';
 import getProductOffers from './getProductOffers';
-import getProductMaterials from './getProductMaterials';
-import getProductStyles from './getProductStyles';
-import capitalizeFirstLetter from '../capitalizeFirstLetter';
+import getGender from '../getGender';
 
 const getProductByBrand = async (gender, brandName) => {
-  gender = capitalizeFirstLetter(gender);
+
+  const genderId = getGender(gender).id
+
   const { data, error } = await supabase
     .from('products')
     .select(`
@@ -40,7 +40,7 @@ const getProductByBrand = async (gender, brandName) => {
       main_category
   )
 `)
-    .eq('gender', gender)
+    .eq('gender', genderId)
     .eq('is_public', true)
     .eq('brands.name', brandName)
 

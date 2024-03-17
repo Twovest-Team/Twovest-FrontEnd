@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductQuantityControl from "../items/ProductQuantityControl";
 import DeleteButton from "../buttons/icons/DeleteButton";
-import { categories } from "@/constants";
+import { categories, genders } from "@/constants";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
 import removeFromCart from "@/utils/db/cart/removeFromCart";
 import { useDispatch } from "react-redux";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import { useAppSelector } from "@/redux/hooks";
+import getGender from "@/utils/getGender";
 
 export const CardCart = ({
   handleShowDeleteNotification,
@@ -41,12 +42,14 @@ export const CardCart = ({
     }
   }
 
+  const gender = getGender(data.offers.products.gender)
+
   return (
     <article className="py-12 border-b border-grey">
       <div className="flex self-center items-center w-full">
         <Link
           onClick={() => handleToggleCart()}
-          href={`/product/${data.offers.products.gender.toLowerCase()}/${
+          href={`/product/${gender.string}/${
             data.offers.products.id
           }`}
         >

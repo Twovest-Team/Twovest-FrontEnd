@@ -3,8 +3,12 @@ import getProductImages from './getProductImages';
 import getProductOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
+import getGender from '../getGender';
 
 const getSustainableProducts = async (gender) => {
+
+    const genderId = getGender(gender).id
+
     const { data } = await supabase
         .from('products')
         .select(`
@@ -22,7 +26,7 @@ const getSustainableProducts = async (gender) => {
     `)
         .eq('is_sustainable', true)
         .eq('is_public', true)
-        .eq ('gender', gender)
+        .eq ('gender', genderId)
 
 
     let arrayOfProducts = await Promise.all(

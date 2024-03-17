@@ -4,30 +4,27 @@ import ImageSwiper from "@/components/Carousel/Swiper";
 import { Buttons } from "@/components/buttons/Buttons";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
 import { useEffect, useState } from "react";
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
 import { BrandCards } from "@/components/cards/BrandCards";
 import Link from "next/link";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
+import useGender from "@/hooks/useGender";
 
 export default function Home() {
-  let gender;
+
+  let [gender] = useGender();
+
   const [dataPopular, setDataPopular] = useState();
   const [brands, setBrands] = useState();
   const [looks, setLooks] = useState();
 
-  if (typeof window !== "undefined") {
-    gender = getLocalStorage("gender");
-  }
-
   useEffect(() => {
     if (!dataPopular && gender && !brands) {
       async function getData() {
-        let res = await getProductsByViews(capitalizeFirstLetter(gender));
+        let res = await getProductsByViews(gender.id);
         setDataPopular(res);
       }
       async function getBrandsData() {
@@ -35,7 +32,7 @@ export default function Home() {
         setBrands(resp);
       }
       async function getLooks() {
-        let res = await getLooksForHomepage(capitalizeFirstLetter(gender));
+        let res = await getLooksForHomepage(gender.id);
         setLooks(res);
       }
       getData();
@@ -71,7 +68,7 @@ export default function Home() {
         <div className="px-6 pt-1">
           <p className="mb-4">🔥 Descobre novos looks e inspira-te!</p>
 
-          <Link href={`/gallery/${gender}`}>
+          <Link href={`/gallery/women`}>
             <Buttons
               ariaLabel={"Ir para a Galeria"}
               btnState={"galeryMain"}
@@ -94,4 +91,4 @@ export default function Home() {
     </main>
   );
 }
-("");
+

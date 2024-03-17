@@ -9,6 +9,9 @@ import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 import { UserIcon } from "../user/UserIcon";
 import MenuLook from "../collections/MenuLook";
+import { genders } from "@/constants";
+import getGender from "@/utils/getGender";
+
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
@@ -24,23 +27,23 @@ export default function LookCard({
   isMember,
 }) {
   // Detect if card is showing on a collection or not
-  const isCollectionCard = collectionData && collectionId;
+  const isCollectionCard = collectionData && collectionId
 
-  if (isCollectionCard)
-    return (
-      <figure>
-        <Link
-          href={`/gallery/look/${look.id}`}
-          className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center"
-        >
-          <Image
-            src={look.url_image}
-            alt="Look da galeria"
-            className="object-cover scale-100 rounded"
-            quality={5}
-            fill={true}
-          />
-        </Link>
+  console.log(look)
+  const gender = getGender(look.gender)
+
+  
+  if (isCollectionCard) return (
+    <figure>
+      <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">
+        <Image
+          src={look.url_image}
+          alt="Look da galeria"
+          className="object-cover scale-100 rounded"
+          quality={5}
+          fill={true}
+        />
+      </Link>
 
         <MenuLook
           collectionData={collectionData}
@@ -59,7 +62,7 @@ export default function LookCard({
         } `}
       >
         <Link
-          href={`/gallery/look/${look.id}`}
+          href={`/gallery/${gender.string}/${look.id}`}
           className="w-full aspect-[17/26] relative flex justify-center items-center"
         >
           <Image
@@ -80,15 +83,6 @@ export default function LookCard({
             href={`/profile/${look.users.id}`}
             className="flex gap-2  min-w-0 items-center mt-3.5"
           >
-            {/* <Image
-              src={!slider ? look.users.img : slider === true && avatar}
-              alt="Look da galeria"
-              width={35}
-              height={35}
-              quality={30}
-              className="rounded-full"
-            />
- */}
             <UserIcon
               url={look.users.img}
               userRole={look.users.role}

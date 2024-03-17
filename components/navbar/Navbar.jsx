@@ -29,7 +29,7 @@ export const Navbar = ({ children }) => {
   const pathName = usePathname();
   const currentUser = useAppSelector((state) => state.user.data);
   const supabase = createClientComponentClient();
-  const [isCurrentUserLoading, setIsCurrentUserLoading] = useState(false);
+
   const handleClickMenu = () => {
     dispatch(toggleMenu());
   };
@@ -92,15 +92,17 @@ export const Navbar = ({ children }) => {
             btnSize="newIconSet4"
           />
 
-          <Buttons
-            ariaLabel="Ir para cesto de compras"
-            icon="localBag"
-            btnSize="newIconSet4"
-            onClick={handleClickCart}
-          />
-
-          <NotificationCart />
-
+          <div className="relative">
+            <Buttons
+              ariaLabel="Ir para cesto de compras"
+              icon="localBag"
+              btnSize="newIconSet4"
+              onClick={handleClickCart}
+            />
+            <div className="cursor-pointer" onClick={handleClickCart}>
+              {currentUser && <NotificationCart currentUser={currentUser} />}
+            </div>
+          </div>
           <Menu>
             {currentUser ? (
               <Menu.Button>

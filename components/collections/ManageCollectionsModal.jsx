@@ -118,6 +118,7 @@ const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
       {collectionsData &&
         <div className="max-h-[225px] overflow-y-scroll">
           <CollectionList
+            toSaveLook
             collections={collectionsData}
             ownerId={ownerId}
             isOwner={true}

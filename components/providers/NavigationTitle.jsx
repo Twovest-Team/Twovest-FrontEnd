@@ -30,6 +30,7 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
         tabIndex={0}
       >
         <IconButton
+          darkMode={hasImageBehind}
           icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
           className={"-translate-x-2.5"}
         />

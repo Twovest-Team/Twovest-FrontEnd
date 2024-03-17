@@ -1,7 +1,7 @@
 import CollectionPreview from './CollectionPreview'
 import SearchIcon from "@mui/icons-material/Search";
 
-const CollectionList = ({ collections, ownerId, search, isOwner }) => {
+const CollectionList = ({ collections, ownerId, search, isOwner, toSaveLook }) => {
     return (
         <div className="flex flex-col items-start self-stretch gap-4 ">
 
@@ -19,6 +19,7 @@ const CollectionList = ({ collections, ownerId, search, isOwner }) => {
 
                     {collections.map(collection => (
                         <CollectionPreview
+                            toSaveLook={toSaveLook}
                             userId={ownerId}
                             collection={collection}
                             key={collection.id_collection}

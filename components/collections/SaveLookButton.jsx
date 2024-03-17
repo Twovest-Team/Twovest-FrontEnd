@@ -4,7 +4,6 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import IconButton from "../buttons/icons/IconButton";
 import { useAppDispatch } from "@/redux/hooks";
 import { openModal } from "@/redux/slices/modalSlice";
-import ManageCollectionsModal from "./ManageCollectionsModal";
 
 
 export default function SaveLookButton({ lookId, whiteMode }) {
@@ -15,6 +14,7 @@ export default function SaveLookButton({ lookId, whiteMode }) {
     <>
       <IconButton
         icon={<BookmarkBorderOutlinedIcon className={whiteMode ? 'text-white' : 'text-black'} sx={{ fontSize: 30 }} />}
+        darkMode={whiteMode}
         onClick={() => dispatch(openModal('createCollection'))}
       />
     </>

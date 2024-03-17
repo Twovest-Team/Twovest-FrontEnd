@@ -325,7 +325,6 @@ export const Navbar = ({ children }) => {
 
           {!currentUser && (
             <Buttons
-              currentUser={null}
               btnState="blackMain"
               text="Login | Registo"
               btnSize="navBarButton"

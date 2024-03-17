@@ -10,40 +10,46 @@ import Link from "next/link";
 import { UserIcon } from "../user/UserIcon";
 import MenuLook from "../collections/MenuLook";
 
-
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
 (SaveLookButton)
  */
 
-export default function LookCard({ look, slider, name, collectionData, collectionId, isMember }) {
-
+export default function LookCard({
+  look,
+  slider,
+  name,
+  collectionData,
+  collectionId,
+  isMember,
+}) {
   // Detect if card is showing on a collection or not
-  const isCollectionCard = collectionData && collectionId
+  const isCollectionCard = collectionData && collectionId;
 
-  if (isCollectionCard) return (
-    <figure>
-      <Link href={`/gallery/look/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">
-        <Image
-          src={look.url_image}
-          alt="Look da galeria"
-          className="object-cover scale-100 rounded"
-          quality={5}
-          fill={true}
+  if (isCollectionCard)
+    return (
+      <figure>
+        <Link
+          href={`/gallery/look/${look.id}`}
+          className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center"
+        >
+          <Image
+            src={look.url_image}
+            alt="Look da galeria"
+            className="object-cover scale-100 rounded"
+            quality={5}
+            fill={true}
+          />
+        </Link>
+
+        <MenuLook
+          collectionData={collectionData}
+          collectionId={collectionId}
+          isMember={isMember}
+          lookId={look.id}
         />
-      </Link>
-
-      <MenuLook
-        collectionData={collectionData}
-        collectionId={collectionId}
-        isMember={isMember}
-        lookId={look.id}
-      />
-
-    </figure>
-
-
-  )
+      </figure>
+    );
 
   return (
     <>

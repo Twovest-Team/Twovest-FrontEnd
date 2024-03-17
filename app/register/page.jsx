@@ -80,10 +80,20 @@ const Register = () => {
   };
 
   const handleSignUp = async () => {
+    
     let pictureUrl = "";
 
     if (selectedImage) {
-      pictureUrl = selectedImage;
+      // Upload image to Storage if selectedImage exists
+      const { data, error } = await supabase.storage
+        .from("users_profile_pictures") // Bucket name
+        .upload(`user_${Date.now()}`, selectedImage); // File name and image data
+
+      if (error) {
+        console.error("Error uploading image:", error.message);
+        return;
+      }
+      pictureUrl = data.Key; // Store the URL of the uploaded image
     } else {
       pictureUrl =
         "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
@@ -109,8 +119,8 @@ const Register = () => {
     setPassword("");
     setUsername("");
     setTeste(true);
-    //console.log(data);
   };
+
 
   const handleDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];

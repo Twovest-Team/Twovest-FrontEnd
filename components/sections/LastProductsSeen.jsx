@@ -36,7 +36,7 @@ const LastProductsSeen = () => {
             <CardProduct
               key={element.products.id}
               product={element.products}
-              gender={element.products.gender.toLowerCase()}
+              gender={element.products.gender}
               slider={true}
             />
           ))}

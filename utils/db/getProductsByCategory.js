@@ -3,8 +3,12 @@ import getProductImages from './getProductImages';
 import getProductOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
 import getProductStyles from './getProductStyles';
+import getGender from '../getGender';
 
-const getProductsByCategory = async (id_category ,gender) => {
+const getProductsByCategory = async (id_category, gender) => {
+
+    const genderId = getGender(gender).id
+
     const { data } = await supabase
         .from('products')
         .select(`
@@ -22,7 +26,7 @@ const getProductsByCategory = async (id_category ,gender) => {
     `)
         .eq('id_category', id_category)
         .eq('is_public', true)
-        .eq ('gender', gender)
+        .eq ('gender', genderId)
 
 
     let arrayOfProducts = await Promise.all(

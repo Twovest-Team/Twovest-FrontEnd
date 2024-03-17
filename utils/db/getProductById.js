@@ -3,10 +3,11 @@ import getProductImages from "./getProductImages";
 import getProductOffers from "./getProductOffers";
 import getProductMaterials from "./getProductMaterials";
 import getProductStyles from "./getProductStyles";
-import capitalizeFirstLetter from "../capitalizeFirstLetter";
+import getGender from "../getGender";
 
 const getProductById = async (id, gender) => {
-  gender = capitalizeFirstLetter(gender); // Necessário visto que na bd os géneros estão em maiuscula
+
+  const genderId = getGender(gender).id
 
   const { data, error } = await supabase
     .from("products")
@@ -30,7 +31,7 @@ const getProductById = async (id, gender) => {
     `
     )
     .eq("id", id)
-    .eq("gender", gender)
+    .eq("gender", genderId)
     .eq("is_public", true);
   
     if(data[0]){

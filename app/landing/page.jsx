@@ -13,8 +13,8 @@ export default function Landing() {
   const dispatch = useAppDispatch(state => state.gender)
 
   function handleClick(id) {
-    const genderObject = genders.find(gender => gender.id === id);
-    dispatch(updateGender(genderObject));
+    const genderObj = getGender(id);
+    dispatch(updateGender(genderObj));
     router.back();
   }
 

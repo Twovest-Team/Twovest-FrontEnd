@@ -1,11 +1,11 @@
 import { supabase } from '@/utils/db/supabase';
 import getProductImages from './getProductImages';
 import getProductOffers from './getProductOffers';
+import getGender from '../getGender';
 
 const getProductByBrand = async (gender, brandName) => {
 
-  if(gender === 'women') gender = 'Mulher'
-  if(gender === 'men') gender = 'Homem'
+  const genderId = getGender(gender).id
 
   const { data, error } = await supabase
     .from('products')
@@ -40,7 +40,7 @@ const getProductByBrand = async (gender, brandName) => {
       main_category
   )
 `)
-    .eq('gender', gender)
+    .eq('gender', genderId)
     .eq('is_public', true)
     .eq('brands.name', brandName)
 

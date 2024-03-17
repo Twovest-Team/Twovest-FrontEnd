@@ -3,6 +3,7 @@
 import { genders } from "@/constants";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
+import getGender from "@/utils/getGender";
 import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -35,7 +36,7 @@ const GenderProvider = ({ children }) => {
     if (genderLocal && pathname === '/landing') router.push('/')
 
     // Check if url has a gender parameter. (String || False)
-    const routeGender = params.gender || false
+    const routeGender = params.genderString || false
 
     // Redirect user to landing page when condition is true
     if (!genderLocal && pagesThatAskForGender.indexOf(pathname) > -1) {
@@ -44,11 +45,11 @@ const GenderProvider = ({ children }) => {
 
     // Update gender state with the gender parameter in the url
     if(routeGender && ((genderLocal && genderLocal.string != routeGender) || !genderLocal)){
-        const routerGenderObject = genders.find(gender => gender.string === routeGender);
+        const routerGenderObject = getGender(routeGender);
         dispatch(updateGender(routerGenderObject))
     }
 
-  }, [pathname, genderState])
+  }, [pathname])
 
 
   return (

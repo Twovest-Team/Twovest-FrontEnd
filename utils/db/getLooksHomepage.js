@@ -1,10 +1,10 @@
 import { supabase } from "@/utils/db/supabase";
 import getLookStyles from "./getLookStyles";
+import getGender from "../getGender";
 
 const getLooksForHomepage = async (gender) => {
   
-  if(gender === 'women') gender = 'Mulher'
-  if(gender === 'men') gender = 'Homem'
+  const genderId = getGender(gender).id
 
   const { data, error } = await supabase
     .from("looks")
@@ -23,7 +23,7 @@ const getLooksForHomepage = async (gender) => {
 `
     )
     .eq("submission_state", 2)
-    .eq("gender", gender)
+    .eq("gender", genderId)
     .order("created_at", { ascending: true })
     .limit(8);
 

@@ -16,7 +16,7 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
  */
 
 export default function LookCard_Profile({ look, slider, nome, avatar, params }) {
-  const gender = params.gender;
+  const gender = params.genderString;
 
   return (
     <>

@@ -11,6 +11,7 @@ const getCollectionLooks = async (collectionId) => {
           id,
           url_image,
           upvotes,
+          gender,
           users (
             id,
             name,

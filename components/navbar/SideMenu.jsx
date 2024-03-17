@@ -19,7 +19,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import useGender from "@/hooks/useGender";
 import useAuth from "@/hooks/useAuth";
 import { genders } from "@/constants";
-import { updateGender } from "@/redux/slices/genderSlice";
+import { usePathname, useRouter } from "next/navigation";
+import refreshData from "@/utils/refreshData";
 
 export const SideMenu = () => {
 
@@ -27,6 +28,8 @@ export const SideMenu = () => {
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
+  const router = useRouter()
+  const pathname = usePathname()
 
   const currentUser = useAuth()
   const [gender, setGender] = useGender();
@@ -42,6 +45,11 @@ export const SideMenu = () => {
     dispatch(toggleMenu());
   };
 
+  function handleGender(gender){
+    refreshData(gender.string)
+    setGender(gender)
+    dispatch(toggleMenu());
+  }
 
   return (
     <>
@@ -63,13 +71,13 @@ export const SideMenu = () => {
 
             {genders.map(object => (
               <button
-                onClick={() => setGender(object)}
+                onClick={() => handleGender(object)}
                 className={`${gender.id != object.id
                     ? "text-secondary font-semibold mr-2"
                     : "text-black font-semibold mr-2"
                   } `}
               >
-                {object.string}
+                {object.stringPT}
               </button>
             ))}
 

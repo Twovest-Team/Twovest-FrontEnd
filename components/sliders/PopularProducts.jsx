@@ -5,7 +5,6 @@ import ContentSlider from "./ContentSlider";
 export const PopularProductsSilder = ({data}) => {
     
     const popularproducts = data;
-    //console.log(popularproducts);
 
       return(
         <ContentSlider>

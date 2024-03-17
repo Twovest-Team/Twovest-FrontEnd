@@ -21,6 +21,7 @@ import useAuth from "@/hooks/useAuth";
 import { genders } from "@/constants";
 import { usePathname, useRouter } from "next/navigation";
 import refreshData from "@/utils/refreshData";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export const SideMenu = () => {
 
@@ -71,6 +72,7 @@ export const SideMenu = () => {
 
             {genders.map(object => (
               <button
+                key={object.id}
                 onClick={() => handleGender(object)}
                 className={`${gender.id != object.id
                     ? "text-secondary font-semibold mr-2"

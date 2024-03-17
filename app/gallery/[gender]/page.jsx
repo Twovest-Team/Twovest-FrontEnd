@@ -1,6 +1,5 @@
 import Views from "@/components/providers/Views";
 import ItemsBox from "@/components/providers/ItemsBox";
-import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
@@ -12,6 +11,7 @@ import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { Buttons } from "@/components/buttons/Buttons";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LookCard from "@/components/cards/LookCard";
 export const revalidate = 60;
 
 // Página com todos os looks da galeria

@@ -11,7 +11,6 @@ import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 
-
 export const revalidate = 30;
 
 // Exemplo: twovest.com/gallery/mulher/253  <-id do look
@@ -27,19 +26,21 @@ const Look = async ({ params }) => {
   return (
     <>
       <main className="relative">
-        <figure
-          className="h-screen w-full bg-cover bg-center absolute"
-          style={{ backgroundImage: `url(${data.url_image})` }}
-        >
-          <div className="bg-gradient-to-b from-dark opacity-70 absolute top-0 z-10 w-full h-1/5" />
-          <div className="bg-gradient-to-t from-dark opacity-70 absolute bottom-0 w-full h-2/5" />
-        </figure>
+        <section className="flex flex-col ">
+          <Image
+            src={data.url_image}
+            alt="Look da galeria"
+            fill={true}
+            style={{
+              objectFit: "cover",
+            }}
+            quality={60}
+          />
 
-        <section className="flex flex-col">
           <div className="relative">
-            <div className={`z-20 h-[calc(100vh-160px)] w-full relative`}>
+            <div className={`h-[calc(100vh-160px)] w-full relative`}>
               <NavigationTitle hasImageBehind={true}>
-                <div className="flex flex-col items-center justify-center translate-x-2">
+                <div className="flex flex-col items-center justify-center translate-x-2 z-10">
                   <ForwardOutlinedIcon
                     sx={{ fontSize: 28 }}
                     className="text-white -rotate-90"
@@ -66,45 +67,42 @@ const Look = async ({ params }) => {
                 </Link>
 
                 <SaveLookButton whiteMode lookId={lookId} />
-
               </div>
+              <div className="bg-gradient-to-b from-dark opacity-70 absolute top-0 w-full h-1/5" />
+              <div className="bg-gradient-to-t from-dark opacity-70 absolute w-full h-full" />
             </div>
-
-            <section className="rounded-t-[28px] bg-white">
-              {data.products && data.products.length > 0 ? (
-                <>
-                  <div className="h-24 flex justify-between items-center container">
-                    <h6 className="font-semibold">Adqurir o look</h6>
-                    <p className="text-secondary truncate">
-                      {productsQty}
-                      {productsQty > 1 ? " artigos" : " artigo"}
-                    </p>
-                  </div>
-
-                  <ItemsBox fixedView={2}>
-                    {data.products.map((product) => (
-                      <CardProduct
-                        key={product.id}
-                        product={product}
-                        gender={product.gender}
-                      />
-                    ))}
-                  </ItemsBox>
-                </>
-              ) : (
+          </div>
+          <div className="relative rounded-t-[28px]  rounded-b-none bg-white">
+            {data.products && data.products.length > 0 ? (
+              <>
                 <div className="h-24 flex justify-between items-center container">
-                  <h6 className="font-semibold">Sem peças disponíveis</h6>
+                  <h6 className="font-semibold">Adqurir o look</h6>
+                  <p className="text-secondary truncate">
+                    {productsQty}
+                    {productsQty > 1 ? " artigos" : " artigo"}
+                  </p>
                 </div>
-              )}
-            </section>
+
+                <ItemsBox fixedView={2}>
+                  {data.products.map((product) => (
+                    <CardProduct
+                      key={product.id}
+                      product={product}
+                      gender={product.gender}
+                    />
+                  ))}
+                </ItemsBox>
+              </>
+            ) : (
+              <div className="h-24 flex justify-between items-center container">
+                <h6 className="font-semibold">Sem peças disponíveis</h6>
+              </div>
+            )}
           </div>
         </section>
       </main>
 
-      <ManageCollectionModal
-        lookId={lookId}
-      />
-
+      <ManageCollectionModal lookId={lookId} />
     </>
   );
 };

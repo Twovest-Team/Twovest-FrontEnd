@@ -2,7 +2,7 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import Ofertas from "@/utils/db/getProductById";
 import ProductOffers from "@/components/cards/ProductOfferCard";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Dropdown from "./dropdownalloffers";
 export default async function Alloffers({ params }) {
   const productId = params.id;
   const productGender = capitalizeFirstLetter(params.gender);
@@ -10,53 +10,30 @@ export default async function Alloffers({ params }) {
 
   //console.log("Fetched result:", result);
   return (
-    <div>
+    <>
       <NavigationTitle titleText="Offers" className="titlenav" />
-      <div className="justify-center items-center mx-4 p-2 ">
-        <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
-          <div id="firstClick" className="flex text-secondary">
-            <label className="block font-inter text-secondary mb-2 ">
-              Condição
-            </label>
-            <ArrowDropDownIcon className={"ml-auto text-secondary"} />
-          </div>
-        </div>
+
+      <div className=" flex flex-row  justify-center items-center mx-4 gap-4 p-2">
+        <Dropdown label="Condição" />
+        <Dropdown label="Cor" />
       </div>
-      <div className="flex text-center mb-4">
-        <div className="justify-center items-center  mx-4 pl-2 w-full">
-          <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-4">
-            <div id="firstClick" className="flex text-secondary">
-              <label className="block font-inter text-secondary mb-2">
-                Cor
-              </label>
-              <ArrowDropDownIcon className={"ml-auto text-secondary"} />
-            </div>
-          </div>
-        </div>
-        <div className="justify-center items-center mx-2 pr-4 w-full">
-          <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-4">
-            <div id="firstClick" className="flex text-secondary">
-              <label className="block font-inter text-secondary mb-2">
-                Tamanho
-              </label>
-              <ArrowDropDownIcon className={"ml-auto text-secondary"} />
-            </div>
-          </div>
-        </div>
+      <div className=" flex flex-row justify-center items-center mx-4 p-2 ">
+        <Dropdown label="Tamanho" />
       </div>
+
       <ul>
-        <div className="justify-center items-center mx-4 p-2 ">
-          {result.offers.map((offer, index) => (
-            <div key={index} className="mb-4">
+        {result.offers.map((offer, index) => (
+          <li key={index}>
+            <div className="justify-center items-center mx-4 p-2 ">
               <ProductOffers
                 key={index}
                 offer={offer}
                 discount={result.discount}
               />
             </div>
-          ))}
-        </div>
+          </li>
+        ))}
       </ul>
-    </div>
+    </>
   );
 }

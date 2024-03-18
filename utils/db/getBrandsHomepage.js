@@ -5,7 +5,7 @@ const getBrandsHomepage = async () => {
         .from('brands')
         .select('*')
         .order('name', { ascending: true })
-        .limit(4)
+        .limit(9)
     
     return data;
 }

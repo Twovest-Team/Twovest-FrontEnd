@@ -52,12 +52,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands">
-        <h6 className="font-semibold mb-4">Marcas</h6>
+      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands ">
+        
         {brands && <BrandCards data={brands} gender={gender} />}
-        <Link href={"/brands"} className="text-right font-semibold ">
-          <div className="my-3">Ver todas as marcas -&gt;</div>
-        </Link>
       </section>
 
       <section className="mt-14 py-20 text-white bg-black sectionDesktopHomepageGallery">
@@ -84,7 +81,7 @@ export default function Home() {
         style={{
           backgroundImage: `url('/images/homepage/pontosdeentregabg.png')`,
         }}
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
+        className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >
         <PontosDeEntregaCard />
       </section>

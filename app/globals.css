@@ -946,8 +946,8 @@ h6 {
 
 @media (min-width: 1024px) and (max-width: 1920px) {
   .sectionDesktopHomepageBrands {
-padding-left: 14rem;
-padding-right: 13rem;
+/* padding-left: 14rem;
+padding-right: 13rem; */
   }
 }
 

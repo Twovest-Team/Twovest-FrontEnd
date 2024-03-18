@@ -16,7 +16,7 @@
 import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { Buttons } from "@/components/buttons/Buttons";
-
+import Image from "next/image";
 const Carousel = ({ items, autoplayInterval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -58,7 +58,7 @@ const Carousel = ({ items, autoplayInterval = 5000 }) => {
         leaveTo="opacity-0"
       >
         <div className="relative ">
-          <img
+          <Image
             className="resize object-cover w-[460px] h-full opacity-90 transition-transform duration-500 transform scale-100"
             src={items[currentIndex].image}
             alt={items[currentIndex].title}

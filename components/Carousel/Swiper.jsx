@@ -8,11 +8,10 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 import { Buttons } from "../buttons/Buttons";
+import useGender from "@/hooks/useGender";
+
 const ImageSwiper = () => {
-  let gender;
-  if (typeof window !== "undefined") {
-    gender = getLocalStorage("gender");
-  }
+  let [gender] = useGender();
 
   return (
     <Swiper

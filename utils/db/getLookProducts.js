@@ -1,7 +1,11 @@
 import { supabase } from "@/utils/db/supabase";
 import getProductById from "./getProductById";
+import getGender from "../getGender";
 
 const getLookProducts = async (id, gender) => {
+  
+  const genderId = getGender(gender).id
+
   const { data, error } = await supabase
     .from("looks_has_products")
     .select(
@@ -14,7 +18,7 @@ const getLookProducts = async (id, gender) => {
   let transformedData = await Promise.all(
     
     data.map(async (object) => {
-      let productDetails = await getProductById(object.id_product, gender);
+      let productDetails = await getProductById(object.id_product, genderId);
 
       if(productDetails){
         return productDetails;

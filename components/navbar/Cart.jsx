@@ -51,7 +51,7 @@ export const Cart = () => {
 
   function handleShowDeleteNotification(data) {
     if (products.length > data.length) {
-      dispatch(showNotification('removeFromCart'))
+      dispatch(showNotification("removeFromCart"));
     }
   }
 
@@ -73,9 +73,8 @@ export const Cart = () => {
           </div>
           <div>
             <Buttons
-              aria-label="Fechar Cesto de compras"
               btnState=""
-              text=""
+              text="Fechar cesto de compras"
               icon="closeOutline"
               btnSize="newIconSet2"
               onClick={handleClickCart}
@@ -166,7 +165,6 @@ export const Cart = () => {
                 ariaLabel="Iniciar sessão"
                 btnState="blackMain"
                 text="Iniciar sessão"
-                icon=""
                 btnSize="modelSize3"
                 onClick={() => dispatch(toggleCart())}
               ></Buttons>
@@ -221,8 +219,11 @@ export const Cart = () => {
         </div>
       )}
 
-      <Notification id={'removeFromCart'} type={"Neutral"} message={"Artigo removido"} />
-
+      <Notification
+        id={"removeFromCart"}
+        type={"Neutral"}
+        message={"Artigo removido"}
+      />
     </div>
   );
 };

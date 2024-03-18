@@ -86,16 +86,16 @@ const Register = () => {
     let pictureUrl = "";
 
     if (selectedImage != null) {
-        // Upload image to Storage if selectedImage exists
+        
         const { data, error } = await supabase.storage
         
-            .from("users_profile_pictures") // Bucket name
-            /* .upload(`user_${Date.now()}`, selectedImage, {
-                contentType: 'image/png', // Specify the content type as image/png
-            } */
-            .upload(`user_1`, selectedImage, {
-              contentType: 'image/png', // Specify the content type as image/png
-          }
+            .from("users_profile_pictures") 
+                .upload(`user_${Date.now()}`, selectedImage, {
+                contentType: 'image/png', 
+            } 
+            /* .upload(`user_1`, selectedImage, {
+              contentType: 'image/png', 
+          } */
             
             ); 
 
@@ -106,7 +106,7 @@ const Register = () => {
       
         const { publicUrl, getUrlError } = await supabase.storage
             .from("users_profile_pictures")
-            .getPublicUrl(`user_1`);
+            .getPublicUrl(`user_${Date.now()}`);
 
         if (getUrlError) {
             console.error("Error getting public URL:", getUrlError.message);
@@ -202,12 +202,12 @@ const Register = () => {
 
 const handleDrop = (acceptedFiles) => {
   const file = acceptedFiles[0];
-  console.log("Dropped file:", file); // Log the dropped file
+  console.log("Dropped file:", file); 
 
   if (file.type === "image/jpeg" || file.type === "image/png") {
-    // Crie um URL de objeto para o arquivo de imagem
+    
     const imageUrl = URL.createObjectURL(file);
-    // Set selectedImage para o URL da imagem
+    
     setSelectedImage(imageUrl);
     setFileError("");
   } else {
@@ -255,8 +255,8 @@ const showIMG = () =>{
                 src={selectedImage}
                 alt="Imagem selecionada pelo utilizador no registo"
                 className="mx-auto rounded-full h-[6rem] w-[6rem]"
-                width={50} // Set the width of the image
-                height={50} // Set the height of the image
+                width={50} 
+                height={50} 
                 />
                 <CancelOutlinedIcon
                   onClick={handleRemoveImage}

@@ -14,6 +14,9 @@ const handleUsers = async (user) => {
             .eq('email', user.email)
 
         if (data.length === 0 && !error) {
+            if(user.picture == null){
+                user.picture="https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
+            }
             await supabase
                 .from('users')
                 .insert({ name: user.full_name, img: user.picture, email: user.email }, {returning: "minimal"})

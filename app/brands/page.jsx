@@ -7,7 +7,7 @@ import getBrands from "@/utils/db/getBrands";
 
 const Brands = async () => {
   const data = await getBrands();
-  console.log(data)
+  //console.log(data)
 
   return (
     <div>

@@ -29,7 +29,7 @@ export default function LookCard({
   // Detect if card is showing on a collection or not
   const isCollectionCard = collectionData && collectionId
 
-  console.log(look)
+  //console.log(look)
   const gender = getGender(look.gender)
 
   

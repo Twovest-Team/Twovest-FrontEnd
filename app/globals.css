@@ -954,15 +954,15 @@ padding-right: 13rem; */
 
 @media (min-width: 1920px) {
   .sectionDesktopHomepageBrands {
-padding-left: 14rem;
-padding-right: 13rem;
+/* padding-left: 14rem;
+padding-right: 13rem; */
   }
 }
 
 
 @media (min-width: 1024px) and (max-width: 1920px) {
   .sectionDesktopHomepageGallery {
-padding-left: 12rem;
+/* padding-left: 12rem; */
 
 
   }
@@ -971,8 +971,8 @@ padding-left: 12rem;
 
 @media (min-width: 1920px) {
   .sectionDesktopHomepageGallery {
-    padding-left: 12rem;
-
+   /*  padding-left: 12rem;
+ */
 
   }
 

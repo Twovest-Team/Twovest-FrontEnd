@@ -131,7 +131,7 @@ export const Buttons = ({
     disabledMain: "bg-grey cursor-default", //para botoes que vao ficar disabled
     secondaryMain: "bg-dark hover:bg-dark_gray", //botoes secundários
     errorMain: "bg-error_main hover:bg-error_dark",
-    galeryMain: "bg-transparent",
+    galeryMain: "bg-transparent mt-3 border border-white px-4 py-3.5 transition delay-100 hover:bg-white ease-in hover:delay-100 hover:transition hover:ease-in float-right text-right",
     none: "",
     whiteMain: "bg-white_opacity_50  border border-black",
     whiteMain2:
@@ -158,6 +158,8 @@ export const Buttons = ({
       "w-full h-14 py-3.5  text-center rounded justify-center px-14  flex",
     menuSize5:
       "w-full h-20 py-12 mt-4 flex px-7 gap-6 items-center cursor-pointer text-center",
+      menuSize6:
+      "w-1/2 h-20 py-12 mt-4 flex px-7 gap-6 items-center cursor-pointer text-right",
     mediumSizeSocials:
       "w-full h-55 px-8 py-4 mt-4 flex justify-center items-center gap-3 text-center",
 

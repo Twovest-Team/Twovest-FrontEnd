@@ -2,15 +2,12 @@
 
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import getLookById from "@/utils/db/getLookById";
-import Image from "next/image";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
 import SaveLookButton from "@/components/collections/SaveLookButton";
 import Link from "next/link";
 import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
-import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
-
 
 export const revalidate = 30;
 
@@ -100,10 +97,6 @@ const Look = async ({ params }) => {
           </div>
         </section>
       </main>
-
-      <ManageCollectionModal
-        lookId={lookId}
-      />
 
     </>
   );

@@ -9,6 +9,7 @@ import LastProductsSeen from "@/components/sections/LastProductsSeen";
 import { Cart } from "@/components/navbar/Cart";
 import { SideMenu } from "@/components/navbar/SideMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,10 @@ export default function RootLayout({ children }) {
               {children}
               <LastProductsSeen />
               <Footer />
+
+              {/* MODALS */}
+              <ManageCollectionModal />
+
             </GenderProvider>
           </StoreProvider>
           <Analytics />

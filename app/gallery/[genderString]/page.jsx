@@ -4,7 +4,6 @@ import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Filters from "@/components/filters_gallery/filtersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
@@ -82,11 +81,12 @@ async function LookList({ gender, style }) {
         </>
       ) : (
         <NoResultsNotice
-        title={'Não encontramos looks.'}
-        text={'Infelimente não temos looks disponíveis para esta categoria.'}
-        btnText={'Ir para Geral'}
+          title={'Não encontramos looks.'}
+          text={'Infelimente não temos looks disponíveis para esta categoria.'}
+          btnText={'Ir para Geral'}
         />
       )}
+
     </>
   );
 }

@@ -10,7 +10,6 @@ import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Suspense } from 'react'
 
 const ManageCollectionModal = () => {
 
@@ -82,43 +81,40 @@ const ManageCollectionModal = () => {
   }, [isModalOpen])
 
   return (
-    <Suspense>
-      <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
+    <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
 
-        {currentSection === 0 && lookId && currentUser && collectionsData &&
-          <SaveLookSection
-            collectionsData={collectionsData}
-            lookId={lookId}
-            nextSection={nextSection}
-          />
-        }
+      {currentSection === 0 && lookId && currentUser && collectionsData &&
+        <SaveLookSection
+          collectionsData={collectionsData}
+          lookId={lookId}
+          nextSection={nextSection}
+        />
+      }
 
-        {currentSection === 1 &&
-          <NamingSection
-            lookId={lookId}
-            nameState={nameState}
-            setNameState={setNameState}
-            nextSection={nextSection}
-          />
-        }
+      {currentSection === 1 &&
+        <NamingSection
+          lookId={lookId}
+          nameState={nameState}
+          setNameState={setNameState}
+          nextSection={nextSection}
+        />
+      }
 
-        {currentSection === 2 &&
-          <PrivacySection
-            setPrivacyValue={setPrivacyValue}
-            submitNewCollection={submitNewCollection}
-          />
-        }
+      {currentSection === 2 &&
+        <PrivacySection
+          setPrivacyValue={setPrivacyValue}
+          submitNewCollection={submitNewCollection}
+        />
+      }
 
-        {currentSection === 3 &&
-          <FeedbackSection
-            lookId={lookId}
-            dispatch={dispatch}
-          />
-        }
+      {currentSection === 3 &&
+        <FeedbackSection
+          lookId={lookId}
+          dispatch={dispatch}
+        />
+      }
 
-      </Modal>
-    </Suspense>
-
+    </Modal>
   )
 }
 

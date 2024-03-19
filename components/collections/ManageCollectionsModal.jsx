@@ -40,8 +40,8 @@ const ManageCollectionModal = () => {
       if (data) setCollectionsData(data)
     }
 
-    if (!collectionsData && lookId && currentUser) getData()
-  }, [currentUser])
+    if (lookId && currentUser) getData()
+  }, [currentUser, lookId])
 
 
   useEffect(() => {
@@ -75,7 +75,6 @@ const ManageCollectionModal = () => {
     }
 
   }, [isModalOpen])
-
 
   return (
     <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>

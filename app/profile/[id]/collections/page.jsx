@@ -5,7 +5,7 @@ import useAuthServer from "@/hooks/useAuthServer";
 import CollectionList from "@/components/collections/CollectionList";
 import getCollections from "@/utils/db/collections/getCollections";
 import getUserById from "@/utils/db/getUserById";
-import CreateCollectionModal from "@/components/collections/CreateCollectionButton";
+import CreateCollectionButton from "@/components/collections/CreateCollectionButton";
 import SegmentIcon from '@mui/icons-material/Segment';
 import IconButton from "@/components/buttons/icons/IconButton";
 import { checkOwnership } from "@/utils/handleCollections";
@@ -28,7 +28,7 @@ const Collections = async ({ params }) => {
         <NavigationTitle titleText={isOwnCollections ? "As minhas coleções" : `Coleções de ${ownerFirstName}`}>
           <div className="flex justify-between gap-5">
             <IconButton icon={<SegmentIcon />} />
-            <CreateCollectionModal isOwnCollections={isOwnCollections} />
+            <CreateCollectionButton isOwnCollections={isOwnCollections} />
           </div>
         </NavigationTitle>
       </div>
@@ -37,7 +37,12 @@ const Collections = async ({ params }) => {
         {collectionsData ?
           <CollectionList collections={collectionsData} ownerId={ownerId} isOwner={isOwnCollections} search={true} />
           :
-          <NoResultsNotice text={'Utilizador não tem coleções'} />
+          <NoResultsNotice
+          title={'Sem coleções :('}
+          text={'Esta conta não tem coleções'}
+          btnText='Voltar ao perfil'
+          btnHref={`/profile/${params.id}`}
+          />
         }
       </div>
 

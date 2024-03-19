@@ -22,8 +22,7 @@ export default function LookCard_Profile({ look, slider, nome, avatar, params })
     <>
       <div
         className={`${!slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
-          } `}
-      >
+          } `}>
         <Link
           href={`/gallery/${gender}/${look.id}`}
           className="w-full aspect-[17/26] relative flex justify-center items-center"
@@ -53,10 +52,6 @@ export default function LookCard_Profile({ look, slider, nome, avatar, params })
               username={!slider ? look.users.name : slider === true && nome}
             />
           </Link>
-
-          {/* <div className="mt-3.5">
-            {!slider ? <SaveLookButton /> : slider === true && null}
-          </div> */}
         </div>
       </div>
     </>

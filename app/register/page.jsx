@@ -12,6 +12,8 @@ import Image from "next/image";
 import { ModalEmailVerification } from "@/components/modals/ModalEmailVerification";
 import Dropzone from "react-dropzone";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+
 
 const Register = () => {
   const router = useRouter();
@@ -79,52 +81,147 @@ const Register = () => {
     return passwordRegex.test(password);
   };
 
+
   const handleSignUp = async () => {
     let pictureUrl = "";
 
-    if (selectedImage) {
-      pictureUrl = selectedImage;
+    if (selectedImage != null) {
+        
+        const { data, error } = await supabase.storage
+        
+            .from("users_profile_pictures") 
+                .upload(`user_${Date.now()}`, selectedImage, {
+                contentType: 'image/png', 
+            } 
+            /* .upload(`user_1`, selectedImage, {
+              contentType: 'image/png', 
+          } */
+            
+            ); 
+
+        if (error) {
+            console.error("Error uploading image:", error.message);
+            return;
+        }
+      
+        const { publicUrl, getUrlError } = await supabase.storage
+            .from("users_profile_pictures")
+            .getPublicUrl(`user_${Date.now()}`);
+
+        if (getUrlError) {
+            console.error("Error getting public URL:", getUrlError.message);
+            return;
+        }
+        
+        pictureUrl = publicUrl;
+
     } else {
-      pictureUrl =
-        "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
+        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
     }
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: username,
-          email: email,
-          picture: pictureUrl,
+    const { data: userData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                full_name: username,
+                email: email,
+                picture: pictureUrl,
+            },
+            emailRedirectTo: `${location.origin}/auth/callback`,
         },
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
     });
-    if (error) {
-      console.error("Error signing up:", error.message);
-      return;
+
+    if (signUpError) {
+        console.error("Error signing up:", signUpError.message);
+        return;
     }
+
     setEmail("");
     setPassword("");
     setUsername("");
     setTeste(true);
-    //console.log(data);
-  };
+};
 
-  const handleDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    if (file.type === "image/jpeg" || file.type === "image/png") {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setFileError("");
+
+/*   const handleSignUp = async () => {
+    let pictureUrl = "";
+
+    if (selectedImage != null) {
+        // Upload image to Storage if selectedImage exists
+        const { data, error } = await supabase.storage
+            .from("users_profile_pictures") // Bucket name
+            .upload(`user_${Date.now()}.png`, selectedImage); // Use original filename of the selected image
+
+        if (error) {
+            console.error("Error uploading image:", error.message);
+            return;
+        }
+        pictureUrl = data.Key; // Store the URL of the uploaded image
     } else {
-      setFileError("Ficheiro não suportado.");
+        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
     }
-  };
+
+    const { data: userData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                full_name: username,
+                email: email,
+                picture: pictureUrl,
+            },
+            emailRedirectTo: `${location.origin}/auth/callback`,
+        },
+    });
+
+    if (signUpError) {
+        console.error("Error signing up:", signUpError.message);
+        return;
+    }
+
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setTeste(true);
+}; */
+
+
+/* const handleDrop = (acceptedFiles) => {
+  const file = acceptedFiles[0];
+  console.log("Dropped file:", file); // Log the dropped file
+
+  if (file.type === "image/jpeg" || file.type === "image/png") {
+    // Set selectedImage to the file itself
+    setSelectedImage(file);
+    setFileError("");
+  } else {
+    setFileError("Ficheiro não suportado.");
+  }
+}; */
+
+const handleDrop = (acceptedFiles) => {
+  const file = acceptedFiles[0];
+  console.log("Dropped file:", file); 
+
+  if (file.type === "image/jpeg" || file.type === "image/png") {
+    
+    const imageUrl = URL.createObjectURL(file);
+    
+    setSelectedImage(imageUrl);
+    setFileError("");
+  } else {
+    setFileError("Ficheiro não suportado.");
+  }
+};
+
+const showIMG = () =>{
+  console.log(selectedImage)
+  console.log(username)
+  console.log(email)
+  console.log(password)
+
+}
 
   const handleRemoveImage = () => {
     setSelectedImage(null);
@@ -143,6 +240,7 @@ const Register = () => {
     );
   }
 
+
   if (teste == true) {
     return <ModalEmailVerification />;
   } else {
@@ -154,21 +252,22 @@ const Register = () => {
             {selectedImage ? (
               <div className="relative mt-8">
                 <Image
-                  src={selectedImage}
-                  alt="Selected"
-                  className="mx-auto rounded-full h-[6rem] w-[6rem]"
+                src={selectedImage}
+                alt="Imagem selecionada pelo utilizador no registo"
+                className="mx-auto rounded-full h-[6rem] w-[6rem]"
+                width={50} 
+                height={50} 
                 />
-                <button
+                <CancelOutlinedIcon
                   onClick={handleRemoveImage}
-                  className="absolute top-0 right-0 mt-2 mr-2 text-xs text-red-500 cursor-pointer"
+                  className="absolute top-0 right-0 mt-2 mr-2 text-[30px] text-red-500 cursor-pointer"
                 >
-                  Remover imagem
-                </button>
+                </CancelOutlinedIcon>
               </div>
             ) : (
               <Dropzone
                 onDrop={handleDrop}
-                accept="image/jpeg, image/png"
+                accept="image/*"
                 className="cursor-pointer"
               >
                 {({ getRootProps, getInputProps }) => (
@@ -187,8 +286,9 @@ const Register = () => {
                 )}
               </Dropzone>
             )}
+            
           </div>
-
+          <button onClick={showIMG} className="my-6 bg-orange-500 p-2">Mostrar</button>
           <input
             type="text"
             placeholder="Nome"

@@ -7,7 +7,7 @@ import getBrands from "@/utils/db/getBrands";
 
 const Brands = async () => {
   const data = await getBrands();
-
+  
   return (
     <div>
       <NavigationTitle titleText={"Marcas"} />

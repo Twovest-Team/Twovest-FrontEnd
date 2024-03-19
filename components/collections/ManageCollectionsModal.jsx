@@ -10,6 +10,7 @@ import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 
 const ManageCollectionModal = () => {
 
@@ -34,6 +35,7 @@ const ManageCollectionModal = () => {
   // All collections from user needed when saving a new look
   const [collectionsData, setCollectionsData] = useState()
 
+  // Get collections data everytime there is a look id
   useEffect(() => {
     async function getData() {
       const data = await getCollections({ ownerId: currentUser.id });
@@ -43,21 +45,24 @@ const ManageCollectionModal = () => {
     if (lookId && currentUser) getData()
   }, [currentUser, lookId])
 
-
+  // Reset form section depending on url params
   useEffect(() => {
     const saveParam = searchParams.get('save')
     setLookId(saveParam)
     setCurrentSection(saveParam ? 0 : 1)
   }, [searchParams, pathname])
 
+  // Go to modal next section
   function nextSection() {
     setCurrentSection(currentSection + 1)
   }
 
+  // Go to modal previous section
   function previousSection() {
     if (currentSection != 0 && currentSection != 3) setCurrentSection(currentSection - 1)
   }
 
+  // Function to create a new collection in the db
   async function submitNewCollection() {
     if (!nameState && !privacyValue && !currentUser) return null
     const isCollectionCreated = await handleCreateCollection(currentUser.id, nameState, privacyValue)
@@ -77,40 +82,43 @@ const ManageCollectionModal = () => {
   }, [isModalOpen])
 
   return (
-    <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
+    <Suspense>
+      <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
 
-      {currentSection === 0 && lookId && currentUser && collectionsData &&
-        <SaveLookSection
-          collectionsData={collectionsData}
-          lookId={lookId}
-          nextSection={nextSection}
-        />
-      }
+        {currentSection === 0 && lookId && currentUser && collectionsData &&
+          <SaveLookSection
+            collectionsData={collectionsData}
+            lookId={lookId}
+            nextSection={nextSection}
+          />
+        }
 
-      {currentSection === 1 &&
-        <NamingSection
-          lookId={lookId}
-          nameState={nameState}
-          setNameState={setNameState}
-          nextSection={nextSection}
-        />
-      }
+        {currentSection === 1 &&
+          <NamingSection
+            lookId={lookId}
+            nameState={nameState}
+            setNameState={setNameState}
+            nextSection={nextSection}
+          />
+        }
 
-      {currentSection === 2 &&
-        <PrivacySection
-          setPrivacyValue={setPrivacyValue}
-          submitNewCollection={submitNewCollection}
-        />
-      }
+        {currentSection === 2 &&
+          <PrivacySection
+            setPrivacyValue={setPrivacyValue}
+            submitNewCollection={submitNewCollection}
+          />
+        }
 
-      {currentSection === 3 &&
-        <FeedbackSection
-          lookId={lookId}
-          dispatch={dispatch}
-        />
-      }
+        {currentSection === 3 &&
+          <FeedbackSection
+            lookId={lookId}
+            dispatch={dispatch}
+          />
+        }
 
-    </Modal>
+      </Modal>
+    </Suspense>
+
   )
 }
 

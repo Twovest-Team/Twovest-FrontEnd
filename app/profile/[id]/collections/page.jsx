@@ -37,7 +37,12 @@ const Collections = async ({ params }) => {
         {collectionsData ?
           <CollectionList collections={collectionsData} ownerId={ownerId} isOwner={isOwnCollections} search={true} />
           :
-          <NoResultsNotice text={'Utilizador não tem coleções'} />
+          <NoResultsNotice
+          title={'Sem coleções :('}
+          text={'Esta conta não tem coleções'}
+          btnText='Voltar ao perfil'
+          btnHref={`/profile/${params.id}`}
+          />
         }
       </div>
 

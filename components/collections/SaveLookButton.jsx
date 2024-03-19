@@ -4,7 +4,8 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import IconButton from "../buttons/icons/IconButton";
 import { useAppDispatch } from "@/redux/hooks";
 import { openModal } from "@/redux/slices/modalSlice";
-import ManageCollectionsModal from "./ManageCollectionsModal";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function SaveLookButton({ lookId, whiteMode }) {
   const dispatch = useAppDispatch();

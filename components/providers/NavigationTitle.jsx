@@ -30,11 +30,12 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
         tabIndex={0}
       >
         <IconButton
+          darkMode={hasImageBehind}
           icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
           className={"-translate-x-3"}
           aria-label="Voltar Atrás"
         />
-        <h5
+        <h5 
           className="cursor-pointer transition-colors duration-200 hover:text-primary_dark"
           aria-label={`Está na página ${titleText}. Se clicar, será direcionado para a página anterior.`}
         >

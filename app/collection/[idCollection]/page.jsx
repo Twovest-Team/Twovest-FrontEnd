@@ -22,7 +22,7 @@ const Collection = async ({ params }) => {
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/')
-  console.log(collectionData)
+  //console.log(collectionData)
   const ownerId = checkOwnerId(collectionData.members)
   const isOwnCollection = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
 

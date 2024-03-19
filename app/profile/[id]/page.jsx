@@ -28,7 +28,7 @@ const Profile = async ({ params }) => {
   const ownerFirstName = getUserFirstName(ownerData)
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
   const collectionsData = await getCollections({ ownerId, max: 3, privacy: 1 });
-
+  
   if (ownerData) {
     return (
       <>
@@ -68,14 +68,16 @@ const Profile = async ({ params }) => {
         {ownerData &&
           <div className="flex pb-10 flex-col items-start self-stretch container gap-4">
             <h6 className="font-semibold">Coleções de Looks</h6>
-            <CollectionList collections={collectionsData} ownerId={ownerId} />
+            <CollectionList collections={collectionsData} ownerId={ownerId} ownerFirstName={ownerFirstName} />
 
             <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
 
-              <Link href={`/profile/${ownerId}/collections`} className="profile_all-collections">
-                Ver todas as coleções
-                <ArrowForwardIosIcon />
-              </Link>
+              {collectionsData && collectionsData.length >= 3 &&
+                <Link href={`/profile/${ownerId}/collections`} className="profile_all-collections">
+                  Ver todas as coleções
+                  <ArrowForwardIosIcon />
+                </Link>
+              }
             </div>
 
           </div>

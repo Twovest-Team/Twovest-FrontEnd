@@ -3,8 +3,8 @@ import { IconPontosDeEntrega } from "../items/IconPontosDeEntrega";
 import { Buttons } from "../buttons/Buttons";
 const PontosDeEntregaCard = () => {
   return (
-    <div className="w-full container text-center ">
-      <div className="bg-white container pt-16 pb-10 relative rounded shadow-sm w-full">
+    <div className="w-full md:w-[620px] container text-center ">
+      <div className="bg-white container pt-16 pb-10 lg:pt-20 lg:pb-12 relative rounded shadow-sm w-full">
         <div
           className="text-black font-semibold"
           aria-label="Tens demasiada roupa no armário?"
@@ -12,7 +12,7 @@ const PontosDeEntregaCard = () => {
           Tens demasiada roupa no armário?
         </div>
         <div
-          className="text-black mt-2 mb-4"
+          className="text-black mt-2 mb-4 md:mb-6"
           aria-label="Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!"
         >
           Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!
@@ -24,6 +24,7 @@ const PontosDeEntregaCard = () => {
             text="Ir para pontos de Entrega"
             icon=""
             btnSize="menuSize4"
+            className={"px-2"}
           ></Buttons>
         </Link>
 

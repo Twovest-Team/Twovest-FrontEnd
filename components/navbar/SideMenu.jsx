@@ -24,18 +24,17 @@ import refreshData from "@/utils/refreshData";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export const SideMenu = () => {
-
   const dispatch = useAppDispatch();
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
-  const router = useRouter()
-  const pathname = usePathname()
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const currentUser = useAuth()
+  const currentUser = useAuth();
   const [gender, setGender] = useGender();
 
-  if(!gender) return null
+  if (!gender) return null;
 
   const handleClickCategory = (id) => {
     setCategoryOpen(!categoryOpen);
@@ -46,9 +45,9 @@ export const SideMenu = () => {
     dispatch(toggleMenu());
   };
 
-  function handleGender(gender){
-    refreshData(gender.string)
-    setGender(gender)
+  function handleGender(gender) {
+    refreshData(gender.string);
+    setGender(gender);
     dispatch(toggleMenu());
   }
 
@@ -69,20 +68,19 @@ export const SideMenu = () => {
       >
         <div className="flex justify-between items-center border-b-grey border-b-2">
           <div className="flex my-5 mx-4">
-
-            {genders.map(object => (
+            {genders.map((object) => (
               <button
                 key={object.id}
                 onClick={() => handleGender(object)}
-                className={`${gender.id != object.id
+                className={`${
+                  gender.id != object.id
                     ? "text-secondary font-semibold mr-2"
                     : "text-black font-semibold mr-2"
-                  } `}
+                } `}
               >
                 {object.stringPT}
               </button>
             ))}
-
           </div>
           <div className="flex mx-4">
             <div onClick={handleClickMenu} className="cursor-pointer">
@@ -110,26 +108,28 @@ export const SideMenu = () => {
             <input
               type="text"
               placeholder="Pesquisa"
+              aria-label="Efetue a sua pesquisa"
               className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
             />
           </div>
           {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
           <div className="menu_categories mt-4">
-
-
-            {general_categories.map(category => (
+            {general_categories.map((category) => (
               <div
                 key={category.id}
                 className="bg-grey_opacity_50 p-4 cursor-pointer items-center rounded flex justify-between"
                 onClick={() => handleClickCategory(category.id)}
               >
                 <p>{category.name}</p>
-                <Image src={category.img} width={25} height={25} alt={category.name} />
+                <Image
+                  src={category.img}
+                  width={25}
+                  height={25}
+                  alt={category.name}
+                />
               </div>
             ))}
-
-
 
             <Link
               onClick={handleClickMenu}
@@ -163,7 +163,7 @@ export const SideMenu = () => {
           </div>
         </ul>
 
-        <PrimaryMenuPagesList toggleMenu={handleClickMenu}/>
+        <PrimaryMenuPagesList toggleMenu={handleClickMenu} />
 
         <SecondaryMenuPagesList toggleMenu={handleClickMenu} />
 

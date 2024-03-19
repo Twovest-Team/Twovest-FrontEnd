@@ -71,7 +71,7 @@ const Carousel = ({ items, autoplayInterval = 5000 }) => {
             <h2 className="font-inter whitespace-normal font-bold mt-4 break-words">
               {items[currentIndex].title}
             </h2>
-            <div className="w-6/12 h-1/3 mx-auto m-10 items-center justify-center btn-temp">
+            <div className="w-6/12 h-1/3  mx-auto m-10 items-center justify-center btn-temp">
               <Buttons
                 btnState="defaultMain"
                 text="Ver Todas as Promoções"

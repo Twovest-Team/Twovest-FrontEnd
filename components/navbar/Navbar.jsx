@@ -6,9 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 //import de icons materialUI
-import MenuIcon from "@mui/icons-material/Menu";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
@@ -22,7 +20,6 @@ import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Buttons } from "../buttons/Buttons";
-import GeneralLoading from "../loadingSkeletons/GeneralLoading";
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();

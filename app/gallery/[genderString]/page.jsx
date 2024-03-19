@@ -43,7 +43,7 @@ const Gallery = async ({ params, searchParams }) => {
         <div>
           <Link href="/gallery/submitLook">
             <Buttons
-              aria-label="Submeter Look"
+              ariaLabel="Submeter Look"
               btnState="defaultMain"
               text="Submeter Look"
               icon=""
@@ -82,9 +82,9 @@ async function LookList({ gender, style }) {
         </>
       ) : (
         <NoResultsNotice
-        title={'Não encontramos looks.'}
-        text={'Infelimente não temos looks disponíveis para esta categoria.'}
-        btnText={'Ir para Geral'}
+          title={"Não encontramos looks."}
+          text={"Infelizmente não temos looks disponíveis para esta categoria."}
+          btnText={"Ir para Geral"}
         />
       )}
     </>

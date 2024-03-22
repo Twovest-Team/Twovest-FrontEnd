@@ -14,28 +14,52 @@ export default function Footer() {
       <div className="grid grid-cols-2 pb-10">
         <div className="items-center border-r border-white_opacity_50 text-white text-center">
           <ul>
-            <Link href="/">
-              <li className="h-[50px]">Contactos</li>
-            </Link>
-            <Link href="/">
-              <li className="h-[50px]">Help center</li>
-            </Link>
-            <Link href="/">
-              <li className="h-[50px]">Sobre nós</li>
-            </Link>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Contactos
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Help center
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Sobre nós
+                </p>
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="items-center border-l border-white_opacity_50 text-white text-center">
           <ul>
-            <Link href="/">
-              <li className="h-[50px]">Proteção de dados</li>
-            </Link>
-            <Link href="/">
-              <li className="h-[50px]">Termos de serviço</li>
-            </Link>
-            <Link href="/">
-              <li className="h-[50px]">Aviso legal</li>
-            </Link>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Proteção de dados
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Termos de serviço
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]">
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Aviso legal
+                </p>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

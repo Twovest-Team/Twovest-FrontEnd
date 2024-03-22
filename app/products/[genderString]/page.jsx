@@ -80,14 +80,18 @@ async function ProductList({ categoryId, gender, status }) {
       <>
         {data.length > 0 ? (
           <ItemsBox>
+            <ul>
             {data.map((element) => (
+              <li key={element.id}>
               <CardProduct
                 slider={false}
                 key={element.id}
                 product={element}
                 gender={gender}
               />
+              </li>
             ))}
+            </ul>
           </ItemsBox>
         ) : (
           <NoResultsNotice text={"Não há produtos registados nesta categoria."}/>

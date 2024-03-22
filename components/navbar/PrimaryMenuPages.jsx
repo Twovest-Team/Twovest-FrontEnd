@@ -11,7 +11,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
 
       <ul className="mx-4">
         {gender && (
-          <li>
+          <li key={"SideMenu-GaleriaDeLooks"}>
             <Link
               onClick={toggleMenu}
               href={`/gallery/${gender.string}`}
@@ -29,7 +29,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             </Link>
           </li>
         )}
-        <li>
+        <li key={"SideMenu-PontosDeEntrega"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -41,7 +41,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             </div>
           </Link>
         </li>
-        <li>
+        <li key={"Forum"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -53,7 +53,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             </div>
           </Link>
         </li>
-        <li>
+        <li key={"SideMenu-PontosECupoes"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -65,7 +65,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             </div>
           </Link>
         </li>
-        <li>
+        <li key={"SideMenu-Contactos"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -77,7 +77,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             </div>
           </Link>
         </li>
-        <li>
+        <li key={"SideMenu-HelpCenter"}>
           <Link
             onClick={toggleMenu}
             href={"/"}

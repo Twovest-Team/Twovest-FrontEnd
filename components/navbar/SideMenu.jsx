@@ -115,7 +115,7 @@ export const SideMenu = () => {
 
           <ul className="menu_categories mt-4">
             {general_categories.map((category) => (
-              <li>
+              <li key={category.id}>
                 <div
                   key={category.id}
                   className="bg-grey_opacity_50 p-4 cursor-pointer items-center rounded flex justify-between"
@@ -132,7 +132,7 @@ export const SideMenu = () => {
               </li>
             ))}
 
-            <li>
+            <li key={"SideMenu-Marcas"}>
               <Link
                 onClick={handleClickMenu}
                 href={"/brands"}
@@ -142,7 +142,7 @@ export const SideMenu = () => {
                 <StarsIcon className="fill-black" alt="simbolo marcas" />
               </Link>
             </li>
-            <li>
+            <li key={"SideMenu-Sustentavel"}>
               <Link
                 href={`/products/${gender.string}?status=sustainable`}
                 onClick={() => handleClickMenu()}
@@ -153,7 +153,7 @@ export const SideMenu = () => {
                 </div>
               </Link>
             </li>
-            <li>
+            <li key={"SideMenu-Promocoes"}>
               <Link
                 href={`/products/${gender.string}?status=discounts`}
                 onClick={() => handleClickMenu()}

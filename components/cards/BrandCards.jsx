@@ -33,7 +33,7 @@ export const BrandCards = ({ data, gender }) => {
         className={`mx-auto grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5 lg:grid-cols-4 ${numBrandsToShow} `}
       >
         {brand.slice(0, numBrandsToShow).map((item) => (
-          <li>
+          <li key={item.id}>
             <Link key={item.id} href={`/brands/${gender.string}/${item.name}`}>
               <div className="bg-grey_opacity_50 p-6 2xl:px-7 2xl:py-16 hover:brightness-[.85] text-center rounded hover:transition hover:ease-in-out hover:delay-200 transition delay-200 ease-in-out">
                 <Image

@@ -29,8 +29,6 @@ export const SideMenu = () => {
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
-  const router = useRouter()
-  const pathname = usePathname()
 
   const currentUser = useAuth()
   const [gender, setGender] = useGender();

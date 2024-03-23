@@ -1,6 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 
 const useGender = () => {
 

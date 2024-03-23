@@ -29,10 +29,8 @@ export default function LookCard({
   // Detect if card is showing on a collection or not
   const isCollectionCard = collectionData && collectionId
 
-  console.log(look)
   const gender = getGender(look.gender)
 
-  
   if (isCollectionCard) return (
     <figure>
       <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">

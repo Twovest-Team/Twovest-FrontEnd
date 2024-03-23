@@ -1,12 +1,15 @@
 'use client'
 
-import { genders } from "@/constants";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
 import getGender from "@/utils/getGender";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
+
+const isServer = typeof window === 'undefined';
+const pagesThatAskForGender = ['/', '/login', '/register', '/brands', '/profile']
+
 
 const GenderProvider = ({ children }) => {
 
@@ -19,15 +22,15 @@ const GenderProvider = ({ children }) => {
   const genderState = useAppSelector(state => state.gender.data);
 
   // Saved gender object in localstorage
-  const genderLocal = (typeof window !== "undefined") && getLocalStorage('gender');
+  const [storedValue] = useLocalStorage('gender', false)
+  const genderLocal = storedValue;
 
   // Pages where user is redirected to landing if there is no gender saved locally or in state
-  const pagesThatAskForGender = ['/', '/login', '/register', '/brands']
 
   // Update gender state if there is a local gender value
   useEffect(() => {
     if (genderLocal && !genderState) dispatch(updateGender(genderLocal))
-  }, [])
+  }, [genderLocal])
 
   // Gender validations every route or state change
   useEffect(() => {

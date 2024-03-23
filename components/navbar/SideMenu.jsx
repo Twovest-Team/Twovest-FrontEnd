@@ -19,7 +19,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import useGender from "@/hooks/useGender";
 import useAuth from "@/hooks/useAuth";
 import { genders } from "@/constants";
-import { usePathname, useRouter } from "next/navigation";
 import refreshData from "@/utils/refreshData";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
@@ -28,8 +27,6 @@ export const SideMenu = () => {
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
-  const router = useRouter();
-  const pathname = usePathname();
 
   const currentUser = useAuth();
   const [gender, setGender] = useGender();

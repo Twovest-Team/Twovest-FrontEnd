@@ -1,5 +1,4 @@
-import womenModel from "@/public/images/landing_page/landing_mulher.png";
-import menModel from "@/public/images/landing_page/landing_homem.png";
+
 
 const general_categories = [
     {
@@ -173,13 +172,11 @@ const genders = [
         id: 0,
         string: 'women',
         stringPT: 'Mulher',
-        image: womenModel
     },
     {
         id: 1,
         string: 'men',
         stringPT: 'Homem',
-        image: menModel
     }
 ]
 

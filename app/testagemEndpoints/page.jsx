@@ -23,13 +23,15 @@ import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 export const revalidate = 0;
 
 const page = async () => {
-  // Variável onde se deve guardar a resposta da API
-    const data = await getCollections(22)
-  
+
+    // Variável onde se deve guardar a resposta da API
+    const response = await fetch(process.env.NEXT_PUBLIC_URL + '/api/genders/get')
+    const data = await response.text()
+    console.log(data)
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         
       </main>
     )

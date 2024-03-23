@@ -95,7 +95,7 @@ export default function LookCard({
           </Link>
 
           <div className="mt-3.5">
-            {!slider ? <SaveLookButton /> : slider === true && null}
+            {!slider ? <SaveLookButton lookId={look.id} /> : slider === true && null}
           </div>
         </div>
       </div>

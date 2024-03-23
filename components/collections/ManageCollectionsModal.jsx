@@ -9,15 +9,18 @@ import useAuth from "@/hooks/useAuth";
 import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";
+import { usePathname, useSearchParams } from "next/navigation";
 
-const ManageCollectionModal = ({ lookId }) => {
+const ManageCollectionModal = () => {
 
-  // This will determine the order and which modal is showing
-  const isSavingLook = lookId ? true : false
-
-  const currentUser = useAuth()
   const isModalOpen = useAppSelector(state => state.modals['createCollection']);
+  const currentUser = useAuth();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+
+  // LookId from url "save" param
+  const [lookId, setLookId] = useState(searchParams.get('save'))
 
   // Collection name state
   const [nameState, setNameState] = useState('')
@@ -26,29 +29,39 @@ const ManageCollectionModal = ({ lookId }) => {
   const [privacyValue, setPrivacyValue] = useState(1)
 
   // Form section state
-  const [currentSection, setCurrentSection] = useState(isSavingLook ? 0 : 1)
+  const [currentSection, setCurrentSection] = useState(lookId ? 0 : 1)
 
   // All collections from user needed when saving a new look
   const [collectionsData, setCollectionsData] = useState()
 
+  // Get collections data everytime there is a look id
   useEffect(() => {
     async function getData() {
       const data = await getCollections({ ownerId: currentUser.id });
       if (data) setCollectionsData(data)
     }
 
-    if (!collectionsData && lookId && currentUser) getData()
-  }, [currentUser])
+    if (lookId && currentUser) getData()
+  }, [currentUser, lookId])
 
+  // Reset form section depending on url params
+  useEffect(() => {
+    const saveParam = searchParams.get('save')
+    setLookId(saveParam)
+    setCurrentSection(saveParam ? 0 : 1)
+  }, [searchParams, pathname])
 
+  // Go to modal next section
   function nextSection() {
     setCurrentSection(currentSection + 1)
   }
 
-  function previousSection(){
-    if(currentSection != 0 && currentSection != 3) setCurrentSection(currentSection - 1)
+  // Go to modal previous section
+  function previousSection() {
+    if (currentSection != 0 && currentSection != 3) setCurrentSection(currentSection - 1)
   }
 
+  // Function to create a new collection in the db
   async function submitNewCollection() {
     if (!nameState && !privacyValue && !currentUser) return null
     const isCollectionCreated = await handleCreateCollection(currentUser.id, nameState, privacyValue)
@@ -61,17 +74,16 @@ const ManageCollectionModal = ({ lookId }) => {
       setTimeout(() => {
         setNameState('')
         setPrivacyValue(1)
-        setCurrentSection(isSavingLook ? 0 : 1)
+        setCurrentSection(lookId ? 0 : 1)
       }, 1000)
     }
 
   }, [isModalOpen])
 
-
   return (
-    <Modal id='createCollection'  goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
+    <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
 
-      {currentSection === 0 && isSavingLook && currentUser && collectionsData &&
+      {currentSection === 0 && lookId && currentUser && collectionsData &&
         <SaveLookSection
           collectionsData={collectionsData}
           lookId={lookId}
@@ -111,13 +123,14 @@ const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
   return (
     <>
       <div>
-        <h6 className="font-semibold">Guardar look</h6>
+        <h6 className="font-semibold">Guardar look {lookId}</h6>
         <p className="text-secondary">Em que coleção vais querer guardar este look?</p>
       </div>
 
       {collectionsData &&
         <div className="max-h-[225px] overflow-y-scroll">
           <CollectionList
+            toSaveLook
             collections={collectionsData}
             ownerId={ownerId}
             isOwner={true}

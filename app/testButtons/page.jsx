@@ -14,7 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 
-const page = () => {
+const TestButtons = () => {
 
 
     const types = ['primary', 'black', 'black-outlined', 'white', 'white-outlined', 'grey', 'error', 'warning']
@@ -243,5 +243,5 @@ const page = () => {
     )
 }
 
-export default page
+export default TestButtons
 

@@ -767,7 +767,7 @@ incorporados no footer. -------- João Paixão */
 /* -- VASCO -- */
 .scroll_bar-invisible {
   overflow: scroll!important;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   /* For Firefox */
   scrollbar-color: transparent transparent;
   /* For Firefox */

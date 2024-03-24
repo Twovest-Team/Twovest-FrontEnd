@@ -27,10 +27,10 @@ export const BrandCards = ({ data, gender }) => {
   const brand = data;
 
   return (
-    <div className="2xl:w-[1440px] md:w-[600px] lg:w-[960px] mx-auto">
+    <div className="container">
       <h6 className="font-semibold mb-4">Marcas</h6>
       <ul
-        className={`mx-auto grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5 lg:grid-cols-4 ${numBrandsToShow} `}
+        className={`grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5 lg:grid-cols-4 ${numBrandsToShow} `}
       >
         {brand.slice(0, numBrandsToShow).map((item) => (
           <li key={item.id}>

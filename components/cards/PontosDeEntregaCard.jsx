@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { IconPontosDeEntrega } from "../items/IconPontosDeEntrega";
-import { Buttons } from "../buttons/Buttons";
+import Button from "../buttons/Button";
 const PontosDeEntregaCard = () => {
   return (
     <div className="w-full md:w-[620px] container text-center ">
@@ -17,16 +16,11 @@ const PontosDeEntregaCard = () => {
         >
           Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!
         </div>
-        <Link href={"/"}>
-          <Buttons
-            ariaLabel="Ir para pontos de Entrega"
-            btnState="defaultMain"
-            text="Ir para pontos de Entrega"
-            icon=""
-            btnSize="menuSize4"
-            className={"px-2"}
-          ></Buttons>
-        </Link>
+
+        <Button className="mx-auto" href="/" type={'primary'} ariaLabel='Ir para pontos de Entrega'>
+          Ir para pontos de Entrega
+        </Button>
+
 
         <div className="bg-black absolute -top-10 left-1/2 -translate-x-1/2 text-white rounded-full w-20 aspect-square flex items-center justify-center">
           <IconPontosDeEntrega alt="icon pontos de entrega" />

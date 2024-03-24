@@ -1,7 +1,6 @@
 "use client";
 
 import ImageSwiper from "@/components/Carousel/Swiper";
-import { Buttons } from "@/components/buttons/Buttons";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
@@ -12,6 +11,9 @@ import Link from "next/link";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";
+import Button from "@/components/buttons/Button";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 export default function Home() {
 
@@ -41,40 +43,43 @@ export default function Home() {
     }
   }, [brands, dataPopular, gender]);
 
+  if (!gender) return null
+
   return (
     <main>
       <ImageSwiper />
 
-      <section className="mt-14 mb-24 px-6 md:px-0 sectionDesktopTopSearched md:w-[600px] lg:w-[960px] 2xl:w-[1440px] mx-auto">
-        <h6 className="font-semibold ">Mais Procurados 🔥</h6>
+      <section className="mt-14 mb-2 mx-24">
+        <h6 className="font-semibold container">Mais Procurados 🔥</h6>
         <div className="flex my-6 overflow-auto overflow-x-scroll">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}
         </div>
       </section>
 
-      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands ">
-        
+      <section className="mt-14 mb-24">
         {brands && <BrandCards data={brands} gender={gender} />}
       </section>
 
-      <section className="mt-14 py-24 text-white bg-black sectionDesktopHomepageGallery px-6 md:px-0 ">
-        <article className="2xl:w-[1440px] mx-auto md:w-[600px] lg:w-[960px]">
-        <h6 className="font-semibold mb-6 ">Galeria de Looks</h6>
-        <div className="flex overflow-auto mb-4">
-          {looks && <LooksHomepage data={looks} />}
-        </div>
-        <div className="px-2 pt-1">
-          <p className="mb-5 mt-2">🔥 Descobre novos looks e inspira-te!</p>
+      <section className="mt-14 py-24 text-white bg-black ">
+        <article>
+          <h6 className="font-semibold mb-6 container ">Galeria de Looks</h6>
 
-          <Link href={`/gallery/women`} className="mx-auto  md:float-right">
-            <Buttons
-              ariaLabel={"Ir para a Galeria"}
-              btnState={"galeryMain"}
-              text={"Ir para a Galeria ->"}
-              btnSize={"modalSize6"}
-            />
-          </Link>
-        </div>
+          <div className="flex overflow-auto mb-4">
+            {looks && <LooksHomepage data={looks} />}
+          </div>
+
+          <div className="container md:flex justify-between items-start mt-10">
+            <p className="mb-6">🔥 Descobre novos looks e inspira-te!</p>
+
+            <div className="md:w-[18rem]">
+              <Button type={'white-outlined'} ariaLabel='Ir para a Galeria de Looks' width='full' justify='between' href={`/gallery/${gender.string}`}>
+                Ir para a galeria
+                <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+              </Button>
+            </div>
+
+          </div>
+
         </article>
       </section>
 

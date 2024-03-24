@@ -11,6 +11,7 @@ import ProductNav from "@/components/sections/ProductNav";
 import ProductSkeleton from "@/components/loadingSkeletons/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
+import Button from "@/components/buttons/Button";
 
 export const revalidate = 60;
 
@@ -64,12 +65,13 @@ async function ProductContent({ productId, productGender }) {
                   {getCategoryName(data.categories.id)} {data.brands.name}
                 </h5>
               </div>
-              <Link
-                href={"/"}
-                className="bg-dark block hover:bg-dark_gray text-center text-white py-3.5 font-semibold rounded"
-              >
+              
+
+              <Button type={'black'} ariaLabel='Ver as melhores ofertas' width='full'>
                 Ver as melhores ofertas
-              </Link>
+              </Button>
+
+
             </div>
           </div>
         </div>

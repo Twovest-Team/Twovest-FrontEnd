@@ -1,6 +1,6 @@
 import { CardCart } from "../cards/CardCart";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
-import { Buttons } from "../buttons/Buttons";
+import Button from "../buttons/Button";
 const ShopSectionOne = ({
   handleLoading,
   handleShowDeleteNotification,
@@ -29,9 +29,8 @@ const ShopSectionOne = ({
           <div>
             <h6
               className="font-semibold"
-              aria-label={`Total (${productsData && productsData.length} ${
-                productsData.length === 1 ? "artigo" : "artigos"
-              })`}
+              aria-label={`Total (${productsData && productsData.length} ${productsData.length === 1 ? "artigo" : "artigos"
+                })`}
             >
               Total ({productsData && productsData.length}{" "}
               {productsData.length === 1 ? "artigo" : "artigos"})
@@ -43,11 +42,10 @@ const ShopSectionOne = ({
           <div>
             <h6
               className="font-semibold"
-              aria-label={`Total do Carrinho: ${
-                productsData.length > 0
+              aria-label={`Total do Carrinho: ${productsData.length > 0
                   ? getCartTotalPrice(productsData) + " euros"
                   : "Carrinho vazio"
-              }`}
+                }`}
             >
               {productsData.length > 0 && (
                 <>{getCartTotalPrice(productsData)}€</>
@@ -56,22 +54,15 @@ const ShopSectionOne = ({
           </div>
         </div>
 
-        <Buttons
-          ariaLabel="Aplicar cupão"
-          btnState="whiteMain"
-          text="Aplicar cupão"
-          icon=""
-          btnSize="menuSize3"
-        ></Buttons>
 
-        <Buttons
-          ariaLabel="Preencher dados de envio"
-          btnState="blackMain"
-          text="Preencher dados de envio"
-          icon=""
-          btnSize="menuSize3"
-          onClick={() => updateStage(2)}
-        ></Buttons>
+        <Button type={'black-outlined'} width="full" ariaLabel='Aplicar um cupão'>
+          Aplicar um cupão
+        </Button>
+
+        <Button onClick={() => updateStage(2)} type={'black'} ariaLabel='Preencher dados de envio' width='full'>
+        Preencher dados de envio
+        </Button>
+
       </div>
     </section>
   );

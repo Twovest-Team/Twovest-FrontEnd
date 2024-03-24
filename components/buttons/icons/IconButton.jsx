@@ -1,7 +1,6 @@
 'use client'
 
 const IconButton = ({ icon, className, onClick, darkMode }) => {
-
     return (
         <button
             onClick={onClick && (() => onClick())}

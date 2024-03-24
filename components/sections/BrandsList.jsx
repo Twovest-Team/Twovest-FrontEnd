@@ -37,7 +37,7 @@ const BrandsList = ({ brandsData }) => {
       </div>
 
       <section className="grid grid-cols-2 grid-cols-desktop gap-6">
-        {filteredBrands.map((brandItem, index) => (
+        {gender && filteredBrands.map((brandItem, index) => (
           <Link
             key={index}
             href={`/brands/${gender.string}/${brandItem.name}`}

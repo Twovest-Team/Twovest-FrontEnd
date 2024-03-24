@@ -45,46 +45,44 @@ export default function Home() {
     <main>
       <ImageSwiper />
 
-      <section className="mt-14 mb-24 sectionDesktopTopSearched">
-        <h6 className="font-semibold px-6 px-desktop">Mais Procurados 🔥</h6>
-        <div className="flex my-6 overflow-auto">
+      <section className="mt-14 mb-24 px-6 md:px-0 sectionDesktopTopSearched md:w-[600px] lg:w-[960px] 2xl:w-[1440px] mx-auto">
+        <h6 className="font-semibold ">Mais Procurados 🔥</h6>
+        <div className="flex my-6 overflow-auto overflow-x-scroll">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}
         </div>
       </section>
 
-      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands">
-        <h6 className="font-semibold mb-4">Marcas</h6>
+      <section className="mt-14 mb-24 px-6 sectionDesktopHomepageBrands ">
+        
         {brands && <BrandCards data={brands} gender={gender} />}
-        <Link href={"/brands"} className="text-right font-semibold ">
-          <div className="my-3">Ver todas as marcas -&gt;</div>
-        </Link>
       </section>
 
-      <section className="mt-14 py-20 text-white bg-black sectionDesktopHomepageGallery">
-        <h6 className="font-semibold mb-6 px-6 ">Galeria de Looks</h6>
+      <section className="mt-14 py-24 text-white bg-black sectionDesktopHomepageGallery px-6 md:px-0 ">
+        <article className="2xl:w-[1440px] mx-auto md:w-[600px] lg:w-[960px]">
+        <h6 className="font-semibold mb-6 ">Galeria de Looks</h6>
         <div className="flex overflow-auto mb-4">
           {looks && <LooksHomepage data={looks} />}
         </div>
-        <div className="px-6 pt-1">
-          <p className="mb-4">🔥 Descobre novos looks e inspira-te!</p>
+        <div className="px-2 pt-1">
+          <p className="mb-5 mt-2">🔥 Descobre novos looks e inspira-te!</p>
 
-          <Link href={`/gallery/women`}>
+          <Link href={`/gallery/women`} className="mx-auto  md:float-right">
             <Buttons
               ariaLabel={"Ir para a Galeria"}
               btnState={"galeryMain"}
-              text={"Ir para a Galeria"}
-              icon={"navigateNext"}
-              btnSize={"modalSize"}
+              text={"Ir para a Galeria ->"}
+              btnSize={"modalSize6"}
             />
           </Link>
         </div>
+        </article>
       </section>
 
       <section
         style={{
           backgroundImage: `url('/images/homepage/pontosdeentregabg.png')`,
         }}
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
+        className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >
         <PontosDeEntregaCard />
       </section>

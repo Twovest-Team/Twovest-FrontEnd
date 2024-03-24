@@ -11,33 +11,59 @@ export default function Footer() {
       <div className="flex justify-center pt-6 pb-10">
         <Image src={LogoWhite} alt="Logótipo Branco da Twovest" priority />
       </div>
-      <div className="flex flex-wrap justify-center text-white">
-        <Link href="/">
-          <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">
-            Contactos
-          </div>
-        </Link>
-        <Link href="/">
-          <div className="footer--text w-44 pl-8">Proteção de dados</div>
-        </Link>
-        <Link href="/">
-          <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">
-            Help center
-          </div>
-        </Link>
-        <Link href="/">
-          <div className="footer--text w-44 pl-8">Termos de serviço</div>
-        </Link>
-        <Link href="/">
-          <div className="footer--text h-10 w-40 pr-4 border-r border-white_opacity_50">
-            Sobre nós
-          </div>
-        </Link>
-        <Link href="/">
-          <div className="footer--text w-44 pl-8">Aviso legal</div>
-        </Link>
+      <div className="grid grid-cols-2 pb-10">
+        <div className="items-center border-r border-white_opacity_50 text-white text-center">
+          <ul>
+            <li className="h-[50px]" key={"Footer-Contactos"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Contactos
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]" key={"Footer-HelpCenter"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Help center
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]" key={"Footer-SobreNos"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Sobre nós
+                </p>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="items-center border-l border-white_opacity_50 text-white text-center">
+          <ul>
+            <li className="h-[50px]" key={"Footer-ProtecaoDeDados"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Proteção de dados
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]" key={"Footer-TermosDeServico"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Termos de serviço
+                </p>
+              </Link>
+            </li>
+            <li className="h-[50px]" key={"Footer-AvisoLegal"}>
+              <Link href="/">
+                <p className="h-full w-full flex items-center justify-center">
+                  Aviso legal
+                </p>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="mt-8 mb-6">
+      <div className="w-full pb-10">
         <SocialMediaLogos />
       </div>
       <hr className="mx-6 mb-6" />
@@ -53,5 +79,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-/* Verificar aviso da consola acerca das imagens e voltar a colocar footer fora do body*/

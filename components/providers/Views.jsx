@@ -18,7 +18,6 @@ const Views = () => {
   }
 
   useEffect(() => {
-    console.log(width && !biggerThan350)
     if (width && !biggerThan350) handleViewChange(1);
     if (isMd) handleViewChange(2);
     if (isLg) handleViewChange(3);

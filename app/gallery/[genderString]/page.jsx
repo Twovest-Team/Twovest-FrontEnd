@@ -31,8 +31,7 @@ const Gallery = async ({ params, searchParams }) => {
       </NavigationTitle>
 
       <FiltersGallery />
-      {/* <FiltersGallery style={style} gender={gender} /> */}
-
+      
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
           <Views />

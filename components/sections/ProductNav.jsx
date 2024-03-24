@@ -46,7 +46,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
 
 
     return (
-        <div ref={divRef} className="top-[68px] w-full max-w-[460px] z-20 fixed transition-all duration-300">
+        <div ref={divRef} className="top-[75px] w-full max-w-[460px] z-20 fixed transition-all duration-300">
             <NavigationTitle>
                 <div className="mr-auto flex flex-row gap-3 items-center">
                     {is_sustainable && <SustainableIcon color='#05CE86' width={32} />}

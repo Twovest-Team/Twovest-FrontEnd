@@ -4,7 +4,7 @@ import LookCard from "@/components/cards/LookCard";
 import { redirect } from "next/navigation";
 import ItemsBox from "@/components/providers/ItemsBox";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import useAuthServer from "@/hooks/useAuthServer";
+import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import getCollectionData from "@/utils/db/collections/getCollectionData";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";

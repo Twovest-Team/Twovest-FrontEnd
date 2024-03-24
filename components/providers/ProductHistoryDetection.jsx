@@ -9,7 +9,7 @@ import { historyMaxLength } from "@/constants";
 import removeFromUserHistory from "@/utils/db/productsViewHistory/removeFromUserHistory";
 import orderUserHistory from "@/utils/db/productsViewHistory/orderUserHistory";
 import getUserHistory from "@/utils/db/productsViewHistory/getUserHistory";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 const ProductHistoryDetection = ({ children, productId }) => {
   const dispatch = useAppDispatch();

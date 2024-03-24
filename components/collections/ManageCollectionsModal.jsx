@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { closeModal } from "@/redux/slices/modalSlice";
 import { useEffect, useState } from "react";
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/client-hooks/useAuth";
 import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";

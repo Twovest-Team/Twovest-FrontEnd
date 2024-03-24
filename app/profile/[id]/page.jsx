@@ -7,7 +7,7 @@ import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
-import useAuthServer from "@/hooks/useAuthServer";
+import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import CollectionList from "@/components/collections/CollectionList";
 import getUserById from "@/utils/db/getUserById";
 import getCollections from "@/utils/db/collections/getCollections";

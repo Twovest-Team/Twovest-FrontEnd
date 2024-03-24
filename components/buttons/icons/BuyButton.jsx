@@ -8,7 +8,7 @@ import { useState } from "react";
 import Notification from "@/components/modals/Notification";
 import LoadingIcon from "./LoadingIcon";
 import { useRouter } from "next/navigation";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/client-hooks/useAuth";
 import { showNotification } from "@/redux/slices/notificationSlice";
 
 

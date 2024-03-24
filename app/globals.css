@@ -19,7 +19,7 @@ body {
   font-size: 16px;
   /* max-width: 460px; */
   margin: auto;
-  padding-top: 68px;
+  padding-top: 75px;
   background-color: white;
   -ms-overflow-style: none;
   /* IE and Edge */
@@ -912,25 +912,7 @@ h6 {
     gap: 20px; 
 }
 }
-@media (min-width: 1050px) and (max-width: 1920px) {
-  .desktopNavLeft {
-    padding-right: 0rem; 
-  }
 
-  .desktopNavRight {
-    padding-left: 0rem;  
-  }
-}
-
-@media (min-width: 1920px) {
-  .desktopNavLeft {
-    padding-right: 11rem;
-  }
-
-  .desktopNavRight {
-    padding-left: 11rem; 
-  }
-}
 
 @media (min-width: 1024px) and (max-width: 1920px) {
   .px-desktop {

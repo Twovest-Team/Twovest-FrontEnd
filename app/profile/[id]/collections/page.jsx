@@ -1,7 +1,7 @@
 
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
-import useAuthServer from "@/hooks/useAuthServer";
+import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import CollectionList from "@/components/collections/CollectionList";
 import getCollections from "@/utils/db/collections/getCollections";
 import getUserById from "@/utils/db/getUserById";

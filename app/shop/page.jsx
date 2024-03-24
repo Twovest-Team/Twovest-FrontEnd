@@ -10,7 +10,7 @@ import ShopSectionTwo from "@/components/sections/ShopSectionTwo";
 import { shopStages } from "@/constants";
 import getUserCartProducts from "@/utils/db/cart/getUserCartProducts";
 import { updateCart } from "@/redux/slices/cartProducts";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 // Shop component
 const Shop = () => {

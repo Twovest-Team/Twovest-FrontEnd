@@ -22,45 +22,38 @@ import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Buttons } from "../buttons/Buttons";
-import GeneralLoading from "../loadingSkeletons/GeneralLoading";
+import useAuth from "@/hooks/client-hooks/useAuth";
+import useWindow from "@/hooks/client-hooks/useWindow";
+
 export const Navbar = ({ children }) => {
+
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
-  const currentUser = useAppSelector((state) => state.user.data);
+  const currentUser = null;
   const supabase = createClientComponentClient();
+  const {isMobile} = useWindow()
 
-  const handleClickMenu = () => {
-    dispatch(toggleMenu());
-  };
+  const handleClickMenu = () => dispatch(toggleMenu());
 
-  const handleClickCart = () => {
-    dispatch(toggleCart());
-  };
-  const handleLoginRouter = () => {
-    router.push("/login");
-  };
+  const handleClickCart = () => dispatch(toggleCart());
+
+  const handleLoginRouter = () => router.push("/login");
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.refresh();
-
     dispatch(changeUserData(null));
   };
 
-  useEffect(() => {
-    async function fetchUserData() {
-      if (!currentUser) {
-        let userData = await getUserData();
-        dispatch(changeUserData(userData));
-      }
-    }
+  if (pathName === "/landing") return null
 
-    fetchUserData();
-  }, [currentUser, dispatch]);
-  if (pathName != "/landing") {
-    return (
-      <nav className="flex justify-between items-center z-30 w-full fixed top-0 px-6 py-3 lg:py-5 bg-white border-b border-gray-200 h-[75px]">
-        <div className="flex desktopNavRight ">
+  return (
+    <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
+      <div className="container flex justify-between items-center h-full">
+
+        {/* NAVBAR LEFT SECTION */}
+        <div className="flex">
+
           <Buttons
             ariaLabel="Localização da navbar"
             icon="menuIcon"
@@ -76,6 +69,7 @@ export const Navbar = ({ children }) => {
               alt="Logo Twovest"
               className="navbar_logo-xs"
             ></Image>
+
             <Image
               src={logo}
               width={130}
@@ -85,7 +79,10 @@ export const Navbar = ({ children }) => {
             ></Image>
           </Link>
         </div>
-        <div className="flex desktopNavLeft justify-between items-center  ">
+
+
+        {/* NAVBAR RIGHT SECTION */}
+        <div className="flex justify-between items-center gap-4">
           <Buttons
             ariaLabel="Ir para a Lista de artigos favoritos"
             icon="favorite2Navbar"
@@ -103,10 +100,11 @@ export const Navbar = ({ children }) => {
               {currentUser && <NotificationCart currentUser={currentUser} />}
             </div>
           </div>
+
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="w-6 h-6 ml-3 mr-4 flex rounded-full border border-gray-300 overflow-hidden">
+                <div className="w-6 h-6 ml-3  flex rounded-full border border-gray-300 overflow-hidden">
                   <Image
                     src={currentUser.img}
                     className="w-fit h-fit"
@@ -117,7 +115,7 @@ export const Navbar = ({ children }) => {
                   />
                 </div>
               </Menu.Button>
-            ) : (
+            ) : isMobile && (
               <Menu.Button>
                 <div className="navbar_icons">
                   <AccountCircleOutlinedIcon />
@@ -143,9 +141,8 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } font-semibold`}
+                          className={`${active && "bg-grey_opacity_50"
+                            } font-semibold`}
                         >
                           <div>
                             <div>
@@ -286,9 +283,8 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } text-error_main  caption`}
+                            className={`${active && "bg-grey_opacity_50"
+                              } text-error_main  caption`}
                           >
                             Sair -&gt;
                           </div>
@@ -296,7 +292,7 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
                   </>
-                ) : (
+                ) : isMobile && (
                   <Menu.Item>
                     {({ active, close }) => (
                       <div className="px-2 py-4">
@@ -307,9 +303,8 @@ export const Navbar = ({ children }) => {
                         <Link
                           href={"/login"}
                           onClick={close}
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } cursor-pointer`}
+                          className={`${active && "bg-grey_opacity_50"
+                            } cursor-pointer`}
                         >
                           <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
                             Iniciar sessão
@@ -334,8 +329,10 @@ export const Navbar = ({ children }) => {
         </div>
 
         {children}
-        <></>
-      </nav>
-    );
-  }
+      </div>
+
+
+    </nav>
+  );
+
 };

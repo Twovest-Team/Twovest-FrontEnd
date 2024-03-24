@@ -1,27 +1,23 @@
 'use client'
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { updateView } from '@/redux/slices/layoutViews'
-import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { updateView } from '@/redux/slices/layoutViews';
 
-const ItemsBox = ({children, fixedView}) => {
+const ItemsBox = ({ children, fixedView }) => {
 
   const dispatch = useAppDispatch()
   const currentView = useAppSelector(state => state.layoutViews.currentValue)
+  if (fixedView) dispatch(updateView(fixedView))
 
-  if(fixedView){
-    dispatch(updateView(fixedView))
-  }
-
-  useEffect(() => {
-    //console.log(currentView)
-  }, [currentView])
-  
+  console.log(currentView)
 
   return (
     <div
-     className={`container mb-16 grid justify-center ${fixedView ? `grid-cols-${fixedView}` : !currentView || currentView === 1 ? 'grid-cols-1' : currentView === 2 && 'grid-cols-2'} items-center gap-4 flex-wrap max-w-[460px]`}>
-        {children}
+      style={{
+        gridTemplateColumns: `repeat(${currentView}, minmax(0, 1fr))`
+      }}
+      className={`container mb-16 grid justify-center items-center gap-4 flex-wrap`}>
+      {children}
     </div>
   )
 }

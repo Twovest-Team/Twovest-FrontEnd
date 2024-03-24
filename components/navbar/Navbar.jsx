@@ -30,7 +30,7 @@ export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
-  const currentUser = null;
+  const currentUser = useAuth();
   const supabase = createClientComponentClient();
   const {isMobile} = useWindow()
 
@@ -104,22 +104,18 @@ export const Navbar = ({ children }) => {
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="w-6 h-6 ml-3  flex rounded-full border border-gray-300 overflow-hidden">
+                <div className="flex w-7 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
-                    className="w-fit h-fit"
+                    className="w-fit h-fit rounded-full"
                     alt="profile image"
-                    fill={false}
-                    width={50}
-                    height={50}
+                    fill={true}
                   />
                 </div>
               </Menu.Button>
             ) : isMobile && (
               <Menu.Button>
-                <div className="navbar_icons">
                   <AccountCircleOutlinedIcon />
-                </div>
               </Menu.Button>
             )}
 

@@ -5,11 +5,10 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import Filters from "@/components/filters_gallery/filtersGallery";
+import FiltersGallery from "@/components/filters_gallery/FiltersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { Buttons } from "@/components/buttons/Buttons";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 export const revalidate = 60;
 
@@ -31,11 +30,12 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </NavigationTitle>
 
-      <Filters style={style} gender={gender} />
+      <FiltersGallery />
+      {/* <FiltersGallery style={style} gender={gender} /> */}
 
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
-          <Views className="view " />
+          <Views />
         </div>
         <div>
           <Link href="/gallery/submitLook">
@@ -50,9 +50,12 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </div>
 
-      <Suspense fallback={<LooksSkeleton />}>
-        <LookList gender={gender} style={style} />
-      </Suspense>
+      <div className="flex justify-center items-center">
+        <Suspense fallback={<LooksSkeleton />}>
+          <LookList gender={gender} style={style} />
+        </Suspense>
+      </div>
+      
     </main>
   );
 };

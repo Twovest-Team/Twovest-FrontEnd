@@ -322,10 +322,6 @@ h6 {
 
 /* Jónatas */
 
-.navbar_icons {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
 
 .navbar_socialMedia {
   margin-left: 0.5rem;
@@ -339,16 +335,6 @@ h6 {
 }
 
 /* Jónatas */
-
-.navbar_icons {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.navbar_icons {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
 
 .navbar_socialMedia {
   margin-left: 0.5rem;
@@ -686,11 +672,6 @@ h6 {
 
   .navbar_logo-sm {
     display: none;
-  }
-
-  .navbar_icons {
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
   }
 
   .navbar_socialMedia {

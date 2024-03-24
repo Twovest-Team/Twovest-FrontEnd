@@ -33,7 +33,7 @@ export default function LookCard({
 
   if (isCollectionCard) return (
     <figure>
-      <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full max-w-[460px] aspect-[17/26] flex justify-center items-center">
+      <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
         <Image
           src={look.url_image}
           alt="Look da galeria"
@@ -56,7 +56,7 @@ export default function LookCard({
     <>
       <div
         className={`${
-          !slider ? "max-w-[460px]" : slider && "w-[160px] min-w-[160px]"
+          slider && "w-[160px] min-w-[160px]"
         } `}
       >
         <Link

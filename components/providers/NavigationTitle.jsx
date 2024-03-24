@@ -8,7 +8,6 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 
 function NavigationTitle({ hasImageBehind, titleText, children }) {
   const router = useRouter();
-  const { isLg } = useWindow()
 
   const handleBack = () => {
     router.back();
@@ -30,13 +29,13 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        {isLg &&
+       
           <IconButton
             darkMode={hasImageBehind}
             icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
-            className={"-translate-x-2.5"}
+            className={"-translate-x-2.5 lg:hidden"}
           />
-        }
+        
     
         <h5
           className="cursor-pointer transition-colors duration-200 hover:text-primary_dark"

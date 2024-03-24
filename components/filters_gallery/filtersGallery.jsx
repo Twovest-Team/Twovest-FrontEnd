@@ -1,66 +1,41 @@
-"use client";
+'use client'
 
-import getAllStyles from "@/utils/db/getAllStyles";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import useGender from "@/hooks/client-hooks/useGender";
 import ContentSlider from "../sliders/ContentSlider";
-import { Buttons } from "../buttons/Buttons";
-import useScroll from "@/hooks/useScroll";
+import useFetch from "@/hooks/client-hooks/useFetch";
+import useScroll from "@/hooks/client-hooks/useScroll";
+import getAllStyles from "@/utils/db/getAllStyles";
+import Link from "next/link";
 
-const Filters = ({ style, gender }) => {
-  const [selectedFilter, setSelectedFilter] = useState(style);
-  const [styles, setStyles] = useState([]);
-  const router = useRouter();
+const FiltersGallery = () => {
 
-  const [scrollX, scrollY ] = useScroll();
+    const categories = useFetch(getAllStyles);
+    const [gender] = useGender();
+    const [scrollX, scrollY] = useScroll();
 
-  useEffect(() => {
-    const storeAllStyles = async () => {
-      const allStyles = await getAllStyles();
-      setStyles(allStyles);
-    };
+    const scrollCSS = scrollY && scrollY >= 75 ? 'shadow-md h-24' : 'h-16'
 
-    storeAllStyles();
-  }, []);
+    return (
+        <ContentSlider
+            className={`sticky top-[75px] z-10 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}>
 
-  const handleFilterChange = (style) => {
-    if (style) {
-      setSelectedFilter(style);
-      router.push(`/gallery/${gender}?style=${style}`);
-    } else {
-      setSelectedFilter();
-      router.push(`/gallery/${gender}`);
-    }
-  };
+            {gender && categories &&
+                <>
+                    <Link className="border-2 border-black px-8 py-2 rounded font-semibold" href={`/gallery/${gender.string}`}>
+                        Todos
+                    </Link>
 
-  return (
-      <ContentSlider
-      className={`sticky  top-[75px] z-10 bg-white  ${scrollY >= 75 ? 'transition-all duration-300 shadow-md h-24' : 'h-16'} flex items-center`}>
+                    {categories.map(e => (
+                        <Link className="border-2 border-black px-8 py-2 rounded font-semibold" key={e.id} href={`/gallery/${gender.string}?style=${e.name}`}>
+                            {e.name}
+                        </Link>
+                    ))}
+                </>
+            }
 
-        <Buttons
-          key="all"
-          className={`filter-button ${!selectedFilter && "active"}`}
-          aria-label="Todos"
-          btnState={!selectedFilter ? "blackMain" : "whiteMain"}
-          text="Todos"
-          btnSize="filterSize"
-          onClick={() => handleFilterChange()}
-        ></Buttons>
 
-        {styles.map((filter) => (
-          <Buttons
-            key={filter.id}
-            className={`filter-button ${selectedFilter && selectedFilter === filter.name && "active"
-              }`}
-            aria-label={filter.name}
-            btnState={selectedFilter === filter.name ? "activeMain" : "whiteMain"}
-            text={filter.name}
-            btnSize="filterSize"
-            onClick={() => handleFilterChange(filter.name)}
-          ></Buttons>
-        ))}
-      </ContentSlider>
-  );
-};
+        </ContentSlider>
+    )
+}
 
-export default Filters;
+export default FiltersGallery

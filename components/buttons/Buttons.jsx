@@ -172,7 +172,7 @@ export const Buttons = ({
       "mr-4 w-10 h-10 mx-auto my-auto text-center flex items-center justify-center",
     newIconSet2: "mr-4 ",
     newIconSet3: "ml-auto",
-    newIconSet4: "ml-2 ",
+    newIconSet4: "",
 
     gallerySize: "w-full h-full px-7 py-3.5  min-[350px]:w-fit",
     iconPack: " w-full h-full flex text-5xl",

@@ -6,14 +6,15 @@ import useFetch from "@/hooks/client-hooks/useFetch";
 import useScroll from "@/hooks/client-hooks/useScroll";
 import getAllStyles from "@/utils/db/getAllStyles";
 import Link from "next/link";
+import Button from "../buttons/Button";
 
-const FiltersGallery = () => {
+const FiltersGallery = ({ currentCategory }) => {
 
     const categories = useFetch(getAllStyles);
     const [gender] = useGender();
     const [scrollX, scrollY] = useScroll();
-
     const scrollCSS = scrollY && scrollY >= 75 ? 'shadow-md h-24' : 'h-16'
+
 
     return (
         <ContentSlider
@@ -21,14 +22,27 @@ const FiltersGallery = () => {
 
             {gender && categories &&
                 <>
-                    <Link className="border-2 border-black px-8 py-2 rounded font-semibold" href={`/gallery/${gender.string}`}>
+
+                    <Button
+                        height='11'
+                        href={`/gallery/${gender.string}`}
+                        type={!currentCategory ? 'black' : 'grey'}
+                        ariaLabel='Todos os looks'
+                    >
                         Todos
-                    </Link>
+                    </Button>
+
 
                     {categories.map(e => (
-                        <Link className="border-2 border-black px-8 py-2 rounded font-semibold" key={e.id} href={`/gallery/${gender.string}?style=${e.name}`}>
+                        <Button
+                            key={e.id}
+                            height='11'
+                            href={`/gallery/${gender.string}?style=${e.name}`}
+                            type={currentCategory === e.name ? 'black' : 'grey'}
+                            ariaLabel={`Estilo: ${e.name}`}
+                        >
                             {e.name}
-                        </Link>
+                        </Button>
                     ))}
                 </>
             }

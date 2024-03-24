@@ -10,7 +10,7 @@ export default async function Alloffers({ params }) {
   //console.log("Fetched result:", result);
   return (
     <div>
-      <NavigationTitle titleText="Offers" className="titlenav" />
+      <NavigationTitle titleText="Offers" />
       <div className="justify-center items-center mx-4 p-2 ">
         <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
           <div id="firstClick" className="flex text-secondary">

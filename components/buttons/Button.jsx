@@ -25,7 +25,7 @@ const Button = (props) => {
 
     const borderRadius = 'rounded' + ((radius && '-' + radius) || '');
 
-    const buttonHeight = onlyIcon ? 'aspect-square' : 'h-' + (height || '12');
+    const buttonHeight = onlyIcon ? 'aspect-square' : 'h-' + (height || '14');
 
     const justifyContent = !onlyIcon && `justify-${justify === 'between' ? 'between px-6' : (justify || 'center') + ' px-9'}`
 

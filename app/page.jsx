@@ -1,7 +1,6 @@
 "use client";
 
 import ImageSwiper from "@/components/Carousel/Swiper";
-import { Buttons } from "@/components/buttons/Buttons";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
@@ -12,6 +11,9 @@ import Link from "next/link";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";
+import Button from "@/components/buttons/Button";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 export default function Home() {
 
@@ -41,6 +43,8 @@ export default function Home() {
     }
   }, [brands, dataPopular, gender]);
 
+  if (!gender) return null
+
   return (
     <main>
       <ImageSwiper />
@@ -64,15 +68,15 @@ export default function Home() {
             {looks && <LooksHomepage data={looks} />}
           </div>
 
-          <div className="container">
-            <p className="my-5">🔥 Descobre novos looks e inspira-te!</p>
+          <div className="container md:flex justify-between items-start mt-10">
+            <p className="mb-6">🔥 Descobre novos looks e inspira-te!</p>
 
-            <Buttons
-              ariaLabel={"Ir para a Galeria"}
-              btnState={"galeryMain"}
-              text={"Ir para a Galeria ->"}
-              btnSize={"modalSize6"}
-            />
+            <div className="md:w-[18rem]">
+              <Button type={'white-outlined'} ariaLabel='Ir para a Galeria de Looks' width='full' justify='between' href={`/gallery/${gender.string}`}>
+                Ir para a galeria
+                <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+              </Button>
+            </div>
 
           </div>
 

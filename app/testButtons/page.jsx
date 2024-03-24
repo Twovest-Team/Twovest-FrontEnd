@@ -158,7 +158,7 @@ const TestButtons = () => {
                         ariaLabel='WRITE HERE'
                     >
                         {capitalizeFirstLetter(selectedType)} button
-                        <FavoriteIcon className='translate-x-1' sx={{ fontSize: 21 }} />
+                        <FavoriteIcon className='translate-x-2' sx={{ fontSize: 21 }} />
                     </Button>
                 </div>
 
@@ -172,7 +172,7 @@ const TestButtons = () => {
                         justify='between'
                     >
                         {capitalizeFirstLetter(selectedType)} button
-                        <KeyboardArrowRightIcon className='translate-x-1' sx={{ fontSize: 28 }} />
+                        <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
                     </Button>
                 </div>
 
@@ -185,7 +185,7 @@ const TestButtons = () => {
                         width='full'
                         justify='between'
                     >
-                        <KeyboardArrowLeftIcon className='-translate-x-1' sx={{ fontSize: 28 }} />
+                        <KeyboardArrowLeftIcon className='-translate-x-2' sx={{ fontSize: 28 }} />
                         {capitalizeFirstLetter(selectedType)} button
                     </Button>
                 </div>

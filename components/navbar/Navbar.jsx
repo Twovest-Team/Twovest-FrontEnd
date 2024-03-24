@@ -3,16 +3,10 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-//import de icons materialUI
-import MenuIcon from "@mui/icons-material/Menu";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
-import getUserData from "@/utils/db/getUserByEmail";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
@@ -21,9 +15,17 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Buttons } from "../buttons/Buttons";
 import useAuth from "@/hooks/client-hooks/useAuth";
 import useWindow from "@/hooks/client-hooks/useWindow";
+import Button from "../buttons/Button";
+import IconButton from "../buttons/icons/IconButton";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import SearchIcon from '@mui/icons-material/Search';
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+
+
+
 
 export const Navbar = ({ children }) => {
 
@@ -32,13 +34,11 @@ export const Navbar = ({ children }) => {
   const pathName = usePathname();
   const currentUser = useAuth();
   const supabase = createClientComponentClient();
-  const {isMobile} = useWindow()
+  const { isMobile } = useWindow()
 
   const handleClickMenu = () => dispatch(toggleMenu());
 
   const handleClickCart = () => dispatch(toggleCart());
-
-  const handleLoginRouter = () => router.push("/login");
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -52,13 +52,13 @@ export const Navbar = ({ children }) => {
       <div className="container flex justify-between items-center h-full">
 
         {/* NAVBAR LEFT SECTION */}
-        <div className="flex">
+        <div className="flex gap-4">
 
-          <Buttons
-            ariaLabel="Localização da navbar"
-            icon="menuIcon"
-            btnSize="newIconSet2"
-            onClick={handleClickMenu}
+      
+          <IconButton
+          ariaLabel={'Abrir menu de navegação.'}
+          icon={<MenuIcon />}
+          onClick={handleClickMenu}
           />
 
           <Link href={"/"} className="items-center flex">
@@ -82,18 +82,19 @@ export const Navbar = ({ children }) => {
 
 
         {/* NAVBAR RIGHT SECTION */}
-        <div className="flex justify-between items-center gap-4">
-          <Buttons
-            ariaLabel="Ir para a Lista de artigos favoritos"
-            icon="favorite2Navbar"
-            btnSize="newIconSet4"
+        <div className="flex justify-between items-center gap-3">
+
+        <IconButton
+            icon={<SearchIcon />}
+          />
+
+          <IconButton
+            icon={<FavoriteBorderOutlinedIcon />}
           />
 
           <div className="relative">
-            <Buttons
-              ariaLabel="Ir para cesto de compras"
-              icon="localBag"
-              btnSize="newIconSet4"
+            <IconButton
+              icon={<LocalMallOutlinedIcon />}
               onClick={handleClickCart}
             />
             <div className="cursor-pointer" onClick={handleClickCart}>
@@ -104,7 +105,7 @@ export const Navbar = ({ children }) => {
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="flex w-7 aspect-square rounded-full border border-gray-300 relative">
+                <div className="flex w-8 h-8 ml-2 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
                     className="w-fit h-fit rounded-full"
@@ -115,7 +116,7 @@ export const Navbar = ({ children }) => {
               </Menu.Button>
             ) : isMobile && (
               <Menu.Button>
-                  <AccountCircleOutlinedIcon />
+                <AccountCircleOutlinedIcon />
               </Menu.Button>
             )}
 
@@ -315,12 +316,9 @@ export const Navbar = ({ children }) => {
           </Menu>
 
           {!currentUser && (
-            <Buttons
-              btnState="blackMain"
-              text="Login | Registo"
-              btnSize="navBarButton"
-              onClick={handleLoginRouter}
-            />
+            <Button height="11" href="/login" type={'black'} ariaLabel='Fazer login ou gegisto' width='fit'>
+              Login | Registar
+            </Button>
           )}
         </div>
 

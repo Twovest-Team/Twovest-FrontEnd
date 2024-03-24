@@ -10,6 +10,7 @@ import LoadingIcon from "./LoadingIcon";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/client-hooks/useAuth";
 import { showNotification } from "@/redux/slices/notificationSlice";
+import Button from "../Button";
 
 
 const BuyButton = ({ offerId }) => {
@@ -35,16 +36,17 @@ const BuyButton = ({ offerId }) => {
 
   return (
     <>
-      <button
-        onClick={handleClick}
-        className="bg-primary_main text-white w-12 h-12 rounded flex justify-center items-center"
-      >
-        {!loading ? <LocalMallOutlinedIcon /> : <LoadingIcon size={22} />}
-      </button>
 
-      
+      <Button onClick={handleClick} className='p-3.5' type={'primary'} ariaLabel='Adicionar ao carrinho' onlyIcon={true}>
+        <div className="w-6 h-6 flex justify-center items-center">
+          {!loading ? <LocalMallOutlinedIcon /> : <LoadingIcon size={22} />}
+        </div>
+      </Button>
+
+
+
       <Notification id={'buyButton'} type={"Success"} message={"Artigo adicionado"} />
-      
+
     </>
   );
 };

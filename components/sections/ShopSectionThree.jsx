@@ -1,12 +1,13 @@
-import { Buttons } from "../buttons/Buttons";
-import { PaymentButtons } from "../buttons/PaymentButtons";
+import Button from "../buttons/Button";
+import GooglePayLogo from "@/public/images/payments/google_pay_logo.svg";
+import PaypalLogo from "@/public/images/payments/paypal_logo.svg";
+import MastercardLogo from "@/public/images/payments/mastercard_logo.svg";
+import MBWayLogo from "@/public/images/payments/mbway_logo.svg";
+import Image from "next/image";
 import axios from "axios";
 
 const ShopSectionThree = ({ productsData, userData }) => {
-  //console.log(userData)
-  //const produtos = productsData[0];
-  //console.log(produtos)
-
+  
   const handlePurchase = async (produtos) => {
     const purchaseData = produtos.map((produto) => ({
       price_data: {
@@ -23,12 +24,12 @@ const ShopSectionThree = ({ productsData, userData }) => {
       quantity: produto.qty,
     }));
 
-  try {
-    const { data } = await axios.post("/api/payment", purchaseData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const { data } = await axios.post("/api/payment", purchaseData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       // Redirect to the payment URL (assuming the API response contains the URL)
       window.location.assign(data);
@@ -39,45 +40,42 @@ const ShopSectionThree = ({ productsData, userData }) => {
   };
 
   return (
-    <div className="mx-4">
-      <p className="font-semibold px-4 my-4">Escolhe um método de pagamento</p>
+    <div className="container">
+      <h6
+        className="flex gap-2 items-center font-semibold"
+      >
+        Escolhe um método de pagamento
+      </h6>
 
-      {/* Wrap the relevant part of your app with Elements provider */}
-      <div className="px-4">
-        <Buttons
-          btnState={"whiteMain2"}
-          text={"Cartão De Crédito"}
-          btnSize={"menuSize5"}
-          icon={"creditCard"}
-          onClick={() => handlePurchase(productsData)}
-          ariaLabel={"Pagar por Cartão de crédito"}
-        ></Buttons>
-        <Buttons
-          btnState={"whiteMain2"}
-          text={"MBWay"}
-          btnSize={"menuSize5"}
-          icon={"mbWay"}
-          onClick={() => handlePurchase(productsData)}
-          ariaLabel={"Pagar por mbway"}
-        ></Buttons>
+      <div className="flex flex-col gap-4 mt-4">
 
-        <Buttons
-          btnState={"whiteMain2"}
-          text={" GPay"}
-          btnSize={"menuSize5"}
-          icon={"gpay"}
-          onClick={() => handlePurchase(productsData)}
-          ariaLabel={"Pagar com Google Pay"}
-        ></Buttons>
 
-        <Buttons
-          btnState={"whiteMain2"}
-          text={"Paypal"}
-          btnSize={"menuSize5"}
-          icon={"Paypal"}
-          onClick={() => handlePurchase(productsData)}
-          ariaLabel={"Pagar Com Paypal"}
-        ></Buttons>
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com Cartão De Crédito' width='full'>
+          <Image className="mr-2" src={MastercardLogo} alt="Logótipo da Mastercard" width={30} height={18} styles={{ width: 'auto', height: 'auto' }} />
+          Cartão De Crédito
+        </Button>
+
+
+
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com MBWay' width='full'>
+          <Image className="mr-2" src={MBWayLogo} alt="Logótipo do MBWay" width={30} height={19}/>
+          MBWay
+        </Button>
+
+
+
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com GPay' width='full'>
+          <Image className="mr-2" src={GooglePayLogo} alt="Logótipo do GooglePay" width={30} height={17}/>
+          GPay
+        </Button>
+
+
+
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com Paypal' width='full'>
+          <Image className="mr-2" src={PaypalLogo} alt="Logótipo do GooglePay" width={30} height={17}/>
+          Paypal
+        </Button>
+
       </div>
     </div>
   );

@@ -8,8 +8,8 @@ import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
-import { Buttons } from "../buttons/Buttons";
 import { useAppDispatch } from "@/redux/hooks";
+import Button from "../buttons/Button";
 
 const ShopSectionTwo = ({ userData, updateStage }) => {
   const [steps, setSteps] = useState([
@@ -131,9 +131,8 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
               className="flex flex-col gap-4 rounded"
             >
               <div
-                className={`${
-                  steps[1].confirmed && "pointer-events-none opacity-60"
-                } flex flex-col gap-4`}
+                className={`${steps[1].confirmed && "pointer-events-none opacity-60"
+                  } flex flex-col gap-4`}
               >
                 <Select
                   data={portugalDistricts}
@@ -179,39 +178,30 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
               </div>
 
               {!steps[1].confirmed && (
-                <Buttons
-                  ariaLabel="Confirmar recolha"
-                  btnState="blackMain"
-                  text="Confirmar recolha"
-                  btnSize="menuSize3"
-                  type="submit"
-                />
+                <Button type={'black'} ariaLabel='Confirmar recolha' width='full'>
+                  Confirmar recolha
+                </Button>
               )}
             </form>
 
             {steps[1].confirmed && (
-              <Buttons
-                ariaLabel="Alterar"
-                btnState="whiteMain"
-                text="Alterar"
-                btnSize="menuSize3"
-                onClick={() => handleStep(false)}
-              />
+
+              <Button onClick={() => handleStep(false)} type={'black-outlined'} ariaLabel='Alterar dados de recolha' width='full'>
+                Alterar
+              </Button>
+
             )}
           </div>
         </div>
 
-        <Buttons
-          ariaLabel="Efetuar pagamento"
-          btnState={"defaultMain"}
-          text="Efetuar pagamento"
-          btnSize="menuSize3"
-          onClick={handleNextStage}
-        />
+        <Button onClick={handleNextStage} type={'primary'} ariaLabel='Efetuar pagamento' width='full'>
+          Efetuar pagamento
+        </Button>
+
       </section>
 
-      
-        <Notification id={'formError'} type={"Error"} message={"Preenche todos os campos"} />
+
+      <Notification id={'formError'} type={"Error"} message={"Preenche todos os campos"} />
 
     </>
   );

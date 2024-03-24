@@ -12,8 +12,14 @@ import Link from "next/link";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import Notification from "../modals/Notification";
-import { Buttons } from "../buttons/Buttons";
 import { showNotification } from "@/redux/slices/notificationSlice";
+import { NoResultsNotice } from "../sections/NoResultsNotice";
+import Button from "../buttons/Button";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import IconButton from "../buttons/icons/IconButton";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+
+
 
 export const Cart = () => {
   const dispatch = useAppDispatch();
@@ -72,37 +78,34 @@ export const Cart = () => {
             </p>
           </div>
           <div>
-            <Buttons
-              btnState=""
-              text="Fechar cesto de compras"
-              icon="closeOutline"
-              btnSize="newIconSet2"
+
+            <IconButton
+              ariaLabel={'Fechar cesto de compras'}
+              icon={<CloseOutlinedIcon />}
               onClick={handleClickCart}
-            ></Buttons>
+            />
+
           </div>
         </div>
       </div>
 
       <div>
         <div
-          className={`${
-            products.length === 0 && "absolute"
-          } caption container py-6 shadow-md flex gap-2 items-center`}
+          className={`${products.length === 0 && "absolute"
+            } caption container py-6 shadow-md flex gap-2 items-center`}
         >
           <CheckCircleOutlineIcon className="text-primary_main text-[20px] -translate-y-[1px]" />
           <p
-            className="underline underline-offset-2 "
-            aria-label="Levantamento grátis em um ponto de recolha."
+            className="underline underline-offset-2"
           >
-            Levantamento grátis em um ponto de recolha.
+            Levantamento grátis num ponto de recolha.
           </p>
         </div>
       </div>
 
       <div
-        className={`flex flex-grow flex-col transition-opacity duration-75 scroll_bar-invisible [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 container pt-8 ${
-          loading && "opacity-20 pointer-events-none"
-        }`}
+        className={`flex flex-grow flex-col transition-opacity duration-75 scroll_bar-invisible [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 container pt-8 ${loading && "opacity-20 pointer-events-none"
+          }`}
       >
         {products.length > 0 && currentUser && (
           <>
@@ -120,56 +123,25 @@ export const Cart = () => {
 
         {products.length === 0 && currentUser && (
           <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-            <LocalMallOutlinedIcon
-              sx={{ fontSize: 60 }}
-              className="text-[60px] mb-4"
-            />
-            <h6 className="font-semibold" aria-label="Cesto de compras">
-              Cesto de compras
-            </h6>
-            <p
-              className="text-center text-secondary mb-4 max-w-[230px]"
-              aria-label=" Os artigos que adicionares ao cesto irão aparecer aqui."
-            >
-              Os artigos que adicionares ao cesto irão aparecer aqui.
-            </p>
-
-            <Buttons
-              ariaLabel="Abrir menu"
-              btnState="blackMain"
-              text="Abrir menu"
-              icon=""
-              btnSize="modelSize3"
+            <NoResultsNotice
+              title={'Vamos às compras?'}
+              text={'Os artigos que adicionares ao cesto vão aparecer aqui.'}
+              icon={<LocalMallOutlinedIcon sx={{ fontSize: 60 }} />}
+              btnText={'Abrir Menu'}
               onClick={() => {
                 dispatch(toggleMenu()), dispatch(toggleCart());
               }}
-            ></Buttons>
+            />
           </div>
         )}
 
         {products.length === 0 && !currentUser && (
-          <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
-            <LocalMallOutlinedIcon sx={{ fontSize: 60 }} className="mb-4" />
-            <h6 className="font-semibold" aria-label="Estás ai?">
-              Estás aí?
-            </h6>
-            <p
-              className="text-center text-secondary mb-4 max-w-[230px]"
-              area-label="Inicia sessão para comprar artigos."
-            >
-              Inicia sessão para comprar artigos.
-            </p>
-
-            <Link href={"/login"}>
-              <Buttons
-                ariaLabel="Iniciar sessão"
-                btnState="blackMain"
-                text="Iniciar sessão"
-                btnSize="modelSize3"
-                onClick={() => dispatch(toggleCart())}
-              ></Buttons>
-            </Link>
-          </div>
+          <NoResultsNotice
+            title={'Estás aí?'}
+            text={'Faz login para adicionares artigos ao cesto de compras.'}
+            icon={<LocalMallOutlinedIcon sx={{ fontSize: 60 }} />}
+            btnText={'Iniciar sessão'}
+          />
         )}
       </div>
 
@@ -179,9 +151,8 @@ export const Cart = () => {
             <div>
               <h6
                 className="font-semibold"
-                aria-label={`Total de ${products && products.length} ${
-                  products && products.length === 1 ? "artigo" : "artigos"
-                }`}
+                aria-label={`Total de ${products && products.length} ${products && products.length === 1 ? "artigo" : "artigos"
+                  }`}
               >
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
@@ -193,11 +164,10 @@ export const Cart = () => {
             <div>
               <h6
                 className="font-semibold"
-                aria-label={`Total do carrinho: ${
-                  products.length > 0
-                    ? getCartTotalPrice(products) + " euros"
-                    : "Carrinho vazio"
-                }`}
+                aria-label={`Total do carrinho: ${products.length > 0
+                  ? getCartTotalPrice(products) + " euros"
+                  : "Carrinho vazio"
+                  }`}
               >
                 {products.length > 0 && <>{getCartTotalPrice(products)}€</>}
               </h6>
@@ -206,14 +176,10 @@ export const Cart = () => {
 
           <div className=" my-6 ">
             <Link href={"/shop"}>
-              <Buttons
-                ariaLabel="Proceder com a compra"
-                btnState="defaultMain"
-                text="Proceder com a compra"
-                icon="nextStart"
-                btnSize="menuSize2"
-                onClick={() => dispatch(toggleCart())}
-              ></Buttons>
+              <Button onClick={() => dispatch(toggleCart())} type={'primary'} ariaLabel='Proceder com a compra' justify="between" width='full'>
+                Proceder com a compra
+                <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+              </Button>
             </Link>
           </div>
         </div>

@@ -879,13 +879,6 @@ h6 {
 }
 
 
-@media (max-width: 287px) {
-  .titlenav  {
-    font-size: 0.2rem; 
-  }
-}
-
-
 @media (min-width: 1024px) and (max-width: 1920px) {
   .grid-cols-desktop {
     display: grid;

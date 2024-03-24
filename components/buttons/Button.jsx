@@ -21,11 +21,11 @@ const Button = (props) => {
 
     const defaultStyles = `font-semibold transition-colors duration-200 whitespace-nowrap flex items-center gap-1.5`;
 
-    const buttonWidth = 'w-' + (width || 'fit');
+    const buttonWidth = width ? ('w-' + width) : 'w-fit';
 
-    const borderRadius = 'rounded' + ((radius && '-' + radius) || '');
+    const borderRadius = radius ? ('rounded-' + radius) :  'rounded';
 
-    const buttonHeight = onlyIcon ? 'aspect-square' : 'h-' + (height || '14');
+    const buttonHeight = onlyIcon ? 'aspect-square' : height ? ('h-' + height) : 'h-14';
 
     const justifyContent = !onlyIcon && `justify-${justify === 'between' ? 'between px-6' : (justify || 'center') + ' px-9'}`
 

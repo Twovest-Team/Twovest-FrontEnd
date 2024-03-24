@@ -5,7 +5,7 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import FiltersGallery from "@/components/filters_gallery/FiltersGallery";
+import FiltersGallery from "@/components/sliders/FiltersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { Buttons } from "@/components/buttons/Buttons";

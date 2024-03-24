@@ -4,6 +4,7 @@ import React from "react";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import IconButton from "../buttons/icons/IconButton";
+import useWindow from "@/hooks/client-hooks/useWindow";
 
 function NavigationTitle({ hasImageBehind, titleText, children }) {
   const router = useRouter();
@@ -19,9 +20,8 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
   };
   return (
     <div
-      className={`flex flex-row justify-between items-center container h-20 ${
-        hasImageBehind && "text-white"
-      }`}
+      className={`flex flex-row justify-between items-center container h-20 ${hasImageBehind && "text-white"
+        }`}
     >
       <div
         className="font-semibold flex flex-row min-w-0 items-center z-10 focus:outline-dashed focus:ring-2 focus:ring-black rounded"
@@ -29,12 +29,15 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        <IconButton
-          darkMode={hasImageBehind}
-          icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
-          className={"-translate-x-2.5"}
-        />
-        <h5 
+       
+          <IconButton
+            darkMode={hasImageBehind}
+            icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
+            className={"-translate-x-2.5 lg:hidden"}
+          />
+        
+    
+        <h5
           className="cursor-pointer transition-colors duration-200 hover:text-primary_dark"
           aria-label={`Está na página ${titleText}. Se clicar, será direcionado para a página anterior.`}
         >

@@ -18,7 +18,7 @@ import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import createCollection from '@/utils/db/collections/createCollection';
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 
 const SaveToCollectionModal = ({ lookId }) => {

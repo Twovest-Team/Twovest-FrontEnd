@@ -5,7 +5,7 @@ import FavoriteButton from "../buttons/icons/FavoriteButton"
 
 const ProductSkeleton = () => {
   return (
-    <section className="flex flex-col h-[calc(100vh-68px)] relative">
+    <section className="flex flex-col h-[calc(100vh-75px)] relative">
       <NavigationTitle>
       </NavigationTitle>
 

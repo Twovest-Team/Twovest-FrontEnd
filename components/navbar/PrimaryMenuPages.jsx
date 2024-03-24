@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import useGender from "@/hooks/useGender";
+import useGender from "@/hooks/client-hooks/useGender";
 
 export const PrimaryMenuPagesList = ({ toggleMenu }) => {
   const [gender] = useGender();

@@ -1,5 +1,5 @@
 import { main_categories, categories } from "@/constants";
-import useGender from "@/hooks/useGender";
+import useGender from "@/hooks/client-hooks/useGender";
 import { useRouter } from "next/navigation";
 
 export const CategoriesList = ({ idCategory, handleClickMenu, handleClickCategory }) => {

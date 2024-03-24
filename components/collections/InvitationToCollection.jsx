@@ -6,7 +6,7 @@ import { openModal } from "@/redux/slices/modalSlice"
 import { useEffect } from "react"
 import { useSearchParams } from 'next/navigation'
 import CollectionPreview from "./CollectionPreview"
-import useAuth from "@/hooks/useAuth"
+import useAuth from "@/hooks/client-hooks/useAuth"
 
 const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCollection }) => {
 

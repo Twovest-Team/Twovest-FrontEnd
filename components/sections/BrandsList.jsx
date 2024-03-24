@@ -5,7 +5,7 @@ import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
-import useGender from "@/hooks/useGender";
+import useGender from "@/hooks/client-hooks/useGender";
 
 const BrandsList = ({ brandsData }) => {
 

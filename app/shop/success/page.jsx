@@ -6,8 +6,6 @@ import removeFromCart from "@/utils/db/cart/removeFromCart";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-//import getUserCartProducts from '@/utils/db/cart/getUserCartProducts';
-import useAuth from "@/hooks/useAuth";
 
 const SuccessPage = ({ currentUser }) => {
   const dispatch = useAppDispatch();

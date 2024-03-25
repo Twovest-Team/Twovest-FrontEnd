@@ -4,11 +4,16 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateView } from "@/redux/slices/layoutViews";
 import useWindow from "@/hooks/client-hooks/useWindow";
 import { useEffect } from "react";
+import oneRowButton from "@/public/images/viewmodel-icons/1row.png";
+import twoRowsButton from "@/public/images/viewmodel-icons/2rows.png";
+import threeRowsButton from "@/public/images/viewmodel-icons/3rows.png";
+import fourRowsButton from "@/public/images/viewmodel-icons/4rows.png";
+import fiveRowsButton from "@/public/images/viewmodel-icons/5rows.png";
+import Image from "next/image";
 
 const Views = () => {
-
-  const { width, isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow()
-  const biggerThan350 = width > 530 // Custom value needed only for this use case
+  const { width, isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow();
+  const biggerThan350 = width > 530; // Custom value needed only for this use case
 
   const dispatch = useAppDispatch();
   const currentView = useAppSelector((state) => state.layoutViews.currentValue);
@@ -22,63 +27,67 @@ const Views = () => {
     if (isMd) handleViewChange(2);
     if (isLg) handleViewChange(3);
     if (isXl || is2Xl) handleViewChange(4);
-  }, [,width])
-
+  }, [, width]);
 
   if (width && biggerThan350) {
     return (
       <div
-        className={`items-center justify-between text-secondary w-fit flex -translate-x-1`}
+        className={`items-center justify-between text-secondary w-fit flex gap-x-3`}
       >
-
-        {(isMobile || isSm) &&
-          <button className="border-2 border-black px-2 mx-2"
-            ariaLabel="Mudar para visualização em uma coluna"
-            icon={currentView === 1 ? "cropSquare2View" : "cropSquare"}
+        {(isMobile || isSm) && (
+          <Image
+            src={oneRowButton}
+            height={30}
+            width={30}
+            alt="Mudar para visualização em uma coluna"
             onClick={() => handleViewChange(1)}
-          >1</button>
-        }
+          />
+        )}
 
-
-        {(isMobile || isSm || isMd) &&
-          <button className="border-2 border-black px-2 mx-2"
-            ariaLabel="Mudar para visualização em duas colunas"
-            icon={currentView === 2 ? "cropSquare2View" : "cropSquare"}
+        {(isMobile || isSm || isMd) && (
+          <Image
+            src={twoRowsButton}
+            height={30}
+            width={30}
+            alt="Mudar para visualização em duas colunas"
             onClick={() => handleViewChange(2)}
-          >2</button>
+          />
+        )}
 
-        }
-
-        {(isMd || isLg) &&
-          <button className="border-2 border-black px-2 mx-2"
-            ariaLabel="Mudar para visualização em duas colunas"
-            icon={currentView === 3 ? "cropSquare2View" : "cropSquare"}
+        {(isMd || isLg) && (
+          <Image
+            src={threeRowsButton}
+            height={30}
+            width={30}
+            alt="Mudar para visualização em três colunas"
             onClick={() => handleViewChange(3)}
-          >3</button>
-        }
+          />
+        )}
 
-        {(isLg || isXl || is2Xl) &&
-          <button className="border-2 border-black px-2 mx-2"
-            ariaLabel="Mudar para visualização em duas colunas"
-            icon={currentView === 4 ? "cropSquare2View" : "cropSquare"}
+        {(isLg || isXl || is2Xl) && (
+          <Image
+            src={fourRowsButton}
+            height={30}
+            width={30}
+            alt="Mudar para visualização em quatro colunas"
             onClick={() => handleViewChange(4)}
-          >4</button>
-        }
+          />
+        )}
 
-        {(isXl || is2Xl) &&
-          <button className="border-2 border-black px-2 mx-2"
-            ariaLabel="Mudar para visualização em duas colunas"
-            icon={currentView === 5 ? "cropSquare2View" : "cropSquare"}
+        {(isXl || is2Xl) && (
+          <Image
+            src={fiveRowsButton}
+            height={30}
+            width={30}
+            alt="Mudar para visualização em cinco colunas"
             onClick={() => handleViewChange(5)}
-          >5</button>
-        }
-
+          />
+        )}
       </div>
     );
   } else {
-    return null
+    return null;
   }
-
 };
 
 export default Views;

@@ -180,7 +180,74 @@ const genders = [
     }
 ]
 
-
+const onboardingData = [
+    {
+        page:1,
+        titulo: "Bem-vindo à Twovest",
+        texto: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
+        img: "img.jpg"
+    },
+    {
+        page:2,
+        titulo: "Quem somos? ",
+        texto: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
+        img: "img.jpg"
+    },
+    {
+        page:3,
+        titulo: "Quem somos? ",
+        texto: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
+        img: "img.jpg"
+    },
+    {
+        page:4,
+        titulo: "Por onde começar?",
+        texto: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações.Faz slide para veres as funcionalidades",
+        img: "img.jpg"
+    },
+    {
+        page:5,
+        titulo: "Funcionalidades",
+        texto: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
+        img: "img.jpg"
+    },
+    {
+        page:6,
+        titulo: "Galeria de Looks",
+        texto: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
+        img: "img.jpg"
+    },
+    {
+        page:7,
+        titulo: "Coleções de Looks",
+        texto: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
+        img: "img.jpg"
+    },
+    {
+        page:8,
+        titulo: "Pontos&Cupões",
+        texto: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
+        img: "img.jpg"
+    },
+    {
+        page:9,
+        titulo: "Pontos de Entrega",
+        texto: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
+        img: "img.jpg"
+    },
+    {
+        page:10,
+        titulo: "Conclusão",
+        texto: "conclusão",
+        img: "img.jpg"
+    },
+    {
+        page:11,
+        titulo: "genero",
+        texto: "genero",
+        img: "img.jpg"
+    },
+]
 
 export {
     general_categories,
@@ -192,5 +259,6 @@ export {
     portugalTowns,
     cttPickupPoints,
     historyMaxLength,
-    genders
+    genders,
+    onboardingData
 }

@@ -3,9 +3,8 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-//import de icons materialUI
-
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
@@ -17,15 +16,22 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Buttons } from "../buttons/Buttons";
+import useAuth from "@/hooks/client-hooks/useAuth";
+import useWindow from "@/hooks/client-hooks/useWindow";
+import Button from "../buttons/Button";
+import IconButton from "../buttons/icons/IconButton";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import SearchIcon from "@mui/icons-material/Search";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const pathName = usePathname();
   const currentUser = useAuth();
   const supabase = createClientComponentClient();
   const { isMobile } = useWindow();
-
+  const [sessionReady, setSessionReady] = useState(false);
   const handleClickMenu = () => dispatch(toggleMenu());
 
   const handleClickCart = () => dispatch(toggleCart());
@@ -33,7 +39,14 @@ export const Navbar = ({ children }) => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     dispatch(changeUserData(null));
+    setSessionReady(false);
   };
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      setSessionReady(true);
+    }
+  }, [currentUser]);
 
   if (pathName === "/landing") return null;
 
@@ -68,12 +81,11 @@ export const Navbar = ({ children }) => {
         </div>
 
         {/* NAVBAR RIGHT SECTION */}
-        <div className="flex justify-between items-center gap-3">
-          <IconButton icon={<SearchIcon />} />
-
-          <IconButton icon={<FavoriteBorderOutlinedIcon />} />
-
-          <div className="relative">
+        <div className="flex justify-between items-center ">
+          {/* All Buttons on the right section of the navbar */}
+          <div className="flex items-center mr-3">
+            <IconButton icon={<SearchIcon />} />
+            <IconButton icon={<FavoriteBorderOutlinedIcon />} />
             <IconButton
               icon={<LocalMallOutlinedIcon />}
               onClick={handleClickCart}
@@ -84,13 +96,13 @@ export const Navbar = ({ children }) => {
           </div>
 
           <Menu>
-            {currentUser ? (
+            {sessionReady && currentUser ? (
               <Menu.Button>
                 <div className="flex w-8 h-8 ml-2 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
                     className="w-fit h-fit rounded-full"
-                    alt="profile image"
+                    alt="Imagem de perfil"
                     fill={true}
                   />
                 </div>
@@ -301,19 +313,18 @@ export const Navbar = ({ children }) => {
                 )}
               </Menu.Items>
             </Transition>
+            {!isMobile && !sessionReady && currentUser === null && (
+              <Button
+                height="11"
+                href="/login"
+                type={"black"}
+                ariaLabel="Fazer login ou registo"
+                width="fit"
+              >
+                Login | Registar
+              </Button>
+            )}
           </Menu>
-
-          {!currentUser && (
-            <Button
-              height="11"
-              href="/login"
-              type={"black"}
-              ariaLabel="Fazer login ou gegisto"
-              width="fit"
-            >
-              Login | Registar
-            </Button>
-          )}
         </div>
 
         {children}

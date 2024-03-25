@@ -28,8 +28,6 @@ export const SideMenu = () => {
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
-  const router = useRouter();
-  const pathname = usePathname();
 
   const currentUser = useAuth();
   const [gender, setGender] = useGender();
@@ -113,59 +111,66 @@ export const SideMenu = () => {
             <input
               type="text"
               placeholder="Pesquisa"
-              aria-label="Efetue a sua pesquisa"
               className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
             />
           </div>
           {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
-          <div className="menu_categories mt-4">
+          <ul className="menu_categories mt-4">
             {general_categories.map((category) => (
-              <div
-                key={category.id}
-                className="bg-grey_opacity_50 p-4 cursor-pointer items-center rounded flex justify-between"
-                onClick={() => handleClickCategory(category.id)}
-              >
-                <p>{category.name}</p>
-                <Image
-                  src={category.img}
-                  width={25}
-                  height={25}
-                  alt={category.name}
-                />
-              </div>
+              <li key={category.id}>
+                <div
+                  key={category.id}
+                  className="bg-grey_opacity_50 p-4 cursor-pointer items-center rounded flex justify-between"
+                  onClick={() => handleClickCategory(category.id)}
+                >
+                  <p>{category.name}</p>
+                  <Image
+                    src={category.img}
+                    width={25}
+                    height={25}
+                    alt={category.name}
+                  />
+                </div>
+              </li>
             ))}
 
-            <Link
-              onClick={handleClickMenu}
-              href={"/brands"}
-              className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"
-            >
-              <div>Marcas</div>
-              <StarsIcon className="fill-black" alt="simbolo marcas" />
-            </Link>
-            <Link
-              href={`/products/${gender.string}?status=sustainable`}
-              onClick={() => handleClickMenu()}
-            >
-              <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">
-                Sustentável
-                <SustainableIcon width={25} color="white" />
-              </div>
-            </Link>
-            <Link
-              href={`/products/${gender.string}?status=discounts`}
-              onClick={() => handleClickMenu()}
-            >
-              <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">
-                Promoções
-                <SellIcon
-                  className="fill-primary_main"
-                  alt="simbolo Promoções"
-                />
-              </div>
-            </Link>
-          </div>
+            <li key={"SideMenu-Marcas"}>
+              <Link
+                onClick={handleClickMenu}
+                href={"/brands"}
+                className="bg-grey_opacity_50 p-4 cursor-pointer rounded flex justify-between"
+              >
+                <div>Marcas</div>
+                <StarsIcon className="fill-black" alt="simbolo marcas" />
+              </Link>
+            </li>
+            <li key={"SideMenu-Sustentavel"}>
+              <Link
+                href={`/products/${gender.string}?status=sustainable`}
+                onClick={() => handleClickMenu()}
+              >
+                <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">
+                  Sustentável
+                  <SustainableIcon width={25} color="white" />
+                </div>
+              </Link>
+            </li>
+            <li key={"SideMenu-Promocoes"}>
+              <Link
+                href={`/products/${gender.string}?status=discounts`}
+                onClick={() => handleClickMenu()}
+              >
+                <div className="bg-grey_opacity_50 cursor-pointer p-4 rounded flex justify-between">
+                  Promoções
+                  <SellIcon
+                    className="fill-primary_main"
+                    alt="simbolo Promoções"
+                  />
+                </div>
+              </Link>
+            </li>
+          </ul>
         </div>
 
         <PrimaryMenuPagesList toggleMenu={handleClickMenu} />

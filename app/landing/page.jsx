@@ -13,6 +13,7 @@ import { useState } from "react";
 import { onboardingData } from "@/constants";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { OnboardingConclusion } from "@/components/sections/OnboardingConclusion";
 
 // Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
 export default function Landing() {
@@ -45,44 +46,58 @@ export default function Landing() {
 
   const currentPageData = onboardingData.find((item) => item.page === currentPage);
   
-  const backgroundImageStyle = currentPageData.img !== "" ? {backgroundImage: `url(${currentPageData.img})`} : {backgroundColor: '#05CE86', backgroundRepeat: 'no-repeat', backgroundPosition: 'center 30%', backgroundImage: `url("https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/twovest_icon.svg")`};
+  const backgroundImageStyle =
+  currentPageData.img !== ""
+    ? { backgroundImage: `url(${currentPageData.img})` }
+    : {
+        backgroundColor: "#05CE86",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center 30%",
+        backgroundImage: `url("https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/twovest_icon.svg")`,
+      };
+
 
   return (
 
-    <div className="relative h-[100vh] mt-[-75px] ">
-    <div
-      id="onboardingImg"
-      className={`rounded-bl-[12%] h-full w-full ${currentPageData.img !== "" ? `bg-cover bg-center` : `bg-primary_main`}`}
-      style={backgroundImageStyle}
-    ></div>
-    <div className="absolute bottom-0 w-full bg-white rounded-tr-[12%] h-[40%]">
-      <div className="mx-6 break-words">
-        <h5 className="mt-9 mb-3.5 font-semibold">{currentPageData.titulo}</h5>
-        <p className="text-secondary text-justify">{currentPageData.texto}</p>
-      </div>
-      <div className="justify-between bottom-6 absolute flex w-full px-6 items-center">
-        {currentPage > 1 && (
-          <>
-            <div className="cursor-pointer rounded-full border border-primary_main w-12 h-12 flex items-center justify-center text-primary_main" onClick={previousPage}>
-              <ArrowBackIcon />
+     <div className="relative h-[100vh] mt-[-75px] ">
+      {currentPage !== 10 && (
+        <>
+          <div
+        id="onboardingImg"
+        className={`rounded-bl-[12%] h-full w-full ${currentPageData.img !== "" ? `bg-cover bg-center` : `bg-primary_main`}`}
+        style={backgroundImageStyle}
+      ></div>
+          <div className="absolute bottom-0 w-full bg-white rounded-tr-[12%] h-[40%]">
+            <div className="mx-6 break-words">
+              <h5 className="mt-9 mb-3.5 font-semibold">{onboardingData[currentPage - 1].titulo}</h5>
+              <p className="text-secondary text-justify">{onboardingData[currentPage - 1].texto}</p>
             </div>
-            <div className="cursor-pointer rounded-full border-primary_main bg-primary_main w-12 h-12 flex items-center justify-center text-white" onClick={nextPage}>
-              <ArrowForwardIcon/>
+            <div className="justify-between bottom-6 absolute flex w-full px-6 items-center">
+              {currentPage > 1 && (
+                <>
+                  <div className="cursor-pointer rounded-full border border-primary_main w-12 h-12 flex items-center justify-center text-primary_main" onClick={previousPage}>
+                    <ArrowBackIcon />
+                  </div>
+                  <div className="cursor-pointer rounded-full border-primary_main bg-primary_main w-12 h-12 flex items-center justify-center text-white" onClick={nextPage}>
+                    <ArrowForwardIcon/>
+                  </div>
+                </>
+              )}
+              {currentPage === 1 && (
+                <>
+                  <div className="cursor-pointer underline text-primary_main" onClick={handleSkip}>Saltar</div>
+                  <Button children={"Começar ->"} onClick={nextPage} />
+                </>
+              )}
+              {currentPage === totalPages && (
+                <div className="cursor-pointer underline text-primary_main" onClick={handleSkip}>Saltar</div>
+              )}
             </div>
-          </>
-        )}
-        {currentPage === 1 && (
-          <>
-            <div className="cursor-pointer underline text-primary_main" onClick={handleSkip}>Saltar</div>
-            <Button children={"Começar ->"} onClick={nextPage} />
-          </>
-        )}
-        {currentPage === totalPages && (
-          <div className="cursor-pointer underline text-primary_main" onClick={handleSkip}>Saltar</div>
-        )}
-      </div>
-    </div>
-  </div>
+          </div>
+        </>
+      )}
+      {currentPage === 10 && <OnboardingConclusion />}
+    </div> 
 
 
     /* <div className="h-full sm:h-[100vh] w-full mx-auto xl:mx-auto pt-0 top-0 mt-[-74px] min-[800px]:mt-0 xl:mt-[-75px]">

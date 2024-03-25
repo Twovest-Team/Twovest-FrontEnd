@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,6 +19,28 @@ import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 import createCollection from "@/utils/db/collections/createCollection";
+=======
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useEffect, useState } from 'react';
+import getCollections from '@/utils/db/collections/getCollections';
+import { toggleLookModalToggle } from '@/redux/slices/saveLookModalToggle';
+import addToCollection from '@/utils/db/collections/addToCollection';
+import LoadingIcon from '../buttons/icons/LoadingIcon';
+import CheckIcon from '@mui/icons-material/Check';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import deleteCollectionLook from '@/utils/db/collections/deleteCollectionLook';
+import { RadioGroup } from '@headlessui/react'
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import createCollection from '@/utils/db/collections/createCollection';
+import useAuth from "@/hooks/client-hooks/useAuth";
+
+>>>>>>> d75f244cc1e28590f58b8f33081997d4c9b487ef
 
 const SaveToCollectionModal = ({ lookId }) => {
   const dispatch = useAppDispatch();

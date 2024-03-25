@@ -6,7 +6,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import { Buttons } from "@/components/buttons/Buttons";
 import Link from "next/link";
 import Image from "next/image";
 import { ModalEmailVerification } from "@/components/modals/ModalEmailVerification";

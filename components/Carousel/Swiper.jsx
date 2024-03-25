@@ -6,9 +6,8 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
-import { Buttons } from "../buttons/Buttons";
-import useGender from "@/hooks/useGender";
+import useGender from "@/hooks/client-hooks/useGender";
+import Button from "../buttons/Button";
 
 const ImageSwiper = () => {
   let [gender] = useGender();
@@ -46,11 +45,9 @@ const ImageSwiper = () => {
           <div className="absolute text-white text-center pb-2 container">
             <p className="">Promoções</p>
             <h3 className=" font-semibold">Artigos com promoções até 50%</h3>
-            <Link href={`/products/${gender}?status=discounts`}>
-              <button className="bg-primary_main p-3 font-semibold text-center text-white mb-6 mt-10 rounded w-[200px]">
-                Ver promoções
-              </button>
-            </Link>
+            <Button href={`/products/${gender.string}?status=discounts`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
+              Ver promoções
+            </Button>
           </div>
         </div>
       </SwiperSlide>
@@ -69,11 +66,9 @@ const ImageSwiper = () => {
           <div className="absolute text-center text-white pb-10 container">
             <h3 className=" font-semibold ">Tens roupa que já não precisas?</h3>
             <h5>Retorna-a nos pontos de recolha</h5>
-            <Link href={"/"}>
-              <button className="bg-primary_main p-3 font-semibold  text-center text-white mb-6 mt-10 rounded w-[230px]">
-                Ver Pontos de recolha
-              </button>
-            </Link>
+            <Button href={`/`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
+              Ver pontos de recolha
+            </Button>
           </div>
         </div>
       </SwiperSlide>
@@ -93,9 +88,9 @@ const ImageSwiper = () => {
               Descobre aqui as melhores marcas aos melhores preços!
             </h3>
             <Link href={"/brands"}>
-              <button className="bg-primary_main p-3 text-center font-semibold  text-white mb-6 mt-10 rounded w-[200px]">
-                Ver Marcas
-              </button>
+            <Button href={`/brands`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
+              Ver marcas
+            </Button>
             </Link>
           </div>
         </div>

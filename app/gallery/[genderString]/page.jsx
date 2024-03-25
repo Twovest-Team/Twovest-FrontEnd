@@ -5,12 +5,11 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
 import LooksSkeleton from "@/components/loadingSkeletons/Looks";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import Filters from "@/components/filters_gallery/filtersGallery";
+import FiltersGallery from "@/components/sliders/FiltersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
-import { Buttons } from "@/components/buttons/Buttons";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Button from "@/components/buttons/Button";
+
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
@@ -22,22 +21,23 @@ const Gallery = async ({ params, searchParams }) => {
 
   return (
     <main>
-      <NavigationTitle titleText={"Galeria"}>
+      <NavigationTitle titleText={"Galeria de Looks"}>
         <div className="flex gap-2 text-secondary items-center">
-          <p className="text-right text-gray-700" aria-label="Ganhar Pontos">
+          <p
+            className="hidden sm:block text-right text-gray-700"
+            aria-label="Ganhar Pontos"
+          >
             Ganhar pontos
           </p>
           <HelpOutlineIcon />
         </div>
       </NavigationTitle>
 
-      <div className="mt-4">
-        <Filters style={style} gender={gender} />
-      </div>
+      <FiltersGallery currentCategory={style} />
 
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
-          <Views className="view " />
+          <Views />
         </div>
         <div>
           <Link href="/gallery/submitLook">
@@ -52,9 +52,11 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </div>
 
-      <Suspense fallback={<LooksSkeleton />}>
-        <LookList gender={gender} style={style} />
-      </Suspense>
+      <div className="flex justify-center items-center">
+        <Suspense fallback={<LooksSkeleton />}>
+          <LookList gender={gender} style={style} />
+        </Suspense>
+      </div>
     </main>
   );
 };

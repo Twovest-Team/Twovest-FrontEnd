@@ -1,36 +1,20 @@
 // Se não tiver sessão iniciada deverá ser redirecionado para o login
 // Exemplo: twovest.com/gallery/submit
+
 "use client";
+
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
-import { Buttons } from "@/components/buttons/Buttons";
 import { useEffect, useState } from "react";
-import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
-import Link from "next/link";
+import Button from "@/components/buttons/Button";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 const Submit = () => {
-  const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const user = useAuth()
   const [timer, setTimer] = useState(5);
-  const [buttonColor, setButtonColor] = useState("disabledMain");
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
-    async function getUser() {
-      const { data: user, error } = await supabase.auth.getUser();
-      if (error || !user) {
-        router.push("/login");
-      } else {
-        setUser(user);
-        setLoading(false);
-      }
-    }
-    getUser();
-  }, [router, supabase.auth]);
-
-  useEffect(() => {
+    
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         const newTimer = prevTimer - 1;
@@ -40,27 +24,13 @@ const Submit = () => {
 
     return () => clearInterval(interval);
   }, []);
+  
 
-  const handleButtonClick = () => {
-    if (timer === 0) {
-      router.push("submitLook/formLook");
-    }
-  };
-
-  useEffect(() => {
-    if (timer === 0 && user) {
-      setButtonColor("defaultMain");
-    }
-  }, [timer]);
-
-  if (loading) {
-    return <GeneralLoading />;
-  }
   return (
     <>
       {user && (
         <>
-          <NavigationTitle titleText="Submissão de look" className="titlenav" />
+          <NavigationTitle titleText="Submissão de look" />
           <div className="container mx-auto p-4 look overflow-hidden">
             <div className="overlap relative mt-10">
               <div className="overlap-group relative ">
@@ -93,12 +63,10 @@ const Submit = () => {
                     </span>
                   </div>
 
-                  <Buttons
-                    btnState={buttonColor}
-                    text={`Compreendi (${timer})`}
-                    btnSize="mediumSizeSocials"
-                    onClick={handleButtonClick}
-                  />
+                  <Button href="submitLook/formLook" width="full" className="mx-auto" disabled={timer > 0} type={'primary'} ariaLabel='WRITE HERE'>
+                    Compreendi ({timer})
+                  </Button>
+
                 </div>
               </div>
             </div>

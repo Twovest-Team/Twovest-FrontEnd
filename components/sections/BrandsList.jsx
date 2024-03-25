@@ -5,7 +5,7 @@ import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
-import useGender from "@/hooks/useGender";
+import useGender from "@/hooks/client-hooks/useGender";
 
 const BrandsList = ({ brandsData }) => {
 
@@ -37,7 +37,7 @@ const BrandsList = ({ brandsData }) => {
       </div>
 
       <section className="grid grid-cols-2 grid-cols-desktop gap-6">
-        {filteredBrands.map((brandItem, index) => (
+        {gender && filteredBrands.map((brandItem, index) => (
           <Link
             key={index}
             href={`/brands/${gender.string}/${brandItem.name}`}

@@ -3,14 +3,15 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+<<<<<<< HEAD
 //import de icons materialUI
 
+=======
+>>>>>>> d75f244cc1e28590f58b8f33081997d4c9b487ef
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
-import getUserData from "@/utils/db/getUserByEmail";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
@@ -19,50 +20,54 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+<<<<<<< HEAD
 import { Buttons } from "../buttons/Buttons";
+=======
+import useAuth from "@/hooks/client-hooks/useAuth";
+import useWindow from "@/hooks/client-hooks/useWindow";
+import Button from "../buttons/Button";
+import IconButton from "../buttons/icons/IconButton";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import SearchIcon from '@mui/icons-material/Search';
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+
+
+
+
+>>>>>>> d75f244cc1e28590f58b8f33081997d4c9b487ef
 export const Navbar = ({ children }) => {
+
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
-  const currentUser = useAppSelector((state) => state.user.data);
+  const currentUser = useAuth();
   const supabase = createClientComponentClient();
+  const { isMobile } = useWindow()
 
-  const handleClickMenu = () => {
-    dispatch(toggleMenu());
-  };
+  const handleClickMenu = () => dispatch(toggleMenu());
 
-  const handleClickCart = () => {
-    dispatch(toggleCart());
-  };
-  const handleLoginRouter = () => {
-    router.push("/login");
-  };
+  const handleClickCart = () => dispatch(toggleCart());
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.refresh();
-
     dispatch(changeUserData(null));
   };
 
-  useEffect(() => {
-    async function fetchUserData() {
-      if (!currentUser) {
-        let userData = await getUserData();
-        dispatch(changeUserData(userData));
-      }
-    }
+  if (pathName === "/landing") return null
 
-    fetchUserData();
-  }, [currentUser, dispatch]);
-  if (pathName != "/landing") {
-    return (
-      <nav className="flex justify-between items-center z-30 w-full fixed top-0 px-6 py-3 lg:py-5 bg-white border-b border-gray-200 h-[75px]">
-        <div className="flex desktopNavRight ">
-          <Buttons
-            ariaLabel="Localização da navbar"
-            icon="menuIcon"
-            btnSize="newIconSet2"
-            onClick={handleClickMenu}
+  return (
+    <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
+      <div className="container flex justify-between items-center h-full">
+
+        {/* NAVBAR LEFT SECTION */}
+        <div className="flex gap-4">
+
+      
+          <IconButton
+          ariaLabel={'Abrir menu de navegação.'}
+          icon={<MenuIcon />}
+          onClick={handleClickMenu}
           />
 
           <Link href={"/"} className="items-center flex">
@@ -73,6 +78,7 @@ export const Navbar = ({ children }) => {
               alt="Logo Twovest"
               className="navbar_logo-xs"
             ></Image>
+
             <Image
               src={logo}
               width={130}
@@ -82,43 +88,44 @@ export const Navbar = ({ children }) => {
             ></Image>
           </Link>
         </div>
-        <div className="flex desktopNavLeft justify-between items-center  ">
-          <Buttons
-            ariaLabel="Ir para a Lista de artigos favoritos"
-            icon="favorite2Navbar"
-            btnSize="newIconSet4"
+
+
+        {/* NAVBAR RIGHT SECTION */}
+        <div className="flex justify-between items-center gap-3">
+
+        <IconButton
+            icon={<SearchIcon />}
+          />
+
+          <IconButton
+            icon={<FavoriteBorderOutlinedIcon />}
           />
 
           <div className="relative">
-            <Buttons
-              ariaLabel="Ir para cesto de compras"
-              icon="localBag"
-              btnSize="newIconSet4"
+            <IconButton
+              icon={<LocalMallOutlinedIcon />}
               onClick={handleClickCart}
             />
             <div className="cursor-pointer" onClick={handleClickCart}>
               {currentUser && <NotificationCart currentUser={currentUser} />}
             </div>
           </div>
+
           <Menu>
             {currentUser ? (
               <Menu.Button>
-                <div className="w-6 h-6 ml-3 mr-4 flex rounded-full border border-gray-300 overflow-hidden">
+                <div className="flex w-8 h-8 ml-2 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
-                    className="w-fit h-fit"
+                    className="w-fit h-fit rounded-full"
                     alt="profile image"
-                    fill={false}
-                    width={50}
-                    height={50}
+                    fill={true}
                   />
                 </div>
               </Menu.Button>
-            ) : (
+            ) : isMobile && (
               <Menu.Button>
-                <div className="navbar_icons">
-                  <AccountCircleOutlinedIcon />
-                </div>
+                <AccountCircleOutlinedIcon />
               </Menu.Button>
             )}
 
@@ -140,9 +147,8 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } font-semibold`}
+                          className={`${active && "bg-grey_opacity_50"
+                            } font-semibold`}
                         >
                           <div>
                             <div>
@@ -283,9 +289,8 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } text-error_main  caption`}
+                            className={`${active && "bg-grey_opacity_50"
+                              } text-error_main  caption`}
                           >
                             Sair -&gt;
                           </div>
@@ -293,7 +298,7 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
                   </>
-                ) : (
+                ) : isMobile && (
                   <Menu.Item>
                     {({ active, close }) => (
                       <div className="px-2 py-4">
@@ -304,9 +309,8 @@ export const Navbar = ({ children }) => {
                         <Link
                           href={"/login"}
                           onClick={close}
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } cursor-pointer`}
+                          className={`${active && "bg-grey_opacity_50"
+                            } cursor-pointer`}
                         >
                           <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
                             Iniciar sessão
@@ -321,18 +325,17 @@ export const Navbar = ({ children }) => {
           </Menu>
 
           {!currentUser && (
-            <Buttons
-              btnState="blackMain"
-              text="Login | Registo"
-              btnSize="navBarButton"
-              onClick={handleLoginRouter}
-            />
+            <Button height="11" href="/login" type={'black'} ariaLabel='Fazer login ou gegisto' width='fit'>
+              Login | Registar
+            </Button>
           )}
         </div>
 
         {children}
-        <></>
-      </nav>
-    );
-  }
+      </div>
+
+
+    </nav>
+  );
+
 };

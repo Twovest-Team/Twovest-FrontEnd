@@ -3,7 +3,7 @@
 import { PrimaryMenuPagesList } from "./PrimaryMenuPages";
 import { SecondaryMenuPagesList } from "./SecondaryMenuPages";
 import { SocialMediaLogos_black } from "../logos/SocialMediaLogos_black";
-import { Buttons } from "../buttons/Buttons";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SellIcon from "@mui/icons-material/Sell";
 import StarsIcon from "@mui/icons-material/Stars";
 import { general_categories } from "@/constants";
@@ -16,12 +16,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import SearchIcon from "@mui/icons-material/Search";
-import useGender from "@/hooks/useGender";
-import useAuth from "@/hooks/useAuth";
+import useGender from "@/hooks/client-hooks/useGender";
+import useAuth from "@/hooks/client-hooks/useAuth";
 import { genders } from "@/constants";
-import { usePathname, useRouter } from "next/navigation";
 import refreshData from "@/utils/refreshData";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import Button from "../buttons/Button";
 
 export const SideMenu = () => {
   const dispatch = useAppDispatch();
@@ -89,16 +89,21 @@ export const SideMenu = () => {
           </div>
         </div>
 
-        <ul className="mx-4 my-4">
+        <div className="mx-4 my-4">
           {currentUser == null && (
-            <Link href={"/login"} onClick={handleClickMenu}>
-              <Buttons
-                btnState="secondaryMain"
-                text="Fazer log in ou registo"
-                icon="navigateNext"
-                btnSize="menuSize"
+            <Button
+              href="/login"
+              type={"black"}
+              ariaLabel="Fazer login ou registo"
+              justify="between"
+              width="full"
+            >
+              Fazer login ou registo
+              <KeyboardArrowRightIcon
+                className="translate-x-2"
+                sx={{ fontSize: 28 }}
               />
-            </Link>
+            </Button>
           )}
 
           <div className="mt-3 relative">
@@ -161,7 +166,7 @@ export const SideMenu = () => {
               </div>
             </Link>
           </div>
-        </ul>
+        </div>
 
         <PrimaryMenuPagesList toggleMenu={handleClickMenu} />
 

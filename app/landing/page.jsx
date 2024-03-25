@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { genders } from "@/constants";
 import { useAppDispatch } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
+import womenModel from "@/public/images/landing_page/landing_mulher.png";
+import menModel from "@/public/images/landing_page/landing_homem.png";
 import getGender from "@/utils/getGender";
 
 // Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
@@ -19,7 +21,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="h-full sm:h-[100vh] w-full mx-auto xl:mx-auto pt-0 top-0 mt-[-74px] min-[800px]:mt-0 xl:mt-[-68px]">
+    <div className="h-full sm:h-[100vh] w-full mx-auto xl:mx-auto pt-0 top-0 mt-[-74px] min-[800px]:mt-0 xl:mt-[-75px]">
       <div className="mx-auto items-center text-center xl:flex my-2 space-y-2 xl:space-y-0 xl:my-0 min-[800px]:flex min-[800px]:w-[780px] min-[800px]:px-1 xl:w-full xl:h-[100vh] ">
         {genders.map((element) => (
           <button
@@ -29,7 +31,7 @@ export default function Landing() {
             className="relative block transition hover:brightness-[70%] hover:transition hover:ease-in-out hover:delay-300 min-[400px]:mx-auto min-[400px]:w-[350px] min-[800px]:w-[380px] min-[800px]:h-[450px] items-center xl:w-full xl:h-[100vh] xl:mx-[0.05px]"
           >
             <Image
-              src={element.image}
+              src={(element.id === 0 && womenModel) || (element.id === 1 && menModel)}
               alt={`Modelo ${element.string} da Twovest.`}
               priority
               width={278}

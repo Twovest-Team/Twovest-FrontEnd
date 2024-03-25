@@ -81,12 +81,14 @@ async function ProductList({ categoryId, gender, status }) {
         {data.length > 0 ? (
           <ItemsBox>
             {data.map((element) => (
+              <li key={element.id}>
               <CardProduct
                 slider={false}
                 key={element.id}
                 product={element}
                 gender={gender}
               />
+              </li>
             ))}
           </ItemsBox>
         ) : (

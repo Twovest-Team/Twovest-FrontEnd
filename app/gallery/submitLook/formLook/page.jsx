@@ -1,6 +1,5 @@
 "use client";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import { Buttons } from "@/components/buttons/Buttons";
 import { useState, useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,6 +8,7 @@ import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
+import Button from "@/components/buttons/Button";
 
 const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -232,15 +232,9 @@ const FormLook = () => {
                           </label>
                         </div>
                       ))}
-                      <div className="mt-6" onClick={handleReset}>
-                        <Buttons
-                          type="button"
-                          btnState="secondaryMain"
-                          icon="redifine"
-                          text="Redefinir"
-                          btnSize="mediumSizeSocials"
-                        />
-                      </div>
+                      <Button onClick={handleReset} className='mt-6' type={'black'} width="full" ariaLabel='Redefinir filtros'>
+                        Redefinir
+                      </Button>
                     </div>
                   </>
                 )}
@@ -258,13 +252,11 @@ const FormLook = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-6" onClick={handleReset}>
-              <Buttons
-                btnState="disabledMain"
-                text="Submeter"
-                btnSize="mediumSizeSocials"
-              />
-            </div>
+
+            <Button onClick={handleReset} className='mt-6' disabled={true} type={'black'} width="full" ariaLabel='Submeter look'>
+              Submeter
+            </Button>
+
           </form>
         </>
       )}

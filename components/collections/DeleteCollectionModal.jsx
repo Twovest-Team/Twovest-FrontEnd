@@ -5,7 +5,7 @@ import { closeModal } from "@/redux/slices/modalSlice"
 import deleteCollection from "@/utils/db/collections/deleteCollection"
 import Modal from "../modals/Modal"
 import { useRouter } from 'next/navigation'
-import useAuth from "@/hooks/useAuth"
+import useAuth from "@/hooks/client-hooks/useAuth"
 
 const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
 

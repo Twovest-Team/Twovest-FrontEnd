@@ -40,15 +40,13 @@ const Gallery = async ({ params, searchParams }) => {
           <Views />
         </div>
         <div>
-          <Link href="/gallery/submitLook">
-            <Buttons
-              ariaLabel="Submeter Look"
-              btnState="defaultMain"
-              text="Submeter Look"
-              icon=""
-              btnSize="gallerySize"
-            ></Buttons>
-          </Link>
+          <Button
+            href={"/gallery/submitLook"}
+            type={"primary"}
+            ariaLabel="Submeter look"
+          >
+            Submeter look
+          </Button>
         </div>
       </div>
 

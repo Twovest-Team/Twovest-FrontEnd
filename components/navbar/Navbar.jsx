@@ -4,11 +4,8 @@ import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-<<<<<<< HEAD
 //import de icons materialUI
 
-=======
->>>>>>> d75f244cc1e28590f58b8f33081997d4c9b487ef
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
@@ -20,30 +17,14 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-<<<<<<< HEAD
 import { Buttons } from "../buttons/Buttons";
-=======
-import useAuth from "@/hooks/client-hooks/useAuth";
-import useWindow from "@/hooks/client-hooks/useWindow";
-import Button from "../buttons/Button";
-import IconButton from "../buttons/icons/IconButton";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import SearchIcon from '@mui/icons-material/Search';
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-
-
-
-
->>>>>>> d75f244cc1e28590f58b8f33081997d4c9b487ef
 export const Navbar = ({ children }) => {
-
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathName = usePathname();
   const currentUser = useAuth();
   const supabase = createClientComponentClient();
-  const { isMobile } = useWindow()
+  const { isMobile } = useWindow();
 
   const handleClickMenu = () => dispatch(toggleMenu());
 
@@ -54,20 +35,17 @@ export const Navbar = ({ children }) => {
     dispatch(changeUserData(null));
   };
 
-  if (pathName === "/landing") return null
+  if (pathName === "/landing") return null;
 
   return (
     <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
-
         {/* NAVBAR LEFT SECTION */}
         <div className="flex gap-4">
-
-      
           <IconButton
-          ariaLabel={'Abrir menu de navegação.'}
-          icon={<MenuIcon />}
-          onClick={handleClickMenu}
+            ariaLabel={"Abrir menu de navegação."}
+            icon={<MenuIcon />}
+            onClick={handleClickMenu}
           />
 
           <Link href={"/"} className="items-center flex">
@@ -89,17 +67,11 @@ export const Navbar = ({ children }) => {
           </Link>
         </div>
 
-
         {/* NAVBAR RIGHT SECTION */}
         <div className="flex justify-between items-center gap-3">
+          <IconButton icon={<SearchIcon />} />
 
-        <IconButton
-            icon={<SearchIcon />}
-          />
-
-          <IconButton
-            icon={<FavoriteBorderOutlinedIcon />}
-          />
+          <IconButton icon={<FavoriteBorderOutlinedIcon />} />
 
           <div className="relative">
             <IconButton
@@ -123,10 +95,12 @@ export const Navbar = ({ children }) => {
                   />
                 </div>
               </Menu.Button>
-            ) : isMobile && (
-              <Menu.Button>
-                <AccountCircleOutlinedIcon />
-              </Menu.Button>
+            ) : (
+              isMobile && (
+                <Menu.Button>
+                  <AccountCircleOutlinedIcon />
+                </Menu.Button>
+              )
             )}
 
             <Transition
@@ -147,8 +121,9 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${active && "bg-grey_opacity_50"
-                            } font-semibold`}
+                          className={`${
+                            active && "bg-grey_opacity_50"
+                          } font-semibold`}
                         >
                           <div>
                             <div>
@@ -289,8 +264,9 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${active && "bg-grey_opacity_50"
-                              } text-error_main  caption`}
+                            className={`${
+                              active && "bg-grey_opacity_50"
+                            } text-error_main  caption`}
                           >
                             Sair -&gt;
                           </div>
@@ -298,34 +274,43 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
                   </>
-                ) : isMobile && (
-                  <Menu.Item>
-                    {({ active, close }) => (
-                      <div className="px-2 py-4">
-                        <div className="mb-3 font-semibold">
-                          Inicia sessão para poderes aceder às definições de
-                          conta
-                        </div>
-                        <Link
-                          href={"/login"}
-                          onClick={close}
-                          className={`${active && "bg-grey_opacity_50"
-                            } cursor-pointer`}
-                        >
-                          <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
-                            Iniciar sessão
+                ) : (
+                  isMobile && (
+                    <Menu.Item>
+                      {({ active, close }) => (
+                        <div className="px-2 py-4">
+                          <div className="mb-3 font-semibold">
+                            Inicia sessão para poderes aceder às definições de
+                            conta
                           </div>
-                        </Link>
-                      </div>
-                    )}
-                  </Menu.Item>
+                          <Link
+                            href={"/login"}
+                            onClick={close}
+                            className={`${
+                              active && "bg-grey_opacity_50"
+                            } cursor-pointer`}
+                          >
+                            <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
+                              Iniciar sessão
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </Menu.Item>
+                  )
                 )}
               </Menu.Items>
             </Transition>
           </Menu>
 
           {!currentUser && (
-            <Button height="11" href="/login" type={'black'} ariaLabel='Fazer login ou gegisto' width='fit'>
+            <Button
+              height="11"
+              href="/login"
+              type={"black"}
+              ariaLabel="Fazer login ou gegisto"
+              width="fit"
+            >
               Login | Registar
             </Button>
           )}
@@ -333,9 +318,6 @@ export const Navbar = ({ children }) => {
 
         {children}
       </div>
-
-
     </nav>
   );
-
 };

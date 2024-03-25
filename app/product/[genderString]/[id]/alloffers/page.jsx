@@ -71,6 +71,16 @@ export default function Alloffers({ params }) {
           options={colors}
           onSelect={(selectedOption) => setColors(selectedOption)}
         />
+      <NavigationTitle titleText="Offers" />
+      <div className="justify-center items-center mx-4 p-2 ">
+        <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
+          <div id="firstClick" className="flex text-secondary">
+            <label className="block font-inter text-secondary mb-2 ">
+              Condição
+            </label>
+            <ArrowDropDownIcon className={"ml-auto text-secondary"} />
+          </div>
+        </div>
       </div>
       <div className="flex flex-row justify-center items-center mx-4 p-2 xl:gap-4  xl:ml-48 xl:mr-48 lg:ml-32 lg:mr-32 md:ml-24 md:mr-24 sm:ml-16 sm:mr-16 ">
         <Dropdown

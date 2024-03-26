@@ -58,9 +58,6 @@ export const Cart = () => {
       dispatch(showNotification("removeFromCart"));
     }
   }
-  function handleLoginClick() {
-    router.push("/login");
-  }
 
   return (
     <div

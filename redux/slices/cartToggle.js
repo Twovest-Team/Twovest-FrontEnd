@@ -9,9 +9,9 @@ export const cartToggleSlice = createSlice({
     toggleCart: (state, action) => {
         state.isOpen = !state.isOpen
         if(state.isOpen){
-          document.body.style.overflowY = 'hidden'
-        }else{
           document.body.style.overflowY = 'auto'
+        }else{
+          document.body.style.overflowY = 'hidden'
         }
     }
   },

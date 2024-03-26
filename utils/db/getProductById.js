@@ -32,22 +32,26 @@ console.log(genderId);
     )
     .eq('id', id)
     .eq('gender', genderId)
-    .eq('is_public', true);
+    .eq('is_public', true)
+  
+ 
+
   
     if (data && data.length > 0) {
       const images = await getProductImages(data[0].id);
       const offers = await getProductOffers(data[0].id);
-      const materials = await getProductMaterials(data[0].id);
+      const materials = await getProductMaterials(data[0].id)
       const styles = await getProductStyles(data[0].id);
     
-      data[0].images = images;
-      data[0].offers = offers;
-      data[0].materials = materials;
-      data[0].styles = styles;
+      data.images = images;
+      data.offers = offers;
+      data.materials = materials;
+      data. styles = styles;
       
-      return data[0];
-    } else if (error) {
+    } else {
+    
       console.log(error);
+     
     }
 };
 

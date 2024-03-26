@@ -1,3 +1,4 @@
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 export default async function addToLastProductsSeen(productId, userEmail){
     console.log('add')
     //console.log('add')

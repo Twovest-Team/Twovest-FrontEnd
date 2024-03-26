@@ -36,8 +36,9 @@ const BrandsList = ({ brandsData }) => {
         <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-500 pointer-events-none" />
       </div>
 
-      <section className="grid grid-cols-2 grid-cols-desktop gap-6">
+      <ul className="grid grid-cols-2 grid-cols-desktop gap-6">
         {gender && filteredBrands.map((brandItem, index) => (
+          <li key={index}>
           <Link
             key={index}
             href={`/brands/${gender.string}/${brandItem.name}`}
@@ -61,8 +62,9 @@ const BrandsList = ({ brandsData }) => {
               </p>
             </div>
           </Link>
+          </li>
         ))}
-      </section>
+      </ul>
     </>
   );
 };

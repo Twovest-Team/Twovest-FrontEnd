@@ -1,5 +1,6 @@
 import CollectionPreview from './CollectionPreview'
 import SearchIcon from "@mui/icons-material/Search";
+import { Fragment } from 'react';
 
 const CollectionList = ({ collections, ownerId, search, isOwner, toSaveLook, ownerFirstName }) => {
     return (
@@ -7,7 +8,7 @@ const CollectionList = ({ collections, ownerId, search, isOwner, toSaveLook, own
 
             {/* IF THERE ARE ANY COLLECTIONS */}
             {collections &&
-                <>
+                <Fragment key={"CollectionListFragment"}>
 
                     {search &&
                         <button className="profile_search-collections">
@@ -25,7 +26,7 @@ const CollectionList = ({ collections, ownerId, search, isOwner, toSaveLook, own
                             key={collection.id_collection}
                         />
                     ))}
-                </>
+                </Fragment>
             }
 
 

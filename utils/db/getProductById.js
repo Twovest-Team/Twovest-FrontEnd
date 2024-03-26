@@ -7,8 +7,8 @@ import getGender from "../getGender";
 
 const getProductById = async (id, gender) => {
 
-  const genderId = getGender(gender); 
-console.log(genderId);
+  const genderId = getGender(gender).id; 
+
   const { data, error } = await supabase
     .from('products')
     .select(

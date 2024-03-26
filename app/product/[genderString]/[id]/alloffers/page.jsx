@@ -1,17 +1,19 @@
-import Ofertas from "@/utils/db/getProductById";
+import getProductById from "@/utils/db/getProductById";
 import ProductOffers from "@/components/cards/ProductOfferCard";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 export default async function Alloffers({ params }) {
   const productId = params.id;
   const productGender = params.genderString;
-  const result = await Ofertas(productId, productGender);
+  console.log(productId)
+  console.log(productGender)
+  const result = await getProductById(productId, productGender);
 
-  //console.log("Fetched result:", result);
+  console.log("Fetched result:", result);
   return (
     <div>
       <NavigationTitle titleText="Offers" />
-      <div className="justify-center items-center mx-4 p-2 ">
+      <div className="justify-center items-center mx-4 p-2">
         <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
           <div id="firstClick" className="flex text-secondary">
             <label className="block font-inter text-secondary mb-2 ">

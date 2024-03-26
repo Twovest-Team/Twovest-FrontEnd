@@ -18,12 +18,14 @@ import Button from "../buttons/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import IconButton from "../buttons/icons/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import useAuth from "@/hooks/client-hooks/useAuth";
+
 
 export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
-  const currentUser = useAppSelector((state) => state.user.data_);
+  const {currentUser} = useAuth()
   const [loading, setLoading] = useState(false);
 
   function handleLoading(boolean) {

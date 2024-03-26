@@ -10,7 +10,7 @@ import useAuth from "@/hooks/client-hooks/useAuth"
 const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
 
     const dispatch = useAppDispatch()
-    const currentUser = useAuth()
+    const {currentUser} = useAuth()
     const router = useRouter()
 
     async function handleDelete(){

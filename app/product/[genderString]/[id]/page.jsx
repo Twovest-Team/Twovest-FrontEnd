@@ -65,13 +65,14 @@ async function ProductContent({ productId, productGender }) {
                   {getCategoryName(data.categories.id)} {data.brands.name}
                 </h5>
               </div>
-              
 
-              <Button type={'black'} ariaLabel='Ver as melhores ofertas' width='full'>
+              <Button
+                type={"black"}
+                ariaLabel="Ver as melhores ofertas"
+                width="full"
+              >
                 Ver as melhores ofertas
               </Button>
-
-
             </div>
           </div>
         </div>

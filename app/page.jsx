@@ -12,11 +12,9 @@ import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";
 import Button from "@/components/buttons/Button";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 export default function Home() {
-
   let [gender] = useGender();
 
   const [dataPopular, setDataPopular] = useState();
@@ -43,7 +41,7 @@ export default function Home() {
     }
   }, [brands, dataPopular, gender]);
 
-  if (!gender) return null
+  if (!gender) return null;
 
   return (
     <main>
@@ -72,14 +70,23 @@ export default function Home() {
             <p className="mb-6">🔥 Descobre novos looks e inspira-te!</p>
 
             <div className="md:w-[18rem]">
-              <Button type={'white-outlined'} ariaLabel='Ir para a Galeria de Looks' width='full' justify='between' href={`/gallery/${gender.string}`}>
-                Ir para a galeria
-                <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+              <Button
+                type={"white-outlined"}
+                ariaLabel="Ir para a Galeria de Looks"
+                width="full"
+                justify="between"
+                href={`/gallery/${gender.string}`}
+              >
+                <div>
+                  <span>Ir para a galeria</span>
+                  <KeyboardArrowRightIcon
+                    className="translate-x-2"
+                    sx={{ fontSize: 28 }}
+                  />
+                </div>
               </Button>
             </div>
-
           </div>
-
         </article>
       </section>
 
@@ -94,4 +101,3 @@ export default function Home() {
     </main>
   );
 }
-

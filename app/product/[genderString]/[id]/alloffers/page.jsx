@@ -4,7 +4,7 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 export default async function Alloffers({ params }) {
   const productId = params.id;
-  const productGender = params.genderString
+  const productGender = params.genderString;
   const result = await Ofertas(productId, productGender);
 
   //console.log("Fetched result:", result);

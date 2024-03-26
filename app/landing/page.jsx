@@ -11,9 +11,8 @@ import getGender from "@/utils/getGender";
 
 // Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
 export default function Landing() {
-
   const router = useRouter();
-  const dispatch = useAppDispatch(state => state.gender)
+  const dispatch = useAppDispatch((state) => state.gender);
 
   function handleClick(id) {
     const genderObj = getGender(id);

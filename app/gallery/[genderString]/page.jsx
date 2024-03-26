@@ -23,7 +23,10 @@ const Gallery = async ({ params, searchParams }) => {
     <main>
       <NavigationTitle titleText={"Galeria de Looks"}>
         <div className="flex gap-2 text-secondary items-center">
-          <p className="hidden sm:block text-right text-gray-700" aria-label="Ganhar Pontos">
+          <p
+            className="hidden sm:block text-right text-gray-700"
+            aria-label="Ganhar Pontos"
+          >
             Ganhar pontos
           </p>
           <HelpOutlineIcon />
@@ -37,9 +40,13 @@ const Gallery = async ({ params, searchParams }) => {
           <Views />
         </div>
         <div>
-            <Button href={'/gallery/submitLook'} type={'primary'} ariaLabel='Submeter look'>
-              Submeter look
-            </Button>
+          <Button
+            href={"/gallery/submitLook"}
+            type={"primary"}
+            ariaLabel="Submeter look"
+          >
+            Submeter look
+          </Button>
         </div>
       </div>
 
@@ -48,7 +55,6 @@ const Gallery = async ({ params, searchParams }) => {
           <LookList gender={gender} style={style} />
         </Suspense>
       </div>
-
     </main>
   );
 };
@@ -75,12 +81,11 @@ async function LookList({ gender, style }) {
         </>
       ) : (
         <NoResultsNotice
-          title={'Não encontramos looks.'}
-          text={'Infelimente não temos looks disponíveis para esta categoria.'}
-          btnText={'Ir para Geral'}
+          title={"Não encontramos looks."}
+          text={"Infelizmente não temos looks disponíveis para esta categoria."}
+          btnText={"Ir para Geral"}
         />
       )}
-
     </>
   );
 }

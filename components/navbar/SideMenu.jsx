@@ -3,7 +3,7 @@
 import { PrimaryMenuPagesList } from "./PrimaryMenuPages";
 import { SecondaryMenuPagesList } from "./SecondaryMenuPages";
 import { SocialMediaLogos_black } from "../logos/SocialMediaLogos_black";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SellIcon from "@mui/icons-material/Sell";
 import StarsIcon from "@mui/icons-material/Stars";
 import { general_categories } from "@/constants";
@@ -29,7 +29,7 @@ export const SideMenu = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
 
-  const currentUser = useAuth();
+  const { currentUser } = useAuth();
   const [gender, setGender] = useGender();
 
   if (!gender) return null;
@@ -70,10 +70,11 @@ export const SideMenu = () => {
               <button
                 key={object.id}
                 onClick={() => handleGender(object)}
-                className={`${gender.id != object.id
-                  ? "text-secondary font-semibold mr-2"
-                  : "text-black font-semibold mr-2"
-                  } `}
+                className={`${
+                  gender.id != object.id
+                    ? "text-secondary font-semibold mr-2"
+                    : "text-black font-semibold mr-2"
+                } `}
               >
                 {object.stringPT}
               </button>
@@ -88,12 +89,21 @@ export const SideMenu = () => {
 
         <div className="mx-4 my-4">
           {currentUser == null && (
-
-            <Button href="/login" type={'black'} ariaLabel='Fazer login ou registo' justify="between" width='full'>
-              Fazer login ou registo
-              <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+            <Button
+              href="/login"
+              type={"black"}
+              ariaLabel="Fazer login ou registo"
+              justify="between"
+              width="full"
+            >
+              <div>
+                <span> Fazer login ou registo</span>
+                <KeyboardArrowRightIcon
+                  className="translate-x-2"
+                  sx={{ fontSize: 28 }}
+                />
+              </div>
             </Button>
-
           )}
 
           <div className="mt-3 relative">

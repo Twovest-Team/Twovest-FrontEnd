@@ -7,7 +7,7 @@ const getLooksForGallery = async (gender) => {
   const genderId = getGender(gender).id
 
   const { data, error } = await supabase
-    .from("looks")
+    .from('looks')
     .select(
       `
     id,
@@ -22,8 +22,8 @@ const getLooksForGallery = async (gender) => {
     )
 `
     )
-    .eq("submission_state", 2)
-    .eq("gender", genderId);
+    .eq('submission_state', 2)
+    .eq('gender', genderId);
 
   let arrayOfLooks = await Promise.all(
     data.map(async (element) => {

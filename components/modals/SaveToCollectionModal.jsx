@@ -1,30 +1,28 @@
 "use client";
 
-import CloseIcon from '@mui/icons-material/Close';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useEffect, useState } from 'react';
-import getCollections from '@/utils/db/collections/getCollections';
-import { toggleLookModalToggle } from '@/redux/slices/saveLookModalToggle';
-import addToCollection from '@/utils/db/collections/addToCollection';
-import LoadingIcon from '../buttons/icons/LoadingIcon';
-import CheckIcon from '@mui/icons-material/Check';
-import { redirect, usePathname, useRouter } from 'next/navigation';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import deleteCollectionLook from '@/utils/db/collections/deleteCollectionLook';
-import { RadioGroup } from '@headlessui/react'
-import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
-import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
-import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-import createCollection from '@/utils/db/collections/createCollection';
-import useAuth from "@/hooks/client-hooks/useAuth";
-
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
+import getUserCollections from "@/utils/db/collections/getUserCollections";
+import { toggleLookModalToggle } from "@/redux/slices/saveLookModalToggle";
+//import saveLookToCollection from "@/utils/db/collections/saveLookToCollection";
+import LoadingIcon from "../buttons/icons/LoadingIcon";
+import CheckIcon from "@mui/icons-material/Check";
+import { redirect, usePathname, useRouter } from "next/navigation";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+//import deleteLookFromCollection from "@/utils/db/collections/deleteLookFromCollection";
+import { RadioGroup } from "@headlessui/react";
+import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
+import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
+import createCollection from "@/utils/db/collections/createCollection";
 
 const SaveToCollectionModal = ({ lookId }) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const currentUser = useAuth();
+  const currentUser = useAppSelector((state) => state.user.data);
   const [collections, setCollections] = useState();
   const router = useRouter();
   const isModalOpen = useAppSelector((state) => state.lookModalToggle.isOpen);
@@ -42,20 +40,21 @@ const SaveToCollectionModal = ({ lookId }) => {
 
   const [modalStatus, setModalStatus] = useState(allModalStatus[0]);
 
-    async function getData() {
-        const userCollections = await getCollections(currentUser.id)
-        if (userCollections) {
-            setCollections(userCollections)
-        } else {
-            setModalStatus(allModalStatus[1])
-        }
+  async function getData() {
+    const userCollections = await getUserCollections(currentUser.id);
+    if (userCollections) {
+      setCollections(userCollections);
+    } else {
+      setModalStatus(allModalStatus[1]);
     }
+  }
 
-    function handleCloseModal() {
-        setModalStatus(allModalStatus[0])
-        dispatch(toggleLookModalToggle())
-        router.refresh()
-    }
+  function handleCloseModal() {
+    //console.log('fecha')
+    setModalStatus(allModalStatus[0]);
+    dispatch(toggleLookModalToggle());
+    router.refresh();
+  }
 
   useEffect(() => {
     if (currentUser && !collections) {
@@ -152,20 +151,20 @@ const CollectionButton = ({ collection, lookId, getData }) => {
   async function handleCollectionClick(collectionId) {
     setSaveStatus("loading");
     if (saveStatus === "default") {
-      handleaddToCollection(collectionId);
+      handleSaveLookToCollection(collectionId);
     } else if (saveStatus === "saved") {
-      handledeleteCollectionLook(collectionId);
+      handleDeleteLookFromCollection(collectionId);
     }
   }
 
-  async function handleaddToCollection(collectionId) {
-    await addToCollection(collectionId, lookId);
+  async function handleSaveLookToCollection(collectionId) {
+    await saveLookToCollection(collectionId, lookId);
     setSaveStatus("saved");
     getData();
   }
 
-  async function handledeleteCollectionLook(collectionId) {
-    await deleteCollectionLook(collectionId, lookId);
+  async function handleDeleteLookFromCollection(collectionId) {
+    await deleteLookFromCollection(collectionId, lookId);
     setSaveStatus("default");
     getData();
   }
@@ -242,11 +241,12 @@ const ToCreate = ({
       setLoading(true);
       let data = await createCollection(name, privacy, lookId, userId, true);
 
-            if (data) {
-                handleCloseModal()
-                setLoading(false)
-            }
-        }
+      if (data) {
+        handleCloseModal();
+        setLoading(false);
+        //console.log(data)
+      }
+    }
 
     if (!loading) {
       createCollectionAndSaveLook();

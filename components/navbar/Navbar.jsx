@@ -11,7 +11,6 @@ import { toggleCart } from "@/redux/slices/cartToggle";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
@@ -28,10 +27,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
   const pathName = usePathname();
-  const currentUser = useAuth();
+  const { currentUser, userChecked, setUserChecked } = useAuth();
   const supabase = createClientComponentClient();
   const { isMobile } = useWindow();
-  const [sessionReady, setSessionReady] = useState(false);
   const handleClickMenu = () => dispatch(toggleMenu());
 
   const handleClickCart = () => dispatch(toggleCart());
@@ -39,16 +37,13 @@ export const Navbar = ({ children }) => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     dispatch(changeUserData(null));
-    setSessionReady(false);
+    setUserChecked(false);
+    console.log("Logged out. userChecked:", userChecked);
   };
 
-  useEffect(() => {
-    if (currentUser !== null) {
-      setSessionReady(true);
-    }
-  }, [currentUser]);
-
-  if (pathName === "/landing") return null;
+  if (pathName === "/landing") {
+    return false;
+  }
 
   return (
     <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
@@ -82,7 +77,6 @@ export const Navbar = ({ children }) => {
 
         {/* NAVBAR RIGHT SECTION */}
         <div className="flex justify-between items-center ">
-          {/* All Buttons on the right section of the navbar */}
           <div className="flex items-center mr-3">
             <IconButton icon={<SearchIcon />} />
             <IconButton icon={<FavoriteBorderOutlinedIcon />} />
@@ -96,15 +90,15 @@ export const Navbar = ({ children }) => {
           </div>
 
           <Menu>
-            {sessionReady && currentUser ? (
+            {currentUser ? (
               <Menu.Button>
                 <div className="flex w-8 h-8 ml-2 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
-                    className="w-fit h-fit rounded-full"
+                    className="w-10 h-10 rounded-full"
                     alt="Imagem de perfil"
                     fill={true}
-                  />
+                  ></Image>
                 </div>
               </Menu.Button>
             ) : (
@@ -114,7 +108,17 @@ export const Navbar = ({ children }) => {
                 </Menu.Button>
               )
             )}
-
+            {!isMobile && userChecked == false && (
+              <Button
+                height="11"
+                href="/login"
+                type={"black"}
+                ariaLabel="Fazer login ou registo"
+                width="fit"
+              >
+                <span> Login | Registar</span>
+              </Button>
+            )}
             <Transition
               enter="transition duration-100 ease-out"
               enterFrom="transform scale-95 opacity-0"
@@ -313,17 +317,6 @@ export const Navbar = ({ children }) => {
                 )}
               </Menu.Items>
             </Transition>
-            {!isMobile && !sessionReady && currentUser === null && (
-              <Button
-                height="11"
-                href="/login"
-                type={"black"}
-                ariaLabel="Fazer login ou registo"
-                width="fit"
-              >
-                Login | Registar
-              </Button>
-            )}
           </Menu>
         </div>
 

@@ -1,30 +1,34 @@
-"use client";
-
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { changeUserData } from "@/redux/slices/userSlice";
 import getAuth from "@/utils/db/auth/getAuth";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
-  const currentUser = useAppSelector((state) => state.user.data);
-  const [loading, setLoading] = useState(true);
-
-  const getCurrentUser = async () => {
-    const data = await getAuth();
-    if (data) {
-      dispatch(changeUserData(data));
-      setLoading(false);
-    }
-  };
+  const currentUser = useAppSelector((state) => state.user.data_);
+  const [userChecked, setUserChecked] = useState(null);
 
   useEffect(() => {
-    if (!currentUser) getCurrentUser();
-  }, [currentUser]);
+    const getCurrentUser = async () => {
+      try {
+        const userData = await getAuth();
 
-  if (loading) return null;
+        dispatch(changeUserData(userData));
 
-  return currentUser || null;
+        if (userData !== null && userData !== undefined) {
+          setUserChecked(true);
+        } else {
+          setUserChecked(false);
+        }
+      } catch (error) {
+        console.error("Erro ao obter dados do usuário:", error);
+      }
+    };
+
+    getCurrentUser();
+  }, [dispatch]);
+
+  return { currentUser, userChecked, setUserChecked };
 };
 
 export default useAuth;

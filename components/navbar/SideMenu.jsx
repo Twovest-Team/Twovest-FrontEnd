@@ -96,11 +96,13 @@ export const SideMenu = () => {
               justify="between"
               width="full"
             >
-              Fazer login ou registo
-              <KeyboardArrowRightIcon
-                className="translate-x-2"
-                sx={{ fontSize: 28 }}
-              />
+              <div className="flex items-center justify-between">
+                <span>Fazer login ou registo</span>
+                <KeyboardArrowRightIcon
+                  className="translate-x-2"
+                  sx={{ fontSize: 28 }}
+                />
+              </div>
             </Button>
           )}
 

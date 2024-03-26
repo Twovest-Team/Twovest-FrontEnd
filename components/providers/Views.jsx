@@ -10,6 +10,7 @@ import threeRowsButton from "@/public/images/viewmodel-icons/3rows.png";
 import fourRowsButton from "@/public/images/viewmodel-icons/4rows.png";
 import fiveRowsButton from "@/public/images/viewmodel-icons/5rows.png";
 import Image from "next/image";
+import IconButton from "../buttons/icons/IconButton";
 
 const Views = () => {
   const { width, isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow();
@@ -35,52 +36,73 @@ const Views = () => {
         className={`items-center justify-between text-secondary w-fit flex gap-x-3`}
       >
         {(isMobile || isSm) && (
-          <Image
-            src={oneRowButton}
-            height={30}
-            width={30}
-            alt="Mudar para visualização em uma coluna"
-            onClick={() => handleViewChange(1)}
+          <IconButton
+            icon={
+              <Image
+                src={oneRowButton}
+                height={30}
+                width={30}
+                alt="Mudar para visualização em uma coluna"
+                onClick={() => handleViewChange(1)}
+              />
+            }
           />
         )}
 
         {(isMobile || isSm || isMd) && (
-          <Image
-            src={twoRowsButton}
-            height={30}
-            width={30}
-            alt="Mudar para visualização em duas colunas"
-            onClick={() => handleViewChange(2)}
+          <IconButton
+            icon={
+              <Image
+                src={twoRowsButton}
+                height={30}
+                width={30}
+                alt="Mudar para visualização em duas colunas"
+                onClick={() => handleViewChange(2)}
+              />
+            }
           />
         )}
 
         {(isMd || isLg) && (
-          <Image
-            src={threeRowsButton}
-            height={30}
-            width={30}
-            alt="Mudar para visualização em três colunas"
-            onClick={() => handleViewChange(3)}
+          <IconButton
+            icon={
+              <Image
+                src={threeRowsButton}
+                height={30}
+                width={30}
+                alt="Mudar para visualização em três colunas"
+                onClick={() => handleViewChange(3)}
+              />
+            }
           />
         )}
 
         {(isLg || isXl || is2Xl) && (
-          <Image
-            src={fourRowsButton}
-            height={30}
-            width={30}
-            alt="Mudar para visualização em quatro colunas"
-            onClick={() => handleViewChange(4)}
+          <IconButton
+            icon={
+              <Image
+                src={fourRowsButton}
+                height={30}
+                width={30}
+                alt="Mudar para visualização em quatro colunas"
+                onClick={() => handleViewChange(4)}
+              />
+            }
+            className={"w-12 h-12"}
           />
         )}
 
         {(isXl || is2Xl) && (
-          <Image
-            src={fiveRowsButton}
-            height={30}
-            width={30}
-            alt="Mudar para visualização em cinco colunas"
-            onClick={() => handleViewChange(5)}
+          <IconButton
+            icon={
+              <Image
+                src={fiveRowsButton}
+                height={30}
+                width={30}
+                alt="Mudar para visualização em cinco colunas"
+                onClick={() => handleViewChange(5)}
+              />
+            }
           />
         )}
       </div>

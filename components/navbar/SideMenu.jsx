@@ -29,7 +29,7 @@ export const SideMenu = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
 
-  const currentUser = useAuth();
+  const { currentUser } = useAuth();
   const [gender, setGender] = useGender();
 
   if (!gender) return null;
@@ -96,8 +96,8 @@ export const SideMenu = () => {
               justify="between"
               width="full"
             >
-              <div className="flex items-center justify-between">
-                <span>Fazer login ou registo</span>
+              <div>
+                <span> Fazer login ou registo</span>
                 <KeyboardArrowRightIcon
                   className="translate-x-2"
                   sx={{ fontSize: 28 }}

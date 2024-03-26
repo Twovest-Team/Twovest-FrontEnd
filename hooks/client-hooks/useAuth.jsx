@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
-  const currentUser = useAppSelector((state) => state.user.data_);
+  const currentUser = useAppSelector((state) => state.user.data);
   const [userChecked, setUserChecked] = useState(null);
 
   useEffect(() => {

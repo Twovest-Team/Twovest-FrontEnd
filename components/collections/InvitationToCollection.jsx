@@ -10,7 +10,7 @@ import useAuth from "@/hooks/client-hooks/useAuth"
 
 const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCollection }) => {
 
-    const currentUser = useAuth()
+    const {currentUser} = useAuth()
     const dispatch = useAppDispatch()
     const searchParams = useSearchParams()
     const invitation = searchParams.get('invite')

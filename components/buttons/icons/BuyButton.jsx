@@ -15,7 +15,7 @@ import Button from "../Button";
 
 const BuyButton = ({ offerId }) => {
 
-  const currentUser = useAuth()
+  const {currentUser} = useAuth()
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const router = useRouter();

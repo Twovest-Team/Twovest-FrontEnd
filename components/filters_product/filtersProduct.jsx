@@ -14,30 +14,30 @@ const FiltersProduct = async ({ productType, productId, gender }) => {
   const handleColorChange = (event) => {
     if (event.target.value !== "Cor") {
       router.push(
-        `/product/${gender.toLowerCase()}/${productId}/offers?color=${event.target.value}`
+        `/product/${gender.toLowerCase()}/${productId}/alloffers?color=${event.target.value}`
       );
     } else {
-      router.push(`/product/${gender.toLowerCase()}/${productId}/offers`);
+      router.push(`/product/${gender.toLowerCase()}/${productId}/alloffers`);
     }
   };
 
   const handleConditionChange = (event) => {
     if (event.target.value !== "Condição") {
       router.push(
-        `/product/${gender.toLowerCase()}/${productId}/offers?condition=${event.target.value}`
+        `/product/${gender.toLowerCase()}/${productId}/alloffers?condition=${event.target.value}`
       );
     } else {
-      router.push(`/product/${gender.toLowerCase()}/${productId}/offers`);
+      router.push(`/product/${gender.toLowerCase()}/${productId}/alloffers`);
     }
   };
 
   const handleSizeChange = (event) => {
     if (event.target.value !== "Tamanho") {
       router.push(
-        `/product/${gender.toLowerCase()}/${productId}/offers?size=${event.target.value}`
+        `/product/${gender.toLowerCase()}/${productId}/alloffers?size=${event.target.value}`
       );
     } else {
-      router.push(`/product/${gender.toLowerCase()}/${productId}/offers`);
+      router.push(`/product/${gender.toLowerCase()}/${productId}/alloffers`);
     }
   };
 

@@ -35,13 +35,9 @@ export default function RootLayout({ children }) {
             <Footer />
 
             <Suspense>
-
               {/* MODALS */}
               <ManageCollectionModal />
-
             </Suspense>
-
-
           </GenderProvider>
         </StoreProvider>
         <Analytics />

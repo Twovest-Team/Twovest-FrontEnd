@@ -21,7 +21,7 @@ const useAuth = () => {
           setUserChecked(false);
         }
       } catch (error) {
-        console.error("Erro ao obter dados do usuário:", error);
+        console.error("Erro ao obter dados :", error);
       }
     };
 

@@ -10,7 +10,9 @@ export const LooksHomepage = ({data}) => {
         
        <ContentSlider>
             {looks.map((item) => {
-                return(<LookCard key={item.id} look={item} name={item.users.name} avatar={item.users.img} slider={true}/>)   
+                <li key={item.id}>
+                return(<LookCard key={item.id} look={item} name={item.users.name} avatar={item.users.img} slider={true}/>)  
+                </li> 
             }
             )}  
         </ContentSlider>

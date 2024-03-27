@@ -42,16 +42,14 @@ export const CardCart = ({
     }
   }
 
-  const gender = getGender(data.offers.products.gender)
+  const gender = getGender(data.offers.products.gender);
 
   return (
     <article className="py-12 border-b border-grey">
       <div className="flex self-center items-center w-full">
         <Link
           onClick={() => handleToggleCart()}
-          href={`/product/${gender.string}/${
-            data.offers.products.id
-          }`}
+          href={`/product/${gender.string}/${data.offers.products.id}`}
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image

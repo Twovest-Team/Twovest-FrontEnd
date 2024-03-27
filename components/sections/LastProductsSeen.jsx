@@ -34,12 +34,14 @@ const LastProductsSeen = () => {
         <h6 className="font-semibold mb-4 container">Últimos artigos vistos</h6>
         <ContentSlider>
           {currentUserHistory.map((element) => (
+            <li key={element.products.id}>
             <CardProduct
               key={element.products.id}
               product={element.products}
               gender={element.products.gender}
               slider={true}
             />
+            </li>
           ))}
         </ContentSlider>
       </div>

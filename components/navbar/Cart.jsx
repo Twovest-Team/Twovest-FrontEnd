@@ -20,12 +20,11 @@ import IconButton from "../buttons/icons/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import useAuth from "@/hooks/client-hooks/useAuth";
 
-
 export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
   function handleLoading(boolean) {
@@ -110,17 +109,19 @@ export const Cart = () => {
         }`}
       >
         {products.length > 0 && currentUser && (
-          <>
+          <ul>
             {products.map((product, index) => (
-              <CardCart
-                handleShowDeleteNotification={handleShowDeleteNotification}
-                handleLoading={handleLoading}
-                data={product}
-                userEmail={currentUser.email}
-                key={index}
-              />
+              <li key={index}>
+                <CardCart
+                  handleShowDeleteNotification={handleShowDeleteNotification}
+                  handleLoading={handleLoading}
+                  data={product}
+                  userEmail={currentUser.email}
+                  key={index}
+                />
+              </li>
             ))}
-          </>
+          </ul>
         )}
 
         {products.length === 0 && currentUser && (

@@ -15,7 +15,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { OnboardingConclusion } from "@/components/sections/OnboardingConclusion";
 
-// Se utilizador já tem um género selecionado deve ser redirecionado para a homepage
+
 export default function Landing() {
   const router = useRouter();
   const dispatch = useAppDispatch((state) => state.gender);

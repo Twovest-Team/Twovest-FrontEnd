@@ -3,6 +3,7 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import { usePathname } from "next/navigation";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch } from "@/redux/hooks";
@@ -10,7 +11,6 @@ import { toggleCart } from "@/redux/slices/cartToggle";
 import { changeUserData } from "@/redux/slices/userSlice";
 import { toggleMenu } from "@/redux/slices/menuToggle";
 import { Menu, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import NotificationCart from "../items/NotificationCart";
@@ -20,22 +20,16 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 import Button from "../buttons/Button";
 import IconButton from "../buttons/icons/IconButton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
-
-
 export const Navbar = ({ children }) => {
-
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const pathName = usePathname();
-  const currentUser = useAuth();
+  const { currentUser, userChecked, setUserChecked } = useAuth();
   const supabase = createClientComponentClient();
-  const { isMobile } = useWindow()
-
+  const { isMobile } = useWindow();
   const handleClickMenu = () => dispatch(toggleMenu());
 
   const handleClickCart = () => dispatch(toggleCart());
@@ -43,22 +37,23 @@ export const Navbar = ({ children }) => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     dispatch(changeUserData(null));
+    setUserChecked(false);
+    console.log("Logged out. userChecked:", userChecked);
   };
 
-  if (pathName === "/landing") return null
+  if (pathName === "/landing") {
+    return null;
+  }
 
   return (
     <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
-
         {/* NAVBAR LEFT SECTION */}
         <div className="flex gap-4">
-
-      
           <IconButton
-          ariaLabel={'Abrir menu de navegação.'}
-          icon={<MenuIcon />}
-          onClick={handleClickMenu}
+            ariaLabel={"Abrir menu de navegação."}
+            icon={<MenuIcon />}
+            onClick={handleClickMenu}
           />
 
           <Link href={"/"} className="items-center flex">
@@ -80,25 +75,19 @@ export const Navbar = ({ children }) => {
           </Link>
         </div>
 
-
         {/* NAVBAR RIGHT SECTION */}
-        <div className="flex justify-between items-center gap-3">
-
-        <IconButton
-            icon={<SearchIcon />}
-          />
-
-          <IconButton
-            icon={<FavoriteBorderOutlinedIcon />}
-          />
-
-          <div className="relative">
-            <IconButton
-              icon={<LocalMallOutlinedIcon />}
-              onClick={handleClickCart}
-            />
-            <div className="cursor-pointer" onClick={handleClickCart}>
-              {currentUser && <NotificationCart currentUser={currentUser} />}
+        <div className="flex justify-between items-center ">
+          <div className="flex items-center mr-3">
+            <IconButton icon={<SearchIcon />} />
+            <IconButton icon={<FavoriteBorderOutlinedIcon />} />
+            <div className="relative">
+              <IconButton
+                icon={<LocalMallOutlinedIcon />}
+                onClick={handleClickCart}
+              />
+              <div className="cursor-pointer" onClick={handleClickCart}>
+                {currentUser && <NotificationCart currentUser={currentUser} />}
+              </div>
             </div>
           </div>
 
@@ -108,18 +97,30 @@ export const Navbar = ({ children }) => {
                 <div className="flex w-8 h-8 ml-2 aspect-square rounded-full border border-gray-300 relative">
                   <Image
                     src={currentUser.img}
-                    className="w-fit h-fit rounded-full"
-                    alt="profile image"
+                    className="w-10 h-10 rounded-full"
+                    alt="Imagem de perfil"
                     fill={true}
-                  />
+                  ></Image>
                 </div>
               </Menu.Button>
-            ) : isMobile && (
-              <Menu.Button>
-                <AccountCircleOutlinedIcon />
-              </Menu.Button>
+            ) : (
+              isMobile && (
+                <Menu.Button>
+                  <AccountCircleOutlinedIcon />
+                </Menu.Button>
+              )
             )}
-
+            {!isMobile && userChecked == false && (
+              <Button
+                height="11"
+                href="/login"
+                type={"black"}
+                ariaLabel="Fazer login ou registo"
+                width="fit"
+              >
+                <span> Login | Registar</span>
+              </Button>
+            )}
             <Transition
               enter="transition duration-100 ease-out"
               enterFrom="transform scale-95 opacity-0"
@@ -289,44 +290,37 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
                   </>
-                ) : isMobile && (
-                  <Menu.Item>
-                    {({ active, close }) => (
-                      <div className="px-2 py-4">
-                        <div className="mb-3 font-semibold">
-                          Inicia sessão para poderes aceder às definições de
-                          conta
-                        </div>
-                        <Link
-                          href={"/login"}
-                          onClick={close}
-                          className={`${active && "bg-grey_opacity_50"
-                            } cursor-pointer`}
-                        >
-                          <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
-                            Iniciar sessão
+                ) : (
+                  isMobile && (
+                    <Menu.Item>
+                      {({ active, close }) => (
+                        <div className="px-2 py-4">
+                          <div className="mb-3 font-semibold">
+                            Inicia sessão para poderes aceder às definições de
+                            conta
                           </div>
-                        </Link>
-                      </div>
-                    )}
-                  </Menu.Item>
+                          <Link
+                            href={"/login"}
+                            onClick={close}
+                            className={`${active && "bg-grey_opacity_50"
+                              } cursor-pointer`}
+                          >
+                            <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
+                              Iniciar sessão
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </Menu.Item>
+                  )
                 )}
               </Menu.Items>
             </Transition>
           </Menu>
-
-          {!currentUser && (
-            <Button height="11" href="/login" type={'black'} ariaLabel='Fazer login ou gegisto' width='fit'>
-              Login | Registar
-            </Button>
-          )}
         </div>
 
         {children}
       </div>
-
-
     </nav>
   );
-
 };

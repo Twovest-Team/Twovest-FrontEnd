@@ -6,13 +6,14 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import getUserHistory from "@/utils/db/productsViewHistory/getUserHistory";
 import { updateHistory } from "@/redux/slices/historyProducts";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 const LastProductsSeen = () => {
   const dispatch = useAppDispatch();
   const currentUserHistory = useAppSelector(
     (state) => state.historyProducts.products
   );
-  const currentUser = useAppSelector((state) => state.user.data);
+  const {currentUser} = useAuth();
 
   async function getUserHistoryData() {
     const data = await getUserHistory(currentUser.email);
@@ -33,12 +34,14 @@ const LastProductsSeen = () => {
         <h6 className="font-semibold mb-4 container">Últimos artigos vistos</h6>
         <ContentSlider>
           {currentUserHistory.map((element) => (
+            <li key={element.products.id}>
             <CardProduct
               key={element.products.id}
               product={element.products}
               gender={element.products.gender}
               slider={true}
             />
+            </li>
           ))}
         </ContentSlider>
       </div>

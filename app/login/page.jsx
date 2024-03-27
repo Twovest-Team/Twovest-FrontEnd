@@ -96,11 +96,15 @@ export default function LoginPage() {
 
         <div className="text-error_main my-2">{loginError}</div>
 
-
-        <Button className="mt-8" type={'primary'} ariaLabel='Iniciar sessão com email e password' width='full' onClick={handleSignInEmail}>
+        <Button
+          className="mt-8"
+          type={"primary"}
+          ariaLabel="Iniciar sessão com email e password"
+          width="full"
+          onClick={handleSignInEmail}
+        >
           Iniciar sessão
         </Button>
-
 
         <div className="flex my-12 items-center">
           <div className="border-b border-grey w-full"></div>
@@ -109,8 +113,12 @@ export default function LoginPage() {
         </div>
 
         <div className="flex flex-col gap-4">
-
-          <Button type={'black'} ariaLabel='Iniciar sessão com google' width='full' onClick={handleSignInGoogle}>
+          <Button
+            type={"black"}
+            ariaLabel="Iniciar sessão com google"
+            width="full"
+            onClick={handleSignInGoogle}
+          >
             <Image
               src={coloredGoogleIcon}
               height={20}
@@ -121,7 +129,11 @@ export default function LoginPage() {
             Continuar com Google
           </Button>
 
-          <Button type={'black'} ariaLabel='Iniciar sessão com Facebook' width='full'>
+          <Button
+            type={"black"}
+            ariaLabel="Iniciar sessão com Facebook"
+            width="full"
+          >
             <Image
               src={coloredFacebookIcon}
               height={22}
@@ -132,7 +144,11 @@ export default function LoginPage() {
             Continuar com Facebook
           </Button>
 
-          <Button type={'black'} ariaLabel='Iniciar sessão com Apple' width='full'>
+          <Button
+            type={"black"}
+            ariaLabel="Iniciar sessão com Apple"
+            width="full"
+          >
             <Image
               src={coloredAppleIcon}
               height={20}
@@ -142,7 +158,6 @@ export default function LoginPage() {
             />
             Continuar com Apple
           </Button>
-
         </div>
 
         <div className="text-center my-20">

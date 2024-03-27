@@ -7,10 +7,10 @@ import getGender from "../getGender";
 
 const getProductById = async (id, gender) => {
 
-  const genderId = getGender(gender).id
+  const genderId = getGender(gender).id; 
 
   const { data, error } = await supabase
-    .from("products")
+    .from('products')
     .select(
       `
         id,
@@ -30,11 +30,11 @@ const getProductById = async (id, gender) => {
         )
     `
     )
-    .eq("id", id)
-    .eq("gender", genderId)
-    .eq("is_public", true);
+    .eq('id', id)
+    .eq('gender', genderId)
+    .eq('is_public', true);
   
-    if(data[0]){
+    if (data && data.length > 0) {
       const images = await getProductImages(data[0].id);
       const offers = await getProductOffers(data[0].id);
       const materials = await getProductMaterials(data[0].id);
@@ -46,10 +46,9 @@ const getProductById = async (id, gender) => {
       data[0].styles = styles;
       
       return data[0];
-    }else if(error){
+    } else if (error) {
       console.log(error);
     }
-  
 };
 
 export default getProductById;

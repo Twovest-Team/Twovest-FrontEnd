@@ -24,7 +24,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
                 </div>
               </div>
               <div>
-                <ArrowForwardIosIcon className="text-[18px]" />
+                <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
               </div>
             </Link>
           </li>
@@ -37,7 +37,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
           >
             <div>Pontos de entrega</div>
             <div>
-              <ArrowForwardIosIcon className="text-[18px]" />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
         </li>
@@ -49,7 +49,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
           >
             <div>Fórum</div>
             <div>
-              <ArrowForwardIosIcon className="text-[18px]" />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
         </li>
@@ -61,7 +61,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
           >
             <div className="text-primary_main">Pontos&Cupões</div>
             <div>
-              <ArrowForwardIosIcon className="text-[18px]" />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
         </li>
@@ -73,7 +73,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
           >
             <div>Contactos</div>
             <div>
-              <ArrowForwardIosIcon className="text-[18px]" />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
         </li>
@@ -85,7 +85,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
           >
             <div>Help Center</div>
             <div>
-              <ArrowForwardIosIcon className="text-[18px]" />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
         </li>

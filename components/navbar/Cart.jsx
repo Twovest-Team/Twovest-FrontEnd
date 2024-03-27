@@ -15,17 +15,16 @@ import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import { NoResultsNotice } from "../sections/NoResultsNotice";
 import Button from "../buttons/Button";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import IconButton from "../buttons/icons/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-
-
+import useAuth from "@/hooks/client-hooks/useAuth";
 
 export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   let products = useAppSelector((state) => state.cartProducts.products);
-  const currentUser = useAppSelector((state) => state.user.data);
+  const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
   function handleLoading(boolean) {
@@ -64,7 +63,7 @@ export const Cart = () => {
   return (
     <div
       className={`${isCartOpen ? "translate-y-0" : "-translate-y-full block"}
-        bg-white z-50 max-w-[460px] flex flex-col left-0 right-0 mx-auto h-screen fixed top-0 transition-transform duration-300 ease-in-out`}
+        bg-white z-50 max-w-[1920px] flex flex-col left-0 right-0 mx-auto h-full fixed top-0 transition-transform duration-300 ease-in-out`}
     >
       <div className="flex justify-between items-center border-b border-grey">
         <div className="flex h-[72px] justify-between container items-center">
@@ -78,56 +77,60 @@ export const Cart = () => {
             </p>
           </div>
           <div>
-
             <IconButton
-              ariaLabel={'Fechar cesto de compras'}
+              ariaLabel={"Fechar cesto de compras"}
               icon={<CloseOutlinedIcon />}
               onClick={handleClickCart}
             />
-
           </div>
         </div>
       </div>
 
       <div>
         <div
-          className={`${products.length === 0 && "absolute"
-            } caption container py-6 shadow-md flex gap-2 items-center`}
+          className={`${
+            products.length === 0 && "absolute"
+          } caption w-full py-6 shadow-md flex gap-2  `}
         >
-          <CheckCircleOutlineIcon className="text-primary_main text-[20px] -translate-y-[1px]" />
-          <p
-            className="underline underline-offset-2"
-          >
-            Levantamento grátis num ponto de recolha.
-          </p>
+          <div className="flex h-[72px] justify-between container items-center">
+            <div className="flex items-center gap-2">
+              <CheckCircleOutlineIcon className="text-primary_main text-[20px]  -translate-y-[1px]" />
+              <p className="underline underline-offset-2">
+                Levantamento grátis num ponto de recolha.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div
-        className={`flex flex-grow flex-col transition-opacity duration-75 scroll_bar-invisible [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 container pt-8 ${loading && "opacity-20 pointer-events-none"
-          }`}
+        className={`flex flex-grow flex-col transition-opacity duration-75 scroll_bar-invisible [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 container pt-8 ${
+          loading && "opacity-20 pointer-events-none"
+        }`}
       >
         {products.length > 0 && currentUser && (
-          <>
+          <ul>
             {products.map((product, index) => (
-              <CardCart
-                handleShowDeleteNotification={handleShowDeleteNotification}
-                handleLoading={handleLoading}
-                data={product}
-                userEmail={currentUser.email}
-                key={index}
-              />
+              <li key={index}>
+                <CardCart
+                  handleShowDeleteNotification={handleShowDeleteNotification}
+                  handleLoading={handleLoading}
+                  data={product}
+                  userEmail={currentUser.email}
+                  key={index}
+                />
+              </li>
             ))}
-          </>
+          </ul>
         )}
 
         {products.length === 0 && currentUser && (
           <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
             <NoResultsNotice
-              title={'Vamos às compras?'}
-              text={'Os artigos que adicionares ao cesto vão aparecer aqui.'}
+              title={"Vamos às compras?"}
+              text={"Os artigos que adicionares ao cesto vão aparecer aqui."}
               icon={<LocalMallOutlinedIcon sx={{ fontSize: 60 }} />}
-              btnText={'Abrir Menu'}
+              btnText={"Abrir Menu"}
               onClick={() => {
                 dispatch(toggleMenu()), dispatch(toggleCart());
               }}
@@ -136,12 +139,17 @@ export const Cart = () => {
         )}
 
         {products.length === 0 && !currentUser && (
-          <NoResultsNotice
-            title={'Estás aí?'}
-            text={'Faz login para adicionares artigos ao cesto de compras.'}
-            icon={<LocalMallOutlinedIcon sx={{ fontSize: 60 }} />}
-            btnText={'Iniciar sessão'}
-          />
+          <div className="flex h-3/4 mx-auto">
+            <Link href="/login" className="flex flex-col ">
+              <NoResultsNotice
+                title={"Estás aí?"}
+                text={"Faz login para adicionares artigos ao cesto de compras."}
+                icon={<LocalMallOutlinedIcon sx={{ fontSize: 60 }} />}
+                btnText={"Iniciar sessão"}
+                onClick={handleClickCart}
+              />
+            </Link>
+          </div>
         )}
       </div>
 
@@ -151,8 +159,9 @@ export const Cart = () => {
             <div>
               <h6
                 className="font-semibold"
-                aria-label={`Total de ${products && products.length} ${products && products.length === 1 ? "artigo" : "artigos"
-                  }`}
+                aria-label={`Total de ${products && products.length} ${
+                  products && products.length === 1 ? "artigo" : "artigos"
+                }`}
               >
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
@@ -164,10 +173,11 @@ export const Cart = () => {
             <div>
               <h6
                 className="font-semibold"
-                aria-label={`Total do carrinho: ${products.length > 0
-                  ? getCartTotalPrice(products) + " euros"
-                  : "Carrinho vazio"
-                  }`}
+                aria-label={`Total do carrinho: ${
+                  products.length > 0
+                    ? getCartTotalPrice(products) + " euros"
+                    : "Carrinho vazio"
+                }`}
               >
                 {products.length > 0 && <>{getCartTotalPrice(products)}€</>}
               </h6>
@@ -176,9 +186,18 @@ export const Cart = () => {
 
           <div className=" my-6 ">
             <Link href={"/shop"}>
-              <Button onClick={() => dispatch(toggleCart())} type={'primary'} ariaLabel='Proceder com a compra' justify="between" width='full'>
+              <Button
+                onClick={() => dispatch(toggleCart())}
+                type={"primary"}
+                ariaLabel="Proceder com a compra"
+                justify="between"
+                width="full"
+              >
                 Proceder com a compra
-                <KeyboardArrowRightIcon className='translate-x-2' sx={{ fontSize: 28 }} />
+                <KeyboardArrowRightIcon
+                  className="translate-x-2"
+                  sx={{ fontSize: 28 }}
+                />
               </Button>
             </Link>
           </div>

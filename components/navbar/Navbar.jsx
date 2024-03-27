@@ -3,7 +3,7 @@
 import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { usePathname } from "next/navigation";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useAppDispatch } from "@/redux/hooks";
@@ -42,7 +42,7 @@ export const Navbar = ({ children }) => {
   };
 
   if (pathName === "/landing") {
-    return false;
+    return null;
   }
 
   return (
@@ -80,12 +80,14 @@ export const Navbar = ({ children }) => {
           <div className="flex items-center mr-3">
             <IconButton icon={<SearchIcon />} />
             <IconButton icon={<FavoriteBorderOutlinedIcon />} />
-            <IconButton
-              icon={<LocalMallOutlinedIcon />}
-              onClick={handleClickCart}
-            />
-            <div className="cursor-pointer" onClick={handleClickCart}>
-              {currentUser && <NotificationCart currentUser={currentUser} />}
+            <div className="relative">
+              <IconButton
+                icon={<LocalMallOutlinedIcon />}
+                onClick={handleClickCart}
+              />
+              <div className="cursor-pointer" onClick={handleClickCart}>
+                {currentUser && <NotificationCart currentUser={currentUser} />}
+              </div>
             </div>
           </div>
 
@@ -137,9 +139,8 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } font-semibold`}
+                          className={`${active && "bg-grey_opacity_50"
+                            } font-semibold`}
                         >
                           <div>
                             <div>
@@ -280,9 +281,8 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } text-error_main  caption`}
+                            className={`${active && "bg-grey_opacity_50"
+                              } text-error_main  caption`}
                           >
                             Sair -&gt;
                           </div>
@@ -302,9 +302,8 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={"/login"}
                             onClick={close}
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } cursor-pointer`}
+                            className={`${active && "bg-grey_opacity_50"
+                              } cursor-pointer`}
                           >
                             <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
                               Iniciar sessão

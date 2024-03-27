@@ -10,7 +10,7 @@ import useAuth from "@/hooks/client-hooks/useAuth";
 
 const Submit = () => {
 
-  const user = useAuth()
+  const {currentUser} = useAuth()
   const [timer, setTimer] = useState(5);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Submit = () => {
 
   return (
     <>
-      {user && (
+      {currentUser && (
         <>
           <NavigationTitle titleText="Submissão de look" />
           <div className="container mx-auto p-4 look overflow-hidden">

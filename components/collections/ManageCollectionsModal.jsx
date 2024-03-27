@@ -14,7 +14,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 const ManageCollectionModal = () => {
 
   const isModalOpen = useAppSelector(state => state.modals['createCollection']);
-  const currentUser = useAuth();
+  const {currentUser} = useAuth();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();

@@ -20,7 +20,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const products = useAppSelector((state) => state.cartProducts.products);
-  const currentUser = useAuth();
+  const {currentUser} = useAuth();
 
   // Update stage function
   function updateStage(id) {

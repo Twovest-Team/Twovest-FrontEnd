@@ -96,13 +96,11 @@ export const SideMenu = () => {
               justify="between"
               width="full"
             >
-              <div>
                 <span> Fazer login ou registo</span>
                 <KeyboardArrowRightIcon
                   className="translate-x-2"
                   sx={{ fontSize: 28 }}
                 />
-              </div>
             </Button>
           )}
 

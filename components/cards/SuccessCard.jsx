@@ -2,10 +2,10 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const SuccessCard = ({children}) => {
     return (
-        <div className='w-full container text-center'>
+        <div className='w-full lg:w-[900px] container text-center'>
 
 
-            <div className='bg-white container pt-16 pb-12 relative rounded shadow-sm w-full'>
+            <div className='bg-white container pt-16 pb-12 relative rounded lg:shadow-none shadow-sm w-full'>
 
                 {children}
 

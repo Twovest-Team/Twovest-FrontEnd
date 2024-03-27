@@ -51,6 +51,47 @@ h6 {
   font-size: 19.2px;
 }
 
+
+
+.text_caption{
+  font-size: 13px;
+
+}
+
+.text_h6{
+  font-size: 19.2px;
+  font-weight: 600;
+}
+
+.text_h5{
+  font-size: 23.04px;
+  font-weight: 600;
+}
+
+.text_h4{
+  font-size: 27.65px;
+  font-weight: 600;
+}
+
+.text_h3{
+  font-size: 33.18px;
+  font-weight: 600;
+}
+
+.text_h2{
+  font-size: 39.18px;
+  font-weight: bold;
+}
+
+.text_h1{
+  font-size: 47.78px;
+  font-weight: bold;
+}
+
+
+
+
+
 .caption {
   font-size: 13.33px;
   /* NÃO METER FLEX AQUI */

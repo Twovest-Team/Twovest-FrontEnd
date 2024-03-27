@@ -85,7 +85,7 @@ export default function Landing() {
           {currentPage === 1 && (
             <>
               <div className="cursor-pointer underline text-primary_main" onClick={handleSkip}>Saltar</div>
-              <Button children={"Começar ->"} onClick={nextPage} />
+              <Button /* children="Começar ->" */ onClick={nextPage} >Começar -&gt;</Button>
             </>
           )}
           {currentPage === totalPages && (

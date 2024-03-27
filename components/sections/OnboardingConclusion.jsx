@@ -38,11 +38,11 @@ export const OnboardingConclusion = () =>{
   
               <div className="mx-auto">
                 <Button
-                children={" Prosseguir ->"}
+                /* children="Prosseguir ->" */
                   className="text-center"
                   aria-label="Prosseguir para escolhad e género"
                   onClick={handleProsseguirClick}
->
+>Prosseguir -&gt;
                 </Button>
               </div>
             </div>

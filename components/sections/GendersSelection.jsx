@@ -17,8 +17,8 @@ export const GendersSelection = () =>{
     function handleClick(id) {
       const genderObj = getGender(id);
       dispatch(updateGender(genderObj));
-      router.back();
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      router.back({scroll: 0});
+      /* window.scrollTo({ top: 0, behavior: 'smooth' }) */
     }  
 
 

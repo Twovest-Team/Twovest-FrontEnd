@@ -8,6 +8,7 @@ import Link from "next/link";
 import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
+import GridBox from "@/components/providers/GridBox";
 
 export const revalidate = 30;
 
@@ -78,7 +79,7 @@ const Look = async ({ params }) => {
                     </p>
                   </div>
 
-                  <ItemsBox fixedView={2}>
+                  <GridBox fixed>
                     {data.products.map((product) => (
                       <CardProduct
                         key={product.id}
@@ -86,7 +87,7 @@ const Look = async ({ params }) => {
                         gender={product.gender}
                       />
                     ))}
-                  </ItemsBox>
+                  </GridBox>
                 </>
               ) : (
                 <div className="h-24 flex justify-between items-center container">

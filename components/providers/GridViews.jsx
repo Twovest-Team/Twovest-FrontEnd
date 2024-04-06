@@ -12,12 +12,11 @@ import fiveRowsButton from "@/public/images/viewmodel-icons/5rows.png";
 import Image from "next/image";
 import IconButton from "../buttons/icons/IconButton";
 
-const Views = () => {
+const GridViews = () => {
   const { width, isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow();
   const biggerThan350 = width > 530; // Custom value needed only for this use case
 
   const dispatch = useAppDispatch();
-  const currentView = useAppSelector((state) => state.layoutViews.currentValue);
 
   function handleViewChange(viewNumber) {
     dispatch(updateView(viewNumber));
@@ -28,7 +27,7 @@ const Views = () => {
     if (isMd) handleViewChange(2);
     if (isLg) handleViewChange(3);
     if (isXl || is2Xl) handleViewChange(4);
-  }, [, width]);
+  }, [width, isSm, isMd, isMd, isLg, isXl, is2Xl]);
 
   if (width && biggerThan350) {
     return (
@@ -112,4 +111,4 @@ const Views = () => {
   }
 };
 
-export default Views;
+export default GridViews;

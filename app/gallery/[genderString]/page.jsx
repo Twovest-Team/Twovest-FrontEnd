@@ -1,21 +1,22 @@
-import Views from "@/components/providers/Views";
+import GridViews from "@/components/providers/GridViews";
 import ItemsBox from "@/components/providers/ItemsBox";
 import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import { Suspense } from "react";
-import LooksSkeleton from "@/components/loadingSkeletons/Looks";
+import LooksSkeleton from "@/components/loaders/Looks";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import FiltersGallery from "@/components/sliders/FiltersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import Button from "@/components/buttons/Button";
+import GridBox from "@/components/providers/GridBox";
 
 export const revalidate = 60;
 
 // Página com todos os looks da galeria
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
 // Exemplo: twovest.com/gallery/mulher
-const Gallery = async ({ params, searchParams }) => {
+const Gallery = async ({ params, searchParams }, context) => {
   const gender = params.genderString;
   const style = searchParams.style;
 
@@ -37,7 +38,7 @@ const Gallery = async ({ params, searchParams }) => {
 
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
-          <Views />
+          <GridViews />
         </div>
         <div>
           <Button
@@ -50,11 +51,9 @@ const Gallery = async ({ params, searchParams }) => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
-        <Suspense fallback={<LooksSkeleton />}>
-          <LookList gender={gender} style={style} />
-        </Suspense>
-      </div>
+
+      <LookList gender={gender} style={style} />
+
     </main>
   );
 };
@@ -73,11 +72,11 @@ async function LookList({ gender, style }) {
     <>
       {filteredData.length > 0 ? (
         <>
-          <ItemsBox>
+          <GridBox loader={<LooksSkeleton />}>
             {filteredData.map((element) => (
               <LookCard key={element.id} look={element} slider={false} />
             ))}
-          </ItemsBox>
+          </GridBox>
         </>
       ) : (
         <NoResultsNotice

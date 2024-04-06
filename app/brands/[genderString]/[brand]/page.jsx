@@ -1,11 +1,11 @@
 
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
-import Views from "@/components/providers/Views";
+import GridViews from "@/components/providers/GridViews";
 import CardProduct from "@/components/cards/CardProduct";
 import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
-import ProductsSkeleton from "@/components/loadingSkeletons/Products";
+import ProductsSkeleton from "@/components/loaders/Products";
 import getProductByBrand from "@/utils/db/getProductsByBrand";
 import getBrandData from "@/utils/db/getBrandData";
 import Image from "next/image";
@@ -13,8 +13,9 @@ import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
 import StarIcon from '@mui/icons-material/Star';
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { genders } from "@/constants";
+import GridBox from "@/components/providers/GridBox";
 
-export const revalidate = 30;
+export const revalidate = 0;
 
 export default async function Brand({ params }) {
 
@@ -49,13 +50,12 @@ export default async function Brand({ params }) {
 
 
       <div className="container flex justify-between h-7 max-[350px]:hidden mt-6 mb-6">
-        <Views />
+        <GridViews />
         <FilterButton />
       </div>
 
-      <Suspense fallback={<ProductsSkeleton />}>
+      
         <ProductList brandName={brandName} gender={gender} />
-      </Suspense>
 
 
     </main>
@@ -72,7 +72,7 @@ async function ProductList({ brandName, gender }) {
   return (
     <>
       {data.length > 0 ? (
-        <ItemsBox>
+        <GridBox loader={<ProductsSkeleton />}>
           {data.map((element) => (
             <CardProduct
               slider={false}
@@ -81,7 +81,7 @@ async function ProductList({ brandName, gender }) {
               gender={gender}
             />
           ))}
-        </ItemsBox>
+        </GridBox>
       ) : (
         <NoResultsNotice title={'Ups!'} text={'Sem produtos disponíveis.'} />
       )}

@@ -8,7 +8,7 @@ import ProductDetails from "@/components/items/ProductDetails";
 import Link from "next/link";
 import getCategoryName from "@/utils/getCategoryName";
 import ProductNav from "@/components/sections/ProductNav";
-import ProductSkeleton from "@/components/loadingSkeletons/Product";
+import ProductSkeleton from "@/components/loaders/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 import Button from "@/components/buttons/Button";

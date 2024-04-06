@@ -2,7 +2,7 @@ import { supabase } from '@/utils/db/supabase'
 
 const getProductImages = async(id) => {
     const { data } = await supabase
-    .from('images')
+    .from('products_has_images')
     .select(`
         id,
         url,

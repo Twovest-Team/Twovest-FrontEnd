@@ -49,7 +49,7 @@ export const Navbar = ({ children }) => {
     <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
         {/* NAVBAR LEFT SECTION */}
-        <div className="flex gap-4">
+        <div className="flex gap-4 -translate-x-3">
           <IconButton
             ariaLabel={"Abrir menu de navegação."}
             icon={<MenuIcon />}

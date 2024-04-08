@@ -30,7 +30,7 @@ const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCo
             >
                 <div className='flex flex-col'>
                     {/* <CollectionPreview collection={collectionData} /> */}
-                    <h6 className='font-semibold text_h6'>Convite para coleção</h6>
+                    <h1 className='font-semibold text_h6'>Convite para coleção</h1>
                     <p className='text-secondary'>Queres entrar nesta coleção?.</p>
                 </div>
 

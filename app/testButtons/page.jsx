@@ -102,7 +102,7 @@ const TestButtons = () => {
                 {/* NORMAL */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
 
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Normal <CopyButton copy={templates.normal} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Normal <CopyButton copy={templates.normal} /></h1>
 
                     <Button
                         type={selectedType}
@@ -115,7 +115,7 @@ const TestButtons = () => {
                 {/* DISABLED */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
 
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Disabled <CopyButton copy={templates.disabled} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Disabled <CopyButton copy={templates.disabled} /></h1>
 
                     <Button
                         type={selectedType}
@@ -128,7 +128,7 @@ const TestButtons = () => {
 
                 {/* NORMAL WITH LINK */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Normal with link <CopyButton copy={templates.withLink} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Normal with link <CopyButton copy={templates.withLink} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -140,7 +140,7 @@ const TestButtons = () => {
 
                 {/* fULL WIDTH */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Full width <CopyButton copy={templates.fullWidth} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Full width <CopyButton copy={templates.fullWidth} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -152,7 +152,7 @@ const TestButtons = () => {
 
                 {/* CENTERED ICON */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Centered Icon <CopyButton copy={templates.centeredIcon} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Centered Icon <CopyButton copy={templates.centeredIcon} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -164,7 +164,7 @@ const TestButtons = () => {
 
                 {/* RIGHT ICON */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Right Icon <CopyButton copy={templates.rightIcon} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Right Icon <CopyButton copy={templates.rightIcon} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -178,7 +178,7 @@ const TestButtons = () => {
 
                 {/* LEFT ICON */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Left Icon <CopyButton copy={templates.leftIcon} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Left Icon <CopyButton copy={templates.leftIcon} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -192,7 +192,7 @@ const TestButtons = () => {
 
                 {/* FULLY ROUNDED */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Fully rounded <CopyButton copy={templates.rounded} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Fully rounded <CopyButton copy={templates.rounded} /></h1>
                     <Button
                         type={selectedType}
                         ariaLabel='WRITE HERE'
@@ -204,7 +204,7 @@ const TestButtons = () => {
 
                 {/* ICON ONLY */}
                 <div className={`container ${(selectedType === 'white' || selectedType === 'white-outlined') && 'bg-black text-white '} shadow-md px-5 py-5 w-full rounded`}>
-                    <h6 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Only Icon - multiple sizes <CopyButton copy={templates.onlyIcon} /></h6>
+                    <h1 className='font-semibold mb-5 flex items-center gap-1 text_h6'>Only Icon - multiple sizes <CopyButton copy={templates.onlyIcon} /></h1>
 
                     <div className='flex items-center gap-5'>
                         <Button

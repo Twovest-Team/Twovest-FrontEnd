@@ -97,7 +97,7 @@ const MenuCollection = ({collectionId, isOwnCollection, isMember, privacy }) => 
 
             <Modal id={'leaveCollectionWarning'}>
                 <div>
-                    <h6 className='font-semibold text_h6'>Sair da coleção?</h6>
+                    <h1 className='font-semibold text_h6'>Sair da coleção?</h1>
                     <p className='text-secondary'>Queres mesmo sair da coleção? Qualquer look adicionado por ti também deixará de estar disponível para os outros membros.</p>
                 </div>
 

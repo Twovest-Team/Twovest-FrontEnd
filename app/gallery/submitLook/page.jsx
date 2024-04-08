@@ -36,9 +36,9 @@ const Submit = () => {
               <div className="overlap-group relative ">
                 <div className="ellipse overflow-hidden "></div>
                 <div className="label relative z-10 mt-24 mx-auto mb-48 requeirements">
-                  <h6 className="text-wrapper mb-10 mx-4 text_h6">
+                  <h1 className="text-wrapper mb-10 mx-4 text_h6">
                     Requisitos para submissão de Look
-                  </h6>
+                  </h1>
                   <div className=" mb-28 subtitles mx-4">
                     <ul>
                       <li>

@@ -41,11 +41,11 @@ const ShopSectionThree = ({ productsData, userData }) => {
 
   return (
     <div className="container">
-      <h6
+      <h1
         className="flex gap-2 items-center font-semibold text_h6"
       >
         Escolhe um método de pagamento
-      </h6>
+      </h1>
 
       <div className="flex flex-col gap-4 mt-4">
 

@@ -17,7 +17,7 @@ export const CategoriesMenu = ({ idCategory, categoryOpen, handleClickCategory, 
                     <div onClick={() => handleClickCategory(idCategory)}><ArrowBackIosIcon className="text-[18px] cursor-pointer" /></div>
                 </div>
                 <div className="flex">
-                    <h6 className="font-semibold text_h6">{general_categories.find(e => e.id == idCategory).name}</h6>
+                    <h1 className="font-semibold text_h6">{general_categories.find(e => e.id == idCategory).name}</h1>
                 </div>
             </div>
 

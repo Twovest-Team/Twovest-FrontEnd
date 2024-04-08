@@ -25,7 +25,7 @@ const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
     return (
         <Modal id={'deleteCollectionWarning'}>
             <div>
-                <h6 className='font-semibold text_h6'>Eliminar esta coleção?</h6>
+                <h1 className='font-semibold text_h6'>Eliminar esta coleção?</h1>
                 <p className='text-secondary'>Não vais conseguir recuperar esta coleção depois de a eliminares.</p>
             </div>
 

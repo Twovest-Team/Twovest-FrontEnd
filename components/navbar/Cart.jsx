@@ -158,7 +158,7 @@ export const Cart = () => {
           <div className="flex my-6 justify-between">
             <div>
               <h6
-                className="font-semibold"
+                className="font-semibold text_h6"
                 aria-label={`Total de ${products && products.length} ${
                   products && products.length === 1 ? "artigo" : "artigos"
                 }`}
@@ -172,7 +172,7 @@ export const Cart = () => {
             </div>
             <div>
               <h6
-                className="font-semibold"
+                className="font-semibold text_h6"
                 aria-label={`Total do carrinho: ${
                   products.length > 0
                     ? getCartTotalPrice(products) + " euros"

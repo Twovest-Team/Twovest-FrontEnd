@@ -42,7 +42,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
   return (
     <div className="container">
       <h6
-        className="flex gap-2 items-center font-semibold"
+        className="flex gap-2 items-center font-semibold text_h6"
       >
         Escolhe um método de pagamento
       </h6>

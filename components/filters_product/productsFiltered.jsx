@@ -115,7 +115,7 @@ function ProductsFiltered({ offers, discount, product, productCategory }) {
             </div>
 
             <div className="w-[400px] justify-between items-center inline-flex">
-              <h6 className="font-inter font-semibold ">
+              <h6 className="font-inter font-semibold text_h6">
                 {productCategory.singular}
               </h6>
               <div className="flex justify-end gap-3">

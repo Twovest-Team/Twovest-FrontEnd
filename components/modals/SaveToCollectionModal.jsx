@@ -114,7 +114,7 @@ const CollectionChoosing = ({
 }) => {
   return (
     <>
-      <h6 className="font-semibold mb-2">Guardar o look</h6>
+      <h6 className="font-semibold mb-2 text_h6">Guardar o look</h6>
 
       <button
         onClick={() => setModalStatus(allModalStatus[1])}
@@ -264,7 +264,7 @@ const ToCreate = ({
     >
       <div className="container shadow-lg rounded py-6 border border-grey flex flex-col gap-4">
         <div>
-          <h6 className="font-semibold">
+          <h6 className="font-semibold text_h6">
             {name.trim().length === 0 ? "Nova coleção" : name}
           </h6>
           <p className="text-secondary caption">

@@ -77,7 +77,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
             <h6
-              className="flex gap-2 items-center"
+              className="flex gap-2 items-center text_h6"
               aria-label="Dados de faturação"
             >
               Dados de faturação
@@ -115,7 +115,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
             <h6
-              className="flex gap-2 items-center"
+              className="flex gap-2 items-center text_h6"
               aria-label="Ponto de recolha"
             >
               Ponto de recolha

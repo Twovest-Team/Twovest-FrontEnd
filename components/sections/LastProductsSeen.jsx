@@ -31,7 +31,7 @@ const LastProductsSeen = () => {
   if (currentUserHistory && currentUserHistory.length > 0) {
     return (
       <div className="py-16 flex flex-col border-y border-grey">
-        <h6 className="font-semibold mb-4 container">Últimos artigos vistos</h6>
+        <h6 className="font-semibold mb-4 container text_h6">Últimos artigos vistos</h6>
         <ContentSlider>
           {currentUserHistory.map((element) => (
             <li key={element.products.id}>

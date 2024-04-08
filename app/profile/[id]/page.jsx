@@ -52,7 +52,7 @@ const Profile = async ({ params }) => {
         </div>
 
         <div className="pb-8">
-          <h6 className="font-semibold container">
+          <h6 className="font-semibold container text_h6">
             {isOwnProfile ? 'Os meus looks' : `Looks de ${ownerFirstName}`}
           </h6>
 
@@ -67,7 +67,7 @@ const Profile = async ({ params }) => {
 
         {ownerData &&
           <div className="flex pb-10 flex-col items-start self-stretch container gap-4">
-            <h6 className="font-semibold">Coleções de Looks</h6>
+            <h6 className="font-semibold text_h6">Coleções de Looks</h6>
             <CollectionList collections={collectionsData} ownerId={ownerId} ownerFirstName={ownerFirstName} />
 
             <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">

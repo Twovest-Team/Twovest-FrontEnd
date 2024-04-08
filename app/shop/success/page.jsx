@@ -50,7 +50,7 @@ const SuccessPage = ({ currentUser }) => {
 
           {/* Se ganhar pontos... v */}
           <div className="border container rounded border-grey py-6 flex flex-col gap-3">
-            <h5 className="font-semibold text-primary_main" aria-label="200">
+            <h5 className="font-semibold text-primary_main text_h5" aria-label="200">
               + 200
             </h5>
             <p

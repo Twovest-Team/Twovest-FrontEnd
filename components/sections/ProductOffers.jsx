@@ -9,7 +9,7 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
   return (
     <div className="container flex flex-col gap-6">
       <div className="flex flex-col gap-1">
-        <h6 className="font-semibold">
+        <h6 className="font-semibold text_h6">
           {offers.length > 3 ? "Melhores ofertas" : "Ofertas"}
         </h6>
         <p className="text-secondary">

@@ -15,7 +15,7 @@ const ProductDetails = ({ productDetails }) => {
     <div className="container flex flex-col gap-6">
 
       <div className="flex flex-col gap-1">
-        <h6 className="font-semibold">Descrição do produto</h6>
+        <h6 className="font-semibold text_h6">Descrição do produto</h6>
         <p className="text-secondary">Ref: {productDetails.reference}</p>
       </div>
 

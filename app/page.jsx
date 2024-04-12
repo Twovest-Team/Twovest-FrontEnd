@@ -7,7 +7,6 @@ import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
 import { useEffect, useState } from "react";
 import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
 import { BrandCards } from "@/components/cards/BrandCards";
-import Link from "next/link";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";

@@ -1,6 +1,5 @@
 "use client";
 
-
 import ImageSwiper from "@/components/Carousel/Swiper";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";

@@ -1,4 +1,4 @@
-## Angols is ours.
+## Angols is ours!
 
 
 ## Getting Started

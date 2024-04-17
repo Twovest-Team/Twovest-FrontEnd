@@ -11,8 +11,10 @@ const colors = {
     red: '\x1b[31m%s\x1b[0m',
 }
 
+// This creates the Supabase client, needed in order to access the DB.
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
+// This function is responsible to verify and filter what buckets need to be created in Supabase
 async function filterBuckets(existingBuckets) {
     let newBucketsToAdd = [];
     let addedBuckets = [];
@@ -38,6 +40,8 @@ async function filterBuckets(existingBuckets) {
     }
 }
 
+// This function is responsible for reseting the buckets in the Supabase.
+// This is needed in order to upload newer local images without errors.
 async function emptyBuckets(buckets) {
     try {
         await Promise.all(buckets.map(async ({ name }) => {
@@ -55,6 +59,7 @@ async function emptyBuckets(buckets) {
     }
 }
 
+// This function creates newer buckets in Supabase. 
 async function createBuckets(buckets, type) {
     try {
         await Promise.all(buckets.map(async ({ name, options }) => {
@@ -72,6 +77,7 @@ async function createBuckets(buckets, type) {
     }
 }
 
+// This function maps trough all the files in the image folder.
 async function getFiles() {
     try {
         const basePath = path.join(__dirname, 'images');
@@ -94,7 +100,10 @@ async function getFiles() {
     }
 }
 
+// This function uploads the files to the Supabase.
 async function uploadFiles(folderPath, folderName) {
+
+    // This function is useful to consider images inside subfolders.
     async function uploadRecursive(folderPath, fname = '') {
         const files = await fs.readdir(folderPath);
 
@@ -121,4 +130,6 @@ async function uploadFiles(folderPath, folderName) {
     await uploadRecursive(folderPath);
 }
 
-filterBuckets(allBuckets)
+
+
+filterBuckets(allBuckets);

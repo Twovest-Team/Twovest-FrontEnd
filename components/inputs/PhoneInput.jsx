@@ -1,4 +1,4 @@
-import PortugalFlag from "@/public/images/idiomas/portugal_idioma.svg";
+import PortugalFlag from "@/public/static/images/idiomas/portugal_idioma.svg";
 import Image from "next/image";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 

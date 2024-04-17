@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest --passWithNoTests",
     "format": "prettier --write .",
-    "setup-storage": "node --trace-deprecation storage/index.js"
+    "setup-storage": "node --trace-deprecation public/storage/index.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PortugalFlag from "@/public/images/idiomas/portugal_idioma.svg";
+import PortugalFlag from "@/public/static/images/idiomas/portugal_idioma.svg";
 
 export default function LanguageButton(textColor) {
   return (

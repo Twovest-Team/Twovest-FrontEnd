@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Botas from "@/public/images/teste_card_watchlist/docm1.png";
+import Botas from "@/public/static/images/teste_card_watchlist/docm1.png";
 import ShareButton from "../buttons/icons/ShareButton";
 import DeleteButton from "../buttons/icons/DeleteButton";
 

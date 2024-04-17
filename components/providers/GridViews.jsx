@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateView } from "@/redux/slices/layoutViews";
 import useWindow from "@/hooks/client-hooks/useWindow";
 import { useEffect } from "react";
-import oneRowButton from "@/public/images/viewmodel-icons/1row.png";
-import twoRowsButton from "@/public/images/viewmodel-icons/2rows.png";
-import threeRowsButton from "@/public/images/viewmodel-icons/3rows.png";
-import fourRowsButton from "@/public/images/viewmodel-icons/4rows.png";
-import fiveRowsButton from "@/public/images/viewmodel-icons/5rows.png";
+import oneRowButton from "@/public/static/images/viewmodel-icons/1row.png";
+import twoRowsButton from "@/public/static/images/viewmodel-icons/2rows.png";
+import threeRowsButton from "@/public/static/images/viewmodel-icons/3rows.png";
+import fourRowsButton from "@/public/static/images/viewmodel-icons/4rows.png";
+import fiveRowsButton from "@/public/static/images/viewmodel-icons/5rows.png";
 import Image from "next/image";
 import IconButton from "../buttons/icons/IconButton";
 

@@ -23,22 +23,6 @@ const buckets = [
             fileSizeLimit: '50MB',
         }
     },
-    {
-        name: 'teste1',
-        options: {
-            public: true,
-            allowedMimeTypes: ['image/*'],
-            fileSizeLimit: '50MB',
-        }
-    },
-    {
-        name: 'teste2',
-        options: {
-            public: true,
-            allowedMimeTypes: ['image/*'],
-            fileSizeLimit: '50MB',
-        }
-    },
         // {
     //     name: 'users',
     //     options: {

@@ -9,10 +9,32 @@ dotenv.config();
 const colors = {
     green: '\x1b[32m%s\x1b[0m',
     red: '\x1b[31m%s\x1b[0m',
+    cyan: '\x1b[36m%s\x1b[0m',
+    yellow: '\x1b[33m%s\x1b[0m'
 }
 
 // This creates the Supabase client, needed in order to access the DB.
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
+const getCredentials = () => {
+    const isDev = process.argv.includes("--dev");
+    const isProd = process.argv.includes("--prod");
+
+    if(!isDev && !isProd){
+        console.log(colors.yellow, '🔒 Setting up local storage.')
+        return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    };
+    if(isDev) {
+        console.log(colors.cyan, '🚀 Setting up dev storage.')
+        return createClient(process.env.SUPABASE_DEV_URL, process.env.SUPABASE_DEV_ADMIN_KEY);
+    };
+    if(isProd){
+        console.log(colors.cyan, '🚀 Setting up prod enviroment.')
+        return createClient(process.env.SUPABASE_PROD_URL, process.env.SUPABASE_PROD_ADMIN_KEY);
+    } 
+    
+}
+
+const supabase = getCredentials()
 
 // This function is responsible to verify and filter what buckets need to be created in Supabase
 async function filterBuckets(existingBuckets) {

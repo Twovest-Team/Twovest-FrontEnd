@@ -5,6 +5,7 @@ import PriceProduct from '../items/PriceProduct';
 import SellIcon from '@mui/icons-material/Sell';
 import { SustainableIcon } from '../buttons/icons/SustainableIcon';
 import getGender from '@/utils/getGender';
+import getStorageImage from '@/utils/getStorageImage';
 
 // Gender prop can be either string or num
 const CardProduct = ({ product, slider, gender, alignPrice }) => {
@@ -34,7 +35,7 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
                     <div className='flex gap-3 items-center'>
                         <Link href={`/brands/${genderObj.string}/${product.brands.name}`}>
                             <Image
-                                src={product.brands.logo_url}
+                                src={getStorageImage(product.brands.logo_url)}
                                 width={25}
                                 height={25}
                                 alt={product.brands.name}

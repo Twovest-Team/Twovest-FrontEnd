@@ -14,6 +14,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { genders } from "@/constants";
 import GridBox from "@/components/providers/GridBox";
+import getStorageImage from "@/utils/getStorageImage";
 
 export const revalidate = 0;
 
@@ -27,7 +28,7 @@ export default async function Brand({ params }) {
   return (
     <main>
 
-      <div style={{ backgroundImage: `url(${brandData.cover_url})` }} className="h-96 bg-center bg-cover relative">
+      <div style={{ backgroundImage: `url(${getStorageImage(brandData.cover_url)})` }} className="h-96 bg-center bg-cover relative">
         <NavigationTitle hasImageBehind={true} titleText={brandName}>
           <div className="opacity-70 bg-gradient-to-b from-dark h-1/2 absolute w-full top-0 left-0" />
           <div className="opacity-70 bg-gradient-to-t from-dark h-1/2 absolute w-full bottom-0 left-0" />
@@ -36,7 +37,7 @@ export default async function Brand({ params }) {
 
         <div className="absolute right-0 left-0 bottom-10 mx-auto flex justify-center w-full flex-col items-center gap-10">
           <figure className="relative">
-          <Image className="rounded-full shadow-lg" width={130} height={130} src={brandData.logo_url} alt={brandData.name}/>
+          <Image className="rounded-full shadow-lg" width={130} height={130} src={getStorageImage(brandData.logo_url)} alt={brandData.name}/>
           <p className="flex gap-1 items-center bg-dark border-white border absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
           </figure>
           
@@ -71,7 +72,7 @@ async function ProductList({ brandName, gender }) {
   
   return (
     <>
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         <GridBox loader={<ProductsSkeleton />}>
           {data.map((element) => (
             <CardProduct

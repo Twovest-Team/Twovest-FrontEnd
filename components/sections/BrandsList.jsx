@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
 import useGender from "@/hooks/client-hooks/useGender";
+import getStorageImage from "@/utils/getStorageImage";
 
 const BrandsList = ({ brandsData }) => {
 
@@ -50,7 +51,7 @@ const BrandsList = ({ brandsData }) => {
               >
                 <div className="flex items-center justify-center">
                   <Image
-                    src={brandItem?.logo_url_without_background}
+                    src={getStorageImage(brandItem?.logo_url_without_background)}
                     width={144}
                     height={144}
                     alt={brandItem.name}

@@ -23,7 +23,7 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
 
                 <Link href={`/product/${genderObj.string}/${product.id}`}>
                     <Image
-                        src={product.images[0].url}
+                        src={getStorageImage(product.images[0].url)}
                         alt={product.images[0].alt}
                         className='object-cover scale-90'
                         fill={true}

@@ -4,17 +4,17 @@ const general_categories = [
     {
         id: 1,
         name: 'Vestuário',
-        img: '/images/categories/vestuario.png'
+        img: '/static/images/categories/vestuario.png'
     },
     {
         id: 2,
         name: 'Calçado',
-        img: '/images/categories/calcado.png'
+        img: '/static/images/categories/calcado.png'
     },
     {
         id: 3,
         name: 'Acessórios',
-        img: '/images/categories/acessorios.png'
+        img: '/static/images/categories/acessorios.png'
     }
 ]
 

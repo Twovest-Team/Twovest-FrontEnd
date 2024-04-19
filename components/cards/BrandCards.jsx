@@ -1,3 +1,4 @@
+import getStorageImage from "@/utils/getStorageImage";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ export const BrandCards = ({ data, gender }) => {
   }, []);
 
   const brand = data;
+  console.log(data)
 
   return (
     <div className="container">
@@ -37,7 +39,7 @@ export const BrandCards = ({ data, gender }) => {
             <Link key={item.id} href={`/brands/${gender.string}/${item.name}`}>
               <div className="bg-grey_opacity_50 p-6 2xl:px-7 2xl:py-16 hover:brightness-[.85] text-center rounded hover:transition hover:ease-in-out hover:delay-200 transition delay-200 ease-in-out">
                 <Image
-                  src={item.logo_url_without_background}
+                  src={getStorageImage(item.logo_url_without_background)}
                   width={150}
                   height={150}
                   alt={`logotipo ${item.name}`}

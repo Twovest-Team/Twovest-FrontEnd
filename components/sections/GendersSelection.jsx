@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { genders } from "@/constants";
 import { useAppDispatch } from "@/redux/hooks";
 import { updateGender } from "@/redux/slices/genderSlice";
-import womenModel from "@/public/images/landing_page/landing_mulher.png";
-import menModel from "@/public/images/landing_page/landing_homem.png";
+import womenModel from "@/public/static/images/landing_page/landing_mulher.png";
+import menModel from "@/public/static/images/landing_page/landing_homem.png";
 import getGender from "@/utils/getGender";
 
 export const GendersSelection = () =>{

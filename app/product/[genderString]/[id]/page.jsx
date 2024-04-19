@@ -12,6 +12,7 @@ import ProductSkeleton from "@/components/loaders/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 import Button from "@/components/buttons/Button";
+import getStorageImage from "@/utils/getStorageImage";
 
 export const revalidate = 60;
 
@@ -53,7 +54,7 @@ async function ProductContent({ productId, productGender }) {
               <div className="flex flex-row gap-4 pb-6 pt-8">
                 <Link href={"/"}>
                   <Image
-                    src={data.brands.logo_url}
+                    src={getStorageImage(data.brands.logo_url)}
                     width={35}
                     height={35}
                     alt={data.brands.name}

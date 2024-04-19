@@ -5,6 +5,7 @@ import Link from "next/link";
 import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import IconButton from "../buttons/icons/IconButton";
+import getStorageImage from "@/utils/getStorageImage";
 
 
 //Componente de card da coleção
@@ -32,7 +33,7 @@ export default function CollectionPreview({ collection, toSaveLook }) {
             previewLookCards.push(
               <Image
                 key={i}
-                src={looks[i].looks.url_image}
+                src={getStorageImage(looks[i].looks.url_image)}
                 alt="Look da coleção"
                 width={figureWidth}
                 height={figureHeight}
@@ -50,7 +51,7 @@ export default function CollectionPreview({ collection, toSaveLook }) {
             previewLookCards.push(
               <Image
                 key={i}
-                src={looks[i].looks.url_image}
+                src={getStorageImage(looks[i].looks.url_image)}
                 alt="Look da coleção"
                 width={figureWidth}
                 height={figureHeight}
@@ -69,7 +70,7 @@ export default function CollectionPreview({ collection, toSaveLook }) {
             previewLookCards.push(
               <Image
                 key={i}
-                src={looks[i].looks.url_image}
+                src={getStorageImage(looks[i].looks.url_image)}
                 alt="Look da coleção"
                 width={figureWidth}
                 height={figureHeight}

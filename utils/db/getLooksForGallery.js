@@ -1,17 +1,26 @@
 import { supabase } from "@/utils/db/supabase";
 import getLookStyles from "./getLookStyles";
 import getGender from "../getGender";
+import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 
 const getLooksForGallery = async (gender) => {
 
   const genderId = getGender(gender).id
+  const currentUser = await useAuthServer();
+
+  const { data: testeData, error: testeError } = await supabase.rpc
+    ('fetch_gallery_looks',
+      { userid: currentUser.id, genderid: genderId }             
+    )
+  console.log(testeData, testeError)
+
+
 
   const { data, error } = await supabase
     .from('looks')
     .select(
       `
     id,
-    id_user,
     upvotes,
     gender,
     url_image,
@@ -42,4 +51,4 @@ const getLooksForGallery = async (gender) => {
   }
 };
 
-export default getLooksForGallery;
+export default getLooksForGallery; 

@@ -63,7 +63,6 @@ export default Gallery;
 async function LookList({ gender, style }) {
   const data = await getLooksForGallery(gender);
   let filteredData = data;
-
   if (style && style !== "Todos") {
     filteredData = data.filter((look) => look.styles.includes(style));
   }

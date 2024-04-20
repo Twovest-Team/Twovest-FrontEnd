@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
-import removeFromCart from "@/utils/db/cart/removeFromCart";
+
 
 export async function GET(req) {
   const cookieStore = cookies();
@@ -32,7 +32,7 @@ export async function GET(req) {
   }
 
   if(cartData){
-    console.log("CARTDATA----", cartData)
+    //console.log("CARTDATA----", cartData)
     let totalPurchasePrice = parseFloat(getCartTotalPrice(cartData));
     //console.log(totalPurchasePrice)
     
@@ -41,45 +41,14 @@ export async function GET(req) {
     const { data, error } = await supabase.rpc('create_purchase', { total: totalPurchasePrice, id_user: currentUser.id, id_offer: arrayOffers })
 
      if(data){
-      removeFromCart(cartData.id, currentUser.email);
+      
+      const { error } = await supabase
+        .from('cart')
+        .delete()
+        .eq('email', currentUser.email);
+        
+        return NextResponse.redirect(process.env.NEXT_PUBLIC_URL)
     } 
-
-    //console.log("----DATA",data)
-    //console.log(error)
-
-    /* // Inserir dados na tabela purchases
-    const { data: purchaseData, error: purchaseError } = await supabase
-    .from("purchases")
-    .insert({
-      id_user: currentUser.id,
-      total: totalPurchasePrice,
-    })
-    .single();
-
-  if (purchaseError) {
-    throw new Error("Erro ao inserir dados na tabela de compras");
-  }
-
-  if(purchaseData){
-    return NextResponse.json(purchaseData);
-  }
-     */
     
   }
-
-
-
- 
-  /*
-  // Inserir dados na tabela purchases_has_offers
-  for (const item of cartData) {
-    await supabase.from("purchases_has_offers").insert({
-      id_purchase: purchaseData.id,
-      id_offer: item.id_offer,
-    });
-  }
-
-  res
-    .status(200)
-    .json({ message: "Dados inseridos com sucesso nas tabelas de compras" }); */
 }

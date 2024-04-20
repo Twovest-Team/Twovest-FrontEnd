@@ -1,5 +1,6 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from 'next/headers'
+import getStorageImage from "../getStorageImage";
 
 const handleUsers = async (user) => {
 
@@ -15,7 +16,7 @@ const handleUsers = async (user) => {
 
         if (data.length === 0 && !error) {
             if(user.picture == null){
-                user.picture="https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
+                user.picture= '/users/default/default.png';
             }
             await supabase
                 .from('users')

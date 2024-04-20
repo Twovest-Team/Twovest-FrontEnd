@@ -12,6 +12,7 @@ import { ModalEmailVerification } from "@/components/modals/ModalEmailVerificati
 import Dropzone from "react-dropzone";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import getStorageImage from "@/utils/getStorageImage";
 
 
 const Register = () => {
@@ -115,7 +116,7 @@ const Register = () => {
         pictureUrl = publicUrl;
 
     } else {
-        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
+        pictureUrl = '/users/default/default.png';
     }
 
     const { data: userData, error: signUpError } = await supabase.auth.signUp({

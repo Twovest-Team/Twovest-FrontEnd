@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
+import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
 
 const FormLook = () => {

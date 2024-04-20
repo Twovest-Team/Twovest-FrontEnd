@@ -4,11 +4,11 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NavigationTitle from "@/components/providers/NavigationTitle";
-import coloredGoogleIcon from "@/public/images/login/google_logo.svg";
-import coloredFacebookIcon from "@/public/images/login/facebook_logo.svg";
-import coloredAppleIcon from "@/public/images/login/aple_logo.svg";
+import coloredGoogleIcon from "@/public/static/images/login/google_logo.svg";
+import coloredFacebookIcon from "@/public/static/images/login/facebook_logo.svg";
+import coloredAppleIcon from "@/public/static/images/login/aple_logo.svg";
 import Link from "next/link";
-import GeneralLoading from "@/components/loadingSkeletons/GeneralLoading";
+import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
 import Image from "next/image";
 
@@ -36,12 +36,8 @@ export default function LoginPage() {
 
   const handleSignInGoogle = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "Google",
-      options: {
-        redirectTo: `${location.origin}/auth/callback`,
-      },
+      provider: "Google"
     });
-    //router.push("${location.origin}/auth/callback");
   };
 
   const handleSignInEmail = async () => {

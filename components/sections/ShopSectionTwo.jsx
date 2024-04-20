@@ -3,7 +3,7 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import Select from "../items/Select";
 import { cttPickupPoints, portugalDistricts, portugalTowns } from "@/constants";
-import PortugalFlag from "@/public/images/idiomas/portugal_idioma.svg";
+import PortugalFlag from "@/public/static/images/idiomas/portugal_idioma.svg";
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Notification from "../modals/Notification";

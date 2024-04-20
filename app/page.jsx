@@ -92,7 +92,7 @@ export default function Home() {
 
       <section
         style={{
-          backgroundImage: `url('/images/homepage/pontosdeentregabg.png')`,
+          backgroundImage: `url('/static/images/homepage/pontosdeentregabg.png')`,
         }}
         className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >

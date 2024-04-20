@@ -11,6 +11,7 @@ import InviteToCollectionButton from "@/components/collections/InviteToCollectio
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
 import { checkOwnership, checkOwnerId, checkMembership } from "@/utils/handleCollections";
+import GridBox from "@/components/providers/GridBox";
 
 
 // Coleção específica de um utilizador
@@ -50,7 +51,7 @@ const Collection = async ({ params }) => {
       </NavigationTitle>
 
       {collectionData && collectionData.allLooks.length > 0 ?
-        <ItemsBox fixedView={2}>
+        <GridBox fixed>
           {collectionData.allLooks.map(look => (
             <LookCard
               key={look.id_look}
@@ -61,7 +62,7 @@ const Collection = async ({ params }) => {
               isMember={isMember}
             />
           ))}
-        </ItemsBox>
+        </GridBox>
         :
         <>
           <NoResultsNotice

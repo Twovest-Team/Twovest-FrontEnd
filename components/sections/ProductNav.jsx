@@ -5,6 +5,7 @@ import NavigationTitle from "../providers/NavigationTitle";
 import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon";
 import Image from "next/image";
 import Link from "next/link";
+import getStorageImage from "@/utils/getStorageImage";
 
 const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
   const divRef = useRef();
@@ -60,7 +61,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
 
         <Link href={`/brands/${productGender}/${brand.name}`}>
           <Image
-            src={brand.logo_url}
+            src={getStorageImage(brand.logo_url)}
             width={35}
             height={35}
             alt={brand.name}

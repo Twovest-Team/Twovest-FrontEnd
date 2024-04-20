@@ -1,4 +1,4 @@
-import GeneralLoading from '@/components/loadingSkeletons/GeneralLoading'
+import GeneralLoading from '@/components/loaders/GeneralLoading'
 
 const Loading = () => {
     return (

@@ -1,4 +1,5 @@
 'use client'
+import getStorageImage from "@/utils/getStorageImage"
 import Image from "next/image"
 
 const ProductSlider = ({ images }) => {
@@ -11,7 +12,7 @@ const ProductSlider = ({ images }) => {
                 {images.map((image, index) => (
                     <div key={index} className="relative w-full h-full">
                         <Image
-                            src={image.url}
+                            src={getStorageImage(image.url)}
                             className="object-contain pointer-events-none"
                             fill={true}
                             alt={image.alt} />

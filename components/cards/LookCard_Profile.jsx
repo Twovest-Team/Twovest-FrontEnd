@@ -9,6 +9,7 @@ import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 import { UserIcon } from "../user/UserIcon";
+import getStorageImage from "@/utils/getStorageImage";
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
 Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
@@ -28,7 +29,7 @@ export default function LookCard_Profile({ look, slider, nome, avatar, params })
           className="w-full aspect-[17/26] relative flex justify-center items-center"
         >
           <Image
-            src={look.url_image}
+            src={getStorageImage(look.url_image)}
             alt="Look da galeria"
             className="object-cover scale-100 rounded"
             quality={5}

@@ -1,6 +1,5 @@
 "use client";
 
-import logo from "../../public/images/logo_twovest_black.svg";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -49,7 +48,7 @@ export const Navbar = ({ children }) => {
     <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
         {/* NAVBAR LEFT SECTION */}
-        <div className="flex gap-4">
+        <div className="flex gap-4 -translate-x-3">
           <IconButton
             ariaLabel={"Abrir menu de navegação."}
             icon={<MenuIcon />}
@@ -58,7 +57,7 @@ export const Navbar = ({ children }) => {
 
           <Link href={"/"} className="items-center flex">
             <Image
-              src={logo}
+              src={'/static/images/logo_twovest_black.svg'}
               width={105}
               height={24}
               alt="Logo Twovest"
@@ -66,7 +65,7 @@ export const Navbar = ({ children }) => {
             ></Image>
 
             <Image
-              src={logo}
+              src={'/static/images/logo_twovest_black.svg'}
               width={130}
               height={24}
               alt="Logo Twovest"

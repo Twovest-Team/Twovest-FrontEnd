@@ -77,13 +77,11 @@ export default function Home() {
                 justify="between"
                 href={`/gallery/${gender.string}`}
               >
-                <div>
                   <span>Ir para a galeria</span>
                   <KeyboardArrowRightIcon
                     className="translate-x-2"
                     sx={{ fontSize: 28 }}
                   />
-                </div>
               </Button>
             </div>
           </div>

@@ -19,7 +19,7 @@ export const CategoriesList = ({ idCategory, handleClickMenu, handleClickCategor
         <div key={e.id}>
           {idCategory == e.general_category && gender && (
             <div className="my-6" key={e.id}>
-              <h6 className="font-semibold">{e.plural}</h6>
+              <h1 className="font-semibold text_h6">{e.plural}</h1>
               {categories.map((category) => (
                 category.main_category == e.id && category.gender.includes(gender.id) && (
                   <button

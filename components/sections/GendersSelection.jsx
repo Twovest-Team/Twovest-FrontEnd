@@ -40,9 +40,9 @@ export const GendersSelection = () =>{
               height={274}
               className="w-screen h-[45vh] xl:w-full min-[400px]:mx-auto min-[400px]:w-[350px]min-[800px]:w-[380px] min-[800px]:h-[450px] xl:h-[100vh]"
             />
-            <h3 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-semibold capitalize xl:text-[50px]">
+            <h1 className="absolute top-1/2 left-1/2 text_h3 -translate-x-1/2 -translate-y-1/2 text-white font-semibold capitalize xl:text-[50px]">
               {element.stringPT}
-            </h3>
+            </h1>
           </button>
         ))}
       </div>

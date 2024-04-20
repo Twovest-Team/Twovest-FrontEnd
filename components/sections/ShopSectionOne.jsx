@@ -27,21 +27,21 @@ const ShopSectionOne = ({
       <div className=" sticky py-6 container shadow-[0px_-5px_30px_0px_#00000010] max-w-[460px] bottom-0 bg-white flex flex-col gap-3">
         <div className="flex justify-between items-center mb-1">
           <div>
-            <h6
-              className="font-semibold"
+            <h1
+              className="font-semibold text_h6"
               aria-label={`Total (${productsData && productsData.length} ${productsData.length === 1 ? "artigo" : "artigos"
                 })`}
             >
               Total ({productsData && productsData.length}{" "}
               {productsData.length === 1 ? "artigo" : "artigos"})
-            </h6>
+            </h1>
             <p className="text-secondary caption" aria-label="Iva Incluido">
               IVA Incluído
             </p>
           </div>
           <div>
-            <h6
-              className="font-semibold"
+            <h2
+              className="font-semibold text_h6"
               aria-label={`Total do Carrinho: ${productsData.length > 0
                   ? getCartTotalPrice(productsData) + " euros"
                   : "Carrinho vazio"
@@ -50,7 +50,7 @@ const ShopSectionOne = ({
               {productsData.length > 0 && (
                 <>{getCartTotalPrice(productsData)}€</>
               )}
-            </h6>
+            </h2>
           </div>
         </div>
 

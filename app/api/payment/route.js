@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse} from "next/server";
 
 export async function POST(request){
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -9,8 +9,9 @@ export async function POST(request){
     const session = await stripe.checkout.sessions.create({
     line_items: data,
     mode: "payment",
-    success_url: "https://twovest.com/shop/success",
-    cancel_url: "https://twovest.com/shop",
+    /* success_url: `${process.env.NEXT_PUBLIC_URL}/shop/success`, */
+    success_url: `${process.env.NEXT_PUBLIC_URL}/api/paymentSuccess`, 
+    cancel_url: `${process.env.NEXT_PUBLIC_URL}/shop`,
     
     })
   

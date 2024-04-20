@@ -10,7 +10,7 @@ export default function LookUpvoteButton({ upvotes }) {
     >
       <ForwardOutlinedIcon className="text-white -rotate-90" />
       <div className="text-center">
-        <h6 className="font-semibold text-white">{formatCompactNumbers(upvotes)}</h6>
+        <h1 className="font-semibold text-white text_h6">{formatCompactNumbers(upvotes)}</h1>
       </div>
     </div>
   );

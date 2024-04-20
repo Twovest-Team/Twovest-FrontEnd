@@ -30,7 +30,7 @@ export const BrandCards = ({ data, gender }) => {
 
   return (
     <div className="container">
-      <h6 className="font-semibold mb-4">Marcas</h6>
+      <h1 className="font-semibold mb-4 text_h6">Marcas</h1>
       <ul
         className={`grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5 lg:grid-cols-4 ${numBrandsToShow} `}
       >

@@ -73,7 +73,7 @@ const Look = async ({ params }) => {
               {data.products && data.products.length > 0 ? (
                 <>
                   <div className="h-24 flex justify-between items-center container">
-                    <h6 className="font-semibold">Adqurir o look</h6>
+                    <h1 className="font-semibold text_h6">Adqurir o look</h1>
                     <p className="text-secondary truncate">
                       {productsQty}
                       {productsQty > 1 ? " artigos" : " artigo"}
@@ -92,7 +92,7 @@ const Look = async ({ params }) => {
                 </>
               ) : (
                 <div className="h-24 flex justify-between items-center container">
-                  <h6 className="font-semibold">Sem peças disponíveis</h6>
+                  <h1 className="font-semibold text_h6">Sem peças disponíveis</h1>
                 </div>
               )}
             </section>

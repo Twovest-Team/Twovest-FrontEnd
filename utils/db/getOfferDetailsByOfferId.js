@@ -1,4 +1,5 @@
 import { supabase } from "@/utils/db/supabase";
+import getProductImages from "./getProductImages";
 
 export default async function getOfferDetailsByOfferId(id_offer) {
   try {
@@ -11,7 +12,21 @@ export default async function getOfferDetailsByOfferId(id_offer) {
                     name
                 ),
                 products(
-                    *
+                  id,
+                  reference,
+                  is_sustainable,
+                  views,
+                  gender,
+                  name,
+                  discount,
+                  brands (
+                      logo_url,
+                      name
+                  ),
+                  categories (
+                      id,
+                      main_category
+                  )
                 ),
                 sizes (
                     size,
@@ -23,6 +38,12 @@ export default async function getOfferDetailsByOfferId(id_offer) {
             `
       )
       .eq("id", id_offer);
+
+    if (OfferData && OfferData.length > 0) {
+      const images = await getProductImages(OfferData[0].products.id);
+
+      OfferData[0].products.images = images;
+    }
 
     if (OfferError) throw OfferError;
 

@@ -6,10 +6,14 @@ import removeFromCart from "@/utils/db/cart/removeFromCart";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
-const SuccessPage = ({ currentUser }) => {
+
+const SuccessPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.cartProducts.products);
+  const {currentUser} = useAuth();
+
 
   useEffect(() => {
     async function handleDeleteProduct() {

@@ -36,9 +36,9 @@ export async function GET(req) {
     let totalPurchasePrice = parseFloat(getCartTotalPrice(cartData));
     //console.log(totalPurchasePrice)
     
-    let arrayOffers = cartData.map(obj => obj.offers.id)
+    let arrayOffers = cartData.map(obj => obj.offers.id);
     
-    const { data, error } = await supabase.rpc('create_purchase', { total: totalPurchasePrice, id_user: currentUser.id, id_offer: arrayOffers })
+    const { data, error } = await supabase.rpc('create_purchase', { total: totalPurchasePrice, id_user: currentUser.id, id_offer: arrayOffers });
 
      if(data){
       
@@ -46,8 +46,8 @@ export async function GET(req) {
         .from('cart')
         .delete()
         .eq('email', currentUser.email);
-        
-        return NextResponse.redirect(process.env.NEXT_PUBLIC_URL)
+
+        return NextResponse.redirect(process.env.NEXT_PUBLIC_URL);
     } 
     
   }

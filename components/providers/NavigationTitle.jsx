@@ -36,12 +36,12 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
           className={"-translate-x-3"}
           aria-label="Voltar Atrás"
         />
-        <h5
-          className="cursor-pointer transition-colors duration-200 hover:text-primary_dark"
+        <h1
+          className="cursor-pointer text_h5 transition-colors duration-200 hover:text-primary_dark text_h5"
           aria-label={`Está na página ${titleText}. Se clicar, será direcionado para a página anterior.`}
         >
           {titleText}
-        </h5>
+        </h1>
       </div>
 
       {children}

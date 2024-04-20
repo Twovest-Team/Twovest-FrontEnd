@@ -62,9 +62,9 @@ async function ProductContent({ productId, productGender }) {
                   />
                 </Link>
 
-                <h5 className="font-semibold truncate">
+                <h1 className="font-semibold truncate text_h5">
                   {getCategoryName(data.categories.id)} {data.brands.name}
-                </h5>
+                </h1>
               </div>
 
               <Button

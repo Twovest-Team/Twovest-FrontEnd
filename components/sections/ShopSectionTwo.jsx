@@ -76,12 +76,12 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
       <section className=" flex flex-col gap-8 mb-8 container">
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
-            <h6
-              className="flex gap-2 items-center"
+            <h1
+              className="flex gap-2 items-center text_h6"
               aria-label="Dados de faturação"
             >
               Dados de faturação
-            </h6>
+            </h1>
 
             {steps[0].confirmed && (
               <CheckOutlinedIcon className="text-primary_main text-[24px]" />
@@ -114,12 +114,12 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
 
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
-            <h6
-              className="flex gap-2 items-center"
+            <h2
+              className="flex gap-2 items-center text_h6"
               aria-label="Ponto de recolha"
             >
               Ponto de recolha
-            </h6>
+            </h2>
             {steps[1].confirmed && (
               <CheckOutlinedIcon className="text-primary_main text-[24px]" />
             )}

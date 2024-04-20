@@ -68,9 +68,9 @@ const Carousel = ({ items, autoplayInterval = 5000 }) => {
             <p className="font-inter whitespace-normal font-bold break-words">
               {items[currentIndex].subtitle}
             </p>
-            <h2 className="font-inter whitespace-normal font-bold mt-4 break-words">
+            <h1 className="font-inter whitespace-normal font-bold mt-4 break-words text_h2">
               {items[currentIndex].title}
-            </h2>
+            </h1>
             <div className="w-6/12 h-1/3  mx-auto m-10 items-center justify-center btn-temp">
               <Buttons
                 btnState="defaultMain"

@@ -40,6 +40,8 @@ export async function GET(req) {
     
     const { data, error } = await supabase.rpc('create_purchase', { total: totalPurchasePrice, id_user: currentUser.id, id_offer: arrayOffers });
 
+    console.log("EROO ---->", error);
+
      if(data){
       
       const { error } = await supabase

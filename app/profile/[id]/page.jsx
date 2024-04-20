@@ -15,6 +15,7 @@ import IconButton from "@/components/buttons/icons/IconButton";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { checkOwnership } from "@/utils/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
+import Button from "@/components/buttons/Button";
 
 export const revalidate = 0;
 
@@ -28,7 +29,7 @@ const Profile = async ({ params }) => {
   const ownerFirstName = getUserFirstName(ownerData)
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
   const collectionsData = await getCollections({ ownerId, max: 3, privacy: 1 });
-  
+
   if (ownerData) {
     return (
       <>
@@ -73,10 +74,10 @@ const Profile = async ({ params }) => {
             <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
 
               {collectionsData && collectionsData.length >= 3 &&
-                <Link href={`/profile/${ownerId}/collections`} className="profile_all-collections">
+                <Button href={`/profile/${ownerId}/collections`} type={'black-outlined'} ariaLabel='Ver todas as coleções' width='full' justify='between'>
                   Ver todas as coleções
-                  <ArrowForwardIosIcon />
-                </Link>
+                  <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+                </Button>
               }
             </div>
 

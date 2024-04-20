@@ -1,9 +1,9 @@
 import Image from "next/image";
-import FacebookLogo from "@/public/images/social_media/facebook_logo.svg";
-import InstagramLogo from "@/public/images/social_media/instagram_logo.svg";
-import TwitterLogo from "@/public/images/social_media/x_twitter_logo.svg";
-import YoutubeLogo from "@/public/images/social_media/youtube_logo.svg";
-import TiktokLogo from "@/public/images/social_media/tiktok_logo.svg"
+import FacebookLogo from "@/public/static/images/social_media/facebook_logo.svg";
+import InstagramLogo from "@/public/static/images/social_media/instagram_logo.svg";
+import TwitterLogo from "@/public/static/images/social_media/x_twitter_logo.svg";
+import YoutubeLogo from "@/public/static/images/social_media/youtube_logo.svg";
+import TiktokLogo from "@/public/static/images/social_media/tiktok_logo.svg"
 
 
 

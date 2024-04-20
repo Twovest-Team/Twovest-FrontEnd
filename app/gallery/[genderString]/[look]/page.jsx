@@ -8,6 +8,8 @@ import Link from "next/link";
 import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
+import GridBox from "@/components/providers/GridBox";
+import getStorageImage from "@/utils/getStorageImage";
 
 export const revalidate = 30;
 
@@ -26,7 +28,7 @@ const Look = async ({ params }) => {
       <main className="relative">
         <figure
           className="h-screen w-full bg-cover bg-center absolute"
-          style={{ backgroundImage: `url(${data.url_image})` }}
+          style={{ backgroundImage: `url(${getStorageImage(data.url_image)})` }}
         >
           <div className="bg-gradient-to-b from-dark opacity-70 absolute top-0 z-10 w-full h-1/5" />
           <div className="bg-gradient-to-t from-dark opacity-70 absolute bottom-0 w-full h-2/5" />
@@ -78,7 +80,7 @@ const Look = async ({ params }) => {
                     </p>
                   </div>
 
-                  <ItemsBox fixedView={2}>
+                  <GridBox fixed>
                     {data.products.map((product) => (
                       <CardProduct
                         key={product.id}
@@ -86,7 +88,7 @@ const Look = async ({ params }) => {
                         gender={product.gender}
                       />
                     ))}
-                  </ItemsBox>
+                  </GridBox>
                 </>
               ) : (
                 <div className="h-24 flex justify-between items-center container">

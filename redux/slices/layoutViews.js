@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const layoutViewsSlice = createSlice({
   name: "layoutView",
   initialState: {
-    currentValue: 1
+    currentValue: null
   },
   reducers: {
     updateView: (state, action) => {

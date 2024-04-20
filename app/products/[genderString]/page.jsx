@@ -2,15 +2,16 @@ import { categories } from "@/constants";
 import getProductsByCategory from "@/utils/db/getProductsByCategory";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
-import Views from "@/components/providers/Views";
+import GridViews from "@/components/providers/GridViews";
 import CardProduct from "@/components/cards/CardProduct";
 import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
-import ProductsSkeleton from "@/components/loadingSkeletons/Products";
+import ProductsSkeleton from "@/components/loaders/Products";
 import getSustainableProducts from "@/utils/db/getSustainableProducts";
 import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
+import GridBox from "@/components/providers/GridBox";
 
 export const revalidate = 60;
 
@@ -32,7 +33,7 @@ export default async function Products({ searchParams, params }) {
         </NavigationTitle>
 
         <div className="container flex justify-between h-7 max-[350px]:hidden mb-6">
-          <Views />
+          <GridViews />
           <FilterButton />
         </div>
 
@@ -57,13 +58,11 @@ export default async function Products({ searchParams, params }) {
         </NavigationTitle>
 
         <div className="container flex justify-between h-7 max-[350px]:hidden mb-6">
-          <Views />
+          <GridViews />
           <FilterButton />
         </div>
 
-        <Suspense fallback={<ProductsSkeleton />}>
-          <ProductList status={status} gender={gender} />
-        </Suspense>
+        <ProductList status={status} gender={gender} />
       </main>
     );
   }
@@ -79,20 +78,20 @@ async function ProductList({ categoryId, gender, status }) {
     return (
       <>
         {data.length > 0 ? (
-          <ItemsBox>
+          <GridBox loader={<ProductsSkeleton />}>
             {data.map((element) => (
               <li key={element.id}>
-              <CardProduct
-                slider={false}
-                key={element.id}
-                product={element}
-                gender={gender}
-              />
+                <CardProduct
+                  slider={false}
+                  key={element.id}
+                  product={element}
+                  gender={gender}
+                />
               </li>
             ))}
-          </ItemsBox>
+          </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."}/>
+          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
         )}
       </>
     );
@@ -101,7 +100,7 @@ async function ProductList({ categoryId, gender, status }) {
     return (
       <>
         {data.length > 0 ? (
-          <ItemsBox>
+          <GridBox loader={<ProductsSkeleton />}>
             {data.map((element) => (
               <CardProduct
                 slider={false}
@@ -110,9 +109,9 @@ async function ProductList({ categoryId, gender, status }) {
                 gender={gender}
               />
             ))}
-          </ItemsBox>
+          </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."}/>
+          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
         )}
       </>
     );
@@ -122,7 +121,7 @@ async function ProductList({ categoryId, gender, status }) {
     return (
       <>
         {data.length > 0 ? (
-          <ItemsBox>
+          <GridBox loader={<ProductsSkeleton />}>
             {data.map((element) => (
               <CardProduct
                 slider={false}
@@ -131,9 +130,9 @@ async function ProductList({ categoryId, gender, status }) {
                 gender={gender}
               />
             ))}
-          </ItemsBox>
+          </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."}/>
+          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
         )}
       </>
     );

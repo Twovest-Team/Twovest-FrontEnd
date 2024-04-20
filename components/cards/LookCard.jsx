@@ -11,6 +11,7 @@ import { UserIcon } from "../user/UserIcon";
 import MenuLook from "../collections/MenuLook";
 import { genders } from "@/constants";
 import getGender from "@/utils/getGender";
+import getStorageImage from "@/utils/getStorageImage";
 
 
 /*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
@@ -55,16 +56,16 @@ export default function LookCard({
   return (
     <>
       <div
-        className={`${
+        className={`w-full aspect-[17/26] ${
           slider && "w-[160px] min-w-[160px]"
         } `}
       >
         <Link
           href={`/gallery/${gender.string}/${look.id}`}
-          className="w-full aspect-[17/26] relative flex justify-center items-center"
+          className="w-full h-full relative flex justify-center items-center"
         >
           <Image
-            src={look.url_image}
+            src={getStorageImage(look.url_image)}
             alt="Look da galeria"
             className="object-cover scale-100 rounded"
             quality={5}

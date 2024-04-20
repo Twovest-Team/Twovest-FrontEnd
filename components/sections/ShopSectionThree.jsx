@@ -12,7 +12,7 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import useAuth from "@/hooks/client-hooks/useAuth";
 import { useEffect } from "react";
 import setLocalStorage from "@/utils/localStorage/setLocalStorage";
-
+import getStorageImage from "@/utils/getStorageImage";
 
 const ShopSectionThree = ({ productsData, userData }) => {
 
@@ -46,7 +46,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
             produto.offers.products.brands.name +
             " " +
             produto.offers.colors.name,
-          images: [produto.offers.images[0].url],
+          images: [getStorageImage(produto.offers.images[0].url)],
         },
         unit_amount: Math.round(produto.offers.price * 100),
       },

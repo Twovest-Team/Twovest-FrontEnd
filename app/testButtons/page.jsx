@@ -208,7 +208,7 @@ const TestButtons = () => {
 
                     <div className='flex items-center gap-5'>
                         <Button
-                            className='p-3'
+                            padding={3}
                             type={selectedType}
                             ariaLabel='WRITE HERE'
                             onlyIcon={true}
@@ -217,7 +217,7 @@ const TestButtons = () => {
                         </Button>
 
                         <Button
-                            className='p-4'
+                            padding={4}
                             type={selectedType}
                             ariaLabel='WRITE HERE'
                             onlyIcon={true}
@@ -227,7 +227,7 @@ const TestButtons = () => {
 
                         <Button
                             href='https://puginarug.com/'
-                            className='p-5'
+                            padding={5}
                             type={selectedType}
                             ariaLabel='WRITE HERE'
                             onlyIcon={true}

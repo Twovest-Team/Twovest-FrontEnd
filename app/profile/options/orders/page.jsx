@@ -1,14 +1,18 @@
-"use client";
 import getUserOrders from "@/utils/db/getUserOrders";
 import getOfferDetailsByOfferId from "@/utils/db/getOfferDetailsByOfferId";
 import getPurchasesCoupons from "@/utils/db/getPurchasesCoupons";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FiltersPurchaseHistory from "@/components/sliders/FiltersPurchaseHistory";
-
+import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import PurchaseList from "@/components/sections/PurchaseList";
+import getUserById from "@/utils/db/getUserById";
 // Isto é a página "Histórico de Compras"
 // twovest.com/options/orders
-export default function Orders({ searchParams }) {
+export default async function Orders({ searchParams }) {
+ 
+  const currentUser = await useAuthServer();
+  
+ 
   //const ordersData = await getUserOrders(82);
   //const offerData = await getOfferDetailsByOfferId(604);
   //const couponsData = await getPurchasesCoupons(4);
@@ -19,8 +23,7 @@ export default function Orders({ searchParams }) {
     <main>
       <NavigationTitle titleText={"Histórico de compras"} />
       <FiltersPurchaseHistory currentCategory={type} />
-      {/* Aqui vai entrar o componente já criado Purchase List, com a lista de encomendas.
-      Atualmente está a dar um erro a buscar o utilizador atual */}
+      <PurchaseList type={type} user={currentUser}/>
     </main>
   );
 }

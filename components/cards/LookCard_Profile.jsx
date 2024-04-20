@@ -7,7 +7,6 @@ import SaveLookButton from "../collections/SaveLookButton";
 // Componente que mostra o nome de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
 import Link from "next/link";
-import SaveToCollectionModal from "@/components/modals/SaveToCollectionModal";
 import { UserIcon } from "../user/UserIcon";
 import getStorageImage from "@/utils/getStorageImage";
 

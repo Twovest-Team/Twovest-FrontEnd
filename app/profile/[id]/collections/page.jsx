@@ -19,7 +19,7 @@ const Collections = async ({ params }) => {
   const isOwnCollections = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
   const ownerData = isOwnCollections ? currentUser : await getUserById(ownerId)
   const ownerFirstName = getUserFirstName(ownerData)
-  const collectionsData = await getCollections({ ownerId });
+  const collectionsData = await getCollections(ownerId);
 
   return (
     <main className="min-h-screen pb-10">

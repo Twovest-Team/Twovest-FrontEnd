@@ -22,7 +22,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
 
   const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
-
+  
   function renderImages() {
 
     const figureWidth = 86
@@ -145,9 +145,6 @@ export default function CollectionPreview({ collection, lookToSave }) {
   function renderOptions() {
 
     const isSaved = looks.some(item => item.id == lookToSave);
-    console.log(looks)
-    console.log(lookToSave)
-    console.log(isSaved)
 
     return (
       <>
@@ -199,12 +196,14 @@ export default function CollectionPreview({ collection, lookToSave }) {
     )
   }
 
+  console.log(collection)
+
   return (
     <>
 
       {/* PREVIEW CARD WHEN SHOWCASING COLLECTION */}
       {!lookToSave &&
-        <Link href={`/collection/${collection.id_collection}`} className="items-start h-[90px] w-full flex flex-row my-1">
+        <Link href={`/collection/${collection.id}`} className="items-start h-[90px] w-full flex flex-row my-1">
           {renderContent()}
         </Link>
       }

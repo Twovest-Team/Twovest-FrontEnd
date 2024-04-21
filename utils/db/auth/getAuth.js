@@ -19,7 +19,7 @@ export default async function getAuth() {
           img,
           role,
           collections:collections_has_users(
-            id_collection,
+            id: id_collection,
             is_admin,
             collection_data: collections(
               created_at,
@@ -64,7 +64,7 @@ export default async function getAuth() {
           })
         };
       }
-
+      console.log(transformUserObject(data))
       return transformUserObject(data);
     }
     if (error) console.log(error);

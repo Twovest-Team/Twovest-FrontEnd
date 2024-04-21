@@ -20,11 +20,8 @@ export default function CollectionPreview({ collection, lookToSave }) {
 
   const { isMobile, height } = useWindow()
 
-  const { collections: { name, privacy }, users: otherParticipants, looks } = collection;
+  const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
-
-  console.log(collection)
-  console.log(lookToSave)
 
   function renderImages() {
 
@@ -40,7 +37,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
               previewLookCards.push(
                 <Image
                   key={i}
-                  src={getStorageImage(looks[i].looks.url_image)}
+                  src={getStorageImage(looks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
@@ -58,7 +55,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
               previewLookCards.push(
                 <Image
                   key={i}
-                  src={getStorageImage(looks[i].looks.url_image)}
+                  src={getStorageImage(looks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
@@ -77,7 +74,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
               previewLookCards.push(
                 <Image
                   key={i}
-                  src={getStorageImage(looks[i].looks.url_image)}
+                  src={getStorageImage(looks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
@@ -146,6 +143,12 @@ export default function CollectionPreview({ collection, lookToSave }) {
   }
 
   function renderOptions() {
+
+    const isSaved = looks.some(item => item.id == lookToSave);
+    console.log(looks)
+    console.log(lookToSave)
+    console.log(isSaved)
+
     return (
       <>
         {privacy == 2 && !lookToSave &&
@@ -156,13 +159,25 @@ export default function CollectionPreview({ collection, lookToSave }) {
           <div className="flex-grow flex justify-end h-full items-center mr-8">
 
             {isMobile ?
-              <Button className='shadow border border-grey_opacity_50' padding={4} type={'white'} onlyIcon={true} ariaLabel={`Guardar look na coleção: ${name}`}>
+              <Button
+              className='shadow border border-grey_opacity_50'
+              padding={4}
+              type={isSaved ? 'black' : 'white'}
+              onlyIcon={true}
+              ariaLabel={`Guardar look na coleção: ${name}`}
+              >
                 <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />
               </Button>
               :
-              <Button padding={5} height={12} className='shadow border border-grey_opacity_50' type={'white'} ariaLabel={`Guardar look na coleção: ${name}`}>
-                <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />
-                Guardar
+              <Button
+              width={'[142px]'}
+              height={12}
+              className='shadow border border-grey_opacity_50'
+              type={isSaved ? 'black' : 'white'}
+              ariaLabel={`Guardar look na coleção: ${name}`}
+              >
+                {isSaved ? <BookmarkRoundedIcon sx={{ fontSize: 25 }} /> : <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />}
+                {isSaved ? 'Remover' : 'Guardar'}
               </Button>
             }
 

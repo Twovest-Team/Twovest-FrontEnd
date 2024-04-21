@@ -1,7 +1,7 @@
-import getUserByEmailServer from "@/utils/db/auth/getUserByEmailServer"
+import getAuthServer from "@/utils/db/auth/getAuthServer";
 
 const useAuthServer = async() => {
-    const currentUser = await getUserByEmailServer();
+    const currentUser = await getAuthServer();
     return currentUser || null
 }
 

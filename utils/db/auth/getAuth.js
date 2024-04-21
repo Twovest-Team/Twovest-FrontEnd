@@ -28,7 +28,10 @@ export default async function getAuth() {
               privacy,
               share_id,
               looks: collections_has_looks(
-                id_look
+                id_look,
+                look_data: looks (
+                  url_image
+                )
               )
             )
           )
@@ -37,9 +40,33 @@ export default async function getAuth() {
       .eq("email", email)
       .single();
 
-      console.log(data)
 
-    if (data) return data;
+    if (data) {
+      function transformUserObject(user) {
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          created_at: user.created_at,
+          img: user.img,
+          role: user.role,
+          collections: user.collections.map(collection => {
+            const { collection_data, ...rest } = collection;
+            const { looks, ...collectionData } = collection_data;
+            return {
+              ...rest,
+              ...collectionData,
+              looks: looks.map(look => ({
+                id: look.id_look,
+                url_image: look.look_data.url_image
+              }))
+            };
+          })
+        };
+      }
+
+      return transformUserObject(data);
+    }
     if (error) console.log(error);
   }
 }

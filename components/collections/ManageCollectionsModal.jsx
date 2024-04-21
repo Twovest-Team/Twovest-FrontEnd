@@ -12,13 +12,15 @@ import { handleCreateCollection } from "@/utils/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
 import Button from "../buttons/Button";
 
+
+
 const ManageCollectionModal = () => {
 
   const isModalOpen = useAppSelector(state => state.modals['createCollection']);
-  const { currentUser } = useAuth();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+  const { currentUser } = useAuth();
 
   // LookId from url "save" param
   const [lookId, setLookId] = useState(searchParams.get('save'))
@@ -86,6 +88,7 @@ const ManageCollectionModal = () => {
 
       {currentSection === 0 && lookId && currentUser && collectionsData &&
         <SaveLookSection
+          currentUser={currentUser}
           collectionsData={collectionsData}
           lookId={lookId}
           nextSection={nextSection}
@@ -119,7 +122,9 @@ const ManageCollectionModal = () => {
   )
 }
 
-const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
+const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSection }) => {
+
+  let { collections } = currentUser;
 
   return (
     <>
@@ -133,7 +138,7 @@ const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
           <CollectionList
             toSaveLook
             lookId={lookId}
-            collections={collectionsData}
+            collections={collections}
             ownerId={ownerId}
             isOwner={true}
           />

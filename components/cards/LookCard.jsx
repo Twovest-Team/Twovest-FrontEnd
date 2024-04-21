@@ -37,7 +37,7 @@ export default function LookCard({
       <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
         <Image
           src={look.url_image}
-          alt="Look da galeria"
+          alt={`Look de ${look.users.name}`}
           className="object-cover scale-100 rounded"
           quality={5}
           fill={true}
@@ -66,7 +66,7 @@ export default function LookCard({
         >
           <Image
             src={getStorageImage(look.url_image)}
-            alt="Look da galeria"
+            alt={`Look de ${look.users.name}`}
             className="object-cover scale-100 rounded"
             quality={5}
             fill={true}

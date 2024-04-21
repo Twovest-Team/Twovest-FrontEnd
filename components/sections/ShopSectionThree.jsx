@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../buttons/Button";
 import GooglePayLogo from "@/public/static/images/payments/google_pay_logo.svg";
 import PaypalLogo from "@/public/static/images/payments/paypal_logo.svg";
@@ -5,10 +7,19 @@ import MastercardLogo from "@/public/static/images/payments/mastercard_logo.svg"
 import MBWayLogo from "@/public/static/images/payments/mbway_logo.svg";
 import Image from "next/image";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { updateCart } from "@/redux/slices/cartProducts";
+import useAuth from "@/hooks/client-hooks/useAuth";
+import { useEffect } from "react";
+import setLocalStorage from "@/utils/localStorage/setLocalStorage";
+import getStorageImage from "@/utils/getStorageImage";
 
 const ShopSectionThree = ({ productsData, userData }) => {
-  
+
+  const products = useAppSelector((state) => state.cartProducts.products);
+
   const handlePurchase = async (produtos) => {
+
     const purchaseData = produtos.map((produto) => ({
       price_data: {
         currency: "eur",
@@ -17,7 +28,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
             produto.offers.products.brands.name +
             " " +
             produto.offers.colors.name,
-          images: [produto.offers.images[0].url],
+          images: [getStorageImage(produto.offers.images[0].url)],
         },
         unit_amount: Math.round(produto.offers.price * 100),
       },
@@ -36,16 +47,16 @@ const ShopSectionThree = ({ productsData, userData }) => {
     } catch (error) {
       // Handle errors
       console.error("Error during purchase:", error);
-    }
+    } 
   };
 
   return (
     <div className="container">
-      <h6
-        className="flex gap-2 items-center font-semibold"
+      <h1
+        className="flex gap-2 items-center font-semibold text_h6"
       >
         Escolhe um método de pagamento
-      </h6>
+      </h1>
 
       <div className="flex flex-col gap-4 mt-4">
 

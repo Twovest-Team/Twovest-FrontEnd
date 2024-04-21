@@ -10,6 +10,7 @@ import modalSlice from "./slices/modalSlice";
 import notificationSlice from "./slices/notificationSlice";
 import genderSlice from "./slices/genderSlice";
 
+
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -22,7 +23,8 @@ export const makeStore = () => {
       historyProducts: historyProductsSlice,
       modals: modalSlice,
       notifications: notificationSlice,
-      gender: genderSlice
+      gender: genderSlice,
+      
     }
   })
 }

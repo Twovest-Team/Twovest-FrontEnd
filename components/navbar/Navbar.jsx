@@ -57,7 +57,7 @@ export const Navbar = ({ children }) => {
 
           <Link href={"/"} className="items-center flex">
             <Image
-              src={'/static/images/logo_twovest_black.svg'}
+              src={"/static/images/logo_twovest_black.svg"}
               width={105}
               height={24}
               alt="Logo Twovest"
@@ -65,7 +65,7 @@ export const Navbar = ({ children }) => {
             ></Image>
 
             <Image
-              src={'/static/images/logo_twovest_black.svg'}
+              src={"/static/images/logo_twovest_black.svg"}
               width={130}
               height={24}
               alt="Logo Twovest"
@@ -77,12 +77,16 @@ export const Navbar = ({ children }) => {
         {/* NAVBAR RIGHT SECTION */}
         <div className="flex justify-between items-center ">
           <div className="flex items-center mr-3">
-            <IconButton icon={<SearchIcon />} />
-            <IconButton icon={<FavoriteBorderOutlinedIcon />} />
+            <IconButton icon={<SearchIcon />} ariaLabel="Botão de pesquisa" />
+            <IconButton
+              icon={<FavoriteBorderOutlinedIcon />}
+              ariaLabel="Os meus favoritos"
+            />
             <div className="relative">
               <IconButton
                 icon={<LocalMallOutlinedIcon />}
                 onClick={handleClickCart}
+                ariaLabel="Aceder ao carrinho de compras"
               />
               <div className="cursor-pointer" onClick={handleClickCart}>
                 {currentUser && <NotificationCart currentUser={currentUser} />}
@@ -138,8 +142,9 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${active && "bg-grey_opacity_50"
-                            } font-semibold`}
+                          className={`${
+                            active && "bg-grey_opacity_50"
+                          } font-semibold`}
                         >
                           <div>
                             <div>
@@ -280,8 +285,9 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${active && "bg-grey_opacity_50"
-                              } text-error_main  caption`}
+                            className={`${
+                              active && "bg-grey_opacity_50"
+                            } text-error_main  caption`}
                           >
                             Sair -&gt;
                           </div>
@@ -301,8 +307,9 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={"/login"}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"
-                              } cursor-pointer`}
+                            className={`${
+                              active && "bg-grey_opacity_50"
+                            } cursor-pointer`}
                           >
                             <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
                               Iniciar sessão

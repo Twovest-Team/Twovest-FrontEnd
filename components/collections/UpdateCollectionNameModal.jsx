@@ -44,7 +44,7 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
     return (
         <Modal id={'changeCollectionName'}>
             <div>
-                <h6 className='font-semibold'>{inputState || 'Alterar nome'}</h6>
+                <h1 className='font-semibold text_h6'>{inputState || 'Alterar nome'}</h1>
                 <p className='text-secondary'>Que nome queres dar a esta coleção?</p>
             </div>
 

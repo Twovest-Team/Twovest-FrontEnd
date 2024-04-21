@@ -12,7 +12,7 @@ function ProfileScores() {
       <div className="inline-block h-12 flex-col justify-center items-center gap-2">
         <div className="flex items-center justify-center self-stretch gap-2">
           <AutoModeOutlinedIcon />
-          <h6>{accumulatedPoints}</h6>
+          <h1 className=" text_h6">{accumulatedPoints}</h1>
         </div>
         <p className="caption text-secondary text-center justify-self-center">
           Pontos acumulados
@@ -22,7 +22,7 @@ function ProfileScores() {
       <div className="inline-block h-12 flex-col justify-center items-center gap-2">
         <div className="flex items-center justify-center self-stretch gap-2">
           <LocalOfferIcon />
-          <h6>{totalClothes}</h6>
+          <h2 className=" text_h6">{totalClothes}</h2>
         </div>
         <p className="caption text-secondary text-center">
           Roupas entregues

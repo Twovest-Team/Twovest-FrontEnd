@@ -5,12 +5,15 @@ import formatCompactNumbers from "@/utils/formatCompactNumbers";
 
 export default function LookUpvoteButton({ upvotes }) {
   return (
-    <div
-      className="absolute top-0 right-0 w-[70px] h-[45px] bg-black rounded-tr-[5px] rounded-bl-[5px] justify-center items-center inline-flex"
-    >
-      <ForwardOutlinedIcon className="text-white -rotate-90" />
+    <div className="absolute top-0 right-0 w-[70px] h-[45px] bg-black rounded-tr-[5px] rounded-bl-[5px] justify-center items-center inline-flex">
+      <ForwardOutlinedIcon
+        className="text-white -rotate-90"
+        ariaLabel="Botão de upvote"
+      />
       <div className="text-center">
-        <h6 className="font-semibold text-white">{formatCompactNumbers(upvotes)}</h6>
+        <h1 className="font-semibold text-white text_h6">
+          {formatCompactNumbers(upvotes)}
+        </h1>
       </div>
     </div>
   );

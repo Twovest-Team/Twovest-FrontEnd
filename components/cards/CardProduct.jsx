@@ -20,7 +20,7 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
         <article className={`w-full ${slider ? 'max-w-[160px]' : 'max-w-[460px]'} flex-5 mb-2`}>
 
             <div className='w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center'>
-
+                
                 <Link href={`/product/${genderObj.string}/${product.id}`}>
                     <Image
                         src={getStorageImage(product.images[0].url)}

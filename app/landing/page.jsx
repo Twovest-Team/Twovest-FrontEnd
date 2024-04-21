@@ -68,7 +68,7 @@ export default function Landing() {
       ></div>
       <div className="absolute bottom-0 w-full bg-white rounded-tr-[12%] lg:rounded-tr-[0%] h-[40%] lg:rounded-b-[20px]">
         <div className="mx-6 break-words">
-          <h5 className="mt-9 mb-3.5 font-semibold">{onboardingData[currentPage - 1].titulo}</h5>
+          <h1 className="mt-9 text_h5 mb-3.5 font-semibold">{onboardingData[currentPage - 1].titulo}</h1>
           <p className="text-secondary text-justify">{onboardingData[currentPage - 1].texto}</p>
         </div>
         <div className="justify-between bottom-6 absolute flex w-full px-6 items-center">

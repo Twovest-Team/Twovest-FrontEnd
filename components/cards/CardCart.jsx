@@ -12,6 +12,7 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import { useAppSelector } from "@/redux/hooks";
 import getGender from "@/utils/getGender";
+import getStorageImage from "@/utils/getStorageImage";
 
 export const CardCart = ({
   handleShowDeleteNotification,
@@ -53,7 +54,7 @@ export const CardCart = ({
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image
-              src={data.offers.images[0].url}
+              src={getStorageImage(data.offers.images[0].url)}
               width={115}
               height={115}
               alt={data.offers.images[0].alt}

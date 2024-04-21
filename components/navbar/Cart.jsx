@@ -157,22 +157,22 @@ export const Cart = () => {
         <div className=" w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container pb-4">
           <div className="flex my-6 justify-between">
             <div>
-              <h6
-                className="font-semibold"
+              <h1
+                className="font-semibold text_h6"
                 aria-label={`Total de ${products && products.length} ${
                   products && products.length === 1 ? "artigo" : "artigos"
                 }`}
               >
                 Total ({products && products.length}{" "}
                 {products.length === 1 ? "artigo" : "artigos"})
-              </h6>
+              </h1>
               <div className="text-grey" aria-label="Iva Incluído">
                 IVA Incluído
               </div>
             </div>
             <div>
-              <h6
-                className="font-semibold"
+              <h2
+                className="font-semibold text_h6"
                 aria-label={`Total do carrinho: ${
                   products.length > 0
                     ? getCartTotalPrice(products) + " euros"
@@ -180,7 +180,7 @@ export const Cart = () => {
                 }`}
               >
                 {products.length > 0 && <>{getCartTotalPrice(products)}€</>}
-              </h6>
+              </h2>
             </div>
           </div>
 

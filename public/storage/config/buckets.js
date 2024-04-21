@@ -23,14 +23,14 @@ const buckets = [
             fileSizeLimit: '50MB',
         }
     },
-        // {
-    //     name: 'users',
-    //     options: {
-    //         public: true,
-    //         allowedMimeTypes: ['image/jpg, image/png'],
-    //         fileSizeLimit: '50MB',
-    //     }
-    // },
+    {
+        name: 'users',
+        options: {
+            public: true,
+            allowedMimeTypes: ['image/*'],
+            fileSizeLimit: '50MB',
+        }
+    },
 ]
 
 module.exports = buckets;

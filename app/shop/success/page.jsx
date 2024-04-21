@@ -6,10 +6,14 @@ import removeFromCart from "@/utils/db/cart/removeFromCart";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import useAuth from "@/hooks/client-hooks/useAuth";
 
-const SuccessPage = ({ currentUser }) => {
+
+const SuccessPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.cartProducts.products);
+  const {currentUser} = useAuth();
+
 
   useEffect(() => {
     async function handleDeleteProduct() {
@@ -50,9 +54,9 @@ const SuccessPage = ({ currentUser }) => {
 
           {/* Se ganhar pontos... v */}
           <div className="border container rounded border-grey py-6 flex flex-col gap-3">
-            <h5 className="font-semibold text-primary_main" aria-label="200">
+            <h1 className="font-semibold text-primary_main text_h5" aria-label="200">
               + 200
-            </h5>
+            </h1>
             <p
               className="text-secondary"
               aria-label="Podes fazer uso destes pontos para adquirir cupões."

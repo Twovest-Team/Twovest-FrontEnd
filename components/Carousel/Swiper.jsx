@@ -44,8 +44,15 @@ const ImageSwiper = () => {
           />
           <div className="absolute text-white text-center pb-2 container">
             <p className="">Promoções</p>
-            <h3 className=" font-semibold">Artigos com promoções até 50%</h3>
-            <Button href={`/products/${gender.string}?status=discounts`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
+            <h1 className="text_h3 font-semibold">
+              Artigos com promoções até 50%
+            </h1>
+            <Button
+              href={`/products/${gender.string}?status=discounts`}
+              className="mx-auto mt-3"
+              type={"primary"}
+              ariaLabel="Ver Todas as Promoções"
+            >
               Ver promoções
             </Button>
           </div>
@@ -64,9 +71,16 @@ const ImageSwiper = () => {
           />
 
           <div className="absolute text-center text-white pb-10 container">
-            <h3 className=" font-semibold ">Tens roupa que já não precisas?</h3>
-            <h5>Retorna-a nos pontos de recolha</h5>
-            <Button href={`/`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
+            <h1 className="text_h3 font-semibold ">
+              Tens roupa que já não precisas?
+            </h1>
+            <h2 className="text_h5">Retorna-a nos pontos de recolha</h2>
+            <Button
+              href={`/`}
+              className="mx-auto mt-3"
+              type={"primary"}
+              ariaLabel="Ver pontos de recolha"
+            >
               Ver pontos de recolha
             </Button>
           </div>
@@ -84,13 +98,18 @@ const ImageSwiper = () => {
             alt={`imagem sugestiva`}
           />
           <div className="absolute text-center text-white container">
-            <h3 className="font-semibold">
+            <h1 className="font-semibold text_h3">
               Descobre aqui as melhores marcas aos melhores preços!
-            </h3>
+            </h1>
             <Link href={"/brands"}>
-            <Button href={`/brands`} className="mx-auto mt-3" type={'primary'} ariaLabel='Ver Todas as Promoções'>
-              Ver marcas
-            </Button>
+              <Button
+                href={`/brands`}
+                className="mx-auto mt-3"
+                type={"primary"}
+                ariaLabel="Ver marcas"
+              >
+                Ver marcas
+              </Button>
             </Link>
           </div>
         </div>

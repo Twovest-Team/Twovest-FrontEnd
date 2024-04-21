@@ -9,7 +9,7 @@ export const LooksHomepage = ({ data }) => {
     <ContentSlider>
       {looks.map((item) => {
         return (
-          <li key={item.id}>
+          <li key={item.id} >
             <LookCard
               key={item.id}
               look={item}

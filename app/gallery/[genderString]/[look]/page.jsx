@@ -37,7 +37,7 @@ const Look = async ({ params }) => {
         <section className="flex flex-col">
           <div className="relative">
             <div className={`z-20 h-[calc(100vh-160px)] w-full relative`}>
-              <NavigationTitle hasImageBehind={true}>
+              <NavigationTitle hasImageBehind={true} titleText={`Look de ${data.users.name}`}>
                 <div className="flex flex-col items-center justify-center translate-x-2">
                   <ForwardOutlinedIcon
                     sx={{ fontSize: 28 }}
@@ -73,7 +73,7 @@ const Look = async ({ params }) => {
               {data.products && data.products.length > 0 ? (
                 <>
                   <div className="h-24 flex justify-between items-center container">
-                    <h1 className="font-semibold text_h6">Adqurir o look</h1>
+                    <h1 className="font-semibold text_h6">Adquirir o look</h1>
                     <p className="text-secondary truncate">
                       {productsQty}
                       {productsQty > 1 ? " artigos" : " artigo"}

@@ -5,16 +5,16 @@ export const modalSlice = createSlice({
   initialState: {},
   reducers: {
     openModal: (state, action) => {
-      const id  = action.payload;
+      const id = action.payload;
       state[id] = true;
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     },
     closeModal: (state, action) => {
       const id = action.payload;
       state[id] = false;
-      document.body.style.overflowY = 'auto'
-    }
-  }
+      document.body.style.overflowY = "auto";
+    },
+  },
 });
 
 export const { openModal, closeModal } = modalSlice.actions;

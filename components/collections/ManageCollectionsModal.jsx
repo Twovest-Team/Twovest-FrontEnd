@@ -10,14 +10,17 @@ import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
+import Button from "../buttons/Button";
+
+
 
 const ManageCollectionModal = () => {
 
   const isModalOpen = useAppSelector(state => state.modals['createCollection']);
-  const {currentUser} = useAuth();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+  const { currentUser } = useAuth();
 
   // LookId from url "save" param
   const [lookId, setLookId] = useState(searchParams.get('save'))
@@ -85,6 +88,7 @@ const ManageCollectionModal = () => {
 
       {currentSection === 0 && lookId && currentUser && collectionsData &&
         <SaveLookSection
+          currentUser={currentUser}
           collectionsData={collectionsData}
           lookId={lookId}
           nextSection={nextSection}
@@ -118,7 +122,9 @@ const ManageCollectionModal = () => {
   )
 }
 
-const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
+const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSection }) => {
+
+  let { collections } = currentUser;
 
   return (
     <>
@@ -128,22 +134,20 @@ const SaveLookSection = ({ collectionsData, lookId, ownerId, nextSection }) => {
       </div>
 
       {collectionsData &&
-        <div className="max-h-[225px] overflow-y-scroll">
+        <div className="max-h-[340px] overflow-y-scroll">
           <CollectionList
             toSaveLook
-            collections={collectionsData}
+            lookId={lookId}
+            collections={collections}
             ownerId={ownerId}
             isOwner={true}
           />
         </div>
       }
 
-      <button
-        onClick={nextSection}
-        className={
-          `bg-dark w-full text-white font-semibold px-9 py-3.5 rounded`} >
-        Criar Coleção
-      </button>
+      <Button onClick={nextSection} type={'black'} ariaLabel='Criar nova coleção' width='full'>
+        Criar nova coleção
+      </Button>
 
     </>
   )

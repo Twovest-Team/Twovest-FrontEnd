@@ -120,7 +120,7 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
                             />
                         </div>
                     )}
-                    <div className="pb-20 pt-5 flex-grow">
+                    <div className="pb-16 pt-5 flex-grow">
                         <div className="container flex flex-col gap-8">
                             <div className="flex justify-between text-secondary">
                                 {goBackFn &&

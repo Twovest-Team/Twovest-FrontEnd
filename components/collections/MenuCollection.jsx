@@ -11,8 +11,9 @@ import Link from 'next/link';
 import UpdateCollectionNameModal from './UpdateCollectionNameModal';
 import DeleteCollectionModal from './DeleteCollectionModal';
 import UpdateCollectionPrivacyModal from './UpdateCollectionPrivacyModal';
+import Button from '../buttons/Button';
 
-const MenuCollection = ({collectionId, isOwnCollection, isMember, privacy }) => {
+const MenuCollection = ({ collectionId, isOwnCollection, isMember, privacy }) => {
 
     const dispatch = useAppDispatch()
 
@@ -88,7 +89,7 @@ const MenuCollection = ({collectionId, isOwnCollection, isMember, privacy }) => 
                     </Transition>
                 </Menu>
             </div >
-  
+
             <UpdateCollectionNameModal collectionId={collectionId} />
 
             <UpdateCollectionPrivacyModal collectionId={collectionId} privacy={privacy} />
@@ -101,9 +102,11 @@ const MenuCollection = ({collectionId, isOwnCollection, isMember, privacy }) => 
                     <p className='text-secondary'>Queres mesmo sair da coleção? Qualquer look adicionado por ti também deixará de estar disponível para os outros membros.</p>
                 </div>
 
-                <button className="bg-error_main w-full text-white font-semibold px-9 py-3.5 rounded">
-                    Sair da coleção
-                </button>
+
+                <Button type={'error'} ariaLabel='Sair da coleção' width='full'>
+                Sair da coleção
+                </Button>
+
             </Modal>
 
 

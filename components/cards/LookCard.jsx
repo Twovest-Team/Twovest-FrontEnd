@@ -22,7 +22,6 @@ Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, ic
 export default function LookCard({
   look,
   slider,
-  name,
   collectionData,
   collectionId,
   isMember,

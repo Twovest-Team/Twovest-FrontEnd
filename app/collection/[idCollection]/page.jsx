@@ -54,7 +54,6 @@ const Collection = async ({ params }) => {
             <LookCard
               key={look.id}
               look={look}
-              name={'Joaquim'}
               collectionData={collectionData}
               collectionId={collectionId}
               isMember={isMember}

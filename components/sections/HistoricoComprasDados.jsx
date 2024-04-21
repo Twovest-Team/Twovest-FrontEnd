@@ -2,7 +2,7 @@
 
 export default function HistoricoComprasDados (){
     return(
-        <div>
+        <div className="lg:ml-8">
                     <div className="mb-2">
                         <p className="font-semibold">Data da encomenda:</p>
                         <p>03/11/2023 - 19:24H</p>

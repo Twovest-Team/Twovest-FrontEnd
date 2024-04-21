@@ -11,7 +11,7 @@ import HistoricoComprasArtigos from "@/components/sections/HistoricoComprasArtig
 
 const HistoricoCompras = () => {
   return (
-    <div className="h-full">
+    <div className="h-full md:w-[600px] lg:w-[1000px] mx-auto 2xl:w-[1440px]">
       <>
         <NavigationTitle titleText={"Histórico de Compras"} />
       </>
@@ -32,10 +32,14 @@ const HistoricoCompras = () => {
               <p className="text_caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
+          
           <AccordionDetails>
+          <div className="lg:flex w-full lg:justify-between">
             <HistoricoComprasDados />
 
-            <HistoricoComprasArtigos />
+            <HistoricoComprasArtigos/>
+          </div>
+            
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
             <Button className="w-full" type="black">
@@ -56,10 +60,14 @@ const HistoricoCompras = () => {
               <p className="text_caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
+          
           <AccordionDetails>
+          <div className="lg:flex w-full lg:justify-between">
             <HistoricoComprasDados />
 
-            <HistoricoComprasArtigos />
+            <HistoricoComprasArtigos/>
+          </div>
+            
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
             <Button className="w-full" type="black">

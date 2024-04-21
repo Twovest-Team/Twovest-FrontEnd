@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HistoricoComprasArtigos() {
   return (
-    <div>
+    <div className="lg:mr-8">
       <h2 className="text_h6 mt-8 mb-4">Artigos da Encomenda</h2>
 
       <article className="my-5">

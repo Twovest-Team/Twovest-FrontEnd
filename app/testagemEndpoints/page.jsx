@@ -25,10 +25,9 @@ export const revalidate = 0;
 
 const page = async () => {
 
-    const currentUser = await useAuthServer()
 
     // Variável onde se deve guardar a resposta da API
-    const data = await getCollections(24)
+    const data = null
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

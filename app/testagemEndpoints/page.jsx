@@ -12,21 +12,22 @@ import getProductById from "@/utils/db/getProductById";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getLookProducts from "@/utils/db/getLookProducts";
-import getCollections from "@/utils/db/collections/getCollections";
-import getInfoForProfilePage from "@/utils/db/getInfoForProfilePage";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import getBrands from "@/utils/db/getBrands";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import removeFromCart from "@/utils/db/cart/removeFromCart";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
+import getCollectionData from "@/utils/db/collections/getCollectionData";
+import getCollections from "@/utils/db/collections/getCollections";
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
 export const revalidate = 0;
 
 const page = async () => {
 
+
     // Variável onde se deve guardar a resposta da API
-    const data = await fetch("http://localhost:3000/api/paymentSuccess", {method: "GET"})
+    const data = null
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

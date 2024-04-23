@@ -11,6 +11,7 @@ import { SideMenu } from "@/components/navbar/SideMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 import { Suspense } from "react";
+import UserProvider from "@/components/providers/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,18 +27,20 @@ export default function RootLayout({ children }) {
         {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
         <StoreProvider>
           <GenderProvider>
-            <Navbar>
-              <SideMenu />
-              <Cart />
-            </Navbar>
-            {children}
-            <LastProductsSeen />
-            <Footer />
+            <UserProvider>
+              <Navbar>
+                <SideMenu />
+                <Cart />
+              </Navbar>
+              {children}
+              <LastProductsSeen />
+              <Footer />
 
-            <Suspense>
-              {/* MODALS */}
-              <ManageCollectionModal />
-            </Suspense>
+              <Suspense>
+                {/* MODALS */}
+                <ManageCollectionModal />
+              </Suspense>
+            </UserProvider>
           </GenderProvider>
         </StoreProvider>
         <Analytics />

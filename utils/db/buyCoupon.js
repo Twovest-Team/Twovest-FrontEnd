@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 import getUserById from "./getUserById";
 import getCouponById from "./getCouponById";
 import checkIfUserHasCoupon from "./checkIfUserHasCoupon";

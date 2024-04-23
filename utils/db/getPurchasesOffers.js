@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 import getOfferDetailsByOfferId from "./getOfferDetailsByOfferId";
 
 export default async function getPurchasesOffers(id_purchase) {

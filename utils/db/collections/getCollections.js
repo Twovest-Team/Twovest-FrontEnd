@@ -1,7 +1,4 @@
-import { supabase } from '@/utils/db/supabase'
-import getCollectionMembers from './getCollectionMembers';
-import getCollectionLooks from './getCollectionLooks';
-
+import supabase from '@/utils/db/clients/public/supabase';
 
 const getCollections = async (ownerId, max = 100, privacy = null) => {
 
@@ -72,6 +69,8 @@ const getCollections = async (ownerId, max = 100, privacy = null) => {
                 };
             });
         }
+
+        
 
         console.log(error)
         return transformCollection(data)

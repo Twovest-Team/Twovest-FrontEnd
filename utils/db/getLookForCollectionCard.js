@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 
 const getLookForCollectionCard = async (id_collection) => {
   const { data, error } = await supabase

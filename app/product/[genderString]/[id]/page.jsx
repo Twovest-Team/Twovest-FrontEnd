@@ -13,6 +13,7 @@ import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 import Button from "@/components/buttons/Button";
 import getStorageImage from "@/utils/getStorageImage";
+import ProductSwiper from "@/components/sliders/ProductSwiper";
 
 export const revalidate = 60;
 
@@ -44,7 +45,7 @@ async function ProductContent({ productId, productGender }) {
         />
 
         <div className=" flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
-          <ProductSlider images={data.images} />
+          <ProductSwiper images={data.images} />
           <div className="relative">
             <div className="absolute flex justify-end gap-6 items-center ml-auto -top-14 container z-10">
               <ShareButton url={""} />

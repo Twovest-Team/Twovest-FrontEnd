@@ -14,7 +14,7 @@ const CollectionList = ({
     <Fragment key={"CollectionListFragment"}>
     
       {/* IF THERE ARE ANY COLLECTIONS */}
-      {collections && (
+      {collections.length > 0 && (
         <ul className="flex flex-col items-start self-stretch gap-6 ">
           {search && (
             <button className="profile_search-collections">
@@ -38,7 +38,7 @@ const CollectionList = ({
       )}
 
       {/* IF THERE IS NO COLLECTION */}
-      {!collections && (
+      {collections.length === 0 && (
         <div className="flex flex-col items-start self-stretch gap-4 ">
         <div className="text-secondary">
           {isOwner && <p>Ainda não criaste nenhuma coleção.</p>}

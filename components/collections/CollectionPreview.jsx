@@ -10,6 +10,8 @@ import IconButton from "../buttons/icons/IconButton";
 import getStorageImage from "@/utils/getStorageImage";
 import Button from "../buttons/Button";
 import useWindow from "@/hooks/client-hooks/useWindow";
+import deleteCollectionLook from "@/utils/db/collections/deleteCollectionLook";
+import addToCollection from "@/utils/db/collections/addToCollection";
 
 
 //Componente de card da coleção
@@ -153,10 +155,11 @@ export default function CollectionPreview({ collection, lookToSave }) {
         }
 
         {lookToSave &&
-          <div className="flex-grow flex justify-end h-full items-center mr-8">
+          <div className="flex-grow flex justify-end h-full items-center mr-5">
 
             {isMobile ?
               <Button
+              onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
               className='shadow border border-grey_opacity_50'
               padding={4}
               type={isSaved ? 'black' : 'white'}
@@ -167,6 +170,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
               </Button>
               :
               <Button
+              onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
               width={'[142px]'}
               height={12}
               className='shadow border border-grey_opacity_50'

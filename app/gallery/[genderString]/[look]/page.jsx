@@ -5,11 +5,11 @@ import getLookById from "@/utils/db/getLookById";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
 import SaveLookButton from "@/components/collections/SaveLookButton";
 import Link from "next/link";
-import ItemsBox from "@/components/providers/ItemsBox";
 import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
 import GridBox from "@/components/providers/GridBox";
 import getStorageImage from "@/utils/getStorageImage";
+import IconButton from "@/components/buttons/icons/IconButton";
 
 export const revalidate = 30;
 
@@ -37,12 +37,17 @@ const Look = async ({ params }) => {
         <section className="flex flex-col">
           <div className="relative">
             <div className={`z-20 h-[calc(100vh-160px)] w-full relative`}>
-              <NavigationTitle hasImageBehind={true}>
+              <NavigationTitle
+                hasImageBehind={true}
+                titleText={`Look de ${data.users.name}`}
+              >
                 <div className="flex flex-col items-center justify-center translate-x-2">
-                  <ForwardOutlinedIcon
-                    sx={{ fontSize: 28 }}
+                  <IconButton
+                    icon={<ForwardOutlinedIcon sx={{ fontSize: 28 }} />}
                     className="text-white -rotate-90"
+                    ariaLabel="Botão de upvote"
                   />
+
                   {data.upvotes > 0 && <p>{data.upvotes}</p>}
                 </div>
               </NavigationTitle>
@@ -65,7 +70,6 @@ const Look = async ({ params }) => {
                 </Link>
 
                 <SaveLookButton whiteMode lookId={lookId} />
-
               </div>
             </div>
 
@@ -73,7 +77,7 @@ const Look = async ({ params }) => {
               {data.products && data.products.length > 0 ? (
                 <>
                   <div className="h-24 flex justify-between items-center container">
-                    <h1 className="font-semibold text_h6">Adqurir o look</h1>
+                    <h1 className="font-semibold text_h6">Adquirir o look</h1>
                     <p className="text-secondary truncate">
                       {productsQty}
                       {productsQty > 1 ? " artigos" : " artigo"}
@@ -92,14 +96,15 @@ const Look = async ({ params }) => {
                 </>
               ) : (
                 <div className="h-24 flex justify-between items-center container">
-                  <h1 className="font-semibold text_h6">Sem peças disponíveis</h1>
+                  <h1 className="font-semibold text_h6">
+                    Sem peças disponíveis
+                  </h1>
                 </div>
               )}
             </section>
           </div>
         </section>
       </main>
-
     </>
   );
 };

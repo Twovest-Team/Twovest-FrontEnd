@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 import getBrandDataById from "./getBrandDataById";
 
 export default async function getCouponBrandsById(couponId) {

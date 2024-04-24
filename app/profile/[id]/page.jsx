@@ -28,8 +28,8 @@ const Profile = async ({ params }) => {
   const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId)
   const ownerFirstName = getUserFirstName(ownerData)
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
-  const collectionsData = await getCollections({ ownerId, max: 3, privacy: 1 });
-
+  const collectionsData = isOwnProfile ? currentUser.collections : await getCollections( ownerId, 3, 1 );
+  console.log(collectionsData)
   if (ownerData) {
     return (
       <>

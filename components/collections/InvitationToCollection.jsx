@@ -16,10 +16,9 @@ const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCo
     const invitation = searchParams.get('invite')
 
     // if (invitation !== collectionShareId || !invitation) return null
-
+    console.log(collectionShareId)
     useEffect(() => {
         if (invitation === collectionShareId) dispatch(openModal(`acceptInvite${collectionId}`))
-        return null
     }, [])
 
 

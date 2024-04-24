@@ -1,4 +1,4 @@
-import { supabase } from '@/utils/db/supabase'
+import supabase from '@/utils/db/clients/public/supabase'
 import addToCart from './addToCart'
 import updateCartProductQty from './updateCartProductQty'
 import getUserCartProducts from './getUserCartProducts'

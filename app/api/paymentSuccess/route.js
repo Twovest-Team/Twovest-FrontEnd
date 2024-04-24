@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
 
-
 export async function GET(req) {
   const cookieStore = cookies();
   const currentUser = await useAuthServer();
@@ -31,24 +30,26 @@ export async function GET(req) {
     throw new Error("Erro ao buscar dados do carrinho");
   }
 
-  if(cartData){
+  if (cartData) {
     //console.log("CARTDATA----", cartData)
     let totalPurchasePrice = parseFloat(getCartTotalPrice(cartData));
     //console.log(totalPurchasePrice)
-    
-    let arrayOffers = cartData.map(obj => obj.offers.id);
-    
-    const { data, error } = await supabase.rpc('create_purchase', { total: totalPurchasePrice, id_user: currentUser.id, id_offer: arrayOffers });
 
-     if(data){
-      
+    let arrayOffers = cartData.map((obj) => obj.offers.id);
+
+    const { data, error } = await supabase.rpc("create_purchase", {
+      total: totalPurchasePrice,
+      id_user: currentUser.id,
+      id_offer: arrayOffers,
+    });
+
+    if (data) {
       const { error } = await supabase
-        .from('cart')
+        .from("cart")
         .delete()
-        .eq('email', currentUser.email);
+        .eq("email", currentUser.email);
 
-        return NextResponse.redirect(process.env.NEXT_PUBLIC_URL);
-    } 
-    
+      return NextResponse.redirect(process.env.NEXT_PUBLIC_URL);
+    }
   }
 }

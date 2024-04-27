@@ -1,23 +1,15 @@
 import Image from "next/image";
-//Botão de upvote no topo direito da card de look
 import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
-//Botão de guardar (bookmark) no canto inferior direito da card de look
-import SaveLookButton from "../collections/SaveLookButton";
+import SaveLookIconButton from "../collections/SaveLookIconButton";
 
 // Componente que mostra o name de utilizador apenas se estiver em vista de 1 coluna
 import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 import { UserIcon } from "../user/UserIcon";
 import MenuLook from "../collections/MenuLook";
-import { genders } from "@/constants";
 import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
 
-
-/*Card de look da galeria, funcional tanto para vista de 1 coluna como 2 colunas.
-Utiliza tanto o componente de Upvote (LookUpvoteButton) como de guardar look, icone de bookmark
-(SaveLookButton)
- */
 
 export default function LookCard({
   look,
@@ -52,8 +44,7 @@ export default function LookCard({
       </figure>
     );
 
-  return (
-    <>
+  if(!isCollectionCard) return (
       <div
         className={`w-full aspect-[17/26] ${
           slider && "w-[160px] min-w-[160px]"
@@ -95,10 +86,9 @@ export default function LookCard({
           </Link>
 
           <div className="mt-3.5">
-            {!slider ? <SaveLookButton lookId={look.id} /> : slider === true && null}
+            {!slider ? <SaveLookIconButton lookId={look.id} /> : slider === true && null}
           </div>
         </div>
       </div>
-    </>
   );
 }

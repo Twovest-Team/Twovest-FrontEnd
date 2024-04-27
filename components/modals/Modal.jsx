@@ -7,9 +7,7 @@ import { closeModal } from "@/redux/slices/modalSlice";
 import Image from "next/image";
 import { useEffect } from "react";
 import IconButton from "../buttons/icons/IconButton";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { KeyboardArrowLeft } from "@mui/icons-material";
-
 
 
 // ______________________________________________________________________________
@@ -33,7 +31,7 @@ import { KeyboardArrowLeft } from "@mui/icons-material";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
+const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
@@ -41,7 +39,7 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                dispatch(closeModal(id));
+                handleCloseModal()
             }
         };
 
@@ -55,12 +53,8 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
     }, [isOpen, dispatch, id]);
 
     const handleCloseModal = () => {
+        {onClose && onClose()}
         dispatch(closeModal(id));
-    };
-
-    const handleContentClick = (e) => {
-        // // Prevent modal closing when clicking inside the content area
-        // e.stopPropagation();
     };
 
     const getModalWidth = () => {
@@ -90,8 +84,6 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
     return (
         <Transition show={isOpen || false}>
 
-
-
             <section
                 className={`bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-40`}
                 onClick={handleCloseModal}
@@ -108,7 +100,6 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
             >
                 <div
                     className={`bg-white text-black flex ${getModalWidth()} sm:rounded w-full items-stretch transition-all duration-150`}
-                    onClick={handleContentClick} // Handle clicks inside the content area
                 >
                     {imageUrl && (
                         <div className={`${getModalImageWidth()} relative`}>
@@ -131,12 +122,12 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
                                 }
 
                                 <div className="ml-auto">
-                                <IconButton
-                                    icon={<CloseIcon />}
-                                    onClick={handleCloseModal}
-                                />
+                                    <IconButton
+                                        icon={<CloseIcon />}
+                                        onClick={handleCloseModal}
+                                    />
                                 </div>
-                                
+
                             </div>
                             {children}
                         </div>

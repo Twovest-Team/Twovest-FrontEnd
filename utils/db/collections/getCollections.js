@@ -70,7 +70,7 @@ const getCollections = async (ownerId, max = 100, privacy = null) => {
             });
         }
 
-        
+
 
         console.log(error)
         return transformCollection(data)

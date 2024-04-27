@@ -3,7 +3,7 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import getLookById from "@/utils/db/getLookById";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
-import SaveLookButton from "@/components/collections/SaveLookButton";
+import SaveLookIconButton from "@/components/collections/SaveLookIconButton";
 import Link from "next/link";
 import CardProduct from "@/components/cards/CardProduct";
 import { UserIcon } from "@/components/user/UserIcon";
@@ -69,7 +69,7 @@ const Look = async ({ params }) => {
                   <p className="min-w-0 truncate">{data.users.name}</p>
                 </Link>
 
-                <SaveLookButton whiteMode lookId={lookId} />
+                <SaveLookIconButton whiteMode lookId={lookId} />
               </div>
             </div>
 

@@ -24,9 +24,7 @@ const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCo
 
     return (
         <div className="h-screen">
-            <Modal
-                id={`acceptInvite${collectionId}`}
-            >
+            <Modal id={`acceptInvite${collectionId}`}>
                 <div className='flex flex-col'>
                     {/* <CollectionPreview collection={collectionData} /> */}
                     <h1 className='font-semibold text_h6'>Convite para coleção</h1>

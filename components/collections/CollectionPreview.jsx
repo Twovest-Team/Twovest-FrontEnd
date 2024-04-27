@@ -24,7 +24,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
 
   const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
-  
+
   function renderImages() {
 
     const figureWidth = 86
@@ -159,23 +159,24 @@ export default function CollectionPreview({ collection, lookToSave }) {
 
             {isMobile ?
               <Button
-              onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
-              className='shadow border border-grey_opacity_50'
-              padding={4}
-              type={isSaved ? 'black' : 'white'}
-              onlyIcon={true}
-              ariaLabel={`Guardar look na coleção: ${name}`}
+                onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
+                className='shadow border border-grey_opacity_50'
+                padding={4}
+                type={isSaved ? 'black' : 'white'}
+                onlyIcon={true}
+                ariaLabel={`Guardar look na coleção: ${name}`}
               >
-                <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />
+                {isSaved ? <BookmarkRoundedIcon sx={{ fontSize: 25 }} /> : <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />}
+
               </Button>
               :
               <Button
-              onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
-              width={'[142px]'}
-              height={12}
-              className='shadow border border-grey_opacity_50'
-              type={isSaved ? 'black' : 'white'}
-              ariaLabel={`Guardar look na coleção: ${name}`}
+                onClick={() => isSaved ? deleteCollectionLook() : addToCollection()}
+                width={'[142px]'}
+                height={12}
+                className='shadow border border-grey_opacity_50'
+                type={isSaved ? 'black' : 'white'}
+                ariaLabel={`Guardar look na coleção: ${name}`}
               >
                 {isSaved ? <BookmarkRoundedIcon sx={{ fontSize: 25 }} /> : <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />}
                 {isSaved ? 'Remover' : 'Guardar'}

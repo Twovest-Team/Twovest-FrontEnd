@@ -72,7 +72,7 @@ export default function LookCard({
 
 
 
-      <div className="absolute bottom-0 left-0 right-0 w-full h-[46px] group-hover:h-[100px] bg-white transition-[height] duration-[350ms]">
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full h-[46px] group-hover:h-[100px] bg-white transition-[height] duration-[350ms]">
         <div className="flex flex-wrap justify-between items-center pb-3 bg-white">
           <Link
             href={`/profile/${look.users.id}`}
@@ -96,7 +96,7 @@ export default function LookCard({
           </div>
         </div>
 
-        <Button height="10" className="caption opacity-0 group-hover:opacity-100 delay-200 transition-opacity duration-[350]" type={'black'} ariaLabel='Ver artigos do look' width='full'>
+        <Button height="10" className="caption opacity-0 group-hover:opacity-100 delay-300 transition-opacity duration-[350]" type={'black'} ariaLabel='Ver artigos do look' width='full'>
           Ver artigos do look
         </Button>
       </div>

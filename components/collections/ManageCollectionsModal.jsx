@@ -42,7 +42,7 @@ const ManageCollectionModal = () => {
   // Get collections data everytime there is a look id
   useEffect(() => {
     async function getData() {
-      const data = await getCollections({ ownerId: currentUser.id });
+      const data = await getCollections(currentUser.id);
       if (data) setCollectionsData(data)
     }
 

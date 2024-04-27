@@ -1,11 +1,12 @@
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+'use server'
+
 import addToCollection from "./addToCollection";
 import addUserToCollection from "./addUserToCollection";
 import { v4 as uuidv4 } from 'uuid';
+import supabase from "../clients/admin/supabase";
 
 const createCollection = async (collectionName, privacy, userId, isAdmin, lookId) => {
 
-    const supabase = createClientComponentClient();
     let isLookSaved;
     let isUserAssociated;
 

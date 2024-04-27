@@ -40,7 +40,7 @@ const Notification = ({ id, type, message }) => {
     }
 
     return (
-        <div className='fixed bottom-10 mx-auto left-6 right-6 w-fit z-40 '>
+        <div className='fixed top-10 md:top-auto md:bottom-10 mx-auto left-6 right-6 w-fit z-50 '>
             <Transition
                 show={show || false}
                 enter="transition duration-100 ease-out"

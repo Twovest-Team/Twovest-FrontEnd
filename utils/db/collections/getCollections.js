@@ -72,7 +72,7 @@ const getCollections = async (ownerId, max = 100, privacy = null) => {
 
 
 
-        console.log(error)
+        if(error) console.log(error)
         return transformCollection(data)
 
     } catch (error) {

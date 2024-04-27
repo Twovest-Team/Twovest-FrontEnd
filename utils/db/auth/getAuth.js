@@ -64,7 +64,7 @@ export default async function getAuth() {
           })
         };
       }
-      console.log(transformUserObject(data))
+      
       return transformUserObject(data);
     }
     if (error) console.log(error);

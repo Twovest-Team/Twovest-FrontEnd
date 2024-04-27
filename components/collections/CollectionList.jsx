@@ -27,7 +27,7 @@ const CollectionList = ({
           {collections.map((collection) => (
             <li key={collection.id_collection} className="w-full">
             <CollectionPreview
-              lookToSave={lookId}
+              lookId={lookId}
               userId={ownerId}
               collection={collection}
               key={collection.id_collection}

@@ -49,12 +49,12 @@ export default function CollectionPreview({ collection, lookId }) {
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] left-0 top-0 z-20 absolute rounded-[10px] object-cover"
+                  className="max-h-[90px] h-[90px] left-0 top-0 z-20 absolute rounded-[16px] object-cover"
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[10px] border-[3.5px] border-white`} />
+                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[16px] border-[3.5px] border-white`} />
               )
             }
             break;
@@ -67,12 +67,12 @@ export default function CollectionPreview({ collection, lookId }) {
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] left-[14px] top-0 z-10 absolute rounded-[10px] object-cover"
+                  className="max-h-[90px] h-[90px] left-[14px] top-0 z-10 absolute rounded-[16px] object-cover"
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[10px] border-[3.5px] border-white`} />
+                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white`} />
               )
             }
 
@@ -86,12 +86,12 @@ export default function CollectionPreview({ collection, lookId }) {
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] left-[28px] top-0 absolute rounded-[10px] object-cover"
+                  className="max-h-[90px] h-[90px] left-[28px] top-0 absolute rounded-[16px] object-cover"
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[10px] border-[3.5px] border-white`} />
+                <div className={`w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white`} />
               )
             }
 
@@ -101,11 +101,11 @@ export default function CollectionPreview({ collection, lookId }) {
     } else {
       previewLookCards = (
         <>
-          <div className="w-[86px] h-[90px] z-20 left-0 top-0 absolute bg-secondary rounded-[10px] border-[3.5px] border-white text-white flex justify-start pt-2 pl-2">
+          <div className="w-[86px] h-[90px] z-20 left-0 top-0 absolute bg-secondary rounded-[16px] border-[3.5px] border-white text-white flex justify-start pt-2 pl-2">
             <BookmarkRoundedIcon className="text-white" sx={{ fontSize: 22 }} />
           </div>
-          <div className="w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[10px] border-[3.5px] border-white" />
-          <div className="w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[10px] border-[3.5px] border-white" />
+          <div className="w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white" />
+          <div className="w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white" />
         </>
       )
     }

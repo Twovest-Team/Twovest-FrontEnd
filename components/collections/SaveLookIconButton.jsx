@@ -17,7 +17,7 @@ export default function SaveLookIconButton({ lookId, whiteMode }) {
 
   const iconProps = {
     className: whiteMode ? "text-white" : "text-black",
-    sx: { fontSize: 30 }
+    sx: { fontSize: 28 }
   }
 
   const saveParam = searchParams.get("save");

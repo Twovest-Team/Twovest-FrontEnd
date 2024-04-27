@@ -16,7 +16,7 @@ const FiltersGallery = ({ currentCategory }) => {
 
   return (
     <ContentSlider
-      className={`sticky top-[75px] z-10 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}
+      className={`sticky top-[75px] z-20 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}
     >
       {gender && categories ? (
         <>

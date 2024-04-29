@@ -49,6 +49,7 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
 
       {offers.length > 2 && (
         <Button
+          className="md:hidden"
           onClick={() => dispatch(openModal('offersProduct'))}
           type={'black'}
           ariaLabel={`Ver todas as ${offers.length} ofertas`}
@@ -57,6 +58,15 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
           Ver todas as ofertas ({offers.length})
         </Button>
       )}
+
+      <Button
+        className="hidden md:block"
+        type={'black'}
+        ariaLabel={`Ver todas as ${offers.length} ofertas`}
+        width='full'
+      >
+          Dummy button, change later
+      </Button>
     </div>
   );
 };

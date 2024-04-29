@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import IconButton from "../buttons/icons/IconButton";
 import { KeyboardArrowLeft } from "@mui/icons-material";
+import useWindow from "@/hooks/client-hooks/useWindow";
 
 
 // ______________________________________________________________________________
@@ -31,10 +32,11 @@ import { KeyboardArrowLeft } from "@mui/icons-material";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose }) => {
+const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
+    const { isMobile, isSm } = useWindow();
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -81,6 +83,9 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose }) =>
         }
     }
 
+    if(!isMobile && onlyMobile) return null
+    if(!isMobile && !isSm && maxSm) return null
+
     return (
         <Transition show={isOpen || false}>
 
@@ -111,8 +116,8 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose }) =>
                             />
                         </div>
                     )}
-                    <div className="pb-16 pt-5 flex-grow max-h-full h-fit">
-                        <div className="container flex flex-col gap-6">
+                    <div className="pb-8 pt-5 flex-grow max-h-full h-fit">
+                        <div className="container flex flex-col gap-2">
                             <div className="flex justify-between text-secondary">
                                 {goBackFn &&
                                     <IconButton
@@ -129,7 +134,11 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose }) =>
                                 </div>
 
                             </div>
+                            
+                            <div className="flex flex-col gap-6">
                             {children}
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

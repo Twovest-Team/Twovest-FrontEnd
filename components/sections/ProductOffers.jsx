@@ -1,11 +1,18 @@
+'use client'
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ProductOfferCard from "../cards/ProductOfferCard";
-import Link from "next/link";
+import Button from "../buttons/Button";
+import { useAppDispatch } from "@/redux/hooks";
+import { openModal } from "@/redux/slices/modalSlice";
+import { getBestOffers, sortOffers } from "@/utils/handleOffers";
 
 const ProductOffers = ({ offers, discount, productGender, productId }) => {
   const sortedOffers = sortOffers(offers);
   const bestOffers = getBestOffers(sortedOffers);
+  const dispatch = useAppDispatch()
 
+  console.log(offers)
   return (
     <div className="container flex flex-col gap-6">
       <div className="flex flex-col gap-1">
@@ -41,44 +48,19 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
       </div>
 
       {offers.length > 2 && (
-        <Link
-          className="bg-dark hover:bg-dark_gray text-center text-white w-full py-3.5 font-semibold rounded"
-          href={`/product/${productGender.toLowerCase()}/${productId}/alloffers`}
+        <Button
+          onClick={() => dispatch(openModal('offersProduct'))}
+          type={'black'}
+          ariaLabel={`Ver todas as ${offers.length} ofertas`}
+          width='full'
         >
           Ver todas as ofertas ({offers.length})
-        </Link>
+        </Button>
       )}
     </div>
   );
 };
 
-const sortOffers = (offers) => {
-  return offers.sort((a, b) => {
-    // First, sort by condition
-    if (a.conditions.id !== b.conditions.id) {
-      return a.conditions.id - b.conditions.id;
-    }
 
-    // If conditions are the same, then sort by price
-    return a.price - b.price;
-  });
-};
-
-const getBestOffers = (offers) => {
-  const bestOffers = [];
-  let totalBestOffers;
-
-  if (offers.length >= 2) {
-    totalBestOffers = 2;
-  } else {
-    totalBestOffers = offers.length;
-  }
-
-  for (let i = 0; i < totalBestOffers; i++) {
-    bestOffers.push(offers[i]);
-  }
-
-  return bestOffers;
-};
 
 export default ProductOffers;

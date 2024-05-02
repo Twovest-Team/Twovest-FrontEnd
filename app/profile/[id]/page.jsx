@@ -12,7 +12,7 @@ import CollectionList from "@/components/collections/CollectionList";
 import getUserById from "@/utils/db/getUserById";
 import getCollections from "@/utils/db/collections/getCollections";
 import IconButton from "@/components/buttons/icons/IconButton";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { checkOwnership } from "@/utils/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 import Button from "@/components/buttons/Button";
@@ -21,26 +21,33 @@ export const revalidate = 0;
 
 // Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
 const Profile = async ({ params }) => {
-
-  const ownerId = params.id
+  const ownerId = params.id;
   const currentUser = await useAuthServer();
-  const isOwnProfile = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
-  const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId)
-  const ownerFirstName = getUserFirstName(ownerData)
+  const isOwnProfile = currentUser
+    ? checkOwnership(currentUser.id, ownerId)
+    : false;
+  const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId);
+  const ownerFirstName = getUserFirstName(ownerData);
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
-  const collectionsData = isOwnProfile ? currentUser.collections : await getCollections( ownerId, 3, 1 );
-  console.log(collectionsData)
+  const collectionsData = isOwnProfile
+    ? currentUser.collections
+    : await getCollections(ownerId, 3, 1);
   if (ownerData) {
     return (
       <>
         <NavigationTitle
-          titleText={isOwnProfile ? "O meu perfil" : `Perfil de ${ownerFirstName}`}
+          titleText={
+            isOwnProfile ? "O meu perfil" : `Perfil de ${ownerFirstName}`
+          }
         >
           <IconButton icon={<MoreVertIcon />} />
         </NavigationTitle>
 
         <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
-          <ProfilePicture imageProfile={ownerData.img} />
+          <ProfilePicture
+            imageProfile={ownerData.img}
+            userRole={ownerData.role}
+          />
           <p className="body_semibold">{ownerData.name}</p>
           <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
             {ownerData.email}
@@ -54,7 +61,7 @@ const Profile = async ({ params }) => {
 
         <div className="pb-8">
           <h1 className="font-semibold container text_h6">
-            {isOwnProfile ? 'Os meus looks' : `Looks de ${ownerFirstName}`}
+            {isOwnProfile ? "Os meus looks" : `Looks de ${ownerFirstName}`}
           </h1>
 
           <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
@@ -66,24 +73,32 @@ const Profile = async ({ params }) => {
           </div>
         </div>
 
-        {ownerData &&
+        {ownerData && (
           <div className="flex pb-10 flex-col items-start self-stretch container gap-4">
             <h2 className="font-semibold text_h6">Coleções de Looks</h2>
 
-            <CollectionList collections={collectionsData} ownerId={ownerId} ownerFirstName={ownerFirstName} />
+            <CollectionList
+              collections={collectionsData}
+              ownerId={ownerId}
+              ownerFirstName={ownerFirstName}
+            />
 
             <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
-
-              {collectionsData && collectionsData.length >= 3 &&
-                <Button href={`/profile/${ownerId}/collections`} type={'black-outlined'} ariaLabel='Ver todas as coleções' width='full' justify='between'>
+              {collectionsData && collectionsData.length >= 3 && (
+                <Button
+                  href={`/profile/${ownerId}/collections`}
+                  type={"black-outlined"}
+                  ariaLabel="Ver todas as coleções"
+                  width="full"
+                  justify="between"
+                >
                   Ver todas as coleções
                   <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
                 </Button>
-              }
+              )}
             </div>
-
           </div>
-        }
+        )}
       </>
     );
   }
@@ -120,5 +135,3 @@ async function ProfileLooks({ ownerData, isOwnProfile, ownerFirstName }) {
     </>
   );
 }
-
-

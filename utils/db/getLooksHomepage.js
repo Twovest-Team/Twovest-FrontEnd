@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 import getLookStyles from "./getLookStyles";
 import getGender from "../getGender";
 
@@ -18,7 +18,8 @@ const getLooksForHomepage = async (gender) => {
     users(
         id,
         name,
-        img
+        img,
+        role
     )
 `
     )

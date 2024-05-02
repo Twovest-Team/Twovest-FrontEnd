@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 import getProductImages from "./getProductImages";
 import getProductOffers from "./getProductOffers";
 import getProductMaterials from "./getProductMaterials";

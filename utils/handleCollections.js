@@ -42,6 +42,11 @@ const handleCreateCollection = async (currentUserId, collectionName, collectionP
     return isCreated
 }
 
+const reverseLooksOrder = (looksArray) => {
+    const newLooksArray =  Object.assign([], looksArray).reverse()
+    return newLooksArray 
+}
+
 export {
     checkOwnership,
     checkOwnerId,
@@ -51,4 +56,5 @@ export {
     collectionHasLooks,
     addMemberToCollection,
     handleCreateCollection,
+    reverseLooksOrder,
 }

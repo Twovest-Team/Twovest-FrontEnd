@@ -34,10 +34,10 @@ const Button = (props) => {
   const justifyContent =
     !onlyIcon &&
     `justify-${
-      justify === "between" ? "between px-6" : (justify || "center")
+      justify === "between" ? "between" : (justify || "center")
     }`;
 
-  const buttonPadding = padding ? 'px-' + padding : 'px-9'
+  const buttonPadding = padding ? 'px-' + padding : justify === 'between' ? 'px-6' : 'px-9'
 
   const disabledStyles = disabled ? "opacity-50 pointer-events-none" : "";
 

@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 
 const getUserById = async (id_user) => {
   const { data, error } = await supabase
@@ -10,7 +10,8 @@ const getUserById = async (id_user) => {
       name,
       img,
       email,
-      points
+      points,
+      role
   `
     )
     .eq("id", id_user)

@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import supabase from "../clients/public/supabase";
 
 export default async function deleteCollectionUser(collectionId, userId) {
 

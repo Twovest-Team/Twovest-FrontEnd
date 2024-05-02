@@ -11,12 +11,14 @@ import CollectionList from "./CollectionList";
 import { handleCreateCollection } from "@/utils/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
 import Button from "../buttons/Button";
+import { useRouter } from "next/navigation";
 
 
 
 const ManageCollectionModal = () => {
 
   const isModalOpen = useAppSelector(state => state.modals['createCollection']);
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
@@ -40,7 +42,7 @@ const ManageCollectionModal = () => {
   // Get collections data everytime there is a look id
   useEffect(() => {
     async function getData() {
-      const data = await getCollections({ ownerId: currentUser.id });
+      const data = await getCollections(currentUser.id);
       if (data) setCollectionsData(data)
     }
 
@@ -83,8 +85,12 @@ const ManageCollectionModal = () => {
 
   }, [isModalOpen])
 
+  function onCloseModal(){
+    router.push(pathname, {scroll: false})
+  }
+
   return (
-    <Modal id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
+    <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
 
       {currentSection === 0 && lookId && currentUser && collectionsData &&
         <SaveLookSection
@@ -134,7 +140,7 @@ const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSe
       </div>
 
       {collectionsData &&
-        <div className="max-h-[340px] overflow-y-scroll">
+        <div className="max-h-[345px] overflow-y-auto">
           <CollectionList
             toSaveLook
             lookId={lookId}

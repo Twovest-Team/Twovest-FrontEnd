@@ -10,7 +10,8 @@ const getUserById = async (id_user) => {
       name,
       img,
       email,
-      points
+      points,
+      role
   `
     )
     .eq("id", id_user)

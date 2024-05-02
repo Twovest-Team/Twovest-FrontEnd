@@ -18,7 +18,8 @@ const getLooksForHomepage = async (gender) => {
     users(
         id,
         name,
-        img
+        img,
+        role
     )
 `
     )

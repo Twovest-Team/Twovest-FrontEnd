@@ -196,7 +196,7 @@ export default function CollectionPreview({ collection, lookToSave }) {
     )
   }
 
-  console.log(collection)
+  //console.log(collection)
 
   return (
     <>

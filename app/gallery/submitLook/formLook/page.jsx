@@ -6,109 +6,113 @@ import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
+import { UsedProductsSubmiteLook } from "@/components/sections/UsedProductsSubmitLook";
+import { StylesSubmitLook } from "@/components/sections/StylesSubmitProduct";
+import getAuth from "@/utils/db/auth/getAuth";
+import submitLook from "@/utils/db/submitLook/submitLook";
+
 
 const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [isFirstButtonVisible, setIsFirstButtonVisible] = useState(false);
-  const [isSecondButtonVisible, setIsSecondButtonVisible] = useState(false);
-  const [checkboxOptions, setCheckboxOptions] = useState([
-    { value: "Casual", label: "Casual" },
-    { value: "Citadino", label: "Citadino" },
-    { value: "Premium", label: "Premium" },
-    { value: "Formal", label: "Formal" },
-    { value: "Alternativo", label: "Alternativo" },
-  ]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClientComponentClient();
+  const [isProductsFilled, setIsProductsFilled] = useState(false);
+  const [isStylesFilled, setIsStylesFilled] = useState(false);
+  const [selectedStyleIds, setSelectedStyleIds] = useState([]);
+  const [selectedProductIds, setSelectedProductIds] = useState([]);
+  const [userId, setUserId] = useState(null);
+  const [userGenderId, setUserGenderId] = useState(null);
   const router = useRouter();
+  const supabase = createClientComponentClient();
+  const userGenderString = localStorage.getItem("gender");
+  const userGender = JSON.parse(userGenderString);
+
+
   useEffect(() => {
-    async function getUser() {
-      const { data: user, error } = await supabase.auth.getUser();
-      if (error || !user) {
-        router.push("/login");
-      } else {
-        setUser(user);
+    async function fetchData() {
+      try {
+        const currentUser = await getAuth();
+        const { data: userData, error } = await supabase.auth.getUser();
+        if (error || !userData) {
+          router.push("/login");
+        } else {
+          setUser(userData);
+          setUserId(currentUser.id);
+          setLoading(false);
+          
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
         setLoading(false);
       }
     }
-    getUser();
+
+    fetchData();
   }, [router, supabase.auth]);
 
-  if (loading) {
-    return <GeneralLoading />;
-  }
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-
     if (file) {
       const reader = new FileReader();
-
       reader.onload = function (e) {
         setSelectedImage(e.target.result);
       };
-
       reader.readAsDataURL(file);
     }
   };
 
-  const handleDivClick = (id) => {
-    if (id === "first") {
-      setIsFirstButtonVisible(!isFirstButtonVisible);
-      setIsSecondButtonVisible(false);
-    } else if (id === "second") {
-      setIsSecondButtonVisible(!isSecondButtonVisible);
-      setIsFirstButtonVisible(false);
+  const handleStylesData = (styleIds) => {
+    setSelectedStyleIds(styleIds);
+    setIsStylesFilled(styleIds.length > 0);
+  };
+
+  const handleProductDataFilled = (productIds) => {
+    setSelectedProductIds(productIds);
+    setIsProductsFilled(productIds.length > 0);
+  };
+
+
+
+
+
+  const handleSubmitLook = async (userId, selectedProductIds, userGender, selectedStyleIds, selectedImage) => {
+
+    await submitLook(userId, selectedProductIds, userGender, selectedStyleIds, selectedImage);
+
+   /*  if (!selectedImage || !isProductsFilled || !isStylesFilled) {
+      console.error("Please fill in all fields.");
+      return;
+    } */
+
+
+  };
+
+  const dataUrlToBlob = (dataUrl) => {
+    const parts = dataUrl.split(";base64,");
+    const contentType = parts[0].split(":")[1];
+    const raw = window.atob(parts[1]);
+    const rawLength = raw.length;
+    const uInt8Array = new Uint8Array(rawLength);
+
+    for (let i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
     }
+
+    return new Blob([uInt8Array], { type: contentType });
   };
 
-  const handleCheckboxToggle = (option) => {
-    const updatedOptions = [...selectedOptions];
-    const index = updatedOptions.findIndex(
-      (selected) => selected.value === option.value
-    );
+  if (loading) {
+    return <GeneralLoading />;
+  }
 
-    if (index === -1) {
-      updatedOptions.push(option);
-    } else {
-      updatedOptions.splice(index, 1);
-    }
-
-    setSelectedOptions(updatedOptions);
-  };
-  const handleReset = (e) => {
-    e.preventDefault();
-    setSelectedOptions([]);
-  };
-
-  const handleSearch = (e) => {
-    const term = e.target.value.toLowerCase();
-    if (term === "") {
-      setCheckboxOptions([
-        { value: "Casual", label: "Casual" },
-        { value: "Citadino", label: "Citadino" },
-        { value: "Premium", label: "Premium" },
-        { value: "Formal", label: "Formal" },
-        { value: "Alternativo", label: "Alternativo" },
-      ]);
-    } else {
-      const filtered = checkboxOptions.filter((option) =>
-        option.label.toLowerCase().includes(term)
-      );
-      setCheckboxOptions(filtered);
-    }
-  };
   return (
     <>
       {user && (
         <>
-          <NavigationTitle titleText="Submissão de look" />
-          <form className="container mx-auto overflow-hidden mb-24">
-            <div className="text-center justify-center items-center">
+          <div className="container mx-auto overflow-hidden mb-24">
+            <div className="text-center justify-center items-center mb-6">
               <label className="block text-secondary font-inter mb-2 h-64 border">
                 {selectedImage ? (
                   <div className="mt-12 w-auto h-auto flex flex-col items-center">
@@ -117,7 +121,7 @@ const FormLook = () => {
                       alt="Selected"
                       width={48}
                       height={48}
-                      className="h-40 w-40 object-cover  flex mx-auto"
+                      className="h-40 w-40 object-cover flex mx-auto"
                     />
                     <div className="flex justify-center mt-2 text-secondary">
                       <input
@@ -126,141 +130,55 @@ const FormLook = () => {
                         onChange={handleFileChange}
                         className="hidden"
                       />
-                      <p>Alterar foto</p>
+                      <p>Change photo</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-32 justify-center bg-text-secondary ">
-                    <p>Adiciona Imagem Aqui </p>
+                  <div className="mt-32 justify-center bg-text-secondary">
+                    <p>Add Image Here </p>
                     <input
                       id="image"
                       type="file"
                       onChange={handleFileChange}
                       className="hidden"
                     />
-                    <AddPhotoAlternateIcon
-                      className="rotate-90"
-                      htmlFor="image"
-                    />
+                    <AddPhotoAlternateIcon htmlFor="image" />
                   </div>
                 )}
               </label>
             </div>
-            <div className="mb-4">
-              <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
-                <div
-                  id="firstClick"
-                  className="flex text-secondary-700"
-                  onClick={() => handleDivClick("first")}
-                >
-                  <label className="block font-inter text-secondary mb-2 ">
-                    Peças Usadas*
-                  </label>
-                  <ArrowDropDownIcon
-                    className={
-                      isFirstButtonVisible
-                        ? "ml-auto rotate-180 text-secondary"
-                        : "ml-auto text-secondary"
-                    }
-                  />
-                </div>
-                {isFirstButtonVisible && (
-                  <>
-                    <div className="flex justify-between search-temp w-full px-4 py-4 bg-white relative">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-10">
-                        <SearchIcon className="w-6 h-6 text-gray-500" />
-                      </div>
-                      <input
-                        type="text"
-                        className="pl-16 w-full h-20 border rounded "
-                        placeholder="Pesquisa"
-                      />
-                    </div>
 
-                    <div className="mt-2"></div>
-                  </>
-                )}
-              </div>
-            </div>
+            <UsedProductsSubmiteLook onDataFilled={handleProductDataFilled} />
 
-            <div className="mb-4">
-              <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
-                <div
-                  id="secondClick"
-                  className="flex text-secondary-700"
-                  onClick={() => handleDivClick("second")}
-                >
-                  <label className="block font-inter text-secondary mb-2 ">
-                    Estilo*
-                  </label>
-                  <ArrowDropDownIcon
-                    className={
-                      isSecondButtonVisible
-                        ? "ml-auto rotate-180 text-secondary"
-                        : "ml-auto text-secondary"
-                    }
-                  />
-                </div>
-                {isSecondButtonVisible && (
-                  <>
-                    <div className="flex justify-between search-temp w-full px-4 py-4 bg-white relative">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-10">
-                        <SearchIcon className="w-6 h-6 text-gray-500" />
-                      </div>
-                      <input
-                        type="text"
-                        className="pl-16 w-full h-20 border rounded "
-                        placeholder="Pesquisa"
-                        onChange={handleSearch}
-                      />
-                    </div>
-                    <div className="block ">
-                      {checkboxOptions.map((option) => (
-                        <div key={option.value} className="flex">
-                          <input
-                            type="checkbox"
-                            id={option.value}
-                            value={option.value}
-                            checked={selectedOptions.some(
-                              (selected) => selected.value === option.value
-                            )}
-                            onChange={() => handleCheckboxToggle(option)}
-                            className="w-8 h-8 m-4 justify-center checkbox-css"
-                          />
-                          <label htmlFor={option.value} className="ml-6 py-5">
-                            {option.label}
-                          </label>
-                        </div>
-                      ))}
-                      <Button onClick={handleReset} className='mt-6' type={'black'} width="full" ariaLabel='Redefinir filtros'>
-                        Redefinir
-                      </Button>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
+            <StylesSubmitLook onDataFilled={handleStylesData} />
 
             <div className="mb-4">
               <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
                 <div className="flex text-secondary">
                   <input
-                    className=" w-full py-2  text-secondary leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full py-2 text-secondary leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="Link de foto no Instagram"
+                    placeholder="Instagram Photo Link"
                   />
                 </div>
               </div>
             </div>
 
-            <Button onClick={handleReset} className='mt-6' disabled={true} type={'black'} width="full" ariaLabel='Submeter look'>
-              Submeter
+            <Button
+              onClick={() => handleSubmitLook(userId, selectedImage, selectedProductIds, selectedStyleIds, userGender)}
+              className="mt-6"
+              disabled={!selectedImage || !isProductsFilled || !isStylesFilled}
+              type={"black"}
+              width="full"
+              ariaLabel="Submit look"
+            >
+              Submit
             </Button>
-
-          </form>
+          </div>
         </>
       )}
     </>
   );
 };
+
 export default FormLook;

@@ -19,6 +19,7 @@ import removeFromCart from "@/utils/db/cart/removeFromCart";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import getCollectionData from "@/utils/db/collections/getCollectionData";
 import getCollections from "@/utils/db/collections/getCollections";
+import getUserOrders from "@/utils/db/getUserOrders";
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
 export const revalidate = 0;
@@ -27,7 +28,7 @@ const page = async () => {
 
 
     // Variável onde se deve guardar a resposta da API
-    const data = null
+    const data = getUserOrders(24);
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

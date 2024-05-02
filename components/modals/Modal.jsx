@@ -7,9 +7,8 @@ import { closeModal } from "@/redux/slices/modalSlice";
 import Image from "next/image";
 import { useEffect } from "react";
 import IconButton from "../buttons/icons/IconButton";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { KeyboardArrowLeft } from "@mui/icons-material";
-
+import useWindow from "@/hooks/client-hooks/useWindow";
 
 
 // ______________________________________________________________________________
@@ -33,15 +32,16 @@ import { KeyboardArrowLeft } from "@mui/icons-material";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
+const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
+    const { isMobile, isSm } = useWindow();
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                dispatch(closeModal(id));
+                handleCloseModal()
             }
         };
 
@@ -55,12 +55,8 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
     }, [isOpen, dispatch, id]);
 
     const handleCloseModal = () => {
+        {onClose && onClose()}
         dispatch(closeModal(id));
-    };
-
-    const handleContentClick = (e) => {
-        // // Prevent modal closing when clicking inside the content area
-        // e.stopPropagation();
     };
 
     const getModalWidth = () => {
@@ -87,10 +83,11 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
         }
     }
 
+    if(!isMobile && onlyMobile) return null
+    if(!isMobile && !isSm && maxSm) return null
+
     return (
         <Transition show={isOpen || false}>
-
-
 
             <section
                 className={`bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-40`}
@@ -104,11 +101,10 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
                 leave='ease-in duration-100'
                 leaveFrom='opacity-100 translate-y-0 sm:-translate-y-1/2 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:-translate-y-[45%] sm:scale-95'
-                className={'fixed bottom-0 sm:bottom-auto sm:top-1/2 left-0 right-0 z-50 mx-auto w-screen sm:w-fit h-auto'}
+                className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-50 mx-auto w-screen sm:w-fit max-h-full h-fit'}
             >
                 <div
-                    className={`bg-white text-black flex ${getModalWidth()} sm:rounded w-full items-stretch transition-all duration-150`}
-                    onClick={handleContentClick} // Handle clicks inside the content area
+                    className={`bg-white text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
                 >
                     {imageUrl && (
                         <div className={`${getModalImageWidth()} relative`}>
@@ -120,8 +116,8 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
                             />
                         </div>
                     )}
-                    <div className="pb-16 pt-5 flex-grow">
-                        <div className="container flex flex-col gap-8">
+                    <div className="pb-8 pt-5 flex-grow max-h-full h-fit">
+                        <div className="container flex flex-col gap-2">
                             <div className="flex justify-between text-secondary">
                                 {goBackFn &&
                                     <IconButton
@@ -131,14 +127,18 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn }) => {
                                 }
 
                                 <div className="ml-auto">
-                                <IconButton
-                                    icon={<CloseIcon />}
-                                    onClick={handleCloseModal}
-                                />
+                                    <IconButton
+                                        icon={<CloseIcon />}
+                                        onClick={handleCloseModal}
+                                    />
                                 </div>
-                                
+
                             </div>
+                            
+                            <div className="flex flex-col gap-6">
                             {children}
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import CollectionList from "@/components/collections/CollectionList";
 import getCollections from "@/utils/db/collections/getCollections";
 import getUserById from "@/utils/db/getUserById";
-import CreateCollectionButton from "@/components/collections/CreateCollectionButton";
+import CreateCollectionIconButton from "@/components/collections/CreateCollectionIconButton";
 import SegmentIcon from '@mui/icons-material/Segment';
 import IconButton from "@/components/buttons/icons/IconButton";
 import { checkOwnership } from "@/utils/handleCollections";
@@ -28,7 +28,7 @@ const Collections = async ({ params }) => {
         <NavigationTitle titleText={isOwnCollections ? "As minhas coleções" : `Coleções de ${ownerFirstName}`}>
           <div className="flex justify-between gap-5">
             <IconButton icon={<SegmentIcon />} />
-            <CreateCollectionButton isOwnCollections={isOwnCollections} />
+            <CreateCollectionIconButton isOwnCollections={isOwnCollections} />
           </div>
         </NavigationTitle>
       </div>

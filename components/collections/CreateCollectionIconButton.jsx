@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch} from "@/redux/hooks";
 import { openModal } from "@/redux/slices/modalSlice";
 
-const CreateCollectionButton = ({ isOwnCollections }) => {
+const CreateCollectionIconButton = ({ isOwnCollections }) => {
 
     const dispatch = useAppDispatch();
 
@@ -22,4 +22,4 @@ const CreateCollectionButton = ({ isOwnCollections }) => {
 }
 
 
-export default CreateCollectionButton
+export default CreateCollectionIconButton

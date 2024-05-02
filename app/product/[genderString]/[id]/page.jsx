@@ -14,6 +14,9 @@ import ProductHistoryDetection from "@/components/providers/ProductHistoryDetect
 import Button from "@/components/buttons/Button";
 import getStorageImage from "@/utils/getStorageImage";
 import ProductSwiper from "@/components/sliders/ProductSwiper";
+import Modal from "@/components/modals/Modal";
+import ProductOfferCard from "@/components/cards/ProductOfferCard";
+import { sortOffers } from "@/utils/handleOffers";
 
 export const revalidate = 60;
 
@@ -34,6 +37,8 @@ export default async function Product({ params }) {
 
 async function ProductContent({ productId, productGender }) {
   const data = await getProductById(productId, productGender);
+  const sortedOffers = sortOffers(data.offers);
+  
 
   return (
     <>
@@ -89,6 +94,22 @@ async function ProductContent({ productId, productGender }) {
         />
         <ProductDetails productDetails={data} />
       </section>
+
+        <Modal maxSm className='lg:hidden' id={'offersProduct'}>
+          <div className="h-full">
+            <h1 className="font-semibold text_h6">Ofertas</h1>
+            <p className="text-secondary">
+              Vê todas as ofertas para este artigo.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
+            {sortedOffers.map((offer, index) => (
+              <ProductOfferCard key={index} offer={offer} discount={data.discount} />
+            ))}
+          </div>
+        </Modal>
+
     </>
   );
 }

@@ -35,7 +35,7 @@ const GridBox = ({ children, loader, fixed }) => {
 
 
     return (
-        <div className={`container w-full grid ${cols} gap-3 mb-20`}>
+        <div className={`container w-full grid ${cols} gap-y-6 gap-x-3 mb-20`}>
             {!loading ? children : loader}
         </div>
     )

@@ -142,16 +142,14 @@ export const Navbar = ({ children }) => {
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
                         <div
-                          className={`${
-                            active && "bg-grey_opacity_50"
-                          } font-semibold`}
+                          className={`font-semibold`}
                         >
                           <div>
                             <div>
                               <Link
                                 href={`/profile/${currentUser.id}`}
                                 onClick={close}
-                                className="truncate"
+                                className="truncate py-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out"
                               >
                                 {currentUser.name}
                               </Link>
@@ -164,7 +162,7 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
 
-                    <div className="border-b border-grey my-4"></div>
+                    <div className="border-b border-grey my-3"></div>
 
                     <Menu.Item>
                       {({ active, close }) => (
@@ -174,7 +172,7 @@ export const Navbar = ({ children }) => {
                             onClick={close}
                             className={`${active && "bg-grey_opacity_50"}`}
                           >
-                            <div className="mb-3 caption text-start">
+                            <div className=" caption text-start py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               Perfil
                             </div>
                           </Link>
@@ -187,9 +185,8 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={"/"}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
                           >
-                            <div className="caption items-center flex">
+                            <div className="caption items-center flex py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               <AutoModeIcon className=" h-5 w-5 mr-1.5" />
                               <div>Pontos&Cupões</div>
                             </div>
@@ -198,7 +195,7 @@ export const Navbar = ({ children }) => {
                       )}
                     </Menu.Item>
 
-                    <div className="border-b border-grey my-4"></div>
+                    <div className="border-b border-grey my-3"></div>
 
                     <Menu.Item>
                       {({ active, close }) => (
@@ -206,9 +203,9 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={"/submitLook"}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
+                           
                           >
-                            <div className="mb-3 caption items-center flex">
+                            <div className=" caption items-center flex py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               <ArrowCircleUpIcon className="h-5 w-5 mr-1.5" />
                               <div>Submeter novo look</div>
                             </div>
@@ -223,9 +220,9 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
+                           
                           >
-                            <div className="mb-3 caption">Gerir meus looks</div>
+                            <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">Gerir meus looks</div>
                           </Link>
                         </div>
                       )}
@@ -236,15 +233,15 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
+                            
                           >
-                            <div className="caption">Ver coleções de looks</div>
+                            <div className="caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">Ver coleções de looks</div>
                           </Link>
                         </div>
                       )}
                     </Menu.Item>
 
-                    <div className="border-b border-grey my-4"></div>
+                    <div className="border-b border-grey my-3"></div>
 
                     <Menu.Item>
                       {({ active, close }) => (
@@ -252,9 +249,9 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
+                            
                           >
-                            <div className="mb-3 caption">
+                            <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               Histórico de compras
                             </div>
                           </Link>
@@ -268,9 +265,9 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            className={`${active && "bg-grey_opacity_50"}`}
+                            
                           >
-                            <div className="mb-3 caption">
+                            <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               Definições de conta
                             </div>
                           </Link>
@@ -285,9 +282,7 @@ export const Navbar = ({ children }) => {
                           onClick={handleLogout}
                         >
                           <div
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } text-error_main  caption`}
+                            className={`text-error_main  caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out`}
                           >
                             Sair -&gt;
                           </div>
@@ -307,9 +302,7 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={"/login"}
                             onClick={close}
-                            className={`${
-                              active && "bg-grey_opacity_50"
-                            } cursor-pointer`}
+                            className={`py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out cursor-pointer`}
                           >
                             <div className="bg-primary_main p-2 text-white block text-center text-[13.33px] font-semibold  rounded">
                               Iniciar sessão

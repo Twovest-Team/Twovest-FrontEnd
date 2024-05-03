@@ -17,6 +17,7 @@ export const revalidate = 60;
 // Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
 // Exemplo: twovest.com/gallery/mulher
 const Gallery = async ({ params, searchParams }, context) => {
+
   const gender = params.genderString;
   const style = searchParams.style;
 

@@ -10,8 +10,9 @@ import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
-import { checkOwnership, checkOwnerId, checkMembership } from "@/utils/handleCollections";
+import { checkOwnership, checkOwnerId, checkMembership, createStylesSet } from "@/utils/handleCollections";
 import GridBox from "@/components/providers/GridBox";
+import TopbarFilters from "@/components/items/TopbarFilters";
 
 
 // Coleção específica de um utilizador
@@ -33,6 +34,9 @@ const Collection = async ({ params }) => {
   if (!isOwnCollection && currentUser && !isMember && privacy === 1) redirect('/')
   if (!currentUser && privacy === 1) redirect('/login')
 
+  const collectionStyles = createStylesSet(collectionData)
+ 
+
   return (
     <main className="min-h-screen flex flex-col">
       <NavigationTitle titleText={collectionData.name}>
@@ -47,31 +51,34 @@ const Collection = async ({ params }) => {
         </div>
       </NavigationTitle>
 
-            
-      {collectionData && collectionData.looks.length > 0 ?
-        <GridBox fixed>
-          {collectionData.looks.map(look => (
-            <LookCard
-              key={look.id}
-              look={look}
-              collectionData={collectionData}
-              collectionId={collectionId}
-              isMember={isMember}
+      <TopbarFilters elements={collectionStyles} />
+
+      <div className="mt-6">
+        {collectionData && collectionData.looks.length > 0 ?
+          <GridBox fixed>
+            {collectionData.looks.map(look => (
+              <LookCard
+                key={look.id}
+                look={look}
+                collectionData={collectionData}
+                collectionId={collectionId}
+                isMember={isMember}
+              />
+            ))}
+          </GridBox>
+          :
+          <>
+            <NoResultsNotice
+              icon={<BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} />}
+              title={'Coleção sem looks'}
+              text={'Vai à descoberta de novos looks e inspira-te.'}
+              btnText={'Ir para a Galeria'}
+              btnHref={'/login'}
             />
-          ))}
-        </GridBox>
-        :
-        <>
-          <NoResultsNotice
-            icon={<BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} />}
-            title={'Coleção sem looks'}
-            text={'Vai à descoberta de novos looks e inspira-te.'}
-            btnText={'Ir para a Galeria'}
-            btnHref={'/login'}
-          />
-        </>
-      }
-     
+          </>
+        }
+      </div>
+
 
 
       {!isOwnCollection && currentUser && !isMember &&

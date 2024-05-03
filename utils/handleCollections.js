@@ -47,6 +47,12 @@ const reverseLooksOrder = (looksArray) => {
     return newLooksArray 
 }
 
+const createStylesSet = (collectionData) => {
+    const stylesArray = collectionData.looks.flatMap(look => look.styles.map(style => style.name))
+    stylesArray.unshift('Todos')
+    return [...new Set(stylesArray)]
+}
+
 export {
     checkOwnership,
     checkOwnerId,
@@ -57,4 +63,5 @@ export {
     addMemberToCollection,
     handleCreateCollection,
     reverseLooksOrder,
+    createStylesSet
 }

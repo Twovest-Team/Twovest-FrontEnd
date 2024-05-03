@@ -17,6 +17,7 @@ const Button = (props) => {
     padding,
     onlyIcon,
     children, // For button content, including icons
+    scroll, // To change the scroll behaviour when linking to other route
   } = props;
 
   const defaultStyles = `font-semibold transition-colors duration-200 whitespace-nowrap flex items-center gap-1.5`;
@@ -80,9 +81,11 @@ const Button = (props) => {
       break;
   }
 
+
   if (href) {
     return (
       <Link
+        scroll={scroll}
         href={href}
         className={`${
           className || ""
@@ -132,8 +135,8 @@ Button.propTypes = {
   justify: PropTypes.string,
   padding: PropTypes.string,
   onlyIcon: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  scroll: PropTypes.bool
 };
 
 export default Button;

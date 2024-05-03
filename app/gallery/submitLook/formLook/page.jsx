@@ -8,10 +8,13 @@ import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
-import { UsedProductsSubmiteLook } from "@/components/sections/UsedProductsSubmitLook";
+import { UsedProductsSubmitLook } from "@/components/sections/UsedProductsSubmitLook";
 import { StylesSubmitLook } from "@/components/sections/StylesSubmitProduct";
 import getAuth from "@/utils/db/auth/getAuth";
 import submitLook from "@/utils/db/submitLook/submitLook";
+import useGender from "@/hooks/client-hooks/useGender";
+import teste from "@/app/actions";
+
 
 
 const FormLook = () => {
@@ -26,8 +29,7 @@ const FormLook = () => {
   const [userGenderId, setUserGenderId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const userGenderString = localStorage.getItem("gender");
-  const userGender = JSON.parse(userGenderString);
+  const [gender, setGender] = useGender()
 
 
   useEffect(() => {
@@ -51,6 +53,8 @@ const FormLook = () => {
 
     fetchData();
   }, [router, supabase.auth]);
+
+  
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -77,31 +81,18 @@ const FormLook = () => {
 
 
 
-  const handleSubmitLook = async (userId, selectedProductIds, userGender, selectedStyleIds, selectedImage) => {
+  const handleSubmitLook = async (userId, selectedProductIds, selectedStyleIds, gender, selectedImage) => {
 
-    await submitLook(userId, selectedProductIds, userGender, selectedStyleIds, selectedImage);
-
-   /*  if (!selectedImage || !isProductsFilled || !isStylesFilled) {
-      console.error("Please fill in all fields.");
-      return;
-    } */
-
-
+  try {
+    
+    await teste(userId, selectedProductIds, selectedStyleIds, gender, selectedImage);
+  } catch (error) {
+    
+    console.error("Error handling the image:", error, selectedImage);
+  }
+   
   };
 
-  const dataUrlToBlob = (dataUrl) => {
-    const parts = dataUrl.split(";base64,");
-    const contentType = parts[0].split(":")[1];
-    const raw = window.atob(parts[1]);
-    const rawLength = raw.length;
-    const uInt8Array = new Uint8Array(rawLength);
-
-    for (let i = 0; i < rawLength; ++i) {
-      uInt8Array[i] = raw.charCodeAt(i);
-    }
-
-    return new Blob([uInt8Array], { type: contentType });
-  };
 
   if (loading) {
     return <GeneralLoading />;
@@ -148,7 +139,7 @@ const FormLook = () => {
               </label>
             </div>
 
-            <UsedProductsSubmiteLook onDataFilled={handleProductDataFilled} />
+            <UsedProductsSubmitLook onDataFilled={handleProductDataFilled} />
 
             <StylesSubmitLook onDataFilled={handleStylesData} />
 
@@ -165,7 +156,7 @@ const FormLook = () => {
             </div>
 
             <Button
-              onClick={() => handleSubmitLook(userId, selectedImage, selectedProductIds, selectedStyleIds, userGender)}
+              onClick={() => handleSubmitLook(userId, selectedProductIds, selectedStyleIds, gender, selectedImage,)}
               className="mt-6"
               disabled={!selectedImage || !isProductsFilled || !isStylesFilled}
               type={"black"}

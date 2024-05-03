@@ -9,7 +9,7 @@ import Image from "next/image";
 
 
 
-export const UsedProductsSubmiteLook = ({ onDataFilled }) => {
+export const UsedProductsSubmitLook = ({ onDataFilled }) => {
     const [products, setProducts] = useState([]);
     const [selectedArticles, setSelectedArticles] = useState([]);
 

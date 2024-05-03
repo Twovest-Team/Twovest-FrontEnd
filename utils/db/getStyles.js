@@ -1,4 +1,4 @@
-import { supabase } from '@/utils/db/supabase';
+import supabase from "./clients/public/supabase";
 
 const getStyles = async () => {
     const { data } = await supabase

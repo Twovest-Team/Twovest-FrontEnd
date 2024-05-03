@@ -1,10 +1,14 @@
-"use server";
+"use server"
+/* 
+import supabase from "../clients/admin/supabase"; */
+
 
 
 export default async function submitLook(userId, selectedImage, selectedProductIds, selectedStyleIds, userGender){
 
+console.log("AOBAF");
+/* 
 try {
-
     //console.log(userId, selectedProductIds, userGender.id)
 
     const genderFolder = userGender.string === "men" ? "men" : "women";
@@ -12,6 +16,23 @@ try {
       .toISOString()
       .replace(/[-:]/g, "")
       .replace(".", "");
+
+
+      const dataUrlToBlob = (dataUrl) => {
+        const parts = dataUrl.split(";base64,");
+        const contentType = parts[0].split(":")[1];
+        const raw = window.atob(parts[1]);
+        const rawLength = raw.length;
+        const uInt8Array = new Uint8Array(rawLength);
+    
+        for (let i = 0; i < rawLength; ++i) {
+          uInt8Array[i] = raw.charCodeAt(i);
+        }
+    
+        return new Blob([uInt8Array], { type: contentType });
+      };
+
+
     const file = dataUrlToBlob(selectedImage);
     if (!file) {
       console.error("Selected file is undefined or null.");
@@ -48,7 +69,7 @@ try {
     console.log("Look submitted successfully:", data);
   } catch (error) {
     console.error("Error submitting the look:", error.message);
-  } 
+  }  */
 }
 
 

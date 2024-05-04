@@ -50,7 +50,7 @@ async function ProductContent({ productId, productGender }) {
         />
 
         <div className=" flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
-          <ProductSwiper images={data.images} />
+          <ProductSwiper images={data.products_has_images} />
           <div className="relative">
             <div className="absolute flex justify-end gap-6 items-center ml-auto -top-14 container z-10">
               <ShareButton url={""} />

@@ -33,12 +33,12 @@ const getProductsByCategory = async (id_category, gender) => {
     data.map(async(element) => {
         
         let array = element
-        const images = await getProductImages(element.id)
+        const products_has_images = await getProductImages(element.id)
         const offers = await getProductOffers(element.id)
         const materials = await getProductMaterials(element.id)
         const styles = await getProductStyles(element.id)
 
-        array.images = images
+        array.products_has_images = products_has_images
         array.offers = offers
         array.materials = materials
         array.styles = styles

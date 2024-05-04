@@ -247,7 +247,7 @@ export const Navbar = ({ children }) => {
                       {({ active, close }) => (
                         <div>
                           <Link
-                            href={`/profile?${currentUser.id}`}
+                            href={`/profile/options/orders`}
                             onClick={close}
                             
                           >

@@ -1,11 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase'
-import getProductImages from '../getProductImages'
+import supabase from "@/utils/db/clients/public/supabase";
+import getProductImages from "../getProductImages";
 
 export default async function getUserHistory(userEmail) {
-
-    const { data, error } = await supabase
-        .from('last_products_seen')
-        .select(`
+  const { data, error } = await supabase
+    .from("last_products_seen")
+    .select(
+      `
         products (
             id,
             is_sustainable,
@@ -19,26 +19,25 @@ export default async function getUserHistory(userEmail) {
                 id
             )
         )
-        `)
-        .eq('user_email', userEmail)
-        .order('created_at', { ascending: false })
+        `
+    )
+    .eq("user_email", userEmail)
+    .order("created_at", { ascending: false });
 
-    if (data) {
-        let arrayOfProducts = await Promise.all(
-            data.map(async (element) => {
-                
-                let array = element
-                const images = await getProductImages(element.products.id)
+  if (data) {
+    let arrayOfProducts = await Promise.all(
+      data.map(async (element) => {
+        let array = element;
+        const products_has_images = await getProductImages(element.products.id);
 
-                array.products.images = images
+        array.products.products_has_images = products_has_images;
 
-                return array
-            }))
+        return array;
+      })
+    );
 
-        return arrayOfProducts
-
-    } else if (error) {
-        console.log(error)
-    }
-
+    return arrayOfProducts;
+  } else if (error) {
+    console.log(error);
+  }
 }

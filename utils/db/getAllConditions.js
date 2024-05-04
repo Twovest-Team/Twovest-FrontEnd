@@ -1,12 +1,15 @@
-import supabase from '@/utils/db/clients/public/supabase'
+import supabase from "@/utils/db/clients/public/supabase";
 
-const getAllConditions = async() => {
-    const { data } = await supabase
-    .from('conditions')
-    .select()
+const getAllConditions = async () => {
+  try {
+    const { data, dataError } = await supabase.from("conditions").select();
 
+    if (dataError) throw dataError;
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+};
 
-    return data
-}
-
-export default getAllConditions
+export default getAllConditions;

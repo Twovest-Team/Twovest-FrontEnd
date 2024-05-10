@@ -6,69 +6,100 @@ import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon";
 import Image from "next/image";
 import Link from "next/link";
 import getStorageImage from "@/utils/getStorageImage";
+import useScroll from "@/hooks/client-hooks/useScroll";
+import useWindow from "@/hooks/client-hooks/useWindow";
 
 const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
-  const divRef = useRef();
-  const brandImage = useRef();
-  const [scrollY, setScrollY] = useState(0);
 
-  function handleScrollChange() {
-    setScrollY(window.scrollY);
-  }
+  const ref = useRef();
+  const image = useRef();
+  const [scrollX, scrollY] = useScroll()
+  const { isLg } = useWindow()
 
-  function changeProductNavProperties() {
+  const updateStyles = () => {
     if (window.scrollY > 0) {
-      divRef.current.classList.add("bg-white");
-      divRef.current.classList.remove("bg-none");
-      divRef.current.classList.add("shadow-lg");
-      brandImage.current.classList.remove("hidden");
+      ref.current.classList.add("bg-white");
+      ref.current.classList.remove("bg-none");
+      ref.current.classList.add("shadow-lg");
+      image.current.classList.remove("hidden");
     } else {
-      divRef.current.classList.remove("bg-white");
-      divRef.current.classList.add("bg-none");
-      divRef.current.classList.remove("shadow-lg");
-      brandImage.current.classList.add("hidden");
+      ref.current.classList.remove("bg-white");
+      ref.current.classList.add("bg-none");
+      ref.current.classList.remove("shadow-lg");
+      image.current.classList.add("hidden");
     }
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScrollChange);
-    changeProductNavProperties();
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    changeProductNavProperties();
+    updateStyles();
   }, [scrollY]);
 
-  return (
-    <div
-      ref={divRef}
-      className="top-[75px] w-full max-w-[460px] z-20 fixed transition-all duration-300"
-    >
-      <NavigationTitle>
-        <div className="mr-auto flex flex-row gap-3 items-center">
-          {is_sustainable && <SustainableIcon color="#05CE86" width={32} />}
 
-          {discount > 0 && (
-            <div className="px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold caption">
-              {discount}% OFF
-            </div>
-          )}
+  const renderBrand = () => {
+    return (
+      <Link ref={!isLg ? image : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
+        
+        <figure className="relative h-9 w-9 lg:h-10 lg:w-10">
+        <Image
+          src={getStorageImage(brand.logo_url)}
+          fill={true}
+          alt={brand.name}
+          className="rounded-full shadow-md transition-all duration-300"
+        />
+
+        </figure>
+        
+        <div className="hidden sm:block">
+          <p className="font-semibold">{brand.name}</p>
+          <p className="caption text-secondary">343 artigos</p>
+        </div>
+      </Link>
+    )
+  }
+
+  const renderSustainable = () => {
+    return (
+      <>
+        {is_sustainable && <SustainableIcon color="#05CE86" width={32} />}
+      </>
+    )
+  }
+
+  const renderDiscount = () => {
+    return (
+      <>
+        {discount > 0 && (
+          <div className="px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold caption">
+            {discount}% OFF
+          </div>
+        )}
+      </>
+    )
+  }
+
+
+  return (
+    <div ref={ref} className="top-[75px] w-full z-20 fixed transition-all duration-300">
+      <NavigationTitle>
+
+        <div className=" flex justify-between w-full">
+          
+          <span className="hidden lg:block">
+            {renderBrand()}
+          </span>
+
+          <div className="flex flex-row w-fit gap-3 items-center">
+            {renderSustainable()}
+            {renderDiscount()}
+          </div>
+
+          <span className="lg:hidden">
+            {renderBrand()}
+          </span>
         </div>
 
-        <Link href={`/brands/${productGender}/${brand.name}`}>
-          <Image
-            src={getStorageImage(brand.logo_url)}
-            width={35}
-            height={35}
-            alt={brand.name}
-            ref={brandImage}
-            className="rounded-full shadow-md transition-all duration-300 hidden"
-          />
-        </Link>
+
+
       </NavigationTitle>
     </div>
   );

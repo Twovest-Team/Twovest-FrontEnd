@@ -1,5 +1,7 @@
 "use server";
+
 import supabase from "@/utils/db/clients/admin/supabase";
+
 
 
 export default async function teste(
@@ -19,12 +21,16 @@ export default async function teste(
   // Nenhuma conversão Blob necessária, use selectedImage diretamente
   const fileName = `user_${userId}_${currentDate}`;
 
+  //fs.writeFileSync(`${fileName}.jpeg`, new Buffer(selectedImage.toString(), 'base64'))
+
+
   try {
+    //console.log(selectedImage)
     // Faça o upload da imagem para o armazenamento do Supabase
     const { data: uploadedImage, error: uploadError } = await supabase.storage
     .from(`looks/${genderFolder}`)
-    .upload(`user_${userId}/${fileName}`, selectedImage, {
-      contentType: 'image/jpeg', // ou contentType: 'image/png', dependendo do tipo de imagem
+    .upload(`user_${userId}/${fileName}`, Buffer.from(selectedImage, "base64"), {
+      contentType: 'image/*', // ou contentType: 'image/png', dependendo do tipo de imagem
     });
 
     if (uploadError) {

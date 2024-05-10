@@ -12,7 +12,7 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
 
   const ref = useRef();
-  const image = useRef();
+  const imageRef = useRef();
   const [scrollX, scrollY] = useScroll()
   const { isLg } = useWindow()
 
@@ -20,24 +20,24 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
     if (window.scrollY > 0) {
       ref.current.classList.add("bg-white");
       ref.current.classList.remove("bg-none");
-      ref.current.classList.add("shadow-lg");
-      image.current.classList.remove("hidden");
+      ref.current.classList.add("shadow-md");
+      imageRef.current.classList.remove("hidden");
     } else {
       ref.current.classList.remove("bg-white");
       ref.current.classList.add("bg-none");
-      ref.current.classList.remove("shadow-lg");
-      image.current.classList.add("hidden");
+      ref.current.classList.remove("shadow-md");
+      imageRef.current.classList.add("hidden");
     }
   }
 
   useEffect(() => {
-    updateStyles();
+    if(ref && imageRef) updateStyles();
   }, [scrollY]);
 
 
   const renderBrand = () => {
     return (
-      <Link ref={!isLg ? image : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
+      <Link ref={!isLg ? imageRef : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
         
         <figure className="relative h-9 w-9 lg:h-10 lg:w-10">
         <Image

@@ -12,7 +12,7 @@ const ProductDetails = ({ productDetails }) => {
   const availableColors = getAvailableColors(productDetails.offers)
 
   return (
-    <div className="container flex flex-col gap-6">
+    <div className="flex flex-col gap-6">
 
       <div className="flex flex-col gap-1">
         <h1 className="font-semibold text_h6">Descrição do produto</h1>

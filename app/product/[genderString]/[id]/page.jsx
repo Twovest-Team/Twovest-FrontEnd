@@ -20,35 +20,42 @@ import { sortOffers } from "@/utils/handleOffers";
 
 export const revalidate = 60;
 
-export default async function Product({ params }) {
+export default async function Product({ params, searchParams }) {
   const productId = params.id;
+  const selectImageId = searchParams.picture
   const productGender = params.genderString;
 
   return (
     <main>
       <ProductHistoryDetection productId={productId}>
         <Suspense fallback={<ProductSkeleton />}>
-          <ProductContent productId={productId} productGender={productGender} />
+          <ProductContent productId={productId} selectImageId={selectImageId} productGender={productGender} />
         </Suspense>
       </ProductHistoryDetection>
     </main>
   );
 }
 
-async function ProductContent({ productId, productGender }) {
+async function ProductContent({ productId, selectImageId, productGender }) {
   const data = await getProductById(productId, productGender);
   const sortedOffers = sortOffers(data.offers);
 
+  console.log(data)
 
-  return (
-    <>
-      <section className="flex flex-col h-screen relative">
-        <ProductNav
-          is_sustainable={data.is_sustainable}
-          discount={data.discount}
-          brand={data.brands}
-        />
+  const renderNav = () => {
+    return (
+      <ProductNav
+        productGender={productGender}
+        is_sustainable={data.is_sustainable}
+        discount={data.discount}
+        brand={data.brands}
+      />
+    )
+  }
 
+  const renderSlider = () => {
+    return (
+      <section className="flex flex-col h-screen relative lg:hidden">
         <div className="container flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
           <ProductSwiper images={data.products_has_images} />
           <div className="relative">
@@ -84,16 +91,97 @@ async function ProductContent({ productId, productGender }) {
           </div>
         </div>
       </section>
+    )
+  }
 
-      <section id="offers" className="flex container flex-col pt-5 mb-16 gap-16 h-fit">
+  const renderOffers = () => {
+    return (
+      <section id="offers" className="h-fit w-full">
         <ProductOffers
           offers={data.offers}
           discount={data.discount}
           productGender={productGender}
           productId={productId}
         />
-        <ProductDetails productDetails={data} />
       </section>
+    )
+  }
+
+  const renderDetails = () => {
+    return (
+      <ProductDetails productDetails={data} />
+    )
+  }
+
+  const renderPreviews = () => {
+
+    const checkIfSelected = (id, index) => {
+      return (selectImageId == id || (!selectImageId && index === 0))
+    }
+
+    return (
+      <section className="flex flex-col gap-4">
+        {data.products_has_images.map((image, index) => (
+          <Link
+            href={`?picture=${image.id}`}
+            key={image.id}
+            className={`relative w-[70px] h-[70px] rounded border ${checkIfSelected(image.id, index) ? 'border-dark' : 'border-grey'}`}>
+            <Image className="p-1" fill={true} alt={image.alt} src={getStorageImage(image.url)} />
+          </Link>
+        ))}
+      </section>
+    )
+  }
+
+  const renderMainImage = () => {
+
+    const getCurrentImage = () => {
+      return data.products_has_images.find((image, index) => selectImageId == image.id || (!selectImageId && index === 0))
+    }
+
+    const image = getCurrentImage()
+
+    return (
+      <figure className="relative w-[580px] min-w-[580px] h-[560px] min-h-[560px]">
+        <Image className="object-contain p-2" fill={true} src={getStorageImage(image.url)} alt={image.alt} />
+
+        {data.discount > 0 && (
+          <div className="absolute top-0 left-0 px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold">
+            {data.discount}% OFF
+          </div>
+        )}
+
+      </figure>
+    )
+  }
+
+
+  return (
+    <>
+
+      {renderNav()}
+
+      {renderSlider()}
+
+      <section className="hidden lg:flex flex-row container lg:mt-28 relative mb-16">
+        <div className="flex gap-x-12 mr-10 sticky top-[187px]">
+          {renderPreviews()}
+          {renderMainImage()}
+        </div>
+
+        <div className="w-full flex flex-col gap-16">
+          {renderOffers()}
+          {renderDetails()}
+        </div>
+      </section>
+
+
+      <section className="flex flex-col gap-16 mb-16 container lg:hidden">
+        {renderOffers()}
+        {renderDetails()}
+      </section>
+
+
 
       <Modal maxSm className='lg:hidden' id={'offersProduct'}>
         <div className="h-full">

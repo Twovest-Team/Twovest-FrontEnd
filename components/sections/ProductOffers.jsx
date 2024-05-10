@@ -12,10 +12,9 @@ const ProductOffers = ({ offers, discount, productGender, productId }) => {
   const bestOffers = getBestOffers(sortedOffers);
   const dispatch = useAppDispatch()
 
-  console.log(offers)
   return (
-    <div className="container flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-1">
         <h1 className="font-semibold text_h6">
           {offers.length > 3 ? "Melhores ofertas" : "Ofertas"}
         </h1>

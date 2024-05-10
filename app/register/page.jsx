@@ -91,7 +91,7 @@ const Register = () => {
         
             .from("users_profile_pictures") 
                 .upload(`user_${Date.now()}`, selectedImage, {
-                contentType: 'image/png', 
+                contentType: 'image/*', 
             } 
             /* .upload(`user_1`, selectedImage, {
               contentType: 'image/png', 
@@ -127,6 +127,7 @@ const Register = () => {
                 full_name: username,
                 email: email,
                 picture: pictureUrl,
+                provider: "Email"
             },
             emailRedirectTo: `${location.origin}/auth/callback`,
         },
@@ -216,10 +217,10 @@ const handleDrop = (acceptedFiles) => {
 };
 
 const showIMG = () =>{
-  console.log(selectedImage)
-  console.log(username)
-  console.log(email)
-  console.log(password)
+  //console.log(selectedImage)
+  //console.log(username)
+  //console.log(email)
+  //console.log(password)
 
 }
 

@@ -14,7 +14,7 @@ import ProductHistoryDetection from "@/components/providers/ProductHistoryDetect
 import Button from "@/components/buttons/Button";
 import getStorageImage from "@/utils/getStorageImage";
 import FiltersProduct from "@/components/filters_product/filtersProduct";
-
+import ProductSwiper from "@/components/sliders/ProductSwiper";
 export const revalidate = 60;
 
 export default async function Product({ params }) {

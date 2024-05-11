@@ -24,8 +24,8 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
       <div className="w-full rounded border-grey border aspect-[3/4] relative flex justify-center items-center">
         <Link href={`/product/${genderObj.string}/${product.id}`}>
           <Image
-            src={getStorageImage(product.images[0].url)}
-            alt={product.images[0].alt}
+            src={getStorageImage(product.products_has_images[0].url)}
+            alt={product.products_has_images[0].alt}
             className="object-cover scale-90"
             fill={true}
           />

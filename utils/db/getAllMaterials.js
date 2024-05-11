@@ -1,11 +1,15 @@
-import supabase from '@/utils/db/clients/public/supabase'
+import supabase from "@/utils/db/clients/public/supabase";
 
-const getAllMaterials = async() => {
-    const { data } = await supabase
-    .from('materials')
-    .select()
+const getAllMaterials = async () => {
+  try {
+    const { data, dataError } = await supabase.from("materials").select();
 
-    return data
-}
+    if (dataError) throw dataError;
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+};
 
-export default getAllMaterials
+export default getAllMaterials;

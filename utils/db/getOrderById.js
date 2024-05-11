@@ -1,6 +1,4 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getPurchasesOffers from "./getPurchasesOffers";
-import getPurchasesCoupons from "./getPurchasesCoupons";
+import supabase from "@/utils/db/clients/public/supabase";
 
 export default async function getOrderById(id) {
   try {
@@ -8,32 +6,73 @@ export default async function getOrderById(id) {
       .from("purchases")
       .select(
         `
-            *
-        `
+        *,
+        purchases_has_coupons(
+          coupons(
+            id,
+        title,
+        description,
+        discount,
+        cost,
+        is_special
+          )
+        ),
+        purchases_has_offers(
+          offers(
+            *,
+            colors (
+                name
+            ),
+            products(
+              id,
+              reference,
+              is_sustainable,
+              views,
+              gender,
+              name,
+              discount,
+              brands (
+                  logo_url,
+                  name
+              ),
+              categories (
+                  id,
+                  main_category
+              ),
+              products_has_images(
+                *
+              )
+            ),
+            sizes (
+                size,
+                type
+            ),
+            conditions (
+                name
+            )
+          )
+        )
+    `
       )
       .eq("id", id);
 
-    if (ordersError) throw ordersError;
+    function transformUserOrdersObject(ordersArray) {
+      return ordersArray.map((order) => {
+        const coupons = order.purchases_has_coupons.map((item) => item.coupons);
+        const offers = order.purchases_has_offers.map((item) => item.offers);
 
-    if (ordersData && ordersData.length > 0) {
-      let completeOrdersData;
+        const { purchases_has_coupons, purchases_has_offers, ...rest } = order;
 
-      completeOrdersData = await Promise.all(
-        ordersData.map(async (element) => {
-          let orderArray = element;
-          let orderId = orderArray.id;
-
-          const purchasesOffers = await getPurchasesOffers(orderId);
-          const purchasesCoupons = await getPurchasesCoupons(orderId);
-
-          orderArray.offers = purchasesOffers;
-          orderArray.coupons = purchasesCoupons;
-          return orderArray;
-        })
-      );
-
-      return completeOrdersData;
+        return {
+          ...rest,
+          coupons,
+          offers,
+        };
+      });
     }
+
+    if (ordersError) throw ordersError;
+    if (ordersData) return transformUserOrdersObject(ordersData);
   } catch (error) {
     console.log(error);
     return { error };

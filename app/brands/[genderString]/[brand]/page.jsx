@@ -1,4 +1,3 @@
-
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
@@ -10,7 +9,7 @@ import getProductByBrand from "@/utils/db/getProductsByBrand";
 import getBrandData from "@/utils/db/getBrandData";
 import Image from "next/image";
 import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
-import StarIcon from '@mui/icons-material/Star';
+import StarIcon from "@mui/icons-material/Star";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { genders } from "@/constants";
 import GridBox from "@/components/providers/GridBox";
@@ -19,57 +18,60 @@ import getStorageImage from "@/utils/getStorageImage";
 export const revalidate = 0;
 
 export default async function Brand({ params }) {
-
   const gender = params.genderString;
 
   const brandName = decodeURIComponent(params.brand);
-  const brandData = await getBrandData(brandName)
+  const brandData = await getBrandData(brandName);
+  console.log(brandData);
 
   return (
     <main>
-
-      <div style={{ backgroundImage: `url(${getStorageImage(brandData.cover_url)})` }} className="h-96 bg-center bg-cover relative">
+      <div
+        style={{
+          backgroundImage: `url(${getStorageImage(brandData.cover_url)})`,
+        }}
+        className="h-96 bg-center bg-cover relative"
+      >
         <NavigationTitle hasImageBehind={true} titleText={brandName}>
           <div className="opacity-70 bg-gradient-to-b from-dark h-1/2 absolute w-full top-0 left-0" />
           <div className="opacity-70 bg-gradient-to-t from-dark h-1/2 absolute w-full bottom-0 left-0" />
-          <button className="text-white z-10 underline underline-offset-2">Sobre a marca</button>
+          <button className="text-white z-10 underline underline-offset-2">
+            Sobre a marca
+          </button>
         </NavigationTitle>
 
         <div className="absolute right-0 left-0 bottom-10 mx-auto flex justify-center w-full flex-col items-center gap-10">
           <figure className="relative">
-          <Image className="rounded-full shadow-lg" width={130} height={130} src={getStorageImage(brandData.logo_url)} alt={brandData.name}/>
-          <p className="flex gap-1 items-center bg-dark border-white border absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
+            <Image
+              className="rounded-full shadow-lg"
+              width={130}
+              height={130}
+              src={getStorageImage(brandData.logo_url)}
+              alt={brandData.name}
+            />
+            <p className="flex gap-1 items-center bg-dark border-white border absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit">
+              <span className="caption translate-y-[1px]">4.5</span>{" "}
+              <StarIcon sx={{ fontSize: 18 }} />
+            </p>
           </figure>
-          
-            
 
           {/* <BrandGenderButtons currentGender={gender} brandName={brandName} /> */}
-
         </div>
-
       </div>
-
 
       <div className="container flex justify-between h-7 max-[350px]:hidden mt-6 mb-6">
         <GridViews />
         <FilterButton />
       </div>
 
-      
-        <ProductList brandName={brandName} gender={gender} />
-
-
+      <ProductList brandName={brandName} gender={gender} />
     </main>
   );
 }
 
-
 async function ProductList({ brandName, gender }) {
-  const data = await getProductByBrand(
-    gender,
-    brandName
-  );
-  
+  const data = await getProductByBrand(gender, brandName);
+
   return (
     <>
       {data && data.length > 0 ? (
@@ -84,7 +86,7 @@ async function ProductList({ brandName, gender }) {
           ))}
         </GridBox>
       ) : (
-        <NoResultsNotice title={'Ups!'} text={'Sem produtos disponíveis.'} />
+        <NoResultsNotice title={"Ups!"} text={"Sem produtos disponíveis."} />
       )}
     </>
   );

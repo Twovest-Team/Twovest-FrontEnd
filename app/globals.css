@@ -93,8 +93,6 @@ h6 {
 
 .caption {
   font-size: 13.33px;
-  /* NÃO METER FLEX AQUI */
-  align-items: center;
 }
 
 .body_semibold {

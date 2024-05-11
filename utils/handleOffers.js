@@ -10,18 +10,18 @@ const sortOffers = (offers) => {
     });
 };
 
-const getBestOffers = (offers) => {
+const getBestOffers = (offers, limit) => {
     const bestOffers = [];
-    let limit;
+    // let limit;
 
-    if (offers.length >= 2) {
-        limit = 2;
-    } else {
-        limit = offers.length;
-    }
+    // if (offers.length >= 2) {
+    //     limit = 2;
+    // } else {
+    //     limit = offers.length;
+    // }
 
     for (let i = 0; i < limit; i++) {
-        bestOffers.push(offers[i]);
+        if (offers[i]) bestOffers.push(offers[i]);
     }
 
     return bestOffers;

@@ -2,7 +2,6 @@ import getProductById from "@/utils/db/getProductById";
 import Image from "next/image";
 import ShareButton from "@/components/buttons/icons/ShareButton";
 import FavoriteButton from "@/components/buttons/icons/FavoriteButton";
-import ProductSlider from "@/components/sliders/ProductSlider";
 import ProductOffers from "@/components/sections/ProductOffers";
 import ProductDetails from "@/components/items/ProductDetails";
 import Link from "next/link";
@@ -17,6 +16,9 @@ import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
 import { sortOffers } from "@/utils/handleOffers";
+import ProductZoomImage from "@/components/items/ProductZoomImage";
+import getLooksForHomepage from "@/utils/db/getLooksHomepage";
+import { LooksHomepage } from "@/components/cards/LooksHomepage";
 
 export const revalidate = 60;
 
@@ -38,9 +40,8 @@ export default async function Product({ params, searchParams }) {
 
 async function ProductContent({ productId, selectImageId, productGender }) {
   const data = await getProductById(productId, productGender);
+  const looks = await getLooksForHomepage(productGender)
   const sortedOffers = sortOffers(data.offers);
-
-  console.log(data)
 
   const renderNav = () => {
     return (
@@ -53,16 +54,25 @@ async function ProductContent({ productId, selectImageId, productGender }) {
     )
   }
 
+  const renderBtnOptions = () => {
+    return (
+      <div className="absolute lg:static flex justify-end lg:justify-center gap-6 lg:gap-4 items-center ml-auto -top-14 container z-10">
+        <span className="lg:hidden"><ShareButton type="normal" /></span>
+        <span className="hidden lg:block"><ShareButton type="bordered" /></span>
+        <span className="lg:hidden"><FavoriteButton type="normal" /></span>
+        <span className="hidden lg:block"><FavoriteButton type="bordered" /></span>
+
+      </div>
+    )
+  }
+
   const renderSlider = () => {
     return (
       <section className="flex flex-col h-screen relative lg:hidden">
-        <div className="container flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
+        <div className="flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
           <ProductSwiper images={data.products_has_images} />
           <div className="relative">
-            <div className="absolute flex justify-end gap-6 items-center ml-auto -top-14 container z-10">
-              <ShareButton url={""} />
-              <FavoriteButton />
-            </div>
+            {renderBtnOptions()}
             <div className="bg-white h-[167px] rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
               <div className="flex flex-row gap-4 pb-6 pt-8">
                 <Link href={"/"}>
@@ -142,16 +152,10 @@ async function ProductContent({ productId, selectImageId, productGender }) {
     const image = getCurrentImage()
 
     return (
-      <figure className="relative w-[580px] min-w-[580px] h-[560px] min-h-[560px]">
-        <Image className="object-contain p-2" fill={true} src={getStorageImage(image.url)} alt={image.alt} />
-
-        {data.discount > 0 && (
-          <div className="absolute top-0 left-0 px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold">
-            {data.discount}% OFF
-          </div>
-        )}
-
-      </figure>
+      <div className="flex flex-col gap-4 items-center">
+        <ProductZoomImage image={image} discount={data.discount} />
+        {renderBtnOptions()}
+      </div>
     )
   }
 
@@ -164,7 +168,7 @@ async function ProductContent({ productId, selectImageId, productGender }) {
       {renderSlider()}
 
       <section className="hidden lg:flex flex-row container lg:mt-28 relative mb-16">
-        <div className="flex gap-x-12 mr-10 sticky top-[187px]">
+        <div className="flex gap-x-12 mr-10 sticky top-[187px] h-fit">
           {renderPreviews()}
           {renderMainImage()}
         </div>
@@ -180,6 +184,14 @@ async function ProductContent({ productId, selectImageId, productGender }) {
         {renderOffers()}
         {renderDetails()}
       </section>
+
+      {looks &&
+        <section className="flex flex-col gap-6 mb-16 text-white">
+          <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
+          <LooksHomepage data={looks} />
+        </section>
+      }
+
 
 
 

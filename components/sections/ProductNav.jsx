@@ -14,30 +14,30 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
   const ref = useRef();
   const imageRef = useRef();
   const [scrollX, scrollY] = useScroll()
-  const { isLg } = useWindow()
+  const { isLg, isXl, is2Xl } = useWindow()
 
   const updateStyles = () => {
     if (window.scrollY > 0) {
       ref.current.classList.add("bg-white");
       ref.current.classList.remove("bg-none");
       ref.current.classList.add("shadow-md");
-      imageRef.current.classList.remove("hidden");
+      if(imageRef.current) imageRef.current.classList.remove("hidden");
     } else {
       ref.current.classList.remove("bg-white");
       ref.current.classList.add("bg-none");
       ref.current.classList.remove("shadow-md");
-      imageRef.current.classList.add("hidden");
+      if(imageRef.current) imageRef.current.classList.add("hidden");
     }
   }
 
   useEffect(() => {
-    if(ref && imageRef) updateStyles();
+    if(ref.current) updateStyles();
   }, [scrollY]);
 
 
   const renderBrand = () => {
     return (
-      <Link ref={!isLg ? imageRef : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
+      <Link ref={!isLg && !isXl && !is2Xl ? imageRef : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
         
         <figure className="relative h-9 w-9 lg:h-10 lg:w-10">
         <Image

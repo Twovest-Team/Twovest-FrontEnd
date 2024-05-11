@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import NavigationTitle from "../providers/NavigationTitle";
-import { SustainableIcon } from "@/components/buttons/icons/SustainableIcon";
+import SustainableButton from "@/components/buttons/icons/SustainableButton";
 import Image from "next/image";
 import Link from "next/link";
 import getStorageImage from "@/utils/getStorageImage";
@@ -60,7 +60,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
   const renderSustainable = () => {
     return (
       <>
-        {is_sustainable && <SustainableIcon color="#05CE86" width={32} />}
+        {is_sustainable && <SustainableButton color="#05CE86" type="normal" width={35} />}
       </>
     )
   }

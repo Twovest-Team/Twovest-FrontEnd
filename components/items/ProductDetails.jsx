@@ -3,7 +3,7 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import getCategoryName from "@/utils/getCategoryName";
-import { SustainableIcon } from '../buttons/icons/SustainableIcon';
+import SustainableButton from '../buttons/icons/SustainableButton';
 
 
 const ProductDetails = ({ productDetails }) => {
@@ -14,7 +14,7 @@ const ProductDetails = ({ productDetails }) => {
   return (
     <div className="flex flex-col gap-4">
 
-      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-1">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <h1 className="font-semibold text_h6">Descrição do produto</h1>
         <p className="text-secondary">Ref: {productDetails.reference}</p>
       </div>
@@ -69,7 +69,7 @@ const ProductDetails = ({ productDetails }) => {
                   leaveTo="opacity-0"
                 >
                   <Disclosure.Panel className="py-5 caption flex flex-col gap-4 [&>p>span]:font-semibold ">
-                    {productDetails.is_sustainable && <p className="font-semibold text-primary_main flex items-center gap-2"> <SustainableIcon color={'#05CE86'} width={24} /> Artigo sustentável</p>}
+                    {productDetails.is_sustainable && <p className="font-semibold text-primary_main flex items-center gap-1"> <SustainableButton color='#05CE86' type='normal' width={24} /> Artigo sustentável</p>}
                     <p><span>Marca:</span> {productDetails.brands.name}.</p>
                     <p><span>Categoria:</span> {category}.</p>
                     <p><span>Cores disponíveis:</span> {availableColors.join(', ')}.</p>

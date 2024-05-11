@@ -13,6 +13,7 @@ import ManageCollectionModal from "@/components/collections/ManageCollectionsMod
 import { Suspense } from "react";
 import UserProvider from "@/components/providers/UserProvider";
 import Notification from "@/components/modals/Notification";
+import SustainabilityModal from "@/components/modals/SustainabilityModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
               {/* GLOBAL MODALS AND NOTIFICATIONS */}
               <Suspense>
                 <ManageCollectionModal />
+                <SustainabilityModal />
 
                 <Notification
                   id={"removedLook"}

@@ -16,18 +16,20 @@ export default function ProductSwiper({ images }) {
         clickable: true,
       }}
       spaceBetween={20}
-      className="product-swiper w-full h-full"
+      className="w-full h-full"
       id="product-page-swiper"
     >
       {images.map((image, index) => (
-        <SwiperSlide className="product-slider" key={index}>
-          <Image
-            src={getStorageImage(image.url)}
-            height={406}
-            width={304}
-            alt={image.alt}
-            className="mx-auto"
-          />
+        <SwiperSlide key={index}>
+          <figure className="h-full flex justify-center items-center">
+            <Image
+              src={getStorageImage(image.url)}
+              height={406}
+              width={304}
+              alt={image.alt}
+              className="mx-auto"
+            />
+          </figure>
         </SwiperSlide>
       ))}
     </Swiper>

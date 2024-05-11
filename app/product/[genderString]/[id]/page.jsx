@@ -19,6 +19,7 @@ import { sortOffers } from "@/utils/handleOffers";
 import ProductZoomImage from "@/components/items/ProductZoomImage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
+import SustainableButton from "@/components/buttons/icons/SustainableButton";
 
 export const revalidate = 60;
 
@@ -61,6 +62,10 @@ async function ProductContent({ productId, selectImageId, productGender }) {
         <span className="hidden lg:block"><ShareButton type="bordered" /></span>
         <span className="lg:hidden"><FavoriteButton type="normal" /></span>
         <span className="hidden lg:block"><FavoriteButton type="bordered" /></span>
+
+        <span className="hidden lg:flex justify-center items-center w-[58px] h-[58px]">
+          <SustainableButton color='#05CE86' width={30} type='bordered' />
+        </span>
 
       </div>
     )
@@ -159,6 +164,15 @@ async function ProductContent({ productId, selectImageId, productGender }) {
     )
   }
 
+  const renderLooks = () => {
+    if (looks) return (
+      <section className="flex flex-col gap-4 mb-16 text-white">
+        <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
+        <LooksHomepage data={looks} />
+      </section>
+    )
+  }
+
 
   return (
     <>
@@ -185,13 +199,8 @@ async function ProductContent({ productId, selectImageId, productGender }) {
         {renderDetails()}
       </section>
 
-      {looks &&
-        <section className="flex flex-col gap-6 mb-16 text-white">
-          <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
-          <LooksHomepage data={looks} />
-        </section>
-      }
 
+      {renderLooks()}
 
 
 

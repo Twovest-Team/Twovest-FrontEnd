@@ -67,7 +67,7 @@ const TestButtons = () => {
         </Button>
     `,
         onlyIcon: `
-        <Button className='p-4' type={'${selectedType}'} ariaLabel='WRITE HERE' onlyIcon={true}>
+        <Button padding={4} type={'${selectedType}'} ariaLabel='WRITE HERE' onlyIcon={true}>
             <Icon />
         </Button>
     `,
@@ -80,7 +80,7 @@ const TestButtons = () => {
 
             <nav>
                 <NavigationTitle
-                    titleText='Choose your button type 😱'
+                    titleText='Choose your button type 😎'
                 />
 
                 <ContentSlider>

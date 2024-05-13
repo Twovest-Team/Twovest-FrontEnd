@@ -34,8 +34,7 @@ const Button = (props) => {
 
   const justifyContent =
     !onlyIcon &&
-    `justify-${
-      justify === "between" ? "between" : (justify || "center")
+    `justify-${justify === "between" ? "between" : (justify || "center")
     }`;
 
   const buttonPadding = padding ? 'px-' + padding : justify === 'between' ? 'px-6' : 'px-9'
@@ -87,9 +86,8 @@ const Button = (props) => {
       <Link
         scroll={scroll}
         href={href}
-        className={`${
-          className || ""
-        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
+        className={`${className || ""
+          } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -100,9 +98,8 @@ const Button = (props) => {
   } else {
     return (
       <button
-        className={`${
-          className || ""
-        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
+        className={`${className || ""
+          } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -129,11 +126,11 @@ Button.propTypes = {
   ariaLabel: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   radius: PropTypes.string,
   justify: PropTypes.string,
-  padding: PropTypes.string,
+  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onlyIcon: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   scroll: PropTypes.bool

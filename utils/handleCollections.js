@@ -11,9 +11,7 @@ const checkOwnerId = (members) => {
 }
 
 const checkMembership = (members, currentUserId) => {
-    if (!currentUserId) return false
-    const isMember = members.find(member => member.id_user === currentUserId)
-    return isMember
+    return members.some(member => member.id === currentUserId)
 }
 
 const createShareLink = (collectionId, collectionShareId) => {

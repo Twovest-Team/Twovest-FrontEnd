@@ -23,9 +23,7 @@ export const revalidate = 0;
 const Profile = async ({ params }) => {
   const ownerId = params.id;
   const currentUser = await useAuthServer();
-  const isOwnProfile = currentUser
-    ? checkOwnership(currentUser.id, ownerId)
-    : false;
+  const isOwnProfile = checkOwnership(currentUser?.id, ownerId)
   const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId);
   const ownerFirstName = getUserFirstName(ownerData);
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);

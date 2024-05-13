@@ -2,7 +2,6 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import LookCard from "@/components/cards/LookCard";
 import { redirect } from "next/navigation";
-import ItemsBox from "@/components/providers/ItemsBox";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import getCollectionData from "@/utils/db/collections/getCollectionData";
@@ -10,32 +9,64 @@ import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
-import { checkOwnership, checkOwnerId, checkMembership, createStylesSet } from "@/utils/handleCollections";
+import { checkMembership, checkOwnerId, checkOwnership, createStylesSet } from "@/utils/handleCollections";
 import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
+import { getTopbarFilters } from "@/utils/handleFilters";
 
+const Collection = async ({ params, searchParams }) => {
 
-// Coleção específica de um utilizador
-const Collection = async ({ params }) => {
-
-  const currentUser = await useAuthServer()
-  const collectionId = params.idCollection
+  const currentUser = await useAuthServer();
+  const collectionId = params.idCollection;
   const collectionData = await getCollectionData(collectionId);
 
   // verificar quando não consegue ir buscar a data da coleção
-  if (!collectionData) redirect('/')
+  if (!collectionData) redirect('/');
 
-  const ownerId = checkOwnerId(collectionData.members)
-  const isOwnCollection = currentUser?.id === ownerId
-  const isMember = !isOwnCollection && currentUser ? collectionData.members.some(member => member.id === currentUser.id) : !currentUser ? false : true
-  const privacy = collectionData.privacy
-  const shareId = collectionData.share_id
+  const ownerId = checkOwnerId(collectionData.members);
+  const isOwnCollection = checkOwnership(currentUser?.id, ownerId)
+  const isMember = !isOwnCollection ? checkMembership(collectionData.members, currentUser?.id) : true
+  const privacy = collectionData.privacy;
+  const shareId = collectionData.share_id;
 
-  if (!isOwnCollection && currentUser && !isMember && privacy === 1) redirect('/')
-  if (!currentUser && privacy === 1) redirect('/login')
+  if (!isOwnCollection && currentUser && !isMember && privacy === 1) redirect('/');
+  if (!currentUser && privacy === 1) redirect('/login');
 
-  const collectionStyles = createStylesSet(collectionData)
- 
+  const collectionStyles = createStylesSet(collectionData);
+  const filteredStyles = getTopbarFilters(searchParams)
+
+  const renderCards = () => {
+
+    const { looks } = collectionData;
+
+    function filterLooks() {
+      const filteredLooks = [];
+      for (let i = 0; i < looks.length; i++) {
+        const currentLook = looks[i];
+        const commonValues = currentLook.styles.filter(style => filteredStyles.includes(style.name));
+        if (commonValues.length > 0) {
+          filteredLooks.push(currentLook);
+        }
+      }
+      return filteredLooks;
+    }
+
+    const filteredLooks = filteredStyles && filteredStyles.length > 0 ? filterLooks() : looks
+
+    return (
+      <GridBox fixed>
+        {filteredLooks.map(look => (
+          <LookCard
+            key={look.id}
+            look={look}
+            collectionData={collectionData}
+            collectionId={collectionId}
+            isMember={isMember}
+          />
+        ))}
+      </GridBox>
+    )
+  }
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -55,17 +86,7 @@ const Collection = async ({ params }) => {
 
       <div className="mt-6">
         {collectionData && collectionData.looks.length > 0 ?
-          <GridBox fixed>
-            {collectionData.looks.map(look => (
-              <LookCard
-                key={look.id}
-                look={look}
-                collectionData={collectionData}
-                collectionId={collectionId}
-                isMember={isMember}
-              />
-            ))}
-          </GridBox>
+          renderCards()
           :
           <>
             <NoResultsNotice

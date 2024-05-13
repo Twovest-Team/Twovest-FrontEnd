@@ -1,6 +1,6 @@
 'use client'
 
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from "../buttons/icons/IconButton";
 import Modal from '../modals/Modal';
 import { useAppDispatch } from '@/redux/hooks';
@@ -19,9 +19,13 @@ const MenuLook = ({ collectionId, lookId, isMember }) => {
 
     return (
         <>
-            <div className='w-full flex justify-end mt-1' >
+            <div>
+                <span className='w-full h-28 absolute top-0 right-0 bg-gradient-to-b from-dark opacity-70 rounded' />
+
                 <IconButton
-                    icon={<MoreHorizIcon />}
+                className='absolute top-2 right-1 text-white'
+                    darkMode={true}
+                    icon={<MoreVertIcon />}
                     onClick={() => dispatch(openModal(`look${lookId}Details`))}
                 />
             </div >

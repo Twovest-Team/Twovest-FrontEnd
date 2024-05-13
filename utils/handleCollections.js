@@ -11,9 +11,7 @@ const checkOwnerId = (members) => {
 }
 
 const checkMembership = (members, currentUserId) => {
-    if (!currentUserId) return false
-    const isMember = members.find(member => member.id_user === currentUserId)
-    return isMember
+    return members.some(member => member.id === currentUserId)
 }
 
 const createShareLink = (collectionId, collectionShareId) => {
@@ -47,6 +45,12 @@ const reverseLooksOrder = (looksArray) => {
     return newLooksArray 
 }
 
+const createStylesSet = (collectionData) => {
+    const stylesArray = collectionData.looks.flatMap(look => look.styles.map(style => style.name))
+    stylesArray.unshift('Todos')
+    return [...new Set(stylesArray)]
+}
+
 export {
     checkOwnership,
     checkOwnerId,
@@ -57,4 +61,5 @@ export {
     addMemberToCollection,
     handleCreateCollection,
     reverseLooksOrder,
+    createStylesSet
 }

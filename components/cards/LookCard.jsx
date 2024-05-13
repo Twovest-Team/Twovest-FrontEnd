@@ -91,7 +91,7 @@ export default function LookCard({
 
   function renderCollectionCard() {
     return (
-      <figure>
+      <figure className="relative">
         <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
           <Image
             src={getStorageImage(look.url_image)}

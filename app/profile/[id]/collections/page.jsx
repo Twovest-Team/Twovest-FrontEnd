@@ -16,7 +16,7 @@ const Collections = async ({ params }) => {
 
   const ownerId = params.id
   const currentUser = await useAuthServer()
-  const isOwnCollections = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
+  const isOwnCollections = checkOwnership(currentUser?.id, ownerId)
   const ownerData = isOwnCollections ? currentUser : await getUserById(ownerId)
   const ownerFirstName = getUserFirstName(ownerData)
   const collectionsData = await getCollections(ownerId);

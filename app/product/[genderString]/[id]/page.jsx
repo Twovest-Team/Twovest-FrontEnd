@@ -141,7 +141,7 @@ async function ProductContent({ productId, selectImageId, productGender }) {
             href={`?picture=${image.id}`}
             key={image.id}
             className={`relative w-[70px] h-[70px] rounded border ${checkIfSelected(image.id, index) ? 'border-dark' : 'border-grey'}`}>
-            <Image className="p-1" fill={true} alt={image.alt} src={getStorageImage(image.url)} />
+            <Image className="p-1 object-cover" fill={true} alt={image.alt} src={getStorageImage(image.url)} />
           </Link>
         ))}
       </section>

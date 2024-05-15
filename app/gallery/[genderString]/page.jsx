@@ -1,25 +1,29 @@
 import GridViews from "@/components/providers/GridViews";
-import ItemsBox from "@/components/providers/ItemsBox";
 import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
-import { Suspense } from "react";
 import LooksSkeleton from "@/components/loaders/Looks";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import FiltersGallery from "@/components/sliders/FiltersGallery";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import Button from "@/components/buttons/Button";
 import GridBox from "@/components/providers/GridBox";
+import TopbarFilters from "@/components/items/TopbarFilters";
+import getAllStyles from "@/utils/db/getAllStyles";
+import { getTopbarFilters } from "@/utils/handleFilters";
 
 export const revalidate = 60;
 
-// Página com todos os looks da galeria
-// Atenção, carregar 30 looks de cada vez (por exemplo) infinite scroll
-// Exemplo: twovest.com/gallery/mulher
-const Gallery = async ({ params, searchParams }, context) => {
+const Gallery = async ({ params, searchParams }) => {
 
   const gender = params.genderString;
-  const style = searchParams.style;
+
+  const renderFilters = async () => {
+    const items = await getAllStyles()
+    if (!items) return null
+    const arrayItems = items.map(item => item.name)
+    arrayItems.unshift('Todos')
+    return <TopbarFilters elements={arrayItems} />
+  }
 
   return (
     <main>
@@ -35,7 +39,7 @@ const Gallery = async ({ params, searchParams }, context) => {
         </div>
       </NavigationTitle>
 
-      <FiltersGallery currentCategory={style} />
+      {renderFilters()}
 
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
@@ -53,7 +57,7 @@ const Gallery = async ({ params, searchParams }, context) => {
       </div>
 
 
-      <LookList gender={gender} style={style} />
+      <LookList gender={gender} searchParams={searchParams} />
 
     </main>
   );
@@ -61,19 +65,31 @@ const Gallery = async ({ params, searchParams }, context) => {
 
 export default Gallery;
 
-async function LookList({ gender, style }) {
-  const data = await getLooksForGallery(gender);
-  let filteredData = data;
-  if (style && style !== "Todos") {
-    filteredData = data.filter((look) => look.styles.includes(style));
+async function LookList({ gender, searchParams }) {
+
+  const looks = await getLooksForGallery(gender);
+  const filteredStyles = getTopbarFilters(searchParams);
+
+  function filterLooks() {
+    const filteredLooks = [];
+    for (let i = 0; i < looks.length; i++) {
+      const currentLook = looks[i];
+      const commonValues = currentLook.styles.filter(style => filteredStyles.includes(style));
+      if (commonValues.length > 0) {
+        filteredLooks.push(currentLook);  
+      }
+    }
+    return filteredLooks;
   }
+
+  const filteredLooks = filteredStyles && filteredStyles.length > 0 ? filterLooks() : looks
 
   return (
     <>
-      {filteredData.length > 0 ? (
+      {filteredLooks.length > 0 ? (
         <>
           <GridBox loader={<LooksSkeleton />}>
-            {filteredData.map((element) => (
+            {filteredLooks.map((element) => (
               <LookCard key={element.id} look={element} slider={false} />
             ))}
           </GridBox>

@@ -149,7 +149,7 @@ export const Navbar = ({ children }) => {
                               <Link
                                 href={`/profile/${currentUser.id}`}
                                 onClick={close}
-                                className="truncate py-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out"
+                                className="w-full text-wrap py-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out block"
                               >
                                 {currentUser.name}
                               </Link>

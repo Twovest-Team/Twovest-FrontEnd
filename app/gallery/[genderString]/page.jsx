@@ -9,7 +9,7 @@ import Button from "@/components/buttons/Button";
 import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
 import getAllStyles from "@/utils/db/getAllStyles";
-import { getTopbarFilters } from "@/utils/handleFilters";
+import { getTopbarFilters } from "@/utils/handlers/handleFilters";
 
 export const revalidate = 60;
 

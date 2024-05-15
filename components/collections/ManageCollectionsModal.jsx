@@ -8,7 +8,7 @@ import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import useAuth from "@/hooks/client-hooks/useAuth";
 import getCollections from "@/utils/db/collections/getCollections";
 import CollectionList from "./CollectionList";
-import { handleCreateCollection } from "@/utils/handleCollections";
+import { handleCreateCollection } from "@/utils/handlers/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
 import Button from "../buttons/Button";
 import { useRouter } from "next/navigation";

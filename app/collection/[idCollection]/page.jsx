@@ -9,10 +9,10 @@ import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
-import { checkMembership, checkOwnerId, checkOwnership, createStylesSet } from "@/utils/handleCollections";
+import { checkMembership, checkOwnerId, checkOwnership, createStylesSet } from "@/utils/handlers/handleCollections";
 import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
-import { getTopbarFilters } from "@/utils/handleFilters";
+import { getTopbarFilters } from "@/utils/handlers/handleFilters";
 
 const Collection = async ({ params, searchParams }) => {
 

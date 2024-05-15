@@ -16,7 +16,7 @@ import getStorageImage from "@/utils/getStorageImage";
 import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
-import { sortOffers } from "@/utils/handleOffers";
+import { sortOffers } from "@/utils/handlers/handleOffers";
 
 export const revalidate = 60;
 

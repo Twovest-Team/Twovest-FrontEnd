@@ -6,7 +6,7 @@ import Modal from '@/components/modals/Modal';
 import { openModal } from '@/redux/slices/modalSlice';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import CopyButton from '../buttons/icons/CopyButton';
-import { createShareLink } from '@/utils/handleCollections';
+import { createShareLink } from '@/utils/handlers/handleCollections';
 
 const InviteToCollectionButton = ({ collectionId, collectionShareId }) => {
 

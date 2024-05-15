@@ -8,7 +8,7 @@ import getUserById from "@/utils/db/getUserById";
 import CreateCollectionIconButton from "@/components/collections/CreateCollectionIconButton";
 import SegmentIcon from '@mui/icons-material/Segment';
 import IconButton from "@/components/buttons/icons/IconButton";
-import { checkOwnership } from "@/utils/handleCollections";
+import { checkOwnership } from "@/utils/handlers/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 
 // Lista de coleções de um utilizador

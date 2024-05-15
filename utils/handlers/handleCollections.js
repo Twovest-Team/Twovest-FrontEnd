@@ -1,4 +1,4 @@
-import createCollection from "./db/collections/createCollection"
+import createCollection from "../db/collections/createCollection"
 
 const checkOwnership = (currentUserId, userId) => {
     if (currentUserId != userId) return false

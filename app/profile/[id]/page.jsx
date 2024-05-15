@@ -13,7 +13,7 @@ import getUserById from "@/utils/db/getUserById";
 import getCollections from "@/utils/db/collections/getCollections";
 import IconButton from "@/components/buttons/icons/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { checkOwnership } from "@/utils/handleCollections";
+import { checkOwnership } from "@/utils/handlers/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 import Button from "@/components/buttons/Button";
 

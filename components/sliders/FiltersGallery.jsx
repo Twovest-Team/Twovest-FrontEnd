@@ -5,20 +5,20 @@ import ContentSlider from "./ContentSlider";
 import useFetch from "@/hooks/client-hooks/useFetch";
 import useScroll from "@/hooks/client-hooks/useScroll";
 import getAllStyles from "@/utils/db/getAllStyles";
-import Link from "next/link";
 import Button from "../buttons/Button";
+import GalleryFiltersSkeleton from "../loaders/GalleryFilters";
 
 const FiltersGallery = ({ currentCategory }) => {
   const categories = useFetch(getAllStyles);
   const [gender] = useGender();
   const [scrollX, scrollY] = useScroll();
-  const scrollCSS = scrollY && scrollY >= 75 ? "shadow-md h-24" : "h-16";
+  const scrollCSS = scrollY && scrollY >= 75 ? "shadow-md h-20" : "h-16";
 
   return (
     <ContentSlider
-      className={`sticky top-[75px] z-10 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}
+      className={`sticky top-[75px] z-20 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}
     >
-      {gender && categories && (
+      {gender && categories ? (
         <>
           <li key={"Filters-ButtonAll"}>
             <Button
@@ -36,7 +36,7 @@ const FiltersGallery = ({ currentCategory }) => {
               <Button
                 key={e.id}
                 height="11"
-                href={`/gallery/${gender.string}?style=${e.name}`}
+                href={`?style=${e.name}`}
                 type={currentCategory === e.name ? "black" : "grey"}
                 ariaLabel={`Estilo: ${e.name}`}
               >
@@ -45,7 +45,9 @@ const FiltersGallery = ({ currentCategory }) => {
             </li>
           ))}
         </>
-      )}
+      ) :
+        <GalleryFiltersSkeleton/>
+      }
     </ContentSlider>
   );
 };

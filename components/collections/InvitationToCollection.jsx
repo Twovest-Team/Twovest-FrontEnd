@@ -16,18 +16,15 @@ const InvitationToCollection = ({ collectionId, collectionShareId, addMemberToCo
     const invitation = searchParams.get('invite')
 
     // if (invitation !== collectionShareId || !invitation) return null
-
+    console.log(collectionShareId)
     useEffect(() => {
         if (invitation === collectionShareId) dispatch(openModal(`acceptInvite${collectionId}`))
-        return null
     }, [])
 
 
     return (
         <div className="h-screen">
-            <Modal
-                id={`acceptInvite${collectionId}`}
-            >
+            <Modal id={`acceptInvite${collectionId}`}>
                 <div className='flex flex-col'>
                     {/* <CollectionPreview collection={collectionData} /> */}
                     <h1 className='font-semibold text_h6'>Convite para coleção</h1>

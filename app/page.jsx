@@ -76,13 +76,11 @@ export default function Home() {
                 justify="between"
                 href={`/gallery/${gender.string}`}
               >
-                <div>
                   <span>Ir para a galeria</span>
                   <KeyboardArrowRightIcon
                     className="translate-x-2"
                     sx={{ fontSize: 28 }}
                   />
-                </div>
               </Button>
             </div>
           </div>
@@ -91,7 +89,7 @@ export default function Home() {
 
       <section
         style={{
-          backgroundImage: `url('/images/homepage/pontosdeentregabg.png')`,
+          backgroundImage: `url('/static/images/homepage/pontosdeentregabg.png')`,
         }}
         className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >

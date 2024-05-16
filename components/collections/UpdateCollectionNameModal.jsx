@@ -27,7 +27,6 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
             const isNameUpdated = await updateCollectionName(collectionId, inputState)
             dispatch(closeModal('changeCollectionName'))
             alert('Nome alterado?' + isNameUpdated)
-            revalidatePath(`/collection/${collectionId}`, 'page')
         }
     }
 

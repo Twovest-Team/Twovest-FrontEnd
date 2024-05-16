@@ -11,6 +11,7 @@ import InviteToCollectionButton from "@/components/collections/InviteToCollectio
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
 import { checkOwnership, checkOwnerId, checkMembership } from "@/utils/handleCollections";
+import GridBox from "@/components/providers/GridBox";
 
 
 // Coleção específica de um utilizador
@@ -22,21 +23,18 @@ const Collection = async ({ params }) => {
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/')
-  //console.log(collectionData)
+
   const ownerId = checkOwnerId(collectionData.members)
-  const isOwnCollection = currentUser ? checkOwnership(currentUser.id, ownerId) : false;
-
-  const isMember = !isOwnCollection && currentUser ? checkMembership(collectionData.members, currentUser.id) : !currentUser ? false : true
-
+  const isOwnCollection = currentUser?.id === ownerId
+  const isMember = !isOwnCollection && currentUser ? collectionData.members.some(member => member.id === currentUser.id) : !currentUser ? false : true
   const privacy = collectionData.privacy
   const shareId = collectionData.share_id
 
-  
   if (!isOwnCollection && currentUser && !isMember && privacy === 1) redirect('/')
   if (!currentUser && privacy === 1) redirect('/login')
-  
+
   return (
-    <main className="h-screen overflow-y-auto flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <NavigationTitle titleText={collectionData.name}>
         <div className="flex gap-5 items-center">
 
@@ -49,19 +47,19 @@ const Collection = async ({ params }) => {
         </div>
       </NavigationTitle>
 
-      {collectionData && collectionData.allLooks.length > 0 ?
-        <ItemsBox fixedView={2}>
-          {collectionData.allLooks.map(look => (
+            
+      {collectionData && collectionData.looks.length > 0 ?
+        <GridBox fixed>
+          {collectionData.looks.map(look => (
             <LookCard
-              key={look.id_look}
-              look={look.looks}
-              name={look.looks.name}
+              key={look.id}
+              look={look}
               collectionData={collectionData}
               collectionId={collectionId}
               isMember={isMember}
             />
           ))}
-        </ItemsBox>
+        </GridBox>
         :
         <>
           <NoResultsNotice
@@ -73,6 +71,7 @@ const Collection = async ({ params }) => {
           />
         </>
       }
+     
 
 
       {!isOwnCollection && currentUser && !isMember &&

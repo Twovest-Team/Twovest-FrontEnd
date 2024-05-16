@@ -9,10 +9,9 @@ import deleteCollectionLook from '@/utils/db/collections/deleteCollectionLook';
 
 
 const MenuLook = ({ collectionId, lookId, isMember }) => {
-
     const dispatch = useAppDispatch()
+
     async function handleRemove() {
-        if (!isMember) return null
         const isRemoved = await deleteCollectionLook(collectionId, lookId)
         alert('is removed? ' + isRemoved)
         dispatch(closeModal(`look${lookId}Details`))

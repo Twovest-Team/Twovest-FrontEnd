@@ -11,6 +11,8 @@ import { SideMenu } from "@/components/navbar/SideMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 import { Suspense } from "react";
+import UserProvider from "@/components/providers/UserProvider";
+import Notification from "@/components/modals/Notification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,18 +28,47 @@ export default function RootLayout({ children }) {
         {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
         <StoreProvider>
           <GenderProvider>
-            <Navbar>
-              <SideMenu />
-              <Cart />
-            </Navbar>
-            {children}
-            <LastProductsSeen />
-            <Footer />
+            <UserProvider>
+              <Navbar>
+                <SideMenu />
+                <Cart />
+              </Navbar>
+              {children}
+              <LastProductsSeen />
+              <Footer />
 
-            <Suspense>
-              {/* MODALS */}
-              <ManageCollectionModal />
-            </Suspense>
+              {/* GLOBAL MODALS AND NOTIFICATIONS */}
+              <Suspense>
+                <ManageCollectionModal />
+
+                <Notification
+                  id={"removedLook"}
+                  type={"Neutral"}
+                  message={"Look removido"}
+                />
+
+                <Notification
+                  id={"savedLook"}
+                  type={"Neutral"}
+                  message={"Look guardado"}
+                />
+
+                <Notification
+                  id={"errorRemovingLook"}
+                  type={"Error"}
+                  message={"Não foi possível remover o look"}
+                />
+
+                <Notification
+                  id={"errorSavingLook"}
+                  type={"Error"}
+                  message={"Não foi possível guardar o look"}
+                />
+
+              </Suspense>
+
+
+            </UserProvider>
           </GenderProvider>
         </StoreProvider>
         <Analytics />

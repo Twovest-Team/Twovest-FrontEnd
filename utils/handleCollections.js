@@ -7,7 +7,7 @@ const checkOwnership = (currentUserId, userId) => {
 
 const checkOwnerId = (members) => {
     const owner = members.find(member => member.is_admin === true)
-    return owner.id_user
+    return owner.id
 }
 
 const checkMembership = (members, currentUserId) => {
@@ -42,6 +42,11 @@ const handleCreateCollection = async (currentUserId, collectionName, collectionP
     return isCreated
 }
 
+const reverseLooksOrder = (looksArray) => {
+    const newLooksArray =  Object.assign([], looksArray).reverse()
+    return newLooksArray 
+}
+
 export {
     checkOwnership,
     checkOwnerId,
@@ -51,4 +56,5 @@ export {
     collectionHasLooks,
     addMemberToCollection,
     handleCreateCollection,
+    reverseLooksOrder,
 }

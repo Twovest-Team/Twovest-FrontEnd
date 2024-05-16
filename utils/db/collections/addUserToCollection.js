@@ -1,8 +1,8 @@
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+'use server'
+
+import supabase from "../clients/admin/supabase";
 
 const addUserToCollection = async (collectionId, userId, isAdmin) => {
-
-    const supabase = createClientComponentClient();
     
     const { status, error } = await supabase
         .from('collections_has_users')

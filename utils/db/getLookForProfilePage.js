@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/db/supabase";
+import supabase from '@/utils/db/clients/public/supabase';
 
 const getLookForProfilePage = async (id_user) => {
   const { data, error } = await supabase

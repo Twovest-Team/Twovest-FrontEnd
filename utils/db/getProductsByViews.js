@@ -1,4 +1,4 @@
-import { supabase } from '@/utils/db/supabase';
+import supabase from '@/utils/db/clients/public/supabase';
 import getProductImages from './getProductImages';
 import getProcuctOffers from './getProductOffers';
 import getProductMaterials from './getProductMaterials';
@@ -39,12 +39,12 @@ const getProductsByViews = async (gender) => {
     data.map(async(element) => {
         
         let array = element
-        const images = await getProductImages(element.id)
+        const products_has_images = await getProductImages(element.id)
         const offers = await getProcuctOffers(element.id)
         const materials = await getProductMaterials(element.id)
         const styles = await getProductStyles(element.id)
 
-        array.images = images
+        array.products_has_images = products_has_images
         array.offers = offers
         array.materials = materials
         array.styles = styles

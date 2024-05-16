@@ -7,15 +7,15 @@ const CollectionList = ({
   ownerId,
   search,
   isOwner,
-  toSaveLook,
+  lookId, // Pass the look id if a look is to be saved
   ownerFirstName,
 }) => {
   return (
     <Fragment key={"CollectionListFragment"}>
     
       {/* IF THERE ARE ANY COLLECTIONS */}
-      {collections && (
-        <ul className="flex flex-col items-start self-stretch gap-4 ">
+      {collections.length > 0 && (
+        <ul className="flex flex-col items-start self-stretch gap-6 ">
           {search && (
             <button className="profile_search-collections">
               <SearchIcon />
@@ -27,7 +27,7 @@ const CollectionList = ({
           {collections.map((collection) => (
             <li key={collection.id_collection} className="w-full">
             <CollectionPreview
-              toSaveLook={toSaveLook}
+              lookId={lookId}
               userId={ownerId}
               collection={collection}
               key={collection.id_collection}
@@ -38,7 +38,7 @@ const CollectionList = ({
       )}
 
       {/* IF THERE IS NO COLLECTION */}
-      {!collections && (
+      {collections.length === 0 && (
         <div className="flex flex-col items-start self-stretch gap-4 ">
         <div className="text-secondary">
           {isOwner && <p>Ainda não criaste nenhuma coleção.</p>}

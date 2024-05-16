@@ -1,19 +1,19 @@
-import { supabase } from "../supabase";
+'use server'
+
+import supabase from "../clients/admin/supabase"
 
 export default async function deleteCollectionLook(collectionId, lookId) {
 
-    const { status, error } = await supabase
+    const { error } = await supabase
         .from('collections_has_looks')
         .delete()
         .eq('id_look', parseInt(lookId))
         .eq('id_collection', parseInt(collectionId))
+        .single()
 
-    if (error) return {error}
     
-    if (status === 204){
-        return true
-    }else{
-        return false
-    }
+    if(error) return false
+
+    return true
 
 }

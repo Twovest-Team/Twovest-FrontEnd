@@ -14,6 +14,7 @@ const Button = (props) => {
     height,
     radius,
     justify,
+    padding,
     onlyIcon,
     children, // For button content, including icons
   } = props;
@@ -33,8 +34,10 @@ const Button = (props) => {
   const justifyContent =
     !onlyIcon &&
     `justify-${
-      justify === "between" ? "between px-6" : (justify || "center") + " px-9"
+      justify === "between" ? "between" : (justify || "center")
     }`;
+
+  const buttonPadding = padding ? 'px-' + padding : justify === 'between' ? 'px-6' : 'px-9'
 
   const disabledStyles = disabled ? "opacity-50 pointer-events-none" : "";
 
@@ -83,7 +86,7 @@ const Button = (props) => {
         href={href}
         className={`${
           className || ""
-        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${disabledStyles}`}
+        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -96,7 +99,7 @@ const Button = (props) => {
       <button
         className={`${
           className || ""
-        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${disabledStyles}`}
+        } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -127,6 +130,7 @@ Button.propTypes = {
   height: PropTypes.string,
   radius: PropTypes.string,
   justify: PropTypes.string,
+  padding: PropTypes.string,
   onlyIcon: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,

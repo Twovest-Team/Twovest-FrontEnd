@@ -1,11 +1,15 @@
-import { supabase } from '@/utils/db/supabase'
+import supabase from "@/utils/db/clients/public/supabase";
 
-const getAllStyles = async() => {
-    const { data } = await supabase
-    .from('styles')
-    .select()
+const getAllStyles = async () => {
+  try {
+    const { data, dataError } = await supabase.from("styles").select();
 
-    return data
-}
+    if (dataError) throw dataError;
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+};
 
-export default getAllStyles
+export default getAllStyles;

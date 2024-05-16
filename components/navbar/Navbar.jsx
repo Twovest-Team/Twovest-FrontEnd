@@ -45,7 +45,7 @@ export const Navbar = ({ children }) => {
   }
 
   return (
-    <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
+    <nav className="z-30 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px] px-52">
       <div className="container flex justify-between items-center h-full">
         {/* NAVBAR LEFT SECTION */}
         <div className="flex gap-4 -translate-x-3">
@@ -69,14 +69,21 @@ export const Navbar = ({ children }) => {
               width={130}
               height={24}
               alt="Logo Twovest"
-              className="navbar_logo-sm"
+              className="navbar_logo-sm img-hover"
             ></Image>
+            <style>{`
+            .img-hover:hover {
+              box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
+              transform: scale(1.1);
+              opacity: 100;
+            }
+            `}</style>
           </Link>
         </div>
 
         {/* NAVBAR RIGHT SECTION */}
-        <div className="flex justify-between items-center ">
-          <div className="flex items-center mr-3">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center mr-3 gap-3">
             <IconButton icon={<SearchIcon />} ariaLabel="Botão de pesquisa" />
             <IconButton
               icon={<FavoriteBorderOutlinedIcon />}

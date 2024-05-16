@@ -20,6 +20,7 @@ export default async function getAuthServer() {
               created_at,
               img,
               role,
+              points,
               collections:collections_has_users(
                 id: id_collection,
                 is_admin,
@@ -52,6 +53,7 @@ export default async function getAuthServer() {
               created_at: user.created_at,
               img: user.img,
               role: user.role,
+              points: user.points,
               collections: user.collections.map(collection => {
                 const { collection_data, ...rest } = collection;
                 const { looks, ...collectionData } = collection_data;

@@ -1,9 +1,7 @@
 import supabase from '@/utils/db/clients/public/supabase';
 import getLookProducts from "./getLookProducts";
 
-const getLookById = async (id) => {
-
-
+ const getLookById = async (id) => {
   const { data, error } = await supabase
     .from("looks")
     .select(
@@ -35,4 +33,4 @@ const getLookById = async (id) => {
 
 };
 
-export default getLookById;
+export default getLookById; 

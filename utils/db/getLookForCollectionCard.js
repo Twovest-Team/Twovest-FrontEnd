@@ -1,10 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
 const getLookForCollectionCard = async (id_collection) => {
-  const { data, error } = await supabase
-    .from("collections_has_looks")
-    .select(
-      `
+  try {
+    const { data: lookData, error: lookError } = await supabase
+      .from("collections_has_looks")
+      .select(
+        `
     id_look,
     created_at,
     looks(
@@ -12,14 +13,15 @@ const getLookForCollectionCard = async (id_collection) => {
         url_image
     )
 `
-    )
-    .eq("id_collection", id_collection)
-    .order("created_at", { ascending: false });
+      )
+      .eq("id_collection", id_collection)
+      .order("created_at", { ascending: false });
 
-  if (error) {
+    if (lookError) throw lookError;
+    if (lookData) return lookData;
+  } catch (error) {
     console.log(error);
-  } else {
-    return data;
+    return { error };
   }
 };
 

@@ -1,10 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
 const getLookForProfilePage = async (id_user) => {
-  const { data, error } = await supabase
-    .from("looks")
-    .select(
-      `
+  try {
+    const { data: lookData, error: lookError } = await supabase
+      .from("looks")
+      .select(
+        `
     id,
     url_image,
     upvotes,
@@ -12,14 +13,15 @@ const getLookForProfilePage = async (id_user) => {
       id
     )
 `
-    )
-    .eq("id_user", id_user)
-    .eq("submission_state", 2);
+      )
+      .eq("id_user", id_user)
+      .eq("submission_state", 2);
 
-  if (error) {
+    if (lookError) throw lookError;
+    if (lookData) return lookData;
+  } catch (error) {
     console.log(error);
-  } else {
-    return data;
+    return { error };
   }
 };
 

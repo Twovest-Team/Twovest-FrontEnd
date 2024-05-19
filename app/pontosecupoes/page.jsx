@@ -3,9 +3,16 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
+import CouponCard from "@/components/cards/CouponCard";
+import getUserCoupons from "@/utils/db/getUserCoupons";
 
 export default async function PontosECupoes() {
   const currentUser = await useAuthServer();
+
+  const userCoupons = await getUserCoupons(currentUser.id);
+
+  const couponData = await getAllCoupons();
+
   let progresso;
   let precoCupaoSorte = 500;
 
@@ -15,7 +22,6 @@ export default async function PontosECupoes() {
     progresso = (currentUser.points / precoCupaoSorte) * 100;
   }
 
-  const couponData = await getAllCoupons();
   return (
     <main>
       <NavigationTitle titleText={"Pontos&Cupões"}>
@@ -63,28 +69,21 @@ export default async function PontosECupoes() {
           </div>
         </div>
       </div>
+
+      <div className="container">
+        <h4 className="text_h4">Os meus cupões</h4>
+        <div className="flex flex-row gap-4 mt-4">
+          {userCoupons.map((coupon) => (
+            <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
+          ))}
+        </div>
+        <h4 className="text_h4 mt-4">Desbloquear cupões - Falta separar por preço máximo, passando por prop ao endpoint o custo máximo</h4>
+        <div className="flex flex-row gap-4 mt-4">
+          {couponData.map((coupon) => (
+            <CouponCard allCoupons={coupon} key={coupon.id} />
+          ))}
+        </div>
+      </div>
     </main>
   );
-}
-
-{
-  /* <main>
-      <div className="h-[2600px] w-full">
-        Olá mundo
-        {couponData.map((element) => (
-          <div
-            className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-            key={element.id}
-          >
-            <p>Titulo: {element.title}</p>
-            <p>Descricao: {element.description}</p>
-            <p>Descontos: {element.discount}</p>
-            <p>Custo: {element.cost}</p>
-            {element.brands.map((marca) => (
-              <p key={marca}>{marca.name}</p>
-            ))}
-          </div>
-        ))}
-      </div>
-    </main> */
 }

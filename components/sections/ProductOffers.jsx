@@ -62,7 +62,7 @@ const ProductOffers = ({ offers, discount }) => {
       }
     }
 
-    if(limit > offers.length) return null
+    if(limit >= offers.length) return null
 
     return (
       <Button

@@ -16,7 +16,7 @@ import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
 import { sortOffers } from "@/utils/handleOffers";
-import ProductZoomImage from "@/components/items/ProductZoomImage";
+import ProductZoomModal from "@/components/modals/ProductZoomModal";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import SustainableButton from "@/components/buttons/icons/SustainableButton";
@@ -25,21 +25,22 @@ export const revalidate = 60;
 
 export default async function Product({ params, searchParams }) {
   const productId = params.id;
-  const selectImageId = searchParams.picture
+  const selectedImageId = searchParams.picture
+  const zoom = searchParams.zoom
   const productGender = params.genderString;
 
   return (
     <main>
       <ProductHistoryDetection productId={productId}>
         <Suspense fallback={<ProductSkeleton />}>
-          <ProductContent productId={productId} selectImageId={selectImageId} productGender={productGender} />
+          <ProductContent productId={productId} selectedImageId={selectedImageId} productGender={productGender} zoom={zoom} />
         </Suspense>
       </ProductHistoryDetection>
     </main>
   );
 }
 
-async function ProductContent({ productId, selectImageId, productGender }) {
+async function ProductContent({ productId, selectedImageId, productGender, zoom }) {
   const data = await getProductById(productId, productGender);
   const looks = await getLooksForHomepage(productGender)
   const sortedOffers = sortOffers(data.offers);
@@ -131,7 +132,7 @@ async function ProductContent({ productId, selectImageId, productGender }) {
   const renderPreviews = () => {
 
     const checkIfSelected = (id, index) => {
-      return (selectImageId == id || (!selectImageId && index === 0))
+      return (selectedImageId == id || (!selectedImageId && index === 0))
     }
 
     return (
@@ -148,17 +149,30 @@ async function ProductContent({ productId, selectImageId, productGender }) {
     )
   }
 
-  const renderMainImage = () => {
+  const getCurrentImage = () => {
+    return data.products_has_images.find((image, index) => selectedImageId == image.id || (!selectedImageId && index === 0))
+  }
 
-    const getCurrentImage = () => {
-      return data.products_has_images.find((image, index) => selectImageId == image.id || (!selectImageId && index === 0))
-    }
+  const renderMainImage = () => {
 
     const image = getCurrentImage()
 
     return (
-      <div className="flex flex-col gap-4 items-center">
-        <ProductZoomImage image={image} discount={data.discount} />
+      <div className="flex w-full h-full flex-col gap-4 items-center relative">
+        <Link href={`?picture=${image.id}&zoom=true`} className="relative w-[580px] min-w-[580px] h-[560px] min-h-[560px]">
+          <Image
+            fill={true}
+            className="p-2 cursor-zoom-in object-contain"
+            src={getStorageImage(image.url)}
+            alt="todo"
+          />
+
+          {data.discount > 0 && (
+            <div className="absolute top-0 left-0 px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold">
+              {data.discount}% OFF
+            </div>
+          )}
+        </Link>
         {renderBtnOptions()}
       </div>
     )
@@ -170,6 +184,31 @@ async function ProductContent({ productId, selectImageId, productGender }) {
         <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
         <LooksHomepage data={looks} />
       </section>
+    )
+  }
+
+  const renderImagesModal = () => {
+    return (
+      <ProductZoomModal defaultImageId={selectedImageId} images={data.products_has_images} />
+    )
+  }
+
+  const renderOffersModal = () => {
+    return (
+      <Modal maxSm className="lg:hidden" id={'offersProduct'}>
+        <div className="h-full">
+          <h1 className="font-semibold text_h6">Ofertas</h1>
+          <p className="text-secondary">
+            Vê todas as ofertas para este artigo.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
+          {sortedOffers.map((offer, index) => (
+            <ProductOfferCard key={index} offer={offer} discount={data.discount} />
+          ))}
+        </div>
+      </Modal>
     )
   }
 
@@ -202,22 +241,9 @@ async function ProductContent({ productId, selectImageId, productGender }) {
 
       {renderLooks()}
 
-
-
-      <Modal maxSm className='lg:hidden' id={'offersProduct'}>
-        <div className="h-full">
-          <h1 className="font-semibold text_h6">Ofertas</h1>
-          <p className="text-secondary">
-            Vê todas as ofertas para este artigo.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
-          {sortedOffers.map((offer, index) => (
-            <ProductOfferCard key={index} offer={offer} discount={data.discount} />
-          ))}
-        </div>
-      </Modal>
+      {zoom === 'true' && renderImagesModal()}
+      {renderOffersModal()}
+      
 
     </>
   );

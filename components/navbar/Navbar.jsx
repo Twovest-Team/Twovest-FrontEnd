@@ -141,9 +141,7 @@ export const Navbar = ({ children }) => {
                   <>
                     <Menu.Item className="mb-2 w-full">
                       {({ active, close }) => (
-                        <div
-                          className={`font-semibold`}
-                        >
+                        <div className={`font-semibold`}>
                           <div>
                             <div>
                               <Link
@@ -182,10 +180,7 @@ export const Navbar = ({ children }) => {
                     <Menu.Item>
                       {({ active, close }) => (
                         <div>
-                          <Link
-                            href={"/"}
-                            onClick={close}
-                          >
+                          <Link href={"/pontosecupoes"} onClick={close}>
                             <div className="caption items-center flex py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               <AutoModeIcon className=" h-5 w-5 mr-1.5" />
                               <div>Pontos&Cupões</div>
@@ -200,11 +195,7 @@ export const Navbar = ({ children }) => {
                     <Menu.Item>
                       {({ active, close }) => (
                         <div>
-                          <Link
-                            href={"/submitLook"}
-                            onClick={close}
-                           
-                          >
+                          <Link href={"/submitLook"} onClick={close}>
                             <div className=" caption items-center flex py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               <ArrowCircleUpIcon className="h-5 w-5 mr-1.5" />
                               <div>Submeter novo look</div>
@@ -220,9 +211,10 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                           
                           >
-                            <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">Gerir meus looks</div>
+                            <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
+                              Gerir meus looks
+                            </div>
                           </Link>
                         </div>
                       )}
@@ -233,9 +225,10 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            
                           >
-                            <div className="caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">Ver coleções de looks</div>
+                            <div className="caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
+                              Ver coleções de looks
+                            </div>
                           </Link>
                         </div>
                       )}
@@ -249,7 +242,6 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile/options/orders`}
                             onClick={close}
-                            
                           >
                             <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               Histórico de compras
@@ -265,7 +257,6 @@ export const Navbar = ({ children }) => {
                           <Link
                             href={`/profile?${currentUser.id}`}
                             onClick={close}
-                            
                           >
                             <div className=" caption py-1.5 px-1.5 transition rounded delay-150 hover:bg-grey_opacity_50 hover:transition hover:delay-150 hover:ease-in-out ease-in-out">
                               Definições de conta

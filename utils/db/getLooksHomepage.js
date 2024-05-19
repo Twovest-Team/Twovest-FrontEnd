@@ -1,15 +1,14 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getLookStyles from "./getLookStyles";
+import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
 
 const getLooksForHomepage = async (gender) => {
-  
-  const genderId = getGender(gender).id
+  const genderId = getGender(gender).id;
 
-  const { data, error } = await supabase
-    .from("looks")
-    .select(
-      `
+  try {
+    const { data, error } = await supabase
+      .from("looks")
+      .select(
+        `
     id,
     id_user,
     upvotes,
@@ -20,28 +19,35 @@ const getLooksForHomepage = async (gender) => {
         name,
         img,
         role
+    ),
+    looks_has_styles(
+      styles(
+        name
+      )
     )
 `
-    )
-    .eq("submission_state", 2)
-    .eq("gender", genderId)
-    .order("created_at", { ascending: true })
-    .limit(8);
+      )
+      .eq("submission_state", 2)
+      .eq("gender", genderId)
+      .order("created_at", { ascending: true })
+      .limit(8);
 
-  let arrayOfLooks = await Promise.all(
-    data.map(async (element) => {
-      let array = element;
-      const styles = await getLookStyles(element.id);
-      array.styles = styles;
+    function transformLooksObject(looksArray) {
+      return looksArray.map((look) => {
+        const styles = look.looks_has_styles.map((item) => item.styles.name);
+        const { looks_has_styles, ...rest } = look;
+        return {
+          ...rest,
+          styles,
+        };
+      });
+    }
 
-      return array;
-    })
-  );
-
-  if (error) {
+    if (data) return transformLooksObject(data);
+    if (error) console.log("error", error);
+  } catch (error) {
     console.log(error);
-  } else {
-    return arrayOfLooks;
+    return { error };
   }
 };
 

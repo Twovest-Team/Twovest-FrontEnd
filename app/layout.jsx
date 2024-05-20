@@ -68,11 +68,12 @@ export default function RootLayout({ children }) {
               </Suspense>
 
 
+              <Analytics />
+              <SpeedInsights />
+
             </UserProvider>
           </GenderProvider>
         </StoreProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

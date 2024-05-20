@@ -1,10 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
 const getUserById = async (id_user) => {
-  const { data, error } = await supabase
-    .from("users")
-    .select(
-      `
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select(
+        `
       id,
       created_at,
       name,
@@ -13,14 +14,15 @@ const getUserById = async (id_user) => {
       points,
       role
   `
-    )
-    .eq("id", id_user)
-    .single()
+      )
+      .eq("id", id_user)
+      .single();
 
-  if (error) {
+    if (data) return data;
+    if (error) throw error;
+  } catch (error) {
     console.log(error);
-  } else {
-    return data;
+    return { error };
   }
 };
 

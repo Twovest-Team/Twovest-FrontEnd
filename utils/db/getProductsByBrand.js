@@ -87,8 +87,6 @@ const getProductByBrand = async (gender, brandName) => {
     console.log(error);
     return { error };
   }
-
-  return data;
 };
 
 export default getProductByBrand;

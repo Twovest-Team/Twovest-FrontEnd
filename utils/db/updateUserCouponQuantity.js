@@ -13,7 +13,7 @@ export default async function updateUserCouponQuantity(
 
     if (updateQuantityError) throw updateQuantityError;
 
-    return "Atualização de quantidade efetuada com sucesso";
+    if(updateQuantityData) return "Atualização de quantidade efetuada com sucesso";
   } catch (error) {
     console.log(error);
     return { error };

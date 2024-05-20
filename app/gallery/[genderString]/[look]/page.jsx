@@ -18,6 +18,7 @@ const Look = async ({ params }) => {
   const lookId = params.look;
 
   const data = await getLookById(lookId);
+
   let productsQty;
   if (data.products) {
     productsQty = data.products.length;

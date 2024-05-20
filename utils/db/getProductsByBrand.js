@@ -1,65 +1,92 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getProductImages from './getProductImages';
-import getProductOffers from './getProductOffers';
-import getGender from '../getGender';
+import supabase from "@/utils/db/clients/public/supabase";
+import getGender from "../getGender";
 
 const getProductByBrand = async (gender, brandName) => {
+  const genderId = getGender(gender).id;
 
-  const genderId = getGender(gender).id
-
-  const { data, error } = await supabase
-    .from('products')
-    .select(`
+  try {
+    const { data: productData, error: productError } = await supabase
+      .from("products")
+      .select(
+        `
     id,
-    reference,
-    is_sustainable,
-    views,
-    gender,
-    name,
-    discount,
-    brands!inner (
-        id,
-        logo_url,
+        reference,
+        is_sustainable,
+        views,
+        gender,
         name,
-        cover_url
-    ),
-    images (
-        id,
-        url,
-        id_product,
-        alt
-    ),
-    offers (
-        id_product, 
-        id_color,
-        id_size, 
-        price 
-    ), 
-    categories (
-      id,
-      main_category
-  )
-`)
-    .eq('gender', genderId)
-    .eq('is_public', true)
-    .eq('brands.name', brandName)
+        discount,
+        brands!inner (
+            logo_url,
+            name
+        ),
+        categories (
+            id,
+            main_category
+        ),
+        products_has_images(
+          id,
+          url,
+          alt
+        ),
+        offers(
+          id,
+          price,
+          qty,
+          colors (
+              name
+          ),
+          sizes (
+              size,
+              type
+          ),
+          conditions (
+              id,
+              name
+          )
+              ),
+              products_has_materials(
+                materials(
+                  name
+              )),
+              products_has_styles(
+                styles(
+                  name
+              )
+          )
+      )
+`
+      )
+      .eq("gender", genderId)
+      .eq("is_public", true)
+      .eq("brands.name", brandName);
 
-    if (data && data.length > 0) {
-      const images = await getProductImages(data[0].id);
-      const offers = await getProductOffers(data[0].id);
-      
-    
-      data.images = images;
-      data.offers = offers;
-      
-    } else {
-    
-      console.log(error);
-     
+    function transformProductObject(productArray) {
+      return productArray.map((product) => {
+        const materials = product.products_has_materials.map(
+          (item) => item.materials.name
+        );
+        const styles = product.products_has_styles.map(
+          (item) => item.styles.name
+        );
+
+        const { products_has_materials, products_has_styles, ...rest } =
+          product;
+
+        return {
+          ...rest,
+          materials,
+          styles,
+        };
+      });
     }
 
-    
-  
+    if (productError) throw productError;
+    if (productData) return transformProductObject(productData);
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
 
   return data;
 };

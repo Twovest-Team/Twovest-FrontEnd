@@ -5,7 +5,7 @@ import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
 import { useEffect, useState } from "react";
-import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
+import getBrands from "@/utils/db/getBrands";
 import { BrandCards } from "@/components/cards/BrandCards";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
@@ -27,7 +27,7 @@ export default function Home() {
         setDataPopular(res);
       }
       async function getBrandsData() {
-        let resp = await getBrandsHomepage();
+        let resp = await getBrands(9);
         setBrands(resp);
       }
       async function getLooks() {

@@ -1,14 +1,14 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
 
 const getLooksForGallery = async (gender) => {
+  const genderId = getGender(gender).id;
 
-  const genderId = getGender(gender).id
-
-  const { data, error } = await supabase
-    .from('looks')
-    .select(
-      `
+  try {
+    const { data, error } = await supabase
+      .from("looks")
+      .select(
+        `
     id,
     upvotes,
     gender,
@@ -24,24 +24,27 @@ const getLooksForGallery = async (gender) => {
       )
     )
     `
-    )
-    .eq('submission_state', 2)
-    .eq('gender', genderId);
+      )
+      .eq("submission_state", 2)
+      .eq("gender", genderId);
 
-  function transformLooksObject(looksArray) {
-    return looksArray.map(look => {
-      const styles = look.looks_has_styles.map(item => item.styles.name);
-      const { looks_has_styles, ...rest } = look;
-      return {
-        ...rest,
-        styles
-      };
-    });
+    function transformLooksObject(looksArray) {
+      return looksArray.map((look) => {
+        const styles = look.looks_has_styles.map((item) => item.styles.name);
+        const { looks_has_styles, ...rest } = look;
+        return {
+          ...rest,
+          styles,
+        };
+      });
+    }
+
+    if (data) return transformLooksObject(data);
+    if (error) console.log("error", error);
+  } catch (error) {
+    console.log(error);
+    return { error };
   }
-
-  if (data) return transformLooksObject(data);
-  if (error) console.log('error', error);
-
 };
 
-export default getLooksForGallery; 
+export default getLooksForGallery;

@@ -159,7 +159,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
 
     return (
       <div className="flex w-full h-full flex-col gap-4 items-center relative">
-        <Link href={`?picture=${image.id}&zoom=true`} className="relative w-[580px] min-w-[580px] h-[560px] min-h-[560px]">
+        <Link href={`?picture=${image.id}&zoom=true`} className="relative aspect-square xl:w-[580px] lg:w-[490px]">
           <Image
             fill={true}
             className="p-2 cursor-zoom-in object-contain"

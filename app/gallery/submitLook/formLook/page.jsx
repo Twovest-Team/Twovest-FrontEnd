@@ -25,12 +25,11 @@ const FormLook = () => {
   const [isStylesFilled, setIsStylesFilled] = useState(false);
   const [selectedStyleIds, setSelectedStyleIds] = useState([]);
   const [selectedProductIds, setSelectedProductIds] = useState([]);
+  const [selectedOffersIds, setSelectedOffersId] = useState([]);
   const [userId, setUserId] = useState(null);
-  const [userGenderId, setUserGenderId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [gender, setGender] = useGender()
-
+  const [gender, setGender] = useGender();
 
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +42,6 @@ const FormLook = () => {
           setUser(userData);
           setUserId(currentUser.id);
           setLoading(false);
-          
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -54,17 +52,9 @@ const FormLook = () => {
     fetchData();
   }, [router, supabase.auth]);
 
-  
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        setSelectedImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    setSelectedImage(file);
   };
 
   const handleStylesData = (styleIds) => {
@@ -72,27 +62,22 @@ const FormLook = () => {
     setIsStylesFilled(styleIds.length > 0);
   };
 
-  const handleProductDataFilled = (productIds) => {
+  const handleProductDataFilled = (productIds, offerIds) => {
     setSelectedProductIds(productIds);
+    setSelectedOffersId(offerIds);
     setIsProductsFilled(productIds.length > 0);
   };
 
+  const handleSubmitLook = async () => {
+    const formData = new FormData();
+    formData.append("file", selectedImage);
 
-
-
-
-  const handleSubmitLook = async (userId, selectedProductIds, selectedStyleIds, gender, selectedImage) => {
-
-  try {
-    
-    await teste(userId, selectedProductIds, selectedStyleIds, gender, selectedImage);
-  } catch (error) {
-    
-    console.error("Error handling the image:", error, selectedImage);
-  }
-   
+    try {
+      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, formData);
+    } catch (error) {
+      console.error("Error handling the image:", error);
+    }
   };
-
 
   if (loading) {
     return <GeneralLoading />;
@@ -108,7 +93,7 @@ const FormLook = () => {
                 {selectedImage ? (
                   <div className="mt-12 w-auto h-auto flex flex-col items-center">
                     <Image
-                      src={selectedImage}
+                      src={URL.createObjectURL(selectedImage)}
                       alt="Selected"
                       width={48}
                       height={48}
@@ -156,7 +141,7 @@ const FormLook = () => {
             </div>
 
             <Button
-              onClick={() => handleSubmitLook(userId, selectedProductIds, selectedStyleIds, gender, selectedImage,)}
+              onClick={handleSubmitLook}
               className="mt-6"
               disabled={!selectedImage || !isProductsFilled || !isStylesFilled}
               type={"black"}

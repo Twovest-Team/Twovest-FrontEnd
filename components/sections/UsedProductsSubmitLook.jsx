@@ -11,7 +11,8 @@ import Image from "next/image";
 
 export const UsedProductsSubmitLook = ({ onDataFilled }) => {
     const [products, setProducts] = useState([]);
-    const [selectedArticles, setSelectedArticles] = useState([]);
+    const [selectedOffersId, setSelectedOffersId] = useState([]);
+    const [selectedProductsId, setSelectedProductIds] = useState([]);
 
     useEffect(() => {
         const purchasedProducts = async () => {
@@ -22,16 +23,31 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
         purchasedProducts();
     }, []);
 
-    const toggleArticleSelection = (articleId) => {
-        if (selectedArticles.includes(articleId)) {
-            setSelectedArticles(selectedArticles.filter(id => id !== articleId));
+    const toggleOfferSelection = (offerDetail) => {
+        const offerId = offerDetail.id;
+        const productId = offerDetail.products.id;
+
+        let newSelectedOffersId = [...selectedOffersId];
+        let newSelectedProductsId = [...selectedProductsId];
+
+        if (selectedOffersId.includes(offerId)) {
+            newSelectedOffersId = selectedOffersId.filter(id => id !== offerId);
+            newSelectedProductsId = selectedProductsId.filter(id => id !== productId);
         } else {
-            if (selectedArticles.length < 6) {
-                setSelectedArticles([...selectedArticles, articleId]);
+            if (selectedOffersId.length < 6) {
+                newSelectedOffersId = [...selectedOffersId, offerId];
+                newSelectedProductsId = [...selectedProductsId, productId];
             }
         }
-        onDataFilled(selectedArticles); // Passando os artigos selecionados
+
+        setSelectedOffersId(newSelectedOffersId);
+        setSelectedProductIds(newSelectedProductsId);
+
+        // Pass both selected product IDs and offer IDs to parent
+        onDataFilled(newSelectedProductsId, newSelectedOffersId);
     };
+
+    //console.log(products); 
 
     return (
         <div className="mb-4">
@@ -41,7 +57,7 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                     aria-controls="panel1-content"
                     id="panel1-header"
                 >
-                    <h2>Artigos utilizados<span className="ml-2 text-green-500">({selectedArticles.length}/6)</span></h2>
+                    <h2>Artigos utilizados<span className="ml-2 text-green-500">({selectedOffersId.length}/6)</span></h2>
                 </AccordionSummary>
                 <AccordionDetails>
                     {products && products.map(order => (
@@ -64,8 +80,8 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                                                         <p className="truncate">{offerDetail.products.name}</p>
                                                         <input
                                                             type="checkbox"
-                                                            checked={selectedArticles.includes(offerDetail.id)}
-                                                            onChange={() => toggleArticleSelection(offerDetail.id)}
+                                                            checked={selectedOffersId.includes(offerDetail.id)}
+                                                            onChange={() => toggleOfferSelection(offerDetail)}
                                                             className="form-checkbox h-5 w-5 text-green-500"
                                                         />
                                                     </div>

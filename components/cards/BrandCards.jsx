@@ -26,7 +26,7 @@ export const BrandCards = ({ data, gender }) => {
   }, []);
 
   const brand = data;
-  console.log(data)
+  //console.log(data)
 
   return (
     <div className="container">

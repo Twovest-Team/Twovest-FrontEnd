@@ -12,7 +12,7 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 import deleteCollectionLook from "@/utils/db/collections/deleteCollectionLook";
 import addToCollection from "@/utils/db/collections/addToCollection";
 import useAuth from "@/hooks/client-hooks/useAuth";
-import { reverseLooksOrder } from "@/utils/handleCollections";
+import { reverseLooksOrder } from "@/utils/handlers/handleCollections";
 import { useAppDispatch } from "@/redux/hooks";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import Notification from "../modals/Notification";

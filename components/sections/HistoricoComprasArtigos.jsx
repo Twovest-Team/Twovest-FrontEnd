@@ -14,7 +14,7 @@ export default function HistoricoComprasArtigos() {
             <div className="ml-4 flex flex-col font-semibold justify-between min-w-0 flex-grow ">
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between gap-2">
-                  <p className="truncate">Nome do Produto</p>
+                  <p className="truncate">Nome</p>
                 </div>
                 <p className={`caption text-primary_main `}>Novo</p>
                 <p className="text-secondary font-normal caption">

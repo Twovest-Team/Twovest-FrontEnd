@@ -10,7 +10,6 @@ import ProductNav from "@/components/sections/ProductNav";
 import ProductSkeleton from "@/components/loaders/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
-import Button from "@/components/buttons/Button";
 import getStorageImage from "@/utils/getStorageImage";
 import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
@@ -240,6 +239,15 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
       {renderOffersModal()}
       
 
+        <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
+          {sortedOffers.map((offer, index) => (
+            <ProductOfferCard
+              key={index}
+              offer={offer}
+              discount={data.discount}
+            />
+          ))}
+        </div>
     </>
   );
 }

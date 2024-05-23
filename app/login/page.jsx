@@ -12,6 +12,7 @@ import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
 import Image from "next/image";
 
+
 export default function LoginPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);

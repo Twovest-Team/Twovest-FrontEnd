@@ -1,19 +1,20 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getProductImages from './getProductImages';
-import getProductOffers from './getProductOffers';
-import getProductMaterials from './getProductMaterials';
-import getProductStyles from './getProductStyles';
-import getGender from '../getGender';
+import supabase from "@/utils/db/clients/public/supabase";
+import getGender from "../getGender";
 
 const getSustainableProducts = async (gender) => {
+  const genderId = getGender(gender).id;
 
-    const genderId = getGender(gender).id
-
-    const { data } = await supabase
-        .from('products')
-        .select(`
+  try {
+    const { data: productData, error: productError } = await supabase
+      .from("products")
+      .select(
+        `
         id,
+        reference,
         is_sustainable,
+        views,
+        gender,
+        name,
         discount,
         brands (
             logo_url,
@@ -22,31 +23,70 @@ const getSustainableProducts = async (gender) => {
         categories (
             id,
             main_category
-        )
-    `)
-        .eq('is_sustainable', true)
-        .eq('is_public', true)
-        .eq ('gender', genderId)
+        ),
+        products_has_images(
+          id,
+          url,
+          alt
+        ),
+        offers(
+          id,
+          price,
+          qty,
+          colors (
+              name
+          ),
+          sizes (
+              size,
+              type
+          ),
+          conditions (
+              id,
+              name
+          )
+              ),
+              products_has_materials(
+                materials(
+                  name
+              )),
+              products_has_styles(
+                styles(
+                  name
+              )
+          )
+      )
+    `
+      )
+      .eq("is_sustainable", true)
+      .eq("is_public", true)
+      .eq("gender", genderId);
 
+    function transformProductObject(productArray) {
+      return productArray.map((product) => {
+        const materials = product.products_has_materials.map(
+          (item) => item.materials.name
+        );
+        const styles = product.products_has_styles.map(
+          (item) => item.styles.name
+        );
 
-    let arrayOfProducts = await Promise.all(
-    data.map(async(element) => {
-        
-        let array = element
-        const images = await getProductImages(element.id)
-        const offers = await getProductOffers(element.id)
-        const materials = await getProductMaterials(element.id)
-        const styles = await getProductStyles(element.id)
+        const { products_has_materials, products_has_styles, ...rest } =
+          product;
 
-        array.images = images
-        array.offers = offers
-        array.materials = materials
-        array.styles = styles
+        return {
+          ...rest,
+          materials,
+          styles,
+        };
+      });
+    }
 
-        return array
-    }))
+    if (productError) throw productError;
+    if (productData) return transformProductObject(productData);
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+};
 
-    return arrayOfProducts
-}
-
-export default getSustainableProducts
+export default getSustainableProducts;

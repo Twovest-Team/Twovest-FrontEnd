@@ -5,7 +5,7 @@ import ProductOfferCard from "../cards/ProductOfferCard";
 import Button from "../buttons/Button";
 import { useAppDispatch } from "@/redux/hooks";
 import { openModal } from "@/redux/slices/modalSlice";
-import { getBestOffers, sortOffers } from "@/utils/handleOffers";
+import { getBestOffers, sortOffers } from "@/utils/handlers/handleOffers";
 
 const ProductOffers = ({ offers, discount, productGender, productId }) => {
   const sortedOffers = sortOffers(offers);

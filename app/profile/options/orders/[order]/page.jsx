@@ -88,8 +88,8 @@ export default async function Order({ params }) {
               {orderData.coupons.length > 0 ? (
                 <>
                   {orderData.coupons.map((element) => (
-                    <div className="text-secondary" key={element.id_coupon}>
-                      {element.couponDetails.title}
+                    <div className="text-secondary" key={element.id}>
+                      {element.title}
                     </div>
                   ))}
                 </>
@@ -112,26 +112,24 @@ export default async function Order({ params }) {
             </div>
             <ContentSlider className="right-6">
               {orderData.offers.map((element) => (
-                <li key={element.id_offer}>
-                  {element.offerDetails.map((element) => (
-                    <Fragment key={element.products.id}>
-                      <CardProduct
-                        key={element.products.id}
-                        product={element.products}
-                        gender={element.products.gender}
-                        slider={true}
-                      />
-                      <div className="flex-col justify-start items-start">
-                        <div className="text-primary_main">
-                          {`Condição: ${element.conditions.name}`}
-                        </div>
-                        <div className="text-secondary">
-                          {`Tamanho: ${element.sizes.size}`}
-                        </div>
-                        <div>{`Preço: ${element.price} €`}</div>
+                <li key={element.id}>
+                  <Fragment key={element.products.id}>
+                    <CardProduct
+                      key={element.products.id}
+                      product={element.products}
+                      gender={element.products.gender}
+                      slider={true}
+                    />
+                    <div className="flex-col justify-start items-start">
+                      <div className="text-primary_main">
+                        {`Condição: ${element.conditions.name}`}
                       </div>
-                    </Fragment>
-                  ))}
+                      <div className="text-secondary">
+                        {`Tamanho: ${element.sizes.size}`}
+                      </div>
+                      <div>{`Preço: ${element.price} €`}</div>
+                    </div>
+                  </Fragment>
                 </li>
               ))}
             </ContentSlider>

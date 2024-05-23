@@ -13,7 +13,7 @@ import getUserById from "@/utils/db/getUserById";
 import getCollections from "@/utils/db/collections/getCollections";
 import IconButton from "@/components/buttons/icons/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { checkOwnership } from "@/utils/handleCollections";
+import { checkOwnership } from "@/utils/handlers/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 import Button from "@/components/buttons/Button";
 
@@ -23,9 +23,7 @@ export const revalidate = 0;
 const Profile = async ({ params }) => {
   const ownerId = params.id;
   const currentUser = await useAuthServer();
-  const isOwnProfile = currentUser
-    ? checkOwnership(currentUser.id, ownerId)
-    : false;
+  const isOwnProfile = checkOwnership(currentUser?.id, ownerId)
   const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId);
   const ownerFirstName = getUserFirstName(ownerData);
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);

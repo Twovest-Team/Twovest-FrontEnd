@@ -1,13 +1,36 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
-const getBrands = async () => {
-    const { data } = await supabase
-        .from('brands')
-        .select('*')
-        .order('name', { ascending: true })
-    
-    
-    return data;
-}
+const getBrands = async (limit ) => {
+  if (!limit) {
+    try {
+      const { data, dataError } = await supabase
+        .from("brands")
+        .select("*")
+        .order("name", { ascending: true });
 
-export default getBrands
+      if (dataError) throw dataError;
+      return data;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  }
+
+  if (limit) {
+    try {
+      const { data, dataError } = await supabase
+        .from("brands")
+        .select("*")
+        .order("name", { ascending: true })
+        .limit(limit);
+
+      if (dataError) throw dataError;
+      return data;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  }
+};
+
+export default getBrands;

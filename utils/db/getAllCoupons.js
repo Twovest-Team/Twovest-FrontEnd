@@ -1,5 +1,4 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getCouponBrandsById from "./getCouponBrandsById";
+import supabase from "@/utils/db/clients/public/supabase";
 
 export default async function getAllCoupons() {
   try {
@@ -11,28 +10,27 @@ export default async function getAllCoupons() {
             description,
             discount,
             cost,
-            is_special
+            is_special,
+            coupons_has_brands(
+              brands(
+                *
+              )
+            )
         `);
 
-    if (couponError) throw couponError;
-
-    if (couponData && couponData.length > 0) {
-      let completeCouponData;
-
-      completeCouponData = await Promise.all(
-        couponData.map(async (element) => {
-          let couponArray = element;
-          let couponId = couponArray.id;
-
-          const couponBrandsData = await getCouponBrandsById(couponId);
-
-          couponArray.brands = couponBrandsData;
-          return couponArray;
-        })
-      );
-
-      return completeCouponData;
+    function transformCouponsObject(couponsArray) {
+      return couponsArray.map((coupon) => {
+        const brands = coupon.coupons_has_brands.map((item) => item.brands);
+        const { coupons_has_brands, ...rest } = coupon;
+        return {
+          ...rest,
+          brands,
+        };
+      });
     }
+
+    if (couponError) throw couponError;
+    if (couponData) return transformCouponsObject(couponData);
   } catch (error) {
     console.log(error);
     return { error };

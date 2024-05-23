@@ -16,7 +16,7 @@ import getStorageImage from "@/utils/getStorageImage";
 import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
-import { sortOffers } from "@/utils/handleOffers";
+import { sortOffers } from "@/utils/handlers/handleOffers";
 
 export const revalidate = 60;
 
@@ -38,7 +38,6 @@ export default async function Product({ params }) {
 async function ProductContent({ productId, productGender }) {
   const data = await getProductById(productId, productGender);
   const sortedOffers = sortOffers(data.offers);
-  
 
   return (
     <>
@@ -50,7 +49,7 @@ async function ProductContent({ productId, productGender }) {
         />
 
         <div className=" flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
-          <ProductSwiper images={data.images} />
+          <ProductSwiper images={data.products_has_images} />
           <div className="relative">
             <div className="absolute flex justify-end gap-6 items-center ml-auto -top-14 container z-10">
               <ShareButton url={""} />
@@ -95,21 +94,24 @@ async function ProductContent({ productId, productGender }) {
         <ProductDetails productDetails={data} />
       </section>
 
-        <Modal maxSm className='lg:hidden' id={'offersProduct'}>
-          <div className="h-full">
-            <h1 className="font-semibold text_h6">Ofertas</h1>
-            <p className="text-secondary">
-              Vê todas as ofertas para este artigo.
-            </p>
-          </div>
+      <Modal maxSm className="lg:hidden" id={"offersProduct"}>
+        <div className="h-full">
+          <h1 className="font-semibold text_h6">Ofertas</h1>
+          <p className="text-secondary">
+            Vê todas as ofertas para este artigo.
+          </p>
+        </div>
 
-          <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
-            {sortedOffers.map((offer, index) => (
-              <ProductOfferCard key={index} offer={offer} discount={data.discount} />
-            ))}
-          </div>
-        </Modal>
-
+        <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
+          {sortedOffers.map((offer, index) => (
+            <ProductOfferCard
+              key={index}
+              offer={offer}
+              discount={data.discount}
+            />
+          ))}
+        </div>
+      </Modal>
     </>
   );
 }

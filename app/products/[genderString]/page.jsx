@@ -4,12 +4,10 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
 import CardProduct from "@/components/cards/CardProduct";
-import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loaders/Products";
 import getSustainableProducts from "@/utils/db/getSustainableProducts";
 import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import GridBox from "@/components/providers/GridBox";
 
@@ -70,10 +68,7 @@ export default async function Products({ searchParams, params }) {
 
 async function ProductList({ categoryId, gender, status }) {
   if (categoryId) {
-    const data = await getProductsByCategory(
-      categoryId,
-      gender
-    );
+    const data = await getProductsByCategory(categoryId, gender);
 
     return (
       <>
@@ -91,7 +86,9 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
+          <NoResultsNotice
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );
@@ -111,12 +108,15 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
+          <NoResultsNotice
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );
   } else if (status == "discounts") {
     const data = await getOnSaleProducts(gender);
+    console.log(data);
 
     return (
       <>
@@ -132,7 +132,9 @@ async function ProductList({ categoryId, gender, status }) {
             ))}
           </GridBox>
         ) : (
-          <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
+          <NoResultsNotice
+            text={"Não há produtos registados nesta categoria."}
+          />
         )}
       </>
     );

@@ -1,58 +1,93 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getProductImages from './getProductImages';
-import getProcuctOffers from './getProductOffers';
-import getProductMaterials from './getProductMaterials';
-import getProductStyles from './getProductStyles';
-import getGender from '../getGender';
+import supabase from "@/utils/db/clients/public/supabase";
+import getGender from "../getGender";
 
 const getProductsByViews = async (gender) => {
+  const genderId = getGender(gender).id;
 
-    const genderId = getGender(gender).id
-
-    const { data, error } = await supabase
-        .from('products')
-        .select(`
-        id,
-        is_sustainable,
-        discount,
-        gender,
-        views,
-        brands (
-            logo_url,
-            name
-        ),
-        categories (
+  try {
+    const { data: productData, error: productError } = await supabase
+      .from("products")
+      .select(
+        `
             id,
-            main_category
-        )
-    `)
-        .eq('is_public', true)
-        .eq('gender', genderId) 
-        .order("views", { ascending: true })
-        .limit(10)
- 
+                reference,
+                is_sustainable,
+                views,
+                gender,
+                name,
+                discount,
+                brands (
+                    logo_url,
+                    name
+                ),
+                categories (
+                    id,
+                    main_category
+                ),
+                products_has_images(
+                  id,
+                  url,
+                  alt
+                ),
+                offers(
+                  id,
+                  price,
+                  qty,
+                  colors (
+                      name
+                  ),
+                  sizes (
+                      size,
+                      type
+                  ),
+                  conditions (
+                      id,
+                      name
+                  )
+                      ),
+                      products_has_materials(
+                        materials(
+                          name
+                      )),
+                      products_has_styles(
+                        styles(
+                          name
+                      )
+                  )
+              )
+        `
+      )
+      .eq("gender", genderId)
+      .eq("is_public", true)
+      .order("views", { ascending: true })
+      .limit(10);
 
-        if(error){
-            console.log(error)
-        }
-    let arrayOfProducts = await Promise.all(
-    data.map(async(element) => {
-        
-        let array = element
-        const images = await getProductImages(element.id)
-        const offers = await getProcuctOffers(element.id)
-        const materials = await getProductMaterials(element.id)
-        const styles = await getProductStyles(element.id)
+    function transformProductObject(productArray) {
+      return productArray.map((product) => {
+        const materials = product.products_has_materials.map(
+          (item) => item.materials.name
+        );
+        const styles = product.products_has_styles.map(
+          (item) => item.styles.name
+        );
 
-        array.images = images
-        array.offers = offers
-        array.materials = materials
-        array.styles = styles
+        const { products_has_materials, products_has_styles, ...rest } =
+          product;
 
-        return array
-    }))
+        return {
+          ...rest,
+          materials,
+          styles,
+        };
+      });
+    }
 
-    return arrayOfProducts
-}
+    if (productError) throw productError;
+    if (productData) return transformProductObject(productData);
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+};
 
 export default getProductsByViews;

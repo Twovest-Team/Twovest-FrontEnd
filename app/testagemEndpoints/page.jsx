@@ -19,6 +19,7 @@ import removeFromCart from "@/utils/db/cart/removeFromCart";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import getCollectionData from "@/utils/db/collections/getCollectionData";
 import getCollections from "@/utils/db/collections/getCollections";
+import getUserOrders from "@/utils/db/getUserOrders";
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
 export const revalidate = 0;

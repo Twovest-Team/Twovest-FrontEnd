@@ -27,6 +27,7 @@ export async function GET(req) {
     .eq("email", currentUser.email);
 
   if (cartError) {
+    //console.log(cartError);
     throw new Error("Erro ao buscar dados do carrinho");
   }
 
@@ -43,13 +44,16 @@ export async function GET(req) {
       id_offer: arrayOffers,
     });
 
+    //console.log(error);
+
     if (data) {
       const { error } = await supabase
         .from("cart")
         .delete()
         .eq("email", currentUser.email);
-
+      //console.log(error)
       return NextResponse.redirect(process.env.NEXT_PUBLIC_URL);
+      
     }
   }
 }

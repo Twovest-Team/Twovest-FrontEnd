@@ -26,6 +26,7 @@ module.exports = {
     extend: {
       height: {
         screen: 'calc(100vh - 75px)',
+        dvh: 'calc(100dvh - 75px)'
       },
       colors: {
         primary_main: '#05CE86',

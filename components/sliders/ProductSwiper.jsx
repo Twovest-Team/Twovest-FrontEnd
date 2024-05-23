@@ -21,13 +21,12 @@ export default function ProductSwiper({ images }) {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <figure className="h-full flex justify-center items-center">
+          <figure className="h-full w-full max-w-[550px] relative  mx-auto flex justify-center items-center">
             <Image
               src={getStorageImage(image.url)}
-              height={406}
-              width={304}
+              fill={true}
               alt={image.alt}
-              className="mx-auto"
+              className="object-contain"
             />
           </figure>
         </SwiperSlide>

@@ -74,13 +74,15 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
 
   const renderSlider = () => {
     return (
-      <section className="flex flex-col h-screen relative lg:hidden">
-        <div className="flex-grow flex flex-col justify-end min-h-[600px] relative mb-5">
+      <section className="flex flex-col h-dvh relative lg:hidden mb-5 min-h-[600px]">
+        <div className="flex-grow flex flex-col justify-end min-h-[600px] relative">
           <ProductSwiper images={data.products_has_images} />
           <div className="relative">
             {renderBtnOptions()}
-            <div className="bg-white h-[167px] rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
-              <div className="flex flex-row gap-4 pb-6 pt-8">
+
+            <div className="bg-white h-fit rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
+
+              <div className="flex flex-row gap-4 py-7">
                 <Link href={"/"}>
                   <Image
                     src={getStorageImage(data.brands.logo_url)}
@@ -95,14 +97,6 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
                   {getCategoryName(data.categories.id)} {data.brands.name}
                 </h1>
               </div>
-
-              <Button
-                type={"black"}
-                ariaLabel="Ver as melhores ofertas"
-                width="full"
-              >
-                Ver as melhores ofertas
-              </Button>
             </div>
           </div>
         </div>
@@ -219,6 +213,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
       {renderNav()}
 
       {renderSlider()}
+  
 
       <section className="hidden lg:flex flex-row container lg:mt-28 relative mb-16">
         <div className="flex gap-x-12 mr-10 sticky top-[187px] h-fit">

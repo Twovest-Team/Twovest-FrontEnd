@@ -52,37 +52,37 @@ h6 {
  */
 
 
-.text_caption{
+.text_caption {
   font-size: 13px;
 
 }
 
-.text_h6{
+.text_h6 {
   font-size: 19.2px;
   font-weight: 600;
 }
 
-.text_h5{
+.text_h5 {
   font-size: 23.04px;
   font-weight: 600;
 }
 
-.text_h4{
+.text_h4 {
   font-size: 27.65px;
   font-weight: 600;
 }
 
-.text_h3{
+.text_h3 {
   font-size: 33.18px;
   font-weight: 600;
 }
 
-.text_h2{
+.text_h2 {
   font-size: 39.18px;
   font-weight: bold;
 }
 
-.text_h1{
+.text_h1 {
   font-size: 47.78px;
   font-weight: bold;
 }
@@ -128,6 +128,7 @@ h6 {
   height: 10px;
   width: 9px;
 }
+
 *::-webkit-scrollbar-track {
   border-radius: 16px;
   background-color: #FFFFFF;
@@ -321,12 +322,14 @@ h6 {
   padding-bottom: 24px;
   margin: 0 25px;
 }
+
 .view {
   display: flex-start;
   align-items: center;
   gap: 129px;
   flex: 1 0 0;
 }
+
 .submit {
   display: flex-end;
   padding: 14px 36px;
@@ -397,41 +400,47 @@ h6 {
 }
 
 
-.swiper-pagination-bullets{
-  top: 80vh!important
+.swiper-pagination-bullets {
+  top: 80vh !important
 }
 
-.swiper-pagination-bullet{
-  background-color: #ffffff7e!important;
+.swiper-pagination-bullet {
+  background-color: #ffffff7e !important;
   transition: ease-in-out;
   transition-duration: 200ms;
-  margin-left: 0.6rem!important;
-  margin-right: 0.6rem!important;
-  padding: 0.4rem!important;
-  border-radius: 100%!important;
-  
+  margin-left: 0.6rem !important;
+  margin-right: 0.6rem !important;
+  padding: 0.4rem !important;
+  border-radius: 100% !important;
+
 }
 
-.swiper-pagination-bullet-active{
-  background-color: white!important;
-  padding: 0.4rem!important;
-  margin-left: 0.6rem!important;
-  margin-right: 0.6rem!important;
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  padding: 0.4rem !important;
+  margin-left: 0.6rem !important;
+  margin-right: 0.6rem !important;
 }
 
 
 #product-page-swiper .swiper-pagination-bullets {
-  top: 80px !important;
-  right: 48px !important;
+  top: 3.5rem !important;
+  right: 15px;
+  margin: 0 !important;
 }
 
-#product-page-swiper .swiper-pagination-bullet{
-background-color: grey !important;
+#product-page-swiper .swiper-pagination-bullet {
+  background-color: grey !important;
+  margin: 10px 0;
+  padding: 0.28rem !important;
 }
 
-#product-page-swiper .swiper-pagination-bullet-active{
+#product-page-swiper .swiper-pagination-bullet-active {
   background-color: black !important;
-  }
+  height: 33px;
+  border-radius: 100px !important;
+}
+
 /* Fim Jónatas */
 
 /* Daniela */
@@ -711,6 +720,7 @@ background-color: grey !important;
   padding-bottom: 40px;
   border-radius: 5px;
 }
+
 /* Fim Daniela */
 
 /* Media Query */
@@ -775,7 +785,7 @@ background-color: grey !important;
 
 /* -- VASCO -- */
 .scroll_bar-invisible {
-  overflow: scroll!important;
+  overflow: scroll !important;
   scrollbar-width: none;
   /* For Firefox */
   scrollbar-color: transparent transparent;
@@ -791,6 +801,7 @@ background-color: grey !important;
 .scroll_bar-invisible::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+
 /* -- FIM VASCO -- */
 
 /*--START GONÇALO--*/
@@ -919,12 +930,14 @@ background-color: grey !important;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-160.96deg);
 }
+
 .empty {
   height: 629px;
   width: 100%;
   background-color: white;
   border-radius: 50%;
 }
+
 .checkbox-css {
   accent-color: green;
 }
@@ -933,9 +946,9 @@ background-color: grey !important;
 @media (min-width: 1024px) and (max-width: 1920px) {
   .grid-cols-desktop {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
-}
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
 }
 
 
@@ -953,7 +966,7 @@ background-color: grey !important;
 
 @media (min-width: 1024px) and (max-width: 1920px) {
   .sectionDesktopHomepageBrands {
-/* padding-left: 14rem;
+    /* padding-left: 14rem;
 padding-right: 13rem; */
   }
 }
@@ -961,7 +974,7 @@ padding-right: 13rem; */
 
 @media (min-width: 1920px) {
   .sectionDesktopHomepageBrands {
-/* padding-left: 14rem;
+    /* padding-left: 14rem;
 padding-right: 13rem; */
   }
 }
@@ -969,7 +982,7 @@ padding-right: 13rem; */
 
 @media (min-width: 1024px) and (max-width: 1920px) {
   .sectionDesktopHomepageGallery {
-/* padding-left: 12rem; */
+    /* padding-left: 12rem; */
 
 
   }
@@ -978,7 +991,7 @@ padding-right: 13rem; */
 
 @media (min-width: 1920px) {
   .sectionDesktopHomepageGallery {
-   /*  padding-left: 12rem;
+    /*  padding-left: 12rem;
  */
 
   }

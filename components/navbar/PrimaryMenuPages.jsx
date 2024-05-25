@@ -15,7 +15,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
             <Link
               onClick={toggleMenu}
               href={`/gallery/${gender.string}`}
-              className="my-6 flex justify-between items-center hover:text-primary_main"
+              className="my-6 flex justify-between items-center .subnavbar_btn_hover"
             >
               <div>
                 <div className="font-semibold">Galeria de Looks</div>

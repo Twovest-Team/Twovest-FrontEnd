@@ -61,36 +61,36 @@ const getProductById = async (id, gender) => {
       )
       .eq("id", id)
       .eq("gender", genderId)
-      .eq("is_public", true);
+      .eq("is_public", true)
+      .single()
 
-    function transformProductObject(productArray) {
-      return productArray.map((product) => {
-        const materials = product.products_has_materials.map(
-          (item) => item.materials.name
-        );
-        const styles = product.products_has_styles.map(
-          (item) => item.styles.name
-        );
+    async function transformProductObject(product) {
+      const brandId = product.brands.id
+      const totalItems = await getBrandTotalItems(brandId)
 
-        const { products_has_materials, products_has_styles, ...rest } =
-          product;
+      const materials = product.products_has_materials.map(
+        (item) => item.materials.name
+      );
+      const styles = product.products_has_styles.map(
+        (item) => item.styles.name
+      );
 
-        return {
-          ...rest,
-          materials,
-          styles,
-        };
-      });
+      const { products_has_materials, products_has_styles, ...rest } =
+        product;
+
+      return {
+        ...rest,
+        materials,
+        styles,
+        brands: {
+          ...rest.brands,
+          totalItems
+        }
+      };
     }
 
     if (productError) throw productError;
-    if (productData) {
-      const obj = transformProductObject(productData)[0]
-      const brandId = obj.brands.id
-      const totalBrandItems = await getBrandTotalItems(brandId)
-      if (totalBrandItems) obj.brands.totalItems = totalBrandItems
-      return obj
-    }
+    if (productData) return transformProductObject(productData)
   } catch (error) {
     console.log(error);
     return { error };

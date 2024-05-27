@@ -1,7 +1,7 @@
 import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
 
-const getProductByBrand = async (gender, brandName) => {
+const getProductsByBrand = async (gender, brandName) => {
   const genderId = getGender(gender).id;
 
   try {
@@ -9,7 +9,7 @@ const getProductByBrand = async (gender, brandName) => {
       .from("products")
       .select(
         `
-    id,
+        id,
         reference,
         is_sustainable,
         views,
@@ -89,4 +89,4 @@ const getProductByBrand = async (gender, brandName) => {
   }
 };
 
-export default getProductByBrand;
+export default getProductsByBrand;

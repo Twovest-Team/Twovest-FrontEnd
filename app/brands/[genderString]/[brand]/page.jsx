@@ -6,7 +6,7 @@ import CardProduct from "@/components/cards/CardProduct";
 import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loaders/Products";
-import getProductByBrand from "@/utils/db/getProductsByBrand";
+import getProductsByBrand from "@/utils/db/getProductsByBrand";
 import getBrandData from "@/utils/db/getBrandData";
 import Image from "next/image";
 import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
@@ -65,7 +65,7 @@ export default async function Brand({ params }) {
 
 
 async function ProductList({ brandName, gender }) {
-  const data = await getProductByBrand(
+  const data = await getProductsByBrand(
     gender,
     brandName
   );

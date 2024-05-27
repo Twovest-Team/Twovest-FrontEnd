@@ -51,7 +51,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
         
         <div className="hidden sm:block">
           <p className="font-semibold">{brand.name}</p>
-          <p className="caption text-secondary">343 artigos</p>
+          <p className="caption text-secondary">{brand.totalItems} artigos</p>
         </div>
       </Link>
     )

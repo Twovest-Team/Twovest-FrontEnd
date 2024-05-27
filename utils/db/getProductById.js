@@ -1,5 +1,6 @@
 import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
+import getBrandTotalItems from "./getBrandTotalItems";
 
 const getProductById = async (id, gender) => {
   const genderId = getGender(gender).id;
@@ -17,6 +18,7 @@ const getProductById = async (id, gender) => {
         name,
         discount,
         brands (
+            id,
             logo_url,
             name
         ),
@@ -55,7 +57,6 @@ const getProductById = async (id, gender) => {
               )
           )
       )
-
     `
       )
       .eq("id", id)
@@ -83,7 +84,13 @@ const getProductById = async (id, gender) => {
     }
 
     if (productError) throw productError;
-    if (productData) return transformProductObject(productData)[0];
+    if (productData) {
+      const obj = transformProductObject(productData)[0]
+      const brandId = obj.brands.id
+      const totalBrandItems = await getBrandTotalItems(brandId)
+      if (totalBrandItems) obj.brands.totalItems = totalBrandItems
+      return obj
+    }
   } catch (error) {
     console.log(error);
     return { error };

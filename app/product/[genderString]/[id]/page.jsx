@@ -14,7 +14,7 @@ import getStorageImage from "@/utils/getStorageImage";
 import ProductSwiper from "@/components/sliders/ProductSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
-import { sortOffers } from "@/utils/handleOffers";
+import { sortOffers } from "@/utils/handlers/handleOffers";
 import ProductZoomModal from "@/components/modals/ProductZoomModal";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
@@ -238,16 +238,6 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
       {zoom === 'true' && renderImagesModal()}
       {renderOffersModal()}
       
-
-        <div className="flex flex-col gap-6 overflow-auto max-h-[21rem]">
-          {sortedOffers.map((offer, index) => (
-            <ProductOfferCard
-              key={index}
-              offer={offer}
-              discount={data.discount}
-            />
-          ))}
-        </div>
     </>
   );
 }

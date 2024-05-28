@@ -32,11 +32,11 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
-    const { isMobile, isSm } = useWindow();
+    const { isMobile, isSm, isMd } = useWindow();
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -85,6 +85,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
 
     if(!isMobile && onlyMobile) return null
     if(!isMobile && !isSm && maxSm) return null
+    if(!isMobile && !isSm && !isMd && maxMd) return null
 
     return (
         <Transition show={isOpen || false}>

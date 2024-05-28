@@ -188,7 +188,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
 
   const renderOffersModal = () => {
     return (
-      <Modal maxSm className="lg:hidden" id={'offersProduct'}>
+      <Modal maxMd className="lg:hidden" id={'offersProduct'}>
         <div className="h-full">
           <h1 className="font-semibold text_h6">Ofertas</h1>
           <p className="text-secondary">

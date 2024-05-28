@@ -3,7 +3,7 @@ import Image from "next/image";
 import { categories } from "@/constants";
 import PriceProduct from "../items/PriceProduct";
 import SellIcon from "@mui/icons-material/Sell";
-import { SustainableIcon } from "../buttons/icons/SustainableIcon";
+import SustainableButton from "../buttons/icons/SustainableButton";
 import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
 
@@ -45,7 +45,7 @@ const CardProduct = ({ product, slider, gender, alignPrice }) => {
           </div>
 
           {product.is_sustainable && (
-            <SustainableIcon color={"#05CE86"} width={28} />
+            <SustainableButton type="normal" color="#05CE86" width={28} />
           )}
         </div>
 

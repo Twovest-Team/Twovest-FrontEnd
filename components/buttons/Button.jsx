@@ -27,7 +27,7 @@ const Button = (props) => {
   const borderRadius = radius ? "rounded-" + radius : "rounded";
 
   const buttonHeight = onlyIcon
-    ? "aspect-square"
+    ? "aspect-square justify-center"
     : height
       ? "h-" + height
       : "h-14";

@@ -21,7 +21,7 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
   return (
     <div
       className={`flex flex-row justify-between items-center container h-20 ${
-        hasImageBehind && "text-white"
+        hasImageBehind ? "text-white" : ''
       }`}
     >
       <div
@@ -33,7 +33,7 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
         <IconButton
           darkMode={hasImageBehind}
           icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
-          className={"-translate-x-3"}
+          className="-translate-x-3 mr-0.5"
           aria-label="Voltar Atrás"
         />
         <h1

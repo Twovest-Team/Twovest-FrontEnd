@@ -10,7 +10,7 @@ import { general_categories } from "@/constants";
 import LanguageButton from "../buttons/LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
-import { SustainableIcon } from "../buttons/icons/SustainableIcon";
+import SustainableButton from "../buttons/icons/SustainableButton";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
@@ -152,7 +152,7 @@ export const SideMenu = () => {
               >
                 <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">
                   Sustentável
-                  <SustainableIcon width={25} color="white" />
+                  <SustainableButton type="normal" width={28} color="white" />
                 </div>
               </Link>
             </li>

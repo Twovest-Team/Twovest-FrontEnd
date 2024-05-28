@@ -19,11 +19,11 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 
 // Choose a size between sm, md or lg. The default size is sm.
 
-// If you want a modal with a side image, use imageUrl and imageAlt.
+// If you want a modal with a side image, use imageSrc and imageAlt.
 
 // All the modal content should be created inside the <Modal> tag, for example:
 
-// <Modal id='login' imageUrl='https://example.com' imageAlt='Example'>
+// <Modal id='login' imageSrc='https://example.com' imageAlt='Example'>
 //  <p>Hello World</p>
 // </Modal>
 
@@ -32,7 +32,7 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
@@ -106,12 +106,12 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, only
                 <div
                     className={`bg-white text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
                 >
-                    {imageUrl && (
+                    {imageSrc && (
                         <div className={`${getModalImageWidth()} relative`}>
                             <Image
                                 className="object-cover sm:rounded-l"
                                 alt={imageAlt}
-                                src={imageUrl}
+                                src={imageSrc}
                                 fill
                             />
                         </div>

@@ -18,8 +18,8 @@ const ProductSkeleton = () => {
 
         <div className="flex flex-col gap-[30px] items-end -top-14 w-full z-10">
           <div className="flex gap-6 justify-end container">
-            <ShareButton url={''} />
-            <FavoriteButton />
+            <ShareButton type="normal" />
+            <FavoriteButton type="normal" />
           </div>
 
 

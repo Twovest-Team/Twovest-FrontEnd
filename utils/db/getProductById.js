@@ -1,5 +1,6 @@
 import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
+import getBrandTotalItems from "./getBrandTotalItems";
 
 const getProductById = async (id, gender) => {
   const genderId = getGender(gender).id;
@@ -17,6 +18,7 @@ const getProductById = async (id, gender) => {
         name,
         discount,
         brands (
+            id,
             logo_url,
             name
         ),
@@ -55,35 +57,40 @@ const getProductById = async (id, gender) => {
               )
           )
       )
-
     `
       )
       .eq("id", id)
       .eq("gender", genderId)
-      .eq("is_public", true);
+      .eq("is_public", true)
+      .single()
 
-    function transformProductObject(productArray) {
-      return productArray.map((product) => {
-        const materials = product.products_has_materials.map(
-          (item) => item.materials.name
-        );
-        const styles = product.products_has_styles.map(
-          (item) => item.styles.name
-        );
+    async function transformProductObject(product) {
+      const brandId = product.brands.id
+      const totalItems = await getBrandTotalItems(brandId)
 
-        const { products_has_materials, products_has_styles, ...rest } =
-          product;
+      const materials = product.products_has_materials.map(
+        (item) => item.materials.name
+      );
+      const styles = product.products_has_styles.map(
+        (item) => item.styles.name
+      );
 
-        return {
-          ...rest,
-          materials,
-          styles,
-        };
-      });
+      const { products_has_materials, products_has_styles, ...rest } =
+        product;
+
+      return {
+        ...rest,
+        materials,
+        styles,
+        brands: {
+          ...rest.brands,
+          totalItems
+        }
+      };
     }
 
     if (productError) throw productError;
-    if (productData) return transformProductObject(productData)[0];
+    if (productData) return transformProductObject(productData)
   } catch (error) {
     console.log(error);
     return { error };

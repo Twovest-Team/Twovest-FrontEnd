@@ -54,10 +54,10 @@ export const CardCart = ({
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image
-              src={getStorageImage(data.offers.images[0].url)}
+              src={getStorageImage(data.offers.products.images[0].url)}
               width={115}
               height={115}
-              alt={data.offers.images[0].alt}
+              alt={data.offers.products.images[0].alt}
             />
 
             <div className="absolute top-0 right-0 min-[350px]:hidden">

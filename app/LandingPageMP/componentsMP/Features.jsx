@@ -5,15 +5,15 @@ import GaleriaImage from "../photosMP/galeria.png"
 import ColecaoImage from "../photosMP/colecao.png"
 
 
-export default function Functions () {
+export default function Features () {
     return (
-        <div className="pt-[50px]">
-            <div className="w-[388px] justify-center items-center inline-flex pb-[30px]">
-                <h4 className="w-[335px] text_h3 text-center">Funcionalidades Principais</h4>
+        <div id="mainFuncs" className="pt-[50px] flex flex-col items-center">
+            <div className="w-[388px] pl-[30px] justify-center items-center inline-flex pb-[30px]">
+                <h4 className="w-[335px] text_h3 text-center">Principais Funcionalidades</h4>
             </div>
-            <div className="w-[341.16px] h-[1810px] flex-col justify-start items-end gap-[30px] inline-flex">
+            <div className="w-[341.16px] h-[1810px] flex-col justify-center items-center gap-[30px] inline-flex">
                 <div className="items-center justify-center">
-                    <div className="p-4 shadow-md rounded-[20px] bg-green-200">
+                    <div className="p-4 shadow-md rounded-[20px] bg-green-200 justify-center">
                         <Image
                         src={CompraImage}
                         alt="Mobile phone screen with a shopping app and multiple products"

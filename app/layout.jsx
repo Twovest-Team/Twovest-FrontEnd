@@ -1,13 +1,13 @@
 import { Inter } from "next/font/google";
-import Footer from "@/components/sections/Footer";
+import Footer from "@/components/sections/FooterMP";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Navbar } from "@/components/navbar/Navbar";
+import { Navbar } from "@/components/navbar/NavbarMP";
 import StoreProvider from "../components/providers/StoreProvider";
 import GenderProvider from "@/components/providers/GenderProvider";
 import LastProductsSeen from "@/components/sections/LastProductsSeen";
 import { Cart } from "@/components/navbar/Cart";
-import { SideMenu } from "@/components/navbar/SideMenu";
+import { SideMenu } from "@/components/navbar/SideMenuMP";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 import { Suspense } from "react";

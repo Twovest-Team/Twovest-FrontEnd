@@ -7,10 +7,10 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
 
   return (
     <div>
-      <div className="border border-b border-grey mx-4 my-6"></div>
+      {/* <div className="border border-b border-grey mx-4 my-6"></div> */}
 
       <ul className="mx-4">
-        {gender && (
+        {/* {gender && (
           <li key={"SideMenu-GaleriaDeLooks"}>
             <Link
               onClick={toggleMenu}
@@ -28,8 +28,44 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               </div>
             </Link>
           </li>
-        )}
+        )} */}
         <li key={"SideMenu-PontosDeEntrega"}>
+          <Link
+            onClick={toggleMenu}
+            href={"/LandingPageMP#aboutUs"}
+            className="my-6 font-semibold flex justify-between"
+          >
+            <div>Quem Somos</div>
+            <div>
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+            </div>
+          </Link>
+        </li>
+        <li key={"SideMenu-PontosDeEntrega"}>
+          <Link
+            onClick={toggleMenu}
+            href={"/LandingPageMP#team"}
+            className="my-6 font-semibold flex justify-between"
+          >
+            <div>Equipa</div>
+            <div>
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+            </div>
+          </Link>
+        </li>
+        <li key={"SideMenu-PontosDeEntrega"}>
+          <Link
+            onClick={toggleMenu}
+            href={"/LandingPageMP#mainFuncs"}
+            className="my-6 font-semibold flex justify-between"
+          >
+            <div>Principais Funcionalidades</div>
+            <div>
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+            </div>
+          </Link>
+        </li>
+        {/* <li key={"SideMenu-PontosDeEntrega"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -40,8 +76,8 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
-        </li>
-        <li key={"Forum"}>
+        </li> */}
+        {/* <li key={"Forum"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -52,8 +88,8 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
-        </li>
-        <li key={"SideMenu-PontosECupoes"}>
+        </li> */}
+        {/* <li key={"SideMenu-PontosECupoes"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -64,8 +100,8 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
-        </li>
-        <li key={"SideMenu-Contactos"}>
+        </li> */}
+        {/* <li key={"SideMenu-Contactos"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -76,8 +112,8 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
-        </li>
-        <li key={"SideMenu-HelpCenter"}>
+        </li> */}
+        {/* <li key={"SideMenu-HelpCenter"}>
           <Link
             onClick={toggleMenu}
             href={"/"}
@@ -88,7 +124,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
               <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
             </div>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

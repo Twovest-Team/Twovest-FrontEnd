@@ -52,20 +52,20 @@ export const SideMenu = () => {
   return (
     <>
       {/* ---- Menu categorias ---- */}
-      <CategoriesMenu
+      {/* <CategoriesMenu
         idCategory={idCategory}
         categoryOpen={categoryOpen}
         handleClickCategory={handleClickCategory}
         handleClickMenu={handleClickMenu}
-      />
+      /> */}
 
       {/* ------ Menu lateral -------*/}
       <div
         className={`${isMenuOpen ? "hidden" : "block"}
-             bg-white z-[1000] h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
+             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex justify-between items-center border-b-grey border-b-2">
-          <div className="flex my-5 mx-4">
+        <div className="flex justify-end items-center border-b-grey border-b-2 py-[25px]">
+          {/* <div className="flex my-5 mx-4">
             {genders.map((object) => (
               <button
                 key={object.id}
@@ -79,7 +79,7 @@ export const SideMenu = () => {
                 {object.stringPT}
               </button>
             ))}
-          </div>
+          </div> */}
           <div className="flex mx-4">
             <div onClick={handleClickMenu} className="cursor-pointer">
               <CloseOutlinedIcon />
@@ -87,8 +87,8 @@ export const SideMenu = () => {
           </div>
         </div>
 
-        <div className="mx-4 my-4">
-          {currentUser == null && (
+        {/* <div className="mx-4 my-4"> */}
+          {/* {currentUser == null && (
             <Button
               href="/login"
               type={"black"}
@@ -96,15 +96,15 @@ export const SideMenu = () => {
               justify="between"
               width="full"
             >
-                <span> Fazer login ou registo</span>
-                <KeyboardArrowRightIcon
-                  className="translate-x-2"
-                  sx={{ fontSize: 28 }}
-                />
+              <span> Fazer login ou registo</span>
+              <KeyboardArrowRightIcon
+                className="translate-x-2"
+                sx={{ fontSize: 28 }}
+              />
             </Button>
-          )}
+          )} */}
 
-          <div className="mt-3 relative">
+          {/* <div className="mt-3 relative">
             <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
               <SearchIcon />
             </div>
@@ -113,10 +113,10 @@ export const SideMenu = () => {
               placeholder="Pesquisa"
               className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
             />
-          </div>
+          </div> */}
           {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
-          <ul className="menu_categories mt-4">
+          {/* <ul className="menu_categories mt-4">
             {general_categories.map((category) => (
               <li key={category.id}>
                 <div
@@ -170,12 +170,12 @@ export const SideMenu = () => {
                 </div>
               </Link>
             </li>
-          </ul>
-        </div>
+          </ul> */}
+        {/* </div> */}
 
         <PrimaryMenuPagesList toggleMenu={handleClickMenu} />
 
-        <SecondaryMenuPagesList toggleMenu={handleClickMenu} />
+        {/* <SecondaryMenuPagesList toggleMenu={handleClickMenu} /> */}
 
         <div className="mx-4">
           <LanguageButton textColor="black" />

@@ -1,5 +1,6 @@
 import AboutUs from "./componentsMP/AboutUs";
-import Functions from "./componentsMP/Functions";
+import Features from "./componentsMP/Features";
+import FeedbackSticky from "./componentsMP/FeedbackSticky";
 import Future from "./componentsMP/Future";
 import Header from "./componentsMP/Header";
 import Team from "./componentsMP/Team";
@@ -7,10 +8,11 @@ import Team from "./componentsMP/Team";
 export default function Landpage() {
     return (
         <div>
+            <FeedbackSticky />
             <Header />
             <AboutUs />
             <Team />
-            <Functions />
+            <Features />
             <Future />
         </div>
       );

@@ -26,6 +26,11 @@ body {
   /* Firefox */
 }
 
+select{
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* h1 {
   font-size: 47.78px;
 }

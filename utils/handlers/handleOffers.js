@@ -12,13 +12,6 @@ const sortOffers = (offers) => {
 
 const getBestOffers = (offers, limit) => {
     const bestOffers = [];
-    // let limit;
-
-    // if (offers.length >= 2) {
-    //     limit = 2;
-    // } else {
-    //     limit = offers.length;
-    // }
 
     for (let i = 0; i < limit; i++) {
         if (offers[i]) bestOffers.push(offers[i]);
@@ -27,7 +20,24 @@ const getBestOffers = (offers, limit) => {
     return bestOffers;
 };
 
+const filterOffers = (offers, color, size) => {
+    return offers.filter((offer) => {
+        if (color && size) {
+            return (
+                offer.colors.name === color &&
+                offer.sizes.size === size
+            );
+        } else if (color) {
+            return offer.colors.name === color;
+        } else if (size) {
+            return offer.sizes.size === size;
+        }
+        return true;
+    });
+}
+
 export {
     sortOffers,
-    getBestOffers
+    getBestOffers,
+    filterOffers,
 }

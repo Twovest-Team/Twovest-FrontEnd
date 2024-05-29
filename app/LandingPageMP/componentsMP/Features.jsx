@@ -8,7 +8,7 @@ import ColecaoImage from "../photosMP/colecao.png"
 export default function Features () {
     return (
         <div id="mainFuncs" className="pt-[50px] flex flex-col items-center">
-            <div className="w-[388px] pl-[30px] justify-center items-center inline-flex pb-[30px]">
+            <div className="w-[388px] justify-center items-center inline-flex pb-[30px]">
                 <h4 className="w-[335px] text_h3 text-center">Principais Funcionalidades</h4>
             </div>
             <div className="w-[341.16px] h-[1810px] flex-col justify-center items-center gap-[30px] inline-flex">

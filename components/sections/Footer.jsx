@@ -70,7 +70,7 @@ export default function Footer() {
         <div>
           <LanguageButton />
         </div>
-        <p className="caption">&#169; 2023 Twovest</p>
+        <p className="caption">&#169; 2024 Twovest</p>
       </div>
       <div className="bg-white py-3.5 mt-5">
         <PaymentLogos />

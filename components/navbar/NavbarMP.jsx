@@ -72,13 +72,7 @@ export const Navbar = ({ children }) => {
               alt="Logo Twovest"
               className="navbar_logo-sm img-hover"
             ></Image>
-            <style>{`
-            .img-hover:hover {
-              box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
-              transform: scale(1.1);
-              opacity: 100;
-            }
-            `}</style>
+            
           </Link>
         </div>
 

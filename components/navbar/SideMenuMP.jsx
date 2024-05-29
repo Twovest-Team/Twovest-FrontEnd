@@ -62,9 +62,9 @@ export const SideMenu = () => {
       {/* ------ Menu lateral -------*/}
       <div
         className={`${isMenuOpen ? "hidden" : "block"}
-             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
+             bg-white z-30 h-full w-screen min-w-[280px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex justify-end items-center border-b-grey border-b-2 py-[25px]">
+        <div className="flex justify-end items-center py-[25px]">
           {/* <div className="flex my-5 mx-4">
             {genders.map((object) => (
               <button
@@ -177,9 +177,9 @@ export const SideMenu = () => {
 
         {/* <SecondaryMenuPagesList toggleMenu={handleClickMenu} /> */}
 
-        <div className="mx-4">
+        {/* <div className="mx-4">
           <LanguageButton textColor="black" />
-        </div>
+        </div> */}
 
         <SocialMediaLogos_black />
       </div>

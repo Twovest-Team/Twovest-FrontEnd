@@ -1,7 +1,7 @@
 export default function FeedbackSticky () {
     return(
-        <div className="z-30 top-[75px] w-full h-[72px] px-[22px] sticky py-[17px] bg-black flex-col justify-center items-start gap-2.5 inline-flex">
-        <div className="w-[346px]">
+        <div className="z-30 top-[75px] w-full flex justify-center min-h-[72px] px-[22px] sticky py-[17px] bg-black flex-col items-start gap-2.5">
+        <div className="max-w-[346px] mx-auto">
             <p className="text-white leading-5 text-sm font-semibold">
                 Gostarias de dar feedback? 🤓 São apenas uns minutos e nós agradecemos!  
                 <a 

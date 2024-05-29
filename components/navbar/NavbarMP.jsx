@@ -46,7 +46,7 @@ export const Navbar = ({ children }) => {
   }
 
   return (
-    <nav className="z-50 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px] px-4">
+    <nav className="z-50 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
         {/* NAVBAR LEFT SECTION */}
         <div className="flex gap-4 -translate-x-3">

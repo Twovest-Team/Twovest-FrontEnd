@@ -7,13 +7,13 @@ import Team from "./componentsMP/Team";
 
 export default function Landpage() {
     return (
-        <div>
+        <>
             <FeedbackSticky />
             <Header />
             <AboutUs />
             <Team />
             <Features />
             <Future />
-        </div>
+        </>
       );
 } 

@@ -6,7 +6,7 @@ import PhonesImage from "../photosMP/phones.png"
 export default function Future () {
     return(
         <div className="flex-col items-end inline-flex pt-[40px] justify-center relative">
-            <div className="absolute top-0 rotate-[20deg]">
+            <div className="absolute top-0 right-5">
                 <Image
                 src={HighlightImage}
                 alt="Highlight image"

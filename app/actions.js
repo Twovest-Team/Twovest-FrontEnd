@@ -10,7 +10,9 @@ export default async function teste(
   selectedOffersIds,
   selectedStyleIds,
   gender,
-  formData
+  formData,
+  lookImageAlt, 
+  lookImageURL
   /* selectedImage */
 ) {
 
@@ -62,6 +64,8 @@ export default async function teste(
       id_products: selectedProductIds,
       id_offers: selectedOffersIds,
       gender: gender.id,
+      image_alt: lookImageAlt,
+      instagram_url: lookImageURL
     });
 
     if (error) {

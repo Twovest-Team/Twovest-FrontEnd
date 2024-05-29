@@ -4,9 +4,10 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import getAuth from "@/utils/db/auth/getAuth";
 import getUserOrders from "@/utils/db/getUserOrders";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import getStorageImage from "@/utils/getStorageImage";
 
 
 export const UsedProductsSubmitLook = ({ onDataFilled }) => {
@@ -19,6 +20,7 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
             const currentUser = await getAuth();
             const ordersData = await getUserOrders(currentUser.id);
             setProducts(ordersData);
+            console.log(products)
         };
         purchasedProducts();
     }, []);
@@ -43,12 +45,11 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
         setSelectedOffersId(newSelectedOffersId);
         setSelectedProductIds(newSelectedProductsId);
 
-        // Pass both selected product IDs and offer IDs to parent
+       
         onDataFilled(newSelectedProductsId, newSelectedOffersId);
     };
 
-    //console.log(products); 
-
+    console.log(products);
     return (
         <div className="mb-4">
             <Accordion className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mb-6">
@@ -61,13 +62,13 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     {products && products.map(order => (
-                        order.offers.map(offer => (
-                            offer.offerDetails.map(offerDetail => (
+                        order.offers && order.offers.map(offer => (
+                            offer.offerDetails && offer.offerDetails.map(offerDetail => (
                                 <article key={offerDetail.id} className="my-5">
                                     <div className="flex self-center items-center w-full">
                                         <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
                                             <Image
-                                                src={`http://127.0.0.1:54321/storage/v1/object/public${offerDetail.products.images[0].url}`}
+                                                src={getStorageImage(offerDetail.products.images[0].url)} 
                                                 width={115}
                                                 height={115}
                                                 alt={offerDetail.products.name}

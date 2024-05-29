@@ -24,7 +24,7 @@ export default function Future () {
                         Mas com a colaboração de todos. Prontos para dar o próximo passo?
                     </div>
             </div>
-            <div className="justify-center pr-[30px]">
+            <div className="flex w-full justify-center container">
                 <Image
                 src={PhonesImage}
                 alt="Mobile phone screen with a shopping app and multiple products"

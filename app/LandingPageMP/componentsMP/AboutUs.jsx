@@ -62,7 +62,7 @@ export default function AboutUs() {
           text="Imaginamos um futuro onde as maiores marcas de roupa participam ativamente para promover a sustentabilidade num mercado circular."
         />
       </div>
-      <div className="px-[73.35px]">
+      <div className="container flex justify-center my-10">
         <Image
           src={PhoneImage}
           alt="PhoneImage"

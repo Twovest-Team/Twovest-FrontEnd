@@ -11,7 +11,7 @@ export default function Features () {
             <div className="w-[388px] justify-center items-center inline-flex pb-[30px]">
                 <h4 className="w-[335px] text_h3 text-center">Principais Funcionalidades</h4>
             </div>
-            <div className="w-[341.16px] h-[1810px] flex-col justify-center items-center gap-[30px] inline-flex">
+            <div className="h-[1810px] flex-col justify-center items-center gap-[30px] inline-flex">
                 <div className="items-center justify-center">
                     <div className="p-4 shadow-md rounded-[20px] bg-green-200 justify-center">
                         <Image

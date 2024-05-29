@@ -22,6 +22,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoBlack from "./logo_twovest_black.svg"
 
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
@@ -57,7 +58,7 @@ export const Navbar = ({ children }) => {
 
           <Link href={"/"} className="items-center flex">
             <Image
-              src={"/static/images/logo_twovest_black.svg"}
+              src={LogoBlack}
               width={105}
               height={24}
               alt="Logo Twovest"
@@ -65,7 +66,7 @@ export const Navbar = ({ children }) => {
             ></Image>
 
             <Image
-              src={"/static/images/logo_twovest_black.svg"}
+              src={LogoBlack}
               width={130}
               height={24}
               alt="Logo Twovest"

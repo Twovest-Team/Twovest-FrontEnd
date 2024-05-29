@@ -4,12 +4,13 @@ import SocialMediaLogos from "../logos/SocialMediaLogos";
 // import PaymentLogos from "../logos/PaymentLogos";
 import LanguageButton from "../buttons/LanguageButton";
 import UaLogo from "@/app/LandingPageMP/photosMP/uaLogo.png";
+import LogoWhite from './logo_twovest_white.svg';
 
 export default function Footer() {
     return (
         <footer className="bg-dark">
             <div className="flex justify-center pt-6 pb-10">
-                <Image src={'/static/images/logo_twovest_white.svg'} width={150} height={200} alt="Logótipo Branco da Twovest" />
+                <Image src={LogoWhite} width={150} height={200} alt="Logótipo Branco da Twovest" />
             </div>
             <div className="grid grid-cols-1 pb-10">
                 <div className="items-center text-white text-center">

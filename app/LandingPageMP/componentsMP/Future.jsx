@@ -5,8 +5,8 @@ import PhonesImage from "../photosMP/phones.png"
 
 export default function Future () {
     return(
-        <div className="flex-col items-end inline-flex pt-[40px] justify-center">
-            <div className="rotate-[20deg] pr-[30px]">
+        <div className="flex-col items-end inline-flex pt-[40px] justify-center relative">
+            <div className="absolute top-0 rotate-[20deg]">
                 <Image
                 src={HighlightImage}
                 alt="Highlight image"
@@ -14,7 +14,7 @@ export default function Future () {
                 height={73.43}
                 />
             </div>
-            <div className="pl-[30px] pr-[30px] pb-[50px] pt-0 flex-col justify-center items-center gap-[30px] inline-flex">
+            <div className="container pb-[50px] pt-4 flex-col justify-center items-center gap-[30px] inline-flex">
                 <div className="text-center text_h3">
                     Vamos construir o futuro do comércio de vestuário
                     </div>
@@ -24,7 +24,7 @@ export default function Future () {
                         Mas com a colaboração de todos. Prontos para dar o próximo passo?
                     </div>
             </div>
-            <div className="flex w-full justify-center container">
+            <div className="flex w-full justify-center relative">
                 <Image
                 src={PhonesImage}
                 alt="Mobile phone screen with a shopping app and multiple products"

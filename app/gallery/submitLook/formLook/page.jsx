@@ -76,7 +76,7 @@ const FormLook = () => {
     formData.append("file", selectedImage);
 
     try {
-      console.log(lookImageAlt, lookImageURL)
+      console.log(selectedOffersIds, selectedProductIds)
       await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, formData, lookImageAlt, lookImageURL);
     } catch (error) {
       console.error("Error handling the image:", error);

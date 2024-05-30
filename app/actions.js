@@ -11,8 +11,8 @@ export default async function teste(
   selectedStyleIds,
   gender,
   formData,
-  lookImageAlt, 
-  lookImageURL
+  image_alt, 
+  instagram_url
   /* selectedImage */
 ) {
 
@@ -56,6 +56,7 @@ export default async function teste(
       )
     }  */
 
+    console.log( image_alt, instagram_url)
     
     const { data, error } = await supabase.rpc("insert_look_and_relations", {
       url_image: "/"+uploadedImage.fullPath,
@@ -64,8 +65,8 @@ export default async function teste(
       id_products: selectedProductIds,
       id_offers: selectedOffersIds,
       gender: gender.id,
-      image_alt: lookImageAlt,
-      instagram_url: lookImageURL
+      image_alt: image_alt,
+      instagram_url: instagram_url
     });
 
     if (error) {

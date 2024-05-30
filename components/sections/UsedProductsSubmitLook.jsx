@@ -4,7 +4,6 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import getAuth from "@/utils/db/auth/getAuth";
 import getUserOrders from "@/utils/db/getUserOrders";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import getStorageImage from "@/utils/getStorageImage";
@@ -20,14 +19,13 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
             const currentUser = await getAuth();
             const ordersData = await getUserOrders(currentUser.id);
             setProducts(ordersData);
-            console.log(products)
         };
         purchasedProducts();
     }, []);
 
     const toggleOfferSelection = (offerDetail) => {
-        const offerId = offerDetail.id;
-        const productId = offerDetail.products.id;
+        const offerId = offerDetail.offers.id;
+        const productId = offerDetail.offers.products.id;
 
         let newSelectedOffersId = [...selectedOffersId];
         let newSelectedProductsId = [...selectedProductsId];
@@ -44,12 +42,11 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
 
         setSelectedOffersId(newSelectedOffersId);
         setSelectedProductIds(newSelectedProductsId);
+        console.log(selectedOffersId, selectedProductsId);
 
-       
         onDataFilled(newSelectedProductsId, newSelectedOffersId);
     };
 
-    console.log(products);
     return (
         <div className="mb-4">
             <Accordion className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mb-6">
@@ -62,45 +59,43 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     {products && products.map(order => (
-                        order.offers && order.offers.map(offer => (
-                            offer.offerDetails && offer.offerDetails.map(offerDetail => (
-                                <article key={offerDetail.id} className="my-5">
-                                    <div className="flex self-center items-center w-full">
-                                        <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
-                                            <Image
-                                                src={getStorageImage(offerDetail.products.images[0].url)} 
-                                                width={115}
-                                                height={115}
-                                                alt={offerDetail.products.name}
-                                            />
-                                        </figure>
-                                        <div className="min-h-[115px] flex justify-between flex-grow min-w-0">
-                                            <div className="ml-4 flex flex-col font-semibold justify-between min-w-0 flex-grow ">
-                                                <div className="flex flex-col gap-1">
-                                                    <div className="flex justify-between gap-2 items-center">
-                                                        <p className="truncate">{offerDetail.products.name}</p>
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={selectedOffersId.includes(offerDetail.id)}
-                                                            onChange={() => toggleOfferSelection(offerDetail)}
-                                                            className="form-checkbox h-5 w-5 text-green-500"
-                                                        />
-                                                    </div>
-                                                    <p className={`caption text-primary_main `}>{offerDetail.conditions.name}</p>
-                                                    <p className="text-secondary font-normal caption">
-                                                        Tamanho: {offerDetail.sizes.size}
-                                                    </p>
+                        order.purchases_has_offers && order.purchases_has_offers.map(offer => (
+                            <article key={offer.offers.id} className="my-5">
+                                <div className="flex self-center items-center w-full">
+                                    <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
+                                        <Image
+                                            src={offer.offers.products.products_has_images[0].url}
+                                            width={115}
+                                            height={115}
+                                            alt={offer.offers.products.name}
+                                        />
+                                    </figure>
+                                    <div className="min-h-[115px] flex justify-between flex-grow min-w-0">
+                                        <div className="ml-4 flex flex-col font-semibold justify-between min-w-0 flex-grow ">
+                                            <div className="flex flex-col gap-1">
+                                                <div className="flex justify-between gap-2 items-center">
+                                                    <p className="truncate">{offer.offers.products.name}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedOffersId.includes(offer.offers.id)}
+                                                        onChange={() => toggleOfferSelection(offer)}
+                                                        className="form-checkbox h-5 w-5 text-green-500"
+                                                    />
                                                 </div>
-                                                <div className="flex justify-between">
-                                                    <p className="h-8 flex items-center">
-                                                        {offerDetail.products.brands.name}
-                                                    </p>
-                                                </div>
+                                                <p className={`caption text-primary_main `}>{offer.offers.conditions.name}</p>
+                                                <p className="text-secondary font-normal caption">
+                                                    Tamanho: {offer.offers.sizes.size}
+                                                </p>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <p className="h-8 flex items-center">
+                                                    {offer.offers.products.brands.name}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </article>
-                            ))
+                                </div>
+                            </article>
                         ))
                     ))}
                 </AccordionDetails>

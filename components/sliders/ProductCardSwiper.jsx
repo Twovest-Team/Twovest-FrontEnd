@@ -14,8 +14,8 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
     const swiperRef = useRef()
 
     const renderSlides = () => {
-        return productImages.map(image => (
-            <swiper-slide>
+        return productImages.map((image, index) => (
+            <swiper-slide key={index}>
                 <Link className='w-full h-full' href={`/product/${genderObj.string}/${id}`}>
                     <Image
                         src={getStorageImage(image.url)}

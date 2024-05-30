@@ -7,6 +7,7 @@ import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
 import { getCategory } from "@/utils/handlers/handleCategories";
 import Button from "../buttons/Button";
+import ProductCardSwiper from "../sliders/ProductCardSwiper";
 
 // Gender prop can be either string or num
 const ProductCard = ({ product, slider, gender, alignPrice }) => {
@@ -30,7 +31,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     if (discount <= 0) return null
     return (
       <Link href={`/product/${genderObj.string})}/${id}`}>
-        <div className="h-11 bg-primary_main absolute bottom-5 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0">
+        <div className="h-11 z-10 bg-primary_main absolute bottom-5 group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0">
           <SellIcon sx={{ fontSize: 20 }} />
           {discount}% OFF
         </div>
@@ -61,46 +62,46 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     </div>
   )
 
+  const renderOffersBtn = () => (
+    <div className="bg-white p-3 z-10 absolute -bottom-12 group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
+      <Button className='opacity-0 caption group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='full' height={10}>
+        Ver ofertas
+      </Button>
+    </div>
+  )
+
+  const renderBrand = () => (
+    <Link className="border z-10 border-white hover:border-grey transition-all duration-200 rounded-full" href={`/brands/${genderObj.string}/${brandName}`}>
+      <Image
+        src={getStorageImage(brandImageUrl)}
+        width={25}
+        height={25}
+        alt={brandName}
+        className="rounded-full shadow-lg"
+      />
+    </Link>
+  )
+
   return (
     <article
       className={`w-full group ${slider ? "max-w-[160px]" : ''}
         } flex-5 mb-2`}
     >
-      <div className="w-full rounded border-grey group-hover:shadow-lg group-hover:shadow-gray-100 transition-all duration-200 border aspect-[3/4] relative flex justify-center items-center">
-        <Link href={`/product/${genderObj.string}/${product.id}`}>
-          <Image
-            src={getStorageImage(productImages[0].url)}
-            alt={productImages[0].alt}
-            className="object-cover scale-90"
-            fill={true}
-          />
-        </Link>
+
+{/* w-full rounded border-grey group-hover:shadow-lg group-hover:shadow-gray-100 transition-all duration-200 border aspect-[3/4] flex relative justify-center items-center */}
+
+      <div className="rounded border-grey border aspect-[3/4] relative group-hover:shadow-lg group.hover:shadow-gray-100 overflow-hidden transition-all duration-200">
+        <ProductCardSwiper genderObj={genderObj} id={id} productImages={productImages} />
+
 
         <div className="absolute top-2.5 px-4 w-full flex items-center justify-between">
-          <div className="flex gap-3 items-center">
-            <Link href={`/brands/${genderObj.string}/${brandName}`}>
-              <Image
-                src={getStorageImage(brandImageUrl)}
-                width={25}
-                height={25}
-                alt={brandName}
-                className="rounded-full shadow-lg"
-              />
-            </Link>
-          </div>
-
+          {renderBrand()}
           {renderSustainability()}
         </div>
 
         {renderDiscount()}
+        {renderOffersBtn()}
 
-        <div className="absolute bottom-0 left-0 right-0 w-full">
-
-          <Button type={'black'} ariaLabel='WRITE HERE' width='full' height={12} radius="b">
-            Ver ofertas
-          </Button>
-
-        </div>
       </div>
 
       {renderProductInfo()}

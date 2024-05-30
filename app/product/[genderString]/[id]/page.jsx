@@ -11,7 +11,7 @@ import ProductSkeleton from "@/components/loaders/Product";
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 import getStorageImage from "@/utils/getStorageImage";
-import ProductSwiper from "@/components/sliders/ProductSwiper";
+import ProductPageSwiper from "@/components/sliders/ProductPageSwiper";
 import Modal from "@/components/modals/Modal";
 import ProductOfferCard from "@/components/cards/ProductOfferCard";
 import { sortOffers } from "@/utils/handlers/handleOffers";
@@ -75,7 +75,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
     return (
       <section className="flex flex-col h-dvh relative lg:hidden mb-5 min-h-[600px]">
         <div className="flex-grow flex flex-col justify-end min-h-[600px] relative">
-          <ProductSwiper images={data.products_has_images} />
+          <ProductPageSwiper images={data.products_has_images} />
           <div className="relative">
             {renderBtnOptions()}
 

@@ -42,7 +42,7 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
 
         setSelectedOffersId(newSelectedOffersId);
         setSelectedProductIds(newSelectedProductsId);
-        console.log(selectedOffersId, selectedProductsId);
+        //console.log(selectedOffersId, selectedProductsId);
 
         onDataFilled(newSelectedProductsId, newSelectedOffersId);
     };

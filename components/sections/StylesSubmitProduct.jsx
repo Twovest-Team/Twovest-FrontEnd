@@ -26,7 +26,7 @@ export const StylesSubmitLook = ({ onDataFilled }) => {
         if (selectedStyles.length < 2) {
           setSelectedStyles([...selectedStyles, styleId]);
         } else {
-          console.log("Você pode selecionar no máximo 2 estilos.");
+          //console.log("Você pode selecionar no máximo 2 estilos.");
         }
       }
       onDataFilled(selectedStyles); // Corrigido para passar selectedStyles

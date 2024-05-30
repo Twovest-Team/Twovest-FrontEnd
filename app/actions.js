@@ -1,8 +1,8 @@
 "use server";
 
 import supabase from "@/utils/db/clients/admin/supabase";
-
-
+import { NextResponse } from "next/server";
+import { redirect } from 'next/navigation'
 
 export default async function teste(
   userId,
@@ -13,10 +13,9 @@ export default async function teste(
   formData,
   image_alt, 
   instagram_url
-  /* selectedImage */
+
 ) {
 
-  //console.log('formData', formData)
   
 
   const imageUploaded = formData.get("file")
@@ -39,24 +38,8 @@ export default async function teste(
     if (uploadError) {
       console.error("Error uploading image:", uploadError.message);
       return;
-    }/* else{
-      console.log(
-        "User:",
-        userId,
-        "Products:",
-        selectedProductIds,
-        "Offers:",
-        selectedOffersIds,
-        "Styles:",
-        selectedStyleIds,
-        "Gender:",
-        gender.id,
-        "Image:",
-        uploadedImage.fullPath
-      )
-    }  */
-
-    console.log( image_alt, instagram_url)
+    }
+   
     
     const { data, error } = await supabase.rpc("insert_look_and_relations", {
       url_image: "/"+uploadedImage.fullPath,
@@ -72,9 +55,10 @@ export default async function teste(
     if (error) {
       console.error("Error inserting look data:", error);
       return;
+    }else{
+      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender.string}`);
     }
 
-    //console.log("Look submitted successfully:", data);
   }
 
 

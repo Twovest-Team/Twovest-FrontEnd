@@ -1,7 +1,7 @@
 "use client";
 
 import ContentSlider from "../sliders/ContentSlider";
-import CardProduct from "../cards/CardProduct";
+import ProductCard from "../cards/ProductCard";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import getUserHistory from "@/utils/db/productsViewHistory/getUserHistory";
@@ -35,7 +35,7 @@ const LastProductsSeen = () => {
         <ContentSlider>
           {currentUserHistory.map((element) => (
             <li key={element.products.id}>
-            <CardProduct
+            <ProductCard
               key={element.products.id}
               product={element.products}
               gender={element.products.gender}

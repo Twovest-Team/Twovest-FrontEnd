@@ -14,7 +14,7 @@ import IconButton from "../buttons/icons/IconButton";
 
 const GridViews = () => {
   const { width, isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow();
-  const biggerThan350 = width > 530; // Custom value needed only for this use case
+  let customValue = 450 // Establishes the minimum window width size able to show view options on the UI
 
   const dispatch = useAppDispatch();
 
@@ -23,13 +23,13 @@ const GridViews = () => {
   }
 
   useEffect(() => {
-    if (width && !biggerThan350) handleViewChange(1);
-    if (isMd) handleViewChange(2);
+    if (width <= customValue) handleViewChange(1);
+    if ((width > customValue || isSm || isMd) && width < 1024) handleViewChange(2);
     if (isLg) handleViewChange(3);
     if (isXl || is2Xl) handleViewChange(4);
   }, [width, isSm, isMd, isMd, isLg, isXl, is2Xl]);
 
-  if (width && biggerThan350) {
+  if (width && width > customValue) {
     return (
       <div
         className={`items-center justify-between text-secondary w-fit flex gap-x-3`}

@@ -2,7 +2,7 @@ import NavigationTitle from "@/components/providers/NavigationTitle";
 import getOrderById from "@/utils/db/getOrderById";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import ContentSlider from "@/components/sliders/ContentSlider";
-import CardProduct from "@/components/cards/CardProduct";
+import ProductCard from "@/components/cards/ProductCard";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import { Fragment } from "react";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
@@ -114,7 +114,7 @@ export default async function Order({ params }) {
               {orderData.offers.map((element) => (
                 <li key={element.id}>
                   <Fragment key={element.products.id}>
-                    <CardProduct
+                    <ProductCard
                       key={element.products.id}
                       product={element.products}
                       gender={element.products.gender}

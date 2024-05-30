@@ -2,7 +2,7 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
-import CardProduct from "@/components/cards/CardProduct";
+import ProductCard from "@/components/cards/ProductCard";
 import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loaders/Products";
@@ -75,7 +75,7 @@ async function ProductList({ brandName, gender }) {
       {data && data.length > 0 ? (
         <GridBox loader={<ProductsSkeleton />}>
           {data.map((element) => (
-            <CardProduct
+            <ProductCard
               slider={false}
               key={element.id}
               product={element}

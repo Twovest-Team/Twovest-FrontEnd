@@ -36,8 +36,14 @@ const filterOffers = (offers, color, size) => {
     });
 }
 
+const getBestOffer = (offers) => {
+    const sortedOffers = sortOffers(offers)
+    return sortedOffers[0]
+}
+
 export {
     sortOffers,
     getBestOffers,
     filterOffers,
+    getBestOffer
 }

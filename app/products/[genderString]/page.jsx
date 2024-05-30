@@ -23,7 +23,7 @@ export default async function Products({ searchParams, params }) {
       (object) => object.plural === category
     ).id;
     return (
-      <main>
+      <main className="container">
         <NavigationTitle titleText={category}>
           <span className="min-[350px]:hidden">
             <FilterButton />

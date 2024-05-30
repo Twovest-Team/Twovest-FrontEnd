@@ -72,6 +72,21 @@ export default async function getUserOrders(id_user) {
       });
     }
 
+    function transformUserOrdersObject(ordersArray) {
+      return ordersArray.map((order) => {
+        const coupons = order.purchases_has_coupons.map((item) => item.coupons);
+        const offers = order.purchases_has_offers.map((item) => item.offers);
+
+        const { purchases_has_coupons, purchases_has_offers, ...rest } = order;
+
+        return {
+          ...rest,
+          coupons,
+          offers,
+        };
+      });
+    }
+
     if (ordersError) throw ordersError;
     return ordersData;
     if (ordersData) return transformUserOrdersObject(ordersData);

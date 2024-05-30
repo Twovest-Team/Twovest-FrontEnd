@@ -196,7 +196,7 @@ export default function CollectionPreview({ collection, lookId }) {
       <>
         {privacy == 2 && !lookId && (
           <div className="ml-auto">
-            <ShareButton />
+            <ShareButton type="normal" />
           </div>
         )}
 

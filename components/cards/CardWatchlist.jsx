@@ -21,7 +21,7 @@ export default function CardWatchlist() {
         </div>
       </div>
       <div className="ml-auto flex flex-row gap-2 pb-5">
-        <ShareButton />
+        <ShareButton type="normal" />
         <DeleteButton />
       </div>
     </div>

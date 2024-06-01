@@ -30,14 +30,13 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
   const genderObj = getGender(gender);
 
   const renderDiscount = () => {
+    //todo Abrir a modal com as condições da promoção.
     if (discount <= 0) return null
     return (
-      <Link href={`/product/${genderObj.string})}/${id}`}>
-        <div className="h-10 z-10 bg-primary_main absolute bottom-5 lg:group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
-          <SellIcon sx={{ fontSize: 20 }} />
-          {discount}% OFF
-        </div>
-      </Link>
+      <div className="h-10 cursor-pointer z-10 bg-primary_main absolute bottom-5 lg:group-hover:-translate-y-12 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
+        <SellIcon sx={{ fontSize: 20 }} />
+        {discount}% OFF
+      </div>
     )
   }
 
@@ -67,7 +66,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
   )
 
   const renderOffersBtn = () => (
-    <div className="bg-white p-3 z-10 absolute -bottom-12 lg:group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
+    <div className="bg-white bg-opacity-60 backdrop-blur p-3 z-10 absolute -bottom-12 lg:group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
       <Button className='opacity-0 caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='full' height={10}>
         Ver ofertas ({offers?.length})
       </Button>

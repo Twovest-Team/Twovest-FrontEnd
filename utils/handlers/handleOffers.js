@@ -1,14 +1,15 @@
 const sortOffers = (offers) => {
-    return offers.sort((a, b) => {
+    const offersCopy = [...offers];
+    return offersCopy.sort((a, b) => {
         // First, sort by condition
         if (a.conditions.id !== b.conditions.id) {
             return a.conditions.id - b.conditions.id;
         }
-
-        // If conditions are the same, then sort by price
+        // If conditions are the same, sort by price
         return a.price - b.price;
     });
 };
+
 
 const getBestOffers = (offers, limit) => {
     const bestOffers = [];

@@ -34,6 +34,7 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
 
                     .swiper-button-disabled{
                         opacity: 0.5 !important;
+                        pointer-events: auto !important;
                     }
 
                     .swiper-button-lock{
@@ -49,7 +50,7 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
                         color: black;
                         background-color: #f0f0f0;
                         background-repeat: no-repeat;
-                        background-position: center;
+                        background-size: 10px;
                     }
 
                     .swiper-button-next svg,
@@ -62,6 +63,7 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
                         left: -43px;
                         border-radius: 0 100px 100px 0;
                         background-image: url("/static/images/icons/arrowLeft.svg");
+                        background-position: 15px;
                     }
 
                     .swiper-button-next{
@@ -69,6 +71,7 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
                         right: -43px;
                         border-radius: 100px 0 0 100px;
                         background-image: url("/static/images/icons/arrowRight.svg");
+                        background-position: 20px;
                     }
                 `
             ]
@@ -78,6 +81,14 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
 
         swiperEl.initialize()
     }, [])
+
+    const renderContainer = () => {
+        return (
+            <swiper-container ref={swiperRef} init='false'>
+                {renderSlides()}
+            </swiper-container>
+        )
+    }
 
     const renderSlides = () => {
         return productImages.map((image, index) => (
@@ -94,12 +105,9 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
         ))
     }
 
-
     return (
-        <div className='w-full  h-full productCardSwiper'>
-            <swiper-container ref={swiperRef} init='false'>
-                {renderSlides()}
-            </swiper-container>
+        <div className='w-full h-full productCardSwiper'>
+            {renderContainer()}
         </div>
 
     )

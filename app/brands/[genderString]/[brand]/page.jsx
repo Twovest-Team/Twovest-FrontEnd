@@ -50,7 +50,7 @@ export default async function Brand({ params }) {
       </div>
 
 
-      <div className="container flex justify-between h-7 max-[350px]:hidden mt-6 mb-6">
+      <div className="container flex justify-between h-7 max-[390px]:hidden mt-6 mb-6">
         <GridViews />
         <FilterButton />
       </div>

@@ -8,6 +8,7 @@ import getStorageImage from "@/utils/getStorageImage";
 import { getCategory } from "@/utils/handlers/handleCategories";
 import Button from "../buttons/Button";
 import ProductCardSwiper from "../sliders/ProductCardSwiper";
+import FavoriteButton from "@/components/buttons/icons/FavoriteButton";
 
 // Gender prop can be either string or num
 const ProductCard = ({ product, slider, gender, alignPrice }) => {
@@ -32,7 +33,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     if (discount <= 0) return null
     return (
       <Link href={`/product/${genderObj.string})}/${id}`}>
-        <div className="h-10 z-10 bg-primary_main absolute bottom-5 group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
+        <div className="h-10 z-10 bg-primary_main absolute bottom-5 lg:group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
           <SellIcon sx={{ fontSize: 20 }} />
           {discount}% OFF
         </div>
@@ -66,15 +67,15 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
   )
 
   const renderOffersBtn = () => (
-    <div className="bg-white p-3 z-10 absolute -bottom-12 group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
-      <Button className='opacity-0 caption group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='full' height={10}>
-        Ver ofertas
+    <div className="bg-white p-3 z-10 absolute -bottom-12 lg:group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
+      <Button className='opacity-0 caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='full' height={10}>
+        Ver ofertas ({offers?.length})
       </Button>
     </div>
   )
 
   const renderBrand = () => (
-    <Link className="border z-10 border-white hover:border-grey transition-all duration-200 rounded-full" href={`/brands/${genderObj.string}/${brandName}`}>
+    <Link className="border border-white hover:border-grey transition-all duration-200 rounded-full" href={`/brands/${genderObj.string}/${brandName}`}>
       <Image
         src={getStorageImage(brandImageUrl)}
         width={25}
@@ -85,21 +86,49 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     </Link>
   )
 
+  const renderFavorite = () => (
+    <div className="translate-x-1.5 hidden md:block">
+      <FavoriteButton type='normal' />
+    </div>
+  )
+
+  const renderSwiper = () => (
+    <ProductCardSwiper genderObj={genderObj} id={id} productImages={productImages} />
+  )
+
+  const renderImage = () => (
+    <Link className='w-full h-full' href={`/product/${genderObj.string}/${id}`}>
+      <Image
+        src={getStorageImage(productImages[0].url)}
+        alt={productImages[0].alt}
+        className="object-cover scale-90"
+        fill={true}
+      />
+    </Link>
+  )
+
   return (
     <article
-      className={`w-full group ${slider ? "max-w-[160px]" : ''}
-        } flex-5 mb-2`}
+      className={`w-full ${slider ? "w-40 sm:w-48 md:w-56 lg:w-64 xl:w-70" : ''} flex-5 mb-2`}
     >
 
-      {/* w-full rounded border-grey group-hover:shadow-lg group-hover:shadow-gray-100 transition-all duration-200 border aspect-[3/4] flex relative justify-center items-center */}
+      <div className="rounded group border-grey border aspect-[3/4] relative hover:shadow-lg hover:shadow-gray-100 overflow-hidden transition-all duration-200">
 
-      <div className="rounded border-grey border aspect-[3/4] relative group-hover:shadow-lg group.hover:shadow-gray-100 overflow-hidden transition-all duration-200">
-        <ProductCardSwiper genderObj={genderObj} id={id} productImages={productImages} />
+        <div className="w-full h-full hidden lg:block">
+          {renderSwiper()}
+        </div>
 
+        <div className="w-full h-full lg:hidden">
+          {renderImage()}
+        </div>
 
-        <div className="absolute top-2.5 px-4 w-full flex items-center justify-between">
+        <div className="absolute top-2 md:top-2.5 px-2 md:px-4 w-full flex items-center justify-between z-10">
           {renderBrand()}
-          {renderSustainability()}
+          <div className="flex">
+            {renderSustainability()}
+            {renderFavorite()}
+          </div>
+
         </div>
 
         {renderDiscount()}

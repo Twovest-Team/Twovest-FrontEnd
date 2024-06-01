@@ -39,12 +39,6 @@ const FavoriteButton = ({ type }) => {
   return (
     <>
       {renderButton()}
-
-      <Notification
-        id={"favoriteButton"}
-        type={"Neutral"}
-        message={"Adicionado aos favoritos"}
-      />
     </>
   );
 };

@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react"
 import { useAppSelector } from '@/redux/hooks';
 
-
 const GridBox = ({ children, loader, fixed }) => {
 
-
-    const [cols, setCols] = useState('max-[350px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4');
+    const [cols, setCols] = useState(`max-[390px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`);
     const currentView = useAppSelector(state => state.layoutViews.currentValue)
     const [loading, setLoading] = useState(true)
 

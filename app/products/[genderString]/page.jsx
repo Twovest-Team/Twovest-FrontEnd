@@ -22,12 +22,12 @@ export default async function Products({ searchParams, params }) {
   return (
     <main>
       <NavigationTitle titleText={navTitle}>
-        <span className="min-[450px]:hidden">
+        <span className='min-[390px]:hidden'>
           <FilterButton />
         </span>
       </NavigationTitle>
 
-      <div className="container flex justify-between h-7 max-[450px]:hidden mb-6">
+      <div className='container flex justify-between h-7 max-[390px]:hidden mb-6'>
         <GridViews />
         <FilterButton />
       </div>

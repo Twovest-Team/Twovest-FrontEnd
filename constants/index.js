@@ -52,7 +52,6 @@ const main_categories = [
     },
 ]
 
-
 const categories = [
     { id: 1, singular: 'Malha', plural: 'Malhas', main_category: 1, gender: [0,1] },
     { id: 2, singular: 'Colete', plural: 'Coletes', main_category: 1, gender: [0,1] },
@@ -106,6 +105,8 @@ const shopStages = [
 ]
 
 const productMaxQty = 10
+
+const minWidthGrid = 390; // Establishes the minimum window width size able to show view options on the UI
 
 const portugalDistricts = [
     { id: 1, name: 'Aveiro', unavailable: false },
@@ -255,6 +256,7 @@ export {
     categories,
     shopStages,
     productMaxQty,
+    minWidthGrid,
     portugalDistricts,
     portugalTowns,
     cttPickupPoints,

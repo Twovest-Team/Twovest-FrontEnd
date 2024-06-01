@@ -24,6 +24,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     offers,
   } = product;
 
+
   const categoryObj = getCategory(product.categories.id)
   const genderObj = getGender(gender);
 
@@ -31,7 +32,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     if (discount <= 0) return null
     return (
       <Link href={`/product/${genderObj.string})}/${id}`}>
-        <div className="h-11 z-10 bg-primary_main absolute bottom-5 group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0">
+        <div className="h-10 z-10 bg-primary_main absolute bottom-5 group-hover:-translate-y-11 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
           <SellIcon sx={{ fontSize: 20 }} />
           {discount}% OFF
         </div>
@@ -50,7 +51,9 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
         {categoryObj.singular} {brandName}
       </p>
 
-      <p className="w-full caption text-secondary">(5 ofertas disponíveis)</p>
+      <p className="w-full caption text-secondary">
+        ({offers?.length} {offers?.length === 1 ? 'oferta disponível' : 'ofertas disponíveis'})
+      </p>
 
       {offers && (
         <PriceProduct
@@ -88,7 +91,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
         } flex-5 mb-2`}
     >
 
-{/* w-full rounded border-grey group-hover:shadow-lg group-hover:shadow-gray-100 transition-all duration-200 border aspect-[3/4] flex relative justify-center items-center */}
+      {/* w-full rounded border-grey group-hover:shadow-lg group-hover:shadow-gray-100 transition-all duration-200 border aspect-[3/4] flex relative justify-center items-center */}
 
       <div className="rounded border-grey border aspect-[3/4] relative group-hover:shadow-lg group.hover:shadow-gray-100 overflow-hidden transition-all duration-200">
         <ProductCardSwiper genderObj={genderObj} id={id} productImages={productImages} />

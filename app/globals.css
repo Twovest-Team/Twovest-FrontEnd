@@ -947,17 +947,19 @@ h6 {
   accent-color: green;
 }
 
+
+
 .productCardSwiper {
   swiper-container {
     z-index: 5;
     height: 100%;
     width: 100%;
-  }
 
-  swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 

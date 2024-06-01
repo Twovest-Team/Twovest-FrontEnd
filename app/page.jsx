@@ -46,7 +46,7 @@ export default function Home() {
     <main>
       <ImageSwiper />
 
-      <section className="mt-14 mb-2 mx-24">
+      <section className="mt-14 mb-2">
         <h1 className="font-semibold text_h6 container">Mais Procurados 🔥</h1>
         <div className="flex my-6 overflow-auto overflow-x-scroll">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}

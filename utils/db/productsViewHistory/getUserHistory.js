@@ -15,6 +15,15 @@ export default async function getUserHistory(userEmail) {
                 logo_url,
                 name
             ),
+            offers(
+              id,
+              price,
+              qty,
+              conditions (
+                id,
+                name
+              )
+            ),
             products_has_images(
               id,
               url,

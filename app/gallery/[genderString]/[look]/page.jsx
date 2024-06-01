@@ -5,7 +5,7 @@ import getLookById from "@/utils/db/getLookById";
 import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
 import SaveLookIconButton from "@/components/collections/SaveLookIconButton";
 import Link from "next/link";
-import CardProduct from "@/components/cards/CardProduct";
+import ProductCard from "@/components/cards/ProductCard";
 import { UserIcon } from "@/components/user/UserIcon";
 import GridBox from "@/components/providers/GridBox";
 import getStorageImage from "@/utils/getStorageImage";
@@ -87,7 +87,7 @@ const Look = async ({ params }) => {
 
                   <GridBox fixed>
                     {data.products.map((product) => (
-                      <CardProduct
+                      <ProductCard
                         key={product.id}
                         product={product}
                         gender={product.gender}

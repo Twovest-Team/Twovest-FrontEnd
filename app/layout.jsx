@@ -67,6 +67,12 @@ export default function RootLayout({ children }) {
                   message={"Não foi possível guardar o look"}
                 />
 
+                <Notification
+                  id={"favoriteButton"}
+                  type={"Neutral"}
+                  message={"Adicionado aos favoritos"}
+                />
+
               </Suspense>
 
 

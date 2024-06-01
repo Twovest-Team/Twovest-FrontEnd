@@ -20,14 +20,14 @@ export default function LookCard({
   isMember,
 }) {
 
+  const gender = getGender(look.gender)
+  const cardType = getCardType();
 
-  let cardType;
-
-  if (!collectionData && !collectionId && !slider) cardType = 'normal'
-  if (collectionData && collectionId) cardType = 'collection'
-  if (slider) cardType = 'slider'
-
-
+  function getCardType(){
+    if (!collectionData && !collectionId && !slider) return 'normal'
+    if (collectionData && collectionId) return 'collection'
+    if (slider) return 'slider'
+  }
 
   function renderNormalCard() {
     return (
@@ -113,7 +113,7 @@ export default function LookCard({
   }
 
   function renderSliderCard() {
-    
+
     return (
       <div
         className='aspect-[17/26] rounded w-[160px] sm:w-[200px] md:w-[250px] relative'
@@ -147,7 +147,7 @@ export default function LookCard({
                 userName={look.users.name}
                 userId={look.users.id}
               />
-              
+
               <p className={`caption font-light truncate`}>
                 {look.users.name}
               </p>
@@ -161,14 +161,6 @@ export default function LookCard({
       </div>
     );
   }
-
-
-
-  const gender = getGender(look.gender)
-
-
-
-
 
   return (
     <>

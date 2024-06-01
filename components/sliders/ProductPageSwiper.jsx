@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
-export default function ProductSwiper({ images }) {
+export default function ProductPageSwiper({ images }) {
   return (
     <Swiper
       modules={[Pagination]}

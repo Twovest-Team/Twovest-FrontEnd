@@ -38,7 +38,7 @@ const FavoriteButton = ({ type }) => {
     )
 
     if (type === 'bordered') return (
-      <Button onClick={handleClick} className="shadow border border-grey_opacity_50" padding={4} onlyIcon={true} type="white" ariaLabel="Partilhar esta página.">
+      <Button onClick={handleClick} className="shadow border border-grey_opacity_50" padding="16px" onlyIcon={true} type="white" ariaLabel="Partilhar esta página.">
         {icon}
       </Button>
     )

@@ -37,7 +37,7 @@ const BuyButton = ({ offerId }) => {
   return (
     <>
 
-      <Button onClick={handleClick} padding='3.5' type={'primary'} ariaLabel='Adicionar ao carrinho' onlyIcon={true}>
+      <Button onClick={handleClick} padding='14px' type={'primary'} ariaLabel='Adicionar ao carrinho' onlyIcon={true}>
         <div className="w-6 h-6 flex justify-center items-center">
           {!loading ? <LocalMallOutlinedIcon /> : <LoadingIcon size={22} />}
         </div>

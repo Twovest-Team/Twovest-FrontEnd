@@ -67,7 +67,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
 
   const renderOffersBtn = () => (
     <div className="bg-white bg-opacity-60 backdrop-blur p-3 z-10 absolute -bottom-12 lg:group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
-      <Button className='opacity-0 caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='full' height={10}>
+    <Button className='opacity-0 caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='100%' height='2.5rem'>
         Ver ofertas ({offers?.length})
       </Button>
     </div>

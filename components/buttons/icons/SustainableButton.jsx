@@ -32,8 +32,8 @@ const SustainableButton = ({ color, width, type }) => {
                 <Button
                     onClick={attributes.onClick}
                     className="shadow border border-grey_opacity_50"
-                    width="full"
-                    padding="3"
+                    width="100%"
+                    padding="12px"
                     onlyIcon={true}
                     type="white"
                     ariaLabel={attributes.label}

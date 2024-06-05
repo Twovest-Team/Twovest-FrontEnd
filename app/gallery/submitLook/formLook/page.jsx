@@ -144,11 +144,11 @@ const FormLook = () => {
               onClick={handleSubmitLook}
               className="mt-6"
               disabled={!selectedImage || !isProductsFilled || !isStylesFilled}
-              type={"black"}
-              width="full"
+              type="black"
+              width="100%"
               ariaLabel="Submit look"
             >
-              Submit
+              Submeter look
             </Button>
           </div>
         </>

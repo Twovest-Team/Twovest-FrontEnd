@@ -190,8 +190,8 @@ export const Cart = () => {
                 onClick={() => dispatch(toggleCart())}
                 type={"primary"}
                 ariaLabel="Proceder com a compra"
-                justify="between"
-                width="full"
+                justify="space-between"
+                width="100%"
               >
                 Proceder com a compra
                 <KeyboardArrowRightIcon

@@ -151,7 +151,7 @@ const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSe
         </div>
       }
 
-      <Button onClick={nextSection} type={'black'} ariaLabel='Criar nova coleção' width='full'>
+      <Button onClick={nextSection} type={'black'} ariaLabel='Criar nova coleção' width='100%'>
         Criar nova coleção
       </Button>
 

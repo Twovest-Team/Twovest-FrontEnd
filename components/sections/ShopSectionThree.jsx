@@ -61,14 +61,14 @@ const ShopSectionThree = ({ productsData, userData }) => {
       <div className="flex flex-col gap-4 mt-4">
 
 
-        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com Cartão De Crédito' width='full'>
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com Cartão De Crédito' width='100%'>
           <Image className="mr-2" src={MastercardLogo} alt="Logótipo da Mastercard" width={30} height={18} styles={{ width: 'auto', height: 'auto' }} />
           Cartão De Crédito
         </Button>
 
 
 
-        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com MBWay' width='full'>
+        <Button justify="start" onClick={() => handlePurchase(productsData)} type={'grey'} ariaLabel='Pagar com MBWay' width='100%'>
           <Image className="mr-2" src={MBWayLogo} alt="Logótipo do MBWay" width={30} height={19}/>
           MBWay
         </Button>

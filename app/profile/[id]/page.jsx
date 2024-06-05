@@ -85,10 +85,10 @@ const Profile = async ({ params }) => {
               {collectionsData && collectionsData.length >= 3 && (
                 <Button
                   href={`/profile/${ownerId}/collections`}
-                  type={"black-outlined"}
+                  type="black-outlined"
                   ariaLabel="Ver todas as coleções"
-                  width="full"
-                  justify="between"
+                  width="100%"
+                  justify="space-between"
                 >
                   Ver todas as coleções
                   <ArrowForwardIosIcon sx={{ fontSize: 18 }} />

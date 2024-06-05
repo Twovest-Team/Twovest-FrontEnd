@@ -103,7 +103,7 @@ const MenuCollection = ({ collectionId, isOwnCollection, isMember, privacy }) =>
                 </div>
 
 
-                <Button type={'error'} ariaLabel='Sair da coleção' width='full'>
+                <Button type={'error'} ariaLabel='Sair da coleção' width='100%'>
                 Sair da coleção
                 </Button>
 

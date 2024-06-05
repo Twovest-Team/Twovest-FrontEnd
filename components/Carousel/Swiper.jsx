@@ -50,7 +50,7 @@ const ImageSwiper = () => {
             <Button
               href={`/products/${gender.string}?status=discounts`}
               className="mx-auto mt-3"
-              type={"primary"}
+              type="primary"
               ariaLabel="Ver Todas as Promoções"
             >
               Ver promoções
@@ -76,9 +76,9 @@ const ImageSwiper = () => {
             </h1>
             <h2 className="text_h5">Retorna-a nos pontos de recolha</h2>
             <Button
-              href={`/`}
+              href='/'
               className="mx-auto mt-3"
-              type={"primary"}
+              type="primary"
               ariaLabel="Ver pontos de recolha"
             >
               Ver pontos de recolha
@@ -101,16 +101,14 @@ const ImageSwiper = () => {
             <h1 className="font-semibold text_h3">
               Descobre aqui as melhores marcas aos melhores preços!
             </h1>
-            <Link href={"/brands"}>
-              <Button
-                href={`/brands`}
-                className="mx-auto mt-3"
-                type={"primary"}
-                ariaLabel="Ver marcas"
-              >
-                Ver marcas
-              </Button>
-            </Link>
+            <Button
+              href='/brands'
+              className="mx-auto mt-3"
+              type="primary"
+              ariaLabel="Ver marcas"
+            >
+              Ver marcas
+            </Button>
           </div>
         </div>
       </SwiperSlide>

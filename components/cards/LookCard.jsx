@@ -75,11 +75,11 @@ export default function LookCard({
           </div>
 
           <Button
-            height="10"
+            height="2.5rem"
             className="caption opacity-0 group-hover:opacity-100 delay-300 transition-opacity duration-[350]"
             type='black'
             ariaLabel='Ver artigos do look'
-            width='full'
+            width='100%'
           >
             Ver artigos do look
           </Button>

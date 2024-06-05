@@ -40,7 +40,7 @@ const TopbarFilters = ({ elements }) => {
                 <li key={index}>
                     <Button
                         scroll={false}
-                        height={11}
+                        height='44px'
                         ariaLabel={`Aplicar filtro: ${element}`}
                         href={pathname + getQueryString(element, index)}
                         type={isFilterSelected(element) || !params && index === 0 ? "black" : "grey"}

@@ -70,10 +70,10 @@ export default function Home() {
 
             <div className="md:w-[18rem]">
               <Button
-                type={"white-outlined"}
+                type="white-outlined"
                 ariaLabel="Ir para a Galeria de Looks"
-                width="full"
-                justify="between"
+                width="100%"
+                justify="space-between"
                 href={`/gallery/${gender.string}`}
               >
                   <span>Ir para a galeria</span>

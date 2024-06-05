@@ -115,11 +115,11 @@ export const Navbar = ({ children }) => {
             )}
             {!isMobile && userChecked == false && (
               <Button
-                height="11"
+                height="44px"
                 href="/login"
-                type={"black"}
+                type="black"
                 ariaLabel="Fazer login ou registo"
-                width="fit"
+                width="fit-content"
               >
                 <span> Login | Registar</span>
               </Button>

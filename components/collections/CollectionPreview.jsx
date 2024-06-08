@@ -162,11 +162,11 @@ export default function CollectionPreview({ collection, lookId }) {
     };
 
     if (isMobile) {
-      buttonProps.padding = 4;
+      buttonProps.padding = '16px';
       buttonProps.onlyIcon = true;
     } else {
-      buttonProps.height = 12;
-      buttonProps.width = '[142px]';
+      buttonProps.height = '48px';
+      buttonProps.width = '142px';
     }
 
     const buttonText = !isMobile && (isSaved ? 'Remover' : 'Guardar');

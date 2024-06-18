@@ -87,6 +87,7 @@ const ManageCollectionModal = () => {
 
   function onCloseModal() {
     router.push(pathname, { scroll: false })
+    router.refresh()
   }
 
   return (

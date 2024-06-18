@@ -24,7 +24,7 @@ const UserItem = ({ user }) => {
     if (user) {
       dispatch(changeUserData(user))
     }
-  }, [])
+  }, [user])
 
   const renderImage = () => (
     <Menu.Button>

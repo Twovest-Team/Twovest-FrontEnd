@@ -4,11 +4,13 @@ import IconButton from "../buttons/icons/IconButton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import NotificationCart from "../items/NotificationCart";
-import { useAppDispatch } from "@/redux/hooks";
+import { updateCart } from "@/redux/slices/cartProducts";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
+import NotificationNumber from "../items/NotificationNumber";
+import { useEffect } from "react";
 
-const GeneralItems = ({user}) => {
+const GeneralItems = ({ user, cart }) => {
 
     const dispatch = useAppDispatch();
 
@@ -18,13 +20,24 @@ const GeneralItems = ({user}) => {
 
     const handleCart = () => dispatch(toggleCart())
 
+    useEffect(() => {
+        if (cart) dispatch(updateCart(cart));
+    }, [])
+
+    let cartStore = useAppSelector((state) => state.cartProducts.products);
+
+    // This compares the values from the server and the store.
+    const getCartLength = () => (
+        cartStore.length === 0 ? cart.length : cartStore.length
+    )
+
     return (
         <div className="flex items-center gap-2.5 mr-4">
 
             <IconButton
-            onClick={handleSearch}
-            icon={<SearchIcon />}
-            ariaLabel="Botão de pesquisa"
+                onClick={handleSearch}
+                icon={<SearchIcon />}
+                ariaLabel="Botão de pesquisa"
             />
 
             <IconButton
@@ -40,7 +53,7 @@ const GeneralItems = ({user}) => {
                     ariaLabel="Aceder ao carrinho de compras"
                 />
                 <div className="cursor-pointer" onClick={handleCart}>
-                    {user && <NotificationCart currentUser={user} />}
+                    {user && cart.length > 0 && <NotificationNumber number={getCartLength()} />}
                 </div>
             </div>
         </div>

@@ -4,12 +4,14 @@ import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import UserItem from "./UserItem";
 import GeneralItems from "./GeneralItems";
 import MenuItem from "./MenuItem";
+import getUserCartProducts from "@/utils/db/cart/getUserCartProducts";
 
 export const revalidate = 0
 
 const Navbar = async({ children }) => {
 
-    const user = await useAuthServer()
+    const user = await useAuthServer();
+    const cart = user ? await getUserCartProducts(user.email) : null 
 
     const renderLogo = () => (
         <Link href={"/"} className="items-center flex">
@@ -40,7 +42,7 @@ const Navbar = async({ children }) => {
 
     const renderRight = () => (
         <div className="flex justify-between items-center">
-            <GeneralItems user={user} />
+            <GeneralItems cart={cart} user={user} />
             <UserItem user={user} />
         </div>
     )

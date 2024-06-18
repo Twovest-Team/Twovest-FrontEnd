@@ -22,6 +22,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoBlack from "./logo_twovest_black.svg"
 
 export const Navbar = ({ children }) => {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ export const Navbar = ({ children }) => {
   }
 
   return (
-    <nav className="z-50 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px] px-4">
+    <nav className="z-50 w-full fixed top-0 bg-white border-b border-gray-200 h-[75px]">
       <div className="container flex justify-between items-center h-full">
         {/* NAVBAR LEFT SECTION */}
         <div className="flex gap-4 -translate-x-3">
@@ -57,7 +58,7 @@ export const Navbar = ({ children }) => {
 
           <Link href={"/"} className="items-center flex">
             <Image
-              src={"/static/images/logo_twovest_black.svg"}
+              src={LogoBlack}
               width={105}
               height={24}
               alt="Logo Twovest"
@@ -65,19 +66,13 @@ export const Navbar = ({ children }) => {
             ></Image>
 
             <Image
-              src={"/static/images/logo_twovest_black.svg"}
+              src={LogoBlack}
               width={130}
               height={24}
               alt="Logo Twovest"
               className="navbar_logo-sm img-hover"
             ></Image>
-            <style>{`
-            .img-hover:hover {
-              box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
-              transform: scale(1.1);
-              opacity: 100;
-            }
-            `}</style>
+            
           </Link>
         </div>
 

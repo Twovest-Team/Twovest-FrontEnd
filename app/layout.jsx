@@ -34,11 +34,11 @@ export default function RootLayout({ children }) {
                 <Cart />
               </Navbar>
               {children}
-              <LastProductsSeen />
+              {/* <LastProductsSeen /> */}
               <Footer />
 
               {/* GLOBAL MODALS AND NOTIFICATIONS */}
-              <Suspense>
+              {/* <Suspense>
                 <ManageCollectionModal />
 
                 <Notification
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
                   message={"Não foi possível guardar o look"}
                 />
 
-              </Suspense>
+              </Suspense> */}
 
 
             </UserProvider>

@@ -4,24 +4,25 @@ import SocialMediaLogos from "../logos/SocialMediaLogos";
 // import PaymentLogos from "../logos/PaymentLogos";
 import LanguageButton from "../buttons/LanguageButton";
 import UaLogo from "@/app/LandingPageMP/photosMP/uaLogo.png";
+import LogoWhite from './logo_twovest_white.svg';
 
 export default function Footer() {
     return (
         <footer className="bg-dark">
-            <div className="flex justify-center pt-6 pb-10">
-                <Image src={'/static/images/logo_twovest_white.svg'} width={150} height={200} alt="Logótipo Branco da Twovest" />
+            <div className="flex justify-center pt-8 pb-10">
+                <Image src={LogoWhite} width={150} height={200} alt="Logótipo Branco da Twovest" />
             </div>
             <div className="grid grid-cols-1 pb-10">
                 <div className="items-center text-white text-center">
                     <ul>
-                        <li className="h-[50px]" key={"Footer-Contactos"}>
+                        <li className="h-[25px]" key={"Footer-Contactos"}>
                             <Link href="/">
-                                <p className="h-full w-full flex items-center justify-center">
+                                <p className="h-full w-full flex items-center justify-center font-semibold">
                                     Projeto elaborado no âmbito do
                                 </p>
                             </Link>
                         </li>
-                        <li className="h-[50px]" key={"Footer-HelpCenter"}>
+                        <li className="h-[25px]" key={"Footer-HelpCenter"}>
                             <Link href="/">
                                 <p className="h-full w-full flex items-center justify-center">
                                     Mestrado em Comunicação e Tecnologias Web
@@ -35,11 +36,11 @@ export default function Footer() {
                 <SocialMediaLogos />
             </div>
             <hr className="mx-6 mb-6" />
-            <div className="flex flex-wrap justify-between items-center mx-6 text-white">
-                <div>
+            <div className="flex flex-wrap justify-center items-center mx-6 text-white">
+                {/* <div>
                     <LanguageButton />
-                </div>
-                <p className="caption">&#169; 2023 Twovest</p>
+                </div> */}
+                <p className="caption">&#169; 2024 Twovest</p>
             </div>
             <div className="bg-white py-3.5 mt-5 flex items-center justify-center">
                 {/* <PaymentLogos /> */}

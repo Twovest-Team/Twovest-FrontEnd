@@ -32,7 +32,7 @@ const Card = ({ icon, title, text }) => {
 export default function AboutUs() {
   return (
     <div id="aboutUs">
-      <div className="w-full py-2.5 justify-center pt-[50px] items-center inline-flex">
+      <div className="w-full flex justify-center h-[57px] py-2.5 pt-[50px] items-center">
         <h4 className="text_h4 text-center">Quem Somos</h4>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 text-center">

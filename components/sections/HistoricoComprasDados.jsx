@@ -5,11 +5,11 @@ export default function HistoricoComprasDados (){
         <div className="lg:ml-8">
                     <div className="mb-2">
                         <p className="font-semibold">Data da encomenda:</p>
-                        <p>03/11/2023 - 19:24H</p>
+                        <p>03/11/2024 - 19:24H</p>
                     </div>
                     <div className="my-2">
                         <p className="font-semibold">Data de entrega:</p>
-                        <p className="text-primary_main">Entregue no dia 9/11/2023</p>
+                        <p className="text-primary_main">Entregue no dia 9/11/2024</p>
                     </div>
                     <div className="my-2">
                         <p className="font-semibold">Total geral:</p>

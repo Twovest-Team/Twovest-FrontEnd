@@ -119,7 +119,7 @@ const UserItem = ({ user }) => {
     return userMenuItems.map((section, index) => (
       <>
         {section.map(item => (
-          <Menu.Item>
+          <Menu.Item key={item.title}>
             {({ active, close }) => (
               <Link
                 href={item}

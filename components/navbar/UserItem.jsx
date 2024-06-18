@@ -122,7 +122,7 @@ const UserItem = ({ user }) => {
           <Menu.Item key={item.title}>
             {({ active, close }) => (
               <Link
-                href={item}
+                href={item.link}
                 onClick={item.onClick || close}
                 className={`w-full ${active && "bg-grey_opacity_50"}`}
               >

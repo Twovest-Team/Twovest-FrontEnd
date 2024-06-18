@@ -74,7 +74,7 @@ const UserItem = ({ user }) => {
       [
         {
           title: 'Perfil',
-          link: `profile/${user.id}`
+          link: `/profile/${user.id}`
         },
         {
           title: 'Pontos&Cupões',
@@ -94,7 +94,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Ver as minhas coleções',
-          link: `profile/${user.id}/collections`
+          link: `/profile/${user.id}/collections`
         },
       ],
       [

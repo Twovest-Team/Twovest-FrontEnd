@@ -37,7 +37,10 @@ export default function LoginPage() {
 
   const handleSignInGoogle = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "Google"
+      provider: "Google",
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`
+      }
     });
   };
 

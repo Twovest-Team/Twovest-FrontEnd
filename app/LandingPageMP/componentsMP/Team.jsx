@@ -8,7 +8,7 @@ import Goncalo from "../photosMP/goncalo.png";
 
 export default function Team() {
     return (
-        <div id="team" className="pt-[50px] pb-[50px] bg-black flex flex-col items-center gap-[50px]">
+        <div id="team" className="pt-12 pb-12 bg-black flex flex-col items-center gap-12">
             <h3 className="text_h4 text-center text-white">Equipa</h3>
             <TeamMember
                 name="Vasco Saraiva"

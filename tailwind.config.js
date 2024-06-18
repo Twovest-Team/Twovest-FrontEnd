@@ -47,6 +47,11 @@ module.exports = {
         grey_opacity_50: '#F1F1F1',
         white_opacity_50: '#FFFFFF80',
         dark_gray: '#484848'
+      },
+      screens: {
+        'small': { 'raw': '(min-height: 520px)' },
+        'average': { 'raw': '(min-height: 690px)' },
+        'tall': { 'raw': '(min-height: 780px)' }
       }
 
     },

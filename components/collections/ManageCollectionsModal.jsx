@@ -85,8 +85,8 @@ const ManageCollectionModal = () => {
 
   }, [isModalOpen])
 
-  function onCloseModal(){
-    router.push(pathname, {scroll: false})
+  function onCloseModal() {
+    router.push(pathname, { scroll: false })
   }
 
   return (
@@ -135,12 +135,12 @@ const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSe
   return (
     <>
       <div>
-        <h1 className="font-semibold text_h6">Guardar look {lookId}</h1>
+        <h1 className="font-semibold text_h6">Guardar look</h1>
         <p className="text-secondary">Em que coleção vais querer guardar este look?</p>
       </div>
 
       {collectionsData &&
-        <div className="max-h-[345px] overflow-y-auto">
+        <div className="max-h-[220px] average:max-h-[345px] tall:max-h-[470px] overflow-y-auto">
           <CollectionList
             toSaveLook
             lookId={lookId}

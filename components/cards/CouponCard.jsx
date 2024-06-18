@@ -1,4 +1,4 @@
-import CouponBuyButton from "../buttons/couponBuyButton";
+import CouponBuyButton from "@/components/buttons/CouponBuyButton";
 import CardBackgroundYellow from "@/public/static/images/coupons/cupao_amarelo.svg";
 import CardBackgroundGreen from "@/public/static/images/coupons/cupao_verde.svg";
 import CardBackgroundLucky from "@/public/static/images/coupons/cupao_da_sorte.svg";

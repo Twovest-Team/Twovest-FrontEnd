@@ -16,7 +16,7 @@ const Card = ({ icon, title, text }) => {
         {typeof text == "string"? (
           <p className="text_caption text-secondary text-sm">{text}</p>
         ) : (
-          <ul className="list-disc">
+          <ul className="list-disc list-inside text-left pl-2">
             {text.map((item, index) => (
               <li key={index} className="text_caption text-secondary text-sm">
                 {item}

@@ -13,7 +13,7 @@ export default function Header() {
         </p>
         <Button type="black" href={'/LandingPageMP#aboutUs'}>Quero saber mais!</Button>
       </div>
-      <div className="flex items-center justify-center pt-5">
+      <div className="flex items-center justify-center pt-6">
         <Image src={HeaderImage} alt="HeaderImage" width={200} height={200} className="md:w-[250px] lg:w-[300px]" />
       </div>
     </div>

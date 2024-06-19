@@ -91,10 +91,10 @@ export const SideMenu = () => {
           {currentUser == null && (
             <Button
               href="/login"
-              type={"black"}
+              type="black"
               ariaLabel="Fazer login ou registo"
-              justify="between"
-              width="full"
+              justify="space-between"
+              width="100%"
             >
                 <span> Fazer login ou registo</span>
                 <KeyboardArrowRightIcon

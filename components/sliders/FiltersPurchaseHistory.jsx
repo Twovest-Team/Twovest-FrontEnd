@@ -14,7 +14,7 @@ const FiltersPurchaseHistory = ({ currentCategory }) => {
     >
       <li key={"FiltersPurchaseHistory-ButtonAll"}>
         <Button
-          height="11"
+          height="44px"
           href={"/profile/options/orders"}
           type={!currentCategory ? "black" : "grey"}
           ariaLabel="Todas as encomendas efetuadas"
@@ -26,7 +26,7 @@ const FiltersPurchaseHistory = ({ currentCategory }) => {
       <li key="FiltersPurchaseHistory-ButtonEntregues">
         <Button
           key="FiltersPurchaseHistory-ButtonEntregues"
-          height="11"
+          height="44px"
           href={`/profile/options/orders?type=delivered`}
           type={currentCategory === "delivered" ? "black" : "grey"}
           ariaLabel={`Estado de encomenda: Entregue`}
@@ -38,7 +38,7 @@ const FiltersPurchaseHistory = ({ currentCategory }) => {
       <li key="FiltersPurchaseHistory-ButtonPendentes">
         <Button
           key="FiltersPurchaseHistory-ButtonPendentes"
-          height="11"
+          height="44px"
           href={`/profile/options/orders?type=pending`}
           type={currentCategory === "pending" ? "black" : "grey"}
           ariaLabel={`Estado de encomenda: Pendente`}
@@ -50,7 +50,7 @@ const FiltersPurchaseHistory = ({ currentCategory }) => {
       <li key="FiltersPurchaseHistory-ButtonCanceladas">
         <Button
           key="FiltersPurchaseHistory-ButtonCanceladas"
-          height="11"
+          height="44px"
           href={`/profile/options/orders?type=canceled`}
           type={currentCategory === "canceled" ? "black" : "grey"}
           ariaLabel={`Estado de encomenda: Cancelada`}

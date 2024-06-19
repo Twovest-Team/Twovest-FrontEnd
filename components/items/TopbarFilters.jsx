@@ -10,7 +10,7 @@ const TopbarFilters = ({ elements }) => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const [scrollX, scrollY] = useScroll();
-    const scrollCSS = scrollY && scrollY >= 75 ? "shadow-md h-20" : "h-16";
+    const scrollCSS = scrollY && scrollY >= 75 ? "shadow-md h-[4.5rem] z-40" : "h-[4.5rem] z-10";
     const params = searchParams.get('filter')
     const paramsArray = params ? params.split(',') : null
 
@@ -35,12 +35,12 @@ const TopbarFilters = ({ elements }) => {
     
 
     return (
-        <ContentSlider className={`sticky top-[75px] z-20 w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}>
+        <ContentSlider className={`sticky top-[75px] w-full transition-all duration-300 bg-white ${scrollCSS} flex items-center`}>
             {elements && elements.map((element, index) => (
                 <li key={index}>
                     <Button
                         scroll={false}
-                        height={11}
+                        height='44px'
                         ariaLabel={`Aplicar filtro: ${element}`}
                         href={pathname + getQueryString(element, index)}
                         type={isFilterSelected(element) || !params && index === 0 ? "black" : "grey"}

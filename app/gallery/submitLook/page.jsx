@@ -63,7 +63,13 @@ const Submit = () => {
                     </span>
                   </div>
 
-                  <Button href="submitLook/formLook" width="full" className="mx-auto" disabled={timer > 0} type={'primary'} ariaLabel='WRITE HERE'>
+                  <Button
+                  href="submitLook/formLook"
+                  width="100%"
+                  className="mx-auto"
+                  disabled={timer > 0}
+                  type='primary'
+                  ariaLabel='Compreendi'>
                     Compreendi ({timer})
                   </Button>
 

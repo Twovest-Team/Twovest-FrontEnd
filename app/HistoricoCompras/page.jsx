@@ -42,7 +42,7 @@ const HistoricoCompras = () => {
             
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
-            <Button className="w-full" type="black">
+            <Button width="100%" type="black">
               Descarregar Fatura
             </Button>
           </AccordionActions>
@@ -70,7 +70,7 @@ const HistoricoCompras = () => {
             
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
-            <Button className="w-full" type="black">
+            <Button width="100%" type="black">
               Descarregar Fatura
             </Button>
           </AccordionActions>

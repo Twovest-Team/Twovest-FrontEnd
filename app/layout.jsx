@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/sections/Footer";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Navbar } from "@/components/navbar/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import StoreProvider from "../components/providers/StoreProvider";
 import GenderProvider from "@/components/providers/GenderProvider";
 import LastProductsSeen from "@/components/sections/LastProductsSeen";
@@ -11,7 +11,6 @@ import { SideMenu } from "@/components/navbar/SideMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
 import { Suspense } from "react";
-import UserProvider from "@/components/providers/UserProvider";
 import Notification from "@/components/modals/Notification";
 import SustainabilityModal from "@/components/modals/SustainabilityModal";
 
@@ -29,7 +28,7 @@ export default function RootLayout({ children }) {
         {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
         <StoreProvider>
           <GenderProvider>
-            <UserProvider>
+
               <Navbar>
                 <SideMenu />
                 <Cart />
@@ -67,13 +66,19 @@ export default function RootLayout({ children }) {
                   message={"Não foi possível guardar o look"}
                 />
 
+                <Notification
+                  id={"favoriteButton"}
+                  type={"Neutral"}
+                  message={"Adicionado aos favoritos"}
+                />
+
               </Suspense>
 
 
               <Analytics />
               <SpeedInsights />
 
-            </UserProvider>
+           
           </GenderProvider>
         </StoreProvider>
       </body>

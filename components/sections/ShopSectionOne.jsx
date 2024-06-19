@@ -55,11 +55,11 @@ const ShopSectionOne = ({
         </div>
 
 
-        <Button type={'black-outlined'} width="full" ariaLabel='Aplicar um cupão'>
+        <Button type={'black-outlined'} width="100%" ariaLabel='Aplicar um cupão'>
           Aplicar um cupão
         </Button>
 
-        <Button onClick={() => updateStage(2)} type={'black'} ariaLabel='Preencher dados de envio' width='full'>
+        <Button onClick={() => updateStage(2)} type={'black'} ariaLabel='Preencher dados de envio' width='100%'>
         Preencher dados de envio
         </Button>
 

@@ -27,7 +27,7 @@ const ShareButton = ({type}) => {
     )
 
     if (type === 'bordered') return (
-      <Button className="shadow border border-grey_opacity_50" padding={4} onlyIcon={true} type="white" ariaLabel="Partilhar esta página.">
+      <Button className="shadow border border-grey_opacity_50" padding='16px' onlyIcon={true} type="white" ariaLabel="Partilhar esta página.">
         <ShareIcon />
       </Button>
     )

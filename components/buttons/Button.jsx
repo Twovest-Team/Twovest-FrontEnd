@@ -20,24 +20,16 @@ const Button = (props) => {
     scroll, // To change the scroll behaviour when linking to other route
   } = props;
 
+  const styles = {
+    width: width || 'fit-content',
+    height: height || '3.5rem',
+    borderRadius: radius || '5px',
+    justifyContent: !onlyIcon && justify || 'center',
+    padding: padding ? padding : justify === 'space-between' ? '0 1.5rem' : '0 2.25rem',
+  }
+
+
   const defaultStyles = `font-semibold transition-colors duration-200 whitespace-nowrap flex items-center gap-1.5`;
-
-  const buttonWidth = width ? "w-" + width : "w-fit";
-
-  const borderRadius = radius ? "rounded-" + radius : "rounded";
-
-  const buttonHeight = onlyIcon
-    ? "aspect-square justify-center"
-    : height
-      ? "h-" + height
-      : "h-14";
-
-  const justifyContent =
-    !onlyIcon &&
-    `justify-${justify === "between" ? "between" : (justify || "center")
-    }`;
-
-  const buttonPadding = padding ? 'px-' + padding : justify === 'between' ? 'px-6' : 'px-9'
 
   const disabledStyles = disabled ? "opacity-50 pointer-events-none" : "";
 
@@ -48,6 +40,10 @@ const Button = (props) => {
     case "primary":
       mainStyles = "bg-primary_main hover:bg-primary_dark text-white";
       break;
+
+    case "info":
+    mainStyles = "bg-info_main hover:bg-info_dark text-white";
+    break;
 
     case "black":
       mainStyles = "bg-black hover:bg-dark_gray text-white";
@@ -86,8 +82,8 @@ const Button = (props) => {
       <Link
         scroll={scroll}
         href={href}
-        className={`${className || ""
-          } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
+        style={styles}
+        className={`${className || ""} ${defaultStyles} ${mainStyles} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -98,8 +94,8 @@ const Button = (props) => {
   } else {
     return (
       <button
-        className={`${className || ""
-          } ${defaultStyles} ${mainStyles} ${buttonWidth} ${borderRadius} ${buttonHeight} ${justifyContent} ${buttonPadding} ${disabledStyles}`}
+      style={styles}
+        className={`${className || ""} ${defaultStyles} ${mainStyles} ${disabledStyles}`}
         aria-label={ariaLabel}
         onClick={onClick}
         disabled={disabled}
@@ -126,11 +122,11 @@ Button.propTypes = {
   ariaLabel: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.string,
+  height: PropTypes.string,
   radius: PropTypes.string,
   justify: PropTypes.string,
-  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  padding: PropTypes.string,
   onlyIcon: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   scroll: PropTypes.bool

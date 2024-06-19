@@ -94,7 +94,7 @@ const ProductOffers = ({ offers, discount }) => {
     if (limit >= offers.length) return null;
 
     return (
-      <Button onClick={handleLimitChange} ariaLabel="Ver mais ofertas disponíveis" type="black" width="full">
+      <Button onClick={handleLimitChange} ariaLabel="Ver mais ofertas disponíveis" type="black" width="100%">
         <p className="lg:hidden">Ver todas as ofertas ({offers.length})</p>
         <p className="hidden lg:block">Carregar mais ofertas</p>
       </Button>

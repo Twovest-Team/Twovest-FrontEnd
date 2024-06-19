@@ -19,7 +19,7 @@ const MenuCollection = ({ collectionId, isOwnCollection, isMember, privacy }) =>
 
     return (
         <>
-            <div className='relative z-10' >
+            <div className='relative z-30' >
                 <Menu>
 
                     <Menu.Button>
@@ -103,7 +103,7 @@ const MenuCollection = ({ collectionId, isOwnCollection, isMember, privacy }) =>
                 </div>
 
 
-                <Button type={'error'} ariaLabel='Sair da coleção' width='full'>
+                <Button type={'error'} ariaLabel='Sair da coleção' width='100%'>
                 Sair da coleção
                 </Button>
 

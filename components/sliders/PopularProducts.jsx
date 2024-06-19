@@ -1,4 +1,4 @@
-import CardProduct from "../cards/CardProduct";
+import ProductCard from "../cards/ProductCard";
 import ContentSlider from "./ContentSlider";
 
 export const PopularProductsSilder = ({ data }) => {
@@ -8,7 +8,7 @@ export const PopularProductsSilder = ({ data }) => {
     <ContentSlider>
       {popularproducts.map((item) => (
         <li key={item.id}>
-          <CardProduct
+          <ProductCard
             alignPrice={"left"}
             key={item.id}
             product={item}

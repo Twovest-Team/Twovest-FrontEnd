@@ -181,12 +181,12 @@ const FormLook = () => {
             <Button
               onClick={handleSubmitLook}
               className="mt-6"
-              disabled={!selectedImage || !isProductsFilled || !isStylesFilled || !isInstagramURLValid}
-              type={"black"}
-              width="full"
+              disabled={!selectedImage || !isProductsFilled || !isStylesFilled}
+              type="black"
+              width="100%"
               ariaLabel="Submit look"
             >
-              Submit
+              Submeter look
             </Button>
           </div>
         </>

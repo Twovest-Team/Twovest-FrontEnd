@@ -178,7 +178,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
               </div>
 
               {!steps[1].confirmed && (
-                <Button type={'black'} ariaLabel='Confirmar recolha' width='full'>
+                <Button type={'black'} ariaLabel='Confirmar recolha' width='100%'>
                   Confirmar recolha
                 </Button>
               )}
@@ -186,7 +186,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
 
             {steps[1].confirmed && (
 
-              <Button onClick={() => handleStep(false)} type={'black-outlined'} ariaLabel='Alterar dados de recolha' width='full'>
+              <Button onClick={() => handleStep(false)} type={'black-outlined'} ariaLabel='Alterar dados de recolha' width='100%'>
                 Alterar
               </Button>
 
@@ -194,7 +194,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
           </div>
         </div>
 
-        <Button onClick={handleNextStage} type={'primary'} ariaLabel='Efetuar pagamento' width='full'>
+        <Button onClick={handleNextStage} type={'primary'} ariaLabel='Efetuar pagamento' width='100%'>
           Efetuar pagamento
         </Button>
 

@@ -1,142 +1,69 @@
 import { categories } from "@/constants";
 import getProductsByCategory from "@/utils/db/getProductsByCategory";
+import getSustainableProducts from "@/utils/db/getSustainableProducts";
+import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
-import CardProduct from "@/components/cards/CardProduct";
+import ProductCard from "@/components/cards/ProductCard";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loaders/Products";
-import getSustainableProducts from "@/utils/db/getSustainableProducts";
-import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
 import GridBox from "@/components/providers/GridBox";
 
 export const revalidate = 60;
 
 export default async function Products({ searchParams, params }) {
-  const category = searchParams.category;
-  const gender = params.genderString;
-  const status = searchParams.status;
+  const { category, status } = searchParams;
+  const { genderString: gender } = params;
 
-  if (category) {
-    const categoryId = categories.find(
-      (object) => object.plural === category
-    ).id;
-    return (
-      <main className="container">
-        <NavigationTitle titleText={category}>
-          <span className="min-[350px]:hidden">
-            <FilterButton />
-          </span>
-        </NavigationTitle>
+  let navTitle = category || (status === "sustainable" ? "Produtos Sustentáveis" : status === "discounts" ? "Promoções" : "");
 
-        <div className="container flex justify-between h-7 max-[350px]:hidden mb-6">
-          <GridViews />
+  return (
+    <main>
+      <NavigationTitle titleText={navTitle}>
+        <span className='[@media(min-width:390px)]:hidden'>
           <FilterButton />
-        </div>
+        </span>
+      </NavigationTitle>
 
-        <Suspense fallback={<ProductsSkeleton />}>
-          <ProductList categoryId={categoryId} gender={gender} />
-        </Suspense>
-      </main>
-    );
-  } else if (status) {
-    var navTitle;
-    if (status == "sustainable") {
-      navTitle = "Produtos Sustentáveis";
-    } else if (status == "discounts") {
-      navTitle = "Promoções";
-    }
-    return (
-      <main>
-        <NavigationTitle titleText={navTitle}>
-          <span className="min-[350px]:hidden">
-            <FilterButton />
-          </span>
-        </NavigationTitle>
+      <div className='container flex justify-between h-7 mb-6 [@media(max-width:390px)]:hidden'>
+        <GridViews />
+        <FilterButton />
+      </div>
 
-        <div className="container flex justify-between h-7 max-[350px]:hidden mb-6">
-          <GridViews />
-          <FilterButton />
-        </div>
-
-        <ProductList status={status} gender={gender} />
-      </main>
-    );
-  }
+      <Suspense fallback={<ProductsSkeleton />}>
+        <ProductList category={category} status={status} gender={gender} />
+      </Suspense>
+    </main>
+  );
 }
 
-async function ProductList({ categoryId, gender, status }) {
-  if (categoryId) {
-    const data = await getProductsByCategory(categoryId, gender);
+async function ProductList({ category, status, gender }) {
+  let data = [];
 
-    return (
-      <>
-        {data.length > 0 ? (
-          <GridBox loader={<ProductsSkeleton />}>
-            {data.map((element) => (
-              <li key={element.id}>
-                <CardProduct
-                  slider={false}
-                  key={element.id}
-                  product={element}
-                  gender={gender}
-                />
-              </li>
-            ))}
-          </GridBox>
-        ) : (
-          <NoResultsNotice
-            text={"Não há produtos registados nesta categoria."}
-          />
-        )}
-      </>
-    );
-  } else if (status == "sustainable") {
-    const data = await getSustainableProducts(gender);
-    return (
-      <>
-        {data.length > 0 ? (
-          <GridBox loader={<ProductsSkeleton />}>
-            {data.map((element) => (
-              <CardProduct
-                slider={false}
-                key={element.id}
-                product={element}
-                gender={gender}
-              />
-            ))}
-          </GridBox>
-        ) : (
-          <NoResultsNotice
-            text={"Não há produtos registados nesta categoria."}
-          />
-        )}
-      </>
-    );
-  } else if (status == "discounts") {
-    const data = await getOnSaleProducts(gender);
-    console.log(data);
-
-    return (
-      <>
-        {data.length > 0 ? (
-          <GridBox loader={<ProductsSkeleton />}>
-            {data.map((element) => (
-              <CardProduct
-                slider={false}
-                key={element.id}
-                product={element}
-                gender={gender}
-              />
-            ))}
-          </GridBox>
-        ) : (
-          <NoResultsNotice
-            text={"Não há produtos registados nesta categoria."}
-          />
-        )}
-      </>
-    );
+  if (category) {
+    const categoryId = categories.find(obj => obj.plural === category)?.id;
+    data = await getProductsByCategory(categoryId, gender);
+  } else if (status === "sustainable") {
+    data = await getSustainableProducts(gender);
+  } else if (status === "discounts") {
+    data = await getOnSaleProducts(gender);
   }
+
+  return (
+    <>
+      {data.length > 0 ? (
+        <GridBox loader={<ProductsSkeleton />}>
+          {data.map(element => (
+            <li className="list-none" key={element.id}>
+              <ProductCard slider={false} key={element.id} product={element} gender={gender} />
+            </li>
+          ))}
+        </GridBox>
+      ) : (
+        <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
+      )}
+    </>
+  );
 }

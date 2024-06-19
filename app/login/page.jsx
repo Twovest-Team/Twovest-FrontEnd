@@ -37,7 +37,10 @@ export default function LoginPage() {
 
   const handleSignInGoogle = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "Google"
+      provider: "Google",
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`
+      }
     });
   };
 
@@ -95,9 +98,9 @@ export default function LoginPage() {
 
         <Button
           className="mt-8"
-          type={"primary"}
+          type="primary"
           ariaLabel="Iniciar sessão com email e password"
-          width="full"
+          width="100%"
           onClick={handleSignInEmail}
         >
           Iniciar sessão
@@ -113,7 +116,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com google"
-            width="full"
+            width="100%"
             onClick={handleSignInGoogle}
           >
             <Image
@@ -129,7 +132,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com Facebook"
-            width="full"
+            width="100%"
           >
             <Image
               src={coloredFacebookIcon}
@@ -144,7 +147,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com Apple"
-            width="full"
+            width="100%"
           >
             <Image
               src={coloredAppleIcon}

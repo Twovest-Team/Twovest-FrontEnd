@@ -15,20 +15,17 @@ import useAuth from "@/hooks/client-hooks/useAuth";
 import { reverseLooksOrder } from "@/utils/handlers/handleCollections";
 import { useAppDispatch } from "@/redux/hooks";
 import { showNotification } from "@/redux/slices/notificationSlice";
-import Notification from "../modals/Notification";
+import { useState } from "react";
 
-
-//Componente de card da coleção
-// Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
-//(publica, privada ou partilhada) e também muda o nome e o número de looks
 
 export default function CollectionPreview({ collection, lookId }) {
 
-  const { isMobile, height } = useWindow()
+  const { isMobile } = useWindow()
   const dispatch = useAppDispatch()
   const { currentUser } = useAuth()
   const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
+  const [isSaved, setIsSaved] = useState(lookId ? looks.some(item => item.id == lookId) : null)
 
   function renderImages() {
 
@@ -151,43 +148,47 @@ export default function CollectionPreview({ collection, lookId }) {
   }
 
   function renderOptions() {
-    const isSaved = looks.some(item => item.id == lookId);
 
     const buttonProps = {
       onClick: isSaved ? handleRemoveLook : handleSaveLook,
       icon: isSaved ? <BookmarkRoundedIcon sx={{ fontSize: 25 }} /> : <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />,
-      className: 'shadow border border-grey_opacity_50',
+      className: 'border border-grey_opacity_50 ' + (!isSaved ? 'shadow-sm' : ''),
       type: isSaved ? 'black' : 'white',
       ariaLabel: `Guardar look na coleção: ${name}`,
     };
 
     if (isMobile) {
-      buttonProps.padding = 4;
+      buttonProps.padding = '16px';
       buttonProps.onlyIcon = true;
     } else {
-      buttonProps.height = 12;
-      buttonProps.width = '[142px]';
+      buttonProps.height = '48px';
+      buttonProps.width = '142px';
     }
 
     const buttonText = !isMobile && (isSaved ? 'Remover' : 'Guardar');
 
     async function handleRemoveLook() {
+      setIsSaved(false)
+
       const isRemoveSuccessfull = await deleteCollectionLook(collection.id, lookId)
       if (isRemoveSuccessfull) {
         dispatch(showNotification('removedLook'));
       }
       if (!isRemoveSuccessfull){
+        setIsSaved(true)
         dispatch(showNotification('errorRemovingLook'));
 
       }
     }
 
     async function handleSaveLook() {
+      setIsSaved(true)
       const isSaveSuccessfull = await addToCollection(collection.id, lookId, currentUser.id)
       if (isSaveSuccessfull) {
         dispatch(showNotification('savedLook'));
       }
       if (!isSaveSuccessfull){
+        setIsSaved(false)
         dispatch(showNotification('errorSavingLook'));
       }
     }
@@ -202,7 +203,7 @@ export default function CollectionPreview({ collection, lookId }) {
 
         {lookId && (
           <div className="flex-grow flex justify-end h-full items-center mr-5">
-            <Button {...buttonProps}>
+            <Button padding="0 1.2rem" justify="space-between" {...buttonProps}>
               {buttonProps.icon}
               {buttonText}
             </Button>
@@ -211,7 +212,6 @@ export default function CollectionPreview({ collection, lookId }) {
       </>
     );
   }
-
 
   function renderContent() {
     return (

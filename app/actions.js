@@ -3,6 +3,8 @@
 import supabase from "@/utils/db/clients/admin/supabase";
 import { NextResponse } from "next/server";
 import { redirect } from 'next/navigation'
+import { Modalteste } from "@/components/modals/Modalteste";
+
 
 export default async function teste(
   userId,
@@ -17,8 +19,7 @@ export default async function teste(
 ) {
 
   
-
-  const imageUploaded = formData.get("file")
+  const imageUploaded = formData.get("file");
 
   const genderFolder = gender.string === "men" ? "men" : "women";
 
@@ -56,7 +57,7 @@ export default async function teste(
       console.error("Error inserting look data:", error);
       return;
     }else{
-      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender.string}`);
+      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender.string}?submit_success=true`);
     }
 
   }

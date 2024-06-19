@@ -10,12 +10,15 @@ import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
 import getAllStyles from "@/utils/db/getAllStyles";
 import { getTopbarFilters } from "@/utils/handlers/handleFilters";
+import { ModalSubmitLook } from "@/components/modals/Modalteste";
 
 export const revalidate = 60;
 
 const Gallery = async ({ params, searchParams }) => {
 
+  //console.log(params, searchParams);
   const gender = params.genderString;
+
 
   const renderFilters = async () => {
     const items = await getAllStyles()
@@ -40,7 +43,7 @@ const Gallery = async ({ params, searchParams }) => {
       </NavigationTitle>
 
       {renderFilters()}
-
+      
       <div className="flex justify-between container mt-4 mb-6">
         <div className="flex items-center">
           <GridViews />
@@ -54,11 +57,11 @@ const Gallery = async ({ params, searchParams }) => {
             Submeter look
           </Button>
         </div>
+        {searchParams.submit_success === "true" ? <ModalSubmitLook gender={params.genderString} /> : null}
       </div>
 
-
       <LookList gender={gender} searchParams={searchParams} />
-
+      
     </main>
   );
 };
@@ -94,6 +97,7 @@ async function LookList({ gender, searchParams }) {
             ))}
           </GridBox>
         </>
+        
       ) : (
         <NoResultsNotice
           title={"Não encontramos looks."}

@@ -109,7 +109,6 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
         <div className='w-full h-full productCardSwiper'>
             {renderContainer()}
         </div>
-
     )
 }
 

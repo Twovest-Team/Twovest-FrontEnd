@@ -14,8 +14,9 @@ import { useEffect } from "react";
 import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
 
-const ShopSectionThree = ({ productsData, userData }) => {
+const ShopSectionThree = ({ productsData, userData, coupon }) => {
 
+  
   const products = useAppSelector((state) => state.cartProducts.products);
 
   const handlePurchase = async (produtos) => {

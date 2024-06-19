@@ -13,12 +13,16 @@ import { toggleCart } from "@/redux/slices/cartToggle";
 import { useAppSelector } from "@/redux/hooks";
 import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
+import checkIfCouponApplies from "@/utils/checkIfCouponApplies";
+import useAuth from "@/hooks/client-hooks/useAuth";
+import { useEffect, useState } from 'react';
 
 export const CardCart = ({
   handleShowDeleteNotification,
   data,
   userEmail,
   handleLoading,
+  coupon,
 }) => {
   const dispatch = useDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
@@ -26,6 +30,8 @@ export const CardCart = ({
     (element) => element.id === data.offers.products.categories.id
   ).singular;
   const discount = data.offers.products.discount;
+  const { currentUser } = useAuth();
+  const [couponDiscount, setCouponDiscount] = useState([]);
 
   async function handleDeleteProduct() {
     handleLoading(true);
@@ -43,7 +49,79 @@ export const CardCart = ({
     }
   }
 
+
   const gender = getGender(data.offers.products.gender);
+  const brandId = data.offers.products.brands.id
+
+  if(coupon) {
+    useEffect(() => {
+      if (currentUser?.id) {
+          // Função para buscar os cupons do utilizador
+          const couponApplies = async () => {
+              try {
+                  const checkCouponApplies = await checkIfCouponApplies(brandId, coupon);
+
+                  if(checkCouponApplies.length > 0)
+                    {
+                      setCouponDiscount(checkCouponApplies[0].coupons.discount)
+                    }
+  
+              } catch (error) {
+                  console.error("Failed to check if coupon applies:", error);
+              }
+          };
+  
+          couponApplies();
+      }
+  }, [coupon]);
+  }
+
+  function NormalPrice() {
+    return(
+      <p className="font-semibold h-8 flex items-center">
+                  {data.offers.products.discount > 0 ? (
+                    <>
+                      {applyPriceDiscount(
+                        data.offers.price,
+                        data.offers.products.discount
+                      )}
+                    </>
+                  ) : (
+                    <>{data.offers.price.toFixed(2)}</>
+                  )}
+                  €
+                </p>
+    )
+  }
+
+  function CouponPrice() {
+
+    let couponPrice = applyPriceDiscount(data.offers.price, couponDiscount)
+
+    return(
+      <p className="font-semibold h-8 flex items-center">
+                  {data.offers.products.discount > 0 ? (
+                    <>
+                    <s className="mr-2">{applyPriceDiscount(
+                        data.offers.price,
+                        data.offers.products.discount
+                      )}</s>
+                      <b className="text-primary_main">
+                      {applyPriceDiscount(
+                        couponPrice,
+                        data.offers.products.discount
+                      )}€
+                      </b>
+                    </>
+                  ) : (
+                    <>
+                    <s className="mr-2">data.offers.price  €</s>
+                    <b className="text-primary_main">{couponPrice}€</b>
+                    </>
+                  )}
+    </p>
+    )
+  }
 
   return (
     <article className="py-12 border-b border-grey">
@@ -105,21 +183,8 @@ export const CardCart = ({
                 Tamanho: {data.offers.sizes.size}
               </p>
             </div>
-
             <div className="flex justify-between">
-              <p className="font-semibold h-8 flex items-center">
-                {data.offers.products.discount > 0 ? (
-                  <>
-                    {applyPriceDiscount(
-                      data.offers.price,
-                      data.offers.products.discount
-                    )}
-                  </>
-                ) : (
-                  <>{data.offers.price.toFixed(2)}</>
-                )}
-                €
-              </p>
+              {couponDiscount > 0 ? (<CouponPrice />) : (<NormalPrice />)}
               <div className="hidden min-[350px]:block">
                 <ProductQuantityControl
                   cartId={data.id}
@@ -146,3 +211,6 @@ export const CardCart = ({
     </article>
   );
 };
+
+
+

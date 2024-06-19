@@ -11,10 +11,11 @@ const ShopSectionOne = ({
   productsData,
   userEmail,
   updateStage,
+  coupon
 }) => {
 
   const dispatch = useAppDispatch();
-
+  
 
   return (
     <section className="flex-grow flex flex-col">
@@ -28,6 +29,7 @@ const ShopSectionOne = ({
               data={product}
               userEmail={userEmail}
               key={index}
+              coupon={coupon}
             />
             </Fragment>
           ))}

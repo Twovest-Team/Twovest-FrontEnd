@@ -11,6 +11,7 @@ import UpdateCollectionNameModal from './UpdateCollectionNameModal';
 import DeleteCollectionModal from './DeleteCollectionModal';
 import UpdateCollectionPrivacyModal from './UpdateCollectionPrivacyModal';
 import Button from '../buttons/Button';
+import LeaveCollectionModal from './LeaveCollectionModal';
 
 const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
@@ -83,7 +84,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
                             {(!isAdmin && isMember) &&
                                 <Menu.Item className="w-full">
                                     <button onClick={() => dispatch(openModal('leaveCollectionWarning'))} className='hover:bg-grey_opacity_50 text-error_main px-6 py-2 text-left caption '>
-                                        Saír da coleção
+                                        {'Sair da coleção ->'}
                                     </button>
                                 </Menu.Item>
                             }
@@ -99,19 +100,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
             <DeleteCollectionModal isAdmin={isAdmin} collectionId={collectionId} />
 
-            <Modal id={'leaveCollectionWarning'}>
-                <div>
-                    <h1 className='font-semibold text_h6'>Sair da coleção?</h1>
-                    <p className='text-secondary'>Queres mesmo sair da coleção? Qualquer look adicionado por ti também deixará de estar disponível para os outros membros.</p>
-                </div>
-
-
-                <Button type={'error'} ariaLabel='Sair da coleção' width='100%'>
-                    Sair da coleção
-                </Button>
-
-            </Modal>
-
+            <LeaveCollectionModal collectionId={collectionId} />
 
         </>
 

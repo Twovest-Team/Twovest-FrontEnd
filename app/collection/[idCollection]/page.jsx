@@ -21,18 +21,20 @@ const Collection = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
   const collectionId = params.idCollection;
-  const collectionData = currentUser ? await getOwnCollectionData(currentUser, collectionId) : await getCollectionData(collectionId)
+  const collectionData = await (async () => currentUser && await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId))();
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/');
 
-  const isAdmin = collectionData.is_admin
-  const isMember = !isAdmin ? currentUser && collectionData.members.find(member => member.id == currentUser.id) : true
+  const isAdmin = currentUser && collectionData.is_admin
+  const isMember = currentUser && collectionData.members.find(member => member.id == currentUser.id)
 
   const privacy = collectionData.privacy;
   const shareId = collectionData.share_id;
+  const invitationId = searchParams.invite
 
-  if (!isAdmin && currentUser && !isMember && privacy === 1) redirect('/');
+  console.log(searchParams)
+  if (!isAdmin && !isMember && privacy === 1 && invitationId !== shareId) redirect('/');
   if (!currentUser && privacy === 1) redirect('/login');
 
   const collectionStyles = createStylesSet(collectionData);
@@ -123,8 +125,8 @@ const Collection = async ({ params, searchParams }) => {
 
 
 
-      {!isAdmin && currentUser && !isMember &&
-        <InvitationToCollection collectionId={collectionId} collectionShareId={shareId} />
+      {!isAdmin && !isMember && currentUser && 
+        <InvitationToCollection collectionData={collectionData} collectionId={collectionId} collectionShareId={shareId} />
       }
 
     </main>

@@ -9,6 +9,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 import InviteToCollectionModal from "../modals/InviteToCollectionModal";
+import Link from "next/link";
 
 const CollectionShowcase = (props) => {
 
@@ -46,13 +47,16 @@ const CollectionShowcase = (props) => {
 
                 <div className="flex mt-2 ml-2 items-center">
                     {collectionData.members.map((member, index) => (
-                        <Image
-                            key={index}
-                            src={member.img}
-                            className='-ml-2 rounded-full border-4 border-white'
-                            width={44}
-                            height={44}
-                        />
+                        <Link href={`/profile/${member.id}`} className="-ml-2 rounded-full border-4 border-white">
+                            <Image
+                                key={index}
+                                src={member.img}
+                                className='rounded-full'
+                                width={36}
+                                height={36}
+                            />
+                        </Link>
+
                     ))}
 
                     {collectionData.members.length < 4 && isAdmin &&

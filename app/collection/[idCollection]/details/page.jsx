@@ -1,7 +1,6 @@
 import NavigationTitle from '@/components/providers/NavigationTitle';
 import useAuthServer from '@/hooks/server-hooks/useAuthServer';
 import { getOwnCollectionData } from '@/utils/handlers/handleCollections';
-import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
 import CollectionShowcase from '@/components/collections/CollectionShowcase';
 import getCollectionData from '@/utils/db/collections/getCollectionData';
@@ -47,12 +46,6 @@ const page = async ({ params, searchParams }) => {
 
 
       </div>
-
-      {!isAdmin && currentUser && !isMember &&
-        <InvitationToCollection collectionId={collectionId} collectionShareId={shareId} />
-      }
-
-
 
     </main>
   )

@@ -17,10 +17,6 @@ const collectionHasLooks = (allLooks) => {
     return true
 }
 
-const addMemberToCollection = (currentUserId) => {
-    return 'blablabla'
-}
-
 const handleCreateCollection = async (currentUserId, collectionName, collectionPrivacy) => {
     if (!currentUserId && !collectionName && !collectionPrivacy) return false
     const isCreated = await createCollection(collectionName, collectionPrivacy, currentUserId, true)
@@ -41,6 +37,7 @@ const createStylesSet = (collectionData) => {
 
 const getOwnCollectionData = async (currentUser, collectionId) => {
     const collection = currentUser.collections.find(collection => collection.id == collectionId)
+    if(!collection) return null
     const members = await getCollectionMembers(collectionId)
     collection.members = members
     return collection
@@ -50,7 +47,6 @@ export {
     createShareLink,
     searchLastLook,
     collectionHasLooks,
-    addMemberToCollection,
     handleCreateCollection,
     reverseLooksOrder,
     createStylesSet,

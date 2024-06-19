@@ -32,30 +32,33 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
     const { isMobile, isSm, isMd } = useWindow();
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'Escape') {
-                handleCloseModal()
+        if (!restricted) {
+            const handleKeyDown = (event) => {
+                if (event.key === 'Escape') {
+                    handleCloseModal()
+                }
+            };
+
+            if (isOpen) {
+                window.addEventListener('keydown', handleKeyDown);
             }
-        };
 
-        if (isOpen) {
-            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+                window.removeEventListener('keydown', handleKeyDown);
+            };
         }
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
     }, [isOpen, dispatch, id]);
 
     const handleCloseModal = () => {
-        {onClose && onClose()}
+        if (restricted) return null
+        { onClose && onClose() }
         dispatch(closeModal(id));
     };
 
@@ -83,16 +86,16 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
         }
     }
 
-    if(!isMobile && onlyMobile) return null
-    if(!isMobile && !isSm && maxSm) return null
-    if(!isMobile && !isSm && !isMd && maxMd) return null
+    if (!isMobile && onlyMobile) return null
+    if (!isMobile && !isSm && maxSm) return null
+    if (!isMobile && !isSm && !isMd && maxMd) return null
 
     return (
         <Transition show={isOpen || false}>
 
             <section
                 className={`bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-40`}
-                onClick={handleCloseModal}
+                onClick={restricted ? undefined : handleCloseModal}
             />
 
             <Transition.Child
@@ -102,7 +105,17 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                 leave='ease-in duration-100'
                 leaveFrom='opacity-100 translate-y-0 sm:-translate-y-1/2 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:-translate-y-[45%] sm:scale-95'
-                className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-50 mx-auto w-screen sm:w-fit max-h-full h-fit'}
+                className='
+                fixed overflow-auto
+                bottom-0 sm:bottom-auto 
+                sm:top-1/2 
+                left-0 sm:left-1/2
+                sm:-translate-y-1/2 sm:-translate-x-1/2 
+                right-0 sm:right-auto
+                z-50
+                mx-auto
+                w-screen sm:w-fit
+                max-h-full h-fit'
             >
                 <div
                     className={`bg-white text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
@@ -127,19 +140,22 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                                     />
                                 }
 
-                                <div className="ml-auto">
-                                    <IconButton
-                                        icon={<CloseIcon />}
-                                        onClick={handleCloseModal}
-                                    />
-                                </div>
+                                {!restricted ?
+                                    <div className="ml-auto">
+                                        <IconButton
+                                            icon={<CloseIcon />}
+                                            onClick={handleCloseModal}
+                                        />
+                                    </div>
+                                    :
+                                    <span className="mt-4" />
+                                }
+                            </div>
 
-                            </div>
-                            
                             <div className="flex flex-col gap-6">
-                            {children}
+                                {children}
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

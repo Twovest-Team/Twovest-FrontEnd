@@ -2,7 +2,7 @@
 
 import supabase from "../clients/admin/supabase";
 
-const addUserToCollection = async (collectionId, userId, isAdmin) => {
+const addMemberToCollection = async (collectionId, userId, isAdmin) => {
   const { status, error } = await supabase
     .from("collections_has_users")
     .insert({ id_collection: collectionId, id_user: userId, is_admin: isAdmin })
@@ -16,4 +16,4 @@ const addUserToCollection = async (collectionId, userId, isAdmin) => {
   }
 };
 
-export default addUserToCollection;
+export default addMemberToCollection;

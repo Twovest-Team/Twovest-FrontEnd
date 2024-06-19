@@ -6,7 +6,7 @@ import CollectionShowcase from '@/components/collections/CollectionShowcase';
 import getCollectionData from '@/utils/db/collections/getCollectionData';
 import { redirect } from "next/navigation";
 
-const page = async ({ params, searchParams }) => {
+const Page = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
   const collectionId = params.idCollection;
@@ -51,4 +51,4 @@ const page = async ({ params, searchParams }) => {
   )
 }
 
-export default page
+export default Page

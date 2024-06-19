@@ -6,7 +6,8 @@ export default async function getUserOrders(id_user) {
       .from("purchases")
       .select(
         `
-        *,
+            *
+        ,
         purchases_has_coupons(
           coupons(
             id,
@@ -72,6 +73,7 @@ export default async function getUserOrders(id_user) {
     }
 
     if (ordersError) throw ordersError;
+    return ordersData;
     if (ordersData) return transformUserOrdersObject(ordersData);
   } catch (error) {
     console.log(error);

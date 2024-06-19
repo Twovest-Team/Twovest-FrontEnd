@@ -26,7 +26,7 @@ export const StylesSubmitLook = ({ onDataFilled }) => {
         if (selectedStyles.length < 2) {
           setSelectedStyles([...selectedStyles, styleId]);
         } else {
-          console.log("Você pode selecionar no máximo 2 estilos.");
+          //console.log("Você pode selecionar no máximo 2 estilos.");
         }
       }
       onDataFilled(selectedStyles); // Corrigido para passar selectedStyles
@@ -40,7 +40,7 @@ export const StylesSubmitLook = ({ onDataFilled }) => {
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <h2>Artigos utilizados<span className="ml-2 text-green-500">({selectedStyles.length}/2)</span></h2>
+            <h2>Estilos<span className="ml-2 text-green-500">({selectedStyles.length}/2)</span></h2>
           </AccordionSummary>
           <AccordionDetails>
             {styles.map(style => (

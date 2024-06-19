@@ -8,7 +8,7 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import NotificationNumber from "../items/NotificationNumber";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const GeneralItems = ({ user, cart }) => {
 
@@ -20,16 +20,17 @@ const GeneralItems = ({ user, cart }) => {
 
     const handleCart = () => dispatch(toggleCart())
 
+    const [cartQty, setCartQty] = useState(cart.length)
+    let cartStore = useAppSelector((state) => state.cartProducts.products);
+
     useEffect(() => {
         if (cart) dispatch(updateCart(cart));
     }, [])
 
-    let cartStore = useAppSelector((state) => state.cartProducts.products);
+    useEffect(() => {
+        setCartQty(cartStore.length)
+    }, [cartStore])
 
-    // This compares the values from the server and the store.
-    const getCartLength = () => (
-        cartStore.length === 0 ? cart.length : cartStore.length
-    )
 
     return (
         <div className="flex items-center gap-2.5 mr-4">
@@ -53,7 +54,7 @@ const GeneralItems = ({ user, cart }) => {
                     ariaLabel="Aceder ao carrinho de compras"
                 />
                 <div className="cursor-pointer" onClick={handleCart}>
-                    {user && cart.length > 0 && <NotificationNumber number={getCartLength()} />}
+                    {user && cartQty > 0 && <NotificationNumber number={cartQty} />}
                 </div>
             </div>
         </div>

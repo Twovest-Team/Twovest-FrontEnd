@@ -1,6 +1,8 @@
+import CouponBuyButton from "@/components/buttons/CouponBuyButton";
 import CardBackgroundYellow from "@/public/static/images/coupons/cupao_amarelo.svg";
 import CardBackgroundGreen from "@/public/static/images/coupons/cupao_verde.svg";
 import CardBackgroundLucky from "@/public/static/images/coupons/cupao_da_sorte.svg";
+import CardBackgroundBlue from "@/public/static/images/coupons/cupao_azul.svg";
 import Image from "next/image";
 import getStorageImage from "@/utils/getStorageImage";
 
@@ -11,10 +13,15 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
     return (
       <div className="w-[329px] h-[215px] relative">
         <Image
-          src={CardBackgroundGreen}
+          src={
+            userCoupon.coupons.cost > 200
+              ? CardBackgroundBlue
+              : CardBackgroundGreen
+          }
           fill={true}
           alt="Card de um cupão de fundo verde"
         />
+
         <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
           <h6 className="text-white font-semibold text_h4">
             {userCoupon.coupons.discount}%
@@ -23,7 +30,13 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
         </div>
         <div className="w-10/12 left-[25px] top-[25px] absolute justify-between items-center inline-flex ">
           <div className="w-[135px] px-[25px] h-[35px] bg-white rounded-[170px] justify-center items-center inline-flex">
-            <p className="text-primary_main font-semibold align-middle">
+            <p
+              className={
+                userCoupon.coupons.cost > 200
+                  ? `text-info_main font-semibold align-middle`
+                  : `text-primary_main font-semibold align-middle`
+              }
+            >
               {userCoupon.quantity > 1
                 ? ` ${userCoupon.quantity} cupões`
                 : ` ${userCoupon.quantity} cupão`}
@@ -48,17 +61,30 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
   // Se o tipo de cupão for os que estão disponíveis para serem comprados
   if (allCoupons) {
     return (
-      <div className="w-96 h-64 flex flex-col gap-6 border-2">
-        <div className="mx-6 mt-4 flex justify-between">
-          <p>Custo: {allCoupons.cost}</p>
-          {/*Vai ser necessário mapear a brands e mostrar vários logos caso o cupão tenha mais que 1 marca*/}
-          <p>Marca: {allCoupons.brands[0].name}</p>
+      <div className="w-[329px] h-[215px] relative">
+        <Image
+          src={
+            allCoupons.cost > 200 ? CardBackgroundBlue : CardBackgroundGreen
+          }
+          fill={true}
+          alt="Card de um cupão de fundo verde"
+        />
+        <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
+          <h6 className="text-white font-semibold text_h4">
+            {allCoupons.discount}%
+          </h6>
+          <p className="text-white">{allCoupons.description}.</p>
         </div>
-        <div className="mx-6">
-          <p>-{allCoupons.discount}%</p>
-        </div>
-        <div className="mx-6">
-          <p>{allCoupons.description}</p>
+        <div className="w-10/12 left-[25px] top-[25px] absolute justify-between items-center inline-flex ">
+          <CouponBuyButton coupon={allCoupons} />
+          <Image
+            src={getStorageImage(allCoupons.brands[0].logo_url)}
+            width={35}
+            height={35}
+            alt={allCoupons.brands[0].name}
+            className="rounded-full shadow-md"
+            key={allCoupons.brands[0].id}
+          />
         </div>
       </div>
     );
@@ -128,5 +154,24 @@ export default CouponCard;
         </div>
     </div>
         
-      </div> */
+      </div> 
+
+      if (allCoupons) {
+        return (
+          <div className="w-96 h-64 flex flex-col gap-6 border-2">
+            <div className="mx-6 mt-4 flex justify-between">
+              <p>Custo: {allCoupons.cost}</p>
+              Vai ser necessário mapear a brands e mostrar vários logos caso o cupão tenha mais que 1 marca
+              <p>Marca: {allCoupons.brands[0].name}</p>
+            </div>
+            <div className="mx-6">
+              <p>-{allCoupons.discount}%</p>
+            </div>
+            <div className="mx-6">
+              <p>{allCoupons.description}</p>
+            </div>
+          </div>
+        );
+
+        */
 }

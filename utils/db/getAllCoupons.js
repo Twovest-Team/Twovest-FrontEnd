@@ -1,6 +1,6 @@
 import supabase from "@/utils/db/clients/public/supabase";
 
-export default async function getAllCoupons() {
+export default async function getAllCoupons(maximumCost,minimumCost) {
   try {
     const { data: couponData, error: couponError } = await supabase.from(
       "coupons"
@@ -16,7 +16,7 @@ export default async function getAllCoupons() {
                 *
               )
             )
-        `);
+        `).lte('cost', maximumCost).gt('cost', minimumCost);
 
     function transformCouponsObject(couponsArray) {
       return couponsArray.map((coupon) => {

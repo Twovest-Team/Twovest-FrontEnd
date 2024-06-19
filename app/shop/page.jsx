@@ -13,7 +13,7 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import useAuth from "@/hooks/client-hooks/useAuth";
 
 // Shop component
-const Shop = () => {
+const Shop = ({ params, searchParams }) => {
   // State management
   const dispatch = useAppDispatch();
   const [stageState, setStageState] = useState();

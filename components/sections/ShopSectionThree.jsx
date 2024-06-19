@@ -20,6 +20,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
 
   const handlePurchase = async (produtos) => {
 
+    
     const purchaseData = produtos.map((produto) => ({
       price_data: {
         currency: "eur",
@@ -28,7 +29,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
             produto.offers.products.brands.name +
             " " +
             produto.offers.colors.name,
-          images: [getStorageImage(produto.offers.images[0].url)],
+          images: [getStorageImage(produto.offers.products.images[0].url)],
         },
         unit_amount: Math.round(produto.offers.price * 100),
       },

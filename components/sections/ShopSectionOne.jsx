@@ -1,6 +1,10 @@
 import { CardCart } from "../cards/CardCart";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
 import Button from "../buttons/Button";
+import { useAppDispatch } from "@/redux/hooks";
+import { openModal } from "@/redux/slices/modalSlice";
+import ApplyCouponModal from "../modals/ApplyCouponModal";
+import { Fragment } from "react";
 const ShopSectionOne = ({
   handleLoading,
   handleShowDeleteNotification,
@@ -8,11 +12,16 @@ const ShopSectionOne = ({
   userEmail,
   updateStage,
 }) => {
+
+  const dispatch = useAppDispatch();
+
+
   return (
     <section className="flex-grow flex flex-col">
       <div className="container flex-grow">
         <div className="flex flex-col [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 ">
           {productsData.map((product, index) => (
+            <Fragment key={index}>
             <CardCart
               handleShowDeleteNotification={handleShowDeleteNotification}
               handleLoading={handleLoading}
@@ -20,6 +29,7 @@ const ShopSectionOne = ({
               userEmail={userEmail}
               key={index}
             />
+            </Fragment>
           ))}
         </div>
       </div>
@@ -55,7 +65,7 @@ const ShopSectionOne = ({
         </div>
 
 
-        <Button type={'black-outlined'} width="100%" ariaLabel='Aplicar um cupão'>
+        <Button type={'black-outlined'} width="100%" ariaLabel='Aplicar um cupão' onClick={() => dispatch(openModal('applyCoupon'))}>
           Aplicar um cupão
         </Button>
 
@@ -63,6 +73,7 @@ const ShopSectionOne = ({
         Preencher dados de envio
         </Button>
 
+        <ApplyCouponModal />
       </div>
     </section>
   );

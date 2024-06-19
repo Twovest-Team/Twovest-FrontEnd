@@ -1,9 +1,7 @@
 "use server";
 
 import supabase from "@/utils/db/clients/admin/supabase";
-import { NextResponse } from "next/server";
 import { redirect } from 'next/navigation'
-import { Modalteste } from "@/components/modals/Modalteste";
 
 
 export default async function teste(

@@ -16,7 +16,6 @@ export const revalidate = 60;
 
 const Gallery = async ({ params, searchParams }) => {
 
-  //console.log(params, searchParams);
   const gender = params.genderString;
 
 

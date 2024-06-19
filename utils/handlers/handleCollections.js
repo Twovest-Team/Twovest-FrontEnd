@@ -1,18 +1,6 @@
 import createCollection from "../db/collections/createCollection"
+import getCollectionMembers from "../db/collections/getCollectionMembers"
 
-const checkOwnership = (currentUserId, userId) => {
-    if (currentUserId != userId) return false
-    return true
-}
-
-const checkOwnerId = (members) => {
-    const owner = members.find(member => member.is_admin === true)
-    return owner.id
-}
-
-const checkMembership = (members, currentUserId) => {
-    return members.some(member => member.id === currentUserId)
-}
 
 const createShareLink = (collectionId, collectionShareId) => {
     return process.env.NEXT_PUBLIC_URL + '/collection/' + collectionId + '?invite=' + collectionShareId
@@ -41,8 +29,8 @@ const handleCreateCollection = async (currentUserId, collectionName, collectionP
 }
 
 const reverseLooksOrder = (looksArray) => {
-    const newLooksArray =  Object.assign([], looksArray).reverse()
-    return newLooksArray 
+    const newLooksArray = Object.assign([], looksArray).reverse()
+    return newLooksArray
 }
 
 const createStylesSet = (collectionData) => {
@@ -51,15 +39,20 @@ const createStylesSet = (collectionData) => {
     return [...new Set(stylesArray)]
 }
 
+const getOwnCollectionData = async (currentUser, collectionId) => {
+    const collection = currentUser.collections.find(collection => collection.id == collectionId)
+    const members = await getCollectionMembers(collectionId)
+    collection.members = members
+    return collection
+}
+
 export {
-    checkOwnership,
-    checkOwnerId,
-    checkMembership,
     createShareLink,
     searchLastLook,
     collectionHasLooks,
     addMemberToCollection,
     handleCreateCollection,
     reverseLooksOrder,
-    createStylesSet
+    createStylesSet,
+    getOwnCollectionData
 }

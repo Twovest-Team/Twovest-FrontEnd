@@ -5,13 +5,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch} from "@/redux/hooks";
 import { openModal } from "@/redux/slices/modalSlice";
 
-const CreateCollectionIconButton = ({ isOwnCollections }) => {
+const CreateCollectionIconButton = ({ isAdmin }) => {
 
     const dispatch = useAppDispatch();
 
     return (
         <>
-            {isOwnCollections &&
+            {isAdmin &&
                 <IconButton
                     onClick={() => dispatch(openModal('createCollection'))}
                     icon={<AddIcon sx={{ fontSize: 25 }} />}

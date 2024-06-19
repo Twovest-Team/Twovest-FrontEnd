@@ -4,32 +4,35 @@ import LookCard from "@/components/cards/LookCard";
 import { redirect } from "next/navigation";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
-import getCollectionData from "@/utils/db/collections/getCollectionData";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
-import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";
 import InvitationToCollection from "@/components/collections/InvitationToCollection";
 import MenuCollection from "@/components/collections/MenuCollection";
-import { checkMembership, checkOwnerId, checkOwnership, createStylesSet } from "@/utils/handlers/handleCollections";
+import { createStylesSet, getOwnCollectionData } from "@/utils/handlers/handleCollections";
 import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
 import { getTopbarFilters } from "@/utils/handlers/handleFilters";
+import CollectionShowcase from "@/components/collections/CollectionShowcase";
+import getCollectionData from "@/utils/db/collections/getCollectionData";
+import LooksSkeleton from "@/components/loaders/Looks";
+import InviteToCollectionButton from "@/components/collections/InviteToCollectionButton";
+
 
 const Collection = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
   const collectionId = params.idCollection;
-  const collectionData = await getCollectionData(collectionId);
+  const collectionData = currentUser ? await getOwnCollectionData(currentUser, collectionId) : await getCollectionData(collectionId)
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/');
 
-  const ownerId = checkOwnerId(collectionData.members);
-  const isOwnCollection = checkOwnership(currentUser?.id, ownerId)
-  const isMember = !isOwnCollection ? checkMembership(collectionData.members, currentUser?.id) : true
+  const isAdmin = collectionData.is_admin
+  const isMember = !isAdmin ? currentUser && collectionData.members.find(member => member.id == currentUser.id) : true
+
   const privacy = collectionData.privacy;
   const shareId = collectionData.share_id;
 
-  if (!isOwnCollection && currentUser && !isMember && privacy === 1) redirect('/');
+  if (!isAdmin && currentUser && !isMember && privacy === 1) redirect('/');
   if (!currentUser && privacy === 1) redirect('/login');
 
   const collectionStyles = createStylesSet(collectionData);
@@ -54,7 +57,7 @@ const Collection = async ({ params, searchParams }) => {
     const filteredLooks = filteredStyles && filteredStyles.length > 0 ? filterLooks() : looks
 
     return (
-      <GridBox fixed>
+      <GridBox fixed loader={<LooksSkeleton />} >
         {filteredLooks.map(look => (
           <LookCard
             key={look.id}
@@ -70,39 +73,57 @@ const Collection = async ({ params, searchParams }) => {
 
   return (
     <main className="min-h-screen flex flex-col">
-      <NavigationTitle titleText={collectionData.name}>
+      <NavigationTitle titleText={collectionData.looks.length === 0 ? collectionData.name : ''}>
+
         <div className="flex gap-5 items-center">
 
-          {isOwnCollection && (
+          {isAdmin && collectionData.looks.length === 0 && (
             <InviteToCollectionButton collectionId={collectionId} collectionShareId={shareId} />
           )}
 
-          <MenuCollection collectionData={collectionData} collectionId={collectionId} isOwnCollection={isOwnCollection} isMember={isMember} privacy={privacy} />
+          <MenuCollection
+            collectionData={collectionData}
+            collectionId={collectionId}
+            isAdmin={isAdmin}
+            isMember={isMember}
+            privacy={privacy}
+          />
 
         </div>
+
       </NavigationTitle>
 
-      <TopbarFilters elements={collectionStyles} />
+      {/* <TopbarFilters elements={collectionStyles} /> */}
 
-      <div className="mt-6">
-        {collectionData && collectionData.looks.length > 0 ?
-          renderCards()
-          :
-          <>
-            <NoResultsNotice
-              icon={<BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} />}
-              title={'Coleção sem looks'}
-              text={'Vai à descoberta de novos looks e inspira-te.'}
-              btnText={'Ir para a Galeria'}
-              btnHref={'/login'}
-            />
-          </>
-        }
-      </div>
+      {collectionData && collectionData.looks.length > 0 ?
+        <>
+          <CollectionShowcase
+            collectionData={collectionData}
+            collectionId={collectionId}
+            collectionShareId={shareId}
+            isAdmin={isAdmin}
+          />
+
+          <div className="mt-6">
+            {renderCards()}
+          </div>
+        </>
+        :
+        <div className="my-auto average:pb-20">
+          <NoResultsNotice
+            icon={<BookmarkBorderOutlinedIcon sx={{ fontSize: 60 }} />}
+            title={'Coleção sem looks'}
+            text={'Vai à descoberta de novos looks e inspira-te.'}
+            btnText={'Ir para a Galeria'}
+            btnHref={'/login'}
+          />
+        </div>
+      }
 
 
 
-      {!isOwnCollection && currentUser && !isMember &&
+
+      {!isAdmin && currentUser && !isMember &&
         <InvitationToCollection collectionId={collectionId} collectionShareId={shareId} />
       }
 

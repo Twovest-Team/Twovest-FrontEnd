@@ -7,14 +7,14 @@ import Modal from "../modals/Modal"
 import { useRouter } from 'next/navigation'
 import useAuth from "@/hooks/client-hooks/useAuth"
 
-const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
+const DeleteCollectionModal = ({isAdmin, collectionId}) => {
 
     const dispatch = useAppDispatch()
     const {currentUser} = useAuth()
     const router = useRouter()
 
     async function handleDelete(){
-        if(!isOwnCollection) return null
+        if(!isAdmin) return null
         let isDeleted = await deleteCollection(collectionId)
         dispatch(closeModal('deleteCollectionWarning'))
         alert('is deleted? ' + isDeleted)

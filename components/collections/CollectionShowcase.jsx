@@ -47,9 +47,8 @@ const CollectionShowcase = (props) => {
 
                 <div className="flex mt-2 ml-2 items-center">
                     {collectionData.members.map((member, index) => (
-                        <Link href={`/profile/${member.id}`} className="-ml-2 rounded-full border-4 border-white">
+                        <Link key={index} href={`/profile/${member.id}`} className="-ml-2 rounded-full border-4 border-white">
                             <Image
-                                key={index}
                                 src={member.img}
                                 className='rounded-full'
                                 width={36}

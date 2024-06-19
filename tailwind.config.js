@@ -30,6 +30,9 @@ module.exports = {
       full: '999px'
     },
     extend: {
+      minHeight: {
+        screen: 'calc(100vh - 75px)'
+      },
       height: {
         screen: 'calc(100vh - 75px)',
         dvh: 'calc(100dvh - 75px)'

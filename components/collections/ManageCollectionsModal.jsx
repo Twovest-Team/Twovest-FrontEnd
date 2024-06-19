@@ -122,6 +122,7 @@ const ManageCollectionModal = () => {
         <FeedbackSection
           lookId={lookId}
           dispatch={dispatch}
+          router={router}
         />
       }
 
@@ -231,7 +232,12 @@ const PrivacySection = ({ setPrivacyValue, submitNewCollection }) => {
   )
 }
 
-const FeedbackSection = ({ lookId, dispatch }) => {
+const FeedbackSection = ({ lookId, dispatch, router }) => {
+  const handleClick = () => {
+    router.refresh()
+    dispatch(closeModal('createCollection'))
+  }
+
   return (
     <>
       <div className="w-full text-center flex flex-col items-center">
@@ -247,7 +253,7 @@ const FeedbackSection = ({ lookId, dispatch }) => {
       </div>
 
       <button
-        onClick={() => dispatch(closeModal('createCollection'))}
+        onClick={handleClick}
         className={`bg-dark w-full text-white font-semibold px-9 py-3.5 rounded`}>
         Concluir
       </button>

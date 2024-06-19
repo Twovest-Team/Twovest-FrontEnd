@@ -20,7 +20,7 @@ const GeneralItems = ({ user, cart }) => {
 
     const handleCart = () => dispatch(toggleCart())
 
-    const [cartQty, setCartQty] = useState(cart.length)
+    const [cartQty, setCartQty] = useState(cart && cart.length)
     let cartStore = useAppSelector((state) => state.cartProducts.products);
 
     useEffect(() => {

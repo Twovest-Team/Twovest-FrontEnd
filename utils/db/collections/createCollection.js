@@ -1,10 +1,9 @@
 "use server";
 
 import addToCollection from "./addToCollection";
-import addUserToCollection from "./addUserToCollection";
+import addMemberToCollection from "./addMemberToCollection";
 import { v4 as uuidv4 } from "uuid";
 import supabase from "../clients/admin/supabase";
-
 const createCollection = async (
   collectionName,
   privacy,
@@ -30,7 +29,7 @@ const createCollection = async (
   if (lookId && !isLookSaved) return false;
 
   if (userId)
-    isUserAssociated = await addUserToCollection(
+    isUserAssociated = await addMemberToCollection(
       collectionData.id,
       userId,
       isAdmin

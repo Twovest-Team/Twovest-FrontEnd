@@ -108,7 +108,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Sair ->',
-          link: 'definirRota',
+          link: '?logout=true',
           onClick: handleLogout,
           className: 'text-error_main'
         },

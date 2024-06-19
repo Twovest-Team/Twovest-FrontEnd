@@ -10,9 +10,9 @@ import { Cart } from "@/components/navbar/Cart";
 import { SideMenu } from "@/components/navbar/SideMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ManageCollectionModal from "@/components/collections/ManageCollectionsModal";
-import { Suspense } from "react";
 import Notification from "@/components/modals/Notification";
 import SustainabilityModal from "@/components/modals/SustainabilityModal";
+import AuthModal from "@/components/modals/AuthModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,9 +38,10 @@ export default function RootLayout({ children }) {
               <Footer />
 
               {/* GLOBAL MODALS AND NOTIFICATIONS */}
-              <Suspense>
+            
                 <ManageCollectionModal />
                 <SustainabilityModal />
+                <AuthModal />
 
                 <Notification
                   id={"removedLook"}
@@ -72,7 +73,7 @@ export default function RootLayout({ children }) {
                   message={"Adicionado aos favoritos"}
                 />
 
-              </Suspense>
+              
 
 
               <Analytics />

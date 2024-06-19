@@ -5,16 +5,20 @@ import { useRouter } from 'next/navigation'
 import Button from "../buttons/Button"
 import useAuth from "@/hooks/client-hooks/useAuth"
 import removeMemberFromCollection from "@/utils/db/collections/removeMemberFromCollection"
+import { useAppDispatch } from "@/redux/hooks"
+import { closeModal } from "@/redux/slices/modalSlice"
 
 const LeaveCollectionModal = ({ collectionId }) => {
 
     const router = useRouter()
     const { currentUser } = useAuth()
+    const dispatch = useAppDispatch()
 
     const handleLeave = async () => {
         const isRemoved = await removeMemberFromCollection(collectionId, currentUser.id)
         alert('is user removed? ' + isRemoved);
-        router.push(`/profile/${currentUser.id}/collections`)
+        router.push(`/profile/${currentUser.id}/collections`);
+        dispatch(closeModal('leaveCollectionWarning'))
         router.refresh()
     }
 

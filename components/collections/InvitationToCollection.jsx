@@ -2,20 +2,19 @@
 
 import Modal from "../modals/Modal"
 import { useAppDispatch } from "@/redux/hooks"
-import { openModal } from "@/redux/slices/modalSlice"
+import { closeModal, openModal } from "@/redux/slices/modalSlice"
 import { useRouter, useSearchParams } from 'next/navigation'
 import CollectionPreview from "./CollectionPreview"
-import useAuth from "@/hooks/client-hooks/useAuth"
 import Button from "../buttons/Button"
 import Image from "next/image"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import addMemberToCollection from "@/utils/db/collections/addMemberToCollection"
+import addMemberToCollection from "@/utils/db/collections/addMemberToCollection";
+import { useEffect } from "react"
 
-const InvitationToCollection = ({ collectionData, collectionId, collectionShareId }) => {
+const InvitationToCollection = ({ currentUser, collectionData, collectionId, collectionShareId }) => {
 
-    const { currentUser } = useAuth();
     const dispatch = useAppDispatch();
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -23,17 +22,27 @@ const InvitationToCollection = ({ collectionData, collectionId, collectionShareI
     const invitation = searchParams.get('invite')
     const admin = collectionData.members.find(member => member.is_admin === true)
 
-    if (invitation === collectionShareId) dispatch(openModal(`acceptInvite${collectionId}`))
+    useEffect(() => {
+        if (invitation === collectionShareId) {
+            if (currentUser) {
+                dispatch(openModal(`acceptInvite${collectionId}`))
+            } else if (!currentUser) {
+                dispatch(openModal('authModal'))
+            }
+        }
+    }, [])
 
-    const handleClick = async() => {
+
+    const handleClick = async () => {
         const isMember = await addMemberToCollection(collectionId, currentUser.id, false)
         alert('is user member now?' + isMember)
-        router.push(`/collection/${collectionId}`)
+        router.push(`/collection/${collectionId}`);
+        dispatch(closeModal(`acceptInvite${collectionId}`))
         router.refresh();
     }
 
-    return (
-        <div className="h-screen">
+    if (currentUser && invitation === collectionShareId) {
+        return (
             <Modal id={`acceptInvite${collectionId}`} restricted={true}>
                 <div className='flex flex-col items-center'>
 
@@ -101,7 +110,7 @@ const InvitationToCollection = ({ collectionData, collectionId, collectionShareI
                 </div>
 
                 <div className="flex flex-col-reverse sm:flex-row items-center gap-4">
-                    <Button  href="/" className="border border-grey_opacity_50 shadow-sm" type="white" width="100%" ariaLabel="Cancelar">
+                    <Button onClick={() => dispatch(closeModal(`acceptInvite${collectionId}`))} href="/" className="border border-grey_opacity_50 shadow-sm" type="white" width="100%" ariaLabel="Cancelar">
                         Cancelar
                     </Button>
 
@@ -111,8 +120,8 @@ const InvitationToCollection = ({ collectionData, collectionId, collectionShareI
                 </div>
 
             </Modal>
-        </div>
-    )
+        )
+    }
 
 }
 

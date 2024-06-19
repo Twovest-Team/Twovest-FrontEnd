@@ -35,12 +35,19 @@ const Collection = async ({ params, searchParams }) => {
 
   console.log(searchParams)
   if (!isAdmin && !isMember && privacy === 1 && invitationId !== shareId) redirect('/');
-  if (!currentUser && privacy === 1) redirect('/login');
 
   const collectionStyles = createStylesSet(collectionData);
   const filteredStyles = getTopbarFilters(searchParams)
 
   const renderCards = () => {
+
+    if (!isAdmin && !isMember && privacy === 1) {
+      return (
+        <GridBox fixed loader={<LooksSkeleton />}>
+          <LooksSkeleton />
+        </GridBox>
+      )
+    }
 
     const { looks } = collectionData;
 
@@ -125,8 +132,13 @@ const Collection = async ({ params, searchParams }) => {
 
 
 
-      {!isAdmin && !isMember && currentUser && 
-        <InvitationToCollection collectionData={collectionData} collectionId={collectionId} collectionShareId={shareId} />
+      {!isAdmin && !isMember &&
+        <InvitationToCollection
+          currentUser={currentUser}
+          collectionData={collectionData}
+          collectionId={collectionId}
+          collectionShareId={shareId}
+        />
       }
 
     </main>

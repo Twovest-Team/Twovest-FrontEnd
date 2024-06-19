@@ -2,6 +2,7 @@ import CouponBuyButton from "@/components/buttons/CouponBuyButton";
 import CardBackgroundYellow from "@/public/static/images/coupons/cupao_amarelo.svg";
 import CardBackgroundGreen from "@/public/static/images/coupons/cupao_verde.svg";
 import CardBackgroundLucky from "@/public/static/images/coupons/cupao_da_sorte.svg";
+import CardBackgroundBlue from "@/public/static/images/coupons/cupao_azul.svg";
 import Image from "next/image";
 import getStorageImage from "@/utils/getStorageImage";
 
@@ -14,7 +15,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
         <Image
           src={
             userCoupon.coupons.cost > 200
-              ? CardBackgroundYellow
+              ? CardBackgroundBlue
               : CardBackgroundGreen
           }
           fill={true}
@@ -32,7 +33,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
             <p
               className={
                 userCoupon.coupons.cost > 200
-                  ? `text-warning_main font-semibold align-middle`
+                  ? `text-info_main font-semibold align-middle`
                   : `text-primary_main font-semibold align-middle`
               }
             >
@@ -63,7 +64,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
       <div className="w-[329px] h-[215px] relative">
         <Image
           src={
-            allCoupons.cost > 200 ? CardBackgroundYellow : CardBackgroundGreen
+            allCoupons.cost > 200 ? CardBackgroundBlue : CardBackgroundGreen
           }
           fill={true}
           alt="Card de um cupão de fundo verde"

@@ -49,6 +49,10 @@ const Button = (props) => {
       mainStyles = "bg-primary_main hover:bg-primary_dark text-white";
       break;
 
+    case "info":
+    mainStyles = "bg-info_main hover:bg-info_dark text-white";
+    break;
+
     case "black":
       mainStyles = "bg-black hover:bg-dark_gray text-white";
       break;

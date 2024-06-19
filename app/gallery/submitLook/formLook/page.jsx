@@ -99,7 +99,7 @@ const FormLook = () => {
     <>
       {user && (
         <>
-          <div className="container mx-auto overflow-hidden mb-24">
+          <div className="container mx-auto overflow-hidden mb-24 md:w-[650px]">
             <div className="text-center justify-center items-center my-6">
               <label className="block text-secondary font-inter mb-2 h-64 border">
                 {selectedImage ? (

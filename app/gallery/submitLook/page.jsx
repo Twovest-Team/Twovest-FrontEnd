@@ -11,7 +11,7 @@ import useAuth from "@/hooks/client-hooks/useAuth";
 const Submit = () => {
 
   const {currentUser} = useAuth()
-  const [timer, setTimer] = useState(1);
+  const [timer, setTimer] = useState(5);
 
   useEffect(() => {
     

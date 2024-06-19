@@ -10,7 +10,7 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import getLookById from "@/utils/db/getLookById";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import getBrands from "@/utils/db/getBrands";
-import getLooksForHomePage from "@/utils/db/getLooksHomePage";
+import getLooksForHomePage from "@/utils/db/getLooksHomepage";
 import removeFromCart from "@/utils/db/cart/removeFromCart";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import getCollections from "@/utils/db/collections/getCollections";

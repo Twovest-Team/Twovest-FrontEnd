@@ -27,7 +27,7 @@ const page = async () => {
     
   const user = await useAuthServer()
     // Variável onde se deve guardar a resposta da API
-    const data = await getCollectionData(80)
+    const data = await getUserOrders(24)
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

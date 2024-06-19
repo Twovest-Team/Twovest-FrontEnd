@@ -1,4 +1,4 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
 export default async function checkIfUserHasCoupon(id_user, id_coupon) {
   try {
@@ -9,7 +9,8 @@ export default async function checkIfUserHasCoupon(id_user, id_coupon) {
                 *
             `
       )
-      .eq("id_user", id_user, "id_coupon", id_coupon);
+      .eq("id_user", id_user)
+      .eq("id_coupon", id_coupon);
 
     if (checkCouponError) throw checkCouponError;
 

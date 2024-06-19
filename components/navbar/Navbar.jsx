@@ -48,7 +48,7 @@ const Navbar = async({ children }) => {
     )
 
     return (
-        <nav className="w-full fixed top-0 h-[75px] bg-white z-40 border-b border-gray-200">
+        <nav className="w-full fixed top-0 h-[75px] bg-white z-50 border-b border-gray-200">
             <div className="container h-full flex justify-between items-center">
                 {renderLeft()}
                 {renderRight()}

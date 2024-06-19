@@ -1,7 +1,7 @@
 "use server";
 
 import supabase from "@/utils/db/clients/admin/supabase";
-
+import { redirect } from 'next/navigation'
 
 
 export default async function teste(
@@ -10,14 +10,14 @@ export default async function teste(
   selectedOffersIds,
   selectedStyleIds,
   gender,
-  formData
-  /* selectedImage */
+  formData,
+  image_alt, 
+  instagram_url
+
 ) {
 
-  //console.log('formData', formData)
   
-
-  const imageUploaded = formData.get("file")
+  const imageUploaded = formData.get("file");
 
   const genderFolder = gender.string === "men" ? "men" : "women";
 
@@ -37,23 +37,8 @@ export default async function teste(
     if (uploadError) {
       console.error("Error uploading image:", uploadError.message);
       return;
-    }/* else{
-      console.log(
-        "User:",
-        userId,
-        "Products:",
-        selectedProductIds,
-        "Offers:",
-        selectedOffersIds,
-        "Styles:",
-        selectedStyleIds,
-        "Gender:",
-        gender.id,
-        "Image:",
-        uploadedImage.fullPath
-      )
-    }  */
-
+    }
+   
     
     const { data, error } = await supabase.rpc("insert_look_and_relations", {
       url_image: "/"+uploadedImage.fullPath,
@@ -62,14 +47,17 @@ export default async function teste(
       id_products: selectedProductIds,
       id_offers: selectedOffersIds,
       gender: gender.id,
+      image_alt: image_alt,
+      instagram_url: instagram_url
     });
 
     if (error) {
       console.error("Error inserting look data:", error);
       return;
+    }else{
+      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender.string}?submit_success=true`);
     }
 
-    //console.log("Look submitted successfully:", data);
   }
 
 

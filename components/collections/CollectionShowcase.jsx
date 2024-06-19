@@ -8,7 +8,7 @@ import { openModal } from "@/redux/slices/modalSlice";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
-import InviteToCollectionModal from "../modals/InviteToCollectionModal";
+import InviteToCollectionModal from "./InviteToCollectionModal";
 import Link from "next/link";
 
 const CollectionShowcase = (props) => {

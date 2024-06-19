@@ -4,7 +4,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import IconButton from '../buttons/icons/IconButton';
 import { openModal } from '@/redux/slices/modalSlice';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import InviteToCollectionModal from '../modals/InviteToCollectionModal';
+import InviteToCollectionModal from './InviteToCollectionModal';
 
 const InviteToCollectionButton = (props) => {
 

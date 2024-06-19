@@ -2,17 +2,17 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 export default async function getAuthServer() {
-  try {
+  
     const cookieStore = cookies();
     const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
-    const { data: userData, error: authError } = await supabase.auth.getUser();
-
-    // if (authError) throw authError // Commented because error is too big when it happens. Investigate later.
+    const userData = await supabase.auth.getUser();
 
     if (!userData) return null
 
-    const email = userData?.user?.user_metadata?.email;
+    const email = userData?.data.user?.user_metadata?.email;
+
+    if(!email) return null
 
     const { data, error } = await supabase
       .from("users")
@@ -55,7 +55,7 @@ export default async function getAuthServer() {
       .eq("email", email)
       .single();
 
-    if (error) throw error;
+    if (!data || error) return null
 
     function transformUserObject(user) {
       return {
@@ -89,7 +89,5 @@ export default async function getAuthServer() {
     }
 
     return transformUserObject(data);
-  } catch (error) {
-    console.log(error);
-  }
+  
 }

@@ -31,7 +31,7 @@ export default function CouponBuyButton({ coupon }) {
   return (
     <>
       <Button
-        type={coupon.cost > 200 ? `warning` : `primary`}
+        type={coupon.cost > 200 ? `info` : `primary`}
         ariaLabel="Comprar cupão"
         className="w-[135px] px-[25px] h-[35px] bg-white rounded-[170px] justify-center items-center inline-flex"
         onClick={handleClick}
@@ -39,7 +39,7 @@ export default function CouponBuyButton({ coupon }) {
         <p
           className={
             coupon.cost > 200
-              ? `text-warning_main font-semibold align-middle`
+              ? `text-info_main font-semibold align-middle`
               : `text-primary_main font-semibold align-middle`
           }
         >

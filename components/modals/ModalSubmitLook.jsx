@@ -7,7 +7,7 @@ import Button from "../buttons/Button";
 import Link from "next/link";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-export const ModalSubmitLook = ({gender}) => {
+const ModalSubmitLook = ({gender}) => {
 
 const dispatch = useAppDispatch();
 dispatch(openModal('submitLook'));
@@ -26,3 +26,5 @@ dispatch(openModal('submitLook'));
     )
         
 }
+
+export default ModalSubmitLook

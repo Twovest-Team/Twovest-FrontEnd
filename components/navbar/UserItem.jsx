@@ -94,7 +94,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Ver as minhas coleções',
-          link: `/profile/${user.id}/collections`
+          link: `/profile/${user.id}?option=collections`
         },
       ],
       [

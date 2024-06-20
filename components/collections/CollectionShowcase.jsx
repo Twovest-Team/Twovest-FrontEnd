@@ -25,7 +25,7 @@ const CollectionShowcase = (props) => {
 
                 <h1 className='text_h5 text-center'>{collectionData.name}</h1>
                 <div className='text-secondary caption flex gap-1.5 items-center'>
-                    <p>{collectionData.looks.length} looks</p>
+                    <p>{collectionData.looks.length} look{collectionData.looks.length !== 1 && 's'}</p>
 
                     |
 

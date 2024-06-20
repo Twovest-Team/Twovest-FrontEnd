@@ -27,19 +27,21 @@ const ProfileBanner = ({ isOwnProfile, ownerFirstName }) => {
 
             <div className="absolute top-0 w-full">
                 <NavigationTitle
-                    hasImageBehind={true}
-                    titleText={
-                        isOwnProfile ? "O meu perfil" : `Perfil de ${ownerFirstName}`
-                    }
+                    hasImageBehind={gradients[count].darker}
                 >
 
                     {isOwnProfile &&
                         <>
                             <div className='sm:hidden'>
-                                <IconButton onClick={handleClick} icon={<AutoAwesomeIcon sx={{ fontSize: 24 }} />} darkMode={true} />
+                                <IconButton
+                                    onClick={handleClick}
+                                    icon={<AutoAwesomeIcon sx={{ fontSize: 24 }} />}
+                                    darkMode={gradients[count].darker}
+                                />
                             </div>
 
-                            <button onClick={handleClick} className='hidden sm:flex bg-white bg-opacity-40 hover:bg-opacity-20 transition-all duration-200 px-5 py-2 rounded-full text-white caption gap-2 items-center font-semibold'>
+                            <button onClick={handleClick}
+                            className={`hidden ${gradients[count].darker ? 'bg-white bg-opacity-40 hover:bg-opacity-20 text-white' : 'bg-black bg-opacity-40 hover:bg-opacity-20 text-white'} sm:flex  transition-all duration-200 px-5 py-2 rounded-full  caption gap-2 items-center font-semibold`}>
                                 <AutoAwesomeIcon sx={{ fontSize: 20 }} />
                                 <span className='pt-0.5'>Editar banner</span>
                             </button>

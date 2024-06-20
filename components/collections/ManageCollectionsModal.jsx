@@ -12,6 +12,7 @@ import { handleCreateCollection } from "@/utils/handlers/handleCollections";
 import { usePathname, useSearchParams } from "next/navigation";
 import Button from "../buttons/Button";
 import { useRouter } from "next/navigation";
+import addToCollection from "@/utils/db/collections/addToCollection";
 
 
 
@@ -46,8 +47,8 @@ const ManageCollectionModal = () => {
     const param = searchParams.get('save')
     if (param) {
       setLookId(param)
-      setCurrentSection(param && currentUser && collectionsData.length > 0 ? 0 : 1)
     }
+    setCurrentSection(param && currentUser && collectionsData.length > 0 ? 0 : 1)
   }, [searchParams, pathname])
 
   // Go to modal next section
@@ -62,16 +63,27 @@ const ManageCollectionModal = () => {
 
   // Function to create a new collection in the db
   async function submitNewCollection() {
+
     if (!nameState && !privacyValue && !currentUser) return null
-    const isCollectionCreated = await handleCreateCollection(currentUser.id, nameState, privacyValue)
-    if (isCollectionCreated) setCurrentSection(currentSection + 1)
+
+    const createdCollectionId = await handleCreateCollection(currentUser.id, nameState, privacyValue)
+
+    if (lookId && createdCollectionId) {
+      const isLookSaved = await addToCollection(createdCollectionId, lookId, currentUser.id)
+      alert('is look saved?' + isLookSaved)
+      setCurrentSection(currentSection + 1)
+    } else if (createdCollectionId) {
+      setCurrentSection(currentSection + 1)
+    }
+
+
   }
 
   function onCloseModal() {
     setTimeout(() => {
       setNameState('')
       setPrivacyValue(1)
-      setCurrentSection(lookId && currentUser && collectionsData.length > 0  ? 0 : 1)
+      setCurrentSection(lookId && currentUser && collectionsData.length > 0 ? 0 : 1)
     }, 1000)
     router.push(pathname, { scroll: false })
     router.refresh()
@@ -80,7 +92,7 @@ const ManageCollectionModal = () => {
   return (
     <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId && collectionsData.length > 0) && currentSection != 3 && previousSection}>
 
-      {currentSection === 0 && lookId && currentUser && collectionsData.length > 0  &&
+      {currentSection === 0 && lookId && currentUser && collectionsData.length > 0 &&
         <SaveLookSection
           currentUser={currentUser}
           collectionsData={collectionsData}
@@ -109,6 +121,7 @@ const ManageCollectionModal = () => {
         <FeedbackSection
           lookId={lookId}
           dispatch={dispatch}
+          pathname={pathname}
           router={router}
         />
       }
@@ -218,8 +231,9 @@ const PrivacySection = ({ setPrivacyValue, submitNewCollection }) => {
   )
 }
 
-const FeedbackSection = ({ lookId, dispatch, router }) => {
+const FeedbackSection = ({ lookId, dispatch, router, pathname }) => {
   const handleClick = () => {
+    router.push(pathname, { scroll: false })
     router.refresh()
     dispatch(closeModal('createCollection'))
   }

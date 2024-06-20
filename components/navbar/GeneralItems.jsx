@@ -24,7 +24,7 @@ const GeneralItems = ({ user, cart }) => {
     let cartStore = useAppSelector((state) => state.cartProducts.products);
 
     useEffect(() => {
-        dispatch(updateCart(cart));
+       if(cart) dispatch(updateCart(cart));
     })
 
     useEffect(() => {

@@ -21,7 +21,6 @@ dispatch(openModal('submitLook'));
                 <h1 className="text_h5 mt-4">Look submetido com sucesso!</h1>
                 <p className="text-secondary">Já podes consultá-lo na Galeria de Looks.</p>
             </div>
-            <Link href={`/gallery/${gender}`}>Fechar</Link>
         </div>
     </Modal>
     )

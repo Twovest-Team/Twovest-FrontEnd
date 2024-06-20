@@ -30,7 +30,7 @@ const Profile = async ({ params, searchParams }) => {
 
   const renderOptionsTabs = () => {
 
-    const tabs = ['looks', 'coleções', 'Emblemas'];
+    const tabs = ['looks', 'coleções'];
     return (
       <section className='container flex flex-col gap-8 mt-3 mb-6'>
         <div>
@@ -64,7 +64,7 @@ const Profile = async ({ params, searchParams }) => {
     <div className="flex flex-col gap-6 h-full min-h-[50vh] pb-6">
       {isOwnProfile &&
         <div className="container flex items-center justify-between h-12">
-          <Button href="/gallery/submitLook" className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+          <Button href="/gallery/submitLook" className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Submeter novo look'>
             Submeter novo look
           </Button>
 
@@ -114,15 +114,21 @@ const Profile = async ({ params, searchParams }) => {
             <p className="text-secondary">Desde {ownerCreatedAt}</p>
           </div>
 
-          <div className="flex gap-3">
-            <Button className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
-              Editar Perfil
-            </Button>
+          {isOwnProfile ?
+            <div className="flex gap-3">
+              <Button className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+                Editar Perfil
+              </Button>
 
-            <Button className="caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
-              Definições
+              <Button className="caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
+                Definições
+              </Button>
+            </div>
+            :
+            <Button className="caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Reportar utilizador'>
+              Reportar utilizador
             </Button>
-          </div>
+          }
 
         </section>
 
@@ -163,7 +169,7 @@ async function ProfileLooks({ ownerData, isOwnProfile, ownerFirstName }) {
           {!isOwnProfile && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem looks disponíveis.</p>)}
 
           {/* TODO -> HAVE DYNAMIC GENDER IN BUTTON HREF */}
-          <Button href="/gallery/women" className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Editar Perfil'>
+          <Button href="/gallery/women" className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
             {'Procurar inspiração na galeria ->'}
           </Button>
         </li>

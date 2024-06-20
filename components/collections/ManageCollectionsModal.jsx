@@ -33,27 +33,21 @@ const ManageCollectionModal = () => {
   // Privacy value state
   const [privacyValue, setPrivacyValue] = useState(1)
 
-  // Form section state
-  const [currentSection, setCurrentSection] = useState(lookId ? 0 : 1)
-
   // All collections from user needed when saving a new look
-  const [collectionsData, setCollectionsData] = useState()
+  const collectionsData = currentUser?.collections
 
-  // Get collections data everytime there is a look id
-  useEffect(() => {
-    async function getData() {
-      const data = await getCollections(currentUser.id);
-      if (data) setCollectionsData(data)
-    }
+  // Form section state
+  const [currentSection, setCurrentSection] = useState(0)
 
-    if (lookId && currentUser) getData()
-  }, [currentUser, lookId])
+  console.log(collectionsData)
 
   // Reset form section depending on url params
   useEffect(() => {
-    const saveParam = searchParams.get('save')
-    setLookId(saveParam)
-    setCurrentSection(saveParam ? 0 : 1)
+    const param = searchParams.get('save')
+    if (param) {
+      setLookId(param)
+      setCurrentSection(param && currentUser && collectionsData.length > 0 ? 0 : 1)
+    }
   }, [searchParams, pathname])
 
   // Go to modal next section
@@ -73,27 +67,20 @@ const ManageCollectionModal = () => {
     if (isCollectionCreated) setCurrentSection(currentSection + 1)
   }
 
-  // Reset the state when modal closes
-  useEffect(() => {
-    if (!isModalOpen) {
-      setTimeout(() => {
-        setNameState('')
-        setPrivacyValue(1)
-        setCurrentSection(lookId ? 0 : 1)
-      }, 1000)
-    }
-
-  }, [isModalOpen])
-
   function onCloseModal() {
+    setTimeout(() => {
+      setNameState('')
+      setPrivacyValue(1)
+      setCurrentSection(lookId && currentUser && collectionsData.length > 0  ? 0 : 1)
+    }, 1000)
     router.push(pathname, { scroll: false })
     router.refresh()
   }
 
   return (
-    <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId) && currentSection != 3 && previousSection}>
+    <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId && collectionsData.length > 0) && currentSection != 3 && previousSection}>
 
-      {currentSection === 0 && lookId && currentUser && collectionsData &&
+      {currentSection === 0 && lookId && currentUser && collectionsData.length > 0  &&
         <SaveLookSection
           currentUser={currentUser}
           collectionsData={collectionsData}
@@ -144,7 +131,6 @@ const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSe
       {collectionsData &&
         <div className="max-h-[220px] average:max-h-[345px] tall:max-h-[470px] overflow-y-auto">
           <CollectionList
-            toSaveLook
             lookId={lookId}
             collections={collections}
             ownerId={ownerId}

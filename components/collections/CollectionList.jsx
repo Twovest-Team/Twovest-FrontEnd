@@ -43,9 +43,12 @@ const CollectionList = ({
 
           <div className="flex gap-3 w-full items-center h-12">
 
-            <div className="hidden md:block">
-              <CreateCollectionButton isAdmin={isOwner} type='button' />
-            </div>
+            {isOwner &&
+              <div className="hidden md:block">
+                <CreateCollectionButton isAdmin={isOwner} type='button' />
+              </div>
+            }
+
 
             <div className="w-full md:max-w-[400px]">
 
@@ -93,9 +96,9 @@ const CollectionList = ({
           </li>
         ))}
 
-        {collectionsState.length === 0 && <p>Sem resultados para pesquisa.</p>}
+        {searchState.trim().length > 0 && collectionsState.length === 0 && <p>Sem resultados para pesquisa.</p>}
 
-        {collections.length === 0 && (
+        {!lookId && collections.length === 0 && (
           <li className="text-secondary container w-full flex justify-center items-center h-full flex-col gap-5 flex-grow">
 
             {isOwner && <p className="text-center">Ainda não criaste nenhuma coleção.</p>}
@@ -103,7 +106,7 @@ const CollectionList = ({
             {!isOwner && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem coleções disponíveis.</p>)}
 
 
-            <Button className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Editar Perfil'>
+            <Button className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
               {'Procurar inspiração na galeria ->'}
             </Button>
           </li>

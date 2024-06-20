@@ -23,7 +23,7 @@ const CreateCollectionButton = ({ isAdmin, type = 'icon' }) => {
                 />
             }
             {isAdmin && type === 'button' &&
-                <Button onClick={handleClick} className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+                <Button onClick={handleClick} className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Criar nova coleção'>
                     Criar nova coleção
                 </Button>
             }

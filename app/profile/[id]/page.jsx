@@ -85,7 +85,7 @@ const Profile = async ({ params, searchParams }) => {
   const renderCollections = () => (
     <div className="flex pb-6 flex-col items-start self-stretch container gap-4 h-full min-h-[50vh]">
       <CollectionList
-        search={true}
+        showOptions={true}
         collections={collectionsData}
         ownerId={ownerId}
         ownerFirstName={ownerFirstName}

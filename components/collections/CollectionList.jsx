@@ -12,7 +12,7 @@ import CloseIcon from "@mui/icons-material/Close";
 const CollectionList = ({
   collections,
   ownerId,
-  search,
+  showOptions,
   isOwner,
   lookId, // Pass the look id if a look is to be saved
   ownerFirstName,
@@ -33,13 +33,17 @@ const CollectionList = ({
     handleSearch()
   }, [searchState])
 
+  useEffect(() => {
+    setCollectionsState(collections)
+  }, [collections])
+
   return (
     <>
 
       {/* IF THERE ARE ANY COLLECTIONS */}
 
       <ul className="flex flex-col items-start self-stretch gap-6 flex-grow ">
-        {search && (
+        {showOptions && collections.length > 0 && (
 
           <div className="flex gap-3 w-full items-center h-12">
 

@@ -4,17 +4,21 @@ import HeaderImage from "@/public/static/images/aboutus/header.png"
 
 export default function Header() {
   return (
-    <div className="flex flex-col pt-8 items-center md:pt-12 lg:pt-16">
-      <div className="px-6 md:px-12 lg:px-20 flex flex-col justify-center items-center gap-5">
-        <h3 className="text_h3 text-center">Eco-Fashion. Wallet-Friendly.</h3>
-        <p className="text_caption text-secondary text-center pb-3">
+    <div className="flex flex-col items-center justify-center pt-20">
+
+      <div className="flex flex-col justify-center items-center gap-3">
+
+        <h3 className="text-[10vw] sm:text-[50px] md:text-[70px] lg:text-[80px] font-extrabold text-center leading-tight bg-gradient-to-t from-[#666666]  to-black inline-block text-transparent bg-clip-text">Eco-Fashion. <br />Wallet-Friendly.</h3>
+        <p className="max-w-[540px] caption sm:text-base text-secondary text-center pb-3">
           A ideia de que moda sustentável é sinónimo de produtos caros está cada vez mais ultrapassada. 
           Hoje, é possível vestires-te bem, respeitando o meio ambiente e sem gastar uma fortuna.
         </p>
         <Button type="black" href={'/aboutus#aboutUs'}>Quero saber mais!</Button>
+
       </div>
-      <div className="flex items-center justify-center pt-6">
-        <Image src={HeaderImage} alt="HeaderImage" width={200} height={200} className="md:w-[250px] lg:w-[300px]" />
+
+      <div className="flex flex-col justify-center items-center py-48 sm:py-60 w-[250px] sm:w-[320px] h-[250px] sm:h-[320px] relative">
+        <Image className="object-contain hover:scale-110 duration-300 transition-transform hover:rotate-6" src={HeaderImage} alt="HeaderImage" fill={true} />
       </div>
     </div>
   )

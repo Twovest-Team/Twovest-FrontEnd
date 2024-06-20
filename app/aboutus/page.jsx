@@ -1,4 +1,4 @@
-import AboutUs from "../../components/aboutus/AboutUs";
+import About from "../../components/aboutus/About";
 import Features from "../../components/aboutus/Features";
 import FeedbackSticky from "../../components/aboutus/FeedbackSticky";
 import Future from "../../components/aboutus/Future";
@@ -7,13 +7,15 @@ import Team from "../../components/aboutus/Team";
 
 export default function Landpage() {
     return (
-        <>
+        <main>
             <FeedbackSticky />
-            <Header />
-            <AboutUs />
+            <div className="container">
+                <Header />
+                <About />
+            </div>
             <Team />
             <Features />
             <Future />
-        </>
-      );
+        </main>
+    );
 } 

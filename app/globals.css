@@ -100,14 +100,6 @@ h6 {
   font-size: 13.33px;
 }
 
-.body_semibold {
-  color: var(--text_primary, #000);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21.4px;
-}
-
 .h5_semibold {
   color: var(--text_primary, #000);
   font-size: 16px;

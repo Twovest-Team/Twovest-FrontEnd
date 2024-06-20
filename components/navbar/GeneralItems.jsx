@@ -33,7 +33,7 @@ const GeneralItems = ({ user, cart }) => {
 
 
     return (
-        <div className="flex items-center gap-2.5 mr-4">
+        <div className="flex items-center gap-2.5 mr-2.5 sm:mr-4">
 
             <IconButton
                 onClick={handleSearch}

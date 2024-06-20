@@ -67,7 +67,7 @@ const AuthModal = () => {
                                 alt=''
                                 className='mr-1'
                             />
-                            Cotinuar com {props.provider}
+                            <span className='hidden [@media(min-width:390px)]:inline'>Cotinuar com</span> {props.provider}
                         </Button>
                     ))}
                     </div>

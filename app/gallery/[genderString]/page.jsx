@@ -11,6 +11,7 @@ import TopbarFilters from "@/components/items/TopbarFilters";
 import getAllStyles from "@/utils/db/getAllStyles";
 import { getTopbarFilters } from "@/utils/handlers/handleFilters";
 import { ModalSubmitLook } from "@/components/modals/Modalteste";
+import SubmitLookButton from "@/components/buttons/SubmitLookButton";
 
 export const revalidate = 60;
 
@@ -47,15 +48,7 @@ const Gallery = async ({ params, searchParams }) => {
         <div className="flex items-center">
           <GridViews />
         </div>
-        <div>
-          <Button
-            href={"/gallery/submitLook"}
-            type={"primary"}
-            ariaLabel="Submeter look"
-          >
-            Submeter look
-          </Button>
-        </div>
+        <SubmitLookButton />
         {searchParams.submit_success === "true" ? <ModalSubmitLook gender={params.genderString} /> : null}
       </div>
 

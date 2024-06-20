@@ -131,7 +131,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                                 }
 
                                 {!restricted ?
-                                    <div className="ml-auto">
+                                    <div className="ml-auto translate-x-2 sm:translate-x-0">
                                         <IconButton
                                             icon={<CloseIcon />}
                                             onClick={handleCloseModal}

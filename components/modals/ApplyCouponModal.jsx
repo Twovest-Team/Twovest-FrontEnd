@@ -8,6 +8,7 @@ import CouponCard from "../cards/CouponCard";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAppDispatch } from "@/redux/hooks";
+import { closeModal } from "@/redux/slices/modalSlice";
 
 export default function ApplyCouponModal() {
     const { currentUser } = useAuth();
@@ -38,7 +39,7 @@ export default function ApplyCouponModal() {
                 {userCoupons.length > 0 ? (
           <div className="grid grid-cols-2 gap-4">
             {userCoupons.map((coupon) => (
-               <Link key={coupon.id_coupon} href={pathname + '?coupon=' + coupon.id_coupon} onClick={() => dispatch(openModal('applyCoupon'))}>
+               <Link key={coupon.id_coupon} href={pathname + '?coupon=' + coupon.id_coupon} onClick={() => dispatch(closeModal('applyCoupon'))}>
               <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
               </Link>
             ))}

@@ -53,19 +53,20 @@ export const CardCart = ({
   const gender = getGender(data.offers.products.gender);
   const brandId = data.offers.products.brands.id
 
-  if(coupon) {
+  
     useEffect(() => {
       if (currentUser?.id) {
           // Função para buscar os cupons do utilizador
           const couponApplies = async () => {
               try {
+                if(coupon > 0) {
                   const checkCouponApplies = await checkIfCouponApplies(brandId, coupon);
 
                   if(checkCouponApplies.length > 0)
                     {
                       setCouponDiscount(checkCouponApplies[0].coupons.discount)
                     }
-  
+                  }
               } catch (error) {
                   console.error("Failed to check if coupon applies:", error);
               }
@@ -74,8 +75,8 @@ export const CardCart = ({
           couponApplies();
       }
   }, [coupon]);
-  }
-
+  
+  
   function NormalPrice() {
     return(
       <p className="font-semibold h-8 flex items-center">

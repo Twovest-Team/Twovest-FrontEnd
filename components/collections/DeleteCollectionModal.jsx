@@ -19,7 +19,7 @@ const DeleteCollectionModal = ({ isAdmin, collectionId }) => {
         let isDeleted = await deleteCollection(collectionId)
         dispatch(closeModal('deleteCollectionWarning'))
         alert('is deleted? ' + isDeleted)
-        if (isDeleted) router.push(`/profile/${currentUser.id}/collections`)
+        if (isDeleted) router.push(`/profile/${currentUser.id}?option=coleções`)
         router.refresh();
     }
 

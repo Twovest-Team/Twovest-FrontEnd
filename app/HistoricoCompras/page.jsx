@@ -29,7 +29,7 @@ const HistoricoCompras = () => {
           >
             <div>
               <p>01/12/2023</p>
-              <p className="text_caption text-secondary">Encomenda nº 305862</p>
+              <p className="caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
           
@@ -57,7 +57,7 @@ const HistoricoCompras = () => {
           >
             <div>
               <p>01/12/2023</p>
-              <p className="text_caption text-secondary">Encomenda nº 305862</p>
+              <p className="caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
           

@@ -12,6 +12,8 @@ import { changeUserData } from "@/redux/slices/userSlice";
 import { useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from 'next/navigation'
+import { openModal } from "@/redux/slices/modalSlice";
+import IconButton from "../buttons/icons/IconButton";
 
 
 const UserItem = ({ user }) => {
@@ -43,14 +45,16 @@ const UserItem = ({ user }) => {
   const renderRegisterButton = () => (
     <>
 
-      <Link href='/login' className="sm:hidden">
-        <AccountCircleOutlinedIcon sx={{ fontSize: 26 }} />
-      </Link>
+      <IconButton
+        className="sm:hidden"
+        icon={<AccountCircleOutlinedIcon sx={{ fontSize: 26 }} />}
+        onClick={() => dispatch(openModal('authModal'))}>
+      </IconButton>
 
       <Button
         className='hidden sm:flex text-sm ml-1'
         height="40px"
-        href="/login"
+        onClick={() => dispatch(openModal('authModal'))}
         type="black"
         ariaLabel="Fazer login ou registo"
         width="fit-content"
@@ -94,7 +98,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Ver as minhas coleções',
-          link: `/profile/${user.id}/collections`
+          link: `/profile/${user.id}?option=collections`
         },
       ],
       [

@@ -37,7 +37,7 @@ const createCollection = async (
   if (userId && !isUserAssociated) return false;
 
   if (collectionData && (!lookId || isLookSaved) && isUserAssociated)
-    return true;
+    return collectionData.id;
 };
 
 export default createCollection;

@@ -23,6 +23,7 @@ export const CardCart = ({
   userEmail,
   handleLoading,
   coupon,
+  sendDataToParent
 }) => {
   const dispatch = useDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
@@ -65,6 +66,7 @@ export const CardCart = ({
                   if(checkCouponApplies.length > 0)
                     {
                       setCouponDiscount(checkCouponApplies[0].coupons.discount)
+                      sendDataToParent(checkCouponApplies[0])
                     }
                   }
               } catch (error) {

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"]
-    }
-  },
-  "exclude": ["public/storage"]
+    },
+    "exclude": ["public/storage"]
+  }
 }

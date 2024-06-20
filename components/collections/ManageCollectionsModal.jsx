@@ -40,8 +40,6 @@ const ManageCollectionModal = () => {
   // Form section state
   const [currentSection, setCurrentSection] = useState(0)
 
-  console.log(collectionsData)
-
   // Reset form section depending on url params
   useEffect(() => {
     const param = searchParams.get('save')

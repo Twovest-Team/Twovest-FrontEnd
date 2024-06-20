@@ -3,13 +3,12 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateView } from "@/redux/slices/layoutViews";
 import useWindow from "@/hooks/client-hooks/useWindow";
-import { useEffect } from "react";
-import oneRowButton from "@/public/static/images/viewmodel-icons/1row.png";
-import twoRowsButton from "@/public/static/images/viewmodel-icons/2rows.png";
-import threeRowsButton from "@/public/static/images/viewmodel-icons/3rows.png";
-import fourRowsButton from "@/public/static/images/viewmodel-icons/4rows.png";
-import fiveRowsButton from "@/public/static/images/viewmodel-icons/5rows.png";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
+import LooksTwoOutlinedIcon from '@mui/icons-material/LooksTwoOutlined';
+import Looks3OutlinedIcon from '@mui/icons-material/Looks3Outlined';
+import Looks4OutlinedIcon from '@mui/icons-material/Looks4Outlined';
+import Looks5OutlinedIcon from '@mui/icons-material/Looks5Outlined';
 import IconButton from "../buttons/icons/IconButton";
 import { minWidthGrid } from "@/constants";
 
@@ -18,75 +17,92 @@ const GridViews = () => {
 
   const dispatch = useAppDispatch();
 
+  const [currentView, setCurrentView] = useState(
+    useAppSelector((state) => {
+        console.log("currentView")
+        if (state.layoutView) {
+          return state.layoutView.currentValue;
+        } else {
+          return null
+        }
+      })
+  )
+
   function handleViewChange(viewNumber) {
-    dispatch(updateView(viewNumber));
+    dispatch(updateView(viewNumber)); //Acham que vale a pena deixar isto? Ou é melhor só usar o state local? --> Dani :)
+    setCurrentView(viewNumber);
   }
 
   useEffect(() => {
-    if (width <= minWidthGrid) handleViewChange(1);
-    if ((width > minWidthGrid || isSm || isMd) && width < 1024) handleViewChange(2);
-    if (isLg) handleViewChange(3);
-    if (isXl || is2Xl) handleViewChange(4);
-  }, [width, isSm, isMd, isMd, isLg, isXl, is2Xl]);
+    console.log('entrou aqui')
+    if (width <= minWidthGrid) {
+      console.log("1 if", currentView)
+      handleViewChange(1);
+    }
+    if ((width > minWidthGrid || isSm || isMd) && width < 1024) {
+      console.log("2 if", currentView)
+      handleViewChange(2);
+    }
+    if (isLg) {
+      console.log("3 if", currentView)
+      handleViewChange(3);
+    }
+    if (isXl || is2Xl) {
+      console.log("2 if", currentView)
+      handleViewChange(4);
+    }
+  }, [width, isSm, isMd, isLg, isXl, is2Xl]);
 
   if (width && width > minWidthGrid) {
     return (
       <div
-        className={`items-center justify-between text-secondary w-fit flex gap-x-3`}
+        className={`items-center justify-between text-neutral-300 w-fit flex gap-x-3`}
       >
         {(isMobile || isSm) && (
-          <IconButton
+          <IconButton 
             icon={
-              <Image
-                src={oneRowButton}
-                height={30}
-                width={30}
-                alt="Mudar para visualização em uma coluna"
-                onClick={() => handleViewChange(1)}
-              />
+              currentView!== null && currentView === 1? 
+                <LooksOneOutlinedIcon sx={{ fontSize: 40 }} className="text-black" /> : 
+                <LooksOneOutlinedIcon sx={{ fontSize: 40 }} className="text-neutral-300 hover:text-black" />
             }
+            alt="Mudar para visualização em uma coluna"
+            onClick={() => handleViewChange(1)}
           />
         )}
 
         {(isMobile || isSm || isMd) && (
           <IconButton
             icon={
-              <Image
-                src={twoRowsButton}
-                height={30}
-                width={30}
-                alt="Mudar para visualização em duas colunas"
-                onClick={() => handleViewChange(2)}
-              />
+              currentView!== null && currentView === 2? 
+                <LooksTwoOutlinedIcon sx={{ fontSize: 40 }} className="text-black" /> : 
+                <LooksTwoOutlinedIcon sx={{ fontSize: 40 }} className="text-neutral-300 hover:text-black" />
             }
+            alt="Mudar para visualização em duas colunas"
+            onClick={() => handleViewChange(2)}
           />
         )}
 
         {(isMd || isLg) && (
           <IconButton
             icon={
-              <Image
-                src={threeRowsButton}
-                height={30}
-                width={30}
-                alt="Mudar para visualização em três colunas"
-                onClick={() => handleViewChange(3)}
-              />
+              currentView!== null && currentView === 3? 
+                <Looks3OutlinedIcon sx={{ fontSize: 40 }} className="text-black" /> : 
+                <Looks3OutlinedIcon sx={{ fontSize: 40 }} className="text-neutral-300 hover:text-black" />
             }
+            alt="Mudar para visualização em três colunas"
+            onClick={() => handleViewChange(3)}
           />
         )}
 
         {(isLg || isXl || is2Xl) && (
           <IconButton
             icon={
-              <Image
-                src={fourRowsButton}
-                height={30}
-                width={30}
-                alt="Mudar para visualização em quatro colunas"
-                onClick={() => handleViewChange(4)}
-              />
+              currentView!== null && currentView === 4? 
+                <Looks4OutlinedIcon sx={{ fontSize: 40 }} className="text-black" /> : 
+                <Looks4OutlinedIcon sx={{ fontSize: 40 }} className="text-neutral-300 hover:text-black" />
             }
+            alt="Mudar para visualização em quatro colunas"
+            onClick={() => handleViewChange(4)}
             className={"w-12 h-12"}
           />
         )}
@@ -94,14 +110,12 @@ const GridViews = () => {
         {(isXl || is2Xl) && (
           <IconButton
             icon={
-              <Image
-                src={fiveRowsButton}
-                height={30}
-                width={30}
-                alt="Mudar para visualização em cinco colunas"
-                onClick={() => handleViewChange(5)}
-              />
+              currentView!== null && currentView === 5? 
+                <Looks5OutlinedIcon sx={{ fontSize: 40 }} className="text-black" /> : 
+                <Looks5OutlinedIcon sx={{ fontSize: 40 }} className="text-neutral-300 hover:text-black" />
             }
+            alt="Mudar para visualização em cinco colunas"
+            onClick={() => handleViewChange(5)}
           />
         )}
       </div>

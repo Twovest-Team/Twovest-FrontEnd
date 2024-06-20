@@ -28,7 +28,7 @@ export default function Footer() {
               </Link>
             </li>
             <li className="h-[50px]" key={"Footer-SobreNos"}>
-              <Link href="/">
+              <Link href="/aboutus">
                 <p className="h-full w-full flex items-center justify-center">
                   Sobre nós
                 </p>

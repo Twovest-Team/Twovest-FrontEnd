@@ -36,7 +36,7 @@ export const Cart = () => {
   }
 
   function detectUserCart() {
-    if (currentUser && products.length === 0) {
+    if (currentUser && products?.length === 0) {
       async function getProductsData() {
         const data = await getUserCartProducts(currentUser.email);
         if (data) {
@@ -55,7 +55,7 @@ export const Cart = () => {
   }, [currentUser]);
 
   function handleShowDeleteNotification(data) {
-    if (products.length > data.length) {
+    if (products?.length > data.length) {
       dispatch(showNotification("removeFromCart"));
     }
   }
@@ -89,7 +89,7 @@ export const Cart = () => {
       <div>
         <div
           className={`${
-            products.length === 0 && "absolute"
+            products?.length === 0 && "absolute"
           } caption w-full py-6 shadow-md flex gap-2  `}
         >
           <div className="flex h-[72px] justify-between container items-center">
@@ -108,7 +108,7 @@ export const Cart = () => {
           loading && "opacity-20 pointer-events-none"
         }`}
       >
-        {products.length > 0 && currentUser && (
+        {products?.length > 0 && currentUser && (
           <ul>
             {products.map((product, index) => (
               <li key={index}>
@@ -124,7 +124,7 @@ export const Cart = () => {
           </ul>
         )}
 
-        {products.length === 0 && currentUser && (
+        {products?.length === 0 && currentUser && (
           <div className="h-full flex flex-col justify-center items-center gap-1 mb-12">
             <NoResultsNotice
               title={"Vamos às compras?"}
@@ -138,7 +138,7 @@ export const Cart = () => {
           </div>
         )}
 
-        {products.length === 0 && !currentUser && (
+        {products?.length === 0 && !currentUser && (
           <div className="flex h-3/4 mx-auto">
             <Link href="/login" className="flex flex-col ">
               <NoResultsNotice
@@ -153,18 +153,18 @@ export const Cart = () => {
         )}
       </div>
 
-      {products.length > 0 && currentUser && (
+      {products?.length > 0 && currentUser && (
         <div className=" w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container pb-4">
           <div className="flex my-6 justify-between">
             <div>
               <h1
                 className="font-semibold text_h6"
-                aria-label={`Total de ${products && products.length} ${
-                  products && products.length === 1 ? "artigo" : "artigos"
+                aria-label={`Total de ${products && products?.length} ${
+                  products && products?.length === 1 ? "artigo" : "artigos"
                 }`}
               >
-                Total ({products && products.length}{" "}
-                {products.length === 1 ? "artigo" : "artigos"})
+                Total ({products && products?.length}{" "}
+                {products?.length === 1 ? "artigo" : "artigos"})
               </h1>
               <div className="text-grey" aria-label="Iva Incluído">
                 IVA Incluído
@@ -174,12 +174,12 @@ export const Cart = () => {
               <h2
                 className="font-semibold text_h6"
                 aria-label={`Total do carrinho: ${
-                  products.length > 0
+                  products?.length > 0
                     ? getCartTotalPrice(products) + " euros"
                     : "Carrinho vazio"
                 }`}
               >
-                {products.length > 0 && <>{getCartTotalPrice(products)}€</>}
+                {products?.length > 0 && <>{getCartTotalPrice(products)}€</>}
               </h2>
             </div>
           </div>

@@ -23,7 +23,7 @@ const ShareButton = ({type}) => {
     if (!type) return null
 
     if (type === 'normal') return (
-      <IconButton icon={<ShareIcon />} ariaLabel="Partilhar esta página." />
+      <IconButton icon={<ShareIcon sx={{fontSize: 20}} />} ariaLabel="Partilhar esta página." />
     )
 
     if (type === 'bordered') return (

@@ -2,7 +2,6 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { useState, useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -11,8 +10,6 @@ import Button from "@/components/buttons/Button";
 import { UsedProductsSubmitLook } from "@/components/sections/UsedProductsSubmitLook";
 import { StylesSubmitLook } from "@/components/sections/StylesSubmitProduct";
 import getAuth from "@/utils/db/auth/getAuth";
-import submitLook from "@/utils/db/submitLook/submitLook";
-import useGender from "@/hooks/client-hooks/useGender";
 import teste from "@/app/actions";
 import { useSearchParams } from 'next/navigation'
 import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
@@ -29,7 +26,6 @@ const FormLook = () => {
   const [userId, setUserId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
- /*  const [gender, setGender] = useGender(); */ //mudar para searchparams vindos dos botoes anteriores
   const [lookImageAlt, setLookImageAlt] = useState('');
   const [lookImageURL, setLookImageURL] = useState('');
   const [isInstagramURLValid, setIsInstagramURLValid] = useState(true);
@@ -70,8 +66,6 @@ const FormLook = () => {
     }
 
   }, [gender]);
-
-  //console.log(gender, genderId);
 
 
   const handleFileChange = (event) => {

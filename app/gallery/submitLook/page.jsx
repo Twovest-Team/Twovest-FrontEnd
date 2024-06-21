@@ -1,6 +1,3 @@
-// Se não tiver sessão iniciada deverá ser redirecionado para o login
-// Exemplo: twovest.com/gallery/submit
-
 "use client";
 
 import NavigationTitle from "@/components/providers/NavigationTitle";

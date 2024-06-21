@@ -12,28 +12,25 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 import deleteCollectionLook from "@/utils/db/collections/deleteCollectionLook";
 import addToCollection from "@/utils/db/collections/addToCollection";
 import useAuth from "@/hooks/client-hooks/useAuth";
-import { reverseLooksOrder } from "@/utils/handleCollections";
+import { reverseLooksOrder } from "@/utils/handlers/handleCollections";
 import { useAppDispatch } from "@/redux/hooks";
 import { showNotification } from "@/redux/slices/notificationSlice";
-import Notification from "../modals/Notification";
+import { useState } from "react";
 
 
-//Componente de card da coleção
-// Mostra diferentes tipos de card dependendo no número de coleções presentes (3 ou mais, 2 , ou 1 ), da sua privacidade
-//(publica, privada ou partilhada) e também muda o nome e o número de looks
+export default function CollectionPreview({ collection, lookId, showcaseImages }) {
 
-export default function CollectionPreview({ collection, lookId }) {
-
-  const { isMobile, height } = useWindow()
+  const { isMobile } = useWindow()
   const dispatch = useAppDispatch()
   const { currentUser } = useAuth()
   const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
+  const [isSaved, setIsSaved] = useState(lookId ? looks.some(item => item.id == lookId) : null)
 
   function renderImages() {
 
-    const figureWidth = 86
-    const figureHeight = 90
+    const figureWidth = showcaseImages ? 126: 86
+    const figureHeight = showcaseImages ? 130: 90
     let previewLookCards = []
     const reversedLooks = reverseLooksOrder(looks)
 
@@ -44,17 +41,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-0 top-0 z-20 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-0 top-0 z-20 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[16px]  border-white`} />
               )
             }
             break;
@@ -62,17 +60,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-[14px] top-0 z-10 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-[14px] top-0 z-10 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-grey rounded-[16px]  border-white`} />
               )
             }
 
@@ -81,17 +80,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-[28px] top-0 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-[28px] top-0 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px]  border-white`} />
               )
             }
 
@@ -101,18 +101,18 @@ export default function CollectionPreview({ collection, lookId }) {
     } else {
       previewLookCards = (
         <>
-          <div className="w-[86px] h-[90px] z-20 left-0 top-0 absolute bg-secondary rounded-[16px] border-[3.5px] border-white text-white flex justify-start pt-2 pl-2">
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-20 left-0 top-0 absolute bg-secondary rounded-[16px]  border-white text-white flex justify-start pt-2 pl-2`}>
             <BookmarkRoundedIcon className="text-white" sx={{ fontSize: 22 }} />
           </div>
-          <div className="w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white" />
-          <div className="w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white" />
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-grey rounded-[16px]  border-white`} />
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px]  border-white`} />
         </>
       )
     }
 
     return (
-      <div className="h-[90px] grid">
-        <div className="w-[108px] h-full relative [&>img]:border-[3.5px] [&>img]:border-white">
+      <div className={`${showcaseImages ? 'h-[130px] mr-5' : 'h-[90px]'} grid`}>
+        <div className={`${showcaseImages ? 'w-[126px]' : 'w-[110px]'} h-full relative [&>*]:border-4 [&>img]:border-white`}>
           {previewLookCards}
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function CollectionPreview({ collection, lookId }) {
 
   function renderDetails() {
     return (
-      <div className={`ml-4 flex flex-col ${!lookId ? 'justify-between' : 'justify-center'} items-stretch h-full`}>
+      <div className={`ml-4 gap-2 flex flex-col ${!lookId ? 'justify-between' : 'justify-center'} items-stretch h-full`}>
 
         {!lookId &&
           <>
@@ -151,43 +151,47 @@ export default function CollectionPreview({ collection, lookId }) {
   }
 
   function renderOptions() {
-    const isSaved = looks.some(item => item.id == lookId);
 
     const buttonProps = {
       onClick: isSaved ? handleRemoveLook : handleSaveLook,
       icon: isSaved ? <BookmarkRoundedIcon sx={{ fontSize: 25 }} /> : <BookmarkBorderOutlinedIcon sx={{ fontSize: 25 }} />,
-      className: 'shadow border border-grey_opacity_50',
+      className: 'border border-grey_opacity_50 ' + (!isSaved ? 'shadow-sm' : ''),
       type: isSaved ? 'black' : 'white',
       ariaLabel: `Guardar look na coleção: ${name}`,
     };
 
     if (isMobile) {
-      buttonProps.padding = 4;
+      buttonProps.padding = '16px';
       buttonProps.onlyIcon = true;
     } else {
-      buttonProps.height = 12;
-      buttonProps.width = '[142px]';
+      buttonProps.height = '48px';
+      buttonProps.width = '142px';
     }
 
     const buttonText = !isMobile && (isSaved ? 'Remover' : 'Guardar');
 
     async function handleRemoveLook() {
+      setIsSaved(false)
+
       const isRemoveSuccessfull = await deleteCollectionLook(collection.id, lookId)
       if (isRemoveSuccessfull) {
         dispatch(showNotification('removedLook'));
       }
-      if (!isRemoveSuccessfull){
+      if (!isRemoveSuccessfull) {
+        setIsSaved(true)
         dispatch(showNotification('errorRemovingLook'));
 
       }
     }
 
     async function handleSaveLook() {
+      setIsSaved(true)
       const isSaveSuccessfull = await addToCollection(collection.id, lookId, currentUser.id)
       if (isSaveSuccessfull) {
         dispatch(showNotification('savedLook'));
       }
-      if (!isSaveSuccessfull){
+      if (!isSaveSuccessfull) {
+        setIsSaved(false)
         dispatch(showNotification('errorSavingLook'));
       }
     }
@@ -196,13 +200,13 @@ export default function CollectionPreview({ collection, lookId }) {
       <>
         {privacy == 2 && !lookId && (
           <div className="ml-auto">
-            <ShareButton />
+            <ShareButton type="normal" />
           </div>
         )}
 
         {lookId && (
           <div className="flex-grow flex justify-end h-full items-center mr-5">
-            <Button {...buttonProps}>
+            <Button padding="0 1.2rem" justify="space-between" {...buttonProps}>
               {buttonProps.icon}
               {buttonText}
             </Button>
@@ -212,13 +216,16 @@ export default function CollectionPreview({ collection, lookId }) {
     );
   }
 
-
   function renderContent() {
     return (
       <>
         {renderImages()}
-        {renderDetails()}
-        {renderOptions()}
+        {!showcaseImages &&
+          <>
+            {renderDetails()}
+            {renderOptions()}
+          </>
+        }
       </>
     )
   }
@@ -228,7 +235,7 @@ export default function CollectionPreview({ collection, lookId }) {
 
       {/* PREVIEW CARD WHEN SHOWCASING COLLECTION */}
       {!lookId &&
-        <Link href={`/collection/${collection.id}`} className="items-start h-[90px] w-full flex flex-row my-1">
+        <Link href={`/collection/${collection.id}`} className="items-start w-fit w-full flex flex-row my-1">
           {renderContent()}
         </Link>
       }

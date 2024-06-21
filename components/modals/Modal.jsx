@@ -19,11 +19,11 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 
 // Choose a size between sm, md or lg. The default size is sm.
 
-// If you want a modal with a side image, use imageUrl and imageAlt.
+// If you want a modal with a side image, use imageSrc and imageAlt.
 
 // All the modal content should be created inside the <Modal> tag, for example:
 
-// <Modal id='login' imageUrl='https://example.com' imageAlt='Example'>
+// <Modal id='login' imageSrc='https://example.com' imageAlt='Example'>
 //  <p>Hello World</p>
 // </Modal>
 
@@ -32,30 +32,33 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, onlyMobile, maxSm }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
-    const { isMobile, isSm } = useWindow();
+    const { isMobile, isSm, isMd } = useWindow();
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'Escape') {
-                handleCloseModal()
+        if (!restricted) {
+            const handleKeyDown = (event) => {
+                if (event.key === 'Escape') {
+                    handleCloseModal()
+                }
+            };
+
+            if (isOpen) {
+                window.addEventListener('keydown', handleKeyDown);
             }
-        };
 
-        if (isOpen) {
-            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+                window.removeEventListener('keydown', handleKeyDown);
+            };
         }
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
     }, [isOpen, dispatch, id]);
 
     const handleCloseModal = () => {
-        {onClose && onClose()}
+        if (restricted) return null
+        { onClose && onClose() }
         dispatch(closeModal(id));
     };
 
@@ -83,14 +86,15 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, only
         }
     }
 
-    if(!isMobile && onlyMobile) return null
-    if(!isMobile && !isSm && maxSm) return null
+    if (!isMobile && onlyMobile) return null
+    if (!isMobile && !isSm && maxSm) return null
+    if (!isMobile && !isSm && !isMd && maxMd) return null
 
     return (
         <Transition show={isOpen || false}>
 
             <section
-                className={`bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-40`}
+                className={`bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-[98]`}
                 onClick={handleCloseModal}
             />
 
@@ -101,17 +105,17 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, only
                 leave='ease-in duration-100'
                 leaveFrom='opacity-100 translate-y-0 sm:-translate-y-1/2 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:-translate-y-[45%] sm:scale-95'
-                className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-50 mx-auto w-screen sm:w-fit max-h-full h-fit'}
+                className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-[99] mx-auto w-screen sm:w-fit max-h-full h-fit'}
             >
                 <div
                     className={`bg-white text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
                 >
-                    {imageUrl && (
+                    {imageSrc && (
                         <div className={`${getModalImageWidth()} relative`}>
                             <Image
                                 className="object-cover sm:rounded-l"
                                 alt={imageAlt}
-                                src={imageUrl}
+                                src={imageSrc}
                                 fill
                             />
                         </div>
@@ -126,19 +130,22 @@ const Modal = ({ children, id, size, imageUrl, imageAlt, goBackFn, onClose, only
                                     />
                                 }
 
-                                <div className="ml-auto">
-                                    <IconButton
-                                        icon={<CloseIcon />}
-                                        onClick={handleCloseModal}
-                                    />
-                                </div>
+                                {!restricted ?
+                                    <div className="ml-auto translate-x-2 sm:translate-x-0">
+                                        <IconButton
+                                            icon={<CloseIcon />}
+                                            onClick={handleCloseModal}
+                                        />
+                                    </div>
+                                    :
+                                    <span className="mt-4" />
+                                }
+                            </div>
 
-                            </div>
-                            
                             <div className="flex flex-col gap-6">
-                            {children}
+                                {children}
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase'
-import getProductImages from '../getProductImages'
+import supabase from "@/utils/db/clients/public/supabase";
 
 export default async function getUserCartProducts(email) {
-
+  try {
     const { data, error } = await supabase
-        .from('cart')
-        .select(`
+      .from("cart")
+      .select(
+        `
         id,
     offers (
         id,
@@ -17,6 +17,11 @@ export default async function getUserCartProducts(email) {
             categories (
                 id
             ),
+            images : products_has_images(
+                id,
+                url,
+                alt
+              ),
             is_sustainable,
             discount,
             gender
@@ -36,29 +41,17 @@ export default async function getUserCartProducts(email) {
     ),
     qty,
     created_at
-    `)
-        .eq('email', email)
-        .order('created_at', { ascending: true })
+    `
+      )
+      .eq("email", email)
+      .order("created_at", { ascending: true });
 
-    if (data) {
-
-        let arrayOfProducts = await Promise.all(
-            data.map(async (element) => {
-
-                let array = element
-                const images = await getProductImages(element.offers.products.id)
-
-                array.offers.images = images
-
-                return array
-            }))
-
-        return arrayOfProducts
-
-
-    } else if (error) {
-        console.log(error)
+    if (data) return data;
+    else if (error) {
+      console.log(error);
     }
-
-
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
 }

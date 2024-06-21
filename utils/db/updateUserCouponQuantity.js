@@ -1,4 +1,4 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
 export default async function updateUserCouponQuantity(
   id_user,
@@ -9,11 +9,13 @@ export default async function updateUserCouponQuantity(
     const { updateQuantityData, updateQuantityError } = await supabase
       .from("users_has_coupons")
       .update({ quantity: newQuantity })
-      .eq("id_user", id_user, "id_coupon", id_coupon);
+      .eq("id_user", id_user)
+      .eq("id_coupon", id_coupon);
 
     if (updateQuantityError) throw updateQuantityError;
 
-    return "Atualização de quantidade efetuada com sucesso";
+    if (updateQuantityData)
+      return "Atualização de quantidade efetuada com sucesso";
   } catch (error) {
     console.log(error);
     return { error };

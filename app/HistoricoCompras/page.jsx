@@ -29,7 +29,7 @@ const HistoricoCompras = () => {
           >
             <div>
               <p>01/12/2023</p>
-              <p className="text_caption text-secondary">Encomenda nº 305862</p>
+              <p className="caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
           
@@ -42,7 +42,7 @@ const HistoricoCompras = () => {
             
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
-            <Button className="w-full" type="black">
+            <Button width="100%" type="black">
               Descarregar Fatura
             </Button>
           </AccordionActions>
@@ -57,7 +57,7 @@ const HistoricoCompras = () => {
           >
             <div>
               <p>01/12/2023</p>
-              <p className="text_caption text-secondary">Encomenda nº 305862</p>
+              <p className="caption text-secondary">Encomenda nº 305862</p>
             </div>
           </AccordionSummary>
           
@@ -70,7 +70,7 @@ const HistoricoCompras = () => {
             
           </AccordionDetails>
           <AccordionActions className="text-center justify-center w-full">
-            <Button className="w-full" type="black">
+            <Button width="100%" type="black">
               Descarregar Fatura
             </Button>
           </AccordionActions>

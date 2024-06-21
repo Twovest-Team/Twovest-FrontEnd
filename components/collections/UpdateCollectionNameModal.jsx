@@ -6,11 +6,13 @@ import updateCollectionName from "@/utils/db/collections/updateCollectionName"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { closeModal } from "@/redux/slices/modalSlice"
 import { revalidatePath } from "next/cache"
+import { useRouter } from "next/navigation"
 
 const UpdateCollectionNameModal = ({ collectionId }) => {
 
     const dispatch = useAppDispatch()
     const isOpen = useAppSelector(state => state.modals['changeCollectionName']);
+    const router = useRouter()
 
     let [inputState, setInputState] = useState('')
     let [isValid, setIsValid] = useState(false)
@@ -27,6 +29,7 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
             const isNameUpdated = await updateCollectionName(collectionId, inputState)
             dispatch(closeModal('changeCollectionName'))
             alert('Nome alterado?' + isNameUpdated)
+            router.refresh()
         }
     }
 

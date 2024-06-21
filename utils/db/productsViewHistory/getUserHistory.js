@@ -1,11 +1,11 @@
 import supabase from "@/utils/db/clients/public/supabase";
-import getProductImages from "../getProductImages";
 
 export default async function getUserHistory(userEmail) {
-  const { data, error } = await supabase
-    .from("last_products_seen")
-    .select(
-      `
+  try {
+    const { data, error } = await supabase
+      .from("last_products_seen")
+      .select(
+        `
         products (
             id,
             is_sustainable,
@@ -15,29 +15,35 @@ export default async function getUserHistory(userEmail) {
                 logo_url,
                 name
             ),
+            offers(
+              id,
+              price,
+              qty,
+              conditions (
+                id,
+                name
+              )
+            ),
+            products_has_images(
+              id,
+              url,
+              alt
+            ),
             categories (
                 id
             )
         )
         `
-    )
-    .eq("user_email", userEmail)
-    .order("created_at", { ascending: false });
+      )
+      .eq("user_email", userEmail)
+      .order("created_at", { ascending: false });
 
-  if (data) {
-    let arrayOfProducts = await Promise.all(
-      data.map(async (element) => {
-        let array = element;
-        const products_has_images = await getProductImages(element.products.id);
-
-        array.products.products_has_images = products_has_images;
-
-        return array;
-      })
-    );
-
-    return arrayOfProducts;
-  } else if (error) {
+    if (data) return data;
+    else if (error) {
+      console.log(error);
+    }
+  } catch (error) {
     console.log(error);
+    return { error };
   }
 }

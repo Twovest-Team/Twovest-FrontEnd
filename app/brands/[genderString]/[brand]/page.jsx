@@ -2,11 +2,11 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
-import CardProduct from "@/components/cards/CardProduct";
+import ProductCard from "@/components/cards/ProductCard";
 import ItemsBox from "@/components/providers/ItemsBox";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/components/loaders/Products";
-import getProductByBrand from "@/utils/db/getProductsByBrand";
+import getProductsByBrand from "@/utils/db/getProductsByBrand";
 import getBrandData from "@/utils/db/getBrandData";
 import Image from "next/image";
 import BrandGenderButtons from "@/components/buttons/BrandGenderButtons";
@@ -50,7 +50,7 @@ export default async function Brand({ params }) {
       </div>
 
 
-      <div className="container flex justify-between h-7 max-[350px]:hidden mt-6 mb-6">
+      <div className="container flex justify-between h-7 max-[390px]:hidden mt-6 mb-6">
         <GridViews />
         <FilterButton />
       </div>
@@ -65,7 +65,7 @@ export default async function Brand({ params }) {
 
 
 async function ProductList({ brandName, gender }) {
-  const data = await getProductByBrand(
+  const data = await getProductsByBrand(
     gender,
     brandName
   );
@@ -75,7 +75,7 @@ async function ProductList({ brandName, gender }) {
       {data && data.length > 0 ? (
         <GridBox loader={<ProductsSkeleton />}>
           {data.map((element) => (
-            <CardProduct
+            <ProductCard
               slider={false}
               key={element.id}
               product={element}

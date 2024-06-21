@@ -5,7 +5,7 @@ import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
 import { useEffect, useState } from "react";
-import getBrandsHomepage from "@/utils/db/getBrandsHomepage";
+import getBrands from "@/utils/db/getBrands";
 import { BrandCards } from "@/components/cards/BrandCards";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
@@ -27,7 +27,7 @@ export default function Home() {
         setDataPopular(res);
       }
       async function getBrandsData() {
-        let resp = await getBrandsHomepage();
+        let resp = await getBrands(9);
         setBrands(resp);
       }
       async function getLooks() {
@@ -46,7 +46,7 @@ export default function Home() {
     <main>
       <ImageSwiper />
 
-      <section className="mt-14 mb-2 mx-24">
+      <section className="mt-14 mb-2">
         <h1 className="font-semibold text_h6 container">Mais Procurados 🔥</h1>
         <div className="flex my-6 overflow-auto overflow-x-scroll">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}
@@ -70,10 +70,10 @@ export default function Home() {
 
             <div className="md:w-[18rem]">
               <Button
-                type={"white-outlined"}
+                type="white-outlined"
                 ariaLabel="Ir para a Galeria de Looks"
-                width="full"
-                justify="between"
+                width="100%"
+                justify="space-between"
                 href={`/gallery/${gender.string}`}
               >
                   <span>Ir para a galeria</span>

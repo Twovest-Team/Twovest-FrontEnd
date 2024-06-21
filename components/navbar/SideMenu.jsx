@@ -10,7 +10,7 @@ import { general_categories } from "@/constants";
 import LanguageButton from "../buttons/LanguageButton";
 import Image from "next/image";
 import { CategoriesMenu } from "./CategoriesMenu";
-import { SustainableIcon } from "../buttons/icons/SustainableIcon";
+import SustainableButton from "../buttons/icons/SustainableButton";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
@@ -62,7 +62,7 @@ export const SideMenu = () => {
       {/* ------ Menu lateral -------*/}
       <div
         className={`${isMenuOpen ? "hidden" : "block"}
-             bg-white z-30 h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
+             bg-white h-full w-screen min-w-[280px] max-w-[460px] overflow-x-hidden overflow-y-scroll fixed top-0 left-0 transition-transform duration-300 ease-in-out`}
       >
         <div className="flex justify-between items-center border-b-grey border-b-2">
           <div className="flex my-5 mx-4">
@@ -91,10 +91,10 @@ export const SideMenu = () => {
           {currentUser == null && (
             <Button
               href="/login"
-              type={"black"}
+              type="black"
               ariaLabel="Fazer login ou registo"
-              justify="between"
-              width="full"
+              justify="space-between"
+              width="100%"
             >
                 <span> Fazer login ou registo</span>
                 <KeyboardArrowRightIcon
@@ -152,7 +152,7 @@ export const SideMenu = () => {
               >
                 <div className="bg-primary_main text-white cursor-pointer items-center p-4 rounded flex justify-between">
                   Sustentável
-                  <SustainableIcon width={25} color="white" />
+                  <SustainableButton type="normal" width={28} color="white" />
                 </div>
               </Link>
             </li>

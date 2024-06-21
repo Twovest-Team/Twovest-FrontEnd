@@ -1,6 +1,7 @@
-
 const getStorageImage = (path) => {
-    return process.env.NEXT_PUBLIC_SUPABASE_URL + '/storage/v1/object/public' + path
-}
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public" + path
+  );
+};
 
-export default getStorageImage
+export default getStorageImage;

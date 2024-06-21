@@ -1,10 +1,11 @@
-import supabase from '@/utils/db/clients/public/supabase';
+import supabase from "@/utils/db/clients/public/supabase";
 
-const getUsersForCollectionCard = async (id_collection,id_user) => {
-  const { data, error } = await supabase
-    .from("collections_has_users")
-    .select(
-      `
+const getUsersForCollectionCard = async (id_collection, id_user) => {
+  try {
+    const { data, error } = await supabase
+      .from("collections_has_users")
+      .select(
+        `
     id_user,
     is_admin,
     users(
@@ -12,15 +13,16 @@ const getUsersForCollectionCard = async (id_collection,id_user) => {
         img
     )
 `
-    )
-    .eq("id_collection", id_collection)
-    .neq('id_user', id_user)
-    .order("created_at", { ascending: false });
+      )
+      .eq("id_collection", id_collection)
+      .neq("id_user", id_user)
+      .order("created_at", { ascending: false });
 
-  if (error) {
+    if (data) return data;
+    if (error) throw error;
+  } catch (error) {
     console.log(error);
-  } else {
-    return data;
+    return { error };
   }
 };
 

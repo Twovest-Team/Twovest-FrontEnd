@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import coloredGoogleIcon from "@/public/static/images/login/google_logo.svg";
 import coloredFacebookIcon from "@/public/static/images/login/facebook_logo.svg";
-import coloredAppleIcon from "@/public/static/images/login/aple_logo.svg";
+import coloredAppleIcon from "@/public/static/images/login/apple_logo.svg";
 import Link from "next/link";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";
 import Image from "next/image";
+
 
 export default function LoginPage() {
   const router = useRouter();
@@ -36,7 +37,10 @@ export default function LoginPage() {
 
   const handleSignInGoogle = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "Google"
+      provider: "Google",
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`
+      }
     });
   };
 
@@ -94,9 +98,9 @@ export default function LoginPage() {
 
         <Button
           className="mt-8"
-          type={"primary"}
+          type="primary"
           ariaLabel="Iniciar sessão com email e password"
-          width="full"
+          width="100%"
           onClick={handleSignInEmail}
         >
           Iniciar sessão
@@ -112,7 +116,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com google"
-            width="full"
+            width="100%"
             onClick={handleSignInGoogle}
           >
             <Image
@@ -128,7 +132,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com Facebook"
-            width="full"
+            width="100%"
           >
             <Image
               src={coloredFacebookIcon}
@@ -143,7 +147,7 @@ export default function LoginPage() {
           <Button
             type={"black"}
             ariaLabel="Iniciar sessão com Apple"
-            width="full"
+            width="100%"
           >
             <Image
               src={coloredAppleIcon}

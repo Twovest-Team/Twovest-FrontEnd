@@ -1,18 +1,15 @@
-import supabase from '@/utils/db/clients/public/supabase';
-import getProductImages from "./getProductImages";
-import getProductOffers from "./getProductOffers";
-import getProductMaterials from "./getProductMaterials";
-import getProductStyles from "./getProductStyles";
+import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
+import getBrandTotalItems from "./getBrandTotalItems";
 
 const getProductById = async (id, gender) => {
+  const genderId = getGender(gender).id;
 
-  const genderId = getGender(gender).id; 
-
-  const { data, error } = await supabase
-    .from('products')
-    .select(
-      `
+  try {
+    const { data: productData, error: productError } = await supabase
+      .from("products")
+      .select(
+        `
         id,
         reference,
         is_sustainable,
@@ -21,34 +18,83 @@ const getProductById = async (id, gender) => {
         name,
         discount,
         brands (
+            id,
             logo_url,
             name
         ),
         categories (
             id,
             main_category
-        )
+        ),
+        products_has_images(
+          id,
+          url,
+          alt
+        ),
+        offers(
+          id,
+          price,
+          qty,
+          colors (
+              name
+          ),
+          sizes (
+              size,
+              type
+          ),
+          conditions (
+              id,
+              name
+          )
+              ),
+              products_has_materials(
+                materials(
+                  name
+              )),
+              products_has_styles(
+                styles(
+                  name
+              )
+          )
+      )
     `
-    )
-    .eq('id', id)
-    .eq('gender', genderId)
-    .eq('is_public', true);
-  
-    if (data && data.length > 0) {
-      const products_has_images = await getProductImages(data[0].id);
-      const offers = await getProductOffers(data[0].id);
-      const materials = await getProductMaterials(data[0].id);
-      const styles = await getProductStyles(data[0].id);
-    
-      data[0].products_has_images = products_has_images;
-      data[0].offers = offers;
-      data[0].materials = materials;
-      data[0].styles = styles;
-      
-      return data[0];
-    } else if (error) {
-      console.log(error);
+      )
+      .eq("id", id)
+      .eq("gender", genderId)
+      .eq("is_public", true)
+      .single()
+
+    async function transformProductObject(product) {
+      const brandId = product.brands.id
+      const totalItems = await getBrandTotalItems(brandId)
+
+      const materials = product.products_has_materials.map(
+        (item) => item.materials.name
+      );
+      const styles = product.products_has_styles.map(
+        (item) => item.styles.name
+      );
+
+      const { products_has_materials, products_has_styles, ...rest } =
+        product;
+
+      return {
+        ...rest,
+        materials,
+        styles,
+        brands: {
+          ...rest.brands,
+          totalItems
+        }
+      };
     }
+
+    if (productError) throw productError;
+    if (productData) return transformProductObject(productData)
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
 };
 
 export default getProductById;

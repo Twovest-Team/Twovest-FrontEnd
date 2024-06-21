@@ -1,45 +1,19 @@
-'use client'
 
-import { useAppSelector } from '@/redux/hooks';
-import findProductMinMaxPrices from '@/utils/findProductMinMaxPrices';
-import applyPriceDiscount from '@/utils/applyPriceDiscount';
+import { getBestOffer } from '@/utils/handlers/handleOffers';
+import { applyPriceDiscount, formatPrice } from '@/utils/handlers/handlePricing';
 
-const PriceProduct = ({ discount, offers, alignPrice }) => {
+const PriceProduct = ({ discount, offers }) => {
 
-    const currentView = useAppSelector(state => state.layoutViews.currentValue)
-    let priceInterval;
-    if (offers.length > 1) {
-        priceInterval = findProductMinMaxPrices(offers);
-    }
+    const bestOffer = getBestOffer(offers)
+    const discountedPrice = (price) => applyPriceDiscount(price, discount) + '€';
 
     return (
-        <p
-
-            className={`font-medium truncate w-44
-            ${currentView === 1 && !alignPrice || alignPrice && alignPrice === 'right' ? 'text-right max-[383px]:text-left' : currentView === 2  && !alignPrice || alignPrice && alignPrice === 'left' && 'text-left caption'}
-            `}>
-            {priceInterval ?
-
-                <>
-                    {discount > 0 ?
-                        <span>{applyPriceDiscount(priceInterval.minPrice, discount)}€ - {applyPriceDiscount(priceInterval.maxPrice, discount)}€</span>
-                        :
-                        <span>{priceInterval.minPrice.toFixed(2)}€ - {priceInterval.maxPrice.toFixed(2)}€</span>
-                    }
-
-                </>
-
-
-                :
-                <>
-                    {discount > 0 ?
-                        <><span className='text-secondary line-through'>{offers[0].price}€</span> {applyPriceDiscount(offers[0].price, discount)}€</> :
-                        <span>{offers[0].price}€</span>
-                    }
-                </>
-            }
+        <p className='font-medium w-full caption'>
+            {discount > 0
+                ? <><span className='text-secondary line-through'>{formatPrice(bestOffer.price)}</span> {discountedPrice(bestOffer.price)}</>
+                : formatPrice(bestOffer.price)}
         </p>
     )
-}
+};
 
-export default PriceProduct
+export default PriceProduct;

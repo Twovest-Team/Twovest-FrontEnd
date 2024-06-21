@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react"
 import { useAppSelector } from '@/redux/hooks';
 
-
 const GridBox = ({ children, loader, fixed }) => {
 
-
-    const [cols, setCols] = useState('max-[350px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4');
+    const [cols, setCols] = useState(`max-[390px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`);
     const currentView = useAppSelector(state => state.layoutViews.currentValue)
     const [loading, setLoading] = useState(true)
 
@@ -16,7 +14,7 @@ const GridBox = ({ children, loader, fixed }) => {
     }, [])
 
     useEffect(() => {
-        if (currentView) {
+        if (currentView && !fixed) {
             switch (currentView) {
                 case 1: setCols('grid-cols-1')
                     break;
@@ -35,7 +33,7 @@ const GridBox = ({ children, loader, fixed }) => {
 
 
     return (
-        <div className={`container w-full grid ${cols} gap-y-6 gap-x-3 mb-20`}>
+        <div className={`container w-full grid ${cols} gap-3 mb-20`}>
             {!loading ? children : loader}
         </div>
     )

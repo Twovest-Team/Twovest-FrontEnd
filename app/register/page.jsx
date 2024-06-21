@@ -144,7 +144,7 @@ const Register = () => {
 
 const handleDrop = (acceptedFiles) => {
   const file = acceptedFiles[0];
-  console.log("Dropped file:", file); 
+  //console.log("Dropped file:", file); 
 
   if (file.type === "image/jpeg" || file.type === "image/png") {
     
@@ -358,11 +358,11 @@ const handleDrop = (acceptedFiles) => {
               usernameValid &&
               confirmPasswordValid &&
               confirmPassword
-                ? "bg-primary_main"
-                : "bg-grey"
+                ? "bg-primary_main w-full rounded py-4 text-white" 
+                : "bg-primary_main opacity-50 w-full rounded py-4 text-white"
             }
           >
-            SIGN UP
+            Registar
           </button>
           <div className="text-center mt-20">
             Já tens conta?{" "}

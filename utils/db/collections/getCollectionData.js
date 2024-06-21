@@ -41,7 +41,8 @@ const getCollectionData = async (collectionId) => {
               id,
               name,
               email,
-              img
+              img,
+              role
             )
           )
         `
@@ -64,7 +65,8 @@ const getCollectionData = async (collectionId) => {
             id: look.submitter.id,
             name: look.submitter.name,
             img: look.submitter.img,
-            date: look.created_at
+            date: look.created_at,
+            role: look.submitter.role
           },
           created_at: look.looks_datacreated_at,
           id: look.looks_data.id,

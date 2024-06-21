@@ -30,6 +30,7 @@ export const UserIcon = ({ url, userRole, size, userName, userId }) => {
       );
     }
 
+    console.log(userRole)
     if (userRole === 2) {
       return (
         <Link href={`/profile/id=${userId}`}>

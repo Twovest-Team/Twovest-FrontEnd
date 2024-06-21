@@ -50,7 +50,8 @@ export default async function getAuthServer() {
               submitter: users (
                 id,
                 name,
-                img
+                img,
+                role
               ),
               look_data: looks (
                 url_image,
@@ -108,7 +109,8 @@ export default async function getAuthServer() {
                 id: look.submitter.id,
                 img: look.submitter.img,
                 name: look.submitter.name,
-                date: look.created_at
+                date: look.created_at,
+                role: look.submitter.role
               },
               styles: look.look_data.styles
             }))

@@ -91,7 +91,7 @@ export default function LookCard({
   }
 
   function renderCollectionCard() {
-    
+
     return (
       <figure className="relative">
 
@@ -99,7 +99,7 @@ export default function LookCard({
           <UserIcon
             size='small'
             url={submitter.img}
-            userRole={0}
+            userRole={submitter.role}
             userName={submitter.name}
             userId={submitter.id}
           />

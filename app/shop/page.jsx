@@ -13,16 +13,14 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import useAuth from "@/hooks/client-hooks/useAuth";
 
 // Shop component
-const Shop = ({ searchParams }) => {
+const Shop = () => {
   // State management
   const dispatch = useAppDispatch();
   const [stageState, setStageState] = useState();
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const products = useAppSelector((state) => state.cartProducts.products);
-  const {currentUser} = useAuth();
-  const coupon = searchParams.coupon;
-  
+  const { currentUser } = useAuth();
 
   // Update stage function
   function updateStage(id) {
@@ -69,6 +67,12 @@ const Shop = ({ searchParams }) => {
     }
   }
 
+  const [dataFromSectionOne, setDataFromSectionOne] = useState("");
+
+  function handleDataFromSectionOne(data) {
+    setDataFromSectionOne(data);
+  }
+
   // Render component
   return (
     <main>
@@ -93,7 +97,7 @@ const Shop = ({ searchParams }) => {
                 productsData={products}
                 userEmail={currentUser.email}
                 updateStage={updateStage}
-                coupon={coupon}
+                sendDataToShop={handleDataFromSectionOne}
               />
             ) : stageState.id === 2 ? (
               <ShopSectionTwo
@@ -106,7 +110,6 @@ const Shop = ({ searchParams }) => {
                   productsData={products}
                   userData={currentUser}
                   updateStage={updateStage}
-                  coupon={coupon}
                 />
               )
             ))}

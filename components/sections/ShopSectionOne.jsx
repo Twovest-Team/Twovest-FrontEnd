@@ -6,38 +6,55 @@ import { openModal } from "@/redux/slices/modalSlice";
 import ApplyCouponModal from "../modals/ApplyCouponModal";
 import { Fragment } from "react";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import Notification from "@/components/modals/Notification";
+import { showNotification } from "@/redux/slices/notificationSlice";
+
 const ShopSectionOne = ({
   handleLoading,
   handleShowDeleteNotification,
   productsData,
   userEmail,
   updateStage,
-  coupon
+  sendDataToShop,
 }) => {
-
   const dispatch = useAppDispatch();
-  const pathname = usePathname()
-
 
   const [cardCartData, setCardCartData] = useState("");
+
+  const [dataFromModal, setDataFromModal] = useState("");
 
   function handleDataFromCardCart(data) {
     setCardCartData(data);
   }
 
-  function NormalPrice() {
-    return(
-      <p>{getCartTotalPrice(productsData, cardCartData)}€</p>
-    )
+  function handleDataFromModal(data) {
+    let sucesso = false;
+    let couponBrand = data.coupons.coupons_has_brands[0].brands.id;
+
+    productsData.map((product) => {
+      if (product.offers.products.brands.id == couponBrand) sucesso = true;
+    });
+
+    if (sucesso == true) {
+      dispatch(showNotification("couponSuccess"));
+    } else {
+      dispatch(showNotification("couponError"));
+    }
+    setDataFromModal(data);
+    sendDataToShop(data);
   }
 
-  function DiscountedPrice(){
-    return(
-      <p className="text-primary_main">{getCartTotalPrice(productsData, cardCartData)}€</p>
-    )
+  function NormalPrice() {
+    return <p>{getCartTotalPrice(productsData)}€</p>;
   }
-  
+
+  function DiscountedPrice() {
+    return (
+      <p className="text-primary_main">
+        {getCartTotalPrice(productsData, cardCartData)}€
+      </p>
+    );
+  }
 
   return (
     <section className="flex-grow flex flex-col">
@@ -45,15 +62,15 @@ const ShopSectionOne = ({
         <div className="flex flex-col [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 ">
           {productsData.map((product, index) => (
             <Fragment key={index}>
-            <CardCart
-              handleShowDeleteNotification={handleShowDeleteNotification}
-              handleLoading={handleLoading}
-              data={product}
-              userEmail={userEmail}
-              key={index}
-              coupon={coupon}
-              sendDataToParent={handleDataFromCardCart}
-            />
+              <CardCart
+                handleShowDeleteNotification={handleShowDeleteNotification}
+                handleLoading={handleLoading}
+                data={product}
+                userEmail={userEmail}
+                key={index}
+                couponData={dataFromModal}
+                sendDataToParent={handleDataFromCardCart}
+              />
             </Fragment>
           ))}
         </div>
@@ -63,8 +80,9 @@ const ShopSectionOne = ({
           <div>
             <h1
               className="font-semibold text_h6"
-              aria-label={`Total (${productsData && productsData.length} ${productsData.length === 1 ? "artigo" : "artigos"
-                })`}
+              aria-label={`Total (${productsData && productsData.length} ${
+                productsData.length === 1 ? "artigo" : "artigos"
+              })`}
             >
               Total ({productsData && productsData.length}{" "}
               {productsData.length === 1 ? "artigo" : "artigos"})
@@ -76,31 +94,64 @@ const ShopSectionOne = ({
           <div>
             <h2
               className="font-semibold text_h6"
-              aria-label={`Total do Carrinho: ${productsData.length > 0
+              aria-label={`Total do Carrinho: ${
+                productsData.length > 0
                   ? getCartTotalPrice(productsData) + " euros"
                   : "Carrinho vazio"
-                }`}
+              }`}
             >
-              {productsData.length > 0 && (
-                !cardCartData ? <NormalPrice /> : <DiscountedPrice />
-              )}
+              {productsData.length > 0 &&
+                (!cardCartData ? <NormalPrice /> : <DiscountedPrice />)}
             </h2>
           </div>
         </div>
 
-        {!cardCartData ? (<Button type={'black-outlined'} width="100%" ariaLabel='Aplicar um cupão' onClick={() => dispatch(openModal('applyCoupon'))}>
-          Aplicar um cupão
-        </Button>) : (<Button type={'black-outlined'} width="100%" ariaLabel='Aplicar um cupão' href={pathname} onClick={() => setCardCartData("")}>
-          Remover Cupão
-        </Button>)}
-        
+        {!cardCartData ? (
+          <Button
+            type={"black-outlined"}
+            width="100%"
+            ariaLabel="Aplicar um cupão"
+            onClick={() => dispatch(openModal("applyCoupon"))}
+          >
+            Aplicar um cupão
+          </Button>
+        ) : (
+          <Button
+            type={"black-outlined"}
+            width="100%"
+            ariaLabel="Aplicar um cupão"
+            onClick={() => {
+              setCardCartData("");
+              setDataFromModal("");
+            }}
+          >
+            Remover Cupão
+          </Button>
+        )}
 
-        <Button onClick={() => updateStage(2)} type={'black'} ariaLabel='Preencher dados de envio' width='100%'>
-        Preencher dados de envio
+        <Button
+          onClick={() => updateStage(2)}
+          type={"black"}
+          ariaLabel="Preencher dados de envio"
+          width="100%"
+        >
+          Preencher dados de envio
         </Button>
 
-        <ApplyCouponModal />
+        <ApplyCouponModal sendDataToShop={handleDataFromModal} />
       </div>
+      <Notification
+        id={"couponSuccess"}
+        type={"Success"}
+        message={"Cupão aplicado com sucesso."}
+      />
+      <Notification
+        id={"couponError"}
+        type={"Error"}
+        message={
+          "Cupão inválido. Certifique-se que tem um produto da marca escolhida no carrinho."
+        }
+      />
     </section>
   );
 };

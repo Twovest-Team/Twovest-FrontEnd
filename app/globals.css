@@ -26,6 +26,11 @@ body {
   /* Firefox */
 }
 
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* h1 {
   font-size: 47.78px;
 }
@@ -51,11 +56,6 @@ h6 {
 }
  */
 
-
-.text_caption {
-  font-size: 13px;
-
-}
 
 .text_h6 {
   font-size: 19.2px;
@@ -93,16 +93,6 @@ h6 {
 
 .caption {
   font-size: 13.33px;
-  /* NÃO METER FLEX AQUI */
-  align-items: center;
-}
-
-.body_semibold {
-  color: var(--text_primary, #000);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21.4px;
 }
 
 .h5_semibold {
@@ -371,12 +361,6 @@ h6 {
   margin-right: 0.5rem;
 }
 
-.subnavbar_btn_hover:hover {
-  --tw-text-opacity: 1;
-  color: rgb(5 206 134/var(--tw-text-opacity));
-}
-/*Margarida*/
-
 .menu_categories {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -432,16 +416,21 @@ h6 {
 
 
 #product-page-swiper .swiper-pagination-bullets {
-  top: 80px !important;
-  right: 48px !important;
+  top: 3.5rem !important;
+  right: 15px;
+  margin: 0 !important;
 }
 
 #product-page-swiper .swiper-pagination-bullet {
   background-color: grey !important;
+  margin: 10px 0;
+  padding: 0.28rem !important;
 }
 
 #product-page-swiper .swiper-pagination-bullet-active {
   background-color: black !important;
+  height: 33px;
+  border-radius: 100px !important;
 }
 
 /* Fim Jónatas */
@@ -750,6 +739,8 @@ h6 {
     filter: invert(85%) sepia(27%) saturate(725%) hue-rotate(88deg) brightness(101%) contrast(101%) !important;
   }
   
+  nav{border-bottom: solid 1px #CCC}
+
   /*Margarida*/
   .navbar_socialMedia {
     margin-left: 0.35rem;
@@ -957,6 +948,24 @@ h6 {
 .checkbox-css {
   accent-color: green;
 }
+
+
+
+.productCardSwiper {
+  swiper-container {
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+
+    swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+
 
 
 @media (min-width: 1024px) and (max-width: 1920px) {

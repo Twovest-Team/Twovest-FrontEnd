@@ -54,7 +54,7 @@ const Submit = () => {
                   <div className=" mb-10 subtitles">
                     <ul className="">
                     
-                      <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><GavelIcon className="text-white"/></div> <div>Obrigatório preencher todos os campos que tenham "<span className="text-primary_main font-semibold">*</span>"</div></li>
+                      <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><GavelIcon className="text-white"/></div> <div>Obrigatório preencher todos os campos que tenham &quot;<span className="text-primary_main font-semibold">*</span>&quot;</div></li>
                       
                       <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><PhotoCameraIcon className="text-white"/></div><div>Tem de conter 1 foto</div></li>
                       

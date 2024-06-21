@@ -14,7 +14,7 @@ import getAuth from "@/utils/db/auth/getAuth";
 import submitLook from "@/utils/db/submitLook/submitLook";
 import useGender from "@/hooks/client-hooks/useGender";
 import teste from "@/app/actions";
-
+import { useSearchParams } from 'next/navigation'
 
 
 const FormLook = () => {
@@ -29,10 +29,11 @@ const FormLook = () => {
   const [userId, setUserId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [gender, setGender] = useGender();
+  const [gender, setGender] = useGender(); //mudar para searchparams vindos dos botoes anteriores
   const [lookImageAlt, setLookImageAlt] = useState('');
   const [lookImageURL, setLookImageURL] = useState('');
   const [isInstagramURLValid, setIsInstagramURLValid] = useState(true);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -186,7 +187,7 @@ const FormLook = () => {
               width="100%"
               ariaLabel="Submit look"
             >
-              Submeter look
+              Submeter look 
             </Button>
           </div>
         </>

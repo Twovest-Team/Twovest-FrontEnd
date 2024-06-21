@@ -16,7 +16,6 @@ export default async function teste(
 
 ) {
 
-  
   const imageUploaded = formData.get("file");
 
   const genderFolder = gender.string === "men" ? "men" : "women";

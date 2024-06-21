@@ -12,11 +12,14 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GavelIcon from '@mui/icons-material/Gavel';
 import BrushIcon from '@mui/icons-material/Brush';
+import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const Submit = () => {
 
   const {currentUser} = useAuth()
   const [timer, setTimer] = useState(5);
+  const [galleryMen, setGalleryMen] = useState("Submeter na Galeria Masculina");
+  const [galleryWomen, setGalleryWomen] = useState("Submeter na Galeria Feminina");
 
   useEffect(() => {
     
@@ -30,6 +33,14 @@ const Submit = () => {
     return () => clearInterval(interval);
   }, []);
   
+  const Loading = (type) =>{
+    if(type == 1){
+      setGalleryWomen(<LoadingIcon/>);
+    }else{
+      setGalleryMen(<LoadingIcon/>);
+    }
+    
+  }
 
   return (
     <>
@@ -46,18 +57,18 @@ const Submit = () => {
                   <div className=" mb-10 subtitles">
                     <ul className="">
                     
-                      <li className="my-5 flex items-center"><div className="p-3.5 bg-primary_main rounded-[12px] mr-3"><GavelIcon className="text-white"/></div> <div>Obrigatório preencher todos os campos que tenham "<span className="text-primary_main font-semibold">*</span>"</div></li>
+                      <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><GavelIcon className="text-white"/></div> <div>Obrigatório preencher todos os campos que tenham "<span className="text-primary_main font-semibold">*</span>"</div></li>
                       
-                      <li className="my-5 flex items-center"><div className="p-3.5 bg-primary_main rounded-[12px] mr-3"><PhotoCameraIcon className="text-white"/></div><div>Tem de conter 1 foto</div></li>
+                      <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><PhotoCameraIcon className="text-white"/></div><div>Tem de conter 1 foto</div></li>
                       
-                      <li className="my-5 flex items-center"><div className="p-3.5 bg-primary_main rounded-[12px] mr-3"><BrushIcon className="text-white"/></div>Tem de conter 1 estilo associado</li>
+                      <li className="my-5 flex items-center"><div className="p-2.5 bg-black rounded-full mr-3"><BrushIcon className="text-white"/></div>Tem de conter 1 estilo associado</li>
                       
                       <li className="my-5 flex items-center">
-                      <div className="p-3.5 bg-primary_main rounded-[12px] mr-3"><CheckroomOutlinedIcon className="text-white"/></div>Uso de 2 ou mais artigos comprados na Twovest
+                      <div className="p-2.5 bg-black rounded-full mr-3"><CheckroomOutlinedIcon className="text-white"/></div>Uso de 2 ou mais artigos comprados na Twovest
                       </li>
                       
                       <li className="my-5 flex items-center">
-                      <div className="p-3.5 bg-primary_main rounded-[12px] mr-3"><VisibilityIcon className="text-white"/></div>Só poderás submeter um novo look após a verificação da
+                      <div className="p-2.5 bg-black rounded-full mr-3"><VisibilityIcon className="text-white"/></div>Só poderás submeter um novo look após a verificação da
                         Twovest
                       </li>
                       
@@ -72,8 +83,9 @@ const Submit = () => {
                   className="mx-auto my-2"
                   disabled={timer > 0}
                   type='black'
-                  ariaLabel='Compreendi'>
-                    Submeter na Galeria Feminina
+                  ariaLabel='Compreendi'
+                  onClick={() => Loading(1)}>
+                    {galleryWomen}
                   </Button>
                   <Button
                   href="submitLook/formLook?gender=men"
@@ -81,8 +93,9 @@ const Submit = () => {
                   className="my-2 mx-auto"
                   disabled={timer > 0}
                   type='black'
-                  ariaLabel='Compreendi'>
-                    Submeter na Galeria Masculina
+                  ariaLabel='Compreendi'
+                  onClick={() => Loading(2)}>
+                    {galleryMen}
                   </Button>
                   </div>
                   

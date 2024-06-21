@@ -10,6 +10,7 @@ export default async function teste(
   selectedOffersIds,
   selectedStyleIds,
   gender,
+  genderId,
   formData,
   image_alt, 
   instagram_url
@@ -18,8 +19,10 @@ export default async function teste(
 
   const imageUploaded = formData.get("file");
 
-  const genderFolder = gender.string === "men" ? "men" : "women";
+  const genderFolder = gender;
 
+  console.log(gender, genderId);
+  
   const currentDate = new Date()
     .toISOString()
     .replace(/[-:]/g, "")
@@ -45,7 +48,7 @@ export default async function teste(
       id_styles: selectedStyleIds,
       id_products: selectedProductIds,
       id_offers: selectedOffersIds,
-      gender: gender.id,
+      gender: genderId,
       image_alt: image_alt,
       instagram_url: instagram_url
     });
@@ -54,7 +57,7 @@ export default async function teste(
       console.error("Error inserting look data:", error);
       return;
     }else{
-      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender.string}?submit_success=true`);
+      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender}?submit_success=true`);
     }
 
   }

@@ -29,11 +29,14 @@ const FormLook = () => {
   const [userId, setUserId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [gender, setGender] = useGender(); //mudar para searchparams vindos dos botoes anteriores
+ /*  const [gender, setGender] = useGender(); */ //mudar para searchparams vindos dos botoes anteriores
   const [lookImageAlt, setLookImageAlt] = useState('');
   const [lookImageURL, setLookImageURL] = useState('');
   const [isInstagramURLValid, setIsInstagramURLValid] = useState(true);
-  
+  const searchParams = useSearchParams();
+  const genero = searchParams.get('gender');
+  const [gender, setGender] = useState("");
+  const [genderId, SetGenderId] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -46,6 +49,7 @@ const FormLook = () => {
           setUser(userData);
           setUserId(currentUser.id);
           setLoading(false);
+          setGender(genero);         
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -55,6 +59,19 @@ const FormLook = () => {
 
     fetchData();
   }, [router, supabase.auth]);
+
+
+  useEffect(() => {
+    if (gender === "women") {
+      SetGenderId(0);
+    }  else if (gender === "men") {
+      SetGenderId(1);
+    }
+
+  }, [gender]);
+
+  //console.log(gender, genderId);
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -78,7 +95,7 @@ const FormLook = () => {
 
     try {
       //console.log(selectedOffersIds, selectedProductIds)
-      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, formData, lookImageAlt, lookImageURL);
+      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, genderId, formData, lookImageAlt, lookImageURL);
     } catch (error) {
       console.error("Error handling the image:", error);
     }

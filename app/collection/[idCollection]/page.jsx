@@ -74,6 +74,7 @@ const Collection = async ({ params, searchParams }) => {
             collectionData={collectionData}
             collectionId={collectionId}
             isMember={isMember}
+            submitter={look.submitter}
           />
         ))}
       </GridBox>

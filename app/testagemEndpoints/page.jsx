@@ -19,6 +19,7 @@ import getAuthServer from "@/utils/db/auth/getAuthServer";
 import getCollectionMembers from "@/utils/db/collections/getCollectionMembers";
 import getCollectionData from "@/utils/db/collections/getCollectionData";
 import getUserById from "@/utils/db/getUserById";
+import { getOwnCollectionData } from "@/utils/handlers/handleCollections";
 
 
 // Desativa o caching e efetua sempre novos pedidos à BD para dados sempre atualizados
@@ -28,7 +29,7 @@ const Page = async () => {
     
   const user = await useAuthServer()
     // Variável onde se deve guardar a resposta da API
-    const data = await getUserById(76);
+    const data = await getCollectionData(71);
 
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">

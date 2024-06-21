@@ -31,11 +31,6 @@ const GeneralItems = ({ user, cart }) => {
         setCartQty(cartStore.length)
     }, [cartStore])
 
-    console.log('server ' + cart)
-    console.log('store ' + cartStore)
-    console.log('state ' + cartQty)
-
-
     return (
         <div className="flex items-center gap-2.5 mr-2.5 sm:mr-4">
 

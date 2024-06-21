@@ -19,7 +19,6 @@ const GridViews = () => {
 
   const [currentView, setCurrentView] = useState(
     useAppSelector((state) => {
-        console.log("currentView")
         if (state.layoutView) {
           return state.layoutView.currentValue;
         } else {
@@ -34,7 +33,7 @@ const GridViews = () => {
   }
 
   useEffect(() => {
-    console.log('entrou aqui')
+
     if (width <= minWidthGrid) {
       console.log("1 if", currentView)
       handleViewChange(1);

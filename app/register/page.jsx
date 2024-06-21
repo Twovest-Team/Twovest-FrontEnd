@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 import NavigationTitle from "@/components/providers/NavigationTitle";
@@ -12,7 +11,6 @@ import { ModalEmailVerification } from "@/components/modals/ModalEmailVerificati
 import Dropzone from "react-dropzone";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import getStorageImage from "@/utils/getStorageImage";
 
 
 const Register = () => {
@@ -142,7 +140,6 @@ const Register = () => {
     setUsername("");
     setTeste(true);
 };
-
 
 
 const handleDrop = (acceptedFiles) => {

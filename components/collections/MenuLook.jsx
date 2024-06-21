@@ -10,6 +10,8 @@ import Button from '../buttons/Button';
 import getPortugueseDateString from '@/utils/getPortugueseDateString';
 import Image from 'next/image';
 import getStorageImage from '@/utils/getStorageImage';
+import Link from 'next/link';
+import { UserIcon } from '../user/UserIcon';
 
 
 const MenuLook = ({ submitter, collectionId, look, isMember }) => {
@@ -36,9 +38,31 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
 
             <Modal id={`look${look.id}Details`}>
 
-                <div className='w-1/3 average:w-1/2 aspect-[17/26] relative container'>
-                    <Image className='object-cover rounded bg-grey_opacity_50' src={getStorageImage(look.url_image)} fill={true} alt='' />
-                </div>
+                <figure className='container flex flex-col mx-auto'>
+                    <div className='w-3/5 average:w-1/2 mx-auto aspect-[17/26] relative'>
+                        <Image className='object-cover rounded bg-grey_opacity_50' src={getStorageImage(look.url_image)} fill={true} alt='' />
+                    </div>
+
+                    <div className="flex mx-auto w-1/3 average:w-1/2 bg-white">
+                        <Link
+                            onClick={() => dispatch(closeModal(`look${look.id}Details`))} 
+                            href={`/profile/${look.owner.id}`}
+                            className="flex gap-2 min-w-0 items-center mt-3.5"
+                        >
+                            <UserIcon
+                                url={look.owner.img}
+                                userRole={look.owner.role}
+                                size="small"
+                                userName={look.owner.name}
+                                userId={look.owner.id}
+                            />
+                            <p className={`caption font-light truncate`}>
+                                {look.owner.name}
+                            </p>
+                        </Link>
+                    </div>
+                </figure>
+
 
 
 

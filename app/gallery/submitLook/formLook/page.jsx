@@ -15,7 +15,7 @@ import submitLook from "@/utils/db/submitLook/submitLook";
 import useGender from "@/hooks/client-hooks/useGender";
 import teste from "@/app/actions";
 import { useSearchParams } from 'next/navigation'
-
+import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -37,6 +37,7 @@ const FormLook = () => {
   const genero = searchParams.get('gender');
   const [gender, setGender] = useState("");
   const [genderId, SetGenderId] = useState();
+  const [buttonSubmit, setButtonSubmit] = useState("Submeter look ");
 
   useEffect(() => {
     async function fetchData() {
@@ -90,6 +91,7 @@ const FormLook = () => {
   };
 
   const handleSubmitLook = async () => {
+    setButtonSubmit(<LoadingIcon/>)
     const formData = new FormData();
     formData.append("file", selectedImage);
 
@@ -204,7 +206,7 @@ const FormLook = () => {
               width="100%"
               ariaLabel="Submit look"
             >
-              Submeter look 
+              {buttonSubmit}
             </Button>
           </div>
         </>

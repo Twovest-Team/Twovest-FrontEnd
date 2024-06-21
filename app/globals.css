@@ -729,15 +729,21 @@ h6 {
 /* Media Query */
 
 /* -----Media query navbar Jónatas ------*/
+/*Margarida*/
 @media (max-width: 330px) {
   .navbar_logo-xs {
     display: block;
   }
-
+  .navbar_logo-xs:hover {
+    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%); ;
+  }
   .navbar_logo-sm {
     display: none;
   }
-
+  .navbar_logo-sm {
+    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%); ;
+  }
+  /*Margarida*/
   .navbar_socialMedia {
     margin-left: 0.35rem;
     margin-right: 0.35rem;

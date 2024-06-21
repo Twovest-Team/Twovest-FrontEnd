@@ -10,14 +10,16 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import getStorageImage from "@/utils/getStorageImage";
 
-const ShopSectionThree = ({ productsData, userData }) => {
+const ShopSectionThree = ({ productsData, userData, coupon }) => {
 
+  
   const products = useAppSelector((state) => state.cartProducts.products);
 
   console.log(productsData)
   
   const handlePurchase = async (produtos) => {
 
+    
     const purchaseData = produtos.map((produto) => ({
       price_data: {
         currency: "eur",

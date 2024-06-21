@@ -718,30 +718,39 @@ h6 {
 /* Media Query */
 
 /* -----Media query navbar Jónatas ------*/
+
 /*Margarida*/
 @media (max-width: 330px) {
   .navbar_logo-xs {
     display: block;
   }
+
   .navbar_logo-xs:hover {
-    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
+    filter: invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
   }
+
   .navbar_logo-xs:active {
     filter: invert(85%) sepia(27%) saturate(725%) hue-rotate(88deg) brightness(101%) contrast(101%) !important;
   }
+
   .navbar_logo-sm {
     display: none;
   }
+
   .navbar_logo-sm:hover {
-    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
+    filter: invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
   }
+
   .navbar_logo-sm:active {
     filter: invert(85%) sepia(27%) saturate(725%) hue-rotate(88deg) brightness(101%) contrast(101%) !important;
   }
-  
-  nav{border-bottom: solid 1px #CCC}
+
+  nav {
+    border-bottom: solid 1px #CCC
+  }
 
   /*Margarida*/
+
   .navbar_socialMedia {
     margin-left: 0.35rem;
     margin-right: 0.35rem;

@@ -25,7 +25,7 @@ const createCollection = async (
     return false;
   }
 
-  if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId);
+  if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId, userId);
   if (lookId && !isLookSaved) return false;
 
   if (userId)

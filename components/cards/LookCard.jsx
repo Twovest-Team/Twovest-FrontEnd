@@ -18,14 +18,15 @@ export default function LookCard({
   collectionData,
   collectionId,
   isMember,
+  submitter
 }) {
 
   const gender = getGender(look.gender)
   const cardType = getCardType();
 
-  function getCardType(){
+  function getCardType() {
     if (!collectionData && !collectionId && !slider) return 'normal'
-    if (collectionData && collectionId) return 'collection'
+    if (collectionData && submitter && collectionId) return 'collection'
     if (slider) return 'slider'
   }
 
@@ -90,8 +91,20 @@ export default function LookCard({
   }
 
   function renderCollectionCard() {
+
     return (
       <figure className="relative">
+
+        <div className="absolute top-3 left-3 z-10">
+          <UserIcon
+            size='small'
+            url={submitter.img}
+            userRole={submitter.role}
+            userName={submitter.name}
+            userId={submitter.id}
+          />
+        </div>
+
         <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
           <Image
             src={getStorageImage(look.url_image)}
@@ -103,10 +116,11 @@ export default function LookCard({
         </Link>
 
         <MenuLook
+          submitter={submitter}
           collectionData={collectionData}
           collectionId={collectionId}
           isMember={isMember}
-          lookId={look.id}
+          look={look}
         />
       </figure>
     );

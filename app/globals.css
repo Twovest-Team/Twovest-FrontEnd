@@ -735,13 +735,13 @@ h6 {
     display: block;
   }
   .navbar_logo-xs:hover {
-    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%); ;
+    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
   }
   .navbar_logo-sm {
     display: none;
   }
   .navbar_logo-sm {
-    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%); ;
+    filter:invert(22%) sepia(7%) saturate(147%) hue-rotate(169deg) brightness(91%) contrast(90%) !important;
   }
   /*Margarida*/
   .navbar_socialMedia {

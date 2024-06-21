@@ -116,10 +116,11 @@ export default function LookCard({
         </Link>
 
         <MenuLook
+          submitter={submitter}
           collectionData={collectionData}
           collectionId={collectionId}
           isMember={isMember}
-          lookId={look.id}
+          look={look}
         />
       </figure>
     );

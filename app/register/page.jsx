@@ -31,6 +31,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [fileError, setFileError] = useState("");
+  const [userPic, setUserPic] = useState();
 
   useEffect(() => {
     async function getUser() {
@@ -42,6 +43,7 @@ const Register = () => {
     }
     getUser();
   }, []);
+
 
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
@@ -84,19 +86,16 @@ const Register = () => {
 
   const handleSignUp = async () => {
     let pictureUrl = "";
+    setUserPic(`user_${Date.now()}`);
 
     if (selectedImage != null) {
         
         const { data, error } = await supabase.storage
         
-            .from("users_profile_pictures") 
-                .upload(`user_${Date.now()}`, selectedImage, {
+            .from("users") 
+                .upload(`${userPic}`, selectedImage, {
                 contentType: 'image/*', 
-            } 
-            /* .upload(`user_1`, selectedImage, {
-              contentType: 'image/png', 
-          } */
-            
+            }
             ); 
 
         if (error) {
@@ -105,8 +104,8 @@ const Register = () => {
         }
       
         const { publicUrl, getUrlError } = await supabase.storage
-            .from("users_profile_pictures")
-            .getPublicUrl(`user_${Date.now()}`);
+            .from("users")
+            .getPublicUrl(`${userPic}`);
 
         if (getUrlError) {
             console.error("Error getting public URL:", getUrlError.message);
@@ -145,61 +144,6 @@ const Register = () => {
 };
 
 
-/*   const handleSignUp = async () => {
-    let pictureUrl = "";
-
-    if (selectedImage != null) {
-        // Upload image to Storage if selectedImage exists
-        const { data, error } = await supabase.storage
-            .from("users_profile_pictures") // Bucket name
-            .upload(`user_${Date.now()}.png`, selectedImage); // Use original filename of the selected image
-
-        if (error) {
-            console.error("Error uploading image:", error.message);
-            return;
-        }
-        pictureUrl = data.Key; // Store the URL of the uploaded image
-    } else {
-        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
-    }
-
-    const { data: userData, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-            data: {
-                full_name: username,
-                email: email,
-                picture: pictureUrl,
-            },
-            emailRedirectTo: `${location.origin}/auth/callback`,
-        },
-    });
-
-    if (signUpError) {
-        console.error("Error signing up:", signUpError.message);
-        return;
-    }
-
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setTeste(true);
-}; */
-
-
-/* const handleDrop = (acceptedFiles) => {
-  const file = acceptedFiles[0];
-  console.log("Dropped file:", file); // Log the dropped file
-
-  if (file.type === "image/jpeg" || file.type === "image/png") {
-    // Set selectedImage to the file itself
-    setSelectedImage(file);
-    setFileError("");
-  } else {
-    setFileError("Ficheiro não suportado.");
-  }
-}; */
 
 const handleDrop = (acceptedFiles) => {
   const file = acceptedFiles[0];
@@ -215,14 +159,6 @@ const handleDrop = (acceptedFiles) => {
     setFileError("Ficheiro não suportado.");
   }
 };
-
-const showIMG = () =>{
-  //console.log(selectedImage)
-  //console.log(username)
-  //console.log(email)
-  //console.log(password)
-
-}
 
   const handleRemoveImage = () => {
     setSelectedImage(null);
@@ -289,7 +225,6 @@ const showIMG = () =>{
             )}
             
           </div>
-          <button onClick={showIMG} className="my-6 bg-orange-500 p-2">Mostrar</button>
           <input
             type="text"
             placeholder="Nome"
@@ -445,3 +380,59 @@ const showIMG = () =>{
 };
 
 export default Register;
+
+/*   const handleSignUp = async () => {
+    let pictureUrl = "";
+
+    if (selectedImage != null) {
+        // Upload image to Storage if selectedImage exists
+        const { data, error } = await supabase.storage
+            .from("users_profile_pictures") // Bucket name
+            .upload(`user_${Date.now()}.png`, selectedImage); // Use original filename of the selected image
+
+        if (error) {
+            console.error("Error uploading image:", error.message);
+            return;
+        }
+        pictureUrl = data.Key; // Store the URL of the uploaded image
+    } else {
+        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
+    }
+
+    const { data: userData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                full_name: username,
+                email: email,
+                picture: pictureUrl,
+            },
+            emailRedirectTo: `${location.origin}/auth/callback`,
+        },
+    });
+
+    if (signUpError) {
+        console.error("Error signing up:", signUpError.message);
+        return;
+    }
+
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setTeste(true);
+}; */
+
+
+/* const handleDrop = (acceptedFiles) => {
+  const file = acceptedFiles[0];
+  console.log("Dropped file:", file); // Log the dropped file
+
+  if (file.type === "image/jpeg" || file.type === "image/png") {
+    // Set selectedImage to the file itself
+    setSelectedImage(file);
+    setFileError("");
+  } else {
+    setFileError("Ficheiro não suportado.");
+  }
+}; */

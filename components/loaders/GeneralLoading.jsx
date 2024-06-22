@@ -3,7 +3,7 @@ import NavigationTitle from '@/components/providers/NavigationTitle'
 
 const GeneralLoading = () => {
     return (
-        <main className='h-screen flex flex-col relative'>
+        <main className='h-screen flex flex-col relative container'>
             <div className='absolute top-0'>
                 <NavigationTitle />
             </div>

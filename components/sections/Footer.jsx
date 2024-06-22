@@ -1,153 +1,118 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import SocialMediaLogos from "../logos/SocialMediaLogos";
-import PaymentLogos from "../logos/PaymentLogos";
 import LanguageButton from "../buttons/LanguageButton";
-import useWindow from "@/hooks/client-hooks/useWindow";
+import { footerItems, paymentMethods } from "@/constants";
 
 export default function Footer() {
-  const { isMobile, isSm, isMd, isLg, isXl, is2Xl } = useWindow();
 
   return (
-    <footer className="bg-dark">
-      {(isMobile || isSm || isMd) && (
-        <>
-          <div className="flex justify-center pt-6 pb-10">
+    <footer className="bg-dark pt-10 lg:py-14 ">
+
+      {/* MOBILE VERSION */}
+      <div className="flex flex-col lg:hidden">
+
+        <div className="flex flex-col gap-8 pb-10 container">
+
+          <figure className="flex justify-start">
             <Image
               src={"/static/images/logo_twovest_white.svg"}
               width={150}
               height={200}
               alt="Logótipo Branco da Twovest"
             />
-          </div>
-          <div className="flex pb-10">
-            <div className="w-1/2 flex flex-col items-center justify-start border-r border-white_opacity_50 text-white">
-              <ul className="text-left ml-20 me-11">
-                <li key={"Footer-Contactos"}>
-                  <Link href="/contactos">
-                    <p className="py-2">Contactos</p>
-                  </Link>
-                </li>
-                <li key={"Footer-HelpCenter"}>
-                  <Link href="/centro-de-ajuda">
-                    <p className="py-2">Centro de ajuda</p>
-                  </Link>
-                </li>
-                <li key={"Footer-SobreNos"}>
-                  <Link href="/sobre-nos">
-                    <p className="py-2">Sobre nós</p>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="w-1/2 flex flex-col justify-end items-center border-l border-white_opacity_50 text-white">
-              <ul className="ml-10 me-10">
-                <li key={"Footer-ProtecaoDeDados"}>
-                  <Link href="/protecao-de-dados">
-                    <p className="py-2">Proteção de dados</p>
-                  </Link>
-                </li>
-                <li key={"Footer-TermosDeServico"}>
-                  <Link href="/termos-de-servico">
-                    <p className="py-2">Termos de serviço</p>
-                  </Link>
-                </li>
-                <li key={"Footer-AvisoLegal"}>
-                  <Link href="/aviso-legal">
-                    <p className="py-2">Aviso legal</p>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="w-full pb-10">
-            <SocialMediaLogos />
-          </div>
-          <hr className="mx-6 mb-6" />
-          <div className="flex flex-wrap justify-between items-center mx-6 text-white">
-            <div>
-              <LanguageButton />
-            </div>
-            <p className="caption">&#169; 2023 Twovest</p>
-          </div>
-          <div className="bg-white py-3.5 mt-5">
-            <PaymentLogos />
-          </div>
-        </>
-      )}
+          </figure>
 
-      {(isLg || isXl || is2Xl) && (
-        <>
-          <div className="flex justify-center">
-            <div className="flex pt-6 pb-10 pr-20">
-              <Image
-                src={"/static/images/logo_twovest_white.svg"}
-                width={200}
-                height={250}
-                alt="Logótipo Branco da Twovest"
-              />
+          <ul className="grid grid-cols-1  [@media(min-width:360px)]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-5">
+            {footerItems.map((item, index) => (
+              <li className="caption" key={index}>
+                <Link className=" text-white text-opacity-75 hover:text-opacity-100 transition-all duration-200" href={item.href}>
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+
+          </ul>
+
+          <hr />
+
+          <div className="flex flex-col gap-6 justify-between items-start text-white">
+
+            <div className="flex justify-between items-center w-full">
+                <LanguageButton />
+                <SocialMediaLogos />
             </div>
-            <div className="flex flex-col pb-10 justify-start pt-6 items-start text-white text-sm text-start">
-              <div className="inline-flex flex-row justify-start gap-7">
-                <span key={"Footer-Contactos"}>
-                  <Link href="/">
-                    <p className="py-2">Contactos</p>
-                  </Link>
-                </span>
-                <span key={"Footer-SobreNos"}>
-                  <Link href="/">
-                    <p className="py-2">Sobre nós</p>
-                  </Link>
-                </span>
-                <span key={"Footer-TermosDeServico"}>
-                  <Link href="/">
-                    <p className="py-2">Termos de serviço</p>
-                  </Link>
-                </span>
-                <span key={"Footer-TermosDeServico"}>
-                  <Link href="/">
-                    <p className="py-2">Métodos de pagamento</p>
-                  </Link>
-                </span>
-              </div>
-              <div className="inline-flex flex-row justify-start items-center gap-7">
-                <span key={"Footer-HelpCenter"}>
-                  <Link href="/">
-                    <p className="py-2">Centro de ajuda</p>
-                  </Link>
-                </span>
-                <span key={"Footer-ProtecaoDeDados"}>
-                  <Link href="/">
-                    <p className="py-2">Proteção de dados</p>
-                  </Link>
-                </span>
-                <span key={"Footer-AvisoLegal"}>
-                  <Link href="/">
-                    <p className="py-2">Aviso legal</p>
-                  </Link>
-                </span>
-                <span>
-                  <PaymentLogos />
-                </span>
-              </div>
-              <hr className="my-6 text-white w-full" />
-              <div className="self-stretch px-1 py-2 justify-between items-center gap-2 inline-flex text-white">
-                <div className="justify-start items-center">
-                  <LanguageButton />
-                </div>
-                <div className="gap-2 items-end">
-                  <div className="items-end gap-2 inline-flex justify-end">
-                    <SocialMediaLogos />
-                  </div>
-                  <p className="caption justify-end flex">&#169; 2023 Twovest</p>
-                </div>
-              </div>
-            </div>
+
+            <p className="caption text-end ml-auto">&#169; 2024 Twovest</p>
           </div>
-        </>
-      )}
-    </footer>
+        </div>
+
+
+
+
+
+        <div className="bg-white py-3.5">
+          <ul className="flex justify-between w-2/3 mx-auto">
+            {paymentMethods.map((item, index) => (
+              <li key={index} className="relative w-6 aspect-square">
+                <Image fill={true} src={'/static/images/payments/' + item.file + '.svg'} alt={item.title} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      {/* DESKTOP VERSION */}
+      <div className="hidden lg:flex justify-between container gap-24">
+
+        <figure className="relative w-80 h-40">
+          <Image
+            src={"/static/images/logo_twovest_white.svg"}
+            fill={true}
+            alt="Logótipo Branco da Twovest"
+          />
+        </figure>
+
+
+        <div className="w-full flex flex-col gap-8">
+          <ul className="grid grid-cols-4 w-full gap-y-5 caption">
+
+            {footerItems.map((item, index) => (
+              <li className="w-full" key={index}>
+                <Link className=" text-white text-opacity-75 hover:text-opacity-100 transition-all duration-200" href={item.href}>
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+
+            <li className="flex gap-3">
+              {paymentMethods.map((item, index) => (
+                <div key={index} className="relative w-6 aspect-square">
+                  <Image fill={true} src={'/static/images/payments/' + item.file + (item.multipleVersions ? '-white.svg' : '.svg')} alt={item.title} />
+                </div>
+              ))}
+            </li>
+
+          </ul>
+
+          <hr className="w-full opacity-80" />
+
+          <div className="flex flex-col gap-4 text-white">
+            <div className="w-full flex justify-between items-start">
+              <LanguageButton />
+              <div>
+                <SocialMediaLogos />
+              </div>
+            </div>
+
+            <p className="caption justify-end flex text-end">&#169; 2024 Twovest</p>
+          </div>
+
+
+        </div>
+      </div>
+
+    </footer >
   );
 }

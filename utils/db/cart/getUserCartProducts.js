@@ -12,7 +12,8 @@ export default async function getUserCartProducts(email) {
         products(
             id,
             brands (
-                name
+                name,
+                id
             ),
             categories (
                 id

@@ -1,18 +1,13 @@
 "use client";
 
-import getLocalStorage from "@/utils/localStorage/getLocalStorage";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import Image from "next/image";
-import Link from "next/link";
 import useGender from "@/hooks/client-hooks/useGender";
-import getStorageImage from "@/utils/getStorageImage";
+import BrandCard from "../cards/BrandCard";
 
 const BrandsList = ({ brandsData }) => {
 
   const [gender] = useGender();
-
-
   const [filteredBrands, setFilteredBrands] = useState(brandsData);
 
   const handleSearch = (e) => {
@@ -37,32 +32,10 @@ const BrandsList = ({ brandsData }) => {
         <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-500 pointer-events-none" />
       </div>
 
-      <ul className="grid grid-cols-2 grid-cols-desktop gap-6">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {gender && filteredBrands.map((brandItem, index) => (
           <li key={index}>
-          <Link
-            key={index}
-            href={`/brands/${gender.string}/${brandItem.name}`}
-            aria-label={`Clique para ir para a página da marca ${brandItem.name}`}
-          >
-            <div className="flex flex-col items-center justify-between">
-              <div
-                className={`w-full aspect-square bg-grey_opacity_50 rounded flex items-center justify-center`}
-              >
-                <div className="flex items-center justify-center">
-                  <Image
-                    src={getStorageImage(brandItem?.logo_url_without_background)}
-                    width={144}
-                    height={144}
-                    alt={brandItem.name}
-                  />
-                </div>
-              </div>
-              <p className="grid mt-2 font-semibold justify-center text-center">
-                {brandItem.name}
-              </p>
-            </div>
-          </Link>
+            <BrandCard key={index} genderString={gender.string} brand={brandItem} />
           </li>
         ))}
       </ul>

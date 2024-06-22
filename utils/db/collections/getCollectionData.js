@@ -14,7 +14,13 @@ const getCollectionData = async (collectionId) => {
           share_id,
           looks:collections_has_looks(
               created_at,
+              submitter: users (
+                id,
+                name,
+                img
+              ),
               looks_data:looks(
+                created_at,
                 id,
                 url_image,
                 gender,
@@ -35,7 +41,8 @@ const getCollectionData = async (collectionId) => {
               id,
               name,
               email,
-              img
+              img,
+              role
             )
           )
         `
@@ -51,8 +58,17 @@ const getCollectionData = async (collectionId) => {
         name: collection.name,
         privacy: collection.privacy,
         share_id: collection.share_id,
-        looks: collection.looks.map((look) => ({
-          created_at: look.created_at,
+        looks: collection.looks
+        .filter(look => look.submitter)
+        .map((look) => ({
+          submitter: {
+            id: look.submitter.id,
+            name: look.submitter.name,
+            img: look.submitter.img,
+            date: look.created_at,
+            role: look.submitter.role
+          },
+          created_at: look.looks_datacreated_at,
           id: look.looks_data.id,
           url_image: look.looks_data.url_image,
           gender: look.looks_data.gender,

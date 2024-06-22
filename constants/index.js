@@ -1,4 +1,6 @@
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const general_categories = [
     {
@@ -17,7 +19,6 @@ const general_categories = [
         img: '/static/images/categories/acessorios.png'
     }
 ]
-
 
 const main_categories = [
     {
@@ -183,72 +184,133 @@ const genders = [
 
 const onboardingData = [
     {
-        page: 1,
-        titulo: "Bem-vindo à Twovest",
-        texto: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
-        img: ""
+        id: 0,
+        title: "Bem-vindo à Twovest",
+        text: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 2,
-        titulo: "Quem somos? ",
-        texto: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page2.png?t=2024-03-25T15%3A18%3A50.065Z"
+        id: 1,
+        title: "Quem somos? ",
+        text: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 3,
-        titulo: "Quem somos? ",
-        texto: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page3.png?t=2024-03-25T15%3A19%3A11.766Z"
+        id: 2,
+        title: "Quem somos? ",
+        text: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 4,
-        titulo: "Por onde começar?",
-        texto: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações. Faz slide para veres as funcionalidades",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page4.png?t=2024-03-25T15%3A19%3A20.478Z"
+        id: 3,
+        title: "Por onde começar?",
+        text: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações. Faz slide para veres as funcionalidades",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 5,
-        titulo: "Funcionalidades",
-        texto: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page5.png?t=2024-03-25T15%3A19%3A26.913Z"
+        id: 4,
+        title: "Funcionalidades",
+        text: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 6,
-        titulo: "Galeria de Looks",
-        texto: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page6.png?t=2024-03-25T15%3A19%3A33.790Z"
+        id: 5,
+        title: "Galeria de Looks",
+        text: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 7,
-        titulo: "Coleções de Looks",
-        texto: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page7.png?t=2024-03-25T15%3A19%3A40.331Z"
+        id: 6,
+        title: "Coleções de Looks",
+        text: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 8,
-        titulo: "Pontos&Cupões",
-        texto: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page8.png?t=2024-03-25T15%3A19%3A45.935Z"
+        id: 7,
+        title: "Pontos&Cupões",
+        text: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page: 9,
-        titulo: "Pontos de Entrega",
-        texto: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page9.png?t=2024-03-25T15%3A19%3A52.245Z"
+        id: 8,
+        title: "Pontos de Entrega",
+        text: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    }
+]
+
+const socialMedia = [
+    {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61558434747794',
+        icon: <FacebookIcon />
     },
     {
-        page: 10,
-        titulo: "Conclusão",
-        texto: "conclusão",
-        img: "img.jpg"
+        title: 'Instagram',
+        href: 'https://www.instagram.com/twovest.store/?next=%2Fvasco_110%2F',
+        icon: <InstagramIcon />
     },
     {
-        page: 11,
-        titulo: "genero",
-        texto: "genero",
-        img: "img.jpg"
+        title: 'Linkedin',
+        href: 'https://www.linkedin.com/in/twovest-store-6a932230a/',
+        icon: <LinkedInIcon />
+    }
+]
+
+const footerItems = [
+    {
+        title: 'Contactos',
+        href: '#'
+    },
+    {
+        title: 'Sobre nós',
+        href: '/aboutus'
+    },
+    {
+        title: 'Termos de serviço',
+        href: '#'
+    },
+    {
+        title: 'Métodos de Pagamento',
+        href: '#'
+    },
+    {
+        title: 'Centro de Ajuda',
+        href: '#'
+    },
+    {
+        title: 'Proteção de dados',
+        href: '#'
+    },
+    {
+        title: 'Aviso Legal',
+        href: '#'
     },
 ]
+
+const paymentMethods = [
+    {
+        title: 'GooglePay',
+        file: 'google-pay',
+        multipleVersions: false
+    },
+    {
+        title: 'Paypal',
+        file: 'paypal',
+        multipleVersions: false
+    },
+    {
+        title: 'MBway',
+        file: 'mb-way',
+        multipleVersions: true
+    },
+    {
+        title: 'Mastercard',
+        file: 'master-card',
+        multipleVersions: false
+    }
+]
+
 
 const gradients = [
     {
@@ -302,5 +364,8 @@ export {
     historyMaxLength,
     genders,
     onboardingData,
+    socialMedia,
+    paymentMethods,
+    footerItems,
     gradients
 }

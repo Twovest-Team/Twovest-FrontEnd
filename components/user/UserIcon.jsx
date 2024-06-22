@@ -32,7 +32,7 @@ export const UserIcon = ({ url, userRole, size, userName, userId }) => {
 
     if (userRole === 2) {
       return (
-        <Link href={`/profile/id=${userId}`}>
+        <Link href={`/profile/${userId}`}>
           <Image
             src={url}
             className="rounded-full border-primary_main border-2"
@@ -81,7 +81,7 @@ export const UserIcon = ({ url, userRole, size, userName, userId }) => {
 
     if (userRole === 2) {
       return (
-        <Link href={`/profile/id=${userId}`}>
+        <Link href={`/profile/${userId}`}>
           <Image
             src={url}
             className="rounded-full border-primary_main border-2"
@@ -130,7 +130,7 @@ export const UserIcon = ({ url, userRole, size, userName, userId }) => {
 
     if (userRole === 2) {
       return (
-        <Link href={`/profile/id=${userId}`}>
+        <Link href={`/profile/${userId}`}>
           <Image
             src={url}
             className="rounded-full border-primary_main border-2"
@@ -180,7 +180,7 @@ export const UserIcon = ({ url, userRole, size, userName, userId }) => {
 
     if (userRole === 2) {
       return (
-        <Link href={`/profile/id=${userId}`}>
+        <Link href={`/profile/${userId}`}>
           <Image
             src={url}
             className="rounded-full border-primary_main border"

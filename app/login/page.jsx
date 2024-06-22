@@ -77,7 +77,7 @@ export default function LoginPage() {
   return (
     <>
       <NavigationTitle titleText={"Iniciar sessão"} />
-      <main className="p-6 lg:px-52 md:px-32 ">
+      <main className="py-6 container md:w-[650px]">
         <input
           type="text"
           placeholder="Email"

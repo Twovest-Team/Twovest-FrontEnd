@@ -32,7 +32,7 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted, bgImage, bgPosition, bgRepeat, bgSize, noPadding, darkMode }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
@@ -86,6 +86,16 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
         }
     }
 
+    const getBgImageStyles = () => {
+        return {
+            backgroundColor: "#F1F1F1", //gray_opacity_50
+            backgroundRepeat: bgRepeat || "no-repeat",
+            backgroundPosition: bgPosition || "center",
+            backgroundSize: bgSize || "cover%",
+            backgroundImage: `url(${bgImage})`,
+        }
+    }
+
     if (!isMobile && onlyMobile) return null
     if (!isMobile && !isSm && maxSm) return null
     if (!isMobile && !isSm && !isMd && maxMd) return null
@@ -108,7 +118,8 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                 className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-[99] mx-auto w-screen sm:w-fit max-h-full h-fit'}
             >
                 <div
-                    className={`bg-white text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
+                    style={bgImage ? getBgImageStyles() : undefined}
+                    className={`${!bgImage ? 'bg-white' : ''} text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
                 >
                     {imageSrc && (
                         <div className={`${getModalImageWidth()} relative`}>
@@ -120,21 +131,23 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                             />
                         </div>
                     )}
-                    <div className="pb-8 pt-5 flex-grow max-h-full h-fit">
-                        <div className="container flex flex-col gap-2">
-                            <div className="flex justify-between text-secondary">
+                    <div className={`${!noPadding ? 'pb-8 pt-5' : ''} flex-grow max-h-full h-fit`}>
+                        <div className={`${!noPadding ? 'container' : ''} flex flex-col gap-2`}>
+                            <div className="flex justify-between">
                                 {goBackFn &&
                                     <IconButton
-                                        icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
+                                        icon={<KeyboardArrowLeft className={darkMode ? 'text-white' : 'text-secondary'} sx={{ fontSize: 29 }} />}
                                         onClick={() => goBackFn()}
+                                        darkMode={darkMode}
                                     />
                                 }
 
                                 {!restricted ?
-                                    <div className="ml-auto translate-x-2 sm:translate-x-0">
+                                    <div className={`ml-auto ${noPadding ? 'mr-4 pt-3' : ''} translate-x-2 sm:translate-x-0`}>
                                         <IconButton
-                                            icon={<CloseIcon />}
+                                            icon={<CloseIcon className={darkMode ? 'text-white' : 'text-secondary'} />}
                                             onClick={handleCloseModal}
+                                            darkMode={darkMode}
                                         />
                                     </div>
                                     :

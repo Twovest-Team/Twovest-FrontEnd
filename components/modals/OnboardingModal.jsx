@@ -53,7 +53,7 @@ const OnboardingModal = () => {
         >
             <>
                 <div className="h-[80vh] average:h-[550px] relative">
-                    <div className="flex flex-col gap-8 justify-between bg-white h-[270px] sm:h-[250px] container py-7 rounded-b absolute bottom-0">
+                    <div className="flex flex-col gap-8 justify-between bg-white rounded-tr-[48px] sm:rounded-tr-[0px] h-[270px] sm:h-[250px] container py-7 rounded-b absolute bottom-0">
                         <div className="flex flex-col gap-2">
                             <h1 className="text_h5">{currentSection.title}</h1>
                             <p className="text-secondary">{currentSection.text}</p>

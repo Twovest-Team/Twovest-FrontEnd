@@ -1,4 +1,6 @@
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const general_categories = [
     {
@@ -17,7 +19,6 @@ const general_categories = [
         img: '/static/images/categories/acessorios.png'
     }
 ]
-
 
 const main_categories = [
     {
@@ -250,6 +251,79 @@ const onboardingData = [
     },
 ]
 
+const socialMedia = [
+    {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61558434747794',
+        icon: <FacebookIcon />
+    },
+    {
+        title: 'Instagram',
+        href: 'https://www.instagram.com/twovest.store/?next=%2Fvasco_110%2F',
+        icon: <InstagramIcon />
+    },
+    {
+        title: 'Linkedin',
+        href: 'https://www.linkedin.com/in/twovest-store-6a932230a/',
+        icon: <LinkedInIcon />
+    }
+]
+
+const footerItems = [
+    {
+        title: 'Contactos',
+        href: '#'
+    },
+    {
+        title: 'Sobre nós',
+        href: '/aboutus'
+    },
+    {
+        title: 'Termos de serviço',
+        href: '#'
+    },
+    {
+        title: 'Métodos de Pagamento',
+        href: '#'
+    },
+    {
+        title: 'Centro de Ajuda',
+        href: '#'
+    },
+    {
+        title: 'Proteção de dados',
+        href: '#'
+    },
+    {
+        title: 'Aviso Legal',
+        href: '#'
+    },
+]
+
+const paymentMethods = [
+    {
+        title: 'GooglePay',
+        file: 'google-pay',
+        multipleVersions: false
+    },
+    {
+        title: 'Paypal',
+        file: 'paypal',
+        multipleVersions: false
+    },
+    {
+        title: 'MBway',
+        file: 'mb-way',
+        multipleVersions: true
+    },
+    {
+        title: 'Mastercard',
+        file: 'master-card',
+        multipleVersions: false
+    }
+]
+
+
 const gradients = [
     {
         id: 1,
@@ -302,5 +376,8 @@ export {
     historyMaxLength,
     genders,
     onboardingData,
+    socialMedia,
+    paymentMethods,
+    footerItems,
     gradients
 }

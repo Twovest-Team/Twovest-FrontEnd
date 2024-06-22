@@ -4,7 +4,6 @@ import React from "react";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import IconButton from "../buttons/icons/IconButton";
-import useWindow from "@/hooks/client-hooks/useWindow";
 
 function NavigationTitle({ hasImageBehind, titleText, children }) {
   const router = useRouter();

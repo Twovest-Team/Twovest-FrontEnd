@@ -11,21 +11,25 @@ const SubmitLookButton = () => {
 
     const router = useRouter()
     const dispatch = useAppDispatch()
-    const {currentUser} = useAuth();
+    const { currentUser } = useAuth();
 
     const handleClick = () => {
-        if(!currentUser) dispatch(openModal('authModal'))
-        if(currentUser) router.push('/gallery/submitLook');
+        if (!currentUser) dispatch(openModal('authModal'))
+        if (currentUser) router.push('/gallery/submitLook');
     }
 
     return (
-        <Button
-            onClick={handleClick}
-            type={"primary"}
-            ariaLabel="Submeter look"
-        >
-            Submeter look
-        </Button>
+        <div className='w-full [@media(min-width:390px)]:w-fit ml-auto'>
+            <Button
+                onClick={handleClick}
+                type={"primary"}
+                width='100%'
+                ariaLabel="Submeter look"
+            >
+                Submeter look
+            </Button>
+        </div>
+
     )
 }
 

@@ -116,8 +116,8 @@ const MainSlider = () => {
 
   const renderSlides = () => {
 
-    return slides[gender.id].map(slide => (
-      <swiper-slide>
+    return slides[gender.id].map((slide, index) => (
+      <swiper-slide key={index}>
         <div className="w-full h-full relative">
           <Image
             className="object-cover bg-grey_opacity_50"

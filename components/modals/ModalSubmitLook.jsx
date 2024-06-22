@@ -7,7 +7,7 @@ import Button from "../buttons/Button";
 import Link from "next/link";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-export const ModalSubmitLook = ({gender}) => {
+const ModalSubmitLook = ({gender}) => {
 
 const dispatch = useAppDispatch();
 dispatch(openModal('submitLook'));
@@ -21,9 +21,10 @@ dispatch(openModal('submitLook'));
                 <h1 className="text_h5 mt-4">Look submetido com sucesso!</h1>
                 <p className="text-secondary">Já podes consultá-lo na Galeria de Looks.</p>
             </div>
-            <Link href={`/gallery/${gender}`}><Button type={"defaultStyles"} ariaLabel={"Fechar modal de submissão de look com sucesso"} className="mx-auto">Fechar</Button></Link>
         </div>
     </Modal>
     )
         
 }
+
+export default ModalSubmitLook

@@ -8,18 +8,18 @@ import MBWayLogo from "@/public/static/images/payments/mb-way.svg";
 import Image from "next/image";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { updateCart } from "@/redux/slices/cartProducts";
-import useAuth from "@/hooks/client-hooks/useAuth";
-import { useEffect } from "react";
-import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
 
-const ShopSectionThree = ({ productsData, userData }) => {
+const ShopSectionThree = ({ productsData, userData, coupon }) => {
 
+  
   const products = useAppSelector((state) => state.cartProducts.products);
 
+  console.log(productsData)
+  
   const handlePurchase = async (produtos) => {
 
+    
     const purchaseData = produtos.map((produto) => ({
       price_data: {
         currency: "eur",
@@ -28,7 +28,7 @@ const ShopSectionThree = ({ productsData, userData }) => {
             produto.offers.products.brands.name +
             " " +
             produto.offers.colors.name,
-          images: [getStorageImage(produto.offers.images[0].url)],
+          images: [getStorageImage(produto.offers.products.images[0].url)],
         },
         unit_amount: Math.round(produto.offers.price * 100),
       },
@@ -42,10 +42,10 @@ const ShopSectionThree = ({ productsData, userData }) => {
         },
       });
 
-      // Redirect to the payment URL (assuming the API response contains the URL)
+
       window.location.assign(data);
     } catch (error) {
-      // Handle errors
+ 
       console.error("Error during purchase:", error);
     } 
   };

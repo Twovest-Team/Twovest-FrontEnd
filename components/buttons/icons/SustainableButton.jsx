@@ -24,7 +24,7 @@ const SustainableButton = ({ color, width, type }) => {
     const renderButton = () => {
 
         if (type === 'normal') {
-            return <button className="rounded-full" onClick={attributes.onClick} ariaLabel={attributes.label}>{attributes.icon}</button>
+            return <button className="rounded-full" onClick={attributes.onClick} ariaLabel={attributes.ariaLabel}>{attributes.icon}</button>
         }
 
         if (type === 'bordered') {
@@ -36,7 +36,7 @@ const SustainableButton = ({ color, width, type }) => {
                     padding="12px"
                     onlyIcon={true}
                     type="white"
-                    ariaLabel={attributes.label}
+                    ariaLabel={attributes.ariaLabel}
                 >
                     {attributes.icon}
                 </Button>

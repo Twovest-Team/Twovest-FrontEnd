@@ -24,6 +24,17 @@ export default async function getAuthServer() {
         img,
         role,
         points,
+        looks (
+          id,
+          url_image,
+          upvotes,
+          gender,
+          users(
+            name,
+            id,
+            img
+          )
+        ),
         collections:collections_has_users(
           id: id_collection,
           is_admin,
@@ -35,6 +46,13 @@ export default async function getAuthServer() {
             share_id,
             looks: collections_has_looks(
               id_look,
+              created_at,
+              submitter: users (
+                id,
+                name,
+                img,
+                role
+              ),
               look_data: looks (
                 url_image,
                 gender,
@@ -55,6 +73,9 @@ export default async function getAuthServer() {
       .eq("email", email)
       .single();
 
+    // if(error) return error
+    // return data
+
     if (!data || error) return null
 
     function transformUserObject(user) {
@@ -66,13 +87,16 @@ export default async function getAuthServer() {
         img: user.img,
         role: user.role,
         points: user.points,
+        looks: user.looks,
         collections: user.collections.map(collection => {
           const { collection_data, ...rest } = collection;
           const { looks, ...collectionData } = collection_data;
           return {
             ...rest,
             ...collectionData,
-            looks: looks.map(look => ({
+            looks: looks
+            .filter(look => look.submitter)
+            .map(look => ({
               id: look.id_look,
               url_image: look.look_data.url_image,
               gender: look.look_data.gender,
@@ -80,6 +104,13 @@ export default async function getAuthServer() {
                 id: look.look_data.owner_data.id,
                 name: look.look_data.owner_data.name,
                 img: look.look_data.owner_data.img,
+              },
+              submitter: {
+                id: look.submitter.id,
+                img: look.submitter.img,
+                name: look.submitter.name,
+                date: look.created_at,
+                role: look.submitter.role
               },
               styles: look.look_data.styles
             }))

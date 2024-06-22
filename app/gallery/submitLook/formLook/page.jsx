@@ -2,7 +2,6 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { useState, useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -11,11 +10,9 @@ import Button from "@/components/buttons/Button";
 import { UsedProductsSubmitLook } from "@/components/sections/UsedProductsSubmitLook";
 import { StylesSubmitLook } from "@/components/sections/StylesSubmitProduct";
 import getAuth from "@/utils/db/auth/getAuth";
-import submitLook from "@/utils/db/submitLook/submitLook";
-import useGender from "@/hooks/client-hooks/useGender";
 import teste from "@/app/actions";
-
-
+import { useSearchParams } from 'next/navigation'
+import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -29,10 +26,14 @@ const FormLook = () => {
   const [userId, setUserId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [gender, setGender] = useGender();
   const [lookImageAlt, setLookImageAlt] = useState('');
   const [lookImageURL, setLookImageURL] = useState('');
   const [isInstagramURLValid, setIsInstagramURLValid] = useState(true);
+  const searchParams = useSearchParams();
+  const genero = searchParams.get('gender');
+  const [gender, setGender] = useState("");
+  const [genderId, SetGenderId] = useState();
+  const [buttonSubmit, setButtonSubmit] = useState("Submeter look ");
 
   useEffect(() => {
     async function fetchData() {
@@ -45,6 +46,7 @@ const FormLook = () => {
           setUser(userData);
           setUserId(currentUser.id);
           setLoading(false);
+          setGender(genero);         
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -54,6 +56,17 @@ const FormLook = () => {
 
     fetchData();
   }, [router, supabase.auth]);
+
+
+  useEffect(() => {
+    if (gender === "women") {
+      SetGenderId(0);
+    }  else if (gender === "men") {
+      SetGenderId(1);
+    }
+
+  }, [gender]);
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -72,12 +85,13 @@ const FormLook = () => {
   };
 
   const handleSubmitLook = async () => {
+    setButtonSubmit(<LoadingIcon/>)
     const formData = new FormData();
     formData.append("file", selectedImage);
 
     try {
       //console.log(selectedOffersIds, selectedProductIds)
-      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, formData, lookImageAlt, lookImageURL);
+      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, genderId, formData, lookImageAlt, lookImageURL);
     } catch (error) {
       console.error("Error handling the image:", error);
     }
@@ -175,7 +189,7 @@ const FormLook = () => {
                   />
                 </div>
               </div>
-              <p className="text_caption ml-1 mt-1 text-grey">Para que pessoas com necessidades visuais possam saber o que tu vestiste.</p>
+              <p className="caption ml-1 mt-1 text-grey">Para que pessoas com necessidades visuais possam saber o que tu vestiste.</p>
             </div>
 
             <Button
@@ -186,7 +200,7 @@ const FormLook = () => {
               width="100%"
               ariaLabel="Submit look"
             >
-              Submeter look
+              {buttonSubmit}
             </Button>
           </div>
         </>

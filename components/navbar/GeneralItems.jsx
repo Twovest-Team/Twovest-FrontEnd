@@ -24,16 +24,15 @@ const GeneralItems = ({ user, cart }) => {
     let cartStore = useAppSelector((state) => state.cartProducts.products);
 
     useEffect(() => {
-        if (cart) dispatch(updateCart(cart));
-    }, [])
+       if(cart) dispatch(updateCart(cart));
+    })
 
     useEffect(() => {
         setCartQty(cartStore.length)
     }, [cartStore])
 
-
     return (
-        <div className="flex items-center gap-2.5 mr-4">
+        <div className="flex items-center gap-2.5 mr-2.5 sm:mr-4">
 
             <IconButton
                 onClick={handleSearch}

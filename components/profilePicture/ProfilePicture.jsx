@@ -31,15 +31,11 @@ const ProfilePicture = ({ imageProfile, userRole }) => {
   }
   return (
     <Image
+      className="border-[7px] border-white rounded-full object-cover"
       src={imageProfile}
-      width={100}
-      height={100}
+      width={140}
+      height={140}
       quality={60}
-      style={{
-        borderRadius: "100px",
-        objectFit: "cover",
-        overflow: "hidden",
-      }}
       alt="Profile Picture"
     />
   );

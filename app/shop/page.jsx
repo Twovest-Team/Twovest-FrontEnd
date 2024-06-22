@@ -20,7 +20,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(false);
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const products = useAppSelector((state) => state.cartProducts.products);
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
   // Update stage function
   function updateStage(id) {
@@ -67,6 +67,12 @@ const Shop = () => {
     }
   }
 
+  const [dataFromSectionOne, setDataFromSectionOne] = useState("");
+
+  function handleDataFromSectionOne(data) {
+    setDataFromSectionOne(data);
+  }
+
   // Render component
   return (
     <main>
@@ -91,6 +97,7 @@ const Shop = () => {
                 productsData={products}
                 userEmail={currentUser.email}
                 updateStage={updateStage}
+                sendDataToShop={handleDataFromSectionOne}
               />
             ) : stageState.id === 2 ? (
               <ShopSectionTwo

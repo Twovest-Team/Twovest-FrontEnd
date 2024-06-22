@@ -324,6 +324,43 @@ const paymentMethods = [
 ]
 
 
+const gradients = [
+    {
+        id: 1,
+        styles: 'linear-gradient(to right, #f7fafc, #e2e8f0)',
+        darker: false // bg-grey_opacity_50
+    },
+    {
+        id: 2,
+        styles: 'linear-gradient(to right, #fecdd3, #f43f5e)',
+        darker: true // bg-gradient-to-r from-rose-300 to-rose-500
+    },
+    {
+        id: 3,
+        styles: 'linear-gradient(to right, #2dd4bf, #1f2937)',
+        darker: true // bg-gradient-to-r from-teal-400 to-gray-800
+    },
+    {
+        id: 4,
+        styles: 'linear-gradient(to right, #fb923c, #fb7185)',
+        darker: true // bg-gradient-to-r from-orange-400 to-rose-400
+    },
+    {
+        id: 5,
+        styles: 'linear-gradient(to right, #0f172a, #334155)',
+        darker: true // bg-gradient-to-r from-slate-900 to-slate-700
+    },
+    {
+        id: 6,
+        styles: 'linear-gradient(to right, #e9d5ff, #5b21b6)',
+        darker: true // bg-gradient-to-r from-purple-200 to-purple-800
+    },
+    {
+        id: 7,
+        styles: 'linear-gradient(to right, #d946ef, #06b6d4)',
+        darker: true // bg-gradient-to-r from-fuchsia-500 to-cyan-500
+    }
+];
 
 
 export {
@@ -341,5 +378,6 @@ export {
     onboardingData,
     socialMedia,
     paymentMethods,
-    footerItems
+    footerItems,
+    gradients
 }

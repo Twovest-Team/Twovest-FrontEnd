@@ -1,6 +1,6 @@
 "use client";
 
-import ImageSwiper from "@/components/Carousel/Swiper";
+import MainSlider from "@/components/Carousel/MainSlider";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <main>
-      <ImageSwiper />
+      <MainSlider />
 
       <section className="mt-14 mb-2">
         <h1 className="font-semibold text_h6 container">Mais Procurados 🔥</h1>

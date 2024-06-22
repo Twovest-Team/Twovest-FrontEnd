@@ -950,6 +950,11 @@ h6 {
   }
 }
 
+.mainSliderSwiper {
+  swiper-container{
+    height: calc(100vh - 75px);
+  }
+}
 
 
 

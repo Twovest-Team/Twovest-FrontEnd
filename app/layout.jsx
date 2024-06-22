@@ -4,7 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/navbar/Navbar";
 import StoreProvider from "../components/providers/StoreProvider";
-import GenderProvider from "@/components/providers/GenderProvider";
+import GenderContext from "@/components/providers/GenderContext";
 import LastProductsSeen from "@/components/sections/LastProductsSeen";
 import { Cart } from "@/components/navbar/Cart";
 import { SideMenu } from "@/components/navbar/SideMenu";
@@ -13,6 +13,7 @@ import ManageCollectionModal from "@/components/collections/ManageCollectionsMod
 import Notification from "@/components/modals/Notification";
 import SustainabilityModal from "@/components/modals/SustainabilityModal";
 import AuthModal from "@/components/modals/AuthModal";
+import OnboardingModal from "@/components/modals/OnboardingModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,60 +28,61 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
         <StoreProvider>
-          <GenderProvider>
+          <GenderContext>
 
-              <Navbar>
-                <SideMenu />
-                <Cart />
-              </Navbar>
-              {children}
-              <LastProductsSeen />
-              <Footer />
+            <Navbar>
+              <SideMenu />
+              <Cart />
+            </Navbar>
+            {children}
+            <LastProductsSeen />
+            <Footer />
 
-              {/* GLOBAL MODALS AND NOTIFICATIONS */}
-            
-                <ManageCollectionModal />
-                <SustainabilityModal />
-                <AuthModal />
+            {/* GLOBAL MODALS AND NOTIFICATIONS */}
 
-                <Notification
-                  id={"removedLook"}
-                  type={"Neutral"}
-                  message={"Look removido"}
-                />
+            <ManageCollectionModal />
+            <SustainabilityModal />
+            <AuthModal />
+            <OnboardingModal />
 
-                <Notification
-                  id={"savedLook"}
-                  type={"Neutral"}
-                  message={"Look guardado"}
-                />
+            <Notification
+              id={"removedLook"}
+              type={"Neutral"}
+              message={"Look removido"}
+            />
 
-                <Notification
-                  id={"errorRemovingLook"}
-                  type={"Error"}
-                  message={"Não foi possível remover o look"}
-                />
+            <Notification
+              id={"savedLook"}
+              type={"Neutral"}
+              message={"Look guardado"}
+            />
 
-                <Notification
-                  id={"errorSavingLook"}
-                  type={"Error"}
-                  message={"Não foi possível guardar o look"}
-                />
+            <Notification
+              id={"errorRemovingLook"}
+              type={"Error"}
+              message={"Não foi possível remover o look"}
+            />
 
-                <Notification
-                  id={"favoriteButton"}
-                  type={"Neutral"}
-                  message={"Adicionado aos favoritos"}
-                />
+            <Notification
+              id={"errorSavingLook"}
+              type={"Error"}
+              message={"Não foi possível guardar o look"}
+            />
 
-              
+            <Notification
+              id={"favoriteButton"}
+              type={"Neutral"}
+              message={"Adicionado aos favoritos"}
+            />
 
 
-              <Analytics />
-              <SpeedInsights />
 
-           
-          </GenderProvider>
+
+            <Analytics />
+            <SpeedInsights />
+
+
+          </GenderContext>
         </StoreProvider>
       </body>
     </html>

@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/client-hooks/useAuth";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import Button from "../Button";
+import { openModal } from "@/redux/slices/modalSlice";
 
 
 const BuyButton = ({ offerId }) => {
@@ -30,7 +31,7 @@ const BuyButton = ({ offerId }) => {
         dispatch(showNotification('buyButton'));
       }
     } else {
-      router.push("/login");
+      dispatch(openModal("authModal"))
     }
   }
 

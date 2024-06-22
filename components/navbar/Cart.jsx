@@ -126,7 +126,7 @@ export const Cart = () => {
     <>
       <section className={`${isCartOpen ? 'visible' : 'invisible'} bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-[98]`} onClick={handleClose} />
 
-      <div className={`${visibility} ${isCartOpen ? 'translate-x-0' : 'translate-x-full'} flex bg-white z-[99] w-full md:w-[500px] flex-col left-0 right-0 md:left-auto mx-auto h-[100svh] fixed top-0 transition-all duration-500 delay-100`}>
+      <div className={`${visibility} ${isCartOpen ? 'translate-x-0' : 'translate-x-full'} flex bg-white z-[99] w-full md:w-[500px] flex-col left-0 right-0 md:left-auto mx-auto h-[100dvh] fixed top-0 transition-all duration-500 delay-100`}>
         {renderTopbar()}
         <div className={`flex flex-grow flex-col transition-opacity duration-75 scroll_bar-invisible [&>article:last-child]:border-b-0 [&>article:first-child]:pt-0 container ${loading && "opacity-20 pointer-events-none"}`}>
           {products?.length > 0 && currentUser && renderProductList()}

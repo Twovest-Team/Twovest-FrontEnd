@@ -10,7 +10,6 @@ import { updateCart } from "@/redux/slices/cartProducts";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
 import Link from "next/link";
 import { toggleMenu } from "@/redux/slices/menuToggle";
-import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import { NoResultsNotice } from "../sections/NoResultsNotice";
 import Button from "../buttons/Button";
@@ -133,7 +132,6 @@ export const Cart = () => {
           {products?.length === 0 && currentUser && renderNotice()}
         </div>
         {products?.length > 0 && currentUser && renderTotal()}
-        <Notification id="removeFromCart" type="Neutral" message="Artigo removido" />
       </div>
     </>
   );

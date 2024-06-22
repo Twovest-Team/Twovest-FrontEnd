@@ -75,6 +75,29 @@ export default function RootLayout({ children }) {
               message={"Adicionado aos favoritos"}
             />
 
+            <Notification
+              id="removeFromCart"
+              type="Neutral"
+              message="Artigo removido"
+            />
+
+            <Notification
+              id={'buyButton'}
+              type={"Success"}
+              message={"Artigo adicionado"}
+            />
+
+            <Notification
+              id={'formError'}
+              type={"Error"}
+              message={"Preenche todos os campos"}
+            />
+
+            <Notification
+              id={"shareButton"}
+              type={"Success"}
+              message={"Link copiado"}
+            />
 
 
 

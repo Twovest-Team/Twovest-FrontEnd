@@ -5,7 +5,6 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import checkIfProductIsInCart from "@/utils/db/cart/checkIfProductIsInCart";
 import { updateCart } from "@/redux/slices/cartProducts";
 import { useState } from "react";
-import Notification from "@/components/modals/Notification";
 import LoadingIcon from "./LoadingIcon";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/client-hooks/useAuth";
@@ -44,9 +43,6 @@ const BuyButton = ({ offerId }) => {
         </div>
       </Button>
 
-
-
-      <Notification id={'buyButton'} type={"Success"} message={"Artigo adicionado"} />
 
     </>
   );

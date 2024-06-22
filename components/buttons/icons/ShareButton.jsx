@@ -3,7 +3,6 @@
 import ShareIcon from "@mui/icons-material/Share";
 import { usePathname } from "next/navigation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import Notification from "../../modals/Notification";
 import IconButton from "./IconButton";
 import { useAppDispatch } from "@/redux/hooks";
 import { showNotification } from "@/redux/slices/notificationSlice";
@@ -41,12 +40,6 @@ const ShareButton = ({type}) => {
          {renderButton()}
         </div>
       </CopyToClipboard>
-
-      <Notification
-        id={"shareButton"}
-        type={"Success"}
-        message={"Link copiado"}
-      />
     </div>
   );
 };

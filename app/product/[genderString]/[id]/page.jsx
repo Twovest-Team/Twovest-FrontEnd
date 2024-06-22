@@ -73,13 +73,13 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
 
   const renderSlider = () => {
     return (
-      <section className="flex flex-col h-dvh relative lg:hidden mb-5 min-h-[600px]">
+      <section className="flex flex-col h-svh relative lg:hidden mb-5 min-h-[600px]">
         <div className="flex-grow flex flex-col justify-end min-h-[600px] relative">
           <ProductPageSwiper images={data.products_has_images} />
           <div className="relative">
             {renderBtnOptions()}
 
-            <div className="bg-white h-fit rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
+            <div className="bg-white h-fit rounded-t-[20px] shadow-[0px_-20px_30px_0px_#00000010] container">
 
               <div className="flex flex-row gap-4 py-7">
                 <Link href={"/"}>

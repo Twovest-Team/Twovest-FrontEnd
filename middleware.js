@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 import getGender from './utils/getGender';
 
 export async function middleware(request) {
     const cookieOnboarding = request.cookies.has('onboarding');
-    const cookieGender = request.cookies.has('gender')
+    const cookieGender = request.cookies.has('gender');
     const pathname = request.nextUrl.pathname;
 
     const searchParams = request.nextUrl.searchParams;
@@ -12,7 +12,8 @@ export async function middleware(request) {
     const getGenderParam = () => {
         if (pathname.includes('/men')) return 'men';
         if (pathname.includes('/women')) return 'women';
-    }
+        return null;
+    };
 
     const param = getGenderParam();
 
@@ -39,4 +40,4 @@ export const config = {
     matcher: [
         '/((?!api|_next/static|_next/image|favicon.ico).*)',
     ],
-}
+};

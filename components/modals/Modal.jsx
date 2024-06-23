@@ -121,7 +121,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
             >
                 <div
                     style={bgImage ? getBgImageStyles() : undefined}
-                    className={`${!bgImage ? 'bg-white' : ''} text-black flex ${getModalWidth()} max-h-full ${fullScreenMobile ? 'h-full' : 'h-fit'}  h-fit sm:rounded w-full items-stretch transition-all duration-150`}
+                    className={`${!bgImage ? 'bg-white' : ''} text-black flex ${getModalWidth()} max-h-full ${fullScreenMobile ? 'h-full' : 'h-fit'} sm:rounded w-full items-stretch transition-all duration-150`}
                 >
                     {imageSrc && (
                         <div className={`${getModalImageWidth()} relative`}>
@@ -135,7 +135,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                     )}
                     <div className={`${!noPadding ? 'pb-8 pt-5' : ''} flex-grow h-full`}>
                         <div className={`${!noPadding ? 'container' : ''} flex flex-col gap-2 h-full`}>
-                            <div className={`flex justify-between ${darkMode ? 'text-white' : 'text-secondary'} `}>
+                            <div className={`flex justify-between z-10 ${noPadding ? 'absolute left-0 right-0 w-full' : ''} ${darkMode ? 'text-white' : 'text-secondary'} `}>
 
                                 {goBackFn &&
                                     <IconButton

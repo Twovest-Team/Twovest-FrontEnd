@@ -58,35 +58,38 @@ export default function Home() {
         {brands && <BrandCards data={brands} gender={gender} />}
       </section>
 
-      <section className="mt-14 py-24 text-white bg-black ">
-        <article>
-          <h1 className="font-semibold mb-6 text-h6 container ">Galeria de Looks</h1>
+      {looks && looks.length > 0 &&
+        <section className="mt-14 py-24 text-white bg-black ">
+          <article>
+            <h1 className="font-semibold mb-6 text-h6 container ">Galeria de Looks</h1>
 
-          <div className="flex overflow-auto mb-4">
-            {looks && <LooksHomepage data={looks} />}
-          </div>
+            <div className="flex overflow-auto mb-4">
+              <LooksHomepage data={looks} />
+            </div>
 
-          <div className="container md:flex justify-between items-start mt-10">
-            <p className="mb-6">🔥 Descobre novos looks e inspira-te!</p>
+            <div className="container md:flex justify-between items-start mt-10">
+              <p className="mb-6">🔥 Descobre novos looks e inspira-te!</p>
 
-            <div className="md:w-[18rem]">
-              <Button
-                type="white-outlined"
-                ariaLabel="Ir para a Galeria de Looks"
-                width="100%"
-                justify="space-between"
-                href={`/gallery/${gender.string}`}
-              >
+              <div className="md:w-[18rem]">
+                <Button
+                  type="white-outlined"
+                  ariaLabel="Ir para a Galeria de Looks"
+                  width="100%"
+                  justify="space-between"
+                  href={`/gallery/${gender.string}`}
+                >
                   <span>Ir para a galeria</span>
                   <KeyboardArrowRightIcon
                     className="translate-x-2"
                     sx={{ fontSize: 28 }}
                   />
-              </Button>
+                </Button>
+              </div>
             </div>
-          </div>
-        </article>
-      </section>
+          </article>
+        </section>
+      }
+
 
       <section
         style={{

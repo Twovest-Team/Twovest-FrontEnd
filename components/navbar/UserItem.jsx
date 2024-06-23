@@ -60,7 +60,7 @@ const UserItem = ({ user }) => {
         width="fit-content"
         padding="0 1.8rem"
       >
-        <span> Login | Registar</span>
+        <span className="text-caption"> Login | Registar</span>
       </Button>
 
     </>

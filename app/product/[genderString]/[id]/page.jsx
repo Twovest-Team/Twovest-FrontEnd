@@ -172,7 +172,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
   }
 
   const renderLooks = () => {
-    if (looks) return (
+    if (looks && looks.length > 0) return (
       <section className="flex flex-col gap-4 mb-16 text-white">
         <h6 className="font-semibold text-h6 text-dark container">Looks com este artigo</h6>
         <LooksHomepage data={looks} />

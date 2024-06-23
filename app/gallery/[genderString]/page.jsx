@@ -28,13 +28,13 @@ const Gallery = async ({ params, searchParams }) => {
   }
 
   return (
-    <main>
+    <main className="min-h-screen flex flex-col">
       <NavigationTitle titleText={"Galeria de Looks"}>
         <EarnPointsModal />
       </NavigationTitle>
 
       {await renderFilters()}
-      
+
       <div className="flex justify-between container my-5">
         <div className="flex items-center">
           <GridViews />
@@ -43,8 +43,10 @@ const Gallery = async ({ params, searchParams }) => {
         {searchParams.submit_success === "true" ? <ModalSubmitLook gender={params.genderString} /> : null}
       </div>
 
-      <LookList gender={gender} searchParams={searchParams} />
-      
+      <div className="my-auto h-full average:pb-20">
+        <LookList gender={gender} searchParams={searchParams} />
+      </div>
+
     </main>
   );
 };
@@ -62,7 +64,7 @@ async function LookList({ gender, searchParams }) {
       const currentLook = looks[i];
       const commonValues = currentLook.styles.filter(style => filteredStyles.includes(style));
       if (commonValues.length > 0) {
-        filteredLooks.push(currentLook);  
+        filteredLooks.push(currentLook);
       }
     }
     return filteredLooks;
@@ -80,7 +82,7 @@ async function LookList({ gender, searchParams }) {
             ))}
           </GridBox>
         </>
-        
+
       ) : (
         <NoResultsNotice
           title={"Não encontramos looks."}

@@ -10,6 +10,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from "../buttons/Button"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 const OnboardingModal = () => {
 
@@ -39,60 +40,49 @@ const OnboardingModal = () => {
     }, [])
 
 
-
     return (
-        <Modal
-            bgSize={'100% 80%'}
-            bgPosition={'top'}
-            bgImage={currentSection.img}
-            noPadding={true}
-            size='md'
-            id='onboardingModal'
-            darkMode={true}
-            onClose={() => router.push(pathname)}
-            fullScreenMobile={true}
-        >
-            <>
-                <div className="relative h-full sm:h-[500px]">
-                    <div className="flex flex-col gap-8 justify-between bg-white rounded-tr-[48px] sm:rounded-tr-[0px] h-[300px] sm:h-[250px] container py-7 rounded-b absolute bottom-0">
-                        <div className="flex flex-col gap-2">
-                            <h1 className="text-h5">{currentSection.title}</h1>
-                            <p className="text-secondary">{currentSection.text}</p>
-                        </div>
+        <Modal onClose={() => router.push(pathname)} size={'md'} fullScreenMobile={true} noPadding={true} id={'onboardingModal'}>
 
+            <div className='h-full flex flex-col'>
+                <figure className='w-full flex-grow sm:flex-auto sm:h-[340px] relative'>
+                    <Image priority={true} quality={100} className='object-cover object-bottom rounded-t' fill={true} src={`/static/images/modals/onboarding/${currentSection.img}`} alt='Imagem de ilustração de como ganhar pontos na galeria.' />
+                </figure>
 
-                        <div className="text-white flex justify-between items-center">
-                            {currentSection.id === 0 &&
-                                <Button className="ml-auto" type="primary" ariaLabel="Começar onboarding." onClick={next}>{'Começar ->'}</Button>
-                            }
-
-                            {currentSection.id >= 1 && (currentSection.id + 1) < onboardingData.length && (
-                                <>
-                                    <button className="rounded-full border border-primary_main w-12 h-12 flex items-center justify-center text-primary_main" onClick={back}>
-                                        <ArrowBackIcon />
-                                    </button>
-                                    <button className="rounded-full border-primary_main bg-primary_main w-12 h-12 flex items-center justify-center " onClick={next}>
-                                        <ArrowForwardIcon />
-                                    </button>
-                                </>
-                            )}
-
-                            {(currentSection.id + 1) === onboardingData.length && (
-                                <>
-                                    <button className="rounded-full border border-primary_main w-12 h-12 flex items-center justify-center text-primary_main" onClick={back}>
-                                        <ArrowBackIcon />
-                                    </button>
-                                    <Button className="ml-auto" type="primary" ariaLabel="Começar onboarding." onClick={next}>{'Concluir ->'}</Button>
-                                </>
-
-                            )}
-                        </div>
-
+                <div className='pb-8 pt-5 flex flex-col gap-6 container'>
+                    <div>
+                        <h1 className="text-h5 mb-2">{currentSection.title}</h1>
+                        <p className="text-secondary text-caption sm:text-base">{currentSection.text}</p>
                     </div>
 
-                </div>
+                    <div className="text-white flex justify-between items-center h-14">
+                        {currentSection.id === 0 &&
+                            <Button width="100%" className="ml-auto" type="black" ariaLabel="Começar onboarding." onClick={next}>{'Começar ->'}</Button>
+                        }
 
-            </>
+                        {currentSection.id >= 1 && (currentSection.id + 1) < onboardingData.length && (
+                            <>
+                                <button className="rounded-full border border-black hover:bg-black hover:text-white transition-colors duration-200 w-12 h-12 flex items-center justify-center text-black" onClick={back}>
+                                    <ArrowBackIcon />
+                                </button>
+                                <button className="rounded-full border-black hover:bg-dark_gray transition-colors duration-200 bg-black w-12 h-12 flex items-center justify-center " onClick={next}>
+                                    <ArrowForwardIcon />
+                                </button>
+                            </>
+                        )}
+                        {(currentSection.id + 1) === onboardingData.length && (
+                            <>
+                                <button className="rounded-full border border-black w-12 h-12 flex items-center justify-center text-black" onClick={back}>
+                                    <ArrowBackIcon />
+                                </button>
+                                <Button className="ml-auto" type="black" ariaLabel="Começar onboarding." onClick={next}>{'Concluir ->'}</Button>
+                            </>
+
+                        )}
+                    </div>
+                </div>
+            </div>
+
+
         </Modal>
     )
 }

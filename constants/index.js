@@ -187,56 +187,32 @@ const onboardingData = [
         id: 0,
         title: "Bem-vindo à Twovest",
         text: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        img: 'onboarding_0.webp'
     },
     {
         id: 1,
-        title: "Quem somos? ",
-        text: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        title: "Como funciona na Twovest?",
+        text: "Somos defensores do mercado circular. Trabalhamos com marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Vendemos produtos com qualidade, a preços mais acessíveis.",
+        img: 'onboarding_1.webp'
     },
     {
         id: 2,
-        title: "Quem somos? ",
-        text: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        title: "Galeria de Looks",
+        text: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
+        img: 'onboarding_2.webp'
     },
     {
         id: 3,
-        title: "Por onde começar?",
-        text: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações. Faz slide para veres as funcionalidades",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        title: "Coleções de Looks",
+        text: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
+        img: 'onboarding_3.webp'
     },
     {
         id: 4,
-        title: "Funcionalidades",
-        text: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 5,
-        title: "Galeria de Looks",
-        text: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 6,
-        title: "Coleções de Looks",
-        text: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 7,
         title: "Pontos&Cupões",
-        text: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        text: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
+        img: 'onboarding_4.webp'
     },
-    {
-        id: 8,
-        title: "Pontos de Entrega",
-        text: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
-        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    }
 ]
 
 const socialMedia = [

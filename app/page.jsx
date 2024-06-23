@@ -12,6 +12,7 @@ import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";
 import Button from "@/components/buttons/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import GeneralLoading from "@/components/loaders/GeneralLoading";
 
 export default function Home() {
   let [gender] = useGender();
@@ -40,7 +41,7 @@ export default function Home() {
     }
   }, [brands, dataPopular, gender]);
 
-  if (!gender) return null;
+  if (!gender) return <GeneralLoading />;
 
   return (
     <main>

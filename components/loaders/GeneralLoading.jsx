@@ -3,12 +3,10 @@ import NavigationTitle from '@/components/providers/NavigationTitle'
 
 const GeneralLoading = () => {
     return (
-        <main className='h-screen flex flex-col relative container'>
-            <div className='absolute top-0'>
-                <NavigationTitle />
-            </div>
+        <main className='h-svh w-full flex flex-col relative'>
+            <NavigationTitle />
 
-            <div className='flex-grow flex justify-center items-center'>
+            <div className='absolute w-full h-full flex justify-center items-center top-0 left-0 right-0 bottom-0 m-auto'>
                 <LoadingIcon size={35} />
             </div>
         </main>

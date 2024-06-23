@@ -11,7 +11,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
 
   if (userCoupon) {
     return (
-      <div className="w-[329px] h-[215px] relative">
+      <div className="w-[165px] h-[108px] sm:w-[329px] sm:h-[215px]  relative">
         <Image
           src={
             userCoupon.coupons.cost > 200
@@ -22,14 +22,16 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
           alt="Card de um cupão de fundo verde"
         />
 
-        <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
+        <div className="w-10/12 left-[12px] top-[55px] sm:left-[25px] sm:top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
           <h6 className="text-white font-semibold text-h4">
             {userCoupon.coupons.discount}%
           </h6>
-          <p className="text-white">{userCoupon.coupons.description}.</p>
+          <p className="text-white hidden sm:inline-flex">
+            {userCoupon.coupons.description}.
+          </p>
         </div>
-        <div className="w-10/12 left-[25px] top-[25px] absolute justify-between items-center inline-flex ">
-          <div className="w-[135px] px-[25px] h-[35px] bg-white rounded-[170px] justify-center items-center inline-flex">
+        <div className="w-10/12 left-[12px] top-[12px] sm:left-[25px] sm:top-[25px] absolute justify-between items-center inline-flex">
+          <div className="hidden sm:inline-flex w-[67px] px-[12px] h-[17px] sm:w-[135px] sm:px-[25px] sm:h-[35px] bg-white rounded-[85px] sm:rounded-[170px] justify-center items-center">
             <p
               className={
                 userCoupon.coupons.cost > 200
@@ -61,21 +63,21 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
   // Se o tipo de cupão for os que estão disponíveis para serem comprados
   if (allCoupons) {
     return (
-      <div className="w-[329px] h-[215px] relative">
+      <div className="w-[165px] h-[108px] sm:w-[329px] sm:h-[215px]  relative">
         <Image
-          src={
-            allCoupons.cost > 200 ? CardBackgroundBlue : CardBackgroundGreen
-          }
+          src={allCoupons.cost > 200 ? CardBackgroundBlue : CardBackgroundGreen}
           fill={true}
           alt="Card de um cupão de fundo verde"
         />
-        <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
+        <div className="w-10/12 left-[12px] top-[55px] sm:left-[25px] sm:top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
           <h6 className="text-white font-semibold text-h4">
             {allCoupons.discount}%
           </h6>
-          <p className="text-white">{allCoupons.description}.</p>
+          <p className="text-white hidden sm:inline-flex">
+            {allCoupons.description}.
+          </p>
         </div>
-        <div className="w-10/12 left-[25px] top-[25px] absolute justify-between items-center inline-flex ">
+        <div className="w-10/12 left-[12px] top-[12px] sm:left-[25px] sm:top-[25px] absolute justify-between items-center inline-flex">
           <CouponBuyButton coupon={allCoupons} />
           <Image
             src={getStorageImage(allCoupons.brands[0].logo_url)}

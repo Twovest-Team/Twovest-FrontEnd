@@ -30,10 +30,10 @@ export default function CouponBuyButton({ coupon }) {
 
   return (
     <>
-      <Button
+      <button
         type={coupon.cost > 200 ? `info` : `primary`}
         ariaLabel="Comprar cupão"
-        className="w-[135px] px-[25px] h-[35px] bg-white rounded-[170px] justify-center items-center inline-flex"
+        className="w-[67px] px-[12px] h-[17px] sm:w-[135px] sm:px-[25px] sm:h-[35px] bg-white rounded-[85px] sm:rounded-[170px] justify-center items-center inline-flex"
         onClick={handleClick}
       >
         <p
@@ -44,9 +44,9 @@ export default function CouponBuyButton({ coupon }) {
           }
         >
           {coupon.cost}
-          <AutoModeIcon className="ml-2" />
+          <AutoModeIcon className="ml-2 hidden sm:inline-flex" />
         </p>
-      </Button>
+      </button>
 
       <Notification
         id={"erro1"}

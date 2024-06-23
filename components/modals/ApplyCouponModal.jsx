@@ -35,18 +35,20 @@ export default function ApplyCouponModal({ sendDataToShop }) {
         <h1 className="text-h5 mb-6">Os meus cupões</h1>
         {userCoupons.length > 0 ? (
           <div className="grid grid-cols-2 gap-4">
-            {userCoupons.map((coupon) => (
-              <div
-                className="cursor-pointer"
-                key={coupon.id_coupon}
-                onClick={() => {
-                  sendDataToShop(coupon);
-                  dispatch(closeModal("applyCoupon"));
-                }}
-              >
-                <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
-              </div>
-            ))}
+            {userCoupons.map((coupon) =>
+              coupon.quantity > 0 ? (
+                <div
+                  className="cursor-pointer"
+                  key={coupon.id_coupon}
+                  onClick={() => {
+                    sendDataToShop(coupon);
+                    dispatch(closeModal("applyCoupon"));
+                  }}
+                >
+                  <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
+                </div>
+              ) : null
+            )}
           </div>
         ) : (
           <h6 className="text-h6 mb-6  text-secondary">

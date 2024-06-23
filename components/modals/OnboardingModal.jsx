@@ -41,7 +41,7 @@ const OnboardingModal = () => {
 
 
     return (
-        <Modal onClose={() => router.push(pathname)} size={'md'} fullScreenMobile={true} noPadding={true} id={'onboardingModal'}>
+        <Modal onClose={() => router.push(pathname)} size={'sm'} fullScreenMobile={true} noPadding={true} id={'onboardingModal'}>
 
             <div className='h-full flex flex-col'>
                 <figure className='w-full flex-grow sm:flex-auto sm:h-[340px] relative'>

@@ -15,6 +15,7 @@ import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
 import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
+import usedCoupon from "@/utils/usedCoupon";
 
 const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const { currentUser } = useAuth();
@@ -41,11 +42,6 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
   }, [couponData]);
 
   const handlePurchase = async (produtos) => {
-    //Alterar o array de produtos de forma a calcular o preço total de todos os produtos.
-    // O preço pode ser igual à média da primeira instancia do produto (com cup) com as outras instancias do produto (semp cup)
-    // dessa forma, po stripe multiplica o preço pela quantidade, e dá o número certo
-    //verificar se está a contar com o desconto!! acho que o stripe n esta a ter em conta o desconto no preço final
-
     let novosProdutos = [];
 
     if (cupaoVerificado) {
@@ -159,6 +155,10 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
       },
       quantity: produto.qty,
     }));
+
+    if (cupaoVerificado) {
+      const useCoupon = await usedCoupon(cupaoVerificado);
+    }
 
     try {
       const { data } = await axios.post("/api/payment", purchaseData, {

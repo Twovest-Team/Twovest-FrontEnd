@@ -6,6 +6,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import getCartTotalPrice from "@/utils/getCartTotalPrice";
 
 export async function GET(req) {
+  console.log(req)
   const cookieStore = cookies();
   const currentUser = await useAuthServer();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });

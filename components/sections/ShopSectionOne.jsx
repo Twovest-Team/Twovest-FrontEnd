@@ -75,7 +75,7 @@ const ShopSectionOne = ({
           ))}
         </div>
       </div>
-      <div className=" sticky py-6 container shadow-[0px_-5px_30px_0px_#00000010] max-w-[460px] bottom-0 bg-white flex flex-col gap-3">
+      <div className=" sticky py-6 container shadow-[0px_-5px_30px_0px_#00000010] max-w-[460px] bg-white flex flex-col gap-3">
         <div className="flex justify-between items-center mb-1">
           <div>
             <h1

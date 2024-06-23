@@ -7,6 +7,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import NotificationNumber from "../items/NotificationNumber";
+import { openModal } from "@/redux/slices/modalSlice";
 
 const GeneralItems = ({ user }) => {
 
@@ -16,7 +17,10 @@ const GeneralItems = ({ user }) => {
 
     const handleWishlist = () => alert('Por fazer.')
 
-    const handleCart = () => dispatch(toggleCart())
+    const handleCart = () => {
+        if(user) dispatch(toggleCart())
+        if(!user) dispatch(openModal('authModal'))
+    }
  
     let cartStore = useAppSelector((state) => state.cartProducts.products);
     

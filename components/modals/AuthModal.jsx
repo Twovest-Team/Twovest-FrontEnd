@@ -24,7 +24,7 @@ const AuthModal = () => {
         <Modal id='authModal'>
             <div className='flex flex-col justify-center items-center gap-8 sm:mx-5 average:mb-5'>
                 <div className='flex flex-col gap-1 items-center'>
-                    <h1 className='sm:hidden text_h5 text-center'>Iniciar sessão na Twovest</h1>
+                    <h1 className='sm:hidden text_h5 text-center pt-3 sm:pt-0'>Iniciar sessão na Twovest</h1>
                     <h1 className='hidden sm:block text_h4 text-center'>Iniciar sessão na Twovest</h1>
                     <p className='text-secondary text-center'>Desfruta de todas as vantagens.</p>
                 </div>
@@ -67,7 +67,7 @@ const AuthModal = () => {
                                 alt=''
                                 className='mr-1'
                             />
-                            <span className='hidden [@media(min-width:390px)]:inline'>Cotinuar com</span> {props.provider}
+                            <span className='hidden [@media(min-width:360px)]:inline'>Cotinuar com</span> {props.provider}
                         </Button>
                     ))}
                     </div>

@@ -37,11 +37,11 @@ const ShopSectionOne = ({
 
     if (sucesso == true) {
       dispatch(showNotification("couponSuccess"));
+      setDataFromModal(data);
+      sendDataToShop(data);
     } else {
       dispatch(showNotification("couponError"));
     }
-    setDataFromModal(data);
-    sendDataToShop(data);
   }
 
   function NormalPrice() {
@@ -122,7 +122,8 @@ const ShopSectionOne = ({
             ariaLabel="Aplicar um cupão"
             onClick={() => {
               setCardCartData("");
-              setDataFromModal("");
+              setDataFromModal("")
+              dispatch(showNotification("couponRemoved"));
             }}
           >
             Remover Cupão
@@ -152,8 +153,17 @@ const ShopSectionOne = ({
           "Cupão inválido. Certifique-se que tem um produto da marca escolhida no carrinho."
         }
       />
+      <Notification
+        id={"couponRemoved"}
+        type={"Informational"}
+        message={
+          "Cupão removido"
+        }
+      />
     </section>
   );
 };
 
 export default ShopSectionOne;
+
+//

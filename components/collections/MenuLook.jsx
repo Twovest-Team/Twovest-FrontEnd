@@ -12,14 +12,17 @@ import Image from 'next/image';
 import getStorageImage from '@/utils/getStorageImage';
 import Link from 'next/link';
 import { UserIcon } from '../user/UserIcon';
+import { useRouter } from 'next/navigation';
 
 
 const MenuLook = ({ submitter, collectionId, look, isMember }) => {
     const dispatch = useAppDispatch()
+    const router = useRouter()
 
     async function handleRemove() {
         const isRemoved = await deleteCollectionLook(collectionId, look.id)
         alert('is removed? ' + isRemoved)
+        router.refresh()
         dispatch(closeModal(`look${look.id}Details`))
     }
 

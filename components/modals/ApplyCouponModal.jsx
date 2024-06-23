@@ -49,7 +49,7 @@ export default function ApplyCouponModal({ sendDataToShop }) {
             ))}
           </div>
         ) : (
-          <h6 className="text_h6 mb-6  text-secondary container">
+          <h6 className="text_h6 mb-6  text-secondary">
             {" "}
             Ainda não tens nenhum cupão
           </h6>

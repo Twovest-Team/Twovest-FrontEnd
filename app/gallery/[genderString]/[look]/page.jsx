@@ -39,13 +39,13 @@ const MobileView = ({ look, lookId, productsQty }) => (
       className="h-svh w-full bg-cover bg-center absolute bg-grey_opacity_50"
       style={{ backgroundImage: `url(${getStorageImage(look.url_image)})` }}
     >
-      <div className="bg-gradient-to-b from-dark opacity-50 absolute top-0 z-10 w-full h-1/5" />
-      <div className="bg-gradient-to-t from-dark opacity-50 absolute bottom-0 w-full h-2/5" />
+      <div className="bg-gradient-to-b from-dark opacity-60 absolute top-0 z-10 w-full h-1/5" />
+      <div className="bg-gradient-to-t from-dark opacity-60 absolute bottom-0 w-full h-2/5" />
     </figure>
     <section className="flex flex-col">
       <div className="relative h-svh w-full">
         <NavigationTitle hasImageBehind={true}>
-          <div className="flex flex-col items-center justify-center translate-x-2 z-20">
+          <div className="flex flex-col items-center justify-center translate-x-1 mt-1 z-20">
             <IconButton
               icon={<ForwardOutlinedIcon sx={{ fontSize: 28 }} />}
               className="text-white -rotate-90"
@@ -77,7 +77,7 @@ const MobileView = ({ look, lookId, productsQty }) => (
           </div>
         </div>
       </div>
-      <ProductGridBox look={look} />
+      <ProductGridBox view={1} look={look} />
     </section>
   </section>
 );
@@ -100,8 +100,8 @@ const DesktopView = ({ look, lookId, productsQty }) => (
             alt=""
             fill={true}
           />
-          <div className="bg-gradient-to-b rounded-t from-dark opacity-50 absolute top-0 z-10 w-full h-1/5" />
-          <div className="bg-gradient-to-t rounded-b from-dark opacity-50 absolute bottom-0 w-full h-2/5" />
+          <div className="bg-gradient-to-b rounded-t from-dark opacity-60 absolute top-0 z-10 w-full h-1/5" />
+          <div className="bg-gradient-to-t rounded-b from-dark opacity-60 absolute bottom-0 w-full h-2/5" />
           <div className="flex items-center justify-between absolute bottom-5 left-4 right-4">
             <Link href={`/profile/${look.users.id}`} className="flex items-center gap-3">
               <UserIcon
@@ -133,20 +133,22 @@ const DesktopView = ({ look, lookId, productsQty }) => (
             {productsQty} {productsQty > 1 ? "artigos" : "artigo"}
           </p>
         </div>
-        <ProductGridBox look={look} />
+        <ProductGridBox view={2} noContainer={true} look={look} />
       </div>
     </div>
   </section>
 );
 
-const ProductGridBox = ({ look }) => (
+const ProductGridBox = ({ look, view, noContainer }) => (
   <div>
     {look.products && look.products.length > 0 ? (
-      <GridBox loader={<ProductsSkeleton />} noContainer={true} restrictedTo={2} fixed>
-        {look.products.map((product) => (
-          <ProductCard key={product.id} product={product} gender={product.gender} />
-        ))}
-      </GridBox>
+      <div>
+        <GridBox loader={<ProductsSkeleton />} noContainer={noContainer} restrictedTo={view} fixed>
+          {look.products.map((product) => (
+            <ProductCard key={product.id} product={product} gender={product.gender} />
+          ))}
+        </GridBox>
+      </div>
     ) : (
       <div className="h-24 flex justify-between items-center container">
         <h2 className="font-semibold text_h6">Sem peças disponíveis</h2>

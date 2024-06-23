@@ -6,7 +6,14 @@ export default async function checkIfUserHasCoupon(id_user, id_coupon) {
       .from("users_has_coupons")
       .select(
         `
-                *
+                *,
+                coupons(
+                discount,
+                cost,
+                coupons_has_brands(
+                id_brand
+                )
+                )
             `
       )
       .eq("id_user", id_user)

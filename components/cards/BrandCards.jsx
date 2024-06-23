@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import BrandCard from "./BrandCard";
+import Button from "../buttons/Button";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 export const BrandCards = ({ data, gender }) => {
   const [numBrandsToShow, setNumBrandsToShow] = useState(8);
@@ -40,9 +41,22 @@ export const BrandCards = ({ data, gender }) => {
         ))}
       </ul>
 
-      <Link href={"/brands"} className="flex justify-end mt-10 font-semibold">
-        Ver todas as marcas -&gt;
-      </Link>
+      <div className="md:w-[18rem] ml-auto mt-10">
+        <Button
+          type="black-outlined"
+          ariaLabel="Ir para a Galeria de Looks"
+          width="100%"
+          justify="space-between"
+          href={`/brands`}
+        >
+          <span>Ver todas as marcas</span>
+          <KeyboardArrowRightIcon
+            className="translate-x-2"
+            sx={{ fontSize: 28 }}
+          />
+        </Button>
+      </div>
+
     </div>
   );
 };

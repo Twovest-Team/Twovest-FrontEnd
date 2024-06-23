@@ -10,19 +10,154 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { updateCart } from "@/redux/slices/cartProducts";
 import useAuth from "@/hooks/client-hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
+import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
+import applyPriceDiscount from "@/utils/applyPriceDiscount";
 
-const ShopSectionThree = ({ productsData, userData, coupon }) => {
-
+const ShopSectionThree = ({ productsData, userData, couponData }) => {
+  const { currentUser } = useAuth();
+  const [cupaoVerificado, setCupaoVerificado] = useState("");
   
   const products = useAppSelector((state) => state.cartProducts.products);
+
+  useEffect(() => {
+      if(couponData)
+        {
+          const checkIfCouponIsValid = async () => {
+            try {
+              const coupons = await checkIfUserHasCoupon(currentUser.id, couponData.id_coupon);
+              setCupaoVerificado(coupons[0]);
+            } catch (error) {
+              console.error("Failed to fetch user coupons:", error);
+            }
+          };
+    
+          checkIfCouponIsValid();
+          console.log("Não esquecer de tirar 1 á quantity depois de dar sucesso")
+        }
+
+        else {
+          console.log("Não fazer nada")
+        }
+  }, [couponData]);
 
   const handlePurchase = async (produtos) => {
 
     
-    const purchaseData = produtos.map((produto) => ({
+      
+    
+
+    
+    
+    //Alterar o array de produtos de forma a calcular o preço total de todos os produtos.
+    // O preço pode ser igual à média da primeira instancia do produto (com cup) com as outras instancias do produto (semp cup)
+    // dessa forma, po stripe multiplica o preço pela quantidade, e dá o número certo
+    //verificar se está a contar com o desconto!! acho que o stripe n esta a ter em conta o desconto no preço final
+
+    let novosProdutos = [];
+
+    
+    if(cupaoVerificado) {
+      let couponBrandId = cupaoVerificado.coupons.coupons_has_brands[0].id_brand;
+      let couponDiscount = cupaoVerificado.coupons.discount;
+
+    produtos.forEach(produto => {
+      let copiaProduto = JSON.parse(JSON.stringify(produto));
+      
+
+      if(copiaProduto.offers.products.discount > 0)
+      {
+        if(copiaProduto.offers.products.brands.id == couponBrandId)
+        {
+
+       
+          if(copiaProduto.qty == 1) {
+            // O produto tem desconto e cupão mas é apenas 1
+            let discPrice = applyPriceDiscount(copiaProduto.offers.price, copiaProduto.offers.products.discount)
+            copiaProduto.offers.price = applyPriceDiscount(discPrice, couponDiscount);
+          }
+          if(copiaProduto.qty > 1)
+          {
+            // O produto tem desconto e cupão mas é mais que 1. O cupão só se aplica a 1 quantidade
+              let discPrice = applyPriceDiscount(copiaProduto.offers.price, copiaProduto.offers.products.discount)
+             
+                let novoProduto = JSON.parse(JSON.stringify(copiaProduto));
+                // Define o novo preço no objeto clonado
+                novoProduto.offers.price = discPrice;
+                novoProduto.qty = copiaProduto.qty - 1;
+                // Adiciona o objeto clonado ao array auxiliar
+                novosProdutos.push(novoProduto);
+
+                
+
+                //Aplica o desconto do cupão ao item e define a quantity para 1
+                copiaProduto.offers.price = applyPriceDiscount(discPrice, couponDiscount);
+                copiaProduto.qty = 1;
+          }
+          
+        }
+
+        else {
+          //Tem desconto mas não tem cupão
+          let discPrice = applyPriceDiscount(copiaProduto.offers.price, copiaProduto.offers.products.discount)
+          copiaProduto.offers.price = discPrice;
+        }
+      } if(copiaProduto.offers.products.discount == 0) {
+        if(copiaProduto.offers.products.brands.id == couponBrandId)
+          {
+            if(copiaProduto.qty == 1) {
+              // O produto tem cupão mas é apenas 1
+              copiaProduto.offers.price = applyPriceDiscount(copiaProduto.offers.price, couponDiscount);
+            }
+            if(copiaProduto.qty > 1)
+              {
+                  // O produto tem cupão mas é mais que 1. O cupão só se aplica a 1 quantidade
+
+                  let novoProduto = JSON.parse(JSON.stringify(copiaProduto));
+                  // Define o novo preço no objeto clonado
+                  novoProduto.offers.price = copiaProduto.offers.price;
+                  novoProduto.qty = copiaProduto.qty - 1;
+                  // Adiciona o objeto clonado ao array auxiliar
+                  novosProdutos.push(novoProduto);
+
+                  //Aplica o desconto do cupão ao item e define a quantity para 1
+                  copiaProduto.offers.price = applyPriceDiscount(copiaProduto.offers.price, couponDiscount);
+                  copiaProduto.qty = 1;
+
+
+              }
+
+              
+          }
+      }
+
+      novosProdutos.push(copiaProduto);
+    })
+    //Fim de if(cupaoVerificado)
+  }
+
+  else {
+
+    produtos.forEach(produto => {
+      let copiaProduto = JSON.parse(JSON.stringify(produto));
+    
+      if(copiaProduto.offers.products.discount > 0)
+      {
+            copiaProduto.offers.price = applyPriceDiscount(copiaProduto.offers.price, copiaProduto.offers.products.discount);
+      } 
+
+      novosProdutos.push(copiaProduto);
+    })
+
+  }
+
+
+  console.log(novosProdutos)
+  
+
+    const purchaseData = novosProdutos.map((produto) => ({
       price_data: {
         currency: "eur",
         product_data: {
@@ -32,7 +167,7 @@ const ShopSectionThree = ({ productsData, userData, coupon }) => {
             produto.offers.colors.name,
           images: [getStorageImage(produto.offers.products.images[0].url)],
         },
-        unit_amount: Math.round(produto.offers.price * 100),
+        unit_amount: Math.round(produto.offers.price * 100)
       },
       quantity: produto.qty,
     }));

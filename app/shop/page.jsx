@@ -110,6 +110,7 @@ const Shop = () => {
                   productsData={products}
                   userData={currentUser}
                   updateStage={updateStage}
+                  couponData={dataFromSectionOne}
                 />
               )
             ))}

@@ -4,8 +4,9 @@ import { useAppDispatch } from '@/redux/hooks'
 import Modal from './Modal'
 import { closeModal, openModal } from '@/redux/slices/modalSlice'
 import Button from '../buttons/Button'
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Image from 'next/image'
+import IconButton from '../buttons/icons/IconButton'
+import AutoModeIcon from "@mui/icons-material/AutoMode";
 
 const EarnPointsModal = () => {
 
@@ -22,14 +23,17 @@ const EarnPointsModal = () => {
     return (
         <>
 
-            <button onClick={handleClick} className="flex gap-2 text-secondary items-center">
-                <p
-                    className="hidden sm:block text-right text-gray-700"
-                    aria-label="Ganhar Pontos"
-                >
-                    Ganhar pontos
-                </p>
-                <HelpOutlineIcon />
+            <div className='sm:hidden'>
+                <IconButton
+                    onClick={handleClick}
+                    icon={<AutoModeIcon sx={{ fontSize: 24 }} />}
+                />
+            </div>
+
+            <button onClick={handleClick}
+                className='hidden bg-black hover:bg-dark_gray text-white sm:flex  transition-all duration-200 px-5 py-2 rounded-full caption gap-2 items-center font-semibold'>
+                <AutoModeIcon sx={{fontSize: 20}} />
+                <span className='pt-0.5'>Ganhar pontos</span>
             </button>
 
             <Modal fullScreenMobile={true} noPadding={true} id={'galleryPointsModal'}>
@@ -46,7 +50,7 @@ const EarnPointsModal = () => {
                         </div>
 
                         <Button onClick={handleClose} width='100%' type='black' ariaLabel='Submeter um look' href='/gallery/submitLook'>
-                            {'Submeter um look ->'}
+                            {'Submeter um look'}
                         </Button>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 "use client";
 
 import Button from "../buttons/Button";
-import GooglePayLogo from "@/public/static/images/payments/google_pay_logo.svg";
-import PaypalLogo from "@/public/static/images/payments/paypal_logo.svg";
-import MastercardLogo from "@/public/static/images/payments/mastercard_logo.svg";
-import MBWayLogo from "@/public/static/images/payments/mbway_logo.svg";
+import GooglePayLogo from "@/public/static/images/payments/google-pay.svg";
+import PaypalLogo from "@/public/static/images/payments/paypal.svg";
+import MastercardLogo from "@/public/static/images/payments/master-card.svg";
+import MBWayLogo from "@/public/static/images/payments/mb-way.svg";
 import Image from "next/image";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -22,7 +22,6 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const [cupaoVerificado, setCupaoVerificado] = useState("");
 
   const products = useAppSelector((state) => state.cartProducts.products);
-
   useEffect(() => {
     if (couponData) {
       const checkIfCouponIsValid = async () => {
@@ -167,17 +166,17 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
         },
       });
 
-      // Redirect to the payment URL (assuming the API response contains the URL)
+
       window.location.assign(data);
     } catch (error) {
-      // Handle errors
+ 
       console.error("Error during purchase:", error);
     }
   };
 
   return (
     <div className="container">
-      <h1 className="flex gap-2 items-center font-semibold text_h6">
+      <h1 className="flex gap-2 items-center font-semibold text-h6">
         Escolhe um método de pagamento
       </h1>
 

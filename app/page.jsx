@@ -1,6 +1,6 @@
 "use client";
 
-import ImageSwiper from "@/components/Carousel/Swiper";
+import MainSlider from "@/components/Carousel/MainSlider";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
@@ -12,6 +12,7 @@ import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import useGender from "@/hooks/client-hooks/useGender";
 import Button from "@/components/buttons/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import GeneralLoading from "@/components/loaders/GeneralLoading";
 
 export default function Home() {
   let [gender] = useGender();
@@ -40,14 +41,14 @@ export default function Home() {
     }
   }, [brands, dataPopular, gender]);
 
-  if (!gender) return null;
+  if (!gender) return <GeneralLoading />;
 
   return (
     <main>
-      <ImageSwiper />
+      <MainSlider />
 
       <section className="mt-14 mb-2">
-        <h1 className="font-semibold text_h6 container">Mais Procurados 🔥</h1>
+        <h1 className="font-semibold text-h6 container">Mais Procurados 🔥</h1>
         <div className="flex my-6 overflow-auto overflow-x-scroll">
           {dataPopular && <PopularProductsSilder data={dataPopular} />}
         </div>
@@ -59,7 +60,7 @@ export default function Home() {
 
       <section className="mt-14 py-24 text-white bg-black ">
         <article>
-          <h1 className="font-semibold mb-6 text_h6 container ">Galeria de Looks</h1>
+          <h1 className="font-semibold mb-6 text-h6 container ">Galeria de Looks</h1>
 
           <div className="flex overflow-auto mb-4">
             {looks && <LooksHomepage data={looks} />}

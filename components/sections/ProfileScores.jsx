@@ -7,27 +7,19 @@ function ProfileScores() {
   const accumulatedPoints = 331;
 
   return (
-    
-    <div className="flex items-start self-stretch gap-4">
-      <div className="inline-block h-12 flex-col justify-center items-center gap-2">
-        <div className="flex items-center justify-center self-stretch gap-2">
-          <AutoModeOutlinedIcon />
-          <h1 className=" text_h6">{accumulatedPoints}</h1>
-        </div>
-        <p className="caption text-secondary text-center justify-self-center">
-          Pontos acumulados
-        </p>
+
+    <div className="flex flex-wrap justify-center items-center self-stretch gap-3">
+
+      <div className="bg-grey_opacity_50 rounded-full px-5 py-3 text-caption font-semibold flex gap-1.5">
+        <AutoModeOutlinedIcon className="text-warning_main" sx={{fontSize: 18}} />
+        {accumulatedPoints} Pontos Acumulados
       </div>
-      <div className="h-full ml-auto mr-auto border-l"></div>
-      <div className="inline-block h-12 flex-col justify-center items-center gap-2">
-        <div className="flex items-center justify-center self-stretch gap-2">
-          <LocalOfferIcon />
-          <h2 className=" text_h6">{totalClothes}</h2>
-        </div>
-        <p className="caption text-secondary text-center">
-          Roupas entregues
-        </p>
+
+      <div className="bg-grey_opacity_50 rounded-full px-5 py-3 text-caption font-semibold flex gap-1.5">
+        <LocalOfferIcon className="text-info_main" sx={{fontSize: 17}} />
+        {totalClothes} Roupas entregues
       </div>
+
     </div>
   );
 }

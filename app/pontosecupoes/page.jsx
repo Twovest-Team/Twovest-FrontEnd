@@ -53,7 +53,7 @@ export default async function PontosECupoes() {
         <div className="container text-center mt-14 mb-8">
           <div className="bg-white mx-auto pt-16 pb-12 relative rounded border shadow-md shadow-grey xl:w-1/2 justify">
             <div className="flex flex-col gap-6">
-              <h4 className="flex flex-row justify-center text_h4">
+              <h4 className="flex flex-row justify-center text-h4">
                 <p className="pr-4 font-semibold">Total de pontos: </p>
                 <span
                   className="text-primary_main"
@@ -63,7 +63,7 @@ export default async function PontosECupoes() {
                   <AutoModeIcon className="ml-2" />
                 </span>
               </h4>
-              <h5 className="text_h5">
+              <h5 className="text-h5">
                 <span className="font-semibold mr-2" aria-label="350">
                   {currentUser.points >= precoCupaoSorte
                     ? 0
@@ -85,7 +85,7 @@ export default async function PontosECupoes() {
           </div>
         </div>
 
-        <h4 className="text_h4 mb-6 container">Os meus cupões</h4>
+        <h4 className="text-h4 mb-6 container">Os meus cupões</h4>
         {userCoupons.length > 0 ? (
           <ContentSlider fixedElement={true}>
             {userCoupons.map((coupon) => (
@@ -93,14 +93,14 @@ export default async function PontosECupoes() {
             ))}
           </ContentSlider>
         ) : (
-          <h6 className="text_h6 mb-6  text-secondary container">
+          <h6 className="text-h6 mb-6  text-secondary container">
             {" "}
             Ainda não tens nenhum cupão
           </h6>
         )}
 
-        <h4 className="text_h4 mt-4 mb-6 container">Desbloquear cupões</h4>
-        <h6 className="text_h6 mb-6  text-secondary container">
+        <h4 className="text-h4 mt-4 mb-6 container">Desbloquear cupões</h4>
+        <h6 className="text-h6 mb-6  text-secondary container">
           Cupões até 100 <AutoModeIcon className="ml-2" />
         </h6>
         <ContentSlider fixedElement={true}>
@@ -108,7 +108,7 @@ export default async function PontosECupoes() {
             <CouponCard allCoupons={coupon} key={coupon.id} />
           ))}
         </ContentSlider>
-        <h6 className="text_h6 my-6  text-secondary container">
+        <h6 className="text-h6 my-6  text-secondary container">
           Cupões até 200 <AutoModeIcon className="ml-2" />
         </h6>
         <ContentSlider fixedElement={true}>
@@ -116,7 +116,7 @@ export default async function PontosECupoes() {
             <CouponCard allCoupons={coupon} key={coupon.id} />
           ))}
         </ContentSlider>
-        <h6 className="text_h6 my-6  text-secondary container">
+        <h6 className="text-h6 my-6  text-secondary container">
           Cupões até 300 <AutoModeIcon className="ml-2" />
         </h6>
         <ContentSlider fixedElement={true}>

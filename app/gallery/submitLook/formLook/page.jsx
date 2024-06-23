@@ -2,7 +2,6 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { useState, useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -11,11 +10,9 @@ import Button from "@/components/buttons/Button";
 import { UsedProductsSubmitLook } from "@/components/sections/UsedProductsSubmitLook";
 import { StylesSubmitLook } from "@/components/sections/StylesSubmitProduct";
 import getAuth from "@/utils/db/auth/getAuth";
-import submitLook from "@/utils/db/submitLook/submitLook";
-import useGender from "@/hooks/client-hooks/useGender";
 import teste from "@/app/actions";
-
-
+import { useSearchParams } from 'next/navigation'
+import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const FormLook = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -29,7 +26,14 @@ const FormLook = () => {
   const [userId, setUserId] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [gender, setGender] = useGender();
+  const [lookImageAlt, setLookImageAlt] = useState('');
+  const [lookImageURL, setLookImageURL] = useState('');
+  const [isInstagramURLValid, setIsInstagramURLValid] = useState(true);
+  const searchParams = useSearchParams();
+  const genero = searchParams.get('gender');
+  const [gender, setGender] = useState("");
+  const [genderId, SetGenderId] = useState();
+  const [buttonSubmit, setButtonSubmit] = useState("Submeter look ");
 
   useEffect(() => {
     async function fetchData() {
@@ -42,6 +46,7 @@ const FormLook = () => {
           setUser(userData);
           setUserId(currentUser.id);
           setLoading(false);
+          setGender(genero);         
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -51,6 +56,17 @@ const FormLook = () => {
 
     fetchData();
   }, [router, supabase.auth]);
+
+
+  useEffect(() => {
+    if (gender === "women") {
+      SetGenderId(0);
+    }  else if (gender === "men") {
+      SetGenderId(1);
+    }
+
+  }, [gender]);
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -69,15 +85,25 @@ const FormLook = () => {
   };
 
   const handleSubmitLook = async () => {
+    setButtonSubmit(<LoadingIcon/>)
     const formData = new FormData();
     formData.append("file", selectedImage);
 
     try {
-      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, formData);
+      //console.log(selectedOffersIds, selectedProductIds)
+      await teste(userId, selectedProductIds, selectedOffersIds, selectedStyleIds, gender, genderId, formData, lookImageAlt, lookImageURL);
     } catch (error) {
       console.error("Error handling the image:", error);
     }
   };
+
+  useEffect(() => {
+    if (lookImageURL.length > 5) {
+      setIsInstagramURLValid(lookImageURL.includes("instagram") && lookImageURL.includes("."));
+    } else {
+      setIsInstagramURLValid(true);
+    }
+  }, [lookImageURL]);
 
   if (loading) {
     return <GeneralLoading />;
@@ -87,8 +113,8 @@ const FormLook = () => {
     <>
       {user && (
         <>
-          <div className="container mx-auto overflow-hidden mb-24">
-            <div className="text-center justify-center items-center mb-6">
+          <div className="container mx-auto overflow-hidden mb-24 md:w-[650px]">
+            <div className="text-center justify-center items-center my-6">
               <label className="block text-secondary font-inter mb-2 h-64 border">
                 {selectedImage ? (
                   <div className="mt-12 w-auto h-auto flex flex-col items-center">
@@ -106,12 +132,12 @@ const FormLook = () => {
                         onChange={handleFileChange}
                         className="hidden"
                       />
-                      <p>Change photo</p>
+                      <p>Mudar look</p>
                     </div>
                   </div>
                 ) : (
                   <div className="mt-32 justify-center bg-text-secondary">
-                    <p>Add Image Here </p>
+                    <p>Adiciona uma imagem aqui </p>
                     <input
                       id="image"
                       type="file"
@@ -128,16 +154,42 @@ const FormLook = () => {
 
             <StylesSubmitLook onDataFilled={handleStylesData} />
 
+            <div className="mb-4" id="Instagram">
+              <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
+                <div className="flex text-secondary">
+                  <input
+                    className="w-full py-2 text-secondary leading-tight focus:outline-none focus:shadow-outline"
+                    type="url"
+                    placeholder="URL da tua foto no Instagram"
+                    maxLength={220}
+                    value={lookImageURL}
+                    onChange={(e) => setLookImageURL(e.target.value)}
+                  />
+                </div>
+              </div>
+              {!isInstagramURLValid ? (
+                <p className="text-red-500 text-sm mt-1 ml-1">URL inválido.</p>
+              ) : (
+                lookImageURL.length > 5 && (
+                  <p className="text-primary_main text-sm mt-1 ml-1">URL válido.</p>
+                )
+              )}
+            </div>
+
             <div className="mb-4">
               <div className="shadow border rounded w-full py-2 px-3 text-secondary-700 appearance-none mt-6">
                 <div className="flex text-secondary">
                   <input
                     className="w-full py-2 text-secondary leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    placeholder="Instagram Photo Link"
+                    placeholder="Breve descrição dos artigos do teu Look"
+                    maxLength={100}
+                    value={lookImageAlt}
+                    onChange={(e) => setLookImageAlt(e.target.value)}
                   />
                 </div>
               </div>
+              <p className="text-caption ml-1 mt-1 text-grey">Para que pessoas com necessidades visuais possam saber o que tu vestiste.</p>
             </div>
 
             <Button
@@ -148,7 +200,7 @@ const FormLook = () => {
               width="100%"
               ariaLabel="Submit look"
             >
-              Submeter look
+              {buttonSubmit}
             </Button>
           </div>
         </>

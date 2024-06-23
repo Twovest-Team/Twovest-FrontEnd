@@ -6,32 +6,33 @@ import deleteCollection from "@/utils/db/collections/deleteCollection"
 import Modal from "../modals/Modal"
 import { useRouter } from 'next/navigation'
 import useAuth from "@/hooks/client-hooks/useAuth"
+import Button from "../buttons/Button"
 
-const DeleteCollectionModal = ({isOwnCollection, collectionId}) => {
+const DeleteCollectionModal = ({ isAdmin, collectionId }) => {
 
     const dispatch = useAppDispatch()
-    const {currentUser} = useAuth()
+    const { currentUser } = useAuth()
     const router = useRouter()
 
-    async function handleDelete(){
-        if(!isOwnCollection) return null
+    async function handleDelete() {
+        if (!isAdmin) return null
         let isDeleted = await deleteCollection(collectionId)
         dispatch(closeModal('deleteCollectionWarning'))
         alert('is deleted? ' + isDeleted)
-        console.log(currentUser)
-        if (isDeleted) router.push(`/profile/${currentUser.id}/collections`)
+        if (isDeleted) router.push(`/profile/${currentUser.id}?option=coleções`)
+        router.refresh();
     }
 
     return (
         <Modal id={'deleteCollectionWarning'}>
             <div>
-                <h1 className='font-semibold text_h6'>Eliminar esta coleção?</h1>
+                <h1 className='font-semibold text-h6'>Eliminar esta coleção?</h1>
                 <p className='text-secondary'>Não vais conseguir recuperar esta coleção depois de a eliminares.</p>
             </div>
 
-            <button onClick={handleDelete} className="bg-error_main w-full text-white font-semibold px-9 py-3.5 rounded">
+            <Button onClick={handleDelete} type={'error'} ariaLabel='Eliminar coleção' width='100%'>
                 Eliminar defnitivamente
-            </button>
+            </Button>
         </Modal>
     )
 }

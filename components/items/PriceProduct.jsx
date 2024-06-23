@@ -8,7 +8,7 @@ const PriceProduct = ({ discount, offers }) => {
     const discountedPrice = (price) => applyPriceDiscount(price, discount) + '€';
 
     return (
-        <p className='font-medium w-full caption'>
+        <p className='font-medium w-full text-caption'>
             {discount > 0
                 ? <><span className='text-secondary line-through'>{formatPrice(bestOffer.price)}</span> {discountedPrice(bestOffer.price)}</>
                 : formatPrice(bestOffer.price)}

@@ -18,7 +18,7 @@ import { showNotification } from "@/redux/slices/notificationSlice";
 import { useState } from "react";
 
 
-export default function CollectionPreview({ collection, lookId }) {
+export default function CollectionPreview({ collection, lookId, showcaseImages }) {
 
   const { isMobile } = useWindow()
   const dispatch = useAppDispatch()
@@ -29,8 +29,8 @@ export default function CollectionPreview({ collection, lookId }) {
 
   function renderImages() {
 
-    const figureWidth = 86
-    const figureHeight = 90
+    const figureWidth = showcaseImages ? 126: 86
+    const figureHeight = showcaseImages ? 130: 90
     let previewLookCards = []
     const reversedLooks = reverseLooksOrder(looks)
 
@@ -41,17 +41,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-0 top-0 z-20 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-0 top-0 z-20 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-dark_gray rounded-[16px]  border-white`} />
               )
             }
             break;
@@ -59,17 +60,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-[14px] top-0 z-10 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-[14px] top-0 z-10 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-grey rounded-[16px]  border-white`} />
               )
             }
 
@@ -78,17 +80,18 @@ export default function CollectionPreview({ collection, lookId }) {
             if (reversedLooks[i]) {
               previewLookCards.push(
                 <Image
+                  quality={100}
                   key={i}
                   src={getStorageImage(reversedLooks[i].url_image)}
                   alt="Look da coleção"
                   width={figureWidth}
                   height={figureHeight}
-                  className="max-h-[90px] h-[90px] left-[28px] top-0 absolute rounded-[16px] object-cover"
+                  className={`${showcaseImages ? 'max-h-[130px]' : 'max-h-[90px]'} h-full left-[28px] top-0 absolute rounded-[16px] object-cover`}
                 />
               )
             } else {
               previewLookCards.push(
-                <div className={`w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white`} />
+                <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px]  border-white`} />
               )
             }
 
@@ -98,18 +101,18 @@ export default function CollectionPreview({ collection, lookId }) {
     } else {
       previewLookCards = (
         <>
-          <div className="w-[86px] h-[90px] z-20 left-0 top-0 absolute bg-secondary rounded-[16px] border-[3.5px] border-white text-white flex justify-start pt-2 pl-2">
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-20 left-0 top-0 absolute bg-secondary rounded-[16px]  border-white text-white flex justify-start pt-2 pl-2`}>
             <BookmarkRoundedIcon className="text-white" sx={{ fontSize: 22 }} />
           </div>
-          <div className="w-[86px] h-[90px] z-10 left-[14px] top-0 absolute bg-grey rounded-[16px] border-[3.5px] border-white" />
-          <div className="w-[86px] h-[90px] left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px] border-[3.5px] border-white" />
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} z-10 left-[14px] top-0 absolute bg-grey rounded-[16px]  border-white`} />
+          <div className={`${showcaseImages ? 'w-[126px] h-[130px]' : 'w-[86px] h-[90px]'} left-[28px] top-0 absolute bg-grey_opacity_50 rounded-[16px]  border-white`} />
         </>
       )
     }
 
     return (
-      <div className="h-[90px] grid">
-        <div className="w-[108px] h-full relative [&>img]:border-[3.5px] [&>img]:border-white">
+      <div className={`${showcaseImages ? 'h-[130px] mr-5' : 'h-[90px]'} grid`}>
+        <div className={`${showcaseImages ? 'w-[126px]' : 'w-[110px]'} h-full relative [&>*]:border-4 [&>img]:border-white`}>
           {previewLookCards}
         </div>
       </div>
@@ -119,13 +122,13 @@ export default function CollectionPreview({ collection, lookId }) {
 
   function renderDetails() {
     return (
-      <div className={`ml-4 flex flex-col ${!lookId ? 'justify-between' : 'justify-center'} items-stretch h-full`}>
+      <div className={`ml-4 gap-2 flex flex-col ${!lookId ? 'justify-between' : 'justify-center'} items-stretch h-full`}>
 
         {!lookId &&
           <>
             <div>
               <p className="font-semibold line-clamp-1">{name}</p>
-              <p className="caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
+              <p className="text-caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
             </div>
 
             <CollectionPrivacyTag
@@ -138,7 +141,7 @@ export default function CollectionPreview({ collection, lookId }) {
         {lookId &&
           <>
             <p className="font-semibold line-clamp-1">{name}</p>
-            <p className="caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
+            <p className="text-caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
           </>
         }
 
@@ -174,7 +177,7 @@ export default function CollectionPreview({ collection, lookId }) {
       if (isRemoveSuccessfull) {
         dispatch(showNotification('removedLook'));
       }
-      if (!isRemoveSuccessfull){
+      if (!isRemoveSuccessfull) {
         setIsSaved(true)
         dispatch(showNotification('errorRemovingLook'));
 
@@ -187,7 +190,7 @@ export default function CollectionPreview({ collection, lookId }) {
       if (isSaveSuccessfull) {
         dispatch(showNotification('savedLook'));
       }
-      if (!isSaveSuccessfull){
+      if (!isSaveSuccessfull) {
         setIsSaved(false)
         dispatch(showNotification('errorSavingLook'));
       }
@@ -202,7 +205,7 @@ export default function CollectionPreview({ collection, lookId }) {
         )}
 
         {lookId && (
-          <div className="flex-grow flex justify-end h-full items-center mr-5">
+          <div className="flex-grow flex justify-end h-full items-center">
             <Button padding="0 1.2rem" justify="space-between" {...buttonProps}>
               {buttonProps.icon}
               {buttonText}
@@ -217,8 +220,12 @@ export default function CollectionPreview({ collection, lookId }) {
     return (
       <>
         {renderImages()}
-        {renderDetails()}
-        {renderOptions()}
+        {!showcaseImages &&
+          <>
+            {renderDetails()}
+            {renderOptions()}
+          </>
+        }
       </>
     )
   }
@@ -228,7 +235,7 @@ export default function CollectionPreview({ collection, lookId }) {
 
       {/* PREVIEW CARD WHEN SHOWCASING COLLECTION */}
       {!lookId &&
-        <Link href={`/collection/${collection.id}`} className="items-start h-[90px] w-full flex flex-row my-1">
+        <Link href={`/collection/${collection.id}`} className="items-start w-fit w-full flex flex-row my-1">
           {renderContent()}
         </Link>
       }

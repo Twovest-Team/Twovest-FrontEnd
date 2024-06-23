@@ -6,11 +6,13 @@ import updateCollectionName from "@/utils/db/collections/updateCollectionName"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { closeModal } from "@/redux/slices/modalSlice"
 import { revalidatePath } from "next/cache"
+import { useRouter } from "next/navigation"
 
 const UpdateCollectionNameModal = ({ collectionId }) => {
 
     const dispatch = useAppDispatch()
     const isOpen = useAppSelector(state => state.modals['changeCollectionName']);
+    const router = useRouter()
 
     let [inputState, setInputState] = useState('')
     let [isValid, setIsValid] = useState(false)
@@ -20,13 +22,14 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
         setInputState(value);
         setIsValid(value.trim().length > 0);
     }
-    
+
 
     async function handleSubmit() {
         if (isValid && inputState) {
             const isNameUpdated = await updateCollectionName(collectionId, inputState)
             dispatch(closeModal('changeCollectionName'))
             alert('Nome alterado?' + isNameUpdated)
+            router.refresh()
         }
     }
 
@@ -43,11 +46,17 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
     return (
         <Modal id={'changeCollectionName'}>
             <div>
-                <h1 className='font-semibold text_h6'>{inputState || 'Alterar nome'}</h1>
+                <h1 className='font-semibold text-h6'>{inputState || 'Alterar nome'}</h1>
                 <p className='text-secondary'>Que nome queres dar a esta coleção?</p>
             </div>
 
-            <input className="border" value={inputState} onChange={e => handleInputValue(e)} placeholder="Nome da coleção"></input>
+
+            <input
+                className="border h-14 px-6 rounded outline-none border-grey focus:border-black"
+                value={inputState}
+                onChange={e => handleInputValue(e)}
+                placeholder="Novo nome da coleção" />
+
             <button
                 disabled={!isValid}
                 onClick={handleSubmit}

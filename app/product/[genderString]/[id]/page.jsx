@@ -73,13 +73,13 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
 
   const renderSlider = () => {
     return (
-      <section className="flex flex-col h-dvh relative lg:hidden mb-5 min-h-[600px]">
+      <section className="flex flex-col h-svh relative lg:hidden mb-5 min-h-[600px]">
         <div className="flex-grow flex flex-col justify-end min-h-[600px] relative">
           <ProductPageSwiper images={data.products_has_images} />
           <div className="relative">
             {renderBtnOptions()}
 
-            <div className="bg-white h-fit rounded-tl-[28px] rounded-tr-[28px] shadow-[0px_-20px_30px_0px_#00000010] container">
+            <div className="bg-white h-fit rounded-t-[20px] shadow-[0px_-20px_30px_0px_#00000010] container">
 
               <div className="flex flex-row gap-4 py-7">
                 <Link href={"/"}>
@@ -92,7 +92,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
                   />
                 </Link>
 
-                <h1 className="font-semibold truncate text_h5">
+                <h1 className="font-semibold truncate text-h5">
                   {getCategoryName(data.categories.id)} {data.brands.name}
                 </h1>
               </div>
@@ -174,7 +174,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
   const renderLooks = () => {
     if (looks) return (
       <section className="flex flex-col gap-4 mb-16 text-white">
-        <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
+        <h6 className="font-semibold text-h6 text-dark container">Looks com este artigo</h6>
         <LooksHomepage data={looks} />
       </section>
     )
@@ -190,7 +190,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
     return (
       <Modal maxMd className="lg:hidden" id={'offersProduct'}>
         <div className="h-full">
-          <h1 className="font-semibold text_h6">Ofertas</h1>
+          <h1 className="font-semibold text-h6">Ofertas</h1>
           <p className="text-secondary">
             Vê todas as ofertas para este artigo.
           </p>

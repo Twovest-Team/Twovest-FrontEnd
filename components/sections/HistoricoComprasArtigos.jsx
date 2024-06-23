@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function HistoricoComprasArtigos() {
   return (
     <div className="lg:mr-8">
-      <h2 className="text_h6 mt-8 mb-4">Artigos da Encomenda</h2>
+      <h2 className="text-h6 mt-8 mb-4">Artigos da Encomenda</h2>
 
       <article className="my-5">
         <div className="flex self-center items-center w-full">
@@ -16,8 +16,8 @@ export default function HistoricoComprasArtigos() {
                 <div className="flex justify-between gap-2">
                   <p className="truncate">Nome</p>
                 </div>
-                <p className={`caption text-primary_main `}>Novo</p>
-                <p className="text-secondary font-normal caption">
+                <p className={`text-caption text-primary_main `}>Novo</p>
+                <p className="text-secondary font-normal text-caption">
                   Tamanho: XS
                 </p>
               </div>

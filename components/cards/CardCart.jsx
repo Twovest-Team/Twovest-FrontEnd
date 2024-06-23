@@ -111,7 +111,7 @@ export const CardCart = ({
   }
 
   return (
-    <article className="py-12 border-b border-grey">
+    <article className="py-10 border-b border-grey">
       <div className="flex self-center items-center w-full">
         <Link
           onClick={() => handleToggleCart()}
@@ -125,12 +125,12 @@ export const CardCart = ({
               alt={data.offers.products.images[0].alt}
             />
 
-            <div className="absolute top-0 right-0 min-[350px]:hidden">
+            <div className="absolute top-0 right-0 [@media(min-width:350px)]:hidden">
               <DeleteButton deleteFunction={handleDeleteProduct} />
             </div>
 
             {discount > 0 && (
-              <div className="absolute bottom-3 bg-primary_main text-white py-1 px-2 rounded-r caption font-semibold">
+              <div className="absolute bottom-3 bg-primary_main text-white py-1 px-2 rounded-r text-caption font-semibold">
                 {discount} %
               </div>
             )}
@@ -138,41 +138,42 @@ export const CardCart = ({
         </Link>
         <div className="min-h-[115px] flex justify-between flex-grow min-w-0">
           <div className="ml-4 flex flex-col font-semibold justify-between min-w-0 flex-grow ">
-            <div className="flex flex-col gap-1">
-              <div className="flex justify-between gap-2">
+            <div className="flex flex-col gap-0.5">
+              <div className="flex justify-between gap-2 max-h-6">
                 <p className="truncate">
                   {categoryName} {data.offers.products.brands.name}
                 </p>
-                <div className="hidden min-[350px]:block">
+
+                <div className="hidden [@media(min-width:350px)]:block">
                   <DeleteButton deleteFunction={handleDeleteProduct} />
                 </div>
               </div>
 
               <p
-                className={`caption
-                                ${
-                                  data.offers.conditions.id === 1 &&
-                                  "text-primary_main"
-                                }
-                                ${
-                                  data.offers.conditions.id === 2 &&
-                                  "text-info_main"
-                                }
-                                ${
-                                  data.offers.conditions.id === 3 &&
-                                  "text-warning_main"
-                                }
+                className={`text-caption
+                                ${data.offers.conditions.id === 1 &&
+                  "text-primary_main"
+                  }
+                                ${data.offers.conditions.id === 2 &&
+                  "text-info_main"
+                  }
+                                ${data.offers.conditions.id === 3 &&
+                  "text-warning_main"
+                  }
                             `}
               >
                 {data.offers.conditions.name}
               </p>
-              <p className="text-secondary font-normal caption">
+
+              <p className="text-secondary font-normal text-caption">
                 Tamanho: {data.offers.sizes.size}
               </p>
+
             </div>
             <div className="flex justify-between">
               {couponDiscount > 0 ? <CouponPrice /> : <NormalPrice />}
-              <div className="hidden min-[350px]:block">
+              
+              <div className="hidden [@media(min-width:350px)]:block">
                 <ProductQuantityControl
                   cartId={data.id}
                   userEmail={userEmail}
@@ -180,12 +181,13 @@ export const CardCart = ({
                   handleLoading={handleLoading}
                 />
               </div>
+
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-2 gap-4 h-fit min-[350px]:hidden">
+      <div className="flex justify-between items-center mt-2 gap-4 h-fit [@media(min-width:350px)]:hidden">
         <div className="w-[115px]">
           <ProductQuantityControl
             cartId={data.id}

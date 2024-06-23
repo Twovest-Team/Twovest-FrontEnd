@@ -15,7 +15,7 @@ const ProductDetails = ({ productDetails }) => {
     <div className="flex flex-col gap-4">
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-        <h1 className="font-semibold text_h6">Descrição do produto</h1>
+        <h1 className="font-semibold text-h6">Descrição do produto</h1>
         <p className="text-secondary">Ref: {productDetails.reference}</p>
       </div>
 
@@ -40,7 +40,7 @@ const ProductDetails = ({ productDetails }) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Disclosure.Panel className="py-5 caption flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  <Disclosure.Panel className="py-5 text-caption flex flex-col gap-4 [&>p>span]:font-semibold ">
                     <p>Cuidar das tuas peças de roupa é uma maneira de prolongar a sua vida útil. Segue as instruções de cuidados e lava as tuas peças de roupa apenas quando for necessário. Reduzindo as lavagens e as secagens prolongamos a vida útil das nossas peças de roupa e reduzimos o consumo de água e energia.</p>
                   </Disclosure.Panel>
                 </Transition>
@@ -68,7 +68,7 @@ const ProductDetails = ({ productDetails }) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Disclosure.Panel className="py-5 caption flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  <Disclosure.Panel className="py-5 text-caption flex flex-col gap-4 [&>p>span]:font-semibold ">
                     {productDetails.is_sustainable && <p className="font-semibold text-primary_main flex items-center gap-1"> <SustainableButton color='#05CE86' type='normal' width={24} /> Artigo sustentável</p>}
                     <p><span>Marca:</span> {productDetails.brands.name}.</p>
                     <p><span>Categoria:</span> {category}.</p>
@@ -101,7 +101,7 @@ const ProductDetails = ({ productDetails }) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Disclosure.Panel className="py-5 caption flex flex-col gap-4 [&>p>span]:font-semibold ">
+                  <Disclosure.Panel className="py-5 text-caption flex flex-col gap-4 [&>p>span]:font-semibold ">
                     <p>Podes devolver os artigos em qualquer loja {productDetails.brands.name} no país em que a compra foi efetuada.</p>
                   </Disclosure.Panel>
                 </Transition>

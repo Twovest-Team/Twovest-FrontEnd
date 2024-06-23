@@ -13,7 +13,7 @@ const BrandGenderButtons = ({currentGender, brandName}) => {
 
     return (
 
-        <div className="flex gap-3 font-semibold [&>button]:border [&>button]:border-white [&>button]:rounded-full [&>button]:px-5 [&>button]:py-2 [&>button]:flex [&>button]:items-center [&>button]:justify-center caption">
+        <div className="flex gap-3 font-semibold [&>button]:border [&>button]:border-white [&>button]:rounded-full [&>button]:px-5 [&>button]:py-2 [&>button]:flex [&>button]:items-center [&>button]:justify-center text-caption">
 
             <button onClick={() => handleGender('women')} className={`${currentGender === 'women' ? 'bg-white' : 'text-white'}`}>Mulher</button>
 

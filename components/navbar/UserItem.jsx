@@ -12,6 +12,8 @@ import { changeUserData } from "@/redux/slices/userSlice";
 import { useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from 'next/navigation'
+import { openModal } from "@/redux/slices/modalSlice";
+import IconButton from "../buttons/icons/IconButton";
 
 
 const UserItem = ({ user }) => {
@@ -43,20 +45,22 @@ const UserItem = ({ user }) => {
   const renderRegisterButton = () => (
     <>
 
-      <Link href='/login' className="sm:hidden">
-        <AccountCircleOutlinedIcon sx={{ fontSize: 26 }} />
-      </Link>
+      <IconButton
+        className="sm:hidden"
+        icon={<AccountCircleOutlinedIcon sx={{ fontSize: 26 }} />}
+        onClick={() => dispatch(openModal('authModal'))}>
+      </IconButton>
 
       <Button
         className='hidden sm:flex text-sm ml-1'
         height="40px"
-        href="/login"
+        onClick={() => dispatch(openModal('authModal'))}
         type="black"
         ariaLabel="Fazer login ou registo"
         width="fit-content"
         padding="0 1.8rem"
       >
-        <span> Login | Registar</span>
+        <span className="text-caption"> Login | Registar</span>
       </Button>
 
     </>
@@ -94,7 +98,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Ver as minhas coleções',
-          link: `/profile/${user.id}/collections`
+          link: `/profile/${user.id}?option=collections`
         },
       ],
       [
@@ -108,7 +112,7 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Sair ->',
-          link: 'definirRota',
+          link: '?logout=true',
           onClick: handleLogout,
           className: 'text-error_main'
         },
@@ -126,7 +130,7 @@ const UserItem = ({ user }) => {
                 onClick={item.onClick || close}
                 className={`w-full ${active && "bg-grey_opacity_50"}`}
               >
-                <div className={`${item.className} bg-white caption flex items-center my-0.5 py-2 px-3 transition rounded hover:bg-grey_opacity_50 duration-75`}>
+                <div className={`${item.className} bg-white text-caption flex items-center my-0.5 py-2 px-3 transition rounded hover:bg-grey_opacity_50 duration-75`}>
                   {item.icon}
                   {item.title}
                 </div>
@@ -173,7 +177,7 @@ const UserItem = ({ user }) => {
                       {user.name}
                     </Link>
 
-                    <div className="bg-primary_main px-1 py-2 h-[32px] mx-2 text-center caption mt-1 mb-2 text-white rounded">
+                    <div className="bg-primary_main px-1 py-2 h-[32px] mx-2 text-center text-caption mt-1 mb-2 text-white rounded">
                       ID: {user.id}
                     </div>
                   </div>

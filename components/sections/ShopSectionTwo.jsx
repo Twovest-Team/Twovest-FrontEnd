@@ -6,7 +6,6 @@ import { cttPickupPoints, portugalDistricts, portugalTowns } from "@/constants";
 import PortugalFlag from "@/public/static/images/idiomas/portugal_idioma.svg";
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import Button from "../buttons/Button";
@@ -77,7 +76,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
             <h1
-              className="flex gap-2 items-center text_h6"
+              className="flex gap-2 items-center text-h6"
               aria-label="Dados de faturação"
             >
               Dados de faturação
@@ -99,7 +98,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
                 {userData.email}
               </p>
               <p
-                className="caption text-secondary"
+                className="text-caption text-secondary"
                 aria-label="Sem NIF associado"
               >
                 {userData.email}
@@ -115,7 +114,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         <div className="flex flex-col gap-4">
           <div className="font-semibold flex gap-2 items-center">
             <h2
-              className="flex gap-2 items-center text_h6"
+              className="flex gap-2 items-center text-h6"
               aria-label="Ponto de recolha"
             >
               Ponto de recolha
@@ -199,9 +198,6 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         </Button>
 
       </section>
-
-
-      <Notification id={'formError'} type={"Error"} message={"Preenche todos os campos"} />
 
     </>
   );

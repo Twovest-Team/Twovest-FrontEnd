@@ -24,7 +24,7 @@ export const PaymentButtons = ({ method }) => {
   return (
     <div className="flex my-4 p-6 border border-grey rounded">
       {icon}
-      <div className="ml-4 caption">{method}</div>
+      <div className="ml-4 text-caption">{method}</div>
     </div>
   );
 };

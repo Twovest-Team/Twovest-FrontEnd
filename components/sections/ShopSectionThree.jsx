@@ -15,6 +15,7 @@ import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
 import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
+import usedCoupon from "@/utils/usedCoupon";
 
 const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const { currentUser } = useAuth();
@@ -153,6 +154,10 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
       },
       quantity: produto.qty,
     }));
+
+    if (cupaoVerificado) {
+      const useCoupon = await usedCoupon(cupaoVerificado);
+    }
 
     try {
       const { data } = await axios.post("/api/payment", purchaseData, {

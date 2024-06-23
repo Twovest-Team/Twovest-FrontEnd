@@ -102,7 +102,7 @@ export const CardCart = ({
           </>
         ) : (
           <>
-            <s className="mr-2">data.offers.price €</s>
+            <s className="mr-2">{data.offers.price}€</s>
             <b className="text-primary_main">{couponPrice}€</b>
           </>
         )}

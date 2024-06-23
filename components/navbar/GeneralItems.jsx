@@ -15,7 +15,6 @@ const GeneralItems = ({ user }) => {
     const dispatch = useAppDispatch();
 
     //const handleSearch = () => alert('Por fazer.')
-
     //const handleWishlist = () => alert('Por fazer.')
 
     const handleCart = () => {

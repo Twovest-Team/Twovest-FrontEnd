@@ -16,10 +16,16 @@ import getStorageImage from "@/utils/getStorageImage";
 import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
 import usedCoupon from "@/utils/db/coupons/usedCoupon";
+import LoadingIcon from "../buttons/icons/LoadingIcon";
 
 const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const { currentUser } = useAuth();
   const [cupaoVerificado, setCupaoVerificado] = useState("");
+  const [cc, setCc] = useState("Cartão de crédito");
+  const [mbway, setMbway] = useState("MBWay");
+  const [gpay, SetGpay] = useState("Google Pay");
+  const [paypal, setPaypal] = useState("Paypal");
+
 
   const products = useAppSelector((state) => state.cartProducts.products);
   useEffect(() => {
@@ -40,8 +46,21 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
     }
   }, [couponData]);
 
-  const handlePurchase = async (produtos) => {
+  const handlePurchase = async (produtos, type) => {
     let novosProdutos = [];
+
+    if(type == 0){
+      setCc(<LoadingIcon/>);
+    }
+    if(type == 1){
+      setMbway(<LoadingIcon/>);
+    }
+    if(type == 2){
+      SetGpay(<LoadingIcon/>);
+    }
+    if(type == 3){
+      setPaypal(<LoadingIcon/>);
+    }
 
     if (cupaoVerificado) {
       let couponBrandId =
@@ -183,7 +202,7 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
       <div className="flex flex-col gap-4 mt-4">
         <Button
           justify="start"
-          onClick={() => handlePurchase(productsData)}
+          onClick={() => handlePurchase(productsData, 0)}
           type={"grey"}
           ariaLabel="Pagar com Cartão De Crédito"
           width="100%"
@@ -196,12 +215,12 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
             height={18}
             styles={{ width: "auto", height: "auto" }}
           />
-          Cartão De Crédito
+          {cc}
         </Button>
 
         <Button
           justify="start"
-          onClick={() => handlePurchase(productsData)}
+          onClick={() => handlePurchase(productsData, 1)}
           type={"grey"}
           ariaLabel="Pagar com MBWay"
           width="100%"
@@ -213,12 +232,12 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
             width={30}
             height={19}
           />
-          MBWay
+          {mbway}
         </Button>
 
         <Button
           justify="start"
-          onClick={() => handlePurchase(productsData)}
+          onClick={() => handlePurchase(productsData, 2)}
           type={"grey"}
           ariaLabel="Pagar com GPay"
           width="full"
@@ -230,12 +249,12 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
             width={30}
             height={17}
           />
-          GPay
+          {gpay}
         </Button>
 
         <Button
           justify="start"
-          onClick={() => handlePurchase(productsData)}
+          onClick={() => handlePurchase(productsData, 3)}
           type={"grey"}
           ariaLabel="Pagar com Paypal"
           width="full"
@@ -247,7 +266,7 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
             width={30}
             height={17}
           />
-          Paypal
+          {paypal}
         </Button>
       </div>
     </div>

@@ -205,7 +205,7 @@ export default function CollectionPreview({ collection, lookId, showcaseImages }
         )}
 
         {lookId && (
-          <div className="flex-grow flex justify-end h-full items-center mr-5">
+          <div className="flex-grow flex justify-end h-full items-center">
             <Button padding="0 1.2rem" justify="space-between" {...buttonProps}>
               {buttonProps.icon}
               {buttonText}

@@ -13,8 +13,12 @@ const InviteToCollectionModal = ({ collectionId, collectionShareId }) => {
                 <p className='text-secondary'>Copia o link para partilhares a coleção com outras pessoas.</p>
             </div>
 
-            <p>{shareLink}</p>
-            <CopyButton copy={shareLink} />
+            <div className='border h-14 px-6 rounded border-grey bg-grey_opacity_50 flex justify-between items-center'>
+                <p className='text-secondary' >/invite/<span className='font-semibold'>{collectionShareId}</span></p>
+                <CopyButton copy={shareLink} />
+            </div>
+
+
 
         </Modal>
     )

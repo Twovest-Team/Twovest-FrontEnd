@@ -22,7 +22,7 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
         setInputState(value);
         setIsValid(value.trim().length > 0);
     }
-    
+
 
     async function handleSubmit() {
         if (isValid && inputState) {
@@ -50,7 +50,13 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
                 <p className='text-secondary'>Que nome queres dar a esta coleção?</p>
             </div>
 
-            <input className="border" value={inputState} onChange={e => handleInputValue(e)} placeholder="Nome da coleção"></input>
+
+            <input
+                className="border h-14 px-6 rounded outline-none border-grey focus:border-black"
+                value={inputState}
+                onChange={e => handleInputValue(e)}
+                placeholder="Novo nome da coleção" />
+
             <button
                 disabled={!isValid}
                 onClick={handleSubmit}

@@ -139,6 +139,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
 
                                 {goBackFn &&
                                     <IconButton
+                                        className="-translate-x-2"
                                         icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
                                         onClick={() => goBackFn()}
                                         darkMode={darkMode}

@@ -25,7 +25,7 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
     }
 
     async function handlePrivacyChange(e) {
-        
+
         let value = e.currentTarget.value
         if (value != privacy) setIsValid(true)
         if (value == privacy) setIsValid(false)
@@ -36,6 +36,7 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
         // Clear the states after modal closes
         if (!isOpen) {
             setTimeout(() => {
+                setCurrentValue(privacy)
                 setIsValid(false)
             }, 1000)
         }
@@ -49,22 +50,27 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
                 <p className='text-secondary'>Decide quem tem acesso a esta coleção.</p>
             </div>
 
-            <fieldset>
-                <div>
-                    <input onClick={e => handlePrivacyChange(e)} type="radio" id="private" name="privacy" value={1} defaultChecked={privacy === 1} />
-                    <label for="private">Privada</label>
-                </div>
+            <fieldset className="flex flex-col sm:flex-row gap-4">
 
-                <div>
-                    <input onClick={e => handlePrivacyChange(e)} type="radio" id="public" name="privacy" value={2} defaultChecked={privacy === 2} />
-                    <label for="public">Pública</label>
-                </div>
+                <input className="invisible absolute" onClick={e => handlePrivacyChange(e)} type="radio" id="public" name="privacy" value={2} defaultChecked={privacy === 2} />
+                <label className={`${currentValue == 2 ? 'bg-primary_light bg-opacity-50 border-primary_main' : 'border-grey'} w-full py-3 px-3 border rounded cursor-pointer font-medium mb-0.5`} for="public">
+                    Pública
+                    <p className='text-secondary text-caption font-normal'>Todas as pessoas podem ver a tua coleção.</p>
+                </label>
+
+
+                <input className="invisible absolute" onClick={e => handlePrivacyChange(e)} type="radio" id="private" name="privacy" value={1} defaultChecked={privacy === 1} />
+                <label className={`${currentValue == 1 ? 'bg-primary_light bg-opacity-50 border-primary_main' : 'border-grey'} w-full py-3 px-3 border rounded cursor-pointer font-medium mb-0.5`} for="private">
+                    Privada
+                    <p className='text-secondary text-caption font-normal'>Apenas tu e pessoas que fazem parte da tua coleção.</p>
+                </label>
+
             </fieldset>
 
             <button
                 disabled={!isValid}
                 onClick={updatePrivacy}
-                className={ `bg-dark w-full text-white font-semibold px-9 py-3.5 rounded ${!isValid && 'opacity-30 cursor-not-allowed'} `}>
+                className={`bg-dark w-full text-white font-semibold px-9 py-3.5 rounded ${!isValid && 'opacity-30 cursor-not-allowed'} `}>
                 Alterar privacidade
             </button>
         </Modal >

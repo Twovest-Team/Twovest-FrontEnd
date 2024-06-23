@@ -110,6 +110,7 @@ const ManageCollectionModal = () => {
 
       {currentSection === 2 &&
         <PrivacySection
+          privacyValue={privacyValue}
           setPrivacyValue={setPrivacyValue}
           submitNewCollection={submitNewCollection}
         />
@@ -178,7 +179,11 @@ const NamingSection = ({ lookId, nameState, setNameState, nextSection }) => {
       </div>
 
 
-      <input className="border" value={nameState} onChange={e => handleInputValue(e)} placeholder="Nome da coleção"></input>
+      <input
+        className="border border-grey h-14 px-6 rounded outline-none focus:border-black"
+        value={nameState}
+        onChange={e => handleInputValue(e)}
+        placeholder="Nome da coleção" />
       <button
         disabled={!isValid}
         onClick={nextSection}
@@ -191,7 +196,7 @@ const NamingSection = ({ lookId, nameState, setNameState, nextSection }) => {
   )
 }
 
-const PrivacySection = ({ setPrivacyValue, submitNewCollection }) => {
+const PrivacySection = ({ privacyValue, setPrivacyValue, submitNewCollection }) => {
 
   async function handlePrivacyChange(e) {
     let value = e.currentTarget.value
@@ -205,16 +210,21 @@ const PrivacySection = ({ setPrivacyValue, submitNewCollection }) => {
         <p className="text-secondary">Decide quem tem acesso a esta coleção.</p>
       </div>
 
-      <fieldset>
-        <div>
-          <input onClick={e => handlePrivacyChange(e)} type="radio" id="private" name="privacy" value={1} defaultChecked />
-          <label for="private">Privada</label>
-        </div>
+      <fieldset className="flex flex-col sm:flex-row gap-4">
 
-        <div>
-          <input onClick={e => handlePrivacyChange(e)} type="radio" id="public" name="privacy" value={2} />
-          <label for="public">Pública</label>
-        </div>
+        <input className="invisible absolute" onClick={e => handlePrivacyChange(e)} type="radio" id="public" name="privacy" value={2} />
+        <label className={`${privacyValue == 2 ? 'bg-primary_light bg-opacity-50 border-primary_main' : 'border-grey'} w-full py-3 px-3 border rounded cursor-pointer font-medium mb-0.5`} for="public">
+          Pública
+          <p className='text-secondary text-caption font-normal'>Todas as pessoas podem ver a tua coleção.</p>
+        </label>
+
+
+        <input className="invisible absolute" onClick={e => handlePrivacyChange(e)} type="radio" id="private" name="privacy" value={1} defaultChecked />
+        <label className={`${privacyValue == 1 ? 'bg-primary_light bg-opacity-50 border-primary_main' : 'border-grey'} w-full py-3 px-3 border rounded cursor-pointer font-medium mb-0.5`} for="private">
+          Privada
+          <p className='text-secondary text-caption font-normal'>Apenas tu e pessoas que fazem parte da tua coleção.</p>
+        </label>
+
       </fieldset>
 
       <button

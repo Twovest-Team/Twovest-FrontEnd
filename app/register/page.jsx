@@ -142,7 +142,7 @@ const Register = () => {
 };
 
 
-const handleDrop = (acceptedFiles) => {
+/* const handleDrop = (acceptedFiles) => {
   const file = acceptedFiles[0];
   //console.log("Dropped file:", file); 
 
@@ -160,7 +160,7 @@ const handleDrop = (acceptedFiles) => {
   const handleRemoveImage = () => {
     setSelectedImage(null);
     setFileError("");
-  };
+  }; */
 
   if (user) {
     router.push("/");

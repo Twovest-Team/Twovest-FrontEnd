@@ -182,7 +182,7 @@ const handleDrop = (acceptedFiles) => {
       <>
         <NavigationTitle titleText={"Registar conta"} />
         <main className="p-6 mb-10 container md:w-[650px]">
-          <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary ">
+          {/* <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary ">
             {selectedImage ? (
               <div className="relative mt-8">
                 <Image
@@ -221,7 +221,7 @@ const handleDrop = (acceptedFiles) => {
               </Dropzone>
             )}
             
-          </div>
+          </div> */}
           <input
             type="text"
             placeholder="Nome"

@@ -32,7 +32,7 @@ export default function SaveLookIconButton({ lookId, whiteMode }) {
 
   function handleRedirect() {
     if (currentUser && !saveParam) router.push("?save=" + lookId, { scroll: false });
-    if (!currentUser) router.push('/login')
+    if (!currentUser) dispatch(openModal('authModal'))
   }
   function openCollectionsModal() {
     dispatch(openModal("createCollection"));

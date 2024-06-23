@@ -24,23 +24,24 @@ import Button from "../buttons/Button";
 import IconButton from "@/components/buttons/icons/IconButton";
 import FooterNavbar from "./FooterNavbar";
 
-
 export const SideMenu = () => {
   const dispatch = useAppDispatch();
 
   const isMenuOpen = useAppSelector((state) => state.menuToggle.isOpen);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
-  const [visibility, setVisibility] = useState(isMenuOpen ? 'visible' : 'invisible');
+  const [menuVisible, setMenuVisible] = useState(isMenuOpen);
 
   const { currentUser } = useAuth();
   const [gender, setGender] = useGender();
 
   useEffect(() => {
-    setVisibility(isMenuOpen ? 'visible' : 'invisible');
-    if (!isMenuOpen) setTimeout(() => setVisibility('invisible'), 200);
+    if (isMenuOpen) {
+      setMenuVisible(true);
+    } else {
+      setTimeout(() => setMenuVisible(false), 200); // Match the delay of the transition
+    }
   }, [isMenuOpen]);
-
 
   if (!gender) return null;
 
@@ -51,7 +52,7 @@ export const SideMenu = () => {
 
   const handleClickMenu = () => {
     dispatch(toggleMenu());
-    setCategoryOpen(false)
+    setCategoryOpen(false);
   };
 
   function handleGender(gender) {
@@ -62,9 +63,11 @@ export const SideMenu = () => {
 
   return (
     <>
-      <section className={`${isMenuOpen ? 'visible' : 'invisible'} bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-[98]`} onClick={handleClickMenu} />
+      <section
+        className={`${isMenuOpen ? 'visible' : 'invisible'} bg-black backdrop-blur-sm bg-opacity-30 left-0 right-0 top-0 bottom-0 fixed h-full w-full z-[98]`}
+        onClick={handleClickMenu}
+      />
 
-      {/* ---- Menu categorias ---- */}
       <CategoriesMenu
         idCategory={idCategory}
         categoryOpen={categoryOpen}
@@ -72,9 +75,8 @@ export const SideMenu = () => {
         handleClickMenu={handleClickMenu}
       />
 
-      {/* ------ Menu lateral -------*/}
       <div
-        className={`${visibility} ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+        className={`${menuVisible ? 'visible' : 'invisible'} ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}
              bg-white h-[100vh] w-screen min-w-[280px] max-w-[448px] overflow-x-hidden overflow-y-auto scroll_bar-invisible fixed top-0 left-0 transition-all duration-500 delay-100 z-[99]`}
       >
         <div className="flex justify-between items-center border-b-grey border-b">
@@ -83,23 +85,18 @@ export const SideMenu = () => {
               <button
                 key={object.id}
                 onClick={() => handleGender(object)}
-                className={`${gender.id != object.id
-                  ? "text-secondary font-semibold mr-2"
-                  : "text-black font-semibold mr-2"
-                  } `}
+                className={`${gender.id != object.id ? "text-secondary font-semibold mr-2" : "text-black font-semibold mr-2"}`}
               >
                 {object.stringPT}
               </button>
             ))}
           </div>
           <div className="flex mx-4">
-
             <IconButton
               ariaLabel="Fechar menu de navegação"
               icon={<CloseOutlinedIcon className="text-secondary" />}
               onClick={handleClickMenu}
             />
-
           </div>
         </div>
 
@@ -113,10 +110,7 @@ export const SideMenu = () => {
               width="100%"
             >
               <span> Fazer login ou registo</span>
-              <KeyboardArrowRightIcon
-                className="translate-x-2"
-                sx={{ fontSize: 28 }}
-              />
+              <KeyboardArrowRightIcon className="translate-x-2" sx={{ fontSize: 28 }} />
             </Button>
           )}
 
@@ -130,23 +124,16 @@ export const SideMenu = () => {
               className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
             />
           </div>
-          {/* <input type="text" placeholder="Pesquisa" className="mt-3 px-4 py-4 w-full rounded border border-grey" /> */}
 
           <ul className="menu_categories mt-4">
             {general_categories.map((category) => (
               <li key={category.id}>
                 <div
-                  key={category.id}
                   className="bg-grey_opacity_50 hover:bg-grey hover:bg-opacity-50 transition-colors duration-100 p-4 cursor-pointer items-center rounded flex justify-between"
                   onClick={() => handleClickCategory(category.id)}
                 >
                   <p>{category.name}</p>
-                  <Image
-                    src={category.img}
-                    width={25}
-                    height={25}
-                    alt={category.name}
-                  />
+                  <Image src={category.img} width={25} height={25} alt={category.name} />
                 </div>
               </li>
             ))}
@@ -181,10 +168,7 @@ export const SideMenu = () => {
               >
                 <div className="bg-grey_opacity_50 hover:bg-grey hover:bg-opacity-50 transition-colors duration-100 cursor-pointer p-4 rounded flex justify-between">
                   Promoções
-                  <SellIcon
-                    className="fill-primary_main"
-                    alt="simbolo Promoções"
-                  />
+                  <SellIcon className="fill-primary_main" alt="simbolo Promoções" />
                 </div>
               </Link>
             </li>
@@ -192,15 +176,13 @@ export const SideMenu = () => {
         </div>
 
         <PrimaryMenuPagesList toggleMenu={handleClickMenu} />
-
         <SecondaryMenuPagesList toggleMenu={handleClickMenu} />
 
         <div className="mx-4">
           <LanguageButton textColor="black" />
         </div>
 
-      <FooterNavbar />
-
+        <FooterNavbar />
       </div>
     </>
   );

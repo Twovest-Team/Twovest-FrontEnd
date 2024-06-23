@@ -153,7 +153,7 @@ const MainSlider = () => {
   return (
     <>
 
-      <div className='mainSliderSwiper min-h-svh relative'>
+      <div className='mainSliderSwiper relative'>
 
         {renderGenders()}
 

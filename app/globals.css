@@ -2,60 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* MAX Breakpoint: 460px */
-
 html {
   scroll-padding-top: 158px;
   scrollbar-gutter: stable;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
   display: none;
 }
 
 body {
   font-size: 16px;
-  /* max-width: 460px; */
   margin: auto;
   padding-top: 75px;
   background-color: white;
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 select {
   -webkit-appearance: none;
   appearance: none;
 }
-
-/* h1 {
-  font-size: 47.78px;
-}
-
-h2 {
-  font-size: 39.18px;
-}
-
-h3 {
-  font-size: 33.18px;
-}
-
-h4 {
-  font-size: 27.65px;
-}
-
-h5 {
-  font-size: 23.04px;
-}
-
-h6 {
-  font-size: 19.2px;
-}
- */
-
 
 .text_h6 {
   font-size: 19.2px;
@@ -87,10 +55,6 @@ h6 {
   font-weight: bold;
 }
 
-
-
-
-
 .caption {
   font-size: 13.33px;
 }
@@ -113,247 +77,46 @@ h6 {
 }
 
 
-
-/* ===== Scrollbar CSS ===== */
-
 *::-webkit-scrollbar {
-  height: 10px;
-  width: 9px;
+  height: 6px;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
   border-radius: 16px;
-  background-color: #FFFFFF;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-track:hover {
-  background-color: #FFFFFF;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-track:active {
-  background-color: #FFFFFF;
+  background-color: transparent;
+}
+
+.contentSlider::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+@media (min-width: 1024px) {
+  .contentSlider:hover::-webkit-scrollbar-thumb {
+    background-color: #b1b1b1;
+  }
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-color: #484848;
-  border: 1.5px solid #FFFFFF;
+  border-radius: 3px;
+  background-color: #b1b1b1;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #484848;
+  background-color: #a6a6a6;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #484848;
+  background-color: #a6a6a6;
 }
-
-
-/* Daniela */
-
-.user_modal {
-  display: inline-flex;
-  padding: 12px 0px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 6px;
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
-}
-
-.modal_header {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-.modal_body {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-.modal_footer {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-.button_id {
-  display: flex;
-  padding: 8px 12px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
-  border-radius: 5px;
-  background: var(--primary_main, #05ce86);
-  color: var(--text_white, #fff);
-  font-feature-settings:
-    "clig" off,
-    "liga" off;
-}
-
-.button_default {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 13.33px;
-}
-
-.button_points {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.33px;
-}
-
-.button_submit-look {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.33px;
-}
-
-.button_logout {
-  display: flex;
-  width: 226px;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  color: #e9414b;
-  font-size: 13.33px;
-}
-
-.div_grey-line {
-  display: flex;
-  padding: 8px 24px;
-  flex-direction: column;
-  align-items: center;
-  align-self: stretch;
-  width: 100%;
-  color: #cdcdcd;
-  border-bottom: 1px solid grey;
-  justify-content: center;
-}
-
-/* --------------------------Galeria---------------------------------- */
-
-.galerie_title {
-  display: flex;
-  width: 100%;
-  padding: 24px 24px 28px 24px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-}
-
-.galerie_points {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  padding: 24px 24px 28px 24px;
-  width: 100%;
-}
-
-.filters {
-  display: flex;
-  min-width: 400px;
-  align-items: flex-start;
-  gap: 12px;
-  flex-wrap: nowrap;
-  padding-left: 24px;
-  padding-bottom: 24px;
-  overflow-x: auto;
-}
-
-.filter-button {
-  display: flex;
-  padding: 12px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 5px;
-  border: 1px solid #000;
-}
-
-.filter-button.active {
-  display: flex;
-  padding: 12px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 5px;
-  background: var(--text_primary, #000);
-  color: var(--text_white, var(--Imagens, #fff));
-}
-
-.view_submit {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  align-self: stretch;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  margin: 0 25px;
-}
-
-.view {
-  display: flex-start;
-  align-items: center;
-  gap: 129px;
-  flex: 1 0 0;
-}
-
-.submit {
-  display: flex-end;
-  padding: 14px 36px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 5px;
-  background: var(--primary_main, #05ce86);
-  color: #fff;
-}
-
-/* --------------------allOffers----------------------- */
-
-.allOffers_title {
-  display: flex;
-  padding: 24px 24px 28px 24px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cards_filter-products {
-  display: flex;
-  width: 342px;
-  padding: 28px 24px;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Fim Daniela */
-
-/* Jónatas */
 
 
 .navbar_socialMedia {
@@ -366,8 +129,6 @@ h6 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
 }
-
-/* Jónatas */
 
 .navbar_socialMedia {
   margin-left: 0.5rem;
@@ -390,7 +151,6 @@ h6 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
 }
-
 
 .swiper-pagination-bullets {
   top: 80vh !important
@@ -414,7 +174,6 @@ h6 {
   margin-right: 0.6rem !important;
 }
 
-
 #product-page-swiper .swiper-pagination-bullets {
   top: 3.5rem !important;
   right: 15px;
@@ -433,291 +192,6 @@ h6 {
   border-radius: 100px !important;
 }
 
-/* Fim Jónatas */
-
-/* Daniela */
-
-/* -------------------------------INPUTS--------------------------- */
-
-.input_text {
-  margin: 5px;
-  box-sizing: border-box;
-  display: inline-flex;
-  height: 56px;
-  padding: 17px 24px;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  border: 1px solid #cdcdcd;
-  background: #fff;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.input_text:hover {
-  border: 1px solid var(--bg_dark, #000);
-  background: var(--bg_white, #fff);
-}
-
-.input_text:focus {
-  border: 1px solid var(--bg_dark, #000);
-  background: var(--bg_white, #fff);
-  outline: none;
-}
-
-.input_text:active {
-  border: 1px solid var(--bg_dark, #000);
-  outline: none;
-  background: var(--bg_white, #fff);
-  color: #000;
-}
-
-.input_text:disabled {
-  border: 1px solid var(--bg_grey, #cdcdcd);
-  background: var(--bg_gray_50, #f1f1f1);
-}
-
-.div_input-text {
-  position: relative;
-  text-align: left;
-  padding: 20px;
-}
-
-.input_text-error {
-  display: flex;
-  height: 56px;
-  padding: 17px 24px;
-  align-items: center;
-  gap: 12px;
-  border-radius: 5px;
-  border: 1px solid var(--error_main, #e9414b);
-  background: var(--bg_white, #fff);
-  transition: width 0.4s ease-in-out;
-}
-
-.input_text-error:focus {
-  outline: none;
-}
-
-.div_input-text-error {
-  position: relative;
-  text-align: center;
-  padding: 20px;
-}
-
-.icon_error {
-  position: absolute;
-  float: right;
-  top: 17px;
-  left: 200px;
-  width: 20px;
-  height: 20px;
-  padding: 17px 12px;
-  color: #e9414b;
-}
-
-.input_text-done {
-  display: flex;
-  height: 56px;
-  padding: 17px 24px;
-  align-items: center;
-  gap: 12px;
-  border-radius: 5px;
-  border: 1px solid var(--primary_main, #05ce86);
-  background: var(--bg_white, #fff);
-}
-
-.input_text-done:focus {
-  outline: none;
-}
-
-.div_input-text-done {
-  position: relative;
-  text-align: center;
-  padding: 20px;
-}
-
-.icon_done {
-  position: absolute;
-  float: right;
-  top: 17px;
-  left: 200px;
-  width: 20px;
-  height: 20px;
-  padding: 17px 12px;
-  color: #05ce86;
-}
-
-.div_input-text-password {
-  position: relative;
-  text-align: left;
-  padding: 20px;
-}
-
-.icon_password {
-  position: absolute;
-  top: 23px;
-  float: right;
-  left: 195px;
-  width: 18px;
-  height: 12.273px;
-  padding: 17px 12px;
-  color: #9e9e9e;
-}
-
-/* ----------------------PROFILE------------------------------ */
-
-.header_profile {
-  display: flex;
-  width: 100%;
-  padding: 24px 24px 28px 24px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.header_profile-icon {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-}
-
-.profile_picture {
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-}
-
-.profile_info {
-  display: flex;
-  width: 100%;
-  padding: 16px 16px 0px 16px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.profile_points-upvotes {
-  display: flex;
-  padding: 40px 24px 60px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  align-self: stretch;
-}
-
-.points {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  gap: 7px;
-}
-
-@media (max-width: 330px) {
-  .points-upvotes {
-    display: block;
-    flex-direction: column;
-  }
-}
-
-.points_upvotes {
-  display: flex;
-  padding: 0px 24px;
-  align-items: flex-start;
-  gap: 16px;
-  align-self: stretch;
-}
-
-.div_grey-line2 {
-  display: flex;
-  padding: 0px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  align-self: stretch;
-  height: 100%;
-  border-left: 1px solid grey;
-  margin-left: 45px;
-}
-
-.profile_look {
-  padding-bottom: 64px;
-}
-
-.profile_looks {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px 12px;
-  padding-top: 16px;
-  justify-content: space-between;
-  overflow-x: auto;
-}
-
-.profile_submit-look {
-  display: flex;
-  width: 100%;
-  padding: 14px 24px;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  border: 2px solid var(--bg_dark, #000);
-}
-
-.profile_looks-collection {
-  display: flex;
-  padding: 0px 24px;
-  padding-bottom: 40px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  align-self: stretch;
-}
-
-.profile_search-collections {
-  display: flex;
-  height: 56px;
-  width: 100%;
-  padding: 17px 24px;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
-  border-radius: 5px;
-  border: 1px solid var(--bg_grey, #cdcdcd);
-  background: var(--bg_white, #fff);
-  color: var(--text_secondary, #9e9e9e);
-}
-
-.profile_all-collections {
-  display: flex;
-  width: 100%;
-  padding: 14px 24px;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  border: 2px solid var(--bg_dark, #000);
-  color: #000;
-  font-weight: 600;
-  line-height: 21.4px;
-}
-
-.button_all-collections {
-  display: flex;
-  height: 56px;
-  width: 80%;
-  align-items: center;
-  padding-top: 30px;
-  padding-bottom: 40px;
-  border-radius: 5px;
-}
-
-/* Fim Daniela */
-
-/* Media Query */
-
-/* -----Media query navbar Jónatas ------*/
 @media (max-width: 330px) {
   .navbar_logo-xs {
     display: block;
@@ -752,38 +226,11 @@ h6 {
   }
 }
 
-/* -----FIM Media query navbar Jónatas ------*/
-
-/* -----Início Media query imagens card coleção Paixão ------*/
-
-@media screen and (max-width: 320px) {
-  .collectionCard--image {
-    display: none;
-  }
-
-  .collection--userAvatar-hide {
-    display: none;
-  }
-}
-
-/* -----Início Media query imagens card look na pagina coleção Paixão ------*/
-@media screen and (max-width: 385px) {
-  .collection-looks-wrap {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-
-/* -----FIM Media query imagens card coleção Paixão ------*/
-
-/* -- VASCO -- */
 .scroll_bar-invisible {
   overflow: scroll !important;
   scrollbar-width: none;
-  /* For Firefox */
   scrollbar-color: transparent transparent;
-  /* For Firefox */
   -ms-overflow-style: none;
-  /* IE and Edge */
 }
 
 .scroll_bar-invisible::-webkit-scrollbar {
@@ -793,148 +240,6 @@ h6 {
 .scroll_bar-invisible::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
-
-/* -- FIM VASCO -- */
-
-/*--START GONÇALO--*/
-@media (max-width: 319px) {
-  .col-grid-class-temp {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
-  .col-grid-class-temp .h-48 {
-    height: 250px;
-  }
-}
-
-@media (max-width: 319px) {
-  .search-temp {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .search-temp .pl-16 {
-    align-items: center;
-  }
-
-  .search-temp .w-6,
-  .search-temp .h-6 {
-    width: 24px;
-    height: 24px;
-  }
-
-  .search-temp input::placeholder {
-    font-size: 14px;
-    align-items: center;
-  }
-}
-
-@media (max-width: 140px) {
-  .search-temp {
-    flex-direction: row;
-    align-items: left;
-  }
-
-  .search-temp .pl-16 {
-    align-items: center;
-  }
-
-  .search-temp .w-6,
-  .search-temp .h-6 {
-    width: 15px;
-    height: 15px;
-  }
-
-  .search-temp input::placeholder {
-    font-size: 10px;
-    margin-right: 210px;
-    align-items: center;
-  }
-}
-
-.cenas {
-  margin-top: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cenas p {
-  font-size: 1.4em;
-}
-
-.cenas h2 {
-  margin-left: 10%;
-  width: 80%;
-  font-size: 1.8em;
-}
-
-.cenas .btn-temp {
-  font-size: 0.9em;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.cenas .rBTN {
-  width: 0.9rem;
-  height: 0.9rem;
-}
-
-.cenas .rBTN2 {
-  width: 2rem;
-  height: 1rem;
-}
-
-@media (max-width: 328px) {
-  .cenas h2 {
-    font-size: 1.7em;
-    margin-left: 10%;
-    width: 80%;
-  }
-}
-
-@media (max-width: 303px) {
-  .cenas p {
-    font-size: 1.65em;
-  }
-
-  .cenas h2 {
-    font-size: 1.5em;
-  }
-}
-
-@media (max-width: 280px) {
-  .cenas p {
-    font-size: 1.65em;
-  }
-
-  .cenas h2 {
-    font-size: 1.4em;
-  }
-}
-
-.ellipse {
-  background-color: #d8f2e9;
-  border-radius: 50%;
-  width: 812px;
-  height: 629px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-160.96deg);
-}
-
-.empty {
-  height: 629px;
-  width: 100%;
-  background-color: white;
-  border-radius: 50%;
-}
-
-.checkbox-css {
-  accent-color: green;
-}
-
-
 
 .productCardSwiper {
   swiper-container {
@@ -955,67 +260,3 @@ h6 {
     height: calc(100svh - 75px);
   }
 }
-
-
-
-@media (min-width: 1024px) and (max-width: 1920px) {
-  .grid-cols-desktop {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-}
-
-
-@media (min-width: 1024px) and (max-width: 1920px) {
-  .px-desktop {
-    padding-left: 1.5rem;
-  }
-}
-
-@media (min-width: 1920px) {
-  .px-desktop {
-    padding-left: 12.85rem;
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1920px) {
-  .sectionDesktopHomepageBrands {
-    /* padding-left: 14rem;
-padding-right: 13rem; */
-  }
-}
-
-
-@media (min-width: 1920px) {
-  .sectionDesktopHomepageBrands {
-    /* padding-left: 14rem;
-padding-right: 13rem; */
-  }
-}
-
-
-@media (min-width: 1024px) and (max-width: 1920px) {
-  .sectionDesktopHomepageGallery {
-    /* padding-left: 12rem; */
-
-
-  }
-}
-
-
-@media (min-width: 1920px) {
-  .sectionDesktopHomepageGallery {
-    /*  padding-left: 12rem;
- */
-
-  }
-
-
-
-}
-
-
-
-
-/*--END GONÇALO--*/

@@ -23,10 +23,10 @@ const AuthModal = () => {
     return (
         <Modal id='authModal'>
             <div className='flex flex-col justify-center sm:items-center gap-8 sm:mx-5 average:mb-5'>
-                <div className='flex flex-col gap-1 sm:items-center'>
-                    <h1 className='sm:hidden text_h5 text-left pt-3 sm:pt-0'>Iniciar sessão na Twovest</h1>
+                <div className='flex flex-col gap-1 items-center'>
+                    <h1 className='sm:hidden text_h5 pt-3 sm:pt-0'>Iniciar sessão na Twovest</h1>
                     <h1 className='hidden sm:block text_h4 text-center'>Iniciar sessão na Twovest</h1>
-                    <p className='text-secondary sm:text-center'>Desfruta de todas as vantagens.</p>
+                    <p className='text-secondary text-center'>Desfruta de todas as vantagens.</p>
                 </div>
 
                 <div className='w-full flex flex-col gap-10'>

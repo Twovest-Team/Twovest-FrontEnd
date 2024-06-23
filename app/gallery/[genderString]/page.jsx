@@ -35,7 +35,7 @@ const Gallery = async ({ params, searchParams }) => {
 
       {await renderFilters()}
       
-      <div className="flex justify-between container mt-4 mb-6">
+      <div className="flex justify-between container my-5">
         <div className="flex items-center">
           <GridViews />
         </div>

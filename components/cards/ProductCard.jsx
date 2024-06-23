@@ -108,7 +108,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
 
   return (
     <article
-      className={`w-full ${slider ? "w-40 sm:w-48 md:w-56 lg:w-64 xl:w-70" : ''} flex-5 mb-2`}
+      className={`w-full ${slider ? "w-40 sm:w-48 md:w-56 lg:w-64 xl:w-70" : ''} flex-5 my-1`}
     >
 
       <div className="rounded group border-grey border aspect-[3/4] relative hover:shadow-lg hover:shadow-gray-100 overflow-hidden transition-all duration-200">

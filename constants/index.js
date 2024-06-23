@@ -1,4 +1,6 @@
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const general_categories = [
     {
@@ -17,7 +19,6 @@ const general_categories = [
         img: '/static/images/categories/acessorios.png'
     }
 ]
-
 
 const main_categories = [
     {
@@ -53,40 +54,40 @@ const main_categories = [
 ]
 
 const categories = [
-    { id: 1, singular: 'Malha', plural: 'Malhas', main_category: 1, gender: [0,1] },
-    { id: 2, singular: 'Colete', plural: 'Coletes', main_category: 1, gender: [0,1] },
-    { id: 3, singular: 'Blazer', plural: 'Blazers', main_category: 1, gender: [0,1] },
-    { id: 4, singular: 'Camisola', plural: 'Camisolas', main_category: 1, gender: [0,1] },
-    { id: 5, singular: 'Casaco', plural: 'Casacos', main_category: 1, gender: [0,1] },
-    { id: 6, singular: 'T-shirt', plural: 'T-shirts', main_category: 1, gender: [0,1] },
-    { id: 7, singular: 'Polo', plural: 'Polos', main_category: 1, gender: [0,1] },
-    { id: 8, singular: 'Sweatshirt', plural: 'Sweatshirts', main_category: 1, gender: [0,1] },
-    { id: 9, singular: 'Camisa', plural: 'Camisas', main_category: 1, gender: [0,1] },
+    { id: 1, singular: 'Malha', plural: 'Malhas', main_category: 1, gender: [0, 1] },
+    { id: 2, singular: 'Colete', plural: 'Coletes', main_category: 1, gender: [0, 1] },
+    { id: 3, singular: 'Blazer', plural: 'Blazers', main_category: 1, gender: [0, 1] },
+    { id: 4, singular: 'Camisola', plural: 'Camisolas', main_category: 1, gender: [0, 1] },
+    { id: 5, singular: 'Casaco', plural: 'Casacos', main_category: 1, gender: [0, 1] },
+    { id: 6, singular: 'T-shirt', plural: 'T-shirts', main_category: 1, gender: [0, 1] },
+    { id: 7, singular: 'Polo', plural: 'Polos', main_category: 1, gender: [0, 1] },
+    { id: 8, singular: 'Sweatshirt', plural: 'Sweatshirts', main_category: 1, gender: [0, 1] },
+    { id: 9, singular: 'Camisa', plural: 'Camisas', main_category: 1, gender: [0, 1] },
     { id: 10, singular: 'Top', plural: 'Tops', main_category: 1, gender: [0] },
-    { id: 11, singular: 'Calça', plural: 'Calças', main_category: 2, gender: [0,1] },
-    { id: 12, singular: 'Calções', plural: 'Calções', main_category: 2, gender: [0,1] },
+    { id: 11, singular: 'Calça', plural: 'Calças', main_category: 2, gender: [0, 1] },
+    { id: 12, singular: 'Calções', plural: 'Calções', main_category: 2, gender: [0, 1] },
     { id: 13, singular: 'Saia', plural: 'Saias', main_category: 2, gender: [0] },
     { id: 14, singular: 'Leggings', plural: 'Leggings', main_category: 2, gender: [0] },
     { id: 15, singular: 'Vestido', plural: 'Vestidos', main_category: 3, gender: [0] },
-    { id: 16, singular: 'Macacão', plural: 'Macacões', main_category: 3, gender: [0,1] },
-    { id: 17, singular: 'Sapatilha', plural: 'Sapatilhas', main_category: 4, gender: [0,1] },
-    { id: 18, singular: 'Sapato', plural: 'Sapatos', main_category: 4, gender: [0,1] },
-    { id: 19, singular: 'Botas', plural: 'Botas', main_category: 4, gender: [0,1] },
-    { id: 20, singular: 'Sandália', plural: 'Sandálias', main_category: 4, gender: [0,1] },
-    { id: 21, singular: 'Chapéu', plural: 'Chapéus', main_category: 5, gender: [0,1] },
-    { id: 22, singular: 'Cinto', plural: 'Cintos', main_category: 5, gender: [0,1] },
-    { id: 23, singular: 'Óculos', plural: 'Óculos', main_category: 5, gender: [0,1] },
-    { id: 24, singular: 'Pulseira', plural: 'Pulseiras', main_category: 5, gender: [0,1] },
-    { id: 25, singular: 'Colar', plural: 'Colares', main_category: 5, gender: [0,1] },
-    { id: 26, singular: 'Anel', plural: 'Anéis', main_category: 5, gender: [0,1] },
-    { id: 27, singular: 'Cachecol', plural: 'Cachecóis', main_category: 5, gender: [0,1] },
-    { id: 28, singular: 'Gorro', plural: 'Gorros', main_category: 5, gender: [0,1] },
-    { id: 29, singular: 'Gola', plural: 'Golas', main_category: 5, gender: [0,1] },
-    { id: 30, singular: 'Luva', plural: 'Luvas', main_category: 5, gender: [0,1] },
+    { id: 16, singular: 'Macacão', plural: 'Macacões', main_category: 3, gender: [0, 1] },
+    { id: 17, singular: 'Sapatilha', plural: 'Sapatilhas', main_category: 4, gender: [0, 1] },
+    { id: 18, singular: 'Sapato', plural: 'Sapatos', main_category: 4, gender: [0, 1] },
+    { id: 19, singular: 'Botas', plural: 'Botas', main_category: 4, gender: [0, 1] },
+    { id: 20, singular: 'Sandália', plural: 'Sandálias', main_category: 4, gender: [0, 1] },
+    { id: 21, singular: 'Chapéu', plural: 'Chapéus', main_category: 5, gender: [0, 1] },
+    { id: 22, singular: 'Cinto', plural: 'Cintos', main_category: 5, gender: [0, 1] },
+    { id: 23, singular: 'Óculos', plural: 'Óculos', main_category: 5, gender: [0, 1] },
+    { id: 24, singular: 'Pulseira', plural: 'Pulseiras', main_category: 5, gender: [0, 1] },
+    { id: 25, singular: 'Colar', plural: 'Colares', main_category: 5, gender: [0, 1] },
+    { id: 26, singular: 'Anel', plural: 'Anéis', main_category: 5, gender: [0, 1] },
+    { id: 27, singular: 'Cachecol', plural: 'Cachecóis', main_category: 5, gender: [0, 1] },
+    { id: 28, singular: 'Gorro', plural: 'Gorros', main_category: 5, gender: [0, 1] },
+    { id: 29, singular: 'Gola', plural: 'Golas', main_category: 5, gender: [0, 1] },
+    { id: 30, singular: 'Luva', plural: 'Luvas', main_category: 5, gender: [0, 1] },
     { id: 31, singular: 'Brinco', plural: 'Brincos', main_category: 5, gender: [0] },
-    { id: 32, singular: 'Carteira', plural: 'Carteiras', main_category: 5, gender: [0,1] },
-    { id: 33, singular: 'Mala', plural: 'Malas', main_category: 5, gender: [0,1] },
-    { id: 34, singular: 'Mochila', plural: 'Mochilas', main_category: 5, gender: [0,1] }
+    { id: 32, singular: 'Carteira', plural: 'Carteiras', main_category: 5, gender: [0, 1] },
+    { id: 33, singular: 'Mala', plural: 'Malas', main_category: 5, gender: [0, 1] },
+    { id: 34, singular: 'Mochila', plural: 'Mochilas', main_category: 5, gender: [0, 1] }
 ]
 
 const shopStages = [
@@ -183,72 +184,172 @@ const genders = [
 
 const onboardingData = [
     {
-        page:1,
-        titulo: "Bem-vindo à Twovest",
-        texto: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
-        img: ""
+        id: 0,
+        title: "Bem-vindo à Twovest",
+        text: "Para ficares a perceber quem somos e o que te podemos oferecer com o nosso serviço, faz slide pelas seguintes páginas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:2,
-        titulo: "Quem somos? ",
-        texto: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page2.png?t=2024-03-25T15%3A18%3A50.065Z"
+        id: 1,
+        title: "Quem somos? ",
+        text: "Nós somos defensores que o mercado circular é uma das alternativas para a sustentabilidade, desta forma desafiamos as marcas a fazer parte deste desafio.  ",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:3,
-        titulo: "Quem somos? ",
-        texto: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page3.png?t=2024-03-25T15%3A19%3A11.766Z"
+        id: 2,
+        title: "Quem somos? ",
+        text: "Desta forma, temos marcas parceiras que fornecem artigos vindos de excessos de stock, retomas, entre outros. Assim vendemos produtos com qualidade, a preços mais acessíveis.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:4,
-        titulo: "Por onde começar?",
-        texto: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações. Faz slide para veres as funcionalidades",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page4.png?t=2024-03-25T15%3A19%3A20.478Z"
+        id: 3,
+        title: "Por onde começar?",
+        text: "Cria conta na Twovest para poderes usufruir de diversas funcionalidades e vantagens, que te irão permitir expressar melhor quem tu és e ainda te darão bonificações. Faz slide para veres as funcionalidades",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:5,
-        titulo: "Funcionalidades",
-        texto: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page5.png?t=2024-03-25T15%3A19%3A26.913Z"
+        id: 4,
+        title: "Funcionalidades",
+        text: "Para ficares por dentro do que a Twovest te oferece, iremos mostrar as principais funcionalidades da plataforma, para que possas perceber para que servem e usufruíres delas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:6,
-        titulo: "Galeria de Looks",
-        texto: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page6.png?t=2024-03-25T15%3A19%3A33.790Z"
+        id: 5,
+        title: "Galeria de Looks",
+        text: "Aqui poderás submeter os teus looks com artigos comprados na Twovest. Poderás ainda ver looks de outros utilizadores, ver roupas as utilizadas nos mesmos, e ainda guarda esses looks em coleções.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:7,
-        titulo: "Coleções de Looks",
-        texto: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page7.png?t=2024-03-25T15%3A19%3A40.331Z"
+        id: 6,
+        title: "Coleções de Looks",
+        text: "Ao guardar os looks da Galeria, poderás criar coleções onde os guardar. Nestas poderás definir um nome e que tipo de privacidade esta terá, se será privada, publica ou ainda partilhada com pessoas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:8,
-        titulo: "Pontos&Cupões",
-        texto: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page8.png?t=2024-03-25T15%3A19%3A45.935Z"
+        id: 7,
+        title: "Pontos&Cupões",
+        text: "Na compra de artigos da Twovest, receberás pontos que poderão ser trocados por cupões de desconto na página Pontos&Cupões. Poderás ainda ganhar pontos através de eventos, interações na Galeria, e conquistas.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
-        page:9,
-        titulo: "Pontos de Entrega",
-        texto: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
-        img: "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/onboarding/page9.png?t=2024-03-25T15%3A19%3A52.245Z"
+        id: 8,
+        title: "Pontos de Entrega",
+        text: "O desejo da Twovest é também convidar os seus utilizadores a fazer parte do mercado circular, desta forma poderás entregar ou doar as roupas que já não queres nos locais assinalados na página Pontos de Entrega.",
+        img: 'https://images.pexels.com/photos/25004848/pexels-photo-25004848/free-photo-of-sunset-sea-friends.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    }
+]
+
+const socialMedia = [
+    {
+        title: 'Facebook',
+        href: 'https://www.facebook.com/profile.php?id=61558434747794',
+        icon: <FacebookIcon />
     },
     {
-        page:10,
-        titulo: "Conclusão",
-        texto: "conclusão",
-        img: "img.jpg"
+        title: 'Instagram',
+        href: 'https://www.instagram.com/twovest.store/?next=%2Fvasco_110%2F',
+        icon: <InstagramIcon />
     },
     {
-        page:11,
-        titulo: "genero",
-        texto: "genero",
-        img: "img.jpg"
+        title: 'Linkedin',
+        href: 'https://www.linkedin.com/in/twovest-store-6a932230a/',
+        icon: <LinkedInIcon />
+    }
+]
+
+const footerItems = [
+    {
+        title: 'Contactos',
+        href: '#'
+    },
+    {
+        title: 'Sobre nós',
+        href: '/aboutus'
+    },
+    {
+        title: 'Termos de serviço',
+        href: '#'
+    },
+    {
+        title: 'Métodos de Pagamento',
+        href: '#'
+    },
+    {
+        title: 'Centro de Ajuda',
+        href: '#'
+    },
+    {
+        title: 'Proteção de dados',
+        href: '#'
+    },
+    {
+        title: 'Aviso Legal',
+        href: '#'
     },
 ]
+
+const paymentMethods = [
+    {
+        title: 'GooglePay',
+        file: 'google-pay',
+        multipleVersions: false
+    },
+    {
+        title: 'Paypal',
+        file: 'paypal',
+        multipleVersions: false
+    },
+    {
+        title: 'MBway',
+        file: 'mb-way',
+        multipleVersions: true
+    },
+    {
+        title: 'Mastercard',
+        file: 'master-card',
+        multipleVersions: false
+    }
+]
+
+
+const gradients = [
+    {
+        id: 1,
+        styles: 'linear-gradient(to right, #f7fafc, #e2e8f0)',
+        darker: false // bg-grey_opacity_50
+    },
+    {
+        id: 2,
+        styles: 'linear-gradient(to right, #fecdd3, #f43f5e)',
+        darker: true // bg-gradient-to-r from-rose-300 to-rose-500
+    },
+    {
+        id: 3,
+        styles: 'linear-gradient(to right, #2dd4bf, #1f2937)',
+        darker: true // bg-gradient-to-r from-teal-400 to-gray-800
+    },
+    {
+        id: 4,
+        styles: 'linear-gradient(to right, #fb923c, #fb7185)',
+        darker: true // bg-gradient-to-r from-orange-400 to-rose-400
+    },
+    {
+        id: 5,
+        styles: 'linear-gradient(to right, #0f172a, #334155)',
+        darker: true // bg-gradient-to-r from-slate-900 to-slate-700
+    },
+    {
+        id: 6,
+        styles: 'linear-gradient(to right, #e9d5ff, #5b21b6)',
+        darker: true // bg-gradient-to-r from-purple-200 to-purple-800
+    },
+    {
+        id: 7,
+        styles: 'linear-gradient(to right, #d946ef, #06b6d4)',
+        darker: true // bg-gradient-to-r from-fuchsia-500 to-cyan-500
+    }
+];
+
 
 export {
     general_categories,
@@ -262,5 +363,9 @@ export {
     cttPickupPoints,
     historyMaxLength,
     genders,
-    onboardingData
+    onboardingData,
+    socialMedia,
+    paymentMethods,
+    footerItems,
+    gradients
 }

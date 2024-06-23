@@ -57,11 +57,6 @@ h6 {
  */
 
 
-.text_caption {
-  font-size: 13px;
-
-}
-
 .text_h6 {
   font-size: 19.2px;
   font-weight: 600;
@@ -98,14 +93,6 @@ h6 {
 
 .caption {
   font-size: 13.33px;
-}
-
-.body_semibold {
-  color: var(--text_primary, #000);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21.4px;
 }
 
 .h5_semibold {
@@ -963,6 +950,11 @@ h6 {
   }
 }
 
+.mainSliderSwiper {
+  swiper-container{
+    height: calc(100vh - 75px);
+  }
+}
 
 
 

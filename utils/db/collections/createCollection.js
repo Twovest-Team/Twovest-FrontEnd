@@ -1,10 +1,9 @@
 "use server";
 
 import addToCollection from "./addToCollection";
-import addUserToCollection from "./addUserToCollection";
+import addMemberToCollection from "./addMemberToCollection";
 import { v4 as uuidv4 } from "uuid";
 import supabase from "../clients/admin/supabase";
-
 const createCollection = async (
   collectionName,
   privacy,
@@ -26,11 +25,11 @@ const createCollection = async (
     return false;
   }
 
-  if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId);
+  if (lookId) isLookSaved = await addToCollection(collectionData.id, lookId, userId);
   if (lookId && !isLookSaved) return false;
 
   if (userId)
-    isUserAssociated = await addUserToCollection(
+    isUserAssociated = await addMemberToCollection(
       collectionData.id,
       userId,
       isAdmin
@@ -38,7 +37,7 @@ const createCollection = async (
   if (userId && !isUserAssociated) return false;
 
   if (collectionData && (!lookId || isLookSaved) && isUserAssociated)
-    return true;
+    return collectionData.id;
 };
 
 export default createCollection;

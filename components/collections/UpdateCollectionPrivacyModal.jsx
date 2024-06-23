@@ -5,11 +5,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { closeModal } from "@/redux/slices/modalSlice"
 import updateCollectionPrivacy from "@/utils/db/collections/updateCollectionPrivacy"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
 
     const dispatch = useAppDispatch()
     const isOpen = useAppSelector(state => state.modals['changeCollectionPrivacy']);
+    const router = useRouter()
 
     const [currentValue, setCurrentValue] = useState(privacy)
     const [isValid, setIsValid] = useState(false)
@@ -19,6 +21,7 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
         let isUpdated = await updateCollectionPrivacy(collectionId, currentValue)
         dispatch(closeModal('changeCollectionPrivacy'))
         alert('is privacy updated? ' + isUpdated)
+        router.refresh()
     }
 
     async function handlePrivacyChange(e) {

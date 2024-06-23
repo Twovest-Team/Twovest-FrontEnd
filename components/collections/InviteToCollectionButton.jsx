@@ -2,38 +2,23 @@
 
 import { useAppDispatch } from '@/redux/hooks';
 import IconButton from '../buttons/icons/IconButton';
-import Modal from '@/components/modals/Modal';
 import { openModal } from '@/redux/slices/modalSlice';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import CopyButton from '../buttons/icons/CopyButton';
-import { createShareLink } from '@/utils/handlers/handleCollections';
+import InviteToCollectionModal from './InviteToCollectionModal';
 
-const InviteToCollectionButton = ({ collectionId, collectionShareId }) => {
+const InviteToCollectionButton = (props) => {
 
   const dispatch = useAppDispatch()
-  const shareLink = createShareLink(collectionId, collectionShareId)
 
   return (
     <>
       <IconButton
         icon={<PersonAddOutlinedIcon />}
-        onClick={() => dispatch(openModal(`inviteToCollection${collectionId}`))}
+        onClick={() => dispatch(openModal(`inviteToCollection${props.collectionId}`))}
       />
 
-      <Modal id={`inviteToCollection${collectionId}`}>
-        <div>
-          <h1 className='font-semibold text_h6'>Convidar para a coleção</h1>
-          <p className='text-secondary'>Copia o link para partilhares a coleção com outras pessoas.</p>
-        </div>
-
-        <p>{shareLink}</p>
-        <CopyButton copy={shareLink} />
-
-      </Modal>
+      <InviteToCollectionModal {...props} />
     </>
-
-
-
   )
 }
 

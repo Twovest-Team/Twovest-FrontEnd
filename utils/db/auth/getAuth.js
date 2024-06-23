@@ -19,6 +19,17 @@ export default async function getAuth() {
           img,
           role,
           points,
+          looks (
+            id,
+            url_image,
+            upvotes,
+            gender,
+            users(
+              name,
+              id,
+              img
+            )
+          ),
           collections:collections_has_users(
             id: id_collection,
             is_admin,
@@ -52,6 +63,7 @@ export default async function getAuth() {
           img: user.img,
           role: user.role,
           points: user.points,
+          looks: user.looks,
           collections: user.collections.map(collection => {
             const { collection_data, ...rest } = collection;
             const { looks, ...collectionData } = collection_data;

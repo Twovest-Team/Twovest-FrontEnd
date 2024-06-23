@@ -3,7 +3,6 @@
 import ShareIcon from "@mui/icons-material/Share";
 import { usePathname } from "next/navigation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import Notification from "../../modals/Notification";
 import IconButton from "./IconButton";
 import { useAppDispatch } from "@/redux/hooks";
 import { showNotification } from "@/redux/slices/notificationSlice";
@@ -23,7 +22,7 @@ const ShareButton = ({type}) => {
     if (!type) return null
 
     if (type === 'normal') return (
-      <IconButton icon={<ShareIcon />} ariaLabel="Partilhar esta página." />
+      <IconButton icon={<ShareIcon sx={{fontSize: 20}} />} ariaLabel="Partilhar esta página." />
     )
 
     if (type === 'bordered') return (
@@ -41,12 +40,6 @@ const ShareButton = ({type}) => {
          {renderButton()}
         </div>
       </CopyToClipboard>
-
-      <Notification
-        id={"shareButton"}
-        type={"Success"}
-        message={"Link copiado"}
-      />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 "use client";
 
 import Button from "../buttons/Button";
-import GooglePayLogo from "@/public/static/images/payments/google_pay_logo.svg";
-import PaypalLogo from "@/public/static/images/payments/paypal_logo.svg";
-import MastercardLogo from "@/public/static/images/payments/mastercard_logo.svg";
-import MBWayLogo from "@/public/static/images/payments/mbway_logo.svg";
+import GooglePayLogo from "@/public/static/images/payments/google-pay.svg";
+import PaypalLogo from "@/public/static/images/payments/paypal.svg";
+import MastercardLogo from "@/public/static/images/payments/master-card.svg";
+import MBWayLogo from "@/public/static/images/payments/mb-way.svg";
 import Image from "next/image";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -21,7 +21,6 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const [cupaoVerificado, setCupaoVerificado] = useState("");
 
   const products = useAppSelector((state) => state.cartProducts.products);
-
   useEffect(() => {
     if (couponData) {
       const checkIfCouponIsValid = async () => {
@@ -41,11 +40,6 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
   }, [couponData]);
 
   const handlePurchase = async (produtos) => {
-    //Alterar o array de produtos de forma a calcular o preço total de todos os produtos.
-    // O preço pode ser igual à média da primeira instancia do produto (com cup) com as outras instancias do produto (semp cup)
-    // dessa forma, po stripe multiplica o preço pela quantidade, e dá o número certo
-    //verificar se está a contar com o desconto!! acho que o stripe n esta a ter em conta o desconto no preço final
-
     let novosProdutos = [];
 
     if (cupaoVerificado) {
@@ -167,10 +161,10 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
         },
       });
 
-      // Redirect to the payment URL (assuming the API response contains the URL)
+
       window.location.assign(data);
     } catch (error) {
-      // Handle errors
+ 
       console.error("Error during purchase:", error);
     }
   };

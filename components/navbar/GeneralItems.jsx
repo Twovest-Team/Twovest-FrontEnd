@@ -4,13 +4,11 @@ import IconButton from "../buttons/icons/IconButton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { updateCart } from "@/redux/slices/cartProducts";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import NotificationNumber from "../items/NotificationNumber";
-import { useEffect, useState } from "react";
 
-const GeneralItems = ({ user, cart }) => {
+const GeneralItems = ({ user }) => {
 
     const dispatch = useAppDispatch();
 
@@ -19,21 +17,11 @@ const GeneralItems = ({ user, cart }) => {
     const handleWishlist = () => alert('Por fazer.')
 
     const handleCart = () => dispatch(toggleCart())
-
-    const [cartQty, setCartQty] = useState(cart.length)
+ 
     let cartStore = useAppSelector((state) => state.cartProducts.products);
-
-    useEffect(() => {
-        if (cart) dispatch(updateCart(cart));
-    }, [])
-
-    useEffect(() => {
-        setCartQty(cartStore.length)
-    }, [cartStore])
-
-
+    
     return (
-        <div className="flex items-center gap-2.5 mr-4">
+        <div className="flex items-center gap-2.5 mr-2.5 sm:mr-4">
 
             <IconButton
                 onClick={handleSearch}
@@ -54,7 +42,7 @@ const GeneralItems = ({ user, cart }) => {
                     ariaLabel="Aceder ao carrinho de compras"
                 />
                 <div className="cursor-pointer" onClick={handleCart}>
-                    {user && cartQty > 0 && <NotificationNumber number={cartQty} />}
+                    {user && cartStore.length > 0 && <NotificationNumber number={cartStore.length} />}
                 </div>
             </div>
         </div>

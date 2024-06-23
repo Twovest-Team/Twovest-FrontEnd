@@ -11,7 +11,6 @@ export const revalidate = 0
 const Navbar = async({ children }) => {
 
     const user = await useAuthServer();
-    const cart = user ? await getUserCartProducts(user.email) : null 
 
     const renderLogo = () => (
         <Link href={"/"} className="items-center flex">
@@ -42,7 +41,7 @@ const Navbar = async({ children }) => {
 
     const renderRight = () => (
         <div className="flex justify-between items-center">
-            <GeneralItems cart={cart} user={user} />
+            <GeneralItems user={user} />
             <UserItem user={user} />
         </div>
     )

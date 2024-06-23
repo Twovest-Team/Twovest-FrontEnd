@@ -6,7 +6,6 @@ import { cttPickupPoints, portugalDistricts, portugalTowns } from "@/constants";
 import PortugalFlag from "@/public/static/images/idiomas/portugal_idioma.svg";
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import Button from "../buttons/Button";
@@ -199,9 +198,6 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
         </Button>
 
       </section>
-
-
-      <Notification id={'formError'} type={"Error"} message={"Preenche todos os campos"} />
 
     </>
   );

@@ -1,105 +1,151 @@
-import LookCard_Profile from "@/components/cards/LookCard_Profile";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ContentSlider from "@/components/sliders/ContentSlider";
 import ProfilePicture from "@/components/profilePicture/ProfilePicture";
-import React from "react";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
-import NavigationTitle from "@/components/providers/NavigationTitle";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
 import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import CollectionList from "@/components/collections/CollectionList";
 import getUserById from "@/utils/db/getUserById";
-import getCollections from "@/utils/db/collections/getCollections";
 import IconButton from "@/components/buttons/icons/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { checkOwnership } from "@/utils/handlers/handleCollections";
 import getUserFirstName from "@/utils/getUserFirstName";
 import Button from "@/components/buttons/Button";
+import LookCard from "@/components/cards/LookCard";
+import GridBox from "@/components/providers/GridBox";
+import LooksSkeleton from "@/components/loaders/Looks";
+import SegmentIcon from '@mui/icons-material/Segment';
+import ProfileBanner from "@/components/items/ProfileBanner";
 
 export const revalidate = 0;
 
-// Perfil dos utilizadores (do utilizador com sessão iniciada ou não)
-const Profile = async ({ params }) => {
+const Profile = async ({ params, searchParams }) => {
   const ownerId = params.id;
+  const selectedOption = searchParams.option || 'coleções'
   const currentUser = await useAuthServer();
-  const isOwnProfile = checkOwnership(currentUser?.id, ownerId)
+  const isOwnProfile = currentUser ? currentUser.id == ownerId : false
   const ownerData = isOwnProfile ? currentUser : await getUserById(ownerId);
   const ownerFirstName = getUserFirstName(ownerData);
   const ownerCreatedAt = getPortugueseDateString(ownerData.created_at);
-  const collectionsData = isOwnProfile
-    ? currentUser.collections
-    : await getCollections(ownerId, 3, 1);
+
+  const collectionsData = ownerData.collections
+
+
+  const renderOptionsTabs = () => {
+
+    const tabs = ['looks', 'coleções'];
+    return (
+      <section className='container flex flex-col gap-8 mt-3 mb-6'>
+        <div>
+
+          <ul class="flex items-center">
+
+            <li class="h-9 grow border-b border-main-400">
+            </li>
+
+            {tabs.map((item, index) => (
+              <li key={index} className={`${(index + 1) < tabs.length ? 'pr-8' : ''} border-b`}>
+                <Link
+                  href={`?option=${item}`}
+                  className={`h-9 flex ${selectedOption === item ? ' border-b-2 border-black' : ''} font-semibold capitalize`}>
+                  {item}
+                </Link>
+              </li>
+            ))}
+
+            <li class="md:hidden h-9 grow border-b border-main-400">
+            </li>
+
+          </ul>
+        </div>
+      </section>
+    )
+
+  }
+
+  const renderLooks = () => (
+    <div className="flex flex-col gap-6 h-full min-h-[50vh] pb-6">
+      {isOwnProfile &&
+        <div className="container flex items-center justify-between h-12">
+          <Button href="/gallery/submitLook" className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Submeter novo look'>
+            Submeter novo look
+          </Button>
+
+          <div className="w-full flex justify-end">
+            <IconButton icon={<SegmentIcon />} />
+          </div>
+        </div>
+      }
+
+      <ProfileLooks
+        ownerData={ownerData}
+        isOwnProfile={isOwnProfile}
+        ownerFirstName={ownerFirstName}
+      />
+    </div>
+  )
+
+  const renderCollections = () => (
+    <div className="flex pb-6 flex-col items-start self-stretch container gap-4 h-full min-h-[50vh]">
+      <CollectionList
+        showOptions={true}
+        collections={collectionsData}
+        ownerId={ownerId}
+        ownerFirstName={ownerFirstName}
+        isOwner={isOwnProfile}
+      />
+    </div>
+  )
+
   if (ownerData) {
     return (
-      <>
-        <NavigationTitle
-          titleText={
-            isOwnProfile ? "O meu perfil" : `Perfil de ${ownerFirstName}`
-          }
-        >
-          <IconButton icon={<MoreVertIcon />} />
-        </NavigationTitle>
+      <main className="relative">
 
-        <div className="flex w-full flex-col justify-center items-center pt-[16px] px-[16px] gap-3">
+        <ProfileBanner isOwnProfile={isOwnProfile} ownerFirstName={ownerFirstName} />
+
+        <div className="flex justify-center md:justify-start absolute top-28 md:top-[123px] container mx-auto left-0 right-0">
           <ProfilePicture
             imageProfile={ownerData.img}
             userRole={ownerData.role}
           />
-          <p className="body_semibold">{ownerData.name}</p>
-          <p className="text-secondary overflow-hidden truncate w-11/12 text-center">
-            {ownerData.email}
-          </p>
-          <p>Desde {ownerCreatedAt}</p>
         </div>
 
-        <div className="flex justify-center items-center self-stretch pt-10 px-6 pb-14 gap-4">
+        <section className="container md:absolute mb-5 md:mb-0 mx-auto left-0 flex-col md:flex-row flex-wrap right-0 md:pl-[180px] md:top-[178px] flex justify-between items-center gap-5">
+
+          <div className="flex flex-col items-center md:items-start">
+            <h5 className="text_h5 font-semibold">{ownerData.name}</h5>
+            <p className="text-secondary">Desde {ownerCreatedAt}</p>
+          </div>
+
+          {isOwnProfile ?
+            <div className="flex gap-3">
+              <Button className="caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+                Editar Perfil
+              </Button>
+
+              <Button className="caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
+                Definições
+              </Button>
+            </div>
+            :
+            <Button className="caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Reportar utilizador'>
+              Reportar utilizador
+            </Button>
+          }
+
+        </section>
+
+        <div className="flex container justify-center md:justify-start mb-10 md:mb-0">
           <ProfileScores />
         </div>
 
-        <div className="pb-8">
-          <h1 className="font-semibold container text_h6">
-            {isOwnProfile ? "Os meus looks" : `Looks de ${ownerFirstName}`}
-          </h1>
+        {renderOptionsTabs()}
 
-          <div className="flex flex-col items-start pt-4 justify-between overflow-x-auto gap-y-4 gap-x-3">
-            <ProfileLooks
-              ownerData={ownerData}
-              isOwnProfile={isOwnProfile}
-              ownerFirstName={ownerFirstName}
-            />
-          </div>
-        </div>
+        {selectedOption === 'looks' && renderLooks()}
+        {selectedOption === 'coleções' && renderCollections()}
 
-        {ownerData && (
-          <div className="flex pb-10 flex-col items-start self-stretch container gap-4">
-            <h2 className="font-semibold text_h6">Coleções de Looks</h2>
 
-            <CollectionList
-              collections={collectionsData}
-              ownerId={ownerId}
-              ownerFirstName={ownerFirstName}
-            />
-
-            <div className="flex h-12 w-full items-center pt-10 pb-10 rounded">
-              {collectionsData && collectionsData.length >= 3 && (
-                <Button
-                  href={`/profile/${ownerId}/collections`}
-                  type="black-outlined"
-                  ariaLabel="Ver todas as coleções"
-                  width="100%"
-                  justify="space-between"
-                >
-                  Ver todas as coleções
-                  <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
-                </Button>
-              )}
-            </div>
-          </div>
-        )}
-      </>
+      </main>
     );
   }
+
 };
 
 export default Profile;
@@ -107,28 +153,26 @@ export default Profile;
 async function ProfileLooks({ ownerData, isOwnProfile, ownerFirstName }) {
   return (
     <>
-      {ownerData.hasOwnProperty("userLooks") ? (
-        <ContentSlider>
-          {ownerData.userLooks.map((element) => (
-            <LookCard_Profile
-              slider={true}
-              key={element.id}
-              look={element}
-              nome={ownerData.name}
-              avatar={ownerData.img}
-            />
+      {ownerData.looks.length > 0 &&
+        <GridBox loader={<LooksSkeleton />}>
+          {ownerData.looks.map((element) => (
+            <LookCard key={element.id} look={element} slider={false} />
           ))}
-        </ContentSlider>
-      ) : isOwnProfile ? (
-        <div className="container text-secondary">
-          {" "}
-          Ainda não adicionaste nenhum look à tua galeria
-        </div>
-      ) : (
-        <div className="container text-secondary">
-          {" "}
-          {ownerFirstName} ainda não adicionou nenhum look à sua galeria
-        </div>
+        </GridBox>
+      }
+
+      {ownerData.looks.length === 0 && (
+        <li className="text-secondary container w-full flex justify-center items-center h-full flex-col gap-5 flex-grow">
+
+          {isOwnProfile && <p className="text-center">Ainda não submeteste nenhum look.</p>}
+
+          {!isOwnProfile && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem looks disponíveis.</p>)}
+
+          {/* TODO -> HAVE DYNAMIC GENDER IN BUTTON HREF */}
+          <Button href="/gallery/women" className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
+            {'Procurar inspiração na galeria ->'}
+          </Button>
+        </li>
       )}
     </>
   );

@@ -2,6 +2,9 @@ import ProductCard from "../cards/ProductCard";
 import ContentSlider from "./ContentSlider";
 
 export const PopularProductsSilder = ({ data }) => {
+
+  if(!data && data.length === 0) return null
+
   const popularproducts = data;
 
   return (

@@ -32,7 +32,7 @@ import useWindow from "@/hooks/client-hooks/useWindow";
 // ______________________________________________________________________________
 
 
-const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted, bgImage, bgPosition, bgRepeat, bgSize, noPadding, darkMode }) => {
+const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, onlyMobile, maxSm, maxMd, restricted, bgImage, bgPosition, bgRepeat, bgSize, noPadding, darkMode, fullScreenMobile }) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(state => state.modals[id]);
@@ -115,11 +115,13 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                 leave='ease-in duration-100'
                 leaveFrom='opacity-100 translate-y-0 sm:-translate-y-1/2 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:-translate-y-[45%] sm:scale-95'
-                className={'fixed bottom-0 sm:bottom-auto overflow-auto sm:top-1/2 left-0 right-0 z-[99] mx-auto w-screen sm:w-fit max-h-full h-fit'}
+                className={
+                    `fixed bottom-0 sm:bottom-auto overflow-auto ${fullScreenMobile ? 'top-0 h-[100svh] sm:h-fit sm:max-h-full' : 'max-h-full h-fit'} sm:top-1/2 left-0 right-0 z-[99] mx-auto w-screen sm:w-fit scroll_bar-invisible`
+                }
             >
                 <div
                     style={bgImage ? getBgImageStyles() : undefined}
-                    className={`${!bgImage ? 'bg-white' : ''} text-black flex ${getModalWidth()} max-h-full h-fit sm:rounded w-full items-stretch transition-all duration-150`}
+                    className={`${!bgImage ? 'bg-white' : ''} text-black flex ${getModalWidth()} max-h-full ${fullScreenMobile ? 'h-full' : 'h-fit'}  h-fit sm:rounded w-full items-stretch transition-all duration-150`}
                 >
                     {imageSrc && (
                         <div className={`${getModalImageWidth()} relative`}>
@@ -131,12 +133,13 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                             />
                         </div>
                     )}
-                    <div className={`${!noPadding ? 'pb-8 pt-5' : ''} flex-grow max-h-full h-fit`}>
-                        <div className={`${!noPadding ? 'container' : ''} flex flex-col gap-2`}>
-                            <div className="flex justify-between">
+                    <div className={`${!noPadding ? 'pb-8 pt-5' : ''} flex-grow h-full`}>
+                        <div className={`${!noPadding ? 'container' : ''} flex flex-col gap-2 h-full`}>
+                            <div className={`flex justify-between ${darkMode ? 'text-white' : 'text-secondary'} `}>
+
                                 {goBackFn &&
                                     <IconButton
-                                        icon={<KeyboardArrowLeft className={darkMode ? 'text-white' : 'text-secondary'} sx={{ fontSize: 29 }} />}
+                                        icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
                                         onClick={() => goBackFn()}
                                         darkMode={darkMode}
                                     />
@@ -145,7 +148,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                                 {!restricted ?
                                     <div className={`ml-auto ${noPadding ? 'mr-4 pt-3' : ''} translate-x-2 sm:translate-x-0`}>
                                         <IconButton
-                                            icon={<CloseIcon className={darkMode ? 'text-white' : 'text-secondary'} />}
+                                            icon={<CloseIcon />}
                                             onClick={handleCloseModal}
                                             darkMode={darkMode}
                                         />
@@ -155,7 +158,7 @@ const Modal = ({ children, id, size, imageSrc, imageAlt, goBackFn, onClose, only
                                 }
                             </div>
 
-                            <div className="flex flex-col gap-6">
+                            <div className={`flex flex-col gap-6 h-full`}>
                                 {children}
                             </div>
 

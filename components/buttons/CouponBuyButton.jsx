@@ -2,7 +2,7 @@
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import Button from "./Button";
 import useAuth from "@/hooks/client-hooks/useAuth";
-import buyCoupon from "@/utils/db/buyCoupon";
+import buyCoupon from "@/utils/db/coupons/buyCoupon";
 import { useAppDispatch } from "@/redux/hooks";
 import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";

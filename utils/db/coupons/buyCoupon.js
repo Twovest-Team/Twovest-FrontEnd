@@ -1,8 +1,7 @@
 import supabase from "@/utils/db/clients/public/supabase";
-import getUserById from "./getUserById";
-import getCouponById from "./getCouponById";
-import checkIfUserHasCoupon from "./checkIfUserHasCoupon";
+import checkIfUserHasCoupon from "../checkIfUserHasCoupon";
 import updateUserCouponQuantity from "./updateUserCouponQuantity";
+
 
 export default async function buyCoupon(user, coupon) {
   // Saldo que o utilizador tem

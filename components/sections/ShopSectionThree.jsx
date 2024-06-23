@@ -15,7 +15,7 @@ import setLocalStorage from "@/utils/localStorage/setLocalStorage";
 import getStorageImage from "@/utils/getStorageImage";
 import checkIfUserHasCoupon from "@/utils/db/checkIfUserHasCoupon";
 import applyPriceDiscount from "@/utils/applyPriceDiscount";
-import usedCoupon from "@/utils/usedCoupon";
+import usedCoupon from "@/utils/db/coupons/usedCoupon";
 
 const ShopSectionThree = ({ productsData, userData, couponData }) => {
   const { currentUser } = useAuth();

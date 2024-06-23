@@ -1,4 +1,5 @@
-import updateUserCouponQuantity from "./db/updateUserCouponQuantity";
+import updateUserCouponQuantity from "./updateUserCouponQuantity";
+
 
 export default async function usedCoupon(cupao) {
   // Tira 1 à quantidade que o utilizador tem, visto que acabou de o utilizar

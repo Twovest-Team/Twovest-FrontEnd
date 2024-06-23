@@ -103,6 +103,7 @@ export const SideMenu = () => {
         <div className="mx-4 my-4">
           {currentUser == null && (
             <Button
+              onClick={() => dispatch(toggleMenu())}
               href="/login"
               type="black"
               ariaLabel="Fazer login ou registo"

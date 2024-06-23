@@ -47,9 +47,11 @@ export default function LookCard({
             fill={true}
           />
 
-          <LookUpvoteButton upvotes={look.upvotes} />
 
         </Link>
+
+        <LookUpvoteButton upvotes={look.upvotes} />
+
 
 
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full h-[46px] xl:group-hover:h-[100px] bg-white transition-[height] duration-[350ms]">

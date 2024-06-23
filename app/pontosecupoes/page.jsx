@@ -88,9 +88,11 @@ export default async function PontosECupoes() {
         <h4 className="text-h4 mb-6 container">Os meus cupões</h4>
         {userCoupons.length > 0 ? (
           <ContentSlider fixedElement={true}>
-            {userCoupons.map((coupon) => (
-              <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
-            ))}
+            {userCoupons.map((coupon) =>
+              coupon.quantity > 0 ? (
+                <CouponCard userCoupon={coupon} key={coupon.id_coupon} />
+              ) : null
+            )}
           </ContentSlider>
         ) : (
           <h6 className="text-h6 mb-6  text-secondary container">

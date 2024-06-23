@@ -142,7 +142,7 @@ const Register = () => {
 };
 
 
-const handleDrop = (acceptedFiles) => {
+/* const handleDrop = (acceptedFiles) => {
   const file = acceptedFiles[0];
   //console.log("Dropped file:", file); 
 
@@ -160,7 +160,7 @@ const handleDrop = (acceptedFiles) => {
   const handleRemoveImage = () => {
     setSelectedImage(null);
     setFileError("");
-  };
+  }; */
 
   if (user) {
     router.push("/");
@@ -182,7 +182,7 @@ const handleDrop = (acceptedFiles) => {
       <>
         <NavigationTitle titleText={"Registar conta"} />
         <main className="p-6 mb-10 container md:w-[650px]">
-          <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary ">
+          {/* <div className="p-4 w-full border h-48 border-grey rounded mb-4 text-secondary ">
             {selectedImage ? (
               <div className="relative mt-8">
                 <Image
@@ -221,7 +221,7 @@ const handleDrop = (acceptedFiles) => {
               </Dropzone>
             )}
             
-          </div>
+          </div> */}
           <input
             type="text"
             placeholder="Nome"
@@ -377,59 +377,3 @@ const handleDrop = (acceptedFiles) => {
 };
 
 export default Register;
-
-/*   const handleSignUp = async () => {
-    let pictureUrl = "";
-
-    if (selectedImage != null) {
-        // Upload image to Storage if selectedImage exists
-        const { data, error } = await supabase.storage
-            .from("users_profile_pictures") // Bucket name
-            .upload(`user_${Date.now()}.png`, selectedImage); // Use original filename of the selected image
-
-        if (error) {
-            console.error("Error uploading image:", error.message);
-            return;
-        }
-        pictureUrl = data.Key; // Store the URL of the uploaded image
-    } else {
-        pictureUrl = "https://nchduotxkzvmghizornd.supabase.co/storage/v1/object/public/users_profile_pictures/users_default_img.jpg";
-    }
-
-    const { data: userData, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-            data: {
-                full_name: username,
-                email: email,
-                picture: pictureUrl,
-            },
-            emailRedirectTo: `${location.origin}/auth/callback`,
-        },
-    });
-
-    if (signUpError) {
-        console.error("Error signing up:", signUpError.message);
-        return;
-    }
-
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setTeste(true);
-}; */
-
-
-/* const handleDrop = (acceptedFiles) => {
-  const file = acceptedFiles[0];
-  console.log("Dropped file:", file); // Log the dropped file
-
-  if (file.type === "image/jpeg" || file.type === "image/png") {
-    // Set selectedImage to the file itself
-    setSelectedImage(file);
-    setFileError("");
-  } else {
-    setFileError("Ficheiro não suportado.");
-  }
-}; */

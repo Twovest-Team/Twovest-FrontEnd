@@ -59,7 +59,7 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
                                 userName={look.owner.name}
                                 userId={look.owner.id}
                             />
-                            <p className={`caption font-light truncate`}>
+                            <p className={`text-caption font-light truncate`}>
                                 {look.owner.name}
                             </p>
                         </Link>
@@ -70,7 +70,7 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
 
 
                 <div className='flex justify-center flex-wrap items-center gap-3'>
-                    <span className='flex gap-2 items-center caption font-semibold text-black rounded-full px-4 border-2 border-grey_opacity_50 h-12'>
+                    <span className='flex gap-2 items-center text-caption font-semibold text-black rounded-full px-4 border-2 border-grey_opacity_50 h-12'>
                         Adicionado em {getPortugueseDateString(submitter.date)}
                     </span>
 

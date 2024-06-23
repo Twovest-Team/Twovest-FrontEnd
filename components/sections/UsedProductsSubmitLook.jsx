@@ -93,8 +93,8 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                                                             className="form-checkbox h-5 w-5 text-green-500"
                                                         />
                                                     </div>
-                                                    <p className="caption text-primary_main">{offer.offers.conditions.name}</p>
-                                                    <p className="text-secondary font-normal caption">
+                                                    <p className="text-caption text-primary_main">{offer.offers.conditions.name}</p>
+                                                    <p className="text-secondary font-normal text-caption">
                                                         Tamanho: {offer.offers.sizes.size}
                                                     </p>
                                                 </div>

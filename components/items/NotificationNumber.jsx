@@ -19,7 +19,7 @@ const NotificationNumber = ({ number }) => {
       leaveTo="opacity-0"
     >
 
-      <div className="w-5 h-5 bg-black duration-200 text-white caption rounded-full flex items-center justify-center absolute top-3.5 left-3">
+      <div className="w-5 h-5 bg-black duration-200 text-white text-caption rounded-full flex items-center justify-center absolute top-3.5 left-3">
         <span className="translate-x-[0.5px]">{number}</span>
       </div>
     </Transition>

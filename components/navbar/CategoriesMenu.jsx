@@ -31,7 +31,7 @@ export const CategoriesMenu = ({ idCategory, categoryOpen, handleClickCategory, 
                     />
                 </div>
                 <div className="flex">
-                    <h1 className="font-semibold text_h6">{general_categories.find(e => e.id == idCategory).name}</h1>
+                    <h1 className="font-semibold text-h6">{general_categories.find(e => e.id == idCategory).name}</h1>
                 </div>
             </div>
             <CategoriesList

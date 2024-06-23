@@ -16,7 +16,7 @@ export default function TeamMember({ name, role, image, hover }) {
                 <Image className="rounded-t-[20px] object-cover" src={currentImage} alt={name} fill={true} />
             </div>
             <p className="body_semibold font-bold px-4 pt-4 text-black">{name}</p>
-            <p className="caption text-secondary px-4 pb-6 pt-1">{role}</p>
+            <p className="text-caption text-secondary px-4 pb-6 pt-1">{role}</p>
         </div>
     );
 };

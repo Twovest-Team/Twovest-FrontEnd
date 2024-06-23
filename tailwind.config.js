@@ -9,6 +9,27 @@ module.exports = {
   ],
 
   theme: {
+    fontSize: {
+      'caption': '13.33px',
+      'h1': ['47.78px', {
+        fontWeight: '600'
+      }],
+      'h2': ['39.18px', {
+        fontWeight: '600'
+      }],
+      'h3': ['33.18px', {
+        fontWeight: '600'
+      }],
+      'h4': ['27.65px', {
+        fontWeight: '600'
+      }],
+      'h5': ['23.04px', {
+        fontWeight: '600'
+      }],
+      'h6': ['19.2px', {
+        fontWeight: '600'
+      }],
+    },
     screens: {
       'sm': '640px',
       'md': '768px',

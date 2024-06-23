@@ -45,7 +45,7 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
     return (
         <Modal id={'changeCollectionPrivacy'}>
             <div>
-                <h1 className='font-semibold text_h6'>Gerir privacidade da coleção</h1>
+                <h1 className='font-semibold text-h6'>Gerir privacidade da coleção</h1>
                 <p className='text-secondary'>Decide quem tem acesso a esta coleção.</p>
             </div>
 

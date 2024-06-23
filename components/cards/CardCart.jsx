@@ -130,7 +130,7 @@ export const CardCart = ({
             </div>
 
             {discount > 0 && (
-              <div className="absolute bottom-3 bg-primary_main text-white py-1 px-2 rounded-r caption font-semibold">
+              <div className="absolute bottom-3 bg-primary_main text-white py-1 px-2 rounded-r text-caption font-semibold">
                 {discount} %
               </div>
             )}
@@ -150,7 +150,7 @@ export const CardCart = ({
               </div>
 
               <p
-                className={`caption
+                className={`text-caption
                                 ${data.offers.conditions.id === 1 &&
                   "text-primary_main"
                   }
@@ -165,7 +165,7 @@ export const CardCart = ({
                 {data.offers.conditions.name}
               </p>
 
-              <p className="text-secondary font-normal caption">
+              <p className="text-secondary font-normal text-caption">
                 Tamanho: {data.offers.sizes.size}
               </p>
 

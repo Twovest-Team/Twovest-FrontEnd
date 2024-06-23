@@ -50,7 +50,7 @@ const InvitationToCollection = ({ currentUser, collectionData, collectionId, col
                         <CollectionPreview showcaseImages={true} collection={collectionData} />
                     </div>
 
-                    <div className='text-secondary caption flex gap-1.5 my-3 items-center'>
+                    <div className='text-secondary text-caption flex gap-1.5 my-3 items-center'>
                         <p>{collectionData.looks.length} looks</p>
 
                         |
@@ -105,7 +105,7 @@ const InvitationToCollection = ({ currentUser, collectionData, collectionId, col
                         }
                     </div>
 
-                    <h1 className='font-semibold text_h6 mb-0.5'>{admin.name} convidou-te.</h1>
+                    <h1 className='font-semibold text-h6 mb-0.5'>{admin.name} convidou-te.</h1>
                     <p className='text-secondary mb-2'>Queres entrar na coleção {collectionData.name}?</p>
                 </div>
 

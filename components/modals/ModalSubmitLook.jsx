@@ -18,7 +18,7 @@ dispatch(openModal('submitLook'));
         <div className="text-center mx-auto">
         <div className="min-h-[250px] my-auto items-center">
                 <CheckCircleOutlineIcon style={{fontSize: "70px"}}className=" text-primary_main "/>
-                <h1 className="text_h5 mt-4">Look submetido com sucesso!</h1>
+                <h1 className="text-h5 mt-4">Look submetido com sucesso!</h1>
                 <p className="text-secondary">Já podes consultá-lo na Galeria de Looks.</p>
             </div>
         </div>

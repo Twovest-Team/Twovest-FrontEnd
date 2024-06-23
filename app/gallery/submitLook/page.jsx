@@ -48,7 +48,7 @@ const Submit = () => {
             <div className="">
               <div className=" ">
                 <div className="">
-                  <h1 className="text_h6 mt-4 mb-8 text-center md:text-left">
+                  <h1 className="text-h6 mt-4 mb-8 text-center md:text-left">
                     Requisitos para a submissão
                   </h1>
                   <div className=" mb-10 subtitles">

@@ -65,7 +65,7 @@ export default function LookCard({
                 userName={look.users.name}
                 userId={look.users.id}
               />
-              <p className={`caption font-light truncate`}>
+              <p className={`text-caption font-light truncate`}>
                 {look.users.name}
               </p>
             </Link>
@@ -77,7 +77,7 @@ export default function LookCard({
 
           <Button
             height="2.5rem"
-            className="caption opacity-0 xl:group-hover:opacity-100 delay-300 transition-opacity duration-[350]"
+            className="text-caption opacity-0 xl:group-hover:opacity-100 delay-300 transition-opacity duration-[350]"
             type='black'
             ariaLabel='Ver artigos do look'
             width='100%'
@@ -162,7 +162,7 @@ export default function LookCard({
                 userId={look.users.id}
               />
 
-              <p className={`caption font-light truncate`}>
+              <p className={`text-caption font-light truncate`}>
                 {look.users.name}
               </p>
             </Link>

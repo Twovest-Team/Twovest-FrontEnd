@@ -9,7 +9,7 @@ const InviteToCollectionModal = ({ collectionId, collectionShareId }) => {
     return (
         <Modal id={`inviteToCollection${collectionId}`}>
             <div>
-                <h1 className='font-semibold text_h6'>Convidar para a coleção</h1>
+                <h1 className='font-semibold text-h6'>Convidar para a coleção</h1>
                 <p className='text-secondary'>Copia o link para partilhares a coleção com outras pessoas.</p>
             </div>
 

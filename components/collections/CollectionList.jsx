@@ -66,7 +66,7 @@ const CollectionList = ({
                   type="text"
                   value={searchState}
                   placeholder="Pesquisar coleções"
-                  className="pl-12 pr-10 py-3 h-[2.8rem] w-full caption rounded border border-grey focus:outline-none focus:border-black"
+                  className="pl-12 pr-10 py-3 h-[2.8rem] w-full text-caption rounded border border-grey focus:outline-none focus:border-black"
                 />
 
                 {searchState.trim().length > 0 &&
@@ -110,7 +110,7 @@ const CollectionList = ({
             {!isOwner && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem coleções disponíveis.</p>)}
 
 
-            <Button href="/gallery/women" className="caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
+            <Button href="/gallery/women" className="text-caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
               {'Procurar inspiração na galeria ->'}
             </Button>
           </li>

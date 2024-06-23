@@ -13,13 +13,13 @@ const Card = ({ icon, title, text }) => {
         <span className="text-primary_main mb-4">{icon}</span>
 
         <div className="text-black">
-          <h6 className="text_h6 text-center">{title}</h6>
+          <h6 className="text-h6 text-center">{title}</h6>
           {typeof text == "string" ? (
-            <p className="caption text-secondary text-sm text-center max-w-[350px]">{text}</p>
+            <p className="text-caption text-secondary text-sm text-center max-w-[350px]">{text}</p>
           ) : (
             <ul className="list-disc list-inside text-left pl-2">
               {text.map((item, index) => (
-                <li key={index} className="caption text-secondary text-sm text-center max-w-[350px]">
+                <li key={index} className="text-caption text-secondary text-sm text-center max-w-[350px]">
                   {item}
                 </li>
               ))}

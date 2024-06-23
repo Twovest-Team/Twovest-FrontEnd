@@ -25,58 +25,6 @@ select {
   appearance: none;
 }
 
-.text_h6 {
-  font-size: 19.2px;
-  font-weight: 600;
-}
-
-.text_h5 {
-  font-size: 23.04px;
-  font-weight: 600;
-}
-
-.text_h4 {
-  font-size: 27.65px;
-  font-weight: 600;
-}
-
-.text_h3 {
-  font-size: 33.18px;
-  font-weight: 600;
-}
-
-.text_h2 {
-  font-size: 39.18px;
-  font-weight: bold;
-}
-
-.text_h1 {
-  font-size: 47.78px;
-  font-weight: bold;
-}
-
-.caption {
-  font-size: 13.33px;
-}
-
-.h5_semibold {
-  color: var(--text_primary, #000);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21.4px;
-  font-size: 23.04px;
-}
-
-.h6_semibold {
-  font-size: 19.2px;
-  color: var(--text_primary, #000);
-  font-style: normal;
-  font-weight: 600;
-  line-height: 21.4px;
-}
-
-
 *::-webkit-scrollbar {
   height: 6px;
   width: 10px;

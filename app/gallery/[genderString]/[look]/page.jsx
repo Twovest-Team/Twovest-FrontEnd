@@ -70,7 +70,7 @@ const MobileView = ({ look, lookId, productsQty }) => (
             <SaveLookIconButton whiteMode lookId={lookId} />
           </div>
           <div className="h-24 flex justify-between items-center container rounded-t-[20px] bg-white">
-            <h1 className="font-semibold text_h6">Adquirir o look</h1>
+            <h1 className="font-semibold text-h6">Adquirir o look</h1>
             <p className="text-secondary truncate">
               {productsQty} {productsQty > 1 ? "artigos" : "artigo"}
             </p>
@@ -128,7 +128,7 @@ const DesktopView = ({ look, lookId, productsQty }) => (
       </div>
       <div className="flex-grow relative">
         <div className="flex justify-between items-center bg-white pb-6 sticky left-0 right-0 top-0 z-20">
-          <h1 className="font-semibold text_h6">Adquirir o look</h1>
+          <h1 className="font-semibold text-h6">Adquirir o look</h1>
           <p className="text-secondary truncate">
             {productsQty} {productsQty > 1 ? "artigos" : "artigo"}
           </p>
@@ -151,7 +151,7 @@ const ProductGridBox = ({ look, view, noContainer }) => (
       </div>
     ) : (
       <div className="h-24 flex justify-between items-center container">
-        <h2 className="font-semibold text_h6">Sem peças disponíveis</h2>
+        <h2 className="font-semibold text-h6">Sem peças disponíveis</h2>
       </div>
     )}
   </div>
@@ -162,7 +162,7 @@ const LookList = async ({ gender }) => {
 
   return looks.length > 0 ? (
     <div className="container pb-16">
-      <h2 className="text_h6 mb-6">Continua a explorar</h2>
+      <h2 className="text-h6 mb-6">Continua a explorar</h2>
       <GridBox noContainer={true} loader={<LooksSkeleton />}>
         {looks.map((element) => (
           <LookCard key={element.id} look={element} slider={false} />

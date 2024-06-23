@@ -130,7 +130,7 @@ const UserItem = ({ user }) => {
                 onClick={item.onClick || close}
                 className={`w-full ${active && "bg-grey_opacity_50"}`}
               >
-                <div className={`${item.className} bg-white caption flex items-center my-0.5 py-2 px-3 transition rounded hover:bg-grey_opacity_50 duration-75`}>
+                <div className={`${item.className} bg-white text-caption flex items-center my-0.5 py-2 px-3 transition rounded hover:bg-grey_opacity_50 duration-75`}>
                   {item.icon}
                   {item.title}
                 </div>
@@ -177,7 +177,7 @@ const UserItem = ({ user }) => {
                       {user.name}
                     </Link>
 
-                    <div className="bg-primary_main px-1 py-2 h-[32px] mx-2 text-center caption mt-1 mb-2 text-white rounded">
+                    <div className="bg-primary_main px-1 py-2 h-[32px] mx-2 text-center text-caption mt-1 mb-2 text-white rounded">
                       ID: {user.id}
                     </div>
                   </div>

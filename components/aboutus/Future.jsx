@@ -19,7 +19,7 @@ export default function Future() {
             <div className="pb-[50px] pt-4 flex flex-col justify-center items-center gap-6">
                 <h3 className="text-[10vw] sm:text-[38px] md:text-[48px] lg:text-[65px] xl:text-[80px] font-extrabold text-center leading-tight bg-gradient-to-t from-[#666666] w-full to-black inline-block text-transparent bg-clip-text">Vamos construir o futuro do <br className="hidden sm:inline" /> comércio de vestuário</h3>
                 <div className="h-1 bg-black w-full max-w-[400px]" />
-                <div className="caption sm:text-base text-center text-secondary leading-snug max-w-[540px]">
+                <div className="text-caption sm:text-base text-center text-secondary leading-snug max-w-[540px]">
                     A Twovest é um produto que procura trazer a mudança. A mudança, no entanto, não se faz sozinha.
                     Mas com a colaboração de todos. Prontos para dar o próximo passo?
                 </div>

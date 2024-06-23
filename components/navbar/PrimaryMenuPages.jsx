@@ -39,7 +39,7 @@ const MenuItem = ({ key, href, toggleMenu, label, description }) => (
     <Link onClick={toggleMenu} href={href} className="py-3 hover:px-3 transition-all duration-200 rounded hover:bg-grey_opacity_50 flex justify-between items-center">
       <div>
         <div className="font-semibold">{label}</div>
-        {description && <div className="text-secondary caption">{description}</div>}
+        {description && <div className="text-secondary text-caption">{description}</div>}
       </div>
       <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
     </Link>

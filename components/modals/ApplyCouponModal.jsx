@@ -32,7 +32,7 @@ export default function ApplyCouponModal({ sendDataToShop }) {
   return (
     <Modal size="md" id="applyCoupon">
       <div className="min-h-[300px]">
-        <h1 className="text_h5 mb-6">Os meus cupões</h1>
+        <h1 className="text-h5 mb-6">Os meus cupões</h1>
         {userCoupons.length > 0 ? (
           <div className="grid grid-cols-2 gap-4">
             {userCoupons.map((coupon) => (
@@ -49,7 +49,7 @@ export default function ApplyCouponModal({ sendDataToShop }) {
             ))}
           </div>
         ) : (
-          <h6 className="text_h6 mb-6  text-secondary">
+          <h6 className="text-h6 mb-6  text-secondary">
             {" "}
             Ainda não tens nenhum cupão
           </h6>

@@ -171,7 +171,7 @@ const ShopSectionThree = ({ productsData, userData, couponData }) => {
 
   return (
     <div className="container">
-      <h1 className="flex gap-2 items-center font-semibold text_h6">
+      <h1 className="flex gap-2 items-center font-semibold text-h6">
         Escolhe um método de pagamento
       </h1>
 

@@ -276,7 +276,7 @@ const handleDrop = (acceptedFiles) => {
           />
 
           {password.length > 2 && !passwordValid && (
-            <ul className="mb-8 mx-2 caption text-error_main">
+            <ul className="mb-8 mx-2 text-caption text-error_main">
               <li
                 className={
                   password.length >= 8 ? "text-green-500" : "text-red-500"
@@ -310,7 +310,7 @@ const handleDrop = (acceptedFiles) => {
             </ul>
           )}
           {(!password || password.length <= 2) && (
-            <ul className="mb-8 mx-2 caption text-secondary">
+            <ul className="mb-8 mx-2 text-caption text-secondary">
               <li>A senha deve ter no mínimo 8 caracteres.</li>
               <li>Um número;</li>
               <li>Uma letra maiúscula;</li>
@@ -318,7 +318,7 @@ const handleDrop = (acceptedFiles) => {
             </ul>
           )}
           {passwordValid && (
-            <ul className="mb-8 mx-2 caption text-primary_main">
+            <ul className="mb-8 mx-2 text-caption text-primary_main">
               <li>A senha deve ter no mínimo 8 caracteres.</li>
               <li>Um número;</li>
               <li>Uma letra maiúscula;</li>

@@ -25,7 +25,7 @@ const LeaveCollectionModal = ({ collectionId }) => {
     return (
         <Modal id={'leaveCollectionWarning'}>
             <div>
-                <h1 className='font-semibold text_h6'>Sair da coleção?</h1>
+                <h1 className='font-semibold text-h6'>Sair da coleção?</h1>
                 <p className='text-secondary'>Queres mesmo sair da coleção? Qualquer look adicionado por ti também deixará de estar disponível para os outros membros.</p>
             </div>
 

@@ -9,7 +9,7 @@ export default function LookUsername({ slider, username }) {
     // const currentView = useAppSelector(state => state.layoutViews.currentValue)
 
     return (
-        <p className={`caption font-light truncate`}>
+        <p className={`text-caption font-light truncate`}>
             {username}
         </p>
     )

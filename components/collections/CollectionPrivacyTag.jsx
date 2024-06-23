@@ -46,7 +46,7 @@ export default function CollectionPrivacyTag({ privacy, users }) {
   if (privacy == 1|| privacy == 2) {
     return (
       <div className="px-5 py-2 bg-grey_opacity_50 rounded-full w-fit">
-        <p className="caption text-secondary font-semibold">
+        <p className="text-caption text-secondary font-semibold">
           {privacy == 1 && 'Privada'}
           {privacy == 2 && 'Pública'}
         </p>

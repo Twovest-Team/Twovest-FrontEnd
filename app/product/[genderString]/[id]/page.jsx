@@ -92,7 +92,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
                   />
                 </Link>
 
-                <h1 className="font-semibold truncate text_h5">
+                <h1 className="font-semibold truncate text-h5">
                   {getCategoryName(data.categories.id)} {data.brands.name}
                 </h1>
               </div>
@@ -174,7 +174,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
   const renderLooks = () => {
     if (looks) return (
       <section className="flex flex-col gap-4 mb-16 text-white">
-        <h6 className="font-semibold text_h6 text-dark container">Looks com este artigo</h6>
+        <h6 className="font-semibold text-h6 text-dark container">Looks com este artigo</h6>
         <LooksHomepage data={looks} />
       </section>
     )
@@ -190,7 +190,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
     return (
       <Modal maxMd className="lg:hidden" id={'offersProduct'}>
         <div className="h-full">
-          <h1 className="font-semibold text_h6">Ofertas</h1>
+          <h1 className="font-semibold text-h6">Ofertas</h1>
           <p className="text-secondary">
             Vê todas as ofertas para este artigo.
           </p>

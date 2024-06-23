@@ -25,7 +25,7 @@ export default function Footer() {
 
           <ul className="grid grid-cols-1  [@media(min-width:360px)]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-5">
             {footerItems.map((item, index) => (
-              <li className="caption" key={index}>
+              <li className="text-caption" key={index}>
                 <Link className=" text-white text-opacity-75 hover:text-opacity-100 transition-all duration-200" href={item.href}>
                   {item.title}
                 </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <SocialMediaLogos />
             </div>
 
-            <p className="caption text-end ml-auto">&#169; 2024 Twovest</p>
+            <p className="text-caption text-end ml-auto">&#169; 2024 Twovest</p>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ export default function Footer() {
 
 
         <div className="w-full flex flex-col gap-8">
-          <ul className="grid grid-cols-4 w-full gap-y-5 caption">
+          <ul className="grid grid-cols-4 w-full gap-y-5 text-caption">
 
             {footerItems.map((item, index) => (
               <li className="w-full" key={index}>
@@ -106,7 +106,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <p className="caption justify-end flex text-end">&#169; 2024 Twovest</p>
+            <p className="text-caption justify-end flex text-end">&#169; 2024 Twovest</p>
           </div>
 
 

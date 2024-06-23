@@ -128,7 +128,7 @@ export default function CollectionPreview({ collection, lookId, showcaseImages }
           <>
             <div>
               <p className="font-semibold line-clamp-1">{name}</p>
-              <p className="caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
+              <p className="text-caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
             </div>
 
             <CollectionPrivacyTag
@@ -141,7 +141,7 @@ export default function CollectionPreview({ collection, lookId, showcaseImages }
         {lookId &&
           <>
             <p className="font-semibold line-clamp-1">{name}</p>
-            <p className="caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
+            <p className="text-caption text-start text-secondary">{length + (length == 1 ? ' look' : ' looks')}</p>
           </>
         }
 

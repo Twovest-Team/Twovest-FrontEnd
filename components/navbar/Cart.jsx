@@ -102,7 +102,7 @@ export const Cart = () => {
           <h1 className="font-semibold" aria-label={`Total de ${products?.length} ${products?.length === 1 ? "artigo" : "artigos"}`}>
             Total ({products?.length} {products?.length === 1 ? "artigo" : "artigos"})
           </h1>
-          <div className="text-secondary caption" aria-label="Iva Incluído">IVA Incluído</div>
+          <div className="text-secondary text-caption" aria-label="Iva Incluído">IVA Incluído</div>
         </div>
         <div>
           <h2 className="font-semibold" aria-label={`Total do carrinho: ${products?.length > 0 ? getCartTotalPrice(products) + " euros" : "Carrinho vazio"}`}>

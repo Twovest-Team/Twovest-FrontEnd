@@ -189,7 +189,7 @@ const FormLook = () => {
                   />
                 </div>
               </div>
-              <p className="caption ml-1 mt-1 text-grey">Para que pessoas com necessidades visuais possam saber o que tu vestiste.</p>
+              <p className="text-caption ml-1 mt-1 text-grey">Para que pessoas com necessidades visuais possam saber o que tu vestiste.</p>
             </div>
 
             <Button

@@ -59,7 +59,9 @@ const MainSlider = () => {
     const swiperEl = swiperRef.current;
 
     const params = {
-      pagination: true,
+      pagination: {
+        clickable: true
+      },
       loop: true,
       autoplay: {
         delay: 5000
@@ -98,7 +100,7 @@ const MainSlider = () => {
         onClick={() => setGender(genders[0])}
         className={`
           ${gender.id !== 0 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
-          flex w-1/2 justify-center items-center bg-black text-white caption font-semibold uppercase
+          flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
         `}>
         {genders[0].stringPT}
       </button>
@@ -107,7 +109,7 @@ const MainSlider = () => {
         onClick={() => setGender(genders[1])}
         className={`
         ${gender.id !== 1 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
-        pt-1 flex w-1/2 justify-center items-center bg-black text-white caption font-semibold uppercase
+        pt-1 flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
       `}>
         {genders[1].stringPT}
       </button>
@@ -131,11 +133,11 @@ const MainSlider = () => {
             <div className="flex flex-col items-center gap-5 px-2">
 
               <div className="w-fit px-6 py-3 bg-neutral-400 bg-opacity-40 rounded-full backdrop-blur-sm flex-col justify-center items-center gap-2 inline-flex">
-                <div className="text-white caption sm:text-base opacity-90 text-sm font-semibold text-center">{slide.note}</div>
+                <div className="text-white text-caption sm:text-base opacity-90 text-sm font-semibold text-center">{slide.note}</div>
               </div>
 
               <h1 className="text-[11vw] sm:text-[64px] font-bold text-center leading-tight">{slide.title}</h1>
-              <p className="caption sm:text-base text-center font-semibold">{slide.description}</p>
+              <p className="text-caption sm:text-base text-center font-semibold">{slide.description}</p>
             </div>
 
             <Button ariaLabel={slide.btnText} href={slide.btnLink} type="white">

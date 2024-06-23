@@ -42,7 +42,7 @@ const ProductQuantityControl = ({ cartId, qty, userEmail, handleLoading }) => {
                 <RemoveIcon className='text-[15px]' />
             </button>
 
-            <p className="text-center text-black font-semibold w-full caption">{qty}</p>
+            <p className="text-center text-black font-semibold w-full text-caption">{qty}</p>
 
             <button
                 disabled={qty === 10 && true}

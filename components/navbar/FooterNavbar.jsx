@@ -6,7 +6,7 @@ const FooterNavbar = () => {
             <div className="w-fit mr-auto">
                 <SocialMediaLogos darkMode={true} />
             </div>
-            <p className="caption text-secondary">&#169; 2024 Twovest</p>
+            <p className="text-caption text-secondary">&#169; 2024 Twovest</p>
         </section>
     )
 }

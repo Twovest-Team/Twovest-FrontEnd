@@ -33,7 +33,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
     //todo Abrir a modal com as condições da promoção.
     if (discount <= 0) return null
     return (
-      <div className="h-10 cursor-pointer z-10 bg-primary_main absolute bottom-5 lg:group-hover:-translate-y-12 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 caption">
+      <div className="h-10 cursor-pointer z-10 bg-primary_main absolute bottom-5 lg:group-hover:-translate-y-12 transition-transform duration-300 text-white flex items-center gap-2 font-medium px-3.5 rounded-tr rounded-br left-0 text-caption">
         <SellIcon sx={{ fontSize: 20 }} />
         {discount}% OFF
       </div>
@@ -51,7 +51,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
         {categoryObj.singular} {brandName}
       </p>
 
-      <p className="w-full caption text-secondary">
+      <p className="w-full text-caption text-secondary">
         ({offers?.length} {offers?.length === 1 ? 'oferta disponível' : 'ofertas disponíveis'})
       </p>
 
@@ -67,7 +67,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
 
   const renderOffersBtn = () => (
     <div className="bg-white bg-opacity-60 backdrop-blur p-3 z-10 absolute -bottom-12 lg:group-hover:-translate-y-12 block transition-transform duration-300 left-0 right-0 w-full">
-    <Button className='opacity-0 caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='100%' height='2.5rem'>
+    <Button className='opacity-0 text-caption lg:group-hover:opacity-100 transition-opacity duration-300' type={'black'} ariaLabel='Ver ofertas' width='100%' height='2.5rem'>
         Ver ofertas ({offers?.length})
       </Button>
     </div>

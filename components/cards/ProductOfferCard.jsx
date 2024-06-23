@@ -37,11 +37,11 @@ const ProductOfferCard = ({ offer, discount }) => {
 
       <div className="flex justify-between items-center">
         <div className="flex flex-wrap gap-3">
-          <article className="text-secondary border caption border-grey rounded px-3 py-2 flex items-center font-normal w-fit">
+          <article className="text-secondary border text-caption border-grey rounded px-3 py-2 flex items-center font-normal w-fit">
             Tamanho: {offer.sizes.size}
           </article>
 
-          <article className="text-secondary border caption border-grey rounded px-3 py-2 flex items-center font-normal w-fit">
+          <article className="text-secondary border text-caption border-grey rounded px-3 py-2 flex items-center font-normal w-fit">
             {offer.colors.name}
           </article>
         </div>

@@ -51,7 +51,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
         
         <div className="hidden sm:block">
           <p className="font-semibold">{brand.name}</p>
-          <p className="caption text-secondary">{brand.totalItems} artigos</p>
+          <p className="text-caption text-secondary">{brand.totalItems} artigos</p>
         </div>
       </Link>
     )
@@ -69,7 +69,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
     return (
       <>
         {discount > 0 && (
-          <div className="px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold caption">
+          <div className="px-6 py-2.5 text-white flex justify-center items-center bg-primary_main rounded-full font-semibold text-caption">
             {discount}% OFF
           </div>
         )}

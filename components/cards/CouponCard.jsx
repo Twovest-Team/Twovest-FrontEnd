@@ -23,7 +23,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
         />
 
         <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
-          <h6 className="text-white font-semibold text_h4">
+          <h6 className="text-white font-semibold text-h4">
             {userCoupon.coupons.discount}%
           </h6>
           <p className="text-white">{userCoupon.coupons.description}.</p>
@@ -70,7 +70,7 @@ const CouponCard = ({ userCoupon, allCoupons }) => {
           alt="Card de um cupão de fundo verde"
         />
         <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
-          <h6 className="text-white font-semibold text_h4">
+          <h6 className="text-white font-semibold text-h4">
             {allCoupons.discount}%
           </h6>
           <p className="text-white">{allCoupons.description}.</p>
@@ -141,7 +141,7 @@ export default CouponCard;
           alt="Picture of the author"
         />
     <div className="w-10/12 left-[25px] top-[110px] absolute flex-col justify-center items-start gap-[3 px] inline-flex">
-        <h6 className="text-white font-semibold text_h4">-15%</h6>
+        <h6 className="text-white font-semibold text-h4">-15%</h6>
         <p className="text-white">Na próxima compra efetuada de um artigo da Zara.</p>
     </div>
     <div className="w-10/12 left-[25px] top-[25px] absolute justify-between items-start inline-flex">

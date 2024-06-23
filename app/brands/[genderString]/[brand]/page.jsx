@@ -41,7 +41,7 @@ export default async function Brand({ params }) {
           </div>
 
           <button
-            className='hidden bg-white bg-opacity-40 hover:bg-opacity-20 text-white sm:flex  transition-all duration-200 px-5 py-2 rounded-full  caption gap-2 items-center font-semibold z-10'>
+            className='hidden bg-white bg-opacity-40 hover:bg-opacity-20 text-white sm:flex  transition-all duration-200 px-5 py-2 rounded-full  text-caption gap-2 items-center font-semibold z-10'>
             <span className='pt-0.5'>Sobre a marca</span>
           </button>
 
@@ -50,7 +50,7 @@ export default async function Brand({ params }) {
         <div className="absolute right-0 left-0 -bottom-12 mx-auto flex justify-center w-full flex-col items-center gap-10">
           <figure className="relative">
             <Image className="rounded-full shadow-lg border-[7px] border-white" width={130} height={130} src={getStorageImage(brandData.logo_url)} alt={brandData.name} />
-            <p className="flex gap-1 items-center bg-dark border-white border-2 absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
+            <p className="flex gap-1 items-center bg-dark border-white border-2 absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="text-caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
           </figure>
 
 

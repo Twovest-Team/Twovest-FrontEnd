@@ -36,7 +36,7 @@ const ProductOffers = ({ offers, discount }) => {
 
   const renderTitle = () => (
     <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-      <h1 className="font-semibold text_h6">
+      <h1 className="font-semibold text-h6">
         {offers.length > 3 ? 'Melhores ofertas' : 'Ofertas'}
       </h1>
       <p className="text-secondary">

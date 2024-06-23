@@ -7,7 +7,7 @@ export default function LanguageButton(textColor) {
       <div className="w-4 h-4 justify-center items-center flex">
         <Image src={PortugalFlag} alt="Bandeira de Portugal" width={16} height={16} />
       </div>
-      <div className={`text-${textColor} caption`}>PT</div>
+      <div className={`text-${textColor} text-caption`}>PT</div>
     </button>
   );
 }

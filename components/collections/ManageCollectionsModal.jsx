@@ -135,7 +135,7 @@ const SaveLookSection = ({ currentUser, collectionsData, lookId, ownerId, nextSe
   return (
     <>
       <div>
-        <h1 className="font-semibold text_h6">Guardar look</h1>
+        <h1 className="font-semibold text-h6">Guardar look</h1>
         <p className="text-secondary">Em que coleção vais querer guardar este look?</p>
       </div>
 
@@ -171,7 +171,7 @@ const NamingSection = ({ lookId, nameState, setNameState, nextSection }) => {
   return (
     <>
       <div>
-        <h1 className="font-semibold text_h6">Criar nova coleção</h1>
+        <h1 className="font-semibold text-h6">Criar nova coleção</h1>
         <p className="text-secondary">
           {lookId ? 'Dá um nome à nova coleção onde vais guardar o look.' : 'Que nome queres dar a esta nova coleção?'}
         </p>
@@ -201,7 +201,7 @@ const PrivacySection = ({ setPrivacyValue, submitNewCollection }) => {
   return (
     <>
       <div>
-        <h1 className="font-semibold text_h6">Gerir privacidade da coleção</h1>
+        <h1 className="font-semibold text-h6">Gerir privacidade da coleção</h1>
         <p className="text-secondary">Decide quem tem acesso a esta coleção.</p>
       </div>
 
@@ -242,7 +242,7 @@ const FeedbackSection = ({ lookId, dispatch, router, pathname }) => {
         <div className="flex justify-center items-center border-2 rounded-full aspect-square border-primary_main w-16 h-16">
           <CheckOutlinedIcon sx={{ fontSize: 40 }} className="text-primary_main" />
         </div>
-        <h1 className="font-semibold mt-4 text_h6">
+        <h1 className="font-semibold mt-4 text-h6">
           {lookId ? 'Look guardado na coleção.' : 'Coleção criada.'}
         </h1>
         <p className="text-secondary max-w-[270px] mt-2">

@@ -43,7 +43,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {(isAdmin || isMember) &&
                                 <Menu.Item className="w-full">
-                                    <button onClick={() => dispatch(openModal('changeCollectionName'))} className='hover:bg-grey_opacity_50 px-6 py-2 text-left caption '>
+                                    <button onClick={() => dispatch(openModal('changeCollectionName'))} className='hover:bg-grey_opacity_50 px-6 py-2 text-left text-caption '>
                                         Alterar nome
                                     </button>
                                 </Menu.Item>
@@ -51,7 +51,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {isAdmin &&
                                 <Menu.Item className="w-full">
-                                    <button onClick={() => dispatch(openModal('changeCollectionPrivacy'))} className='hover:bg-grey_opacity_50 px-6 py-2 text-left caption '>
+                                    <button onClick={() => dispatch(openModal('changeCollectionPrivacy'))} className='hover:bg-grey_opacity_50 px-6 py-2 text-left text-caption '>
                                         Gerir privacidade
                                     </button>
                                 </Menu.Item>
@@ -59,7 +59,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {privacy === 2 &&
                                 <Menu.Item className="w-full">
-                                    <button className='hover:bg-grey_opacity_50 px-6 py-2 text-left caption '>
+                                    <button className='hover:bg-grey_opacity_50 px-6 py-2 text-left text-caption '>
                                         Partilhar
                                     </button>
                                 </Menu.Item>
@@ -67,7 +67,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {(isAdmin || isMember) &&
                                 <Menu.Item className="w-full">
-                                    <Link href={`/collection/${collectionId}/details`} className='block hover:bg-grey_opacity_50 px-6 py-2 text-left caption '>
+                                    <Link href={`/collection/${collectionId}/details`} className='block hover:bg-grey_opacity_50 px-6 py-2 text-left text-caption '>
                                         Informações
                                     </Link>
                                 </Menu.Item>
@@ -75,7 +75,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {isAdmin &&
                                 <Menu.Item className="w-full">
-                                    <button onClick={() => dispatch(openModal('deleteCollectionWarning'))} className='hover:bg-grey_opacity_50 text-error_main px-6 py-2 text-left caption '>
+                                    <button onClick={() => dispatch(openModal('deleteCollectionWarning'))} className='hover:bg-grey_opacity_50 text-error_main px-6 py-2 text-left text-caption '>
                                         Eliminar esta coleção
                                     </button>
                                 </Menu.Item>
@@ -83,7 +83,7 @@ const MenuCollection = ({ collectionId, isAdmin, isMember, privacy }) => {
 
                             {(!isAdmin && isMember) &&
                                 <Menu.Item className="w-full">
-                                    <button onClick={() => dispatch(openModal('leaveCollectionWarning'))} className='hover:bg-grey_opacity_50 text-error_main px-6 py-2 text-left caption '>
+                                    <button onClick={() => dispatch(openModal('leaveCollectionWarning'))} className='hover:bg-grey_opacity_50 text-error_main px-6 py-2 text-left text-caption '>
                                         {'Sair da coleção ->'}
                                     </button>
                                 </Menu.Item>

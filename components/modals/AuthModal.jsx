@@ -56,7 +56,7 @@ const AuthModal = () => {
                             key={index}
                             className='border border-grey'
                             type='white'
-                            ariaLabel={`Cotinuar com ${props.provider}`}
+                            ariaLabel={`Continuar com ${props.provider}`}
                             width='100%'
                             onClick={() => handleClick(props.provider)}
                         >
@@ -67,7 +67,7 @@ const AuthModal = () => {
                                 alt=''
                                 className='mr-1'
                             />
-                            <span className='hidden [@media(min-width:360px)]:inline'>Cotinuar com</span> {props.provider}
+                            <span className='hidden [@media(min-width:360px)]:inline'>Continuar com</span> {props.provider}
                         </Button>
                     ))}
                     </div>

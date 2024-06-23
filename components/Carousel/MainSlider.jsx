@@ -17,17 +17,17 @@ const MainSlider = () => {
     [
       {
         image: '/static/images/slider/image_women_1.webp',
-        note: 'A autenticidade que procuras num só lugar.',
-        title: <span>Artigos até 50% <br /> de desconto.</span>,
-        description: 'Delicia-te com os novos artigos disponíveis .',
-        btnText: 'Ver promoções ->',
-        btnLink: `/products/women?status=discounts`
+        note: 'Descobre a moda que combina com a tua personalidade.',
+        title: <span>Visita a Galeria <br /> de Mulher.</span>,
+        description: 'Partilha os teus looks com outras pessoas.',
+        btnText: 'Ir para Galeria ->',
+        btnLink: `/gallery/women`
       },
       {
         image: '/static/images/slider/image_women_2.webp',
         note: 'A autenticidade que procuras num só lugar.',
-        title: <span>Visita a Galeria <br /> de Mulher</span>,
-        description: 'Delicia-te com os novos artigos disponíveis .',
+        title: <span>Artigos até 50% <br /> de desconto</span>,
+        description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
         btnLink: `/products/women?status=discounts`
       },
@@ -35,19 +35,19 @@ const MainSlider = () => {
     [
       {
         image: '/static/images/slider/image_men_1.webp',
-        note: 'A autenticidade que procuras num só lugar.',
-        title: <span>Artigos até 50% <br /> de desconto.</span>,
-        description: 'Delicia-te com os novos artigos disponíveis .',
-        btnText: 'Ver promoções ->',
-        btnLink: `/products/women?status=discounts`
+        note: 'O teu estilo, a nossa paixão.',
+        title: <span>Visita a Galeria <br /> de Homem.</span>,
+        description: 'Partilha os teus looks com outras pessoas.',
+        btnText: 'Ir para Galeria ->',
+        btnLink: `/gallery/men`
       },
       {
         image: '/static/images/slider/image_men_2.webp',
         note: 'A autenticidade que procuras num só lugar.',
-        title: <span>Visita a Galeria <br /> de Homem</span>,
-        description: 'Delicia-te com os novos artigos disponíveis .',
+        title: <span>Artigos até 50% <br /> de desconto</span>,
+        description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
-        btnLink: `/products/women?status=discounts`
+        btnLink: `/products/men?status=discounts`
       },
     ]
 

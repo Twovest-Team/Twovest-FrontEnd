@@ -38,9 +38,9 @@ export default async function PontosECupoes() {
     }
 
     return (
-      <main>
+      <main className="mb-16">
         <NavigationTitle titleText={"Pontos&Cupões"}>
-          <div className="flex gap-2 text-secondary items-center">
+          <div className="flex gap-2 text-secondary items-center ">
             <p
               className="hidden sm:block text-right text-gray-700"
               aria-label="Descobre como funciona"

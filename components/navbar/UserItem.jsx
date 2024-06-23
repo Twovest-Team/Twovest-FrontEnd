@@ -82,33 +82,33 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Pontos&Cupões',
-          link: 'definirRota',
+          link: '/pontosecupoes',
           icon: <AutoModeIcon className=" h-5 w-5 mr-1.5" />
         },
       ],
       [
         {
           title: 'Submeter novo look',
-          link: '/submitLook',
+          link: '/gallery/submitLook',
           icon: <ArrowCircleUpIcon className="h-5 w-5 mr-1.5" />
         },
         {
           title: 'Gerir os meus looks',
-          link: 'definirRota',
+          link: `/profile/${user.id}`,
         },
         {
           title: 'Ver as minhas coleções',
-          link: `/profile/${user.id}?option=collections`
+          link: `/profile/${user.id}?option=coleções`
         },
       ],
       [
         {
           title: 'Histórico de compras',
-          link: 'definirRota',
+          link: '/profile/options/orders',
         },
         {
           title: 'Definições de conta',
-          link: 'definirRota',
+          link: '/profile/options',
         },
         {
           title: 'Sair ->',

@@ -116,11 +116,11 @@ const Profile = async ({ params, searchParams }) => {
 
           {isOwnProfile ?
             <div className="flex gap-3">
-              <Button className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+              <Button href={`/profile/options`} className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
                 Editar Perfil
               </Button>
 
-              <Button className="text-caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
+              <Button href={`/profile/options`} className="text-caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
                 Definições
               </Button>
             </div>

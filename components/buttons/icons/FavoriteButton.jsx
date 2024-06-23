@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import Button from "../Button";
 import { useState } from "react";
 
+
 const FavoriteButton = ({ type }) => {
   const dispatch = useAppDispatch();
 
@@ -17,6 +18,7 @@ const FavoriteButton = ({ type }) => {
 
   function handleClick() {
     // Todo Função para adicionar ou remover um produto dos favoritos
+    setIcon(<FavoriteIcon/>)
     dispatch(showNotification("favoriteButton"));
   }
 

@@ -14,9 +14,9 @@ const GeneralItems = ({ user }) => {
 
     const dispatch = useAppDispatch();
 
-    const handleSearch = () => alert('Por fazer.')
+    //const handleSearch = () => alert('Por fazer.')
 
-    const handleWishlist = () => alert('Por fazer.')
+    //const handleWishlist = () => alert('Por fazer.')
 
     const handleCart = () => {
         if (user) dispatch(toggleCart())
@@ -29,13 +29,13 @@ const GeneralItems = ({ user }) => {
         <div className="flex items-center gap-2.5 mr-2.5 sm:mr-4">
 
             <IconButton
-                onClick={handleSearch}
+                /* onClick={handleSearch} */
                 icon={<SearchIcon />}
                 ariaLabel="Botão de pesquisa"
             />
 
             <IconButton
-                onClick={handleWishlist}
+                /* onClick={handleWishlist} */
                 icon={<FavoriteBorderOutlinedIcon />}
                 ariaLabel="Os meus favoritos"
             />

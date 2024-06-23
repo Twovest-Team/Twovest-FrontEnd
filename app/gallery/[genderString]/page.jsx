@@ -2,16 +2,15 @@ import GridViews from "@/components/providers/GridViews";
 import LookCard from "@/components/cards/LookCard";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import LooksSkeleton from "@/components/loaders/Looks";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import { NoResultsNotice } from "@/components/sections/NoResultsNotice";
-import Button from "@/components/buttons/Button";
 import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
 import getAllStyles from "@/utils/db/getAllStyles";
 import { getTopbarFilters } from "@/utils/handlers/handleFilters";
 import ModalSubmitLook from "@/components/modals/ModalSubmitLook";
 import SubmitLookButton from "@/components/buttons/SubmitLookButton";
+import EarnPointsModal from "@/components/modals/EarnPointsModal";
 
 export const revalidate = 60;
 
@@ -31,15 +30,7 @@ const Gallery = async ({ params, searchParams }) => {
   return (
     <main>
       <NavigationTitle titleText={"Galeria de Looks"}>
-        <div className="flex gap-2 text-secondary items-center">
-          <p
-            className="hidden sm:block text-right text-gray-700"
-            aria-label="Ganhar Pontos"
-          >
-            Ganhar pontos
-          </p>
-          <HelpOutlineIcon />
-        </div>
+        <EarnPointsModal />
       </NavigationTitle>
 
       {await renderFilters()}

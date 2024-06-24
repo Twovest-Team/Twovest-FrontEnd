@@ -58,7 +58,6 @@ export const SideMenu = () => {
   function handleGender(gender) {
     refreshData(gender.string);
     setGender(gender);
-    dispatch(toggleMenu());
   }
 
   return (

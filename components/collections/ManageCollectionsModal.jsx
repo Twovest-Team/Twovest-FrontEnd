@@ -87,7 +87,7 @@ const ManageCollectionModal = () => {
   }
 
   return (
-    <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId && collectionsData.length > 0) && currentSection != 3 && previousSection}>
+    <Modal onClose={onCloseModal} id='createCollection' goBackFn={(currentSection != 0 && lookId && collectionsData?.length > 0) && currentSection != 3 && previousSection}>
 
       {currentSection === 0 && lookId && currentUser && collectionsData.length > 0 &&
         <SaveLookSection

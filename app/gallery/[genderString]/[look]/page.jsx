@@ -15,6 +15,7 @@ import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import LooksSkeleton from "@/components/loaders/Looks";
 import LookCard from "@/components/cards/LookCard";
 import ProductsSkeleton from "@/components/loaders/Products";
+import LookUpvoteButton from "@/components/buttons/icons/LookUpvoteButton";
 
 export const revalidate = 30;
 
@@ -46,13 +47,7 @@ const MobileView = ({ look, lookId, productsQty }) => (
       <div className="relative h-svh w-full">
         <NavigationTitle hasImageBehind={true}>
           <div className="flex flex-col items-center justify-center translate-x-1 mt-1 z-20">
-            <IconButton
-              icon={<ForwardOutlinedIcon sx={{ fontSize: 28 }} />}
-              className="text-white -rotate-90"
-              ariaLabel="Botão de upvote"
-              darkMode={true}
-            />
-            {look.upvotes > 0 && <p>{look.upvotes}</p>}
+            <LookUpvoteButton upvotes={look.upvotes} />
           </div>
         </NavigationTitle>
         <div className="absolute bottom-0 left-0 right-0 w-full flex flex-col gap-8">
@@ -116,13 +111,7 @@ const DesktopView = ({ look, lookId, productsQty }) => (
             <SaveLookIconButton whiteMode lookId={lookId} />
           </div>
           <div className="absolute top-3 right-3 z-10 flex flex-col items-center justify-center">
-            <IconButton
-              icon={<ForwardOutlinedIcon sx={{ fontSize: 28 }} />}
-              className="text-white -rotate-90"
-              ariaLabel="Botão de upvote"
-              darkMode={true}
-            />
-            {look.upvotes > 0 && <p>{look.upvotes}</p>}
+            <LookUpvoteButton upvotes={look.upvotes} />
           </div>
         </figure>
       </div>

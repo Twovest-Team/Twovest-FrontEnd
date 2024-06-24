@@ -50,7 +50,10 @@ export default function LookCard({
 
         </Link>
 
-        <LookUpvoteButton upvotes={look.upvotes} />
+
+        <div className="absolute top-3 right-3">
+          <LookUpvoteButton upvotes={look.upvotes} />
+        </div>
 
 
 

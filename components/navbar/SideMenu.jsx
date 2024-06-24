@@ -23,6 +23,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Button from "../buttons/Button";
 import IconButton from "@/components/buttons/icons/IconButton";
 import FooterNavbar from "./FooterNavbar";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 export const SideMenu = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +32,10 @@ export const SideMenu = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [idCategory, setIdCategory] = useState(null);
   const [menuVisible, setMenuVisible] = useState(isMenuOpen);
+  const params = useParams()
+  const currentGender = params.gender
+  const pathname = usePathname()
+  const router = useRouter()
 
   const { currentUser } = useAuth();
   const [gender, setGender] = useGender();
@@ -56,6 +61,12 @@ export const SideMenu = () => {
   };
 
   function handleGender(gender) {
+    if (gender.string !== currentGender) {
+      const newPathname = pathname.replace(currentGender, gender.string )
+      dispatch(toggleMenu())
+      router.push(newPathname, undefined, { scroll: false })
+
+    }
     refreshData(gender.string);
     setGender(gender);
   }

@@ -23,7 +23,8 @@ export const metadata = {
   description: "Eco-fashion, wallet-friendly.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>

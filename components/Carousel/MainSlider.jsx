@@ -4,14 +4,11 @@ import Image from "next/image";
 import Button from "../buttons/Button";
 import { useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
-import useGender from "@/hooks/client-hooks/useGender";
 import { genders } from "@/constants";
 register();
 
-const MainSlider = () => {
+const MainSlider = ({gender}) => {
 
-  const [gender, setGender] = useGender()
-  console.log(gender)
 
   const slides = [
     [

@@ -20,7 +20,7 @@ export default async function Products({ searchParams, params }) {
   let navTitle = category || (status === "sustainable" ? "Produtos Sustentáveis" : status === "discounts" ? "Promoções" : "");
 
   return (
-    <main>
+    <main className="min-h-screen flex flex-col">
       <NavigationTitle titleText={navTitle}>
         <span className='[@media(min-width:390px)]:hidden'>
           <FilterButton />
@@ -52,7 +52,7 @@ async function ProductList({ category, status, gender }) {
   }
 
   return (
-    <>
+    <div className="flex-grow flex justify-center items-center w-full">
       {data.length > 0 ? (
         <GridBox loader={<ProductsSkeleton />}>
           {data.map(element => (
@@ -62,8 +62,13 @@ async function ProductList({ category, status, gender }) {
           ))}
         </GridBox>
       ) : (
-        <NoResultsNotice text={"Não há produtos registados nesta categoria."} />
+        <NoResultsNotice
+          title={'Não encontramos artigos para ti.'}
+          text={"Não há produtos registados nesta categoria."}
+          btnText={"Voltar à página principal"}
+          btnHref={'/'}
+        />
       )}
-    </>
+    </div>
   );
 }

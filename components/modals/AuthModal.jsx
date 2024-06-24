@@ -22,7 +22,7 @@ const AuthModal = () => {
     
     return (
         <Modal id='authModal'>
-            <div className='flex flex-col justify-center sm:items-center gap-8 sm:mx-5 average:mb-5'>
+            <div className='h-fit flex flex-col justify-center sm:items-center gap-8 sm:mx-5 average:mb-5'>
                 <div className='flex flex-col gap-1 items-center'>
                     <h1 className='sm:hidden text-h5 pt-3 sm:pt-0'>Iniciar sessão na Twovest</h1>
                     <h1 className='hidden sm:block text-h4 text-center'>Iniciar sessão na Twovest</h1>

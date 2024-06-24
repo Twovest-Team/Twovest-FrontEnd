@@ -53,8 +53,9 @@ export async function GET(req) {
         .delete()
         .eq("email", currentUser.email);
       //console.log(error)
-      return NextResponse.redirect(process.env.NEXT_PUBLIC_URL);
-      
     }
   }
+
+  // TODO VALIDAR!!!
+  return NextResponse.redirect(process.env.NEXT_PUBLIC_URL + '/shop/success');
 }

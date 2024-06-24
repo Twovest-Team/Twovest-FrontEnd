@@ -39,8 +39,8 @@ export default function CouponBuyButton({ coupon }) {
         <p
           className={
             coupon.cost > 200
-              ? `text-info_main font-semibold align-middle`
-              : `text-primary_main font-semibold align-middle`
+              ? `text-info_main font-semibold flex items-center`
+              : `text-primary_main font-semibold flex items-center`
           }
         >
           {coupon.cost}

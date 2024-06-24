@@ -7,7 +7,7 @@ import ProductDetails from "@/components/items/ProductDetails";
 import Link from "next/link";
 import getCategoryName from "@/utils/getCategoryName";
 import ProductNav from "@/components/sections/ProductNav";
-import ProductSkeleton from "@/components/loaders/Product";
+import ProductSkeleton from "@/components/loaders/Product"; //TODO fazer skeleton para desktop
 import { Suspense } from "react";
 import ProductHistoryDetection from "@/components/providers/ProductHistoryDetection";
 import getStorageImage from "@/utils/getStorageImage";
@@ -19,6 +19,7 @@ import ProductZoomModal from "@/components/modals/ProductZoomModal";
 import getLooksForHomepage from "@/utils/db/getLooksHomepage";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import SustainableButton from "@/components/buttons/icons/SustainableButton";
+import GeneralLoading from "@/components/loaders/GeneralLoading";
 
 
 export const revalidate = 60;
@@ -32,7 +33,7 @@ export default async function Product({ params, searchParams }) {
   return (
     <main>
       <ProductHistoryDetection productId={productId}>
-        <Suspense fallback={<ProductSkeleton />}>
+        <Suspense fallback={<GeneralLoading />}>
           <ProductContent productId={productId} selectedImageId={selectedImageId} productGender={productGender} zoom={zoom} />
         </Suspense>
       </ProductHistoryDetection>

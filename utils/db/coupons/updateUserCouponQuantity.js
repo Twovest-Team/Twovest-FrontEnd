@@ -1,5 +1,6 @@
-import supabase from "@/utils/db/clients/public/supabase";
+'use server'
 
+import supabase from "../clients/admin/supabase";
 
 export default async function updateUserCouponQuantity(
   id_user,

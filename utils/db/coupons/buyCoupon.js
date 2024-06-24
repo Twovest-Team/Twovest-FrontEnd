@@ -1,4 +1,7 @@
-import supabase from "@/utils/db/clients/public/supabase";
+'use server'
+
+import supabase from "../clients/admin/supabase";
+
 import checkIfUserHasCoupon from "../checkIfUserHasCoupon";
 import updateUserCouponQuantity from "./updateUserCouponQuantity";
 

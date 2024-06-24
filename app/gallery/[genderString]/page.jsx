@@ -11,7 +11,7 @@ import { getTopbarFilters } from "@/utils/handlers/handleFilters";
 import SubmitLookButton from "@/components/buttons/SubmitLookButton";
 import EarnPointsModal from "@/components/modals/EarnPointsModal";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const Gallery = async ({ params, searchParams }) => {
 

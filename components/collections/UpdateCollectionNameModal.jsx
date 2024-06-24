@@ -28,7 +28,6 @@ const UpdateCollectionNameModal = ({ collectionId }) => {
         if (isValid && inputState) {
             const isNameUpdated = await updateCollectionName(collectionId, inputState)
             dispatch(closeModal('changeCollectionName'))
-            alert('Nome alterado?' + isNameUpdated)
             router.refresh()
         }
     }

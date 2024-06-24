@@ -85,7 +85,7 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                                             <div className="ml-4 flex flex-col font-semibold justify-between min-w-0 flex-grow">
                                                 <div className="flex flex-col gap-1">
                                                     <div className="flex justify-between gap-2 items-center">
-                                                        <p className="truncate">{offer.offers.products.name}</p>
+                                                        <p className="truncate">{offer.offers.products.brands.name}</p>
                                                         <input
                                                             type="checkbox"
                                                             checked={selectedOffersId.includes(offer.offers.id)}
@@ -96,11 +96,6 @@ export const UsedProductsSubmitLook = ({ onDataFilled }) => {
                                                     <p className="text-caption text-primary_main">{offer.offers.conditions.name}</p>
                                                     <p className="text-secondary font-normal text-caption">
                                                         Tamanho: {offer.offers.sizes.size}
-                                                    </p>
-                                                </div>
-                                                <div className="flex justify-between">
-                                                    <p className="h-8 flex items-center">
-                                                        {offer.offers.products.brands.name}
                                                     </p>
                                                 </div>
                                             </div>

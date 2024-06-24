@@ -21,7 +21,6 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
 
     async function handleRemove() {
         const isRemoved = await deleteCollectionLook(collectionId, look.id)
-        alert('is removed? ' + isRemoved)
         router.refresh()
         dispatch(closeModal(`look${look.id}Details`))
     }

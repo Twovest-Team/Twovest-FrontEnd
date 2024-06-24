@@ -20,7 +20,6 @@ const collectionHasLooks = (allLooks) => {
 const handleCreateCollection = async (currentUserId, collectionName, collectionPrivacy) => {
     if (!currentUserId && !collectionName && !collectionPrivacy) return false
     const isCreated = await createCollection(collectionName, collectionPrivacy, currentUserId, true)
-    alert('is collection created? ' + isCreated)
     return isCreated
 }
 

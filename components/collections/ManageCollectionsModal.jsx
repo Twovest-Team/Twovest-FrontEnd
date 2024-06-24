@@ -68,7 +68,6 @@ const ManageCollectionModal = () => {
 
     if (lookId && createdCollectionId) {
       const isLookSaved = await addToCollection(createdCollectionId, lookId, currentUser.id)
-      alert('is look saved?' + isLookSaved)
       setCurrentSection(currentSection + 1)
     } else if (createdCollectionId) {
       setCurrentSection(currentSection + 1)

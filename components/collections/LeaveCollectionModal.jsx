@@ -16,7 +16,6 @@ const LeaveCollectionModal = ({ collectionId }) => {
 
     const handleLeave = async () => {
         const isRemoved = await removeMemberFromCollection(collectionId, currentUser.id)
-        alert('is user removed? ' + isRemoved);
         router.push(`/profile/${currentUser.id}/collections`);
         dispatch(closeModal('leaveCollectionWarning'))
         router.refresh()

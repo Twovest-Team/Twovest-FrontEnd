@@ -20,7 +20,6 @@ const UpdateCollectionPrivacyModal = ({ collectionId, privacy }) => {
         if (!isValid) return null
         let isUpdated = await updateCollectionPrivacy(collectionId, currentValue)
         dispatch(closeModal('changeCollectionPrivacy'))
-        alert('is privacy updated? ' + isUpdated)
         router.refresh()
     }
 

@@ -128,7 +128,7 @@ Button.propTypes = {
   justify: PropTypes.string,
   padding: PropTypes.string,
   onlyIcon: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  children: PropTypes.any,
   scroll: PropTypes.bool
 };
 

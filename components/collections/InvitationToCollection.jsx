@@ -35,7 +35,6 @@ const InvitationToCollection = ({ currentUser, collectionData, collectionId, col
 
     const handleClick = async () => {
         const isMember = await addMemberToCollection(collectionId, currentUser.id, false)
-        alert('is user member now?' + isMember)
         router.push(`/collection/${collectionId}`);
         dispatch(closeModal(`acceptInvite${collectionId}`))
         router.refresh();

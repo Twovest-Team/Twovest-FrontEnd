@@ -14,6 +14,7 @@ import Notification from "@/components/modals/Notification";
 import SustainabilityModal from "@/components/modals/SustainabilityModal";
 import AuthModal from "@/components/modals/AuthModal";
 import OnboardingModal from "@/components/modals/OnboardingModal";
+import ModalSubmitLook from "@/components/modals/ModalSubmitLook";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
             <SustainabilityModal />
             <AuthModal />
             <OnboardingModal />
+            <ModalSubmitLook />
 
             <Notification
               id={"removedLook"}

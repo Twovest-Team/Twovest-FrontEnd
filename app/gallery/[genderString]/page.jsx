@@ -8,7 +8,6 @@ import GridBox from "@/components/providers/GridBox";
 import TopbarFilters from "@/components/items/TopbarFilters";
 import getAllStyles from "@/utils/db/getAllStyles";
 import { getTopbarFilters } from "@/utils/handlers/handleFilters";
-import ModalSubmitLook from "@/components/modals/ModalSubmitLook";
 import SubmitLookButton from "@/components/buttons/SubmitLookButton";
 import EarnPointsModal from "@/components/modals/EarnPointsModal";
 
@@ -40,7 +39,6 @@ const Gallery = async ({ params, searchParams }) => {
           <GridViews />
         </div>
         <SubmitLookButton />
-        {searchParams.submit_success === "true" ? <ModalSubmitLook gender={params.genderString} /> : null}
       </div>
 
       <div className="my-auto h-full average:pb-20">

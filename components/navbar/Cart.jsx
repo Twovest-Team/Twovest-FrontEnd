@@ -56,8 +56,8 @@ export const Cart = () => {
     <div className="flex justify-between items-center border-b border-grey">
       <div className="flex h-[72px] justify-between container items-center">
         <div className="flex items-center">
-          <LocalMallOutlinedIcon className="mr-2" aria-label="Icon de cesto de compras" />
-          <p className="font-semibold" aria-label="Cesto de compras">Cesto de compras</p>
+          <LocalMallOutlinedIcon className="mr-2" ariaLabel="Icon de cesto de compras" />
+          <p className="font-semibold" ariaLabel="Cesto de compras">Cesto de compras</p>
         </div>
         <IconButton ariaLabel="Fechar cesto de compras" icon={<CloseOutlinedIcon className="text-secondary" />} onClick={handleClose} />
       </div>
@@ -99,13 +99,13 @@ export const Cart = () => {
     <div className="w-full shadow-[0px_-4px_6px_-1px_#00000010] border-grey bg-white container pb-5">
       <div className="flex justify-between py-5">
         <div>
-          <h1 className="font-semibold" aria-label={`Total de ${products?.length} ${products?.length === 1 ? "artigo" : "artigos"}`}>
+          <h1 className="font-semibold" ariaLabel={`Total de ${products?.length} ${products?.length === 1 ? "artigo" : "artigos"}`}>
             Total ({products?.length} {products?.length === 1 ? "artigo" : "artigos"})
           </h1>
-          <div className="text-secondary text-caption" aria-label="Iva Incluído">IVA Incluído</div>
+          <div className="text-secondary text-caption" ariaLabel="Iva Incluído">IVA Incluído</div>
         </div>
         <div>
-          <h2 className="font-semibold" aria-label={`Total do carrinho: ${products?.length > 0 ? getCartTotalPrice(products) + " euros" : "Carrinho vazio"}`}>
+          <h2 className="font-semibold" ariaLabel={`Total do carrinho: ${products?.length > 0 ? getCartTotalPrice(products) + " euros" : "Carrinho vazio"}`}>
             {products?.length > 0 && <>{getCartTotalPrice(products)}€</>}
           </h2>
         </div>

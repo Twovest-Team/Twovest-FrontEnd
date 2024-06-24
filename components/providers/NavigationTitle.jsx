@@ -27,11 +27,11 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
           onClick={handleBack}
           icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
           className="-translate-x-3 mr-0.5"
-          aria-label="Voltar Atrás"
+          ariaLabel="Voltar Atrás"
         />
         <h1
           className="text-h5 transition-colors duration-200 text-h5"
-          aria-label={`Está na página ${titleText}. Se clicar, será direcionado para a página anterior.`}
+          ariaLabel={`Está na página ${titleText}. Se clicar, será direcionado para a página anterior.`}
         >
           {titleText}
         </h1>

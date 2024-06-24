@@ -24,13 +24,13 @@ export const OnboardingConclusion = () => {
             <div>
               <p
                 className="font-semibold mb-2"
-                aria-label="Pagamento efetuado com sucesso"
+                ariaLabel="Pagamento efetuado com sucesso"
               >
                 Concluíste a introdução à Twovest
               </p>
               <p
                 className="text-secondary"
-                aria-label="Obrigado por comprar na Twovest"
+                ariaLabel="Obrigado por comprar na Twovest"
               >
                 Escolhe agora um género para prosseguires com o uso da Twovest.
               </p>
@@ -39,7 +39,7 @@ export const OnboardingConclusion = () => {
             <div className="mx-auto">
               <Button
                 className="text-center"
-                aria-label="Prosseguir para escolhad e género"
+                ariaLabel="Prosseguir para escolhad e género"
                 onClick={handleProsseguirClick}
               >
                 Prosseguir -&gt;

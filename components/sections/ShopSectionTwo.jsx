@@ -77,7 +77,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
           <div className="font-semibold flex gap-2 items-center">
             <h1
               className="flex gap-2 items-center text-h6"
-              aria-label="Dados de faturação"
+              ariaLabel="Dados de faturação"
             >
               Dados de faturação
             </h1>
@@ -93,13 +93,13 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
             <div className="flex flex-col flex-grow min-w-0">
               <p
                 className="font-semibold truncate"
-                aria-label="Endereço de e-mail do utilizador"
+                ariaLabel="Endereço de e-mail do utilizador"
               >
                 {userData.email}
               </p>
               <p
                 className="text-caption text-secondary"
-                aria-label="Sem NIF associado"
+                ariaLabel="Sem NIF associado"
               >
                 {userData.email}
               </p>
@@ -115,7 +115,7 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
           <div className="font-semibold flex gap-2 items-center">
             <h2
               className="flex gap-2 items-center text-h6"
-              aria-label="Ponto de recolha"
+              ariaLabel="Ponto de recolha"
             >
               Ponto de recolha
             </h2>
@@ -138,21 +138,21 @@ const ShopSectionTwo = ({ userData, updateStage }) => {
                   state={selectedDistrict}
                   setState={setSelectedDistrict}
                   defaultValue={"Distrito"}
-                  aria-label={selectedDistrict}
+                  ariaLabel={selectedDistrict}
                 />
                 <Select
                   data={portugalTowns}
                   state={selectedTown}
                   setState={setSelectedTown}
                   defaultValue={"Concelho"}
-                  aria-label={selectedTown}
+                  ariaLabel={selectedTown}
                 />
                 <Select
                   data={cttPickupPoints}
                   state={selectedCTT}
                   setState={setSelectedCTT}
                   defaultValue={"Ponto de Recolha"}
-                  aria-label={selectedCTT}
+                  ariaLabel={selectedCTT}
                 />
 
                 <div className="flex">

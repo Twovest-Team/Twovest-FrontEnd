@@ -6,13 +6,13 @@ const PontosDeEntregaCard = () => {
       <div className="bg-white container pt-16 pb-10 lg:pt-20 lg:pb-12 relative rounded shadow-sm w-full">
         <div
           className="text-black font-semibold"
-          aria-label="Tens demasiada roupa no armário?"
+          ariaLabel="Tens demasiada roupa no armário?"
         >
           Tens demasiada roupa no armário?
         </div>
         <div
           className="text-black mt-2 mb-4 md:mb-6"
-          aria-label="Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!"
+          ariaLabel="Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!"
         >
           Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!
         </div>

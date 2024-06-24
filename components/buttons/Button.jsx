@@ -84,7 +84,7 @@ const Button = (props) => {
         href={href}
         style={styles}
         className={`${className || ""} ${defaultStyles} ${mainStyles} ${disabledStyles}`}
-        aria-label={ariaLabel}
+        ariaLabel={ariaLabel}
         onClick={onClick}
         disabled={disabled}
       >
@@ -96,7 +96,7 @@ const Button = (props) => {
       <button
       style={styles}
         className={`${className || ""} ${defaultStyles} ${mainStyles} ${disabledStyles}`}
-        aria-label={ariaLabel}
+        ariaLabel={ariaLabel}
         onClick={onClick}
         disabled={disabled}
       >

@@ -43,7 +43,7 @@ export default async function PontosECupoes() {
           <div className="flex gap-2 text-secondary items-center ">
             <p
               className="hidden sm:block text-right text-gray-700"
-              aria-label="Descobre como funciona"
+              ariaLabel="Descobre como funciona"
             >
               Descobre como funciona
             </p>
@@ -57,14 +57,14 @@ export default async function PontosECupoes() {
                 <p className="pr-4 font-semibold">Total de pontos: </p>
                 <span
                   className="text-primary_main"
-                  aria-label={currentUser.points}
+                  ariaLabel={currentUser.points}
                 >
                   {currentUser.points}
                   <AutoModeIcon className="ml-2" />
                 </span>
               </h4>
               <h5 className="text-h5">
-                <span className="font-semibold mr-2" aria-label="350">
+                <span className="font-semibold mr-2" ariaLabel="350">
                   {currentUser.points >= precoCupaoSorte
                     ? 0
                     : precoCupaoSorte - currentUser.points}

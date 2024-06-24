@@ -38,18 +38,6 @@ const AuthModal = () => {
                             src: coloredGoogleIcon,
                             height: 22,
                             width: 22
-                        },
-                        {
-                            provider: 'Facebook',
-                            src: coloredFacebookIcon,
-                            height: 24,
-                            width: 24
-                        },
-                        {
-                            provider: 'Apple',
-                            src: coloredAppleIcon,
-                            height: 22,
-                            width: 22
                         }
                     ].map((props, index) => (
                         <Button

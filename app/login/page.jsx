@@ -128,36 +128,7 @@ export default function LoginPage() {
             />
             Continuar com Google
           </Button>
-
-          <Button
-            type={"black"}
-            ariaLabel="Iniciar sessão com Facebook"
-            width="100%"
-          >
-            <Image
-              src={coloredFacebookIcon}
-              height={22}
-              width={22}
-              alt={"facebook icon"}
-              className="mr-1"
-            />
-            Continuar com Facebook
-          </Button>
-
-          <Button
-            type={"black"}
-            ariaLabel="Iniciar sessão com Apple"
-            width="100%"
-          >
-            <Image
-              src={coloredAppleIcon}
-              height={20}
-              width={20}
-              alt={"apple icon"}
-              className="mr-1"
-            />
-            Continuar com Apple
-          </Button>
+          
         </div>
 
         <div className="text-center my-20">

@@ -27,7 +27,7 @@ export const CategoriesMenu = ({ idCategory, categoryOpen, handleClickCategory, 
                         onClick={() => handleClickCategory(idCategory)}
                         icon={<KeyboardArrowLeft sx={{ fontSize: 29 }} />}
                         className="-translate-x-1"
-                        aria-label="Voltar Atrás"
+                        ariaLabel="Voltar Atrás"
                     />
                 </div>
                 <div className="flex">

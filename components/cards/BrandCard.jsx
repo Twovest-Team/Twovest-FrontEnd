@@ -6,7 +6,7 @@ const BrandCard = ({brand, genderString}) => {
     return (
         <Link
             href={`/brands/${genderString}/${brand.name}`}
-            aria-label={`Clique para ir para a página da marca ${brand.name}`}
+            ariaLabel={`Clique para ir para a página da marca ${brand.name}`}
         >
             <div className="flex flex-col items-center justify-between">
                 <div

@@ -13,7 +13,7 @@ import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const Submit = () => {
 
-  const {currentUser} = useAuth()
+  const currentUser = useAuth()
   const [timer, setTimer] = useState(5);
   const [galleryMen, setGalleryMen] = useState("Submeter na Galeria Masculina");
   const [galleryWomen, setGalleryWomen] = useState("Submeter na Galeria Feminina");

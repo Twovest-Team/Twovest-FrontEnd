@@ -11,7 +11,7 @@ import { openModal } from "@/redux/slices/modalSlice";
 
 export default function LookUpvoteButton({ upvotes }) {
 
-  const { currentUser } = useAuth()
+  const currentUser = useAuth()
   const [totalUpvotes, setTotalUpvotes] = useState(upvotes || 0)
   const [upvoted, setUpvoted] = useState(false)
   const dispatch = useAppDispatch()

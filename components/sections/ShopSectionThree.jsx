@@ -19,7 +19,7 @@ import usedCoupon from "@/utils/db/coupons/usedCoupon";
 import LoadingIcon from "../buttons/icons/LoadingIcon";
 
 const ShopSectionThree = ({ productsData, userData, couponData }) => {
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
   const [cupaoVerificado, setCupaoVerificado] = useState("");
   const [cc, setCc] = useState("Cartão de crédito");
   const [mbway, setMbway] = useState("MBWay");

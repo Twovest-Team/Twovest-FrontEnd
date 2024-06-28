@@ -12,7 +12,7 @@ import useAuth from "@/hooks/client-hooks/useAuth";
 const SuccessPage = () => {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.cartProducts.products);
-    const { currentUser } = useAuth();
+    const currentUser = useAuth();
 
 
     useEffect(() => {

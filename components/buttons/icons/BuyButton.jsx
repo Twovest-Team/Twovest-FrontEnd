@@ -15,7 +15,7 @@ import { openModal } from "@/redux/slices/modalSlice";
 
 const BuyButton = ({ offerId }) => {
 
-  const {currentUser} = useAuth()
+  const currentUser = useAuth()
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const router = useRouter();

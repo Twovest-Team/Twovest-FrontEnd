@@ -22,7 +22,7 @@ export default function CollectionPreview({ collection, lookId, showcaseImages }
 
   const { isMobile } = useWindow()
   const dispatch = useAppDispatch()
-  const { currentUser } = useAuth()
+  const currentUser = useAuth()
   const { name, privacy, users: otherParticipants, looks } = collection;
   const length = looks.length;
   const [isSaved, setIsSaved] = useState(lookId ? looks.some(item => item.id == lookId) : null)

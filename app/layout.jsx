@@ -33,7 +33,7 @@ export default function RootLayout({ children, params }) {
           <GenderContext>
 
             <Navbar>
-              <SideMenu />
+              <SideMenu gender={params.gender} />
               <Cart />
             </Navbar>
             {children}

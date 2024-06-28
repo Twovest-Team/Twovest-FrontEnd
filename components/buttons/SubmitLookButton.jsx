@@ -11,7 +11,7 @@ const SubmitLookButton = () => {
 
     const router = useRouter()
     const dispatch = useAppDispatch()
-    const { currentUser } = useAuth();
+    const currentUser = useAuth();
 
     const handleClick = () => {
         if (!currentUser) dispatch(openModal('authModal'))

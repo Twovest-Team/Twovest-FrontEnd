@@ -23,7 +23,7 @@ const ManageCollectionModal = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
 
   // LookId from url "save" param
   const [lookId, setLookId] = useState(searchParams.get('save'))

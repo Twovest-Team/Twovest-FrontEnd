@@ -109,8 +109,8 @@ const CollectionList = ({
 
             {!isOwner && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem coleções disponíveis.</p>)}
 
-
-            <Button href="/gallery/women" className="text-caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
+            {/* TODO REVER ESTA LIGAÇÃO */}
+            <Button href="/women/gallery" className="text-caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
               {'Procurar inspiração na galeria ->'}
             </Button>
           </li>

@@ -93,7 +93,7 @@ const ProductCardSwiper = ({ genderObj, id, productImages }) => {
     const renderSlides = () => {
         return productImages.map((image, index) => (
             <swiper-slide key={index}>
-                <Link className='w-full h-full' href={`/product/${genderObj.string}/${id}`}>
+                <Link className='w-full h-full' href={`/${genderObj.string}/product/${id}`}>
                     <Image
                         src={getStorageImage(image.url)}
                         alt={image.alt}

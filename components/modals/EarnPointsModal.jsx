@@ -49,7 +49,7 @@ const EarnPointsModal = () => {
                             <p className="text-secondary text-caption sm:text-base">Cada peça da Twovest dos teus looks equivale a 5 pontos que podes utilizar para debloquear novos cupões. A cada 10 upvotes de utilizadores que já efetuaram pelo menos uma compra na Twovest também ganhas 5 pontos.</p>
                         </div>
 
-                        <Button onClick={handleClose} width='100%' type='black' ariaLabel='Submeter um look' href='/gallery/submitLook'>
+                        <Button onClick={handleClose} width='100%' type='black' ariaLabel='Submeter um look' href='/gallery/submit'>
                             {'Submeter um look'}
                         </Button>
                     </div>

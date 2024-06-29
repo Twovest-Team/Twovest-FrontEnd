@@ -1,4 +1,4 @@
-import TeamMember from "../../app/aboutus/TeamMember";
+import TeamMember from "./TeamMember";
 import Vasco from "@/public/static/images/aboutus/vasco.png";
 import Daniela from "@/public/static/images/aboutus/daniela.png";
 import Joao from "@/public/static/images/aboutus/joao.png";

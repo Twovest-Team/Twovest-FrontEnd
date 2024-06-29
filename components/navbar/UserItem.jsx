@@ -82,19 +82,19 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Pontos&Cupões',
-          link: '/pontosecupoes',
+          link: `/profile/${user.id}/coupons`,
           icon: <AutoModeIcon className=" h-5 w-5 mr-1.5" />
         },
       ],
       [
         {
           title: 'Submeter novo look',
-          link: '/gallery/submitLook',
+          link: '/gallery/submit',
           icon: <ArrowCircleUpIcon className="h-5 w-5 mr-1.5" />
         },
         {
           title: 'Gerir os meus looks',
-          link: `/profile/${user.id}`,
+          link: `/profile/${user.id}?option=looks`,
         },
         {
           title: 'Ver as minhas coleções',
@@ -104,11 +104,11 @@ const UserItem = ({ user }) => {
       [
         {
           title: 'Histórico de compras',
-          link: '/profile/options/orders',
+          link: `/profile/${user.id}/orders`,
         },
         {
           title: 'Definições de conta',
-          link: '/profile/options',
+          link: `/profile/${user.id}/options`,
         },
         {
           title: 'Sair ->',

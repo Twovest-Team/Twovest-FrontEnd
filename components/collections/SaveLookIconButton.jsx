@@ -21,7 +21,7 @@ export default function SaveLookIconButton({ lookId, whiteMode }) {
   }
 
   const saveParam = searchParams.get("save");
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
 
   const isSaved = currentUser && isLookSaved(currentUser.collections, lookId)
 

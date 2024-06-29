@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleCart } from "@/redux/slices/cartToggle";
 import NotificationNumber from "../items/NotificationNumber";
 import { openModal } from "@/redux/slices/modalSlice";
-import { useEffect } from "react";
 
 const GeneralItems = ({ user }) => {
 

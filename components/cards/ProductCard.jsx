@@ -74,7 +74,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
   )
 
   const renderBrand = () => (
-    <Link className="border border-white hover:border-grey transition-all duration-200 rounded-full" href={`/brands/${genderObj.string}/${brandName}`}>
+    <Link className="border border-white hover:border-grey transition-all duration-200 rounded-full" href={`/${genderObj.string}/brands/${brandName}`}>
       <Image
         src={getStorageImage(brandImageUrl)}
         width={25}
@@ -96,7 +96,7 @@ const ProductCard = ({ product, slider, gender, alignPrice }) => {
   )
 
   const renderImage = () => (
-    <Link className='w-full h-full' href={`/product/${genderObj.string}/${id}`}>
+    <Link className='w-full h-full' href={`/${genderObj.string}/product/${id}`}>
       <Image
         src={getStorageImage(productImages[0].url)}
         alt={productImages[0].alt}

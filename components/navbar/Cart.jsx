@@ -22,7 +22,7 @@ export const Cart = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cartToggle.isOpen);
   const products = useAppSelector((state) => state.cartProducts.products);
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
   const [loading, setLoading] = useState(false);
   const [visibility, setVisibility] = useState(isCartOpen ? 'visible' : 'invisible');
 

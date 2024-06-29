@@ -20,7 +20,7 @@ export const PrimaryMenuPagesList = ({ toggleMenu }) => {
         {gender && (
           <MenuItem
             key="SideMenu-GaleriaDeLooks"
-            href={`/gallery/${gender.string}`}
+            href={`/${gender.string}/gallery`}
             toggleMenu={toggleMenu}
             label="Galeria de Looks"
             description="🔥 Descobre novos looks e inspira-te!"

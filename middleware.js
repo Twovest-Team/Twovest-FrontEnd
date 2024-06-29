@@ -6,12 +6,10 @@ const genders = [
     { id: 1, string: 'men', stringPT: 'Homem' }
 ];
 
-// Function to get gender object by id or string
 const getGenderObject = (param) => {
     return genders.find(object => object.id == param || object.string == param);
 };
 
-// Function to determine gender parameter based on pathname
 const getGenderParam = (pathname) => {
     if (pathname.includes('/men')) return 'men';
     if (pathname.includes('/women')) return 'women';
@@ -23,23 +21,28 @@ export async function middleware(request) {
 
     const cookieOnboarding = cookies.has('onboarding');
     const cookieGender = cookies.has('gender');
-    const pathname = nextUrl.pathname;
-    const searchParams = nextUrl.searchParams;
-    const hasInviteQuery = searchParams.has('invite');
-    const param = getGenderParam(pathname);
+
+    let pathname = nextUrl.pathname;
+    const param = getGenderParam(pathname)
 
     let response = NextResponse.next();
 
+    
+    if(pathname === '/' && !param){
+        pathname = pathname.concat('', 'women')
+        response = NextResponse.redirect(new URL(`${pathname}`, request.url));
+    }
+
     if (!cookieOnboarding) {
-        if (!hasInviteQuery) {
-            response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
-        }
+        response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
         response.cookies.set('onboarding', '1');
     }
 
-    if (param) {
+    if(param){
         response.cookies.set('gender', JSON.stringify(getGenderObject(param)));
-    } else if (!cookieGender) {
+    }
+
+    if(!param && !cookieGender){
         response.cookies.set('gender', JSON.stringify(getGenderObject('women')));
     }
 

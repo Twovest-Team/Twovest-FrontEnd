@@ -37,7 +37,7 @@ const ProductNav = ({ productGender, is_sustainable, discount, brand }) => {
 
   const renderBrand = () => {
     return (
-      <Link ref={!isLg && !isXl && !is2Xl ? imageRef : null} className="flex gap-3.5 items-center" href={`/brands/${productGender}/${brand.name}`}>
+      <Link ref={!isLg && !isXl && !is2Xl ? imageRef : null} className="flex gap-3.5 items-center" href={`/${productGender}/brands/${brand.name}`}>
         
         <figure className="relative h-9 w-9 lg:h-10 lg:w-10">
         <Image

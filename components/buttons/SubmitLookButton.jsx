@@ -11,11 +11,11 @@ const SubmitLookButton = () => {
 
     const router = useRouter()
     const dispatch = useAppDispatch()
-    const { currentUser } = useAuth();
+    const currentUser = useAuth();
 
     const handleClick = () => {
         if (!currentUser) dispatch(openModal('authModal'))
-        if (currentUser) router.push('/gallery/submitLook');
+        if (currentUser) router.push('/gallery/submit');
     }
 
     return (

@@ -10,7 +10,7 @@ const menuItems = [
 export const SecondaryMenuPagesList = ({ toggleMenu }) => {
   return (
     <div>
-      <div className="border-b border-grey mx-4 my-6"></div>
+      <div className="border-b border-grey mx-4 my-3"></div>
       <ul className="mx-4">
         {menuItems.map(({ key, href, label }) => (
           <MenuItem key={key} href={href} toggleMenu={toggleMenu} label={label} />

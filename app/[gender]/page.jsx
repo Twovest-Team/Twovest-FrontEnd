@@ -74,14 +74,14 @@ export default async function Home({ params }) {
       }
 
 
-      <section
+      {/* <section
         style={{
           backgroundImage: `url('/static/images/homepage/pontosdeentregabg.png')`,
         }}
         className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >
         <PontosDeEntregaCard />
-      </section>
+      </section> */}
     </main>
   );
 }

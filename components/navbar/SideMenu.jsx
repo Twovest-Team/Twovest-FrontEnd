@@ -38,7 +38,7 @@ export const SideMenu = () => {
 
   const getGenderCookie = async () => {
     const genderCookie = await getCookie('gender');
-    
+
     if (genderCookie.id !== gender?.id) {
       setGender(genderCookie)
     }
@@ -62,7 +62,7 @@ export const SideMenu = () => {
   useEffect(() => {
     if (!genderParam) getGenderCookie()
 
-    if (gender && genderParam && genderParam != gender.string) {
+    if (genderParam && (!gender || genderParam != gender.string)) {
       setGender(getGender(genderParam))
     }
   }, [params, gender])
@@ -90,6 +90,7 @@ export const SideMenu = () => {
 
   const renderCategoriesMenu = () => (
     <CategoriesMenu
+      gender={gender}
       idCategory={idCategory}
       categoryOpen={categoryOpen}
       handleClickCategory={handleClickCategory}
@@ -141,15 +142,16 @@ export const SideMenu = () => {
   }
 
   const renderSearch = () => (
-    <div className="mt-3 relative">
+    <div className="mt-4 relative text-secondary ">
       <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
         <SearchIcon />
       </div>
-      <input
+      <button
         type="text"
-        placeholder="Pesquisa"
-        className="pl-14 pr-20 py-4 w-full rounded border border-grey focus:outline-none focus:border-black"
-      />
+        className="px-14 py-4 w-full flex text-start rounded border border-grey"
+      >
+        Pesquisar artigos
+      </button>
     </div>
   )
 
@@ -179,7 +181,7 @@ export const SideMenu = () => {
       </li>
       <li key={"SideMenu-Sustentavel"}>
         <Link
-          href={`/products/${gender.string}?status=sustainable`}
+          href={`/${gender.string}/products?status=sustainable`}
           onClick={() => handleClickMenu()}
         >
           <div className="bg-primary_main hover:bg-primary_dark transition-colors duration-100 text-white cursor-pointer items-center p-4 rounded flex justify-between">
@@ -192,7 +194,7 @@ export const SideMenu = () => {
       </li>
       <li key={"SideMenu-Promocoes"}>
         <Link
-          href={`/products/${gender.string}?status=discounts`}
+          href={`/${gender.string}/products?status=discounts`}
           onClick={() => handleClickMenu()}
         >
           <div className="bg-grey_opacity_50 hover:bg-grey hover:bg-opacity-50 transition-colors duration-100 cursor-pointer p-4 rounded flex justify-between">
@@ -230,7 +232,7 @@ export const SideMenu = () => {
           {genderalCategories()}
         </div>
 
-        <PrimaryMenuPagesList toggleMenu={handleClickMenu} />
+        <PrimaryMenuPagesList gender={gender} toggleMenu={handleClickMenu} />
         <SecondaryMenuPagesList toggleMenu={handleClickMenu} />
 
         <div className="mx-4">

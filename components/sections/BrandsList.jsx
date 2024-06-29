@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import useGender from "@/hooks/client-hooks/useGender";
 import BrandCard from "../cards/BrandCard";
 
 const BrandsList = ({ brandsData, gender }) => {

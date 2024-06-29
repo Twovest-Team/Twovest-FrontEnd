@@ -4,31 +4,33 @@ import useAuthServer from "@/hooks/server-hooks/useAuthServer";
 import UserItem from "./UserItem";
 import GeneralItems from "./GeneralItems";
 import MenuItem from "./MenuItem";
-import getUserCartProducts from "@/utils/db/cart/getUserCartProducts";
 
 export const revalidate = 0
 
-const Navbar = async({ children }) => {
+const Navbar = async ({ children }) => {
 
     const user = await useAuthServer();
 
     const renderLogo = () => (
-        <Link href={"/"} className="items-center flex">
+        <Link href={"/"} className="items-center flex gap-3 relative">
+
             <Image
-                src={"/static/images/logo_twovest_black.svg"}
-                width={105}
-                height={24}
+                src={"/static/images/logo_twovest_black_simple.svg"}
+                width={18}
+                height={18}
                 alt="Logo Twovest"
-                className="navbar_logo-xs"
-            ></Image>
+                className="[@media(min-width:455px)]:hidden"
+            />
 
             <Image
                 src={"/static/images/logo_twovest_black.svg"}
                 width={130}
                 height={24}
                 alt="Logo Twovest"
-                className="navbar_logo-sm"
-            ></Image>
+                className="hidden [@media(min-width:455px)]:inline"
+            />
+
+            <p className=" text-white mt-0.5 opacity-100 bg-black px-2 py-1 text-[9px] font-semibold rounded">BETA</p>
         </Link>
     )
 

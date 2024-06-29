@@ -5,7 +5,7 @@ import FooterNavbar from "./FooterNavbar";
 import { useEffect, useState } from "react";
 import IconButton from "../buttons/icons/IconButton";
 
-export const CategoriesMenu = ({ idCategory, categoryOpen, handleClickCategory, handleClickMenu }) => {
+export const CategoriesMenu = ({ gender, idCategory, categoryOpen, handleClickCategory, handleClickMenu }) => {
     const [menuVisible, setMenuVisible] = useState(categoryOpen);
 
     useEffect(() => {
@@ -35,6 +35,7 @@ export const CategoriesMenu = ({ idCategory, categoryOpen, handleClickCategory, 
                 </div>
             </div>
             <CategoriesList
+                gender={gender}
                 idCategory={idCategory}
                 handleClickMenu={handleClickMenu}
                 handleClickCategory={handleClickCategory}

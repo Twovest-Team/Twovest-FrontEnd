@@ -52,7 +52,7 @@ async function ProductList({ category, status, gender }) {
     }
 
     return (
-        <div className="flex-grow flex justify-center items-center w-full">
+        <div>
             {data.length > 0 ? (
                 <GridBox loader={<ProductsSkeleton />}>
                     {data.map(element => (
@@ -62,12 +62,14 @@ async function ProductList({ category, status, gender }) {
                     ))}
                 </GridBox>
             ) : (
-                <NoResultsNotice
-                    title={'Não encontramos artigos para ti.'}
-                    text={"Não há produtos registados nesta categoria."}
-                    btnText={"Voltar à página principal"}
-                    btnHref={'/'}
-                />
+                <div className="flex-grow flex justify-center items-center w-full">
+                    <NoResultsNotice
+                        title={'Não encontramos artigos para ti.'}
+                        text={"Não há produtos registados nesta categoria."}
+                        btnText={"Voltar à página principal"}
+                        btnHref={'/'}
+                    />
+                </div>
             )}
         </div>
     );

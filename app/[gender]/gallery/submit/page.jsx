@@ -75,7 +75,7 @@ const Submit = () => {
                   <div className="text_caption text-secondary">Podes prosseguir em: {timer} segundos</div>
                   <div className="block md:flex mb-12 gap-2">
                   <Button
-                  href="submitLook/formLook?gender=women"
+                  href="women/gallery/submit/form"
                   width="100%"
                   className="mx-auto my-2"
                   disabled={timer > 0}
@@ -85,7 +85,7 @@ const Submit = () => {
                     {galleryWomen}
                   </Button>
                   <Button
-                  href="submitLook/formLook?gender=men"
+                  href="men/gallery/submit/form"
                   width="100%"
                   className="my-2 mx-auto"
                   disabled={timer > 0}

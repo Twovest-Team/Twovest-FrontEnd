@@ -1,10 +1,8 @@
-"use client";
 
 import MainSlider from "@/components/Carousel/MainSlider";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
 import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
-import { useEffect, useState } from "react";
 import getBrands from "@/utils/db/getBrands";
 import { BrandCards } from "@/components/cards/BrandCards";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
@@ -14,50 +12,33 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import getGender from "@/utils/getGender";
 
-export default function Home({ params }) {
+export default async function Home({ params }) {
 
-  const { gender: genderParam } = params
-  const gender = getGender(genderParam)
-
-  const [dataPopular, setDataPopular] = useState();
-  const [brands, setBrands] = useState();
-  const [looks, setLooks] = useState();
-
-  useEffect(() => {
-    if (!dataPopular && gender && !brands) {
-      async function getData() {
-        let res = await getProductsByViews(gender.id);
-        setDataPopular(res);
-      }
-      async function getBrandsData() {
-        let resp = await getBrands(9);
-        setBrands(resp);
-      }
-      async function getLooks() {
-        let res = await getLooksForHomepage(gender.id);
-        setLooks(res);
-      }
-      getData();
-      getBrandsData();
-      getLooks();
-    }
-  }, [brands, dataPopular, gender]);
+  const gender = getGender(params.gender)
 
   if (!gender) return <GeneralLoading />;
 
+  const products = await getProductsByViews(gender.id);
+  const brands = await getBrands(9);
+  const looks = await getLooksForHomepage(gender.id);
+
+
   return (
     <main>
-      <MainSlider gender={gender} />
+      
+      <div className="h-screen">
+        <MainSlider currentGender={gender} />
+      </div>
 
       <section className="mt-14 mb-2">
         <h1 className="font-semibold text-h6 container">Mais Procurados 🔥</h1>
         <div className="flex my-6 overflow-auto overflow-x-scroll">
-          {dataPopular && <PopularProductsSilder data={dataPopular} />}
+          {products && products.length > 0 && <PopularProductsSilder data={products} />}
         </div>
       </section>
 
       <section className="mt-14 mb-24">
-        {brands && <BrandCards data={brands} gender={gender} />}
+        {brands && brands.length > 0 && <BrandCards data={brands} gender={gender} />}
       </section>
 
       {looks && looks.length > 0 &&

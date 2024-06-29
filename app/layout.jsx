@@ -4,7 +4,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/navbar/Navbar";
 import StoreProvider from "../components/providers/StoreProvider";
-import GenderContext from "@/components/providers/GenderContext";
 import LastProductsSeen from "@/components/sections/LastProductsSeen";
 import { Cart } from "@/components/navbar/Cart";
 import { SideMenu } from "@/components/navbar/SideMenu";
@@ -28,10 +27,7 @@ export default function RootLayout({ children, params }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* This div is needed for stopping layout-shifting when scrollbar is hidden */}
         <StoreProvider>
-          <GenderContext>
-
             <Navbar>
               <SideMenu gender={params.gender} />
               <Cart />
@@ -41,7 +37,6 @@ export default function RootLayout({ children, params }) {
             <Footer />
 
             {/* GLOBAL MODALS AND NOTIFICATIONS */}
-
             <ManageCollectionModal />
             <SustainabilityModal />
             <AuthModal />
@@ -108,7 +103,6 @@ export default function RootLayout({ children, params }) {
             <SpeedInsights />
 
 
-          </GenderContext>
         </StoreProvider>
       </body>
     </html>

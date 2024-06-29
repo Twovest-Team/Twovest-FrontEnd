@@ -53,10 +53,6 @@ export default async function Brand({ params }) {
             <p className="flex gap-1 items-center bg-dark border-white border-2 absolute font-semibold px-3 rounded-full py-2 text-white  -bottom-4 left-0 right-0 mx-auto w-fit"><span className="text-caption translate-y-[1px]">4.5</span> <StarIcon sx={{ fontSize: 18 }} /></p>
           </figure>
 
-
-
-          {/* <BrandGenderButtons currentGender={gender} brandName={brandName} /> */}
-
         </div>
 
       </div>

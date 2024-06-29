@@ -1,6 +1,5 @@
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import getLookById from "@/utils/db/getLookById";
-import ForwardOutlinedIcon from "@mui/icons-material/ForwardOutlined";
 import SaveLookIconButton from "@/components/collections/SaveLookIconButton";
 import Link from "next/link";
 import ProductCard from "@/components/cards/ProductCard";
@@ -10,7 +9,6 @@ import getStorageImage from "@/utils/getStorageImage";
 import IconButton from "@/components/buttons/icons/IconButton";
 import Image from "next/image";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import getGender from "@/utils/getGender";
 import getLooksForGallery from "@/utils/db/getLooksForGallery";
 import LooksSkeleton from "@/components/loaders/Looks";
 import LookCard from "@/components/cards/LookCard";
@@ -21,8 +19,8 @@ export const revalidate = 30;
 
 const Look = async ({ params }) => {
   const lookId = params.look;
+  const gender = params.gender;
   const look = await getLookById(lookId);
-  const gender = getGender(look.gender)?.string;
   const productsQty = look.products ? look.products.length : 0;
 
   return (
@@ -147,7 +145,7 @@ const ProductGridBox = ({ look, view, noContainer }) => (
 );
 
 const LookList = async ({ gender }) => {
-  const looks = await getLooksForGallery(gender);
+  const looks = await getLooksForGallery(gender.string);
 
   return looks.length > 0 ? (
     <div className="container pb-16">

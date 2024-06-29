@@ -21,7 +21,6 @@ import { LooksHomepage } from "@/components/cards/LooksHomepage";
 import SustainableButton from "@/components/buttons/icons/SustainableButton";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 
-
 export const revalidate = 60;
 
 export default async function Product({ params, searchParams }) {

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from "react";
 import BrandCard from "./BrandCard";
 import Button from "../buttons/Button";

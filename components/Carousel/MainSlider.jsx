@@ -5,10 +5,10 @@ import Button from "../buttons/Button";
 import { useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
 import { genders } from "@/constants";
+import { useRouter } from "next/navigation";
 register();
 
-const MainSlider = ({gender}) => {
-
+const MainSlider = ({ currentGender }) => {
 
   const slides = [
     [
@@ -50,7 +50,12 @@ const MainSlider = ({gender}) => {
 
   ]
 
+  const router = useRouter()
   const swiperRef = useRef()
+
+  const handleGender = (selectedGender) => {
+    if(currentGender.id !== selectedGender.id) router.push(`/${selectedGender.string}`)
+  }
 
   useEffect(() => {
     const swiperEl = swiperRef.current;
@@ -93,29 +98,23 @@ const MainSlider = ({gender}) => {
   const renderGenders = () => (
     <div className="w-full h-10 flex absolute top-0 z-10 left-0 right-0">
 
-      <button
-        onClick={() => setGender(genders[0])}
-        className={`
-          ${gender.id !== 0 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
+      {genders.map(gender => (
+        <button
+          onClick={() => handleGender(gender)}
+          className={`
+          ${currentGender.id !== gender.id ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
           flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
         `}>
-        {genders[0].stringPT}
-      </button>
+          {gender.stringPT}
+        </button>
+      ))}
 
-      <button
-        onClick={() => setGender(genders[1])}
-        className={`
-        ${gender.id !== 1 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
-        pt-1 flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
-      `}>
-        {genders[1].stringPT}
-      </button>
     </div>
   )
 
   const renderSlides = () => {
 
-    return slides[gender.id].map((slide, index) => (
+    return slides[currentGender.id].map((slide, index) => (
       <swiper-slide key={index}>
         <div className="w-full h-full relative">
           <Image

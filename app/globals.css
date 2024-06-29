@@ -205,6 +205,6 @@ select {
 
 .mainSliderSwiper {
   swiper-container{
-    height: calc(100svh - 75px);
+    height: calc(100vh - 75px);
   }
 }

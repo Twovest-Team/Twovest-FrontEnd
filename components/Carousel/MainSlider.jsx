@@ -100,6 +100,7 @@ const MainSlider = ({ currentGender }) => {
 
       {genders.map(gender => (
         <button
+          key={gender.id}
           onClick={() => handleGender(gender)}
           className={`
           ${currentGender.id !== gender.id ? 'bg-opacity-60 backdrop-blur-sm' : ''} 

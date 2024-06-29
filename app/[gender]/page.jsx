@@ -59,7 +59,7 @@ export default async function Home({ params }) {
                   ariaLabel="Ir para a Galeria de Looks"
                   width="100%"
                   justify="space-between"
-                  href={`/gallery/${gender.string}`}
+                  href={`/${gender.string}/gallery`}
                 >
                   <span>Ir para a galeria</span>
                   <KeyboardArrowRightIcon

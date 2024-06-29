@@ -125,7 +125,7 @@ const Collection = async ({ params, searchParams }) => {
             title={'Coleção sem looks'}
             text={'Vai à descoberta de novos looks e inspira-te.'}
             btnText={'Ir para a Galeria'}
-            btnHref={'/login'}
+            btnHref={'/login'} // TODO REVER ESTA LIGAÇÃO
           />
         </div>
       }

@@ -18,7 +18,7 @@ const MainSlider = ({ currentGender }) => {
         title: <span>Visita a Galeria <br /> de Mulher.</span>,
         description: 'Partilha os teus looks com outras pessoas.',
         btnText: 'Ir para Galeria ->',
-        btnLink: `/gallery/women`
+        btnLink: `/women/gallery`
       },
       {
         image: '/static/images/slider/image_women_2.webp',
@@ -26,7 +26,7 @@ const MainSlider = ({ currentGender }) => {
         title: <span>Artigos até 50% <br /> de desconto</span>,
         description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
-        btnLink: `/products/women?status=discounts`
+        btnLink: `/women/products?status=discounts`
       },
     ],
     [
@@ -36,7 +36,7 @@ const MainSlider = ({ currentGender }) => {
         title: <span>Visita a Galeria <br /> de Homem.</span>,
         description: 'Partilha os teus looks com outras pessoas.',
         btnText: 'Ir para Galeria ->',
-        btnLink: `/gallery/men`
+        btnLink: `/men/gallery`
       },
       {
         image: '/static/images/slider/image_men_2.webp',
@@ -44,7 +44,7 @@ const MainSlider = ({ currentGender }) => {
         title: <span>Artigos até 50% <br /> de desconto</span>,
         description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
-        btnLink: `/products/men?status=discounts`
+        btnLink: `/men/products?status=discounts`
       },
     ]
 

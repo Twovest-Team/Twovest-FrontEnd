@@ -5,7 +5,7 @@ import Link from "next/link"
 const BrandCard = ({brand, genderString}) => {
     return (
         <Link
-            href={`/brands/${genderString}/${brand.name}`}
+            href={`/${genderString}/brands/${brand.name}`}
             ariaLabel={`Clique para ir para a página da marca ${brand.name}`}
         >
             <div className="flex flex-col items-center justify-between">

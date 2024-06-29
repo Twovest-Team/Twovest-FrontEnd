@@ -145,7 +145,7 @@ const ProductGridBox = ({ look, view, noContainer }) => (
 );
 
 const LookList = async ({ gender }) => {
-  const looks = await getLooksForGallery(gender.string);
+  const looks = await getLooksForGallery(gender);
 
   return looks.length > 0 ? (
     <div className="container pb-16">

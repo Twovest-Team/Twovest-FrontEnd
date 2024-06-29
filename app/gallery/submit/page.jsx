@@ -9,14 +9,11 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GavelIcon from '@mui/icons-material/Gavel';
 import BrushIcon from '@mui/icons-material/Brush';
-import LoadingIcon from "@/components/buttons/icons/LoadingIcon";
 
 const Submit = () => {
 
   const currentUser = useAuth()
   const [timer, setTimer] = useState(5);
-  const [galleryMen, setGalleryMen] = useState("Submeter na Galeria Masculina");
-  const [galleryWomen, setGalleryWomen] = useState("Submeter na Galeria Feminina");
 
   useEffect(() => {
     
@@ -30,14 +27,6 @@ const Submit = () => {
     return () => clearInterval(interval);
   }, []);
   
-  const Loading = (type) =>{
-    if(type == 1){
-      setGalleryWomen(<LoadingIcon/>);
-    }else{
-      setGalleryMen(<LoadingIcon/>);
-    }
-    
-  }
 
   return (
     <>
@@ -75,24 +64,24 @@ const Submit = () => {
                   <div className="text_caption text-secondary">Podes prosseguir em: {timer} segundos</div>
                   <div className="block md:flex mb-12 gap-2">
                   <Button
-                  href="women/gallery/submit/form"
+                  href="/women/gallery/form"
                   width="100%"
                   className="mx-auto my-2"
                   disabled={timer > 0}
                   type='black'
                   ariaLabel='Compreendi'
-                  onClick={() => Loading(1)}>
-                    {galleryWomen}
+                  >
+                    Submeter na Galeria de Mulher
                   </Button>
                   <Button
-                  href="men/gallery/submit/form"
+                  href="/men/gallery/form"
                   width="100%"
                   className="my-2 mx-auto"
                   disabled={timer > 0}
                   type='black'
                   ariaLabel='Compreendi'
-                  onClick={() => Loading(2)}>
-                    {galleryMen}
+                  >
+                    Submeter na Galeria de Homem
                   </Button>
                   </div>
                   

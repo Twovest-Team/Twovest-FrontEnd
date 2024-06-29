@@ -38,7 +38,11 @@ export const SideMenu = () => {
 
   const getGenderCookie = async () => {
     const genderCookie = await getCookie('gender');
-    setGender(genderCookie)
+    
+    if (genderCookie.id !== gender?.id) {
+      setGender(genderCookie)
+    }
+
   }
 
   const setGenderCookie = async (selectedGender) => {
@@ -57,7 +61,10 @@ export const SideMenu = () => {
 
   useEffect(() => {
     if (!genderParam) getGenderCookie()
-    if (genderParam) setGender(getGender(genderParam))
+
+    if (gender && genderParam && genderParam != gender.string) {
+      setGender(getGender(genderParam))
+    }
   }, [params, gender])
 
   const menuOpen = useAppSelector((state) => state.menuToggle.isOpen);

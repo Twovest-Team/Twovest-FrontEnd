@@ -3,7 +3,6 @@ import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
 import SaveLookIconButton from "../collections/SaveLookIconButton";
 
 // Componente que mostra o name de utilizador apenas se estiver em vista de 1 coluna
-import LookUsername from "../items/LookUsername";
 import Link from "next/link";
 import { UserIcon } from "../user/UserIcon";
 import MenuLook from "../collections/MenuLook";
@@ -36,7 +35,7 @@ export default function LookCard({
         className='w-full aspect-[17/26] pb-[46px] rounded relative bg-white transition-all duration-150 group'
       >
         <Link
-          href={`/gallery/${gender.string}/${look.id}`}
+          href={`/${gender.string}/gallery/${look.id}`}
           className="w-full h-full relative flex justify-center items-center"
         >
           <Image
@@ -110,7 +109,7 @@ export default function LookCard({
           />
         </div>
 
-        <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
+        <Link href={`/${gender.string}/gallery/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
           <Image
             src={getStorageImage(look.url_image)}
             alt={`Look de ${look.owner.name}`}
@@ -138,7 +137,7 @@ export default function LookCard({
         className='aspect-[17/26] rounded w-[160px] sm:w-[200px] md:w-[250px] relative'
       >
         <Link
-          href={`/gallery/${gender.string}/${look.id}`}
+          href={`/${gender.string}/gallery/${look.id}`}
           className="w-full h-full relative flex justify-center items-center"
         >
           <Image
@@ -156,7 +155,7 @@ export default function LookCard({
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full z-10">
           <div className="flex flex-wrap justify-between items-center pb-3 px-3">
             <Link
-              href={`/profile/${look.users.id}`}
+              href={`/profile/${look.users.id}?option=looks`}
               className="flex gap-2 min-w-0 items-center mt-3.5"
             >
               <UserIcon

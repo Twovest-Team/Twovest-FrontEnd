@@ -30,7 +30,7 @@ const Form = ({ params }) => {
   const [buttonSubmit, setButtonSubmit] = useState("Submeter look ");
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const gender = params.get('gender');
+  const gender = params.gender;
 
   useEffect(() => {
     const fetchData = async () => {

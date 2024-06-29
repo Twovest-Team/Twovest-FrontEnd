@@ -24,7 +24,6 @@ export async function middleware(request) {
 
     let pathname = nextUrl.pathname;
     const param = getGenderParam(pathname)
-    console.log(pathname)
 
     let response = NextResponse.next();
 
@@ -33,7 +32,6 @@ export async function middleware(request) {
         pathname = pathname.concat('', 'women')
         response = NextResponse.redirect(new URL(`${pathname}`, request.url));
     }
-
 
     if (!cookieOnboarding) {
         response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
@@ -47,8 +45,6 @@ export async function middleware(request) {
     if(!param && !cookieGender){
         response.cookies.set('gender', JSON.stringify(getGenderObject('women')));
     }
-
-  
 
     return response;
 }

@@ -15,7 +15,7 @@ const SubmitLookButton = () => {
 
     const handleClick = () => {
         if (!currentUser) dispatch(openModal('authModal'))
-        if (currentUser) router.push('/gallery/submitLook');
+        if (currentUser) router.push('/gallery/submit');
     }
 
     return (

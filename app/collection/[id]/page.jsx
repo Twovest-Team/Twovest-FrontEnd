@@ -20,7 +20,7 @@ import InviteToCollectionButton from "@/components/collections/InviteToCollectio
 const Collection = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
-  const collectionId = params.idCollection;
+  const collectionId = params.id;
   const collectionData = await (async () => currentUser && await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId))();
 
   // verificar quando não consegue ir buscar a data da coleção

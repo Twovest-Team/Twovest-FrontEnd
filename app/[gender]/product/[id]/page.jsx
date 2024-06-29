@@ -83,7 +83,7 @@ async function ProductContent({ productId, selectedImageId, productGender, zoom 
             <div className="bg-white h-fit rounded-t-[20px] shadow-[0px_-20px_30px_0px_#00000010] container">
 
               <div className="flex flex-row gap-4 py-7">
-                <Link href={"/"}>
+                <Link href={`/${productGender}/brands/${data.brands.name}`}>
                   <Image
                     src={getStorageImage(data.brands.logo_url)}
                     width={35}

@@ -64,7 +64,7 @@ const Profile = async ({ params, searchParams }) => {
     <div className="flex flex-col gap-6 h-full min-h-[50vh] pb-6">
       {isOwnProfile &&
         <div className="container flex items-center justify-between h-12">
-          <Button href="/gallery/submitLook" className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Submeter novo look'>
+          <Button href="/gallery/submit" className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Submeter novo look'>
             Submeter novo look
           </Button>
 
@@ -120,7 +120,7 @@ const Profile = async ({ params, searchParams }) => {
                 Editar Perfil
               </Button>
 
-              <Button href={`/profile/options`} className="text-caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
+              <Button href={`/profile/${currentUser.id}/options`} className="text-caption border-grey_opacity_50 border-2" padding="0 20px" height="2.8rem" type='white' ariaLabel='Definições de conta'>
                 Definições
               </Button>
             </div>

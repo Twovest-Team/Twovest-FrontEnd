@@ -90,7 +90,7 @@ const ContentSlider = ({
         <div className="container">
           <ul
             ref={sliderRef}
-            className="flex flex-row gap-4 scroll_bar-invisible overflow-x-scroll"
+            className="flex flex-row gap-4 scroll_bar-invisible overflow-x-auto"
           >
             {React.Children.map(children, (child) => (
               <li className="flex-none">{child}</li>

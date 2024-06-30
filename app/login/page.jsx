@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import coloredGoogleIcon from "@/public/static/images/login/google_logo.svg";
-import coloredFacebookIcon from "@/public/static/images/login/facebook_logo.svg";
-import coloredAppleIcon from "@/public/static/images/login/apple_logo.svg";
 import Link from "next/link";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import Button from "@/components/buttons/Button";

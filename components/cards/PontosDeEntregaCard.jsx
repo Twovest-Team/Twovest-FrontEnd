@@ -17,7 +17,7 @@ const PontosDeEntregaCard = () => {
           Vai a um dos nossos pontos de entrega e habilita-te a ganhar bónus!
         </div>
 
-        <Button className="mx-auto" href="/" type={'primary'} ariaLabel='Ir para pontos de Entrega'>
+        <Button className="mx-auto text-wrap" width="100%" href="/" type={'primary'} ariaLabel='Ir para pontos de Entrega'>
           Ir para pontos de Entrega
         </Button>
 

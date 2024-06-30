@@ -148,6 +148,8 @@ const LookList = async ({ gender }) => {
   const looks = await getLooksForGallery(gender);
 
   return looks.length > 0 ? (
+    <>
+    <hr className="mb-10" />
     <div className="container pb-16">
       <h2 className="text-h6 mb-6">Continua a explorar</h2>
       <GridBox noContainer={true} loader={<LooksSkeleton />}>
@@ -156,7 +158,7 @@ const LookList = async ({ gender }) => {
         ))}
       </GridBox>
     </div>
-
+    </>
   ) : null;
 };
 

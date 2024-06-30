@@ -71,7 +71,7 @@ export default async function PurchaseList({ types, user }) {
                   )}
                 </div>
                 <div>
-                  <Link href={`/profile/${user.id}/options/orders/${element.id}`}>
+                  <Link href={`/profile/${user.id}/orders/${element.id}`}>
                     <IconButton
                       icon={<KeyboardArrowRightIcon sx={{ fontSize: 29 }} />}
                       ariaLabel={`Mais detalhes sobre a encomenda número ${element.id}`}

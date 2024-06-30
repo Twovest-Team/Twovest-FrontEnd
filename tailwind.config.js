@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     fontSize: {
       'caption': '13.33px',
+      'base': '1rem',
       'h1': ['47.78px', {
         fontWeight: '600'
       }],

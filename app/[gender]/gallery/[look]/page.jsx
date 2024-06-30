@@ -3,7 +3,7 @@ import getLookById from "@/utils/db/getLookById";
 import SaveLookIconButton from "@/components/collections/SaveLookIconButton";
 import Link from "next/link";
 import ProductCard from "@/components/cards/ProductCard";
-import { Avatar } from "@/components/user/Avatar";
+import Avatar from "@/components/user/Avatar";
 import GridBox from "@/components/providers/GridBox";
 import getStorageImage from "@/utils/getStorageImage";
 import IconButton from "@/components/buttons/icons/IconButton";
@@ -22,6 +22,8 @@ const Look = async ({ params }) => {
   const gender = params.gender;
   const look = await getLookById(lookId);
   const productsQty = look.products ? look.products.length : 0;
+
+  console.log(look.users)
 
   return (
     <main>
@@ -52,11 +54,8 @@ const MobileView = ({ look, lookId, productsQty }) => (
           <div className="container text-white flex items-center justify-between">
             <Link href={`/profile/${look.users.id}`} className="flex items-center gap-3">
               <Avatar
-                userRole={look.users.role}
-                size="medium"
-                userName={look.users.name}
-                userId={look.users.id}
-                url={look.users.img}
+                user={look.users}
+                size="md"
               />
               <p className="min-w-0 truncate">{look.users.name}</p>
             </Link>
@@ -98,11 +97,8 @@ const DesktopView = ({ look, lookId, productsQty }) => (
           <div className="flex items-center justify-between absolute bottom-5 left-4 right-4">
             <Link href={`/profile/${look.users.id}`} className="flex items-center gap-3">
               <Avatar
-                userRole={look.users.role}
-                size="medium"
-                userName={look.users.name}
-                userId={look.users.id}
-                url={look.users.img}
+                size="md"
+                user={look.users}
               />
               <p className="min-w-0 truncate">{look.users.name}</p>
             </Link>

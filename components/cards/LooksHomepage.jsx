@@ -13,7 +13,6 @@ export const LooksHomepage = ({ data }) => {
             <LookCard
               key={item.id}
               look={item}
-              avatar={item.users.img}
               slider={true}
             />
           </li>

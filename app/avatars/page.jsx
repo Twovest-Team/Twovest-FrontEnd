@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/user/Avatar'
+import Avatar from '@/components/user/Avatar'
 import useAuthServer from '@/hooks/server-hooks/useAuthServer'
 import React from 'react'
 

@@ -11,7 +11,7 @@ import getPortugueseDateString from '@/utils/getPortugueseDateString';
 import Image from 'next/image';
 import getStorageImage from '@/utils/getStorageImage';
 import Link from 'next/link';
-import { Avatar } from '../user/Avatar';
+import Avatar from '@/components/user/Avatar';
 import { useRouter } from 'next/navigation';
 
 
@@ -24,6 +24,8 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
         router.refresh()
         dispatch(closeModal(`look${look.id}Details`))
     }
+
+    console.log(look.users)
 
     return (
         <>
@@ -52,11 +54,8 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
                             className="flex gap-2 min-w-0 items-center mt-3.5"
                         >
                             <Avatar
-                                url={look.owner.img}
-                                userRole={look.owner.role}
-                                size="small"
-                                userName={look.owner.name}
-                                userId={look.owner.id}
+                                size="sm"
+                                user={look.owner}
                             />
                             <p className={`text-caption font-light truncate`}>
                                 {look.owner.name}

@@ -16,7 +16,9 @@ const getLooksForGallery = async (gender) => {
     users(
         id,
         name,
-        img
+        img,
+        role,
+        provider
     ),
     looks_has_styles(
       styles(

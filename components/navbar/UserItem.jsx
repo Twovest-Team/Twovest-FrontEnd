@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from 'next/navigation'
 import { openModal } from "@/redux/slices/modalSlice";
-import IconButton from "../buttons/icons/IconButton";
+import IconButton from "@/components/buttons/icons/IconButton";
+import Avatar from "@/components/user/Avatar";
+
 
 
 const UserItem = ({ user }) => {
@@ -30,14 +32,7 @@ const UserItem = ({ user }) => {
 
   const renderImage = () => (
     <Menu.Button>
-      <div className="flex w-8 aspect-square border border-gray-300 relative rounded-full">
-        <Image
-          src={user.img}
-          className="rounded-full"
-          alt="Imagem de perfil"
-          fill={true}
-        ></Image>
-      </div>
+      <Avatar user={user} size='md' noLink={true} />
     </Menu.Button>
 
   )

@@ -18,7 +18,8 @@ const getLooksForHomepage = async (gender) => {
         id,
         name,
         img,
-        role
+        role,
+        provider
     ),
     looks_has_styles(
       styles(

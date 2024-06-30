@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const Avatar = ({ user, size}) => {
+const Avatar = ({ user, size, noLink }) => {
 
-  const {img, role, name, id, provider} = user;
+  if (!user) return null
+  const { img, role, name, id, provider } = user;
 
   const imageSize = () => {
     switch (size) {
@@ -17,6 +18,8 @@ export const Avatar = ({ user, size}) => {
         return 55
       case '2xl':
         return 65
+      case 'profile':
+        return 140
     }
   }
 
@@ -32,20 +35,21 @@ export const Avatar = ({ user, size}) => {
         return 22
       case '2xl':
         return 25
+      case 'profile':
+        return 36
     }
   }
 
-  return (
-    <Link className="relative" href={`/profile/${id}`}>
-
+  const renderImage = () => (
+    <>
       <figure
-        className="relative aspect-square"
+        className="relative aspect-square rounded-full"
         style={{
           width: `${imageSize()}px`
         }}
       >
         <Image
-          className="rounded-full bg-grey_opacity_50 object-cover border-2 border-grey_opacity_50 hover:border-grey transition-colors duration-200"
+          className={`rounded-full bg-grey_opacity_50 object-cover ${size === 'profile' ? 'border-[7px] border-white' : 'border-2 border-grey_opacity_50 hover:border-grey'}  transition-colors duration-200`}
           fill={true}
           src={img}
           alt={`Perfil de ${name}`}
@@ -53,7 +57,7 @@ export const Avatar = ({ user, size}) => {
       </figure>
 
       {role === 1 &&
-        <div className='absolute -bottom-0.5 -right-0.5'>
+        <div className={`absolute ${size === 'profile' ? 'bottom-1 right-2' : '-bottom-0.5 -right-0.5'}`}>
           <figure
             className="relative aspect-square"
             style={{
@@ -64,9 +68,26 @@ export const Avatar = ({ user, size}) => {
           </figure>
         </div>
       }
-
-
-    </Link>
+    </>
   )
 
+  if (noLink) {
+    return (
+      <div className="relative">
+        {renderImage()}
+      </div>
+    )
+  } else {
+    return (
+      <Link className="relative" href={`/profile/${id}`}>
+
+        {renderImage()}
+      </Link>
+    )
+  }
+
+
 };
+
+
+export default Avatar

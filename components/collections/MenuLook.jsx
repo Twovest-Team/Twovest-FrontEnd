@@ -11,7 +11,7 @@ import getPortugueseDateString from '@/utils/getPortugueseDateString';
 import Image from 'next/image';
 import getStorageImage from '@/utils/getStorageImage';
 import Link from 'next/link';
-import { UserIcon } from '../user/UserIcon';
+import { Avatar } from '../user/Avatar';
 import { useRouter } from 'next/navigation';
 
 
@@ -51,7 +51,7 @@ const MenuLook = ({ submitter, collectionId, look, isMember }) => {
                             href={`/profile/${look.owner.id}`}
                             className="flex gap-2 min-w-0 items-center mt-3.5"
                         >
-                            <UserIcon
+                            <Avatar
                                 url={look.owner.img}
                                 userRole={look.owner.role}
                                 size="small"

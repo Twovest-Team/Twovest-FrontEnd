@@ -45,7 +45,7 @@ export default async function Home({ params }) {
 
       <LookShowcaseCard
         title='Looks urbanos 🏬'
-        subtitle='Explora os looks e inspira-te para criar o teu visual citadino.'
+        subtitle='Explora e inspira-te para criar o teu visual verdadeiramente citadino.'
         btnText='Explorar looks ->'
         btnLink={`${gender.string}/gallery?filter=Urbano`}
         src={`/static/images/looks/urban_${gender.string}.webp`}

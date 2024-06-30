@@ -3,7 +3,7 @@ import getLookById from "@/utils/db/getLookById";
 import SaveLookIconButton from "@/components/collections/SaveLookIconButton";
 import Link from "next/link";
 import ProductCard from "@/components/cards/ProductCard";
-import { UserIcon } from "@/components/user/UserIcon";
+import { Avatar } from "@/components/user/Avatar";
 import GridBox from "@/components/providers/GridBox";
 import getStorageImage from "@/utils/getStorageImage";
 import IconButton from "@/components/buttons/icons/IconButton";
@@ -51,7 +51,7 @@ const MobileView = ({ look, lookId, productsQty }) => (
         <div className="absolute bottom-0 left-0 right-0 w-full flex flex-col gap-8">
           <div className="container text-white flex items-center justify-between">
             <Link href={`/profile/${look.users.id}`} className="flex items-center gap-3">
-              <UserIcon
+              <Avatar
                 userRole={look.users.role}
                 size="medium"
                 userName={look.users.name}
@@ -97,7 +97,7 @@ const DesktopView = ({ look, lookId, productsQty }) => (
           <div className="bg-gradient-to-t rounded-b from-dark opacity-60 absolute bottom-0 w-full h-2/5" />
           <div className="flex items-center justify-between absolute bottom-5 left-4 right-4">
             <Link href={`/profile/${look.users.id}`} className="flex items-center gap-3">
-              <UserIcon
+              <Avatar
                 userRole={look.users.role}
                 size="medium"
                 userName={look.users.name}

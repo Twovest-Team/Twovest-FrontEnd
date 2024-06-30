@@ -208,3 +208,15 @@ select {
     height: calc(100vh - 75px);
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.animate-marquee {
+  animation: marquee 5s linear infinite;
+}

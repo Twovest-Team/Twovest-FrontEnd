@@ -19,7 +19,7 @@ function NavigationTitle({ hasImageBehind, titleText, children }) {
       }`}
     >
       <div
-        className="font-semibold flex flex-row min-w-0 items-center z-10 focus:outline-dashed focus:ring-2 focus:ring-black rounded"
+        className="font-semibold flex flex-row min-w-0 items-center z-10"
         tabIndex={0}
       >
         <IconButton

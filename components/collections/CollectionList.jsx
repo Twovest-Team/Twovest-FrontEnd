@@ -100,7 +100,7 @@ const CollectionList = ({
           </li>
         ))}
 
-        {searchState.trim().length > 0 && collectionsState.length === 0 && <p>Sem resultados para pesquisa.</p>}
+        {searchState.trim().length > 0 && collectionsState.length === 0 && <p>Sem resultados para a pesquisa.</p>}
 
         {!lookId && collections.length === 0 && (
           <li className="text-secondary container w-full flex justify-center items-center h-full flex-col gap-5 flex-grow">

@@ -10,6 +10,7 @@ const getUserById = async (id_user) => {
         created_at,
         img,
         role,
+        provider,
         points,
         looks (
           id,
@@ -19,7 +20,9 @@ const getUserById = async (id_user) => {
           users(
             name,
             id,
-            img
+            img,
+            role,
+            provider
           )
         ),
         collections:collections_has_users(
@@ -39,7 +42,9 @@ const getUserById = async (id_user) => {
                 owner_data:users(
                   id,
                   name,
-                  img
+                  img,
+                  role,
+                  provider
                 ),
                 styles(
                   id,

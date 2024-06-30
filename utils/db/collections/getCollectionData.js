@@ -27,7 +27,9 @@ const getCollectionData = async (collectionId) => {
                 owner_data:users(
                   id,
                   name,
-                  img
+                  img,
+                  role,
+                  provider
                 ),
                 styles(
                   id,
@@ -42,7 +44,8 @@ const getCollectionData = async (collectionId) => {
               name,
               email,
               img,
-              role
+              role,
+              provider
             )
           )
         `

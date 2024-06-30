@@ -22,7 +22,7 @@ const Button = (props) => {
 
   const styles = {
     width: width || 'fit-content',
-    height: height || '3.5rem',
+    height: height || '3.3rem',
     borderRadius: radius || '5px',
     justifyContent: !onlyIcon && justify || 'center',
     padding: padding ? padding : justify === 'space-between' ? '0 1.5rem' : '0 2.25rem',

@@ -14,7 +14,9 @@ const getLookById = async (id) => {
     users(
         id,
         name,
-        img
+        img,
+        provider,
+        role
     ),
     looks_has_products(
       products(

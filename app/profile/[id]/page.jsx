@@ -1,4 +1,3 @@
-import ProfilePicture from "@/components/profilePicture/ProfilePicture";
 import getPortugueseDateString from "@/utils/getPortugueseDateString";
 import ProfileScores from "@/components/sections/ProfileScores";
 import Link from "next/link";
@@ -13,6 +12,7 @@ import GridBox from "@/components/providers/GridBox";
 import LooksSkeleton from "@/components/loaders/Looks";
 import SegmentIcon from '@mui/icons-material/Segment';
 import ProfileBanner from "@/components/items/ProfileBanner";
+import Avatar from "@/components/user/Avatar";
 
 export const revalidate = 0;
 
@@ -101,10 +101,7 @@ const Profile = async ({ params, searchParams }) => {
         <ProfileBanner isOwnProfile={isOwnProfile} ownerFirstName={ownerFirstName} />
 
         <div className="flex justify-center md:justify-start absolute top-28 md:top-[123px] container mx-auto left-0 right-0">
-          <ProfilePicture
-            imageProfile={ownerData.img}
-            userRole={ownerData.role}
-          />
+            <Avatar user={ownerData} size='profile' noLink={true} />
         </div>
 
         <section className="container md:absolute mb-5 md:mb-0 mx-auto left-0 flex-col md:flex-row flex-wrap right-0 md:pl-[180px] md:top-[178px] flex justify-between items-center gap-5">
@@ -116,7 +113,7 @@ const Profile = async ({ params, searchParams }) => {
 
           {isOwnProfile ?
             <div className="flex gap-3">
-              <Button href={`/profile/options`} className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
+              <Button href={`/profile/${currentUser.id}/options`} className="text-caption" padding="0 20px" height="2.8rem" type="black" ariaLabel='Editar Perfil'>
                 Editar Perfil
               </Button>
 

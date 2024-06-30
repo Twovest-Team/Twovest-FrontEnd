@@ -1,5 +1,5 @@
 // Lista de imports com todos os endpoints
-import getProductsByCategory from "@/utils/db/getProductsByCategory";
+import getProducts from "@/utils/db/getProducts";
 import getAllColors from "@/utils/db/getAllColors";
 import getAllMaterials from "@/utils/db/getAllMaterials";
 import getAllStyles from "@/utils/db/getAllStyles";

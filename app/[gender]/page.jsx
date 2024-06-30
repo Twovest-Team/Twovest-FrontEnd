@@ -2,7 +2,7 @@
 import MainSlider from "@/components/Carousel/MainSlider";
 import PontosDeEntregaCard from "@/components/cards/PontosDeEntregaCard";
 import getProductsByViews from "@/utils/db/getProductsByViews";
-import { PopularProductsSilder } from "@/components/sliders/PopularProducts";
+import { ProductsSlider } from "@/components/sliders/ProductsSlider";
 import getBrands from "@/utils/db/getBrands";
 import { BrandCards } from "@/components/cards/BrandCards";
 import { LooksHomepage } from "@/components/cards/LooksHomepage";
@@ -11,6 +11,8 @@ import Button from "@/components/buttons/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import GeneralLoading from "@/components/loaders/GeneralLoading";
 import getGender from "@/utils/getGender";
+import getProducts from "@/utils/db/getProducts";
+import LookShowcaseCard from "@/components/cards/LookShowcaseCard";
 
 export default async function Home({ params }) {
 
@@ -18,24 +20,36 @@ export default async function Home({ params }) {
 
   if (!gender) return <GeneralLoading />;
 
-  const products = await getProductsByViews(gender.id);
+  const productsMostViewed = await getProductsByViews(gender.id);
+  const productsSustainable = await getProducts(null, gender.id, true, false, 10)
+  const productsOnSale = await getProducts(null, gender.id, false, true, 10)
   const brands = await getBrands(9);
   const looks = await getLooksForHomepage(gender.id);
 
 
   return (
     <main>
-      
+
       <div className="h-screen">
         <MainSlider currentGender={gender} />
       </div>
 
       <section className="mt-14 mb-2">
         <h1 className="font-semibold text-h6 container">Mais Procurados 🔥</h1>
-        <div className="flex my-6 overflow-auto overflow-x-scroll">
-          {products && products.length > 0 && <PopularProductsSilder data={products} />}
+        <div className="flex my-6">
+          {productsMostViewed && productsMostViewed.length > 0 && <ProductsSlider data={productsMostViewed} />}
         </div>
       </section>
+
+
+
+      <LookShowcaseCard
+        title='Looks urbanos 🏬'
+        subtitle='Explora e inspira-te para criar o teu visual verdadeiramente citadino.'
+        btnText='Explorar looks ->'
+        btnLink={`${gender.string}/gallery?filter=Urbano`}
+        src={`/static/images/looks/urban_${gender.string}.webp`}
+      />
 
       <section className="mt-14 mb-24">
         {brands && brands.length > 0 && <BrandCards data={brands} gender={gender} />}
@@ -73,15 +87,36 @@ export default async function Home({ params }) {
         </section>
       }
 
+      <section className="mt-14 mb-2">
+        <h1 className="font-semibold text-h6 container">Promoções ⭐</h1>
+        <div className="flex my-6 overflow-auto">
+          {productsOnSale && productsOnSale.length > 0 && <ProductsSlider data={productsOnSale} />}
+        </div>
+      </section>
 
-      {/* <section
+      <LookShowcaseCard
+        title='Verão aí à porta 🌻'
+        subtitle='Descobre os melhores looks de verão na galeria.'
+        btnText='Explorar looks ->'
+        btnLink={`${gender.string}/gallery`}
+        src={`/static/images/looks/summer_${gender.string}.webp`}
+      />
+
+      <section className="mt-14 mb-2">
+        <h1 className="font-semibold text-h6 container">Artigos Sustentáveis 🍀</h1>
+        <div className="flex my-6 overflow-auto">
+          {productsSustainable && productsSustainable.length > 0 && <ProductsSlider data={productsSustainable} />}
+        </div>
+      </section>
+
+       <section
         style={{
           backgroundImage: `url('/static/images/homepage/pontosdeentregabg.png')`,
         }}
         className="h-screen md:h-[70vh] lg:h-[80vh] bg-cover bg-center flex items-center justify-center text-white sectionDesktopHomepageDelivery"
       >
         <PontosDeEntregaCard />
-      </section> */}
+      </section>
     </main>
   );
 }

@@ -1,8 +1,15 @@
 import supabase from "@/utils/db/clients/public/supabase";
 import getGender from "../getGender";
+import { categories } from "@/constants";
 
-const getProductsByCategory = async (id_category, gender) => {
+const getProducts = async (category, gender, onlySustainable = false, onlySales = false, limit= 50) => {
+
   const genderId = getGender(gender).id;
+  const categoryOptions = category ? [category] : categories.map(category => category.id)
+  const sustainabilityOptions = onlySustainable ? [true] : [true, false]
+  const salesOptions = onlySales ? [0] : [-1]
+
+
 
   try {
     const { data: productData, error: productError } = await supabase
@@ -59,7 +66,11 @@ const getProductsByCategory = async (id_category, gender) => {
       )
       .eq("gender", genderId)
       .eq("is_public", true)
-      .eq("categories.id", id_category);
+      .in('is_sustainable', sustainabilityOptions)
+      .gt("discount", salesOptions)
+      .in("categories.id", categoryOptions)
+      .limit(limit);
+      
 
     function transformProductObject(productArray) {
       return productArray.map((product) => {
@@ -89,4 +100,4 @@ const getProductsByCategory = async (id_category, gender) => {
   }
 };
 
-export default getProductsByCategory;
+export default getProducts;

@@ -21,7 +21,8 @@ const Collection = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
   const collectionId = params.id;
-  const collectionData = await (async () => currentUser && await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId))();
+  const collectionData = await (async () => currentUser && 
+  (await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId)))();
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/');

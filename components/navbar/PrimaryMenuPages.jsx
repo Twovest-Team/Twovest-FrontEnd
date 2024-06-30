@@ -9,7 +9,7 @@ export const PrimaryMenuPagesList = ({ gender, toggleMenu }) => {
     { key: "SideMenu-PontosDeEntrega", href: "/", label: "Pontos de entrega", disabled: true },
     { key: "Forum", href: "/", label: "Fórum", disabled: true },
   ];
-  
+
 
   return (
     <div>
@@ -32,14 +32,18 @@ export const PrimaryMenuPagesList = ({ gender, toggleMenu }) => {
   );
 };
 
-const MenuItem = ({ key, href, toggleMenu, label, disabled }) => (
+const MenuItem = ({ key, href, toggleMenu, label, description, disabled }) => (
   <li key={key}>
     <Link
-    onClick={toggleMenu}
-    href={href}
-    className={` ${disabled ? 'pointer-events-none' : ''} py-3 hover:px-3 transition-all duration-200 rounded hover:bg-grey_opacity_50 flex justify-between items-center`}>
+      onClick={toggleMenu}
+      href={href}
+      className={` ${disabled ? 'pointer-events-none' : ''} py-3 hover:px-3 transition-all duration-200 rounded hover:bg-grey_opacity_50 flex justify-between items-center`}>
       <div className="flex gap-2">
-        <div className='font-semibold'>{label}</div>
+        <div className="flex flex-col">
+          <div className='font-semibold'>{label}</div>
+          {description && <div className="text-secondary text-caption">{description}</div>}
+        </div>
+
         {disabled && <p className="text-white opacity-100 bg-black px-2 py-1 text-[10px] font-semibold rounded">SOON</p>}
       </div>
       {<ArrowForwardIosIcon sx={{ fontSize: 18 }} />}

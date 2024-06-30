@@ -4,7 +4,7 @@ import SaveLookIconButton from "../collections/SaveLookIconButton";
 
 // Componente que mostra o name de utilizador apenas se estiver em vista de 1 coluna
 import Link from "next/link";
-import { UserIcon } from "../user/UserIcon";
+import Avatar from "@/components/user/Avatar";
 import MenuLook from "../collections/MenuLook";
 import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
@@ -62,12 +62,9 @@ export default function LookCard({
               href={`/profile/${look.users.id}`}
               className="flex gap-2 min-w-0 items-center mt-3.5"
             >
-              <UserIcon
-                url={look.users.img}
-                userRole={look.users.role}
-                size="small"
-                userName={look.users.name}
-                userId={look.users.id}
+              <Avatar
+                user={look.users}
+                size="sm"
               />
               <p className={`text-caption font-light truncate`}>
                 {look.users.name}
@@ -100,12 +97,9 @@ export default function LookCard({
       <figure className="relative">
 
         <div className="absolute top-3 left-3 z-10">
-          <UserIcon
-            size='small'
-            url={submitter.img}
-            userRole={submitter.role}
-            userName={submitter.name}
-            userId={submitter.id}
+          <Avatar
+            size='sm'
+            user={submitter}
           />
         </div>
 
@@ -158,12 +152,9 @@ export default function LookCard({
               href={`/profile/${look.users.id}?option=looks`}
               className="flex gap-2 min-w-0 items-center mt-3.5"
             >
-              <UserIcon
-                url={look.users.img}
-                userRole={look.users.role}
-                size="small"
-                userName={look.users.name}
-                userId={look.users.id}
+              <Avatar
+                size='sm'
+                user={look.users}
               />
 
               <p className={`text-caption font-light truncate`}>

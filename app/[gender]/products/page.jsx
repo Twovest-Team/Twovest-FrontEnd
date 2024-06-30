@@ -1,7 +1,5 @@
 import { categories } from "@/constants";
-import getProductsByCategory from "@/utils/db/getProductsByCategory";
-import getSustainableProducts from "@/utils/db/getSustainableProducts";
-import getOnSaleProducts from "@/utils/db/getOnSaleProducts";
+import getProducts from "@/utils/db/getProducts";
 import NavigationTitle from "@/components/providers/NavigationTitle";
 import FilterButton from "@/components/buttons/icons/FilterButton";
 import GridViews from "@/components/providers/GridViews";
@@ -44,15 +42,15 @@ async function ProductList({ category, status, gender }) {
 
     if (category) {
         const categoryId = categories.find(obj => obj.plural === category)?.id;
-        data = await getProductsByCategory(categoryId, gender);
+        data = await getProducts(categoryId, gender);
     } else if (status === "sustainable") {
-        data = await getSustainableProducts(gender);
+        data = await getProducts(null, gender, true, false);
     } else if (status === "discounts") {
-        data = await getOnSaleProducts(gender);
+        data = await getProducts(null, gender, false, true);
     }
 
     return (
-        <div>
+        <>
             {data.length > 0 ? (
                 <GridBox loader={<ProductsSkeleton />}>
                     {data.map(element => (
@@ -62,7 +60,7 @@ async function ProductList({ category, status, gender }) {
                     ))}
                 </GridBox>
             ) : (
-                <div className="flex-grow flex justify-center items-center w-full">
+                <div className="flex-grow flex justify-center items-center w-full average:pb-20">
                     <NoResultsNotice
                         title={'Não encontramos artigos para ti.'}
                         text={"Não há produtos registados nesta categoria."}
@@ -71,6 +69,6 @@ async function ProductList({ category, status, gender }) {
                     />
                 </div>
             )}
-        </div>
+        </>
     );
 }

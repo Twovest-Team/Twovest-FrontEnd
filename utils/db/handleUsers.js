@@ -18,13 +18,17 @@ const handleUsers = async (user) => {
         if (user.picture == null) {
           user.picture = "/users/default/default.png";
         }
+
+        if (user.provider == "" || user.provider == null) {
+          user.provider == "Google";
+        }
+
         await supabase
           .from("users")
           .insert(
-            { name: user.full_name, img: user.picture, email: user.email },
+            { name: user.full_name, img: user.picture, email: user.email, provider: user.provider },
             { returning: "minimal" }
           );
-        /* .insert({ name: user.username, img: user.image, email: user.email }, {returning: "minimal"}) */
       }
     }
   } catch (error) {

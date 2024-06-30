@@ -69,10 +69,10 @@ const AuthModal = () => {
 
                     <div className='flex flex-col items-center gap-5'>
                         <p className='text-center'>
-                            Se já tens conta, <Link onClick={() => dispatch(closeModal('authModal'))} href='/login' className='font-semibold underline'>inicia sessão.</Link>
+                            Se já tens conta, <Link onClick={() => dispatch(closeModal('authModal'))} href='/login' className='font-semibold'>inicia sessão.</Link>
                         </p>
                         <p className='flex flex-wrap justify-center gap-1'>
-                            Não tens conta? <Link onClick={() => dispatch(closeModal('authModal'))} href='/register' className='font-semibold underline'>Regista-te com o teu email.</Link>
+                            Não tens conta? <Link onClick={() => dispatch(closeModal('authModal'))} href='/register' className='font-semibold'>Regista-te com o teu email.</Link>
                         </p>
                     </div>
                 </div>

@@ -21,6 +21,7 @@ export async function middleware(request) {
 
     const cookieOnboarding = cookies.has('onboarding');
     const cookieGender = cookies.has('gender');
+    const cookieWarning = cookies.has('warning');
 
     let pathname = nextUrl.pathname;
     const param = getGenderParam(pathname)
@@ -36,6 +37,11 @@ export async function middleware(request) {
     if (!cookieOnboarding) {
         response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
         response.cookies.set('onboarding', '1');
+    }
+
+    if (!cookieWarning) {
+        response = NextResponse.redirect(new URL(`${pathname}?cookiesWarning=true`, request.url));
+        response.cookies.set('warning', '1');
     }
 
     if(param){

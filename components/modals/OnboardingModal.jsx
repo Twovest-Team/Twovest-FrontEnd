@@ -10,10 +10,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from "../buttons/Button"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
+import Image from "next/image";
 
 const OnboardingModal = () => {
-
     const searchParams = useSearchParams()
     const dispatch = useAppDispatch()
     const onboarding = searchParams.get('onboarding')

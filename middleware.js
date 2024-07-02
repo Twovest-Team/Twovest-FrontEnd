@@ -27,7 +27,6 @@ export async function middleware(request) {
 
     let response = NextResponse.next();
 
-    
     if(pathname === '/' && !param){
         pathname = pathname.concat('', 'women')
         response = NextResponse.redirect(new URL(`${pathname}`, request.url));
@@ -36,6 +35,7 @@ export async function middleware(request) {
     if (!cookieOnboarding) {
         response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
         response.cookies.set('onboarding', '1');
+        response.cookies.set('cookies', '0');
     }
 
     if(param){

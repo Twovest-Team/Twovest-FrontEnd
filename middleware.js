@@ -17,8 +17,10 @@ const getGenderParam = (pathname) => {
 };
 
 export async function middleware(request) {
+    
     const { cookies, nextUrl } = request;
 
+    const oneYear = 365 * 24 * 60 * 60 * 1000 // One year in milliseconds
     const cookieOnboarding = cookies.has('onboarding');
     const cookieGender = cookies.has('gender');
 
@@ -27,7 +29,6 @@ export async function middleware(request) {
 
     let response = NextResponse.next();
 
-    
     if(pathname === '/' && !param){
         pathname = pathname.concat('', 'women')
         response = NextResponse.redirect(new URL(`${pathname}`, request.url));
@@ -35,7 +36,8 @@ export async function middleware(request) {
 
     if (!cookieOnboarding) {
         response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
-        response.cookies.set('onboarding', '1');
+        response.cookies.set('onboarding', '1',  { expires: Date.now() + oneYear });
+        response.cookies.set('cookies', '0',  { expires: Date.now() + oneYear });
     }
 
     if(param){

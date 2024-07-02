@@ -14,6 +14,7 @@ import SustainabilityModal from "@/components/modals/SustainabilityModal";
 import AuthModal from "@/components/modals/AuthModal";
 import OnboardingModal from "@/components/modals/OnboardingModal";
 import ModalSubmitLook from "@/components/modals/ModalSubmitLook";
+import CookieWarning from "./Cookies/CookieWarning";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -97,7 +98,7 @@ export default function RootLayout({ children, params }) {
               message={"Link copiado"}
             />
 
-
+            <CookieWarning />
 
             <Analytics />
             <SpeedInsights />

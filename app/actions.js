@@ -57,7 +57,7 @@ export default async function teste(
       console.error("Error inserting look data:", error);
       return;
     }else{
-      redirect(`${process.env.NEXT_PUBLIC_URL}/gallery/${gender}?submit_success=true`);
+      redirect(`${process.env.NEXT_PUBLIC_URL}/${gender}/gallery?submit_success=true`);
     }
 
   }

@@ -19,6 +19,7 @@ export default async function getAuth() {
           img,
           role,
           points,
+          provider,
           looks (
             id,
             url_image,

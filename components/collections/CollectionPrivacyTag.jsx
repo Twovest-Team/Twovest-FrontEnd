@@ -7,7 +7,7 @@ import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 export default function CollectionPrivacyTag({ privacy, users }) {
 
-  let userIcons = []
+  let Avatars = []
   if (privacy == 3 && users) {
 
     for (let i = 0; i < users.length; i++) {
@@ -29,7 +29,7 @@ export default function CollectionPrivacyTag({ privacy, users }) {
           break;
       }
 
-      userIcons.push(
+      Avatars.push(
         <Image
           src={users[i].users.img}
           alt="Look da coleção"
@@ -55,7 +55,7 @@ export default function CollectionPrivacyTag({ privacy, users }) {
   }else if (privacy == 3 && users) {
     return (
       <div className={`flex gap-2 relative w-[100px] h-[35px]`}>
-        {userIcons}
+        {Avatars}
       </div>
     )
 

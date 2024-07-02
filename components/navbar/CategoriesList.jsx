@@ -1,16 +1,14 @@
 import { main_categories, categories } from "@/constants";
-import useGender from "@/hooks/client-hooks/useGender";
 import { useRouter } from "next/navigation";
 
-export const CategoriesList = ({ idCategory, handleClickMenu, handleClickCategory }) => {
+export const CategoriesList = ({ gender, idCategory, handleClickMenu, handleClickCategory }) => {
 
   const router = useRouter();
-  const [gender] = useGender();
 
   const handleClick = (category) => {
     handleClickMenu()
     handleClickCategory();
-    router.push(`/products/${gender.string}?category=${category}`);
+    router.push(`/${gender.string}/products?category=${category}`);
   };
 
   return (

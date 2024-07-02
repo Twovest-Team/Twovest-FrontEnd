@@ -9,7 +9,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { closeModal } from "@/redux/slices/modalSlice";
 
 export default function ApplyCouponModal({ sendDataToShop }) {
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
   const [userCoupons, setUserCoupons] = useState([]);
   const dispatch = useAppDispatch();
 

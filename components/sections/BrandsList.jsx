@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import useGender from "@/hooks/client-hooks/useGender";
 import BrandCard from "../cards/BrandCard";
 
-const BrandsList = ({ brandsData }) => {
+const BrandsList = ({ brandsData, gender }) => {
 
-  const [gender] = useGender();
   const [filteredBrands, setFilteredBrands] = useState(brandsData);
 
   const handleSearch = (e) => {
@@ -35,7 +33,7 @@ const BrandsList = ({ brandsData }) => {
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {gender && filteredBrands.map((brandItem, index) => (
           <li key={index}>
-            <BrandCard key={index} genderString={gender.string} brand={brandItem} />
+            <BrandCard key={index} genderString={gender} brand={brandItem} />
           </li>
         ))}
       </ul>

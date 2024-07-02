@@ -115,7 +115,7 @@ export const CardCart = ({
       <div className="flex self-center items-center w-full">
         <Link
           onClick={() => handleToggleCart()}
-          href={`/product/${gender.string}/${data.offers.products.id}`}
+          href={`/${gender.string}/product/${data.offers.products.id}`}
         >
           <figure className="bg-white border min-w-[115px] aspect-square border-grey rounded relative">
             <Image

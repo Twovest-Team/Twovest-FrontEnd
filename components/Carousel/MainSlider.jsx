@@ -4,14 +4,11 @@ import Image from "next/image";
 import Button from "../buttons/Button";
 import { useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
-import useGender from "@/hooks/client-hooks/useGender";
 import { genders } from "@/constants";
+import { useRouter } from "next/navigation";
 register();
 
-const MainSlider = () => {
-
-  const [gender, setGender] = useGender()
-  console.log(gender)
+const MainSlider = ({ currentGender }) => {
 
   const slides = [
     [
@@ -21,7 +18,7 @@ const MainSlider = () => {
         title: <span>Visita a Galeria <br /> de Mulher.</span>,
         description: 'Partilha os teus looks com outras pessoas.',
         btnText: 'Ir para Galeria ->',
-        btnLink: `/gallery/women`
+        btnLink: `/women/gallery`
       },
       {
         image: '/static/images/slider/image_women_2.webp',
@@ -29,7 +26,7 @@ const MainSlider = () => {
         title: <span>Artigos até 50% <br /> de desconto</span>,
         description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
-        btnLink: `/products/women?status=discounts`
+        btnLink: `/women/products?status=discounts`
       },
     ],
     [
@@ -39,7 +36,7 @@ const MainSlider = () => {
         title: <span>Visita a Galeria <br /> de Homem.</span>,
         description: 'Partilha os teus looks com outras pessoas.',
         btnText: 'Ir para Galeria ->',
-        btnLink: `/gallery/men`
+        btnLink: `/men/gallery`
       },
       {
         image: '/static/images/slider/image_men_2.webp',
@@ -47,13 +44,18 @@ const MainSlider = () => {
         title: <span>Artigos até 50% <br /> de desconto</span>,
         description: 'Delicia-te com os novos artigos disponíveis.',
         btnText: 'Ver promoções ->',
-        btnLink: `/products/men?status=discounts`
+        btnLink: `/men/products?status=discounts`
       },
     ]
 
   ]
 
+  const router = useRouter()
   const swiperRef = useRef()
+
+  const handleGender = (selectedGender) => {
+    if(currentGender.id !== selectedGender.id) router.push(`/${selectedGender.string}`)
+  }
 
   useEffect(() => {
     const swiperEl = swiperRef.current;
@@ -96,29 +98,24 @@ const MainSlider = () => {
   const renderGenders = () => (
     <div className="w-full h-10 flex absolute top-0 z-10 left-0 right-0">
 
-      <button
-        onClick={() => setGender(genders[0])}
-        className={`
-          ${gender.id !== 0 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
+      {genders.map(gender => (
+        <button
+          key={gender.id}
+          onClick={() => handleGender(gender)}
+          className={`
+          ${currentGender.id !== gender.id ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
           flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
         `}>
-        {genders[0].stringPT}
-      </button>
+          {gender.stringPT}
+        </button>
+      ))}
 
-      <button
-        onClick={() => setGender(genders[1])}
-        className={`
-        ${gender.id !== 1 ? 'bg-opacity-60 backdrop-blur-sm' : ''} 
-        pt-1 flex w-1/2 justify-center items-center bg-black text-white text-caption font-semibold uppercase
-      `}>
-        {genders[1].stringPT}
-      </button>
     </div>
   )
 
   const renderSlides = () => {
 
-    return slides[gender.id].map((slide, index) => (
+    return slides[currentGender.id].map((slide, index) => (
       <swiper-slide key={index}>
         <div className="w-full h-full relative">
           <Image

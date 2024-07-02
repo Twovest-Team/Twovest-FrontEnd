@@ -11,7 +11,7 @@ import Button from "../buttons/Button"
 const DeleteCollectionModal = ({ isAdmin, collectionId }) => {
 
     const dispatch = useAppDispatch()
-    const { currentUser } = useAuth()
+    const currentUser = useAuth()
     const router = useRouter()
 
     async function handleDelete() {

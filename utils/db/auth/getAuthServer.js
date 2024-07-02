@@ -1,22 +1,24 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
+export const revalidate = 0;
+
 export default async function getAuthServer() {
-  
-    const cookieStore = cookies();
-    const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
-    const userData = await supabase.auth.getUser();
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
-    if (!userData) return null
+  const userData = await supabase.auth.getUser();
 
-    const email = userData?.data.user?.user_metadata?.email;
+  if (!userData) return null
 
-    if(!email) return null
+  const email = userData?.data.user?.user_metadata?.email;
 
-    const { data, error } = await supabase
-      .from("users")
-      .select(`
+  if (!email) return null
+
+  const { data, error } = await supabase
+    .from("users")
+    .select(`
         id,
         email,
         name,
@@ -24,6 +26,7 @@ export default async function getAuthServer() {
         img,
         role,
         points,
+        provider,
         looks (
           id,
           url_image,
@@ -70,31 +73,31 @@ export default async function getAuthServer() {
           )
         )
       `)
-      .eq("email", email)
-      .single();
+    .eq("email", email)
+    .single();
 
-    // if(error) return error
-    // return data
+  // if(error) return error
+  // return data
 
-    if (!data || error) return null
+  if (!data || error) return null
 
-    function transformUserObject(user) {
-      return {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        created_at: user.created_at,
-        img: user.img,
-        role: user.role,
-        points: user.points,
-        looks: user.looks,
-        collections: user.collections.map(collection => {
-          const { collection_data, ...rest } = collection;
-          const { looks, ...collectionData } = collection_data;
-          return {
-            ...rest,
-            ...collectionData,
-            looks: looks
+  function transformUserObject(user) {
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      created_at: user.created_at,
+      img: user.img,
+      role: user.role,
+      points: user.points,
+      looks: user.looks,
+      collections: user.collections.map(collection => {
+        const { collection_data, ...rest } = collection;
+        const { looks, ...collectionData } = collection_data;
+        return {
+          ...rest,
+          ...collectionData,
+          looks: looks
             .filter(look => look.submitter)
             .map(look => ({
               id: look.id_look,
@@ -114,11 +117,11 @@ export default async function getAuthServer() {
               },
               styles: look.look_data.styles
             }))
-          };
-        })
-      };
-    }
+        };
+      })
+    };
+  }
 
-    return transformUserObject(data);
-  
+  return transformUserObject(data);
+
 }

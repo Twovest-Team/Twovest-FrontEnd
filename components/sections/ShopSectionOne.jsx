@@ -80,21 +80,21 @@ const ShopSectionOne = ({
           <div>
             <h1
               className="font-semibold text-h6"
-              aria-label={`Total (${productsData && productsData.length} ${
+              ariaLabel={`Total (${productsData && productsData.length} ${
                 productsData.length === 1 ? "artigo" : "artigos"
               })`}
             >
               Total ({productsData && productsData.length}{" "}
               {productsData.length === 1 ? "artigo" : "artigos"})
             </h1>
-            <p className="text-secondary text-caption" aria-label="Iva Incluido">
+            <p className="text-secondary text-caption" ariaLabel="Iva Incluido">
               IVA Incluído
             </p>
           </div>
           <div>
             <h2
               className="font-semibold text-h6"
-              aria-label={`Total do Carrinho: ${
+              ariaLabel={`Total do Carrinho: ${
                 productsData.length > 0
                   ? getCartTotalPrice(productsData) + " euros"
                   : "Carrinho vazio"

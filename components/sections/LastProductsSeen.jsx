@@ -13,7 +13,7 @@ const LastProductsSeen = () => {
   const currentUserHistory = useAppSelector(
     (state) => state.historyProducts.products
   );
-  const {currentUser} = useAuth();
+  const currentUser = useAuth();
 
   async function getUserHistoryData() {
     const data = await getUserHistory(currentUser.email);

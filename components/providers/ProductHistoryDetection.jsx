@@ -16,7 +16,7 @@ const ProductHistoryDetection = ({ children, productId }) => {
   const currentUserHistory = useAppSelector(
     (state) => state.historyProducts.products
   );
-  const {currentUser} = useAuth();
+  const currentUser = useAuth();
   let [isHistoryValidated, setIsHistoryValidated] = useState(false);
 
   async function addProduct() {

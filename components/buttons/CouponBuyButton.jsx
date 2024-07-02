@@ -8,7 +8,7 @@ import Notification from "../modals/Notification";
 import { showNotification } from "@/redux/slices/notificationSlice";
 
 export default function CouponBuyButton({ coupon }) {
-  const { currentUser } = useAuth();
+  const currentUser = useAuth();
   const dispatch = useAppDispatch();
 
   async function handleClick() {

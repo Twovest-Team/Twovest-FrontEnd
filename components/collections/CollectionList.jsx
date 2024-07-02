@@ -100,7 +100,7 @@ const CollectionList = ({
           </li>
         ))}
 
-        {searchState.trim().length > 0 && collectionsState.length === 0 && <p>Sem resultados para pesquisa.</p>}
+        {searchState.trim().length > 0 && collectionsState.length === 0 && <p>Sem resultados para a pesquisa.</p>}
 
         {!lookId && collections.length === 0 && (
           <li className="text-secondary container w-full flex justify-center items-center h-full flex-col gap-5 flex-grow">
@@ -109,8 +109,8 @@ const CollectionList = ({
 
             {!isOwner && ownerFirstName && (<p className="text-center">{ownerFirstName} não tem coleções disponíveis.</p>)}
 
-
-            <Button href="/gallery/women" className="text-caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
+            {/* TODO REVER ESTA LIGAÇÃO */}
+            <Button href="/women/gallery" className="text-caption" padding="0 20px" height="2.8rem" type="black-outlined" ariaLabel='Procurar inspiração na galeria'>
               {'Procurar inspiração na galeria ->'}
             </Button>
           </li>

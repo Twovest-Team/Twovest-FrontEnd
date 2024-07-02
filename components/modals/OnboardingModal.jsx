@@ -45,7 +45,7 @@ const OnboardingModal = () => {
 
             <div className='h-full flex flex-col'>
                 <figure className='w-full flex-grow sm:flex-auto sm:h-[340px] relative'>
-                    <Image priority={true} quality={100} className='object-cover object-bottom rounded-t' fill={true} src={`/static/images/modals/onboarding/${currentSection.img}`} alt='Imagem de ilustração de como ganhar pontos na galeria.' />
+                    <Image priority={true} quality={100} className='object-cover object-bottom sm:object-top rounded-t' fill={true} src={`/static/images/modals/onboarding/${currentSection.img}`} alt='Imagem de ilustração de como ganhar pontos na galeria.' />
                 </figure>
 
                 <div className='pb-8 pt-5 flex flex-col gap-6 container'>

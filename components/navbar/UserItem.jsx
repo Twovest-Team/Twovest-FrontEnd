@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from 'next/navigation'
 import { openModal } from "@/redux/slices/modalSlice";
-import IconButton from "../buttons/icons/IconButton";
+import IconButton from "@/components/buttons/icons/IconButton";
+import Avatar from "@/components/user/Avatar";
+
 
 
 const UserItem = ({ user }) => {
@@ -30,14 +32,7 @@ const UserItem = ({ user }) => {
 
   const renderImage = () => (
     <Menu.Button>
-      <div className="flex w-8 aspect-square border border-gray-300 relative rounded-full">
-        <Image
-          src={user.img}
-          className="rounded-full"
-          alt="Imagem de perfil"
-          fill={true}
-        ></Image>
-      </div>
+      <Avatar user={user} size='md' noLink={true} />
     </Menu.Button>
 
   )
@@ -82,19 +77,19 @@ const UserItem = ({ user }) => {
         },
         {
           title: 'Pontos&Cupões',
-          link: '/pontosecupoes',
+          link: `/profile/${user.id}/coupons`,
           icon: <AutoModeIcon className=" h-5 w-5 mr-1.5" />
         },
       ],
       [
         {
           title: 'Submeter novo look',
-          link: '/gallery/submitLook',
+          link: '/gallery/submit',
           icon: <ArrowCircleUpIcon className="h-5 w-5 mr-1.5" />
         },
         {
           title: 'Gerir os meus looks',
-          link: `/profile/${user.id}`,
+          link: `/profile/${user.id}?option=looks`,
         },
         {
           title: 'Ver as minhas coleções',
@@ -104,11 +99,11 @@ const UserItem = ({ user }) => {
       [
         {
           title: 'Histórico de compras',
-          link: '/profile/options/orders',
+          link: `/profile/${user.id}/orders`,
         },
         {
           title: 'Definições de conta',
-          link: '/profile/options',
+          link: `/profile/${user.id}/options`,
         },
         {
           title: 'Sair ->',

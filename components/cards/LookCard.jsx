@@ -3,9 +3,8 @@ import LookUpvoteButton from "../buttons/icons/LookUpvoteButton";
 import SaveLookIconButton from "../collections/SaveLookIconButton";
 
 // Componente que mostra o name de utilizador apenas se estiver em vista de 1 coluna
-import LookUsername from "../items/LookUsername";
 import Link from "next/link";
-import { UserIcon } from "../user/UserIcon";
+import Avatar from "@/components/user/Avatar";
 import MenuLook from "../collections/MenuLook";
 import getGender from "@/utils/getGender";
 import getStorageImage from "@/utils/getStorageImage";
@@ -36,7 +35,7 @@ export default function LookCard({
         className='w-full aspect-[17/26] pb-[46px] rounded relative bg-white transition-all duration-150 group'
       >
         <Link
-          href={`/gallery/${gender.string}/${look.id}`}
+          href={`/${gender.string}/gallery/${look.id}`}
           className="w-full h-full relative flex justify-center items-center"
         >
           <Image
@@ -50,7 +49,10 @@ export default function LookCard({
 
         </Link>
 
-        <LookUpvoteButton upvotes={look.upvotes} />
+
+        <div className="absolute top-3 right-3">
+          <LookUpvoteButton upvotes={look.upvotes} />
+        </div>
 
 
 
@@ -60,12 +62,9 @@ export default function LookCard({
               href={`/profile/${look.users.id}`}
               className="flex gap-2 min-w-0 items-center mt-3.5"
             >
-              <UserIcon
-                url={look.users.img}
-                userRole={look.users.role}
-                size="small"
-                userName={look.users.name}
-                userId={look.users.id}
+              <Avatar
+                user={look.users}
+                size="sm"
               />
               <p className={`text-caption font-light truncate`}>
                 {look.users.name}
@@ -98,16 +97,13 @@ export default function LookCard({
       <figure className="relative">
 
         <div className="absolute top-3 left-3 z-10">
-          <UserIcon
-            size='small'
-            url={submitter.img}
-            userRole={submitter.role}
-            userName={submitter.name}
-            userId={submitter.id}
+          <Avatar
+            size='sm'
+            user={submitter}
           />
         </div>
 
-        <Link href={`/gallery/${gender.string}/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
+        <Link href={`/${gender.string}/gallery/${look.id}`} className="relative w-full aspect-[17/26] flex justify-center items-center">
           <Image
             src={getStorageImage(look.url_image)}
             alt={`Look de ${look.owner.name}`}
@@ -135,7 +131,7 @@ export default function LookCard({
         className='aspect-[17/26] rounded w-[160px] sm:w-[200px] md:w-[250px] relative'
       >
         <Link
-          href={`/gallery/${gender.string}/${look.id}`}
+          href={`/${gender.string}/gallery/${look.id}`}
           className="w-full h-full relative flex justify-center items-center"
         >
           <Image
@@ -153,15 +149,12 @@ export default function LookCard({
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full z-10">
           <div className="flex flex-wrap justify-between items-center pb-3 px-3">
             <Link
-              href={`/profile/${look.users.id}`}
+              href={`/profile/${look.users.id}?option=looks`}
               className="flex gap-2 min-w-0 items-center mt-3.5"
             >
-              <UserIcon
-                url={look.users.img}
-                userRole={look.users.role}
-                size="small"
-                userName={look.users.name}
-                userId={look.users.id}
+              <Avatar
+                size='sm'
+                user={look.users}
               />
 
               <p className={`text-caption font-light truncate`}>

@@ -11,7 +11,7 @@ import { closeModal } from "@/redux/slices/modalSlice"
 const LeaveCollectionModal = ({ collectionId }) => {
 
     const router = useRouter()
-    const { currentUser } = useAuth()
+    const currentUser = useAuth()
     const dispatch = useAppDispatch()
 
     const handleLeave = async () => {

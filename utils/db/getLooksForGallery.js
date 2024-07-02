@@ -28,7 +28,8 @@ const getLooksForGallery = async (gender) => {
     `
       )
       .eq("submission_state", 2)
-      .eq("gender", genderId);
+      .eq("gender", genderId)
+      .order('id', { ascending: false })
 
     function transformLooksObject(looksArray) {
       return looksArray.map((look) => {

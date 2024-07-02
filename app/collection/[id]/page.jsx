@@ -21,8 +21,7 @@ const Collection = async ({ params, searchParams }) => {
 
   const currentUser = await useAuthServer();
   const collectionId = params.id;
-  const collectionData = await (async () => currentUser && 
-  (await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId)))();
+  const collectionData = await getOwnCollectionData(currentUser, collectionId) || await getCollectionData(collectionId);
 
   // verificar quando não consegue ir buscar a data da coleção
   if (!collectionData) redirect('/');
@@ -33,6 +32,8 @@ const Collection = async ({ params, searchParams }) => {
   const privacy = collectionData.privacy;
   const shareId = collectionData.share_id;
   const invitationId = searchParams.invite
+  console.log(invitationId)
+  console.log(shareId)
 
   console.log(searchParams)
   if (!isAdmin && !isMember && privacy === 1 && invitationId !== shareId) redirect('/');

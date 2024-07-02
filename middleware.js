@@ -41,11 +41,11 @@ export async function middleware(request) {
     }
 
     if(param){
-        response.cookies.set('gender', JSON.stringify(getGenderObject(param)));
+        response.cookies.set('gender', JSON.stringify(getGenderObject(param)), { expires: Date.now() + oneYear });
     }
 
     if(!param && !cookieGender){
-        response.cookies.set('gender', JSON.stringify(getGenderObject('women')));
+        response.cookies.set('gender', JSON.stringify(getGenderObject('women')), { expires: Date.now() + oneYear });
     }
 
     return response;

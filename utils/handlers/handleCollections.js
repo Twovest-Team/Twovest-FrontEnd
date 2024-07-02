@@ -35,6 +35,7 @@ const createStylesSet = (collectionData) => {
 }
 
 const getOwnCollectionData = async (currentUser, collectionId) => {
+    if(!currentUser) return null
     const collection = currentUser.collections.find(collection => collection.id == collectionId)
     if(!collection) return null
     const members = await getCollectionMembers(collectionId)

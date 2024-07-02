@@ -30,7 +30,7 @@ export default async function Home({ params }) {
   return (
     <main>
 
-      <div className="h-svh">
+      <div className="h-dvh">
         <MainSlider currentGender={gender} />
       </div>
 

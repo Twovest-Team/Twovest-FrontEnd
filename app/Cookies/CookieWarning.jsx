@@ -2,7 +2,6 @@
 
 
 import CookieOutlinedIcon from "@mui/icons-material/CookieOutlined";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useEffect, useState } from "react";
 import getCookie from "@/utils/cookies/getCookie";
 import setCookie from "@/utils/cookies/setCookie";
@@ -32,11 +31,12 @@ export default function CookieWarning() {
 
   return (
     <>
-      <div className="hidden lg:flex fixed inset-0 items-end pb-14 justify-center z-50 bg-gray-900 bg-opacity-50">
-        <div className=" mx-28 w-full h-auto p-5 bg-white rounded shadow border border-zinc-200">
+      <div className="hidden lg:flex fixed inset-0 items-end pb-14 justify-center z-50">
+        <div className=" mx-28 w-fit h-auto p-5 bg-white rounded shadow border border-zinc-200">
           <div className="justify-start items-center gap-[30px] inline-flex">
             <CookieOutlinedIcon
-              className="h-10 w-10 text-primary_main"
+              sx={{fontSize: 32}}
+              className=" text-primary_main"
               strokeWidth={1}
             />
             <p className="text-slate-500 text-base leading-snug">
@@ -49,34 +49,17 @@ export default function CookieWarning() {
             Compreendi
             </Button>
 
-            <button
-              type="button"
-              className="text-gray-600 hover:text-gray-900 focus:outline-none"
-              onClick={handleCloseModal}
-            >
-              <span className="sr-only">Close</span>
-              <CloseOutlinedIcon className="h-6 w-6" />
-            </button>
           </div>
         </div>
       </div>
 
-      <div className="lg:hidden fixed inset-0 flex items-end p-5 justify-center z-50 bg-gray-900 bg-opacity-50">
-        <div className="w-auto h-auto px-4 py-4 bg-white rounded shadow border border-zinc-200">
+      <div className="lg:hidden fixed inset-0 flex items-end p-5 justify-center z-50 ">
+        <div className="w-auto h-auto px-4 py-8 bg-white rounded shadow border border-zinc-200">
           <div className="justify-center flex-col">
-            <div className="justify-end flex pr-2 pb-4">
-              <button
-                type="button"
-                className="text-gray-600 hover:text-gray-900 focus:outline-none"
-                onClick={handleCloseModal}
-              >
-                <span className="sr-only">Close</span>
-                <CloseOutlinedIcon className="h-6 w-6" />
-              </button>
-            </div>
             <div className="flex itmes-center justify-between gap-5">
               <CookieOutlinedIcon
-                className="h-10 w-10 text-primary_main"
+                 sx={{fontSize: 32}}
+                className="text-primary_main"
                 strokeWidth={1}
               />
               <p className="text-slate-500 text-base leading-snug">
@@ -86,7 +69,7 @@ export default function CookieWarning() {
               </p>
             </div>
             <div className="flex justify-center pt-5 items-end">
-            <Button onClick={handleCloseModal} type="primary">
+            <Button width="100%" onClick={handleCloseModal} type="primary">
             Compreendi
             </Button>
             </div>

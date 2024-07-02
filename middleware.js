@@ -23,6 +23,7 @@ export async function middleware(request) {
     const oneYear = 365 * 24 * 60 * 60 * 1000 // One year in milliseconds
     const cookieOnboarding = cookies.has('onboarding');
     const cookieGender = cookies.has('gender');
+    const cookieCookies = cookies.has('cookies')
 
     let pathname = nextUrl.pathname;
     const param = getGenderParam(pathname)
@@ -37,6 +38,9 @@ export async function middleware(request) {
     if (!cookieOnboarding) {
         response = NextResponse.redirect(new URL(`${pathname}?onboarding=true`, request.url));
         response.cookies.set('onboarding', '1',  { expires: Date.now() + oneYear });
+    }
+
+    if(!cookieCookies){
         response.cookies.set('cookies', '0',  { expires: Date.now() + oneYear });
     }
 

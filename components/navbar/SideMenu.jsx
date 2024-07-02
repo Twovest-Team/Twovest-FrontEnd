@@ -172,7 +172,7 @@ export const SideMenu = () => {
       <li key={"SideMenu-Marcas"}>
         <Link
           onClick={handleClickMenu}
-          href={"/brands"}
+          href={`${gender.string}/brands`}
           className="bg-grey_opacity_50 hover:bg-grey hover:bg-opacity-50 transition-colors duration-100 p-4 cursor-pointer rounded flex justify-between"
         >
           <div>Marcas</div>

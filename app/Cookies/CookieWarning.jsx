@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import getCookie from "@/utils/cookies/getCookie";
 import setCookie from "@/utils/cookies/setCookie";
 import Button from "@/components/buttons/Button";
+import deleteCookie from "@/utils/cookies/deleteCookie";
 
 export default function CookieWarning() {
 
@@ -23,8 +24,8 @@ export default function CookieWarning() {
 
 
   const handleCloseModal = async () => {
-    setShowModal(false);
     await setCookie('cookies', '1')
+    setShowModal(false);
   };
 
   if (!showModal) return null
